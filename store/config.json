@@ -18,5 +18,185 @@
 	{
 		"name": "cell-converter",
 		"discussion": ""
+	},
+	{
+		"name": "plugin-ai",
+		"discussion": ""
+	},
+	{
+		"name": "plugin-apertium",
+		"discussion": ""
+	},
+	{
+		"name": "plugin-autocomplete",
+		"discussion": ""
+	},
+	{
+		"name": "plugin-bergamot",
+		"discussion": ""
+	},
+	{
+		"name": "plugin-chess",
+		"discussion": ""
+	},
+	{
+		"name": "plugin-cvbuilder",
+		"discussion": ""
+	},
+	{
+		"name": "plugin-datepicker",
+		"discussion": ""
+	},
+	{
+		"name": "plugin-deepl",
+		"discussion": ""
+	},
+	{
+		"name": "plugin-doc2md",
+		"discussion": ""
+	},
+	{
+		"name": "plugin-drawio",
+		"discussion": ""
+	},
+	{
+		"name": "plugin-easybib",
+		"discussion": ""
+	},
+	{
+		"name": "plugin-glavred",
+		"discussion": ""
+	},
+	{
+		"name": "plugin-grammalecte",
+		"discussion": ""
+	},
+	{
+		"name": "plugin-highlightcode",
+		"discussion": ""
+	},
+	{
+		"name": "plugin-html",
+		"discussion": ""
+	},
+	{
+		"name": "plugin-icons",
+		"discussion": ""
+	},
+	{
+		"name": "plugin-idphoto",
+		"discussion": ""
+	},
+	{
+		"name": "plugin-insertQR",
+		"discussion": ""
+	},
+	{
+		"name": "plugin-jitsi",
+		"discussion": ""
+	},
+	{
+		"name": "plugin-languagetool",
+		"discussion": ""
+	},
+	{
+		"name": "plugin-mathpix",
+		"discussion": ""
+	},
+	{
+		"name": "plugin-mendeley",
+		"discussion": ""
+	},
+	{
+		"name": "plugin-news",
+		"discussion": ""
+	},
+	{
+		"name": "plugin-ocr",
+		"discussion": ""
+	},
+	{
+		"name": "plugin-onlydraw",
+		"discussion": ""
+	},
+	{
+		"name": "plugin-photoeditor",
+		"discussion": ""
+	},
+	{
+		"name": "plugin-pixabay",
+		"discussion": ""
+	},
+	{
+		"name": "plugin-pomodoro",
+		"discussion": ""
+	},
+	{
+		"name": "plugin-rainbow",
+		"discussion": ""
+	},
+	{
+		"name": "plugin-speech",
+		"discussion": ""
+	},
+	{
+		"name": "plugin-speechrecognition",
+		"discussion": ""
+	},
+	{
+		"name": "plugin-telegram",
+		"discussion": ""
+	},
+	{
+		"name": "plugin-termef",
+		"discussion": ""
+	},
+	{
+		"name": "plugin-textcleaner",
+		"discussion": ""
+	},
+	{
+		"name": "plugin-texthighlighter",
+		"discussion": ""
+	},
+	{
+		"name": "plugin-thesaurus",
+		"discussion": ""
+	},
+	{
+		"name": "plugin-translator",
+		"discussion": ""
+	},
+	{
+		"name": "plugin-typograf",
+		"discussion": ""
+	},
+	{
+		"name": "plugin-videoembedder",
+		"discussion": ""
+	},
+	{
+		"name": "plugin-wordpress",
+		"discussion": ""
+	},
+	{
+		"name": "plugin-wordscounter",
+		"discussion": ""
+	},
+	{
+		"name": "plugin-youtube",
+		"discussion": ""
+	},
+	{
+		"name": "plugin-zhipu",
+		"discussion": ""
+	},
+	{
+		"name": "plugin-zoom",
+		"discussion": ""
+	},
+	{
+		"name": "plugin-zotero",
+		"discussion": ""
 	}
 ]

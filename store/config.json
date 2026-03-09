@@ -20,183 +20,183 @@
 		"discussion": ""
 	},
 	{
-		"name": "plugin-ai",
+		"name": "ai",
 		"discussion": ""
 	},
 	{
-		"name": "plugin-apertium",
+		"name": "apertium",
 		"discussion": ""
 	},
 	{
-		"name": "plugin-autocomplete",
+		"name": "autocomplete",
 		"discussion": ""
 	},
 	{
-		"name": "plugin-bergamot",
+		"name": "bergamot",
 		"discussion": ""
 	},
 	{
-		"name": "plugin-chess",
+		"name": "chess",
 		"discussion": ""
 	},
 	{
-		"name": "plugin-cvbuilder",
+		"name": "cvbuilder",
 		"discussion": ""
 	},
 	{
-		"name": "plugin-datepicker",
+		"name": "datepicker",
 		"discussion": ""
 	},
 	{
-		"name": "plugin-deepl",
+		"name": "deepl",
 		"discussion": ""
 	},
 	{
-		"name": "plugin-doc2md",
+		"name": "doc2md",
 		"discussion": ""
 	},
 	{
-		"name": "plugin-drawio",
+		"name": "drawio",
 		"discussion": ""
 	},
 	{
-		"name": "plugin-easybib",
+		"name": "easybib",
 		"discussion": ""
 	},
 	{
-		"name": "plugin-glavred",
+		"name": "glavred",
 		"discussion": ""
 	},
 	{
-		"name": "plugin-grammalecte",
+		"name": "grammalecte",
 		"discussion": ""
 	},
 	{
-		"name": "plugin-highlightcode",
+		"name": "highlightcode",
 		"discussion": ""
 	},
 	{
-		"name": "plugin-html",
+		"name": "html",
 		"discussion": ""
 	},
 	{
-		"name": "plugin-icons",
+		"name": "icons",
 		"discussion": ""
 	},
 	{
-		"name": "plugin-idphoto",
+		"name": "idphoto",
 		"discussion": ""
 	},
 	{
-		"name": "plugin-insertQR",
+		"name": "insertQR",
 		"discussion": ""
 	},
 	{
-		"name": "plugin-jitsi",
+		"name": "jitsi",
 		"discussion": ""
 	},
 	{
-		"name": "plugin-languagetool",
+		"name": "languagetool",
 		"discussion": ""
 	},
 	{
-		"name": "plugin-mathpix",
+		"name": "mathpix",
 		"discussion": ""
 	},
 	{
-		"name": "plugin-mendeley",
+		"name": "mendeley",
 		"discussion": ""
 	},
 	{
-		"name": "plugin-news",
+		"name": "news",
 		"discussion": ""
 	},
 	{
-		"name": "plugin-ocr",
+		"name": "ocr",
 		"discussion": ""
 	},
 	{
-		"name": "plugin-onlydraw",
+		"name": "onlydraw",
 		"discussion": ""
 	},
 	{
-		"name": "plugin-photoeditor",
+		"name": "photoeditor",
 		"discussion": ""
 	},
 	{
-		"name": "plugin-pixabay",
+		"name": "pixabay",
 		"discussion": ""
 	},
 	{
-		"name": "plugin-pomodoro",
+		"name": "pomodoro",
 		"discussion": ""
 	},
 	{
-		"name": "plugin-rainbow",
+		"name": "rainbow",
 		"discussion": ""
 	},
 	{
-		"name": "plugin-speech",
+		"name": "speech",
 		"discussion": ""
 	},
 	{
-		"name": "plugin-speechrecognition",
+		"name": "speechrecognition",
 		"discussion": ""
 	},
 	{
-		"name": "plugin-telegram",
+		"name": "telegram",
 		"discussion": ""
 	},
 	{
-		"name": "plugin-termef",
+		"name": "termef",
 		"discussion": ""
 	},
 	{
-		"name": "plugin-textcleaner",
+		"name": "textcleaner",
 		"discussion": ""
 	},
 	{
-		"name": "plugin-texthighlighter",
+		"name": "texthighlighter",
 		"discussion": ""
 	},
 	{
-		"name": "plugin-thesaurus",
+		"name": "thesaurus",
 		"discussion": ""
 	},
 	{
-		"name": "plugin-translator",
+		"name": "translator",
 		"discussion": ""
 	},
 	{
-		"name": "plugin-typograf",
+		"name": "typograf",
 		"discussion": ""
 	},
 	{
-		"name": "plugin-videoembedder",
+		"name": "videoembedder",
 		"discussion": ""
 	},
 	{
-		"name": "plugin-wordpress",
+		"name": "wordpress",
 		"discussion": ""
 	},
 	{
-		"name": "plugin-wordscounter",
+		"name": "wordscounter",
 		"discussion": ""
 	},
 	{
-		"name": "plugin-youtube",
+		"name": "youtube",
 		"discussion": ""
 	},
 	{
-		"name": "plugin-zhipu",
+		"name": "zhipu",
 		"discussion": ""
 	},
 	{
-		"name": "plugin-zoom",
+		"name": "zoom",
 		"discussion": ""
 	},
 	{
-		"name": "plugin-zotero",
+		"name": "zotero",
 		"discussion": ""
 	}
 ]

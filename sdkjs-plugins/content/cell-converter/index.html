@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Cell Converter</title>
+    <link rel="stylesheet" href="https://onlyoffice.github.io/sdkjs-plugins/v1/plugins.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <style id="pluginStyles"></style>
+    <script src="https://onlyoffice.github.io/sdkjs-plugins/v1/plugins.js"></script>
+    <script src="https://onlyoffice.github.io/sdkjs-plugins/v1/plugins-ui.js"></script>
+</head>
+
+<body id="body" class="noselect">
+    <div id="content">
+        <div class="current-value-card">
+            <span class="value-label">Selected Value</span>
+            <span class="value-number" id="currentValue">—</span>
+        </div>
+
+        <div class="form-group">
+            <label for="category">Category</label>
+            <select id="category">
+                <option value="length">Length</option>
+                <option value="weight">Weight</option>
+                <option value="temperature">Temperature</option>
+                <option value="area">Area</option>
+                <option value="speed">Speed</option>
+                <option value="data">Data (bytes)</option>
+            </select>
+        </div>
+
+        <div class="conversion-row">
+            <div class="form-group flex-1">
+                <label for="unitFrom">From</label>
+                <select id="unitFrom"></select>
+            </div>
+            <button id="swapBtn" class="swap-btn" title="Swap units">⇌</button>
+            <div class="form-group flex-1">
+                <label for="unitTo">To</label>
+                <select id="unitTo"></select>
+            </div>
+        </div>
+
+        <div class="result-card">
+            <span class="result-label">Result</span>
+            <span class="result-value" id="resultValue">—</span>
+        </div>
+
+        <div class="button-row">
+            <button id="btnReplace" class="action-btn primary-btn">Replace Cell</button>
+            <button id="btnInsertRight" class="action-btn secondary-btn">Insert →</button>
+        </div>
+
+        <div id="statusMsg" class="status-msg hidden"></div>
+    </div>
+    <script src="scripts/main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Data Generator</title>
+    <link rel="stylesheet" href="https://onlyoffice.github.io/sdkjs-plugins/v1/plugins.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <style id="pluginStyles"></style>
+    <script src="https://onlyoffice.github.io/sdkjs-plugins/v1/plugins.js"></script>
+    <script src="https://onlyoffice.github.io/sdkjs-plugins/v1/plugins-ui.js"></script>
+</head>
+
+<body id="body" class="noselect">
+    <div id="content">
+        <div class="form-group">
+            <label for="dataType">Data Type</label>
+            <select id="dataType">
+                <option value="integers">Random Integers</option>
+                <option value="decimals">Random Decimals</option>
+                <option value="sequence">Number Sequence</option>
+                <option value="dates">Random Dates</option>
+                <option value="uuid">UUID</option>
+                <option value="names">Names</option>
+                <option value="emails">Email Addresses</option>
+                <option value="passwords">Passwords</option>
+                <option value="lorem">Lorem Ipsum</option>
+            </select>
+        </div>
+
+        <div class="form-group" id="rangeGroup">
+            <label>Range</label>
+            <div class="range-inputs">
+                <input type="number" id="rangeMin" value="1" placeholder="Min">
+                <span class="range-separator">—</span>
+                <input type="number" id="rangeMax" value="100" placeholder="Max">
+            </div>
+        </div>
+
+        <div class="form-group" id="seqGroup" style="display:none">
+            <label>Sequence</label>
+            <div class="range-inputs">
+                <input type="number" id="seqStart" value="1" placeholder="Start">
+                <span class="range-separator">step</span>
+                <input type="number" id="seqStep" value="1" placeholder="Step">
+            </div>
+        </div>
+
+        <div class="form-group" id="dateRangeGroup" style="display:none">
+            <label>Date Range</label>
+            <div class="range-inputs">
+                <input type="date" id="dateFrom" value="2024-01-01">
+                <span class="range-separator">—</span>
+                <input type="date" id="dateTo" value="2025-12-31">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="rowCount">Number of rows</label>
+            <input type="number" id="rowCount" value="10" min="1" max="10000">
+        </div>
+
+        <div class="form-group direction-group">
+            <label>Direction</label>
+            <div class="radio-row">
+                <label class="radio-label">
+                    <input type="radio" name="direction" value="down" checked> ↓ Down
+                </label>
+                <label class="radio-label">
+                    <input type="radio" name="direction" value="right"> → Right
+                </label>
+            </div>
+        </div>
+
+        <button id="btnGenerate" class="generate-btn">Generate Data</button>
+
+        <div id="statusMsg" class="status-msg hidden"></div>
+    </div>
+    <script src="scripts/main.js"></script>
+</body>
+
+</html>

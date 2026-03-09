@@ -1,0 +1,180 @@
+<!--
+ (c) Copyright Ascensio System SIA 2020
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="https://onlyoffice.github.io/sdkjs-plugins/v1/plugins.css">
+	<link rel="stylesheet" href="./resources/css/styles.css">
+	<link rel="stylesheet" href="vendor/select2-4.0.13/css/select2.css"/>
+	<script type="text/javascript" src="vendor/jquery/jquery-3.7.1.min.js"></script>
+	<script type="text/javascript" src="https://onlyoffice.github.io/sdkjs-plugins/v1/plugins-ui.js"></script>
+	<script type="text/javascript" src="scripts/polyfill.js"></script>
+	<script type="text/javascript" src="scripts/code.js"></script>
+	<script src="vendor/select2-4.0.13/js/select2.js"></script>
+	<script src="vendor/marked/marked.min.js"></script>
+</head>
+	<body class="noselect">
+		<img class="stars_grey" style="opacity: 0; z-index: -1000;" src="./resources/img/stars/rating-stars.svg"/>
+		<div id="div_header" class="header hidden">
+			<!-- <span id="arrow" class="arrow hidden">&#8592;</span> -->
+			<label id="lbl_header" class="aboutlable header">Manage plugins</label>
+			<!-- <span id="close" class="close">&times;</span> -->
+		</div>
+		<div id="div_body" class="div_body transparent">
+			<div id="toolbar" class="toolbar">
+				<div class="toolbar_top">
+					<div class="toolbar_buttons">
+						<button id="btn_AvailablePlugins" class="btn_menu btn_menu_left btn-text-default">Available plugins</button>
+						<button id="btn_marketplace" class="btn_menu btn_menu_right btn-text-default btn_toolbar_active">Marketplace</button>
+					</div>
+					<div class="toolbar_link">
+						<!-- TODO think about how to open the form for uploading -->
+						<a id="link_newPlugin" class="link_submit" target="blank" href="https://github.com/ONLYOFFICE/onlyoffice.github.io/pulls">Submit your own plugin</a>
+					</div>
+				</div>
+				<div id="toolbar_tools" class="toolbar_tools">
+					<div class="flex">
+						<div style="display: flex; justify-content: center; align-items: center;">
+							<span id="span_categories" style="margin-right: 4px; margin-top: 1px;">Categories</span>
+							<select id="select_categories">
+								<option id="opt_all" value="all">All</option>
+								<option id="opt_rec" value="recommended">Recommended</option>
+								<option id="opt_dev" value="devTools">Developer tools</option>
+								<option id="opt_work" value="work">Work</option>
+								<option id="opt_enter" value="entertainment">Entertainment</option>
+								<option id="opt_com" value="communication">Communication</option>
+								<option id="opt_spec" value="specAbilities">Special abilities</option>
+							</select>
+						</div>
+						<button id="btn_updateAll" class="btn-text-default btn_update btn_install hidden" onclick="onClickUpdateAll()">Update All</button>
+					</div>
+					<div class="hidden">
+						<span id="span_sort">Sort by</span>
+						<select id="select_sortBy">
+							<option value="name">Name</option>
+							<option value="raiting">Raiting</option>
+							<option value="instalations">Instalations</option>
+						</select>
+					</div>
+					<input id="inp_search" type="text" spellcheck="false" class="form-control" placeholder="Search plugins...">
+				</div>
+			</div>
+			<div id="div_main" class="main_content"></div>
+		</div>
+		<div id="div_selected_toolbar" class="div_selected_toolbar hidden">
+			<!-- TODO temporarily, I added an arrow here so that I could go back -->
+			<span id="arrow" class="arrow hidden">&#8592;</span>
+			<div class="div_selected_description">
+				<span id="span_name" class="span_name_selected"></span>
+				<div class="div_offered_votes">
+					<span id="span_offered_caption" class="span_offered">Offered by</span>
+					<span id="span_offered" class="span_offered"></span>
+				</div>
+				<div class="div_rating_general">
+					<div id="div_rating_link" class="div_rating_general">
+						<div class="div_info_column">
+							<div id="div_rating_stars" >
+								<div class="div_rating">
+									<div class="stars_grey"></div>
+									<div id="stars_colored" class="stars_orange"></div>
+								</div>
+							</div>
+						</div>
+						<div id="div_votes" class="div_votes div_offered_votes hidden">
+							<span id="total_votes"></span>
+						</div>
+						<a id="discussion_link" class="aboutlink link_submit" target="blank" href="https://api.onlyoffice.com/docs/plugin-and-macros/get-started/overview/">Click to rate</a>
+					</div>
+					<div style="height: 18px;"></div>
+				</div>
+				<div>
+					<button id="btn_remove" class="btn-text-default btn_preview btn_remove" onclick="onClickRemove(event.target.parentNode, event)">Remove</button>
+					<button id="btn_update" class="btn-text-default btn_preview btn_install" onclick="onClickUpdate(event.target)">Update</button>
+					<button id="btn_install" class="btn-text-default btn_preview btn_install" onclick="onClickInstall(event.target.parentNode, event)">Install</button>
+				</div>
+			</div>
+			<div class="div_info_column">
+				<div id="div_icon_info" class="div_icon_info">
+					<img id="img_icon">
+				</div>
+			</div>
+		</div>
+		<div id="div_selected_main" class="div_selected_main hidden">
+			<div style="width:100%; height:100%">
+				<div>
+					<span id="span_overview" class="span_caption span_selected" onclick="onSelectPreview(event.target, 1)">Overview</span>
+					<span id="span_info" class="span_caption" onclick="onSelectPreview(event.target, 2)">Info & Support</span>
+					<span id="span_changelog" class="span_caption" onclick="onSelectPreview(event.target, 3)">Changelog</span>
+					<hr>
+				</div>
+				<div id="div_selected_preview" class="div_selected_preview">
+					<div class="div_description_selected">
+						<span id="span_selected_description"></span>
+					</div>
+					<div id="div_selected_image">
+						<div id="div_selected_container" class="slideshow-container">
+							<span id="prev_arrow" class="prev hidden" onclick="plusSlides(-1)"></span>
+							<span id="next_arrow" class="next hidden" onclick="plusSlides(1)"></span>
+						</div>
+						<br>
+						<div id="points_container" style="text-align:center"></div>
+					</div>
+				</div>
+				<div id="div_selected_info" class="div_selected_preview hidden">
+					<div id="div_plugin_info" class="div_plugin_info">
+						<div id="div_version" class="div_selected_info margin_0 hidden">
+							<span id="span_ver_caption" class="font_bold">Version: </span>
+							<span id="span_ver"></span>
+						</div>
+						<div id="div_min_version" class="div_selected_info hidden">
+							<span id="span_min_ver_caption" class="font_bold">The minimum supported editors version: </span>
+							<span id="span_min_ver"></span>
+						</div>
+						<div id="div_languages" class="div_selected_info hidden">
+							<span id="span_langs_caption" class="font_bold">Languges: </span>
+							<span id="span_langs"></span>
+						</div>
+					</div>
+					<div id="div_readme_link" class="div_selected_info">
+						<span id="span_lern" class="font_bold">Learn how to use </span>
+						<span id="span_lern_plugin">the plugin in </span>
+						<a id="link_readme" class="aboutlink link_info" target="blank" href="">README.</a>
+					</div>
+					<div id="div_github_link" class="div_selected_info">
+						<span id="span_contribute" class="font_bold">Contribute </span>
+						<span id="span_contribute_end">to the plugin development or report an issue on </span>
+						<a id="link_plugin" class="aboutlink link_info" target="blank">Github.</a>
+					</div>
+					<div class="div_selected_info">
+						<span id="span_help" class="font_bold">Get help </span>
+						<span id="span_help_end">with the plugin functionality on our forum.</span>
+					</div>
+					<div class="div_selected_info">
+						<span id="span_create">Create a new plugin using </span>
+						<a class="aboutlink link_info" target="blank" href="https://api.onlyoffice.com/docs/plugin-and-macros/get-started/">ONLYOFFICE API.</a>
+					</div>
+				</div>
+				<div id="div_selected_changelog" class="div_selected_preview div_selected_preview_chanelog hidden">
+					<div id="div_changelog_preview"></div>
+				</div>
+			</div>
+		</div>
+		<div id="div_error" class="error_main hidden"><div class="loader_background"></div></div>
+		<div id="loader-container" class="asc-loader-container div_loader"><div class="loader_background"></div></div>
+		<div id="div_rating_git" class="hidden"></div>
+	</body>	
+</html>

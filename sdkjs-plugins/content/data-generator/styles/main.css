@@ -1,0 +1,137 @@
+html,
+body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+.hidden {
+    display: none;
+}
+
+#content {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 12px;
+    overflow-y: auto;
+    gap: 10px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.form-group label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+    opacity: 0.6;
+}
+
+select,
+input[type="number"],
+input[type="date"] {
+    padding: 7px 8px;
+    border: 1px solid #d0d0d0;
+    border-radius: 4px;
+    font-size: 12px;
+    font-family: inherit;
+    outline: none;
+}
+
+select:focus,
+input[type="number"]:focus,
+input[type="date"]:focus {
+    border-color: #888;
+}
+
+.range-inputs {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.range-inputs input {
+    flex: 1;
+    padding: 7px 8px;
+    border: 1px solid #d0d0d0;
+    border-radius: 4px;
+    font-size: 12px;
+    font-family: inherit;
+    outline: none;
+}
+
+.range-inputs input:focus {
+    border-color: #888;
+}
+
+.range-separator {
+    font-size: 12px;
+    opacity: 0.5;
+    flex-shrink: 0;
+}
+
+.direction-group .radio-row {
+    display: flex;
+    gap: 16px;
+    margin-top: 2px;
+}
+
+.radio-label {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.generate-btn {
+    padding: 10px;
+    border: 1px solid transparent;
+    border-radius: 6px;
+    background: #444;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    font-family: inherit;
+    margin-top: 4px;
+}
+
+.generate-btn:hover {
+    background: #333;
+}
+
+.generate-btn:active {
+    transform: scale(0.98);
+}
+
+.status-msg {
+    text-align: center;
+    padding: 6px;
+    border-radius: 4px;
+    font-size: 11px;
+    transition: opacity 0.3s;
+}
+
+.status-msg.success {
+    background: #e8f5e9;
+    color: #2e7d32;
+}
+
+.status-msg.error {
+    background: #fbe9e7;
+    color: #c62828;
+}

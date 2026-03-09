@@ -1,0 +1,119 @@
+html,
+body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+.hidden {
+    display: none;
+}
+
+#content {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 10px 12px;
+    overflow-y: auto;
+}
+
+.section-title {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin: 10px 0 6px;
+    opacity: 0.6;
+    font-weight: 600;
+}
+
+.section-title:first-child {
+    margin-top: 0;
+}
+
+.buttons-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+}
+
+.action-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    padding: 8px 6px;
+    border: 1px solid #d0d0d0;
+    border-radius: 6px;
+    background: #fff;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    font-family: inherit;
+}
+
+.action-btn:hover {
+    background: #f0f0f0;
+    border-color: #b0b0b0;
+}
+
+.action-btn:active {
+    background: #e0e0e0;
+    transform: scale(0.97);
+}
+
+.btn-icon {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.btn-text {
+    font-size: 10px;
+    opacity: 0.7;
+}
+
+.prefix-suffix-row {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 6px;
+}
+
+.text-input {
+    flex: 1;
+    padding: 6px 8px;
+    border: 1px solid #d0d0d0;
+    border-radius: 4px;
+    font-size: 11px;
+    outline: none;
+    font-family: inherit;
+}
+
+.text-input:focus {
+    border-color: #888;
+}
+
+.status-msg {
+    text-align: center;
+    padding: 6px;
+    margin-top: 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    transition: opacity 0.3s;
+}
+
+.status-msg.success {
+    background: #e8f5e9;
+    color: #2e7d32;
+}
+
+.status-msg.error {
+    background: #fbe9e7;
+    color: #c62828;
+}

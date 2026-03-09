@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Cell Formatter</title>
+    <link rel="stylesheet" href="https://onlyoffice.github.io/sdkjs-plugins/v1/plugins.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <style id="pluginStyles"></style>
+    <script src="https://onlyoffice.github.io/sdkjs-plugins/v1/plugins.js"></script>
+    <script src="https://onlyoffice.github.io/sdkjs-plugins/v1/plugins-ui.js"></script>
+</head>
+
+<body id="body" class="noselect">
+    <div id="content">
+        <p class="section-title">Text Case</p>
+        <div class="buttons-grid">
+            <button id="btnUpper" class="action-btn" title="Convert to UPPERCASE">
+                <span class="btn-icon">AA</span>
+                <span class="btn-text">UPPER</span>
+            </button>
+            <button id="btnLower" class="action-btn" title="Convert to lowercase">
+                <span class="btn-icon">aa</span>
+                <span class="btn-text">lower</span>
+            </button>
+            <button id="btnTitle" class="action-btn" title="Convert to Title Case">
+                <span class="btn-icon">Aa</span>
+                <span class="btn-text">Title</span>
+            </button>
+            <button id="btnSentence" class="action-btn" title="Convert to Sentence case">
+                <span class="btn-icon">Ab</span>
+                <span class="btn-text">Sentence</span>
+            </button>
+        </div>
+
+        <p class="section-title">Clean Up</p>
+        <div class="buttons-grid">
+            <button id="btnTrim" class="action-btn" title="Remove extra spaces">
+                <span class="btn-icon">⌧</span>
+                <span class="btn-text">Trim</span>
+            </button>
+            <button id="btnClean" class="action-btn" title="Remove non-printable characters">
+                <span class="btn-icon">🧹</span>
+                <span class="btn-text">Clean</span>
+            </button>
+            <button id="btnReverse" class="action-btn" title="Reverse text in each cell">
+                <span class="btn-icon">⇌</span>
+                <span class="btn-text">Reverse</span>
+            </button>
+            <button id="btnDedupe" class="action-btn" title="Remove duplicate rows">
+                <span class="btn-icon">✂</span>
+                <span class="btn-text">Dedup</span>
+            </button>
+        </div>
+
+        <p class="section-title">Add / Remove</p>
+        <div class="prefix-suffix-row">
+            <input type="text" id="inputPrefix" placeholder="Prefix..." class="text-input">
+            <input type="text" id="inputSuffix" placeholder="Suffix..." class="text-input">
+        </div>
+        <div class="buttons-grid">
+            <button id="btnAddPrefix" class="action-btn" title="Add prefix to each cell">
+                <span class="btn-text">+ Prefix</span>
+            </button>
+            <button id="btnAddSuffix" class="action-btn" title="Add suffix to each cell">
+                <span class="btn-text">+ Suffix</span>
+            </button>
+        </div>
+
+        <div id="statusMsg" class="status-msg hidden"></div>
+    </div>
+    <script src="scripts/main.js"></script>
+</body>
+
+</html>

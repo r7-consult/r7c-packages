@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cell Statistics</title>
+    <link rel="stylesheet" href="https://onlyoffice.github.io/sdkjs-plugins/v1/plugins.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <style id="pluginStyles"></style>
+    <script src="https://onlyoffice.github.io/sdkjs-plugins/v1/plugins.js"></script>
+    <script src="https://onlyoffice.github.io/sdkjs-plugins/v1/plugins-ui.js"></script>
+</head>
+<body id="body" class="noselect">
+    <div id="content">
+        <div id="emptyState" class="empty-state">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/>
+                <rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/>
+            </svg>
+            <p>Select cells with numbers to see statistics</p>
+        </div>
+        <div id="statsContainer" class="stats-container hidden">
+            <div class="stats-grid">
+                <div class="stat-card primary">
+                    <div class="stat-label">Sum</div>
+                    <div class="stat-value" id="statSum">—</div>
+                </div>
+                <div class="stat-card primary">
+                    <div class="stat-label">Average</div>
+                    <div class="stat-value" id="statAvg">—</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Minimum</div>
+                    <div class="stat-value" id="statMin">—</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Maximum</div>
+                    <div class="stat-value" id="statMax">—</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Median</div>
+                    <div class="stat-value" id="statMedian">—</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Std Dev</div>
+                    <div class="stat-value" id="statStd">—</div>
+                </div>
+            </div>
+            <div class="stat-info-row">
+                <span id="statCount" class="stat-info">Count: 0</span>
+                <span id="statEmpty" class="stat-info">Empty: 0</span>
+                <span id="statNumeric" class="stat-info">Numbers: 0</span>
+            </div>
+        </div>
+    </div>
+    <script src="scripts/main.js"></script>
+</body>
+</html>

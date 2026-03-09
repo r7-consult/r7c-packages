@@ -1,0 +1,65 @@
+{
+	"name": "Cell Statistics",
+	"nameLocale": {
+		"ru": "Статистика ячеек",
+		"de": "Zellenstatistik",
+		"fr": "Statistiques de cellules",
+		"es": "Estadísticas de celdas"
+	},
+	"guid": "asc.{C3B3D5A1-42DE-4168-9565-ABCD1E48A001}",
+	"version": "1.0.0",
+	"minVersion": "7.3.3",
+
+	"variations": [
+		{
+			"description": "View real-time statistics for selected cells: sum, average, min, max, median, count, and more.",
+			"descriptionLocale": {
+				"ru": "Просмотр статистики выделенных ячеек в реальном времени: сумма, среднее, минимум, максимум, медиана, количество и многое другое.",
+				"de": "Echtzeit-Statistiken für ausgewählte Zellen: Summe, Durchschnitt, Min, Max, Median, Anzahl und mehr.",
+				"fr": "Statistiques en temps réel pour les cellules sélectionnées : somme, moyenne, min, max, médiane, nombre et plus.",
+				"es": "Estadísticas en tiempo real para las celdas seleccionadas: suma, promedio, mín, máx, mediana, conteo y más."
+			},
+			"url": "index.html",
+			"icons": [ "resources/light/icon.png", "resources/light/icon@2x.png" ],
+			"icons2": [
+				{
+					"style": "light",
+					"100%": { "normal": "resources/light/icon.png" },
+					"125%": { "normal": "resources/light/icon.png" },
+					"150%": { "normal": "resources/light/icon.png" },
+					"175%": { "normal": "resources/light/icon.png" },
+					"200%": { "normal": "resources/light/icon@2x.png" }
+				},
+				{
+					"style": "dark",
+					"100%": { "normal": "resources/dark/icon.png" },
+					"125%": { "normal": "resources/dark/icon.png" },
+					"150%": { "normal": "resources/dark/icon.png" },
+					"175%": { "normal": "resources/dark/icon.png" },
+					"200%": { "normal": "resources/dark/icon@2x.png" }
+				}
+			],
+			"isViewer": true,
+			"EditorsSupport": [ "cell" ],
+			"initDataType": "text",
+			"initData": "",
+			"isVisual": true,
+			"isModal": false,
+			"isInsideMode": true,
+			"isUpdateOleOnResize": false,
+			"initOnSelectionChanged": true,
+			"store": {
+				"background": {
+					"light": "#1E88E5",
+					"dark": "#1565C0"
+				},
+				"screenshots": [],
+				"icons": {
+					"light": "resources/store/icons",
+					"dark": "resources/store/icons"
+				},
+				"categories": ["specAbilities"]
+			}
+		}
+	]
+}

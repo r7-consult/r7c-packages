@@ -1,0 +1,91 @@
+{
+    "name": "Cell Converter",
+    "nameLocale": {
+        "ru": "Конвертер ячеек",
+        "de": "Zellenkonverter",
+        "fr": "Convertisseur de cellules",
+        "es": "Convertidor de celdas"
+    },
+    "guid": "asc.{C3B3D5A4-42DE-4168-9565-ABCD1E48A004}",
+    "version": "1.0.0",
+    "minVersion": "7.3.3",
+    "variations": [
+        {
+            "description": "Convert units in selected cells: length, weight, temperature, and currency.",
+            "descriptionLocale": {
+                "ru": "Конвертация единиц в выделенных ячейках: длина, вес, температура и валюта.",
+                "de": "Einheiten in ausgewählten Zellen umrechnen: Länge, Gewicht, Temperatur und Währung.",
+                "fr": "Convertir les unités dans les cellules sélectionnées : longueur, poids, température et devise.",
+                "es": "Convertir unidades en las celdas seleccionadas: longitud, peso, temperatura y moneda."
+            },
+            "url": "index.html",
+            "icons": [
+                "resources/light/icon.png",
+                "resources/light/icon@2x.png"
+            ],
+            "icons2": [
+                {
+                    "style": "light",
+                    "100%": {
+                        "normal": "resources/light/icon.png"
+                    },
+                    "125%": {
+                        "normal": "resources/light/icon.png"
+                    },
+                    "150%": {
+                        "normal": "resources/light/icon.png"
+                    },
+                    "175%": {
+                        "normal": "resources/light/icon.png"
+                    },
+                    "200%": {
+                        "normal": "resources/light/icon@2x.png"
+                    }
+                },
+                {
+                    "style": "dark",
+                    "100%": {
+                        "normal": "resources/dark/icon.png"
+                    },
+                    "125%": {
+                        "normal": "resources/dark/icon.png"
+                    },
+                    "150%": {
+                        "normal": "resources/dark/icon.png"
+                    },
+                    "175%": {
+                        "normal": "resources/dark/icon.png"
+                    },
+                    "200%": {
+                        "normal": "resources/dark/icon@2x.png"
+                    }
+                }
+            ],
+            "isViewer": false,
+            "EditorsSupport": [
+                "cell"
+            ],
+            "initDataType": "text",
+            "initData": "",
+            "isVisual": true,
+            "isModal": false,
+            "isInsideMode": true,
+            "isUpdateOleOnResize": false,
+            "initOnSelectionChanged": true,
+            "store": {
+                "background": {
+                    "light": "#AB47BC",
+                    "dark": "#7B1FA2"
+                },
+                "screenshots": [],
+                "icons": {
+                    "light": "resources/store/icons",
+                    "dark": "resources/store/icons"
+                },
+                "categories": [
+                    "specAbilities"
+                ]
+            }
+        }
+    ]
+}

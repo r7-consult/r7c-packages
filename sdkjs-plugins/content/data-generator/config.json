@@ -1,0 +1,91 @@
+{
+    "name": "Data Generator",
+    "nameLocale": {
+        "ru": "Генератор данных",
+        "de": "Datengenerator",
+        "fr": "Générateur de données",
+        "es": "Generador de datos"
+    },
+    "guid": "asc.{C3B3D5A3-42DE-4168-9565-ABCD1E48A003}",
+    "version": "1.0.0",
+    "minVersion": "7.3.3",
+    "variations": [
+        {
+            "description": "Generate random or sequential data for cells: numbers, dates, UUIDs, names, emails, and custom sequences.",
+            "descriptionLocale": {
+                "ru": "Генерация случайных или последовательных данных для ячеек: числа, даты, UUID, имена, email и пользовательские последовательности.",
+                "de": "Zufällige oder sequentielle Daten für Zellen generieren: Zahlen, Daten, UUIDs, Namen, E-Mails und benutzerdefinierte Sequenzen.",
+                "fr": "Générer des données aléatoires ou séquentielles pour les cellules : nombres, dates, UUIDs, noms, e-mails et séquences personnalisées.",
+                "es": "Generar datos aleatorios o secuenciales para celdas: números, fechas, UUIDs, nombres, correos electrónicos y secuencias personalizadas."
+            },
+            "url": "index.html",
+            "icons": [
+                "resources/light/icon.png",
+                "resources/light/icon@2x.png"
+            ],
+            "icons2": [
+                {
+                    "style": "light",
+                    "100%": {
+                        "normal": "resources/light/icon.png"
+                    },
+                    "125%": {
+                        "normal": "resources/light/icon.png"
+                    },
+                    "150%": {
+                        "normal": "resources/light/icon.png"
+                    },
+                    "175%": {
+                        "normal": "resources/light/icon.png"
+                    },
+                    "200%": {
+                        "normal": "resources/light/icon@2x.png"
+                    }
+                },
+                {
+                    "style": "dark",
+                    "100%": {
+                        "normal": "resources/dark/icon.png"
+                    },
+                    "125%": {
+                        "normal": "resources/dark/icon.png"
+                    },
+                    "150%": {
+                        "normal": "resources/dark/icon.png"
+                    },
+                    "175%": {
+                        "normal": "resources/dark/icon.png"
+                    },
+                    "200%": {
+                        "normal": "resources/dark/icon@2x.png"
+                    }
+                }
+            ],
+            "isViewer": false,
+            "EditorsSupport": [
+                "cell"
+            ],
+            "initDataType": "text",
+            "initData": "",
+            "isVisual": true,
+            "isModal": false,
+            "isInsideMode": true,
+            "isUpdateOleOnResize": false,
+            "initOnSelectionChanged": false,
+            "store": {
+                "background": {
+                    "light": "#FF7043",
+                    "dark": "#E64A19"
+                },
+                "screenshots": [],
+                "icons": {
+                    "light": "resources/store/icons",
+                    "dark": "resources/store/icons"
+                },
+                "categories": [
+                    "specAbilities"
+                ]
+            }
+        }
+    ]
+}

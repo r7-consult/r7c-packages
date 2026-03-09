@@ -1,0 +1,44 @@
+{
+	"name": "Slider Query",
+	"organization": "",
+	"nameLocale": {
+		"ru": "Слайдер Данные",
+		"en": "Slider Query"
+	},
+	"guid": "asc.{7A304DA9-AA64-4A97-8F1D-A51E1036AA91}",
+	"version": "09.26.03.02",
+	"minVersion": "8.2.0",
+	"variations": [
+		{
+			"description": "Slider Query",
+			"descriptionLocale": {
+				"ru": "Слайдер Данные"
+			},
+			"url": "index.html",
+			"icons": [
+				"resources/icons/main/light/icon.png",
+				"resources/icons/main/dark/icon.png"
+			],
+			"isViewer": false,
+			"EditorsSupport": [
+				"cell"
+			],
+			"type": "background",
+			"initDataType": "none",
+			"buttons": [],
+			"events": [],
+			"store": {
+				"categories": ["commercial"],
+				"commercial": {
+					"external": true,
+					"landingUrl": "https://data.slider-ai.ru/"
+				},
+				"background": {
+					"light": "#f3f6fb",
+					"dark": "#2a2f3a"
+				}
+			}
+		}
+	],
+	"onlyofficeScheme": true
+}

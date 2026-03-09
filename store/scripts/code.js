@@ -78,7 +78,8 @@ const languages = [                                                  // list of 
 const messages = {
 	versionWarning: 'This plugin will only work in a newer version of the editor.',
 	linkManually: 'Install plugin manually',
-	linkPR: 'Submit your own plugin'
+	linkPR: 'Submit your own plugin',
+	openCommercial: 'Learn more'
 };
 const isIE = (navigator.userAgent.toLowerCase().indexOf("msie") > -1 ||
 				navigator.userAgent.toLowerCase().indexOf("trident") > -1 ||
@@ -128,6 +129,20 @@ window.Asc = {
 			type :  themeType
 		}
 	}
+};
+
+function onClickOpenCommercial(target, event) {
+	event.stopImmediatePropagation();
+	let guid = target.parentNode.parentNode.getAttribute('data-guid');
+	let plugin = findPlugin(true, guid);
+	if (!plugin) {
+		let installed = findPlugin(false, guid);
+		if (installed)
+			plugin = installed.obj;
+	}
+
+	let landingUrl = getCommercialUrl(plugin);
+	openCommercialUrl(landingUrl);
 };
 
 const pos = location.href.indexOf('store/index.html'); // position for make substring
@@ -782,6 +797,32 @@ function getPluginVersion(text) {
 	return major * factor * factor + minor * factor + build;
 };
 
+function getCommercialStoreMeta(plugin) {
+	if (!plugin || !plugin.variations || !plugin.variations.length)
+		return null;
+
+	let store = plugin.variations[0].store;
+	if (!store || !store.commercial || store.commercial.external !== true)
+		return null;
+
+	if (!store.commercial.landingUrl)
+		return null;
+
+	return store.commercial;
+};
+
+function getCommercialUrl(plugin) {
+	let commercial = getCommercialStoreMeta(plugin);
+	return commercial ? commercial.landingUrl : '';
+};
+
+function openCommercialUrl(url) {
+	if (!url)
+		return;
+
+	window.open(url, '_blank');
+};
+
 function createPluginDiv(plugin, bInstalled) {
 	// this function creates div (preview) for plugins
 	let div = document.createElement('div');
@@ -840,6 +881,7 @@ function createPluginDiv(plugin, bInstalled) {
 	let name = ( bTranslate && plugin.nameLocale && ( plugin.nameLocale[lang] || plugin.nameLocale[shortLang] ) ) ? ( plugin.nameLocale[lang] || plugin.nameLocale[shortLang] ) : plugin.name;
 	let description = ( bTranslate && variation.descriptionLocale && ( variation.descriptionLocale[lang] || variation.descriptionLocale[shortLang] ) ) ? ( variation.descriptionLocale[lang] || variation.descriptionLocale[shortLang] ) : variation.description;
 	let bg = variation.store && variation.store.background ? variation.store.background[themeType] : defaultBG;
+	let isCommercial = !!getCommercialStoreMeta(plugin);
 	let additional = bNotAvailable ? 'disabled title="' + getTranslated(messages.versionWarning) + '"'  : '';
 	let template = '<div class="div_image" style="background: ' + bg + '">' +
 						'<img id="img_'+plugin.guid+'" class="plugin_icon" style="display:none" data-guid="' + plugin.guid + '" src="' + getImageUrl(plugin.guid, false, true, ('img_' + plugin.guid) ) + '">' +
@@ -861,7 +903,10 @@ function createPluginDiv(plugin, bInstalled) {
 						'</div>' +
 						( (installed && !bRemoved)
 							? (installed.canRemoved ? '<button class="btn-text-default btn_item btn_remove" onclick="onClickRemove(event.target, event)" ' + (bNotAvailable ? "dataDisabled=\"disabled\"" : "") +'>' + getTranslated("Remove") + '</button>' : '<div style="height:20px"></div>')
-							: '<button class="btn_item btn-text-default btn_install" onclick="onClickInstall(event.target, event)"' + additional + '>'  + getTranslated("Install") + '</button>'
+							: (isCommercial
+								? '<button class="btn_item btn-text-default btn_install" onclick="onClickOpenCommercial(event.target, event)"' + additional + '>'  + getTranslated(messages.openCommercial) + '</button>'
+								: '<button class="btn_item btn-text-default btn_install" onclick="onClickInstall(event.target, event)"' + additional + '>'  + getTranslated("Install") + '</button>'
+							)
 						)
 						+
 					'</div>';
@@ -1020,6 +1065,8 @@ function onClickItem() {
 	let installed = findPlugin(false, guid);
 	let plugin = findPlugin(true, guid);
 	let discussionUrl = plugin ? plugin.discussionUrl : null;
+	let landingUrl = getCommercialUrl(plugin);
+	let isCommercial = !!landingUrl;
 	
 	if (plugin && plugin.rating) {
 		elements.divRatingLink.removeAttribute('title');
@@ -1145,6 +1192,25 @@ function onClickItem() {
 		elements.btnUpdate.classList.add('hidden');
 	}
 
+	if (isCommercial) {
+		elements.btnRemove.classList.add('hidden');
+		elements.btnUpdate.classList.add('hidden');
+		elements.btnInstall.classList.remove('hidden');
+		elements.btnInstall.innerText = getTranslated(messages.openCommercial);
+		elements.btnInstall.onclick = function() {
+			openCommercialUrl(landingUrl);
+		};
+		elements.btnInstall.removeAttribute('disabled');
+		elements.btnInstall.removeAttribute('title');
+
+		elements.divSelected.classList.remove('hidden');
+		elements.divSelectedMain.classList.remove('hidden');
+		elements.divBody.classList.add('hidden');
+		setDivHeight();
+		sendMessage( { type : "showButton", show : true } );
+		return;
+	}
+
 	if (installed && !installed.removed) {
 		if (installed.canRemoved) {
 			elements.btnRemove.classList.remove('hidden');
@@ -1164,6 +1230,10 @@ function onClickItem() {
 		elements.btnInstall.removeAttribute('disabled');
 		elements.btnInstall.removeAttribute('title');
 	}
+	elements.btnInstall.innerText = getTranslated('Install');
+	elements.btnInstall.onclick = function(event) {
+		onClickInstall(event.target.parentNode, event);
+	};
 
 	if (hiddenCounter == 3) {
 		// if versions and languages fields are hidden, we should hide this div
@@ -1420,6 +1490,7 @@ function onTranslate() {
 	document.getElementById('span_categories').innerHTML = getTranslated('Categories');
 	document.getElementById('opt_all').innerHTML = getTranslated('All');
 	document.getElementById('opt_rec').innerHTML = getTranslated('Recommended');
+	document.getElementById('opt_commercial').innerHTML = getTranslated('Commercial');
 	document.getElementById('opt_dev').innerHTML = getTranslated('Developer tools');
 	document.getElementById('opt_work').innerHTML = getTranslated('Work');
 	document.getElementById('opt_enter').innerHTML = getTranslated('Entertainment');

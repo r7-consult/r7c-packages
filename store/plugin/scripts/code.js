@@ -145,6 +145,33 @@
 		return { type: 'Error', guid: guid || '', error: { message: errorMessage } };
 	}
 
+	function sanitizePluginConfigForHost(config) {
+		if (!config || typeof config !== 'object')
+			return config;
+
+		let normalized = config;
+		try {
+			normalized = JSON.parse(JSON.stringify(config));
+		} catch (e) {
+			return config;
+		}
+
+		if (normalized.logging)
+			delete normalized.logging;
+
+		if (Array.isArray(normalized.variations)) {
+			normalized.variations = normalized.variations.map(function(variation) {
+				if (!variation || typeof variation !== 'object')
+					return variation;
+				if (variation.logging)
+					delete variation.logging;
+				return variation;
+			});
+		}
+
+		return normalized;
+	}
+
 	function initPlugin() {
 		document.body.appendChild(iframe);
 		if (hasCustomSource())
@@ -224,7 +251,7 @@
 				});
 				break;
 			case 'install':
-				window.Asc.plugin.executeMethod('InstallPlugin', [data.config, data.guid], function (result) {
+				window.Asc.plugin.executeMethod('InstallPlugin', [sanitizePluginConfigForHost(data.config), data.guid], function (result) {
 					postMessage(normalizeHostActionResult('install', data.guid, false, result));
 				});
 				break;
@@ -238,7 +265,7 @@
 					createWindow('warning');
 				break;
 			case 'update':
-				window.Asc.plugin.executeMethod('UpdatePlugin', [data.config, data.guid], function (result) {
+				window.Asc.plugin.executeMethod('UpdatePlugin', [sanitizePluginConfigForHost(data.config), data.guid], function (result) {
 					postMessage(normalizeHostActionResult('update', data.guid, false, result));
 				});
 				break;

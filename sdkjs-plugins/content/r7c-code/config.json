@@ -39,10 +39,7 @@
 			"isInsideMode": false,
 			"isUpdateOleOnResize": true,
 			"size": [1200, 600],
-    "buttons": [],
-    "logging": {
-      "level": "INFO"
-    },
+			"buttons": [],
 			"store": {
 				"background": {
 					"light" : "linear-gradient(136.1deg, #FF8E3D -1.99%, #FF6F3D 100%)",

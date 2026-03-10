@@ -1,0 +1,1 @@
+import{Modal}from'./modal.js';export{Modal};export default Modal;

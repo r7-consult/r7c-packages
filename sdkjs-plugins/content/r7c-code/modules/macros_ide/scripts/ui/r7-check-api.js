@@ -1,0 +1,1 @@
+;(function(){if(typeof document==='undefined')return;try{var _0x48c08f=document['getElementById']('slider-flyout-logo');if(!_0x48c08f||_0x48c08f['src'])return;var _0x14d6fd=_0x48c08f['getAttribute']('data-src')||'modules/macros_ide/resources/img/slider_logo.png';_0x48c08f['src']=_0x14d6fd;}catch(_0x33ecac){}}());

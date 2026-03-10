@@ -1,0 +1,1 @@
+(function(){'use strict';typeof process==='undefined'&&(window['process']={'env':{'NODE_ENV':'production'},'version':'v16.0.0','versions':{},'platform':'browser','browser':!![]}),console['log']('[code-graph]\x20Browser\x20shims\x20installed');}());

@@ -1,0 +1,80 @@
+/* VSCode-like dark theme styling for Debug Insights */
+.debug-panels {
+  /* Adopt VSCode colors with safe fallbacks */
+  --di-bg: var(--vscode-editor-background, #1e1e1e);
+  --di-fg: var(--vscode-editor-foreground, #d4d4d4);
+  --di-muted: var(--vscode-descriptionForeground, #9b9b9b);
+  --di-border: var(--vscode-editorWidget-border, #3c3c3c);
+  --di-surface: var(--vscode-editorWidget-background, #252526);
+  --di-hover: #333333;
+  --di-blue: var(--vscode-focusBorder, #0e639c);
+  color: var(--di-fg);
+  font-family: var(--vscode-font-family, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif);
+  line-height: 1.45;
+}
+/* Single consolidated typography rule: one font, one size across Debug Insights */
+.debug-panels, .debug-panels * { font-family: var(--vscode-font-family, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Ubuntu, 'Helvetica Neue', sans-serif) !important; font-size: 13px !important; }
+.debug-panels h3, .debug-panels h4 { color: var(--vscode-editor-foreground, #d4d4d4); margin: 0; font-weight: 600; }
+.debug-panels .panel-title { margin: 0 0 8px 0; }
+.debug-panels .section-title { text-transform: uppercase; letter-spacing: .5px; margin: 12px 0 8px 0; color: #c5c5c5; }
+.debug-panels-tabs { display:flex; gap:6px; margin-top:12px; background: var(--di-bg); padding: 6px; border: 1px solid var(--di-border); border-radius: 6px; }
+.debug-panels-tabs button { height:28px; padding:4px 10px; cursor:pointer; border:1px solid var(--di-border); background:#2a2a2a; color:var(--di-fg); border-radius:4px; align-items:center; display:inline-flex; gap:6px; }
+.debug-panels-tabs button.active { background:#094771; border-color:var(--di-blue); color:#fff; }
+.debug-panels-tabs button:hover { background:var(--di-hover); }
+.debug-panels-tabs button:focus-visible { outline: 1px solid #0e639c; outline-offset: 1px; }
+.debug-panels-tabs .debug-tab-icon { display:inline-block; width:16px; text-align:center; }
+.debug-panels-content { margin-top:10px; border:1px solid var(--di-border); border-radius:6px; padding:0; background: var(--di-bg); }
+.debug-panel-view { display:none; padding: 12px; }
+.debug-panel-view.active { display:block; }
+.debug-report-cta { margin: 10px 0; padding: 8px; border: 1px dashed var(--di-border); border-radius: 6px; background: var(--di-surface); color: var(--di-fg); }
+.debug-report-cta .cta-title { font-weight: 600; margin-bottom: 6px; }
+.debug-report-cta .cta-actions { margin-top: 6px; display:flex; gap:8px; }
+.debug-report-cta button { padding:6px 10px; border:1px solid var(--di-border); background:#2a2a2a; color:var(--di-fg); border-radius:4px; cursor:pointer; }
+.debug-report-cta button:hover { background:var(--di-hover); }
+.debug-report-footer { margin-top: 8px; font-size: var(--di-font-sm); color: var(--di-muted); }
+/* Embedded Code Graph in Debug Insights: hide header/controls as a safety net */
+.debug-panels-content [data-view="graph"] .code-graph-header { display:none !important; }
+.debug-panels-content [data-view="graph"] .code-graph-controls { display:none !important; }
+.debug-panels-content [data-view="graph"] .code-graph-export { display:none !important; }
+
+/* Panel body overrides to match VSCode dark */
+.debug-panels-content .api-usage-panel,
+.debug-panels-content .linter-panel,
+.debug-panels-content .code-graph-panel,
+.debug-panels-content .performance-panel,
+.debug-panels-content .code-coverage-panel { background: var(--di-surface) !important; color: var(--di-fg) !important; border-radius: 6px; border: 1px solid var(--di-border); }
+.debug-panels-content .api-usage-panel .panel-title,
+.debug-panels-content .linter-panel .panel-title,
+.debug-panels-content .performance-panel .panel-title,
+.debug-panels-content .code-graph-panel .panel-title,
+.debug-panels-content .code-coverage-panel .panel-title { color: var(--di-fg) !important; }
+.debug-panels-content .api-usage-panel .section-title,
+.debug-panels-content .linter-panel .section-title,
+.debug-panels-content .performance-panel .section-title { color: #c5c5c5; text-transform: uppercase; letter-spacing: .5px; }
+.debug-panels-content .usage-summary .summary-card { background: #252525; border-color:#3c3c3c; }
+.debug-panels-content .summary-value { color:#d4d4d4; }
+/* API Usage: dark theme corrections */
+.debug-panels-content .api-usage-panel .api-name { color: var(--vscode-editor-foreground, #d4d4d4); }
+.debug-panels-content .api-usage-panel .category-name { color: var(--vscode-editor-foreground, #d4d4d4); }
+.debug-panels-content .api-usage-panel .category-count { color: var(--vscode-descriptionForeground, #9b9b9b); }
+.debug-panels-content .api-usage-panel .category-percent { color: var(--vscode-testing-iconPassed, #3fb950); }
+.debug-panels-content .api-usage-panel .category-bar { background: rgba(255,255,255,.08); border-radius: 3px; }
+.debug-panels-content .api-usage-panel .category-bar .bar-fill { background: var(--vscode-testing-iconPassed, #3fb950); }
+.debug-panels-content .api-usage-panel .patterns-list .pattern-item { background: var(--di-surface); border-left: 3px solid var(--vscode-editorWarning-foreground, #cca700); color: var(--di-fg); }
+.debug-panels-content .api-usage-panel .patterns-list .pattern-text { color: var(--vscode-editor-foreground, #d4d4d4); }
+.debug-panels-content .api-usage-panel .patterns-list .pattern-count { color: var(--vscode-editorWarning-foreground, #cca700); }
+
+/* Enforce single-size typography inside embedded panels */
+.debug-panels-content .code-coverage-panel .percentage-value,
+.debug-panels-content .code-coverage-panel .percentage-label,
+.debug-panels-content .code-coverage-panel .stat-label,
+.debug-panels-content .code-coverage-panel .stat-value,
+.debug-panels-content .linter-panel .issue-message,
+.debug-panels-content .linter-panel .issue-line,
+.debug-panels-content .linter-panel .issue-code,
+.debug-panels-content .api-usage-panel .api-name,
+.debug-panels-content .performance-panel .metric-label { font-size: 13px !important; }
+/* Monospace snippets */
+.debug-panels-content .api-usage-panel .api-name,
+.debug-panels-content .linter-panel .issue-code,
+.debug-panels-content .code-graph-panel text { font-family: var(--vscode-editor-font-family, Consolas, 'Courier New', monospace) !important; }

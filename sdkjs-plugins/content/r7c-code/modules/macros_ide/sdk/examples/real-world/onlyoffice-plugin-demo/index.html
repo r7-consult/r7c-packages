@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OnlyOffice UI SDK Demo Plugin</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-size: 13px;
+            line-height: 1.4;
+            background: var(--onlyoffice-background-normal, #ffffff);
+            color: var(--onlyoffice-text-normal, #333333);
+            overflow: hidden;
+        }
+
+        .plugin-container {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .plugin-header {
+            background: var(--onlyoffice-background-toolbar, #f5f5f5);
+            border-bottom: 1px solid var(--onlyoffice-border-toolbar, #d1d5db);
+            padding: 8px 12px;
+            flex-shrink: 0;
+        }
+
+        .plugin-title {
+            font-weight: 600;
+            color: var(--onlyoffice-text-normal, #333333);
+            font-size: 14px;
+        }
+
+        .plugin-subtitle {
+            font-size: 11px;
+            color: var(--onlyoffice-text-normal-pressed, #666666);
+            margin-top: 2px;
+        }
+
+        .plugin-content {
+            flex: 1;
+            overflow: hidden;
+            padding: 12px;
+        }
+
+        .demo-section {
+            margin-bottom: 16px;
+            border: 1px solid var(--onlyoffice-border-toolbar, #d1d5db);
+            border-radius: 4px;
+            background: var(--onlyoffice-background-normal, #ffffff);
+        }
+
+        .demo-section-header {
+            background: var(--onlyoffice-background-tabs, #f0f0f0);
+            padding: 8px 12px;
+            border-bottom: 1px solid var(--onlyoffice-border-toolbar, #d1d5db);
+            font-weight: 500;
+            font-size: 12px;
+        }
+
+        .demo-section-content {
+            padding: 12px;
+        }
+
+        .editor-info {
+            background: var(--onlyoffice-highlight-button-hover, rgba(0, 0, 0, 0.05));
+            padding: 8px 12px;
+            border-radius: 4px;
+            margin-bottom: 12px;
+            font-size: 12px;
+        }
+
+        .editor-type {
+            font-weight: 600;
+            color: var(--onlyoffice-text-normal, #333333);
+        }
+
+        .demo-controls {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+        }
+
+        .demo-button {
+            padding: 6px 12px;
+            border: 1px solid var(--onlyoffice-border-toolbar, #d1d5db);
+            background: var(--onlyoffice-background-normal, #ffffff);
+            color: var(--onlyoffice-text-normal, #333333);
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 11px;
+            transition: all 0.2s ease;
+        }
+
+        .demo-button:hover {
+            background: var(--onlyoffice-highlight-button-hover, rgba(0, 0, 0, 0.05));
+            border-color: var(--onlyoffice-border-toolbar-button-hover, #9ca3af);
+        }
+
+        .demo-button.primary {
+            background: #3b82f6;
+            color: white;
+            border-color: #3b82f6;
+        }
+
+        .demo-button.primary:hover {
+            background: #2563eb;
+            border-color: #2563eb;
+        }
+
+        .component-demo {
+            margin-bottom: 12px;
+            min-height: 40px;
+        }
+
+        #search-demo {
+            width: 100%;
+            max-width: 300px;
+        }
+
+        #grid-demo {
+            height: 200px;
+            width: 100%;
+        }
+
+        #form-demo {
+            max-width: 400px;
+        }
+
+        .status-message {
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 11px;
+            margin-top: 8px;
+            border: 1px solid;
+        }
+
+        .status-info {
+            background: #dbeafe;
+            color: #1e40af;
+            border-color: #bfdbfe;
+        }
+
+        .status-success {
+            background: #dcfce7;
+            color: #166534;
+            border-color: #bbf7d0;
+        }
+
+        .status-error {
+            background: #fee2e2;
+            color: #dc2626;
+            border-color: #fecaca;
+        }
+
+        /* Dark theme support */
+        .dark-theme {
+            --onlyoffice-background-normal: #1e1e1e;
+            --onlyoffice-background-toolbar: #2d2d2d;
+            --onlyoffice-background-tabs: #3e3e3e;
+            --onlyoffice-text-normal: #ffffff;
+            --onlyoffice-text-normal-pressed: #cccccc;
+            --onlyoffice-border-toolbar: #3e3e3e;
+            --onlyoffice-border-toolbar-button-hover: #5e5e5e;
+            --onlyoffice-highlight-button-hover: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Loading animation */
+        .loading {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border: 2px solid var(--onlyoffice-border-toolbar, #d1d5db);
+            border-radius: 50%;
+            border-top-color: #3b82f6;
+            animation: spin 1s ease-in-out infinite;
+            margin-right: 6px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Responsive design */
+        @media (max-width: 400px) {
+            .plugin-content {
+                padding: 8px;
+            }
+            
+            .demo-controls {
+                flex-direction: column;
+            }
+            
+            .demo-button {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="plugin-container">
+        <div class="plugin-header">
+            <div class="plugin-title">OnlyOffice UI SDK Demo</div>
+            <div class="plugin-subtitle">Comprehensive component demonstration</div>
+        </div>
+
+        <div class="plugin-content">
+            <!-- Editor Information -->
+            <div class="demo-section">
+                <div class="demo-section-header">📋 Editor Information</div>
+                <div class="demo-section-content">
+                    <div class="editor-info">
+                        <div>Editor Type: <span class="editor-type" id="editor-type">Detecting...</span></div>
+                        <div>API Version: <span id="api-version">Unknown</span></div>
+                        <div>Theme: <span id="current-theme">Detecting...</span></div>
+                    </div>
+                    <div class="demo-controls">
+                        <button class="demo-button" onclick="detectEditorInfo()">Refresh Info</button>
+                        <button class="demo-button" onclick="getSelection()">Get Selection</button>
+                        <button class="demo-button" onclick="insertContent()">Insert Content</button>
+                    </div>
+                    <div id="selection-info" class="status-message status-info" style="display: none;"></div>
+                </div>
+            </div>
+
+            <!-- SearchBox Demo -->
+            <div class="demo-section">
+                <div class="demo-section-header">🔍 SearchBox Component</div>
+                <div class="demo-section-content">
+                    <div class="demo-controls">
+                        <button class="demo-button primary" onclick="initSearchBox()">Initialize SearchBox</button>
+                        <button class="demo-button" onclick="loadSearchSuggestions()">Load Suggestions</button>
+                        <button class="demo-button" onclick="clearSearch()">Clear</button>
+                    </div>
+                    <div class="component-demo">
+                        <div id="search-demo"></div>
+                    </div>
+                    <div id="search-status" class="status-message status-info" style="display: none;"></div>
+                </div>
+            </div>
+
+            <!-- DataGrid Demo -->
+            <div class="demo-section">
+                <div class="demo-section-header">📊 DataGrid Component</div>
+                <div class="demo-section-content">
+                    <div class="demo-controls">
+                        <button class="demo-button primary" onclick="initDataGrid()">Initialize DataGrid</button>
+                        <button class="demo-button" onclick="loadGridData()">Load Data</button>
+                        <button class="demo-button" onclick="exportSelection()">Export Selection</button>
+                    </div>
+                    <div class="component-demo">
+                        <div id="grid-demo"></div>
+                    </div>
+                    <div id="grid-status" class="status-message status-info" style="display: none;"></div>
+                </div>
+            </div>
+
+            <!-- Form Demo -->
+            <div class="demo-section">
+                <div class="demo-section-header">📝 Form Components</div>
+                <div class="demo-section-content">
+                    <div class="demo-controls">
+                        <button class="demo-button primary" onclick="initForm()">Initialize Form</button>
+                        <button class="demo-button" onclick="populateForm()">Populate</button>
+                        <button class="demo-button" onclick="validateForm()">Validate</button>
+                        <button class="demo-button" onclick="insertFormData()">Insert to Document</button>
+                    </div>
+                    <div class="component-demo">
+                        <div id="form-demo"></div>
+                    </div>
+                    <div id="form-status" class="status-message status-info" style="display: none;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Load SDK and components -->
+    <script type="module">
+        // Import SDK and integration modules
+        import OnlyOfficeUISDK from '../../../src/core/sdk.js';
+        import OnlyOfficeIntegration from '../../../src/integration/onlyoffice-integration.js';
+        import SearchBox from '../../../src/components/search-box/search-box.js';
+        import DataGrid from '../../../src/components/data-grid/data-grid.js';
+        import FormBuilder from '../../../src/components/form-components/form-components.js';
+
+        // Global variables
+        let sdk, integration, searchBox, dataGrid, formBuilder;
+        let isInitialized = false;
+
+        // Initialize plugin when OnlyOffice is ready
+        window.Asc.plugin.init = async function() {
+            try {
+                showStatus('Initializing OnlyOffice UI SDK...', 'info');
+
+                // Initialize SDK
+                sdk = new OnlyOfficeUISDK({
+                    debug: true,
+                    theme: 'auto'
+                });
+                await sdk.initialize();
+
+                // Initialize OnlyOffice integration
+                integration = new OnlyOfficeIntegration({
+                    sdk: sdk,
+                    config: {
+                        autoTheme: true,
+                        crossEditorCompat: true,
+                        debugMode: true
+                    }
+                });
+                await integration.initialize();
+
+                // Update editor information
+                updateEditorInfo();
+
+                // Setup theme change handling
+                setupThemeHandling();
+
+                isInitialized = true;
+                showStatus('SDK initialized successfully!', 'success');
+                console.log('OnlyOffice UI SDK Demo initialized');
+
+            } catch (error) {
+                console.error('Failed to initialize SDK:', error);
+                showStatus(`Initialization failed: ${error.message}`, 'error');
+            }
+        };
+
+        // Theme change handler
+        window.Asc.plugin.onThemeChanged = function(theme) {
+            // Call base theme handler
+            window.Asc.plugin.onThemeChangedBase(theme);
+            
+            // Update theme display
+            updateThemeInfo(theme);
+            
+            // Apply theme to plugin UI
+            applyThemeToPlugin(theme);
+        };
+
+        // Plugin button handler
+        window.Asc.plugin.button = function(id) {
+            // Handle plugin button clicks
+            console.log('Plugin button clicked:', id);
+        };
+
+        // Global functions for demo
+        window.detectEditorInfo = function() {
+            updateEditorInfo();
+            showStatus('Editor information refreshed', 'info');
+        };
+
+        window.getSelection = async function() {
+            if (!integration) {
+                showStatus('Integration not initialized', 'error');
+                return;
+            }
+
+            try {
+                const selection = await integration.getSelection();
+                const info = document.getElementById('selection-info');
+                info.textContent = `Selection: ${JSON.stringify(selection, null, 2)}`;
+                info.style.display = 'block';
+                info.className = 'status-message status-success';
+            } catch (error) {
+                showStatus(`Failed to get selection: ${error.message}`, 'error');
+            }
+        };
+
+        window.insertContent = async function() {
+            if (!integration) {
+                showStatus('Integration not initialized', 'error');
+                return;
+            }
+
+            try {
+                const editorType = integration.getEditorType();
+                let content;
+
+                switch (editorType) {
+                    case 'word':
+                        content = { type: 'text', data: 'Hello from OnlyOffice UI SDK Demo!' };
+                        break;
+                    case 'cell':
+                        content = { type: 'value', data: 'SDK Demo Data' };
+                        break;
+                    case 'slide':
+                        content = { type: 'text', data: 'OnlyOffice UI SDK' };
+                        break;
+                    default:
+                        content = { type: 'text', data: 'SDK Demo Content' };
+                }
+
+                await integration.insertContent(content);
+                showStatus('Content inserted successfully!', 'success');
+            } catch (error) {
+                showStatus(`Failed to insert content: ${error.message}`, 'error');
+            }
+        };
+
+        window.initSearchBox = async function() {
+            if (!isInitialized) {
+                showStatus('SDK not initialized', 'error');
+                return;
+            }
+
+            try {
+                if (searchBox) {
+                    await searchBox.destroy();
+                }
+
+                searchBox = new SearchBox({
+                    container: '#search-demo',
+                    placeholder: 'Search documents, functions, or content...',
+                    autocomplete: true,
+                    history: true,
+                    suggestions: [
+                        'Document templates',
+                        'Excel functions',
+                        'PowerPoint themes',
+                        'OnlyOffice API methods',
+                        'Plugin development'
+                    ],
+                    onSearch: (data) => {
+                        showSearchStatus(`Searching for: "${data.query}"`);
+                    },
+                    eventSystem: sdk.getEventSystem()
+                });
+
+                await searchBox.initialize();
+                showSearchStatus('SearchBox initialized successfully!');
+            } catch (error) {
+                showSearchStatus(`Failed to initialize SearchBox: ${error.message}`, 'error');
+            }
+        };
+
+        window.loadSearchSuggestions = function() {
+            if (!searchBox) {
+                showSearchStatus('SearchBox not initialized', 'error');
+                return;
+            }
+
+            const suggestions = [
+                'OnlyOffice Plugin Development',
+                'JavaScript API Methods',
+                'Document Automation',
+                'Spreadsheet Functions',
+                'Presentation Templates',
+                'SDK Components',
+                'Theme Management',
+                'Cross-Editor Compatibility'
+            ];
+
+            searchBox.setSuggestions(suggestions);
+            showSearchStatus('New suggestions loaded!');
+        };
+
+        window.clearSearch = function() {
+            if (!searchBox) {
+                showSearchStatus('SearchBox not initialized', 'error');
+                return;
+            }
+
+            searchBox.clear();
+            showSearchStatus('Search cleared!');
+        };
+
+        window.initDataGrid = async function() {
+            if (!isInitialized) {
+                showStatus('SDK not initialized', 'error');
+                return;
+            }
+
+            try {
+                if (dataGrid) {
+                    await dataGrid.destroy();
+                }
+
+                dataGrid = new DataGrid({
+                    container: '#grid-demo',
+                    columns: [
+                        { key: 'id', title: 'ID', type: 'number', width: 60 },
+                        { key: 'name', title: 'Component', type: 'text', width: 120 },
+                        { key: 'status', title: 'Status', type: 'text', width: 80 },
+                        { key: 'compatibility', title: 'Compatibility', type: 'text', width: 100 }
+                    ],
+                    data: [],
+                    virtualScrolling: true,
+                    sortable: true,
+                    filterable: true,
+                    selectable: true,
+                    eventSystem: sdk.getEventSystem()
+                });
+
+                await dataGrid.initialize();
+                showGridStatus('DataGrid initialized successfully!');
+            } catch (error) {
+                showGridStatus(`Failed to initialize DataGrid: ${error.message}`, 'error');
+            }
+        };
+
+        window.loadGridData = function() {
+            if (!dataGrid) {
+                showGridStatus('DataGrid not initialized', 'error');
+                return;
+            }
+
+            const sampleData = [
+                { id: 1, name: 'SearchBox', status: 'Complete', compatibility: 'All Editors' },
+                { id: 2, name: 'DataGrid', status: 'Complete', compatibility: 'All Editors' },
+                { id: 3, name: 'FormBuilder', status: 'Complete', compatibility: 'All Editors' },
+                { id: 4, name: 'TreeView', status: 'Complete', compatibility: 'All Editors' },
+                { id: 5, name: 'Modal', status: 'Complete', compatibility: 'All Editors' },
+                { id: 6, name: 'SplitPanel', status: 'Complete', compatibility: 'All Editors' },
+                { id: 7, name: 'TabContainer', status: 'Complete', compatibility: 'All Editors' },
+                { id: 8, name: 'Toolbar', status: 'Complete', compatibility: 'All Editors' },
+                { id: 9, name: 'ContextMenu', status: 'Complete', compatibility: 'All Editors' },
+                { id: 10, name: 'Tooltip', status: 'Complete', compatibility: 'All Editors' },
+                { id: 11, name: 'ProgressBar', status: 'Complete', compatibility: 'All Editors' },
+                { id: 12, name: 'MonacoEditor', status: 'Complete', compatibility: 'All Editors' }
+            ];
+
+            dataGrid.setData(sampleData);
+            showGridStatus(`Loaded ${sampleData.length} components in DataGrid`);
+        };
+
+        window.exportSelection = function() {
+            if (!dataGrid) {
+                showGridStatus('DataGrid not initialized', 'error');
+                return;
+            }
+
+            const selectedData = dataGrid.getSelectedData();
+            if (selectedData.length > 0) {
+                showGridStatus(`Selected ${selectedData.length} rows for export`);
+            } else {
+                showGridStatus('No rows selected');
+            }
+        };
+
+        window.initForm = async function() {
+            if (!isInitialized) {
+                showStatus('SDK not initialized', 'error');
+                return;
+            }
+
+            try {
+                if (formBuilder) {
+                    formBuilder.destroy();
+                }
+
+                formBuilder = new FormBuilder({
+                    container: '#form-demo',
+                    submitButton: false,
+                    resetButton: false,
+                    eventSystem: sdk.getEventSystem()
+                });
+
+                await formBuilder.initialize();
+
+                // Add relevant fields based on editor type
+                const editorType = integration.getEditorType();
+                
+                formBuilder.addField('text', {
+                    name: 'title',
+                    label: 'Document Title',
+                    placeholder: 'Enter document title',
+                    required: true
+                });
+
+                if (editorType === 'cell') {
+                    formBuilder.addField('number', {
+                        name: 'value',
+                        label: 'Cell Value',
+                        placeholder: 'Enter numeric value'
+                    });
+                } else if (editorType === 'word') {
+                    formBuilder.addField('textarea', {
+                        name: 'content',
+                        label: 'Content',
+                        placeholder: 'Enter document content',
+                        rows: 3
+                    });
+                } else if (editorType === 'slide') {
+                    formBuilder.addField('select', {
+                        name: 'template',
+                        label: 'Template',
+                        options: [
+                            { value: 'title', label: 'Title Slide' },
+                            { value: 'content', label: 'Content Slide' },
+                            { value: 'section', label: 'Section Header' }
+                        ]
+                    });
+                }
+
+                formBuilder.addField('checkbox', {
+                    name: 'autoSave',
+                    checkboxLabel: 'Auto-save changes'
+                });
+
+                showFormStatus('Form initialized successfully!');
+            } catch (error) {
+                showFormStatus(`Failed to initialize Form: ${error.message}`, 'error');
+            }
+        };
+
+        window.populateForm = function() {
+            if (!formBuilder) {
+                showFormStatus('Form not initialized', 'error');
+                return;
+            }
+
+            const editorType = integration.getEditorType();
+            const sampleData = {
+                title: `Sample ${editorType} Document`,
+                autoSave: true
+            };
+
+            if (editorType === 'cell') {
+                sampleData.value = 42;
+            } else if (editorType === 'word') {
+                sampleData.content = 'This is sample content for the document.';
+            } else if (editorType === 'slide') {
+                sampleData.template = 'title';
+            }
+
+            formBuilder.setData(sampleData);
+            showFormStatus('Form populated with sample data');
+        };
+
+        window.validateForm = function() {
+            if (!formBuilder) {
+                showFormStatus('Form not initialized', 'error');
+                return;
+            }
+
+            const isValid = formBuilder.validate();
+            showFormStatus(isValid ? 'Form validation passed!' : 'Form has validation errors', isValid ? 'success' : 'error');
+        };
+
+        window.insertFormData = async function() {
+            if (!formBuilder || !integration) {
+                showFormStatus('Form or integration not initialized', 'error');
+                return;
+            }
+
+            try {
+                const formData = formBuilder.getData();
+                const editorType = integration.getEditorType();
+
+                let content;
+                switch (editorType) {
+                    case 'word':
+                        content = { 
+                            type: 'text', 
+                            data: `Title: ${formData.title}\nContent: ${formData.content || 'No content'}` 
+                        };
+                        break;
+                    case 'cell':
+                        content = { 
+                            type: 'value', 
+                            data: formData.value || formData.title 
+                        };
+                        break;
+                    case 'slide':
+                        content = { 
+                            type: 'text', 
+                            data: formData.title 
+                        };
+                        break;
+                }
+
+                await integration.insertContent(content);
+                showFormStatus('Form data inserted into document!', 'success');
+            } catch (error) {
+                showFormStatus(`Failed to insert form data: ${error.message}`, 'error');
+            }
+        };
+
+        // Utility functions
+        function updateEditorInfo() {
+            if (!integration) return;
+
+            const editorType = integration.getEditorType();
+            const apiVersion = integration.getPluginAPI()?.version || 'Unknown';
+            
+            document.getElementById('editor-type').textContent = editorType.charAt(0).toUpperCase() + editorType.slice(1);
+            document.getElementById('api-version').textContent = apiVersion;
+        }
+
+        function updateThemeInfo(theme) {
+            const themeElement = document.getElementById('current-theme');
+            if (themeElement) {
+                themeElement.textContent = theme.type || 'Unknown';
+            }
+        }
+
+        function applyThemeToPlugin(theme) {
+            const body = document.body;
+            body.classList.remove('dark-theme', 'light-theme');
+            body.classList.add(theme.type === 'dark' ? 'dark-theme' : 'light-theme');
+        }
+
+        function setupThemeHandling() {
+            // Apply initial theme
+            if (integration) {
+                const currentTheme = integration.getCurrentTheme();
+                if (currentTheme) {
+                    updateThemeInfo(currentTheme);
+                    applyThemeToPlugin(currentTheme);
+                }
+            }
+        }
+
+        function showStatus(message, type = 'info') {
+            console.log(`[Plugin Status] ${message}`);
+            // Could show in a status bar or notification
+        }
+
+        function showSearchStatus(message, type = 'info') {
+            const statusElement = document.getElementById('search-status');
+            statusElement.textContent = message;
+            statusElement.className = `status-message status-${type}`;
+            statusElement.style.display = 'block';
+            
+            setTimeout(() => {
+                statusElement.style.display = 'none';
+            }, 3000);
+        }
+
+        function showGridStatus(message, type = 'info') {
+            const statusElement = document.getElementById('grid-status');
+            statusElement.textContent = message;
+            statusElement.className = `status-message status-${type}`;
+            statusElement.style.display = 'block';
+            
+            setTimeout(() => {
+                statusElement.style.display = 'none';
+            }, 3000);
+        }
+
+        function showFormStatus(message, type = 'info') {
+            const statusElement = document.getElementById('form-status');
+            statusElement.textContent = message;
+            statusElement.className = `status-message status-${type}`;
+            statusElement.style.display = 'block';
+            
+            setTimeout(() => {
+                statusElement.style.display = 'none';
+            }, 3000);
+        }
+
+        // Auto-initialize components on first button click
+        window.Asc.plugin.button = function(id) {
+            if (id === 0) {
+                // Primary button clicked - initialize demo components
+                setTimeout(() => {
+                    if (isInitialized) {
+                        initSearchBox();
+                        initDataGrid();
+                        initForm();
+                    }
+                }, 100);
+            }
+        };
+
+    </script>
+</body>
+</html>

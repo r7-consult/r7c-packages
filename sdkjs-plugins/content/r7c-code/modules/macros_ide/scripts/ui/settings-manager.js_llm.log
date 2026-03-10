@@ -1,0 +1,14 @@
+# TASK-033 - 2025-10-10
+Action: created
+Changes:
+- Created new SettingsManager class with modal dialog pattern
+- Implemented 5 plugin settings: Show/Hide Examples, Console Capture (always enabled per TASK-031), Window Size (width/height), Editor Font/Size, Theme Selection
+- localStorage persistence with key 'macros_plugin_settings'
+- Global window function exports: window.openSettings(), window.saveSettings(), window.cancelSettings(), window.resetSettings()
+- Theme-aware CSS styling for both light and dark themes
+- Focus trap and ESC key to close modal
+- Settings validation with error handling
+- Integration with PluginState and OnlyOfficeAPIManager
+- Save/Cancel/Reset button functionality
+- Applies settings immediately: window size via API, editor font via Monaco, examples visibility via DOM
+----------------------------------------

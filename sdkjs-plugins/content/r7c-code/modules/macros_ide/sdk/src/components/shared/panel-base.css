@@ -1,0 +1,20 @@
+/**
+ * Shared base panel styles for flex-based containers.
+ */
+
+.split-panel-container,
+.tab-container,
+.monaco-editor-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  background: var(--sdk-color-background, #ffffff);
+  border: 1px solid var(--sdk-color-border, #e0e0e0);
+  border-radius: var(--sdk-button-borderRadius, 4px);
+  overflow: hidden;
+  box-sizing: border-box;
+  font-family: var(--sdk-typography-fontFamily, Arial, sans-serif);
+  font-size: var(--sdk-typography-fontSize, 14px);
+  color: var(--sdk-color-text, #333333);
+}

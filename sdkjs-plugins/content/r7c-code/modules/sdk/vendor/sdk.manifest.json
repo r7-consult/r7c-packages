@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "vendors": [
+    {
+      "name": "ExcelJS",
+      "file": "exceljs.bare.js",
+      "global": "ExcelJS",
+      "amd": { "hideDuringLoad": true },
+      "autoload": true,
+      "dependsOn": [],
+      "wrapper": "exceljs-wrapper.js",
+      "expose": { "hostGlobal": true, "namespace": "Common.r7code", "namespaceKey": "ExcelJS" },
+      "verify": { "props": ["version"] }
+    },
+    {
+      "name": "r7Forms",
+      "file": "userGUIHelper.js",
+      "global": "UserGUIHelper",
+      "amd": { "hideDuringLoad": false },
+      "autoload": true,
+      "dependsOn": [],
+      "expose": { "hostGlobal": true, "namespace": "Common.r7code", "namespaceKey": "r7Forms" },
+      "verify": { "props": ["_version"] }
+    }
+  ]
+}

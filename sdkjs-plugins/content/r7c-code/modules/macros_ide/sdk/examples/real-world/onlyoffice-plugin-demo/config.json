@@ -1,0 +1,100 @@
+{
+    "name": "OnlyOffice UI SDK Demo",
+    "nameLocale": {
+        "ru": "Демо OnlyOffice UI SDK",
+        "fr": "Démo SDK UI OnlyOffice",
+        "es": "Demo SDK UI OnlyOffice",
+        "de": "OnlyOffice UI SDK Demo"
+    },
+    "guid": "asc.{FFE1F462-1EA2-4391-990D-4CC84940B754}",
+    "version": "1.0.0",
+    "minVersion": "6.0.0",
+    "author": {
+        "name": "OnlyOffice UI SDK Team",
+        "email": "support@onlyoffice.com"
+    },
+    "description": "Comprehensive demo of OnlyOffice UI SDK components across Word, Excel, and PowerPoint editors",
+    "descriptionLocale": {
+        "ru": "Комплексное демо компонентов OnlyOffice UI SDK для редакторов Word, Excel и PowerPoint",
+        "fr": "Démo complète des composants SDK UI OnlyOffice pour les éditeurs Word, Excel et PowerPoint",
+        "es": "Demo completa de componentes SDK UI OnlyOffice para editores Word, Excel y PowerPoint",
+        "de": "Umfassende Demo der OnlyOffice UI SDK-Komponenten für Word-, Excel- und PowerPoint-Editoren"
+    },
+    "help": "https://github.com/onlyoffice/ui-sdk",
+    "url": "https://github.com/onlyoffice/ui-sdk",
+    "icons": ["resources/light/icon.png", "resources/dark/icon.png"],
+    "icons2": [
+        {
+            "style": "light",
+            "100%": {
+                "normal": "resources/light/icon.png"
+            },
+            "125%": {
+                "normal": "resources/light/icon@1.25x.png"
+            },
+            "150%": {
+                "normal": "resources/light/icon@1.5x.png"
+            },
+            "175%": {
+                "normal": "resources/light/icon@1.75x.png"
+            },
+            "200%": {
+                "normal": "resources/light/icon@2x.png"
+            }
+        },
+        {
+            "style": "dark",
+            "100%": {
+                "normal": "resources/dark/icon.png"
+            },
+            "125%": {
+                "normal": "resources/dark/icon@1.25x.png"
+            },
+            "150%": {
+                "normal": "resources/dark/icon@1.5x.png"
+            },
+            "175%": {
+                "normal": "resources/dark/icon@1.75x.png"
+            },
+            "200%": {
+                "normal": "resources/dark/icon@2x.png"
+            }
+        }
+    ],
+    "isViewer": false,
+    "EditorsSupport": ["word", "cell", "slide"],
+    "isVisual": true,
+    "isModal": false,
+    "isInsideMode": false,
+    "initDataType": "none",
+    "initData": "",
+    "buttons": [
+        {
+            "text": "SDK Demo",
+            "primary": true,
+            "textLocale": {
+                "ru": "Демо SDK",
+                "fr": "Démo SDK",
+                "es": "Demo SDK",
+                "de": "SDK Demo"
+            }
+        }
+    ],
+    "events": ["onTargetPositionChanged"],
+    "store": {
+        "background": {
+            "light": "#FFFFFF",
+            "dark": "#1E1E1E"
+        },
+        "screenshots": [
+            "resources/store/screenshots/screen_1.png",
+            "resources/store/screenshots/screen_2.png",
+            "resources/store/screenshots/screen_3.png"
+        ],
+        "icons": {
+            "light": "resources/store/icons/icon.png",
+            "dark": "resources/store/icons/icon.png"
+        },
+        "categories": ["work-with-data", "educational", "productivity"]
+    }
+}

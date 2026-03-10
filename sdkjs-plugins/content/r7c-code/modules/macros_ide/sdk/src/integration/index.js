@@ -1,0 +1,1 @@
+import _0x141e8f from'./onlyoffice-integration.js';import{OnlyOfficeThemeManager}from'./onlyoffice-theme-manager.js';export{_0x141e8f as OnlyOfficeIntegration,OnlyOfficeThemeManager};export default _0x141e8f;

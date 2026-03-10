@@ -1,0 +1,346 @@
+/**
+ * OnlyOffice UI SDK DataGrid Component Styles
+ * Flexible data grid with sorting, filtering, and virtual scrolling
+ */
+
+.onlyoffice-datagrid {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    border: 1px solid var(--border-color, #d1d5db);
+    border-radius: 4px;
+    font-family: var(--font-family, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+    font-size: 14px;
+    background: var(--background-color, #ffffff);
+    color: var(--text-color, #374151);
+    overflow: hidden;
+}
+
+/* Container */
+.datagrid-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+/* Header Styles */
+.datagrid-header {
+    display: flex;
+    background: var(--header-background, #f9fafb);
+    border-bottom: 1px solid var(--border-color, #d1d5db);
+    min-height: 40px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.datagrid-header-cell {
+    display: flex;
+    flex-direction: column;
+    min-width: 100px;
+    border-right: 1px solid var(--border-color, #d1d5db);
+    position: relative;
+    background: var(--header-background, #f9fafb);
+}
+
+.datagrid-header-cell:last-child {
+    border-right: none;
+    flex: 1;
+}
+
+.datagrid-header-cell.sortable {
+    cursor: pointer;
+}
+
+.datagrid-header-cell.sortable:hover {
+    background: var(--header-hover-background, #f3f4f6);
+}
+
+.datagrid-header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 12px;
+    min-height: 24px;
+}
+
+.datagrid-header-title {
+    font-weight: 600;
+    color: var(--header-text-color, #374151);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex: 1;
+}
+
+.datagrid-sort-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+    margin-left: 4px;
+    color: var(--sort-icon-color, #9ca3af);
+    font-size: 10px;
+    transition: color 0.2s ease;
+}
+
+.datagrid-sort-icon.active {
+    color: var(--sort-icon-active-color, #3b82f6);
+}
+
+.datagrid-filter {
+    width: 100%;
+    padding: 4px 8px;
+    border: none;
+    border-top: 1px solid var(--border-color, #d1d5db);
+    background: var(--filter-background, #ffffff);
+    color: var(--text-color, #374151);
+    font-size: 12px;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+.datagrid-filter:focus {
+    border-top-color: var(--focus-border-color, #3b82f6);
+    background: var(--filter-focus-background, #f8fafc);
+}
+
+.datagrid-filter::placeholder {
+    color: var(--placeholder-color, #9ca3af);
+}
+
+/* Body Styles */
+.datagrid-body {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+}
+
+.datagrid-viewport {
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    position: relative;
+}
+
+.datagrid-content {
+    position: relative;
+    min-height: 100%;
+}
+
+.datagrid-rows {
+    position: relative;
+}
+
+/* Row Styles */
+.datagrid-row {
+    display: flex;
+    min-height: 32px;
+    border-bottom: 1px solid var(--row-border-color, #f3f4f6);
+    transition: background-color 0.15s ease;
+    cursor: pointer;
+}
+
+.datagrid-row:hover {
+    background: var(--row-hover-background, #f8fafc);
+}
+
+.datagrid-row.selected {
+    background: var(--row-selected-background, #eff6ff);
+    border-color: var(--row-selected-border, #bfdbfe);
+}
+
+.datagrid-row.selected:hover {
+    background: var(--row-selected-hover-background, #dbeafe);
+}
+
+.datagrid-cell {
+    display: flex;
+    align-items: center;
+    padding: 8px 12px;
+    min-width: 100px;
+    border-right: 1px solid var(--cell-border-color, #f3f4f6);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.4;
+}
+
+.datagrid-cell:last-child {
+    border-right: none;
+    flex: 1;
+}
+
+/* Scrollbar Styles */
+.datagrid-scrollbar {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 12px;
+    height: 100%;
+    background: var(--scrollbar-background, #f3f4f6);
+    border-left: 1px solid var(--border-color, #d1d5db);
+    z-index: 5;
+    display: none;
+}
+
+.datagrid-scrollbar-thumb {
+    position: absolute;
+    width: 100%;
+    background: var(--scrollbar-thumb, #9ca3af);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.datagrid-scrollbar-thumb:hover {
+    background: var(--scrollbar-thumb-hover, #6b7280);
+}
+
+/* Empty State */
+.datagrid-empty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+    color: var(--empty-text-color, #9ca3af);
+    font-style: italic;
+}
+
+/* Loading State */
+.datagrid-loading {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--loading-background, rgba(255, 255, 255, 0.8));
+    z-index: 20;
+}
+
+.datagrid-loading-spinner {
+    width: 24px;
+    height: 24px;
+    border: 2px solid var(--loading-border, #e5e7eb);
+    border-top: 2px solid var(--loading-spinner, #3b82f6);
+    border-radius: 50%;
+    animation: datagrid-spin 1s linear infinite;
+}
+
+@keyframes datagrid-spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .onlyoffice-datagrid {
+        font-size: 13px;
+    }
+    
+    .datagrid-header-cell {
+        min-width: 80px;
+    }
+    
+    .datagrid-cell {
+        min-width: 80px;
+        padding: 6px 8px;
+    }
+    
+    .datagrid-header-content {
+        padding: 6px 8px;
+    }
+    
+    .datagrid-filter {
+        padding: 3px 6px;
+    }
+}
+
+/* Dark Theme Support */
+.dark .onlyoffice-datagrid {
+    --background-color: #1f2937;
+    --text-color: #f9fafb;
+    --border-color: #374151;
+    --header-background: #111827;
+    --header-hover-background: #1f2937;
+    --header-text-color: #f9fafb;
+    --filter-background: #1f2937;
+    --filter-focus-background: #111827;
+    --row-border-color: #374151;
+    --row-hover-background: #1f2937;
+    --row-selected-background: #1e3a8a;
+    --row-selected-border: #3b82f6;
+    --row-selected-hover-background: #1e40af;
+    --cell-border-color: #374151;
+    --scrollbar-background: #374151;
+    --scrollbar-thumb: #6b7280;
+    --scrollbar-thumb-hover: #9ca3af;
+    --placeholder-color: #6b7280;
+    --sort-icon-color: #9ca3af;
+    --sort-icon-active-color: #60a5fa;
+    --focus-border-color: #3b82f6;
+    --empty-text-color: #6b7280;
+    --loading-background: rgba(31, 41, 55, 0.8);
+    --loading-border: #374151;
+    --loading-spinner: #60a5fa;
+}
+
+/* High Contrast Theme */
+.high-contrast .onlyoffice-datagrid {
+    --background-color: #ffffff;
+    --text-color: #000000;
+    --border-color: #000000;
+    --header-background: #000000;
+    --header-text-color: #ffffff;
+    --row-selected-background: #000000;
+    --row-selected-border: #000000;
+    --scrollbar-thumb: #000000;
+}
+
+/* Animation Utilities */
+.datagrid-fade-in {
+    animation: datagrid-fade-in 0.3s ease-in-out;
+}
+
+@keyframes datagrid-fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.datagrid-slide-in {
+    animation: datagrid-slide-in 0.3s ease-out;
+}
+
+@keyframes datagrid-slide-in {
+    from { transform: translateY(-10px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* Print Styles */
+@media print {
+    .onlyoffice-datagrid {
+        height: auto;
+        border: 1px solid #000;
+    }
+    
+    .datagrid-viewport {
+        overflow: visible;
+        height: auto;
+    }
+    
+    .datagrid-scrollbar {
+        display: none;
+    }
+    
+    .datagrid-filter {
+        display: none;
+    }
+    
+    .datagrid-row {
+        break-inside: avoid;
+    }
+}

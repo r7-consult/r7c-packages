@@ -1,0 +1,23 @@
+.vscode-breadcrumb {
+  height: 22px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0 8px;
+  background: var(--vscode-editor-background, #000000);
+  color: var(--vscode-foreground, #cccccc);
+  border-bottom: 1px solid var(--vscode-tab-border, #050505);
+  user-select: none;
+}
+.vscode-breadcrumb .crumb {
+  font-size: var(--fs-sm);
+  color: var(--vscode-breadcrumb-foreground, #c5c5c5);
+  cursor: pointer;
+}
+.vscode-breadcrumb .crumb:hover {
+  color: var(--vscode-breadcrumb-focusForeground, #ffffff);
+  text-decoration: underline;
+}
+.vscode-breadcrumb .sep { color: var(--vscode-breadcrumb-foreground, #999999); }
+.vscode-breadcrumb .root { font-weight: 600; }
+.vscode-breadcrumb .ellipsis { max-width: 220px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }

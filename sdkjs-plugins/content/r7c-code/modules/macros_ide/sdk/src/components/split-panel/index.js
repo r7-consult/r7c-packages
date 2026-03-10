@@ -1,0 +1,1 @@
+import{SplitPanel}from'./split-panel.js';export{SplitPanel};export default SplitPanel;

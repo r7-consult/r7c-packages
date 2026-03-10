@@ -1,0 +1,1286 @@
+<!--
+ (c) Copyright Ascensio System SIA 2020
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <title>R7 MACROS EDITOR</title>
+    
+  <script>
+    // Redirect OnlyOffice localization requests from root /translations/*
+    // to our canonical location modules/macros_ide/translations/*.
+    // This runs before plugins.js to avoid 404s on langs.json and locale files.
+    (function () {
+      try {
+        var originalOpen = XMLHttpRequest.prototype.open;
+        XMLHttpRequest.prototype.open = function (method, url, async, user, password) {
+          try {
+            if (typeof url === 'string') {
+              // Replace any '/translations/' segment with our canonical folder
+              url = url.replace(/\/translations\//, '/modules/macros_ide/translations/');
+            }
+          } catch (e) { /* noop */ }
+          return originalOpen.call(this, method, url, async, user, password);
+        };
+        // Also patch fetch if available
+        if (typeof window.fetch === 'function') {
+          const originalFetch = window.fetch;
+          window.fetch = function(input, init) {
+            try {
+              if (typeof input === 'string') {
+                input = input.replace(/\/translations\//, '/modules/macros_ide/translations/');
+              } else if (input && typeof input.url === 'string') {
+                input = new Request(input.url.replace(/\/translations\//, '/modules/macros_ide/translations/'), input);
+              }
+            } catch (e) { /* noop */ }
+            return originalFetch(input, init);
+          };
+        }
+      } catch (e) {
+        // If patching XHR fails, do nothing; plugin will still work with warnings
+      }
+    })();
+  </script> 
+  <script type="text/javascript" src="vendor/r7/plugins.js"></script>    
+  <script type="text/javascript" src="vendor/r7/plugins-ui.js"></script> 
+  <script src="modules/macros_ide/vendor/jquery/jquery-3.7.1.min.js"></script>
+  <!-- PHASE 2 FIX: D3 now bundled in code-graph IIFE (no AMD conflicts) -->
+  <!-- <script src="modules/macros_ide/vendor/d3.v7.min.js"></script> -->
+  <script src="modules/macros_ide/scripts/minifill.min.js"></script>
+  <!-- TASK-075 Step 1: Fuse.js for fuzzy search (Feature 1: Always-On Fuzzy Finder) -->
+  <script src="vendor/fuse.js"></script>
+  <link rel="stylesheet" href="../v1/plugins.css">
+
+  <!-- TASK-105-IMP: CSS Architecture Refactoring - 2-Level Compliance -->
+  <!-- Level 1: Design Tokens (base values) -->
+  <link rel="stylesheet" href="modules/macros_ide/resources/css/tokens/design-tokens.css?v=3.1">
+
+  <!-- Level 2: Theme Overrides (light, dark, high contrast variants) -->
+  <link rel="stylesheet" href="modules/macros_ide/resources/css/themes/theme-light.css?v=3.1">
+  <link rel="stylesheet" href="modules/macros_ide/resources/css/themes/theme-dark.css?v=3.1">
+  <link rel="stylesheet" href="modules/macros_ide/resources/css/themes/theme-hc-black.css?v=3.1">
+  <link rel="stylesheet" href="modules/macros_ide/resources/css/themes/theme-hc-light.css?v=3.1">
+
+  <!-- Level 2: Consolidated Application Styles (replaces style.css, controls.css, tree-view.css, splitter.css, sidebar/state/, sidebar/views/) -->
+  <link rel="stylesheet" href="modules/macros_ide/resources/css/app.css?v=3.5">
+
+  <!-- Level 2: Base layout (body, panels, wrapper positioning) -->
+  <link rel="stylesheet" href="modules/macros_ide/resources/css/layout.css?v=3.1">
+
+  <!-- Level 2: VSCode Component Styles (already compliant with design tokens) -->
+  <link rel="stylesheet" href="modules/macros_ide/resources/css/vscode-activity-bar.css?v=3.1">
+  <link rel="stylesheet" href="modules/macros_ide/resources/css/vscode-right-pane.css?v=3.1">
+  <!-- TASK-116: CSS fix for .vscode-sidebar selector (changed to .vscode-sidebar .common_menu) -->
+  <link rel="stylesheet" href="modules/macros_ide/resources/css/vscode-sidebar.css?v=3.3.20251030">
+  <!-- TASK-116: Disabled sidebar-layout.css - conflicts with vscode-sidebar.css (ID selector overrides class selector) -->
+  <!-- <link rel="stylesheet" href="modules/macros_ide/resources/css/sidebar/sidebar-layout.css?v=3.1"> -->
+  <link rel="stylesheet" href="modules/macros_ide/resources/css/vscode-status-bar.css?v=3.1">
+  <link rel="stylesheet" href="modules/macros_ide/resources/css/vscode-explorer.css?v=3.4">
+  <!-- TASK-118: VS Code-style scrollbars for all explorer activities -->
+  <link rel="stylesheet" href="modules/macros_ide/resources/css/vscode-scrollbar.css?v=1.0">
+  <link rel="stylesheet" href="modules/macros_ide/resources/css/vscode-breadcrumb.css?v=3.1">
+  <link rel="stylesheet" href="modules/macros_ide/resources/css/tab-bar.css?v=3.1">
+  <link rel="stylesheet" href="modules/macros_ide/resources/css/telegram-gate.css?v=1.0">
+
+	  <!-- Plugin Module Styles -->
+	  <link rel="stylesheet" href="modules/macros_ide/plugins/examples/styles/module.css?v=3.3">
+	  <link rel="stylesheet" href="modules/macros_ide/plugins/external-scripts/styles/module.css?v=3.3">
+	  <!-- Logs module CSS is lazy-loaded via ModuleRegistry when the view is activated -->
+
+  <!-- TASK-106-FIX: Debug markers disabled - working parameters now in core CSS -->
+  <!-- <link rel="stylesheet" href="modules/macros_ide/resources/css/debug-markers.css?v=3.2"> -->
+
+  
+</head>
+<body>
+	<script>
+		// Initial theme detection on page load
+		(function() {
+			// Check if user has forced theme in settings first
+			try {
+				const settings = localStorage.getItem('macros_plugin_settings');
+				if (settings) {
+					const parsed = JSON.parse(settings);
+					const userTheme = parsed.theme;
+
+					if (userTheme === 'light') {
+						document.body.classList.remove('theme-type-dark');
+						document.body.classList.add('theme-type-light');
+						console.log('[Theme] Initial: Forced light theme (from settings)');
+						return;
+					}
+				}
+			} catch (e) {
+				console.warn('[Theme] Initial: Could not read settings, defaulting to dark:', e);
+			}
+
+			document.body.classList.add('theme-type-dark');
+			document.body.classList.remove('theme-type-light');
+			console.log('[Theme] Initial: Dark theme enforced');
+		})();
+
+		// Theme change handler for dynamic updates
+		(function() {
+			function updateTheme() {
+				// Check if user has forced theme in settings (dark/light)
+				// Only apply URL-based detection if theme is 'auto'
+				try {
+					const settings = localStorage.getItem('macros_plugin_settings');
+					if (settings) {
+						const parsed = JSON.parse(settings);
+						const userTheme = parsed.theme;
+
+						if (userTheme === 'light') {
+							document.body.classList.remove('theme-type-dark');
+							document.body.classList.add('theme-type-light');
+							console.log('[Theme] Forced light theme (from settings)');
+							return;
+						}
+					}
+				} catch (e) {
+					console.warn('[Theme] Could not read settings, defaulting to dark:', e);
+				}
+
+				document.body.classList.add('theme-type-dark');
+				document.body.classList.remove('theme-type-light');
+				console.log('[Theme] Dark theme enforced');
+			}
+
+			// Listen for OnlyOffice theme changes
+			if (typeof window.Asc !== 'undefined' && window.Asc.plugin) {
+				window.Asc.plugin.onThemeChanged = function(theme) {
+					updateTheme();
+					try { window.applyMacrosTheme && window.applyMacrosTheme(theme) } catch (e) {}
+					// Resize Monaco editor if theme changed
+					if (window.editor && window.editor.layout) {
+						setTimeout(() => window.editor.layout(), 100);
+					}
+				};
+			}
+
+				// Also check periodically (fallback if onThemeChanged not available)
+				// But respect user's forced theme choice from settings
+				let themePollInterval = null;
+				let lastTheme = null;
+
+				function startThemePolling() {
+					if (themePollInterval) return;
+					lastTheme = document.body.classList.contains('theme-type-dark');
+					themePollInterval = setInterval(function() {
+						const currentTheme = /theme-type=dark/.test(window.location.href);
+						if (currentTheme !== lastTheme) {
+							updateTheme();
+							lastTheme = currentTheme;
+						}
+					}, 1000); // Check every second
+					try { window.__MacrosThemePollInterval = themePollInterval; } catch (_) {}
+				}
+
+				function stopThemePolling() {
+					if (!themePollInterval) return;
+					try { clearInterval(themePollInterval); } catch (_) {}
+					themePollInterval = null;
+					try { window.__MacrosThemePollInterval = null; } catch (_) {}
+				}
+
+				try { window.__MacrosThemePollingHandle?.dispose?.(); } catch (_) {}
+				window.__MacrosThemePollingHandle = {
+					start: startThemePolling,
+					dispose: stopThemePolling,
+					update: updateTheme
+				};
+
+				startThemePolling();
+			})();
+		</script>
+
+	<!-- VSCode Workbench Wrapper -->
+	<div id="vscode-workbench" data-testid="app-workbench">
+		<!-- TASK 1.2: VSCode Activity Bar (48px vertical icon bar) -->
+		<div id="vscode-activity-bar" role="tablist" aria-label="Activity Bar" data-testid="activity-left-bar">
+			<!-- ActivityBar icons will be dynamically rendered by activity-bar.js -->
+		</div>
+
+		<!-- Right Activity Bar (new) -->
+		<div id="vscode-activity-bar-right" role="tablist" aria-label="Right Activity Bar" data-testid="activity-right-bar">
+			<!-- Right ActivityBar icons will be rendered by right-activity-bar.js -->
+		</div>
+
+	<!-- TASK-049: Functional Buttons Toolbar -->
+		<div id="macro-toolbar" class="macro-toolbar" data-testid="toolbar-main">
+			<!-- Left section: R7 logo, Settings, Filter, Hide -->
+			<div class="toolbar-section-left" data-testid="toolbar-section-left">
+				<div class="r7-logo" aria-label="R7 macros editor logo">
+					<a
+						href="https://r7-consult.ru/r7_code"
+						target="_blank"
+						rel="noopener noreferrer"
+						onclick="try { window.open('https://r7-consult.ru/r7_code', '_blank', 'noopener'); } catch (_) {} return false"
+					>
+						<img src="modules/macros_ide/resources/light/icon.png" alt="{r7}" />
+					</a>
+				</div>
+	            <!-- Settings moved to Activity Bar bottom -->
+				<div class="toolbar-separator"></div>
+                <!-- Removed legacy New/Copy/Paste header buttons per user request -->
+
+            <div id="editor-command-group" class="toolbar-button-group" data-testid="toolbar-editor-command-group">
+				<button
+					id="editor-new-macro-btn"
+					data-testid="toolbar-editor-new-macro-btn"
+					class="btn-standard btn-icon-only"
+					type="button"
+					title="Create new macro (JavaScript)"
+				>
+					<span class="toolbar-icon">＋</span>
+				</button>
+				<button
+					id="editor-cut-btn"
+					data-testid="toolbar-editor-cut-btn"
+					class="btn-standard btn-icon-only"
+					type="button"
+					title="Cut selection (Ctrl+X)"
+					disabled
+				>
+					<span class="toolbar-icon">✂</span>
+				</button>
+				<button
+					id="editor-copy-btn"
+					data-testid="toolbar-editor-copy-btn"
+					class="btn-standard btn-icon-only"
+					type="button"
+					title="Copy selection (Ctrl+C)"
+					disabled
+				>
+					<span class="toolbar-icon">⎘</span>
+				</button>
+				<button
+					id="editor-paste-btn"
+					data-testid="toolbar-editor-paste-btn"
+					class="btn-standard btn-icon-only"
+					type="button"
+					title="Paste (Ctrl+V)"
+				>
+					<span class="toolbar-icon">📋</span>
+				</button>
+				<button
+					id="editor-undo-btn"
+					data-testid="toolbar-editor-undo-btn"
+					class="btn-standard btn-icon-only"
+					type="button"
+					title="Undo (Ctrl+Z)"
+					disabled
+				>
+					<span class="toolbar-icon">↺</span>
+				</button>
+				<button
+					id="editor-redo-btn"
+					data-testid="toolbar-editor-redo-btn"
+					class="btn-standard btn-icon-only"
+					type="button"
+					title="Redo (Ctrl+Y)"
+					disabled
+				>
+					<span class="toolbar-icon">↻</span>
+				</button>
+			</div>
+
+
+		</div>
+
+		<!-- Center section: Current macro name -->
+		<div class="toolbar-section-center" data-testid="toolbar-section-center">
+			<span id="toolbar-macro-name" class="toolbar-macro-name" data-testid="toolbar-current-macro-name">No macro selected</span>
+		</div>
+
+		<!-- Right section: Run, Save, Debug, Copy, Rename, Delete, Autostart -->
+		<div class="toolbar-section-right" data-testid="toolbar-section-right">
+			<button
+				id="toolbar-run-btn"
+				data-testid="toolbar-run-btn"
+				class="btn-standard btn-icon-text"
+				onclick="window.runCurrentMacro()"
+				title="Run current macro (Ctrl+Enter)"
+				disabled
+			>
+				<span class="toolbar-icon">▶</span>
+				<span class="toolbar-label">Run</span>
+			</button>
+			<button
+				id="toolbar-save-btn"
+				data-testid="toolbar-save-btn"
+				class="btn-standard btn-icon-text"
+				onclick="window.saveMacros()"
+				title="Save all macros to document"
+			>
+				<span class="toolbar-icon">💾</span>
+				<span class="toolbar-label">Save</span>
+			</button>
+			<button
+				id="toolbar-debug-btn"
+				data-testid="toolbar-debug-btn"
+				class="btn-standard btn-icon-text"
+				onclick="window.showDebugSettings()"
+				title="Toggle debug plugins settings panel"
+			>
+				<span class="toolbar-icon">🐞</span>
+				<span class="toolbar-label">Debug</span>
+			</button>
+			<button
+				id="toolbar-copy-btn"
+				data-testid="toolbar-copy-btn"
+				class="btn-standard btn-icon-text"
+				onclick="window.copyCurrentMacro()"
+				title="Copy current macro"
+				disabled
+			>
+				<span class="toolbar-icon">📋</span>
+				<span class="toolbar-label">Copy</span>
+			</button>
+			<button
+				id="toolbar-rename-btn"
+				data-testid="toolbar-rename-btn"
+				class="btn-standard btn-icon-text"
+				onclick="window.showRename()"
+				title="Rename current macro"
+				disabled
+			>
+				<span class="toolbar-icon">✏️</span>
+				<span class="toolbar-label">Rename</span>
+			</button>
+			<button
+				id="toolbar-delete-btn"
+				data-testid="toolbar-delete-btn"
+				class="btn-standard btn-icon-text"
+				onclick="window.deleteCurrentMacro()"
+				title="Delete current macro"
+				disabled
+			>
+				<span class="toolbar-icon">🗑️</span>
+				<span class="toolbar-label">Delete</span>
+			</button>
+			<div class="toolbar-separator"></div>
+			<label id="toolbar-autostart-label" class="toolbar-checkbox-label" data-testid="toolbar-autostart-label">
+				<input
+					id="toolbar-autostart-checkbox"
+					data-testid="toolbar-autostart-checkbox"
+					type="checkbox"
+					onclick="window.toggleAutostart()"
+					title="Run macro on document open"
+					disabled
+				/>
+				<span class="toolbar-label">Autostart</span>
+			</label>
+			<div class="toolbar-separator"></div>
+			<!-- Combined maximize/restore toggle button -->
+			<button
+				id="toolbar-maximize-btn"
+				data-testid="toolbar-maximize-btn"
+				class="btn-standard btn-icon-only"
+				onclick="window.maximizeWindow()"
+				title="Maximize window (fill screen)"
+			>
+				<span class="toolbar-icon" id="toolbar-maximize-icon">⛶</span>
+			</button>
+			<button
+				id="toolbar-minimize-btn"
+				data-testid="toolbar-minimize-btn"
+				class="btn-standard btn-icon-only"
+				onclick="window.minimizePluginWindow()"
+				title="Minimize window (hide plugin)"
+			>
+				<span class="toolbar-icon">—</span>
+			</button>
+		</div>
+
+	</div>
+
+	<!-- TASK-075 Feature 2: Header Status Line (VSCode Parity Phase 1) -->
+	<div id="status-line" class="status-line" data-testid="status-line">
+		<!-- StatusLineManager will populate this dynamically -->
+	</div>
+
+	<!-- TASK-082: VSCode Side Bar wrapper -->
+	<div id="vscode-sidebar" class="vscode-sidebar" data-testid="sidebar-container">
+		<div class="vscode-sidebar-content">
+			<div class="common_menu noselect" tabindex="0" data-testid="sidebar-common-menu">
+				<div id="sidebar-view-prelude" class="sidebar-view-prelude" aria-live="polite" data-testid="sidebar-view-prelude"></div>
+				<!-- Filter section (moved to tree pane) -->
+				<div class="tree-pane-filter" data-testid="sidebar-tree-filter">
+					<label for="filterInput" class="filter-label">Filter:</label>
+					<div class="filter-input-container">
+						<!-- TASK-075 Step 2: Updated placeholder for fuzzy search -->
+						<input
+							id="filterInput"
+							data-testid="sidebar-filter-input"
+							type="text"
+							placeholder="Filter macros (fuzzy search)..."
+							class="filter-input-field"
+							oninput="handleFilter(this.value)"
+						>
+						<span
+							id="clearFilter"
+							data-testid="sidebar-filter-clear-btn"
+							class="filter-clear-button"
+							onclick="clearFilter()"
+						>
+							✕
+						</span>
+					</div>
+					<!-- TASK-075 Step 2: Search statistics display -->
+					<div id="search-stats" class="search-stats-display" data-testid="sidebar-search-stats"></div>
+				</div>
+				<div id="menu_macros" class="menu_macros_full" data-testid="sidebar-menu-macros">
+					<!-- TASK-036: Hidden file input for import -->
+					<input
+						type="file"
+						id="importFileInput"
+						data-testid="sidebar-import-file-input"
+						accept=".macros,.json,.js"
+						class="hidden"
+						onchange="window.handleImportedFile(event)"
+					>
+					<div id="menu_content" class="tree-container tree-container-main" data-active-view="macros" data-display-mode="tree" data-testid="sidebar-tree-container-main">
+						<!-- Unified tree structure with both Macros and Functions -->
+						<div id="unified-tree" class="tree-node" data-testid="sidebar-unified-tree">
+							
+							<!-- Macros Section -->
+							<div id="macros-tree-node" class="tree-node" data-tree-slot="macros" data-active="true" data-testid="sidebar-tree-macros-node">
+								<div class="tree-node-header">
+									<div class="tree-node-expand expanded" data-target="macros-children"></div>
+									<div class="tree-node-title">
+										<span>Macros</span>
+										<span id="macros-count" class="tree-node-count" data-tree-slot-count="macros">0</span>
+									</div>
+								</div>
+								<div id="macros-children" class="tree-node-children expanded" data-tree-slot-container="macros" data-testid="sidebar-tree-macros-children">
+									<!-- Macro items will be added here -->
+								</div>
+							</div>
+							
+							<!-- Examples Section -->
+							<div id="examples-tree-node" class="tree-node" data-tree-slot="examples">
+								<div class="tree-node-header">
+									<div class="tree-node-expand expanded" data-target="examples-children"></div>
+									<div class="tree-node-title">
+										<span>Examples</span>
+										<span id="examples-count" class="tree-node-count" data-tree-slot-count="examples">0</span>
+									</div>
+								</div>
+								<div id="examples-children" class="tree-node-children expanded" data-tree-slot-container="examples">
+									<!-- Example items will be added here -->
+								</div>
+							</div>
+
+							<!-- External Scripts Section -->
+							<div id="external-scripts-tree-node" class="tree-node" data-tree-slot="external-scripts">
+								<div class="tree-node-header">
+									<div class="tree-node-expand expanded" data-target="external-scripts-children"></div>
+									<div class="tree-node-title">
+										<span>External Scripts</span>
+										<span id="external-scripts-count" class="tree-node-count" data-tree-slot-count="external-scripts">0</span>
+									</div>
+								</div>
+								<div id="external-scripts-children" class="tree-node-children expanded" data-tree-slot-container="external-scripts">
+									<div id="imported-vba-tree-node" class="tree-node imported-section vba-section">
+										<div class="tree-node-header">
+											<div class="tree-node-expand expanded" data-target="imported-vba-children"></div>
+											<div class="tree-node-title">
+												<span class="section-title">VBA</span>
+												<span id="imported-vba-count" class="tree-node-count section-count">0 files, 0 KB</span>
+											</div>
+										</div>
+										<div id="imported-vba-children" class="tree-node-children expanded">
+											<!-- VBA file items will be injected here -->
+										</div>
+									</div>
+
+									<div id="imported-js-tree-node" class="tree-node imported-section js-section">
+										<div class="tree-node-header">
+											<div class="tree-node-expand expanded" data-target="imported-js-children"></div>
+											<div class="tree-node-title">
+												<span class="section-title">JavaScript</span>
+												<span id="imported-js-count" class="tree-node-count section-count">0 macros</span>
+											</div>
+										</div>
+										<div id="imported-js-children" class="tree-node-children expanded">
+											<!-- JavaScript items will be injected here -->
+										</div>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div><!-- #menu_macros -->
+			</div><!-- .common_menu -->
+			<div id="global-search-root" class="global-search-root" style="display:none"></div>
+		</div><!-- .vscode-sidebar-content -->
+
+		<!-- TASK-082: VSCode Side Bar resize handle -->
+		<div class="vscode-sidebar-resize-handle"></div>
+	</div><!-- .vscode-sidebar -->
+
+	<!-- TASK-129-PHASE-C: Debug Settings Panel Container (hidden by default) -->
+	<div id="debug-settings-container" style="display: none; position: fixed; bottom: 20px; right: 20px; width: 400px; max-height: 600px; overflow-y: auto; background: var(--background-color); border: 1px solid var(--border-color); border-radius: 4px; box-shadow: 0 4px 12px rgba(0,0,0,0.3); z-index: 9999; padding: 16px;">
+		<!-- DebugSettingsPanel will be mounted here -->
+	</div>
+
+	<!-- Hidden import inputs (shared across explorer panels) -->
+	<input
+		type="file"
+		id="vbaFileInput"
+		accept=".xls,.xlsx,.xlsm"
+		multiple
+		class="hidden"
+		onchange="(async ()=>{try{if(this.files&&this.files.length&&window.macroManager){for(const f of Array.from(this.files)){await window.macroManager.importVBAFromExcelFile(f)}}}finally{this.value=''}})()"
+	>
+	<input
+		type="file"
+		id="jsFileInput"
+		accept=".xlsx,.js,.json"
+		multiple
+		class="hidden"
+		onchange="(async ()=>{try{if(this.files&&this.files.length&&window.macroManager){for(const f of Array.from(this.files)){const n=f.name.toLowerCase();if(n.endsWith('.xlsx')){await window.macroManager.importJSFromExcelFile(f)}else{await window.macroManager.importExternalTextFile?.(f)}}}}finally{this.value=''}})()"
+	>
+
+	<!-- Resizable splitter -->
+	<div class="resizable-splitter" id="resizable-splitter" data-testid="layout-resizable-splitter"></div>
+
+
+
+	<div id="editorWrapper" tabindex="0" data-testid="editor-wrapper">
+		<!-- Phase 2: Tab Bar (MVP) -->
+    <div id="tab-bar" class="vscode-tab-bar" role="tablist" aria-label="Open Macros" data-testid="editor-tab-bar"></div>
+    <div id="vscode-breadcrumb" class="vscode-breadcrumb" aria-label="Breadcrumb" data-testid="editor-breadcrumb"></div>
+    <pre id="editor"></pre>
+
+	</div>
+	</div><!-- #vscode-workbench -->
+
+	<!-- Right Pane (toggled by Right Activity Bar) -->
+    <div id="vscode-right-pane" class="vscode-right-pane" aria-label="AI Sputnik" aria-hidden="true" data-testid="activity-right-pane">
+		<div class="right-pane-resizer" id="right-pane-resizer" title="Drag to resize" data-testid="activity-right-pane-resizer"></div>
+        <div class="right-pane-title">
+            <span class="title-text">AI Sputnik</span>
+            <button
+              class="btn-action"
+              title="Hide pane"
+              onclick="(window.toggleRightPane && typeof window.toggleRightPane === 'function') && window.toggleRightPane()"
+            >▶</button>
+        </div>
+		<div class="right-pane-content" id="right-pane-content" data-testid="activity-right-pane-content">
+			<!-- Add actions/content here in future -->
+			<div class="empty-hint">Empty pane. Click the right bar icon to hide/show.</div>
+		</div>
+	</div>
+
+	<!-- VSCode Status Bar (bottom, above console) -->
+	<div id="vscode-status-bar" class="vscode-status-bar" role="status" aria-live="polite" data-testid="status-bottom-bar">
+		<div class="status-left">Macros: <span id="sb-macros-count">0</span></div>
+		<div class="status-center" id="sb-message"></div>
+		<div class="status-right" id="sb-mode">Ready</div>
+	</div>
+	
+	<!-- <div class="divHeader">
+		<div class="footer-container" id="menu_footer">
+			<button class="btn-text-default footer-btn-left" id="button_delete">Delete</button>
+			<button class="btn-text-default footer-btn-left-20" id="button_rename">Rename</button>
+			<button class="btn-text-default footer-btn-left-30 hidden" id="button_autostart">Autostart</button>
+		</div>
+		<button class="btn-text-default primary footer-btn-run" id="button_run_legacy">Run</button>
+	</div> -->
+
+	<div class="divRenameMask rename-mask" id="idRenameMask">	
+	</div>
+	<div class="divRename rename-dialog" id="idRename">
+		<div class="rename-header" id="rename_header">
+			<span class="rename-title">Editing Macro:</span>
+			<span class="rename-macro-name" id="rename_macro_name">Macro Name</span>
+		</div>
+		<input type="text" class="form-control textSelect rename-input" id="rename_text"/>
+		<div id="input_error_id" title="The name must not be empty" class="input_error rename-error"></div>
+
+		<div class="divFooter">
+			<button class="btn-text-default primary rename-ok-btn" id="rename_ok">Ok</button>
+			<button class="btn-text-default rename-cancel-btn" id="rename_cancel">Cancel</button>
+		</div>
+	</div>
+
+	<!-- TASK-077: JavaScript workaround removed - now using pure CSS class-based approach (METHOD 1) -->
+	<!-- Dark theme styling handled entirely through CSS (.vba-section, .js-section classes) -->
+	<!-- No JavaScript dependency = more robust and maintainable -->
+
+	<!-- TASK-050: JSZip - Load BEFORE Monaco/RequireJS to prevent AMD registration -->
+	<!-- ADR-051: Selected METHOD 2 (Pre-load Before AMD) for reliability -->
+	<script src="modules/macros_ide/vendor/jszip.min.js"></script>
+	<script>
+		// Verify JSZip loaded as global (no AMD exists yet)
+		if (typeof JSZip !== 'undefined') {
+			window.JSZip = JSZip;
+			console.log('✓ JSZip loaded successfully as global (pre-AMD):', JSZip.version || 'version unknown');
+		} else {
+			console.error('✗ CRITICAL: JSZip failed to load!');
+		}
+	</script>
+
+	<!-- Monaco Editor CSS -->
+	<link rel="stylesheet" data-name="vs/editor/editor.main" href="modules/macros_ide/vendor/monaco/min/vs/editor/editor.main.css" />
+
+	<!-- TASK-127: Monaco Scrollbar/Overview Ruler Visibility Fix -->
+	<link rel="stylesheet" href="modules/macros_ide/resources/css/monaco-scrollbar-fix.css" />
+
+	<!-- RequireJS for Monaco Editor -->
+	<script src="modules/macros_ide/vendor/monaco/min/vs/loader.js"></script>
+
+	<!-- Monaco Editor Main -->
+	<script>
+		// Configure Monaco environment
+		require.config({
+			paths: { 'vs': './modules/macros_ide/vendor/monaco/min/vs' }
+		});
+
+		// Load Monaco editor main module
+		require(['vs/editor/editor.main'], function() {
+			console.log('Monaco Editor loaded successfully');
+			window.monacoLoaded = true;
+		}, function(error) {
+			console.error('Failed to load Monaco Editor:', error);
+			window.monacoLoadError = error;
+		});
+	</script>
+
+	<!-- ExcelJS not required for JS macro importing; removed to avoid AMD conflicts -->
+
+	<!-- TASK-061: VBA Logger (must load before VBA extractor shim) -->
+	<script src="modules/macros_ide/scripts/utils/vba-logger.js"></script>
+
+    <!-- Legacy VBAExtractor shim (JS decoder removed; see vba-extractor.js) -->
+    <script src="modules/macros_ide/scripts/utils/vba-extractor.js"></script>
+    <script src="modules/macros_ide/scripts/utils/interaction-logger-bootstrap.js"></script>
+    <!-- Reference OVBA decoder (fallback engine) -->
+    <script src="modules/macros_ide/scripts/utils/ovba-decoder-reference.js"></script>
+
+	<!-- Worker host for non-blocking VBA extraction (feature-flagged) -->
+	<script src="modules/macros_ide/scripts/managers/vba-extraction-worker-host.js"></script>
+
+	<!-- Modular Code Architecture -->
+  <script src="modules/macros_ide/scripts/utils/log4js.js"></script>
+	<!-- Core modules -->
+	  <script src="modules/macros_ide/scripts/core/error-handler.js"></script>
+	  <script src="modules/macros_ide/scripts/core/event-bus.js"></script><!-- TASK-129-FIX-ADDENDUM: EventBus MUST load BEFORE plugin-state.js -->
+	  <script src="modules/macros_ide/scripts/core/plugin-state.js"></script>
+	  <script src="modules/macros_ide/scripts/core/logging-utils.js"></script>
+	  <script src="modules/macros_ide/scripts/core/settings-store.js"></script>
+	  <script src="modules/macros_ide/scripts/core/module-context.js"></script>
+	  <script src="modules/macros_ide/scripts/core/resource-manager.js"></script><!-- TASK-073 Phase 4 -->
+	  <script src="modules/macros_ide/scripts/core/logging-registry.js"></script>
+  <script src="modules/macros_ide/scripts/core/log-service.js"></script><!-- ADR-027: Unified logging facade -->
+  <script src="modules/macros_ide/scripts/core/tree-registry.js"></script><!-- TASK-082: Shared tree slot registry -->
+  <script src="modules/macros_ide/scripts/core/plugin-registry.js"></script><!-- TASK-069 P1-T1: Component tracking -->
+	  <script src="modules/macros_ide/scripts/core/namespace-loader.js"></script><!-- TASK-069 P1-T3: SDK namespace isolation -->
+	  <script src="modules/macros_ide/scripts/core/feature-flag-service.js"></script><!-- TASK-103 Phase 1: Staged rollout infrastructure -->
+	  <script src="modules/macros_ide/scripts/core/abort-utils.js"></script><!-- ADR-092: Shutdown-safe async helpers -->
+	  <script src="modules/macros_ide/scripts/utils/dom-listener-utils.js"></script>
+
+		<!-- Work Macros Diagnostic System (captures TreeRegistry and TreeHostManager events) -->
+		<script src="modules/macros_ide/diagnostics/work-macros-diagnostic.js"></script>
+
+	<!-- TASK-097: Plugin System Modules (ADR-003) -->
+	<script src="modules/macros_ide/scripts/core/plugin-context.js"></script>
+	<script src="modules/macros_ide/scripts/core/plugin-interface.js"></script>
+	<script src="modules/macros_ide/scripts/core/plugin-manager.js"></script>
+
+	<!-- API modules -->
+	<script src="modules/macros_ide/scripts/api/onlyoffice-api.js"></script>
+
+	<!-- UI modules -->
+  <script src="modules/macros_ide/scripts/core/module-registry.js"></script>
+  <script src="modules/macros_ide/scripts/ui/testid.js"></script>
+  <script src="modules/macros_ide/scripts/ui/monaco-editor.js"></script>
+  <script src="modules/macros_ide/scripts/ui/editor-command-bridge.js"></script>
+  <!-- Pluggable modules are registered via ModuleRegistry (descriptor scripts autoloaded) -->
+  <script src="modules/macros_ide/scripts/ui/custom-dsl-tooltip.js"></script>
+  <script src="modules/macros_ide/scripts/ui/activity-sidebar-registry.js"></script>
+  <script src="modules/macros_ide/scripts/ui/context-menu.js"></script>
+  <script src="modules/macros_ide/scripts/ui/ui-global-functions.js"></script>
+  <script src="modules/macros_ide/scripts/ui/console-view-adapter.js"></script>
+  <script src="modules/macros_ide/scripts/ui/status-bar.js"></script>
+  <script src="modules/macros_ide/scripts/ui/error-popup-manager.js"></script>
+	<script src="modules/macros_ide/scripts/ui/breadcrumb.js"></script>
+  <script src="modules/macros_ide/scripts/ui/tab-bar.js"></script>
+	<script src="modules/macros_ide/scripts/ui/split-manager.js"></script>
+  <script src="modules/macros_ide/scripts/ui/activity-sidebar-mediator.js"></script>
+  <script src="modules/macros_ide/scripts/ui/factories/tree-actions.js"></script>
+	<script src="modules/macros_ide/scripts/ui/macro-tree.js"></script>
+  <script src="modules/macros_ide/scripts/ui/console-manager.js"></script>
+  <script src="modules/macros_ide/scripts/ui/console-mode-manager.js"></script>
+  <script src="modules/macros_ide/scripts/ui/floating-editor-buttons.js"></script>
+  <script src="modules/macros_ide/scripts/ui/utils/section-helpers.js"></script>
+  <script src="modules/macros_ide/scripts/ui/settings-manager.js"></script> <!-- TASK-033 -->
+  <script src="modules/macros_ide/scripts/ui/welcome-popup.js"></script>
+
+	<!-- Manager modules -->
+	<script src="modules/macros_ide/scripts/managers/macro-manager.js?v=1.0.1"></script>
+	<script src="modules/macros_ide/scripts/managers/macro-document-service.js"></script>
+	<script src="modules/macros_ide/scripts/managers/drag-drop-manager.js?v=1.0.1"></script>
+  <script src="modules/macros_ide/scripts/managers/status-line-manager.js"></script><!-- TASK-075 Feature 2 -->
+	<script src="modules/macros_ide/scripts/managers/window-controls-manager.js"></script><!-- TASK-078 -->
+  <script src="modules/macros_ide/scripts/managers/vscode-theme-manager.js"></script><!-- TASK 1.1 -->
+  <script src="modules/macros_ide/scripts/managers/sdk-integration-manager.js"></script><!-- TASK-083: SliderDataSDK bridge -->
+  <script src="modules/macros_ide/scripts/managers/macro-selection-bridge.js"></script><!-- TASK-135: Selection context bridge -->
+  <script src="modules/macros_ide/scripts/ui/activity-bar.js"></script><!-- TASK 1.2 -->
+  <script src="modules/macros_ide/scripts/ui/right-activity-bar.js?v=2.3.8-20241024i"></script><!-- Right Activity Bar (MUST load before main.js) -->
+  <script src="modules/macros_ide/scripts/ui/ai-job-monitor.js"></script><!-- TASK-139: AI Job Monitor right-pane tool -->
+  <!-- TASK-116: VSCode sidebar with feature flag fix -->
+  <script src="modules/macros_ide/scripts/managers/explorer-layout-controller.js"></script><!-- Explorer layout orchestration -->
+  <script src="modules/macros_ide/scripts/ui/vscode-sidebar.js?v=20251030"></script><!-- TASK-082 -->
+  <script src="modules/macros_ide/scripts/managers/tree-slot-container.js"></script><!-- TASK-115: Slot data container -->
+  <script src="modules/macros_ide/scripts/managers/explorer-scroll-manager.js"></script><!-- TASK-XXX: Explorer scroll central manager -->
+  <script src="modules/macros_ide/scripts/managers/tree-host-manager.js"></script><!-- TASK-082 dependency: Tree slot host -->
+  <script src="modules/macros_ide/scripts/ui/explorer/explorer-tree-state.js"></script><!-- Explorer tree refactor: state scaffolding -->
+  <script src="modules/macros_ide/scripts/ui/explorer/explorer-tree-renderer.js"></script><!-- Explorer tree refactor: renderer scaffolding -->
+  <script src="modules/macros_ide/scripts/ui/explorer/explorer-tree-host.js"></script><!-- Explorer tree refactor: host scaffolding -->
+  <script src="modules/macros_ide/scripts/ui/explorer/contributions/macros-contribution.js"></script><!-- Explorer tree refactor: macros contribution -->
+  <script src="modules/macros_ide/plugins/shared/sidebar-utils.js"></script>
+	  <!-- Examples / External Scripts module assets are lazy-loaded via ModuleRegistry on first activation -->
+	  <!-- Logs module scripts are lazy-loaded via ModuleRegistry on first activation -->
+	  <script src="modules/macros_ide/scripts/explorer/explorer-store.js"></script><!-- TASK-082: Explorer state store -->
+	  <script src="modules/macros_ide/scripts/explorer/explorer-shell.js"></script><!-- TASK-082: Explorer shell orchestration -->
+
+	<!-- TASK-051 Phase 1: AI Infrastructure (Storage + Providers) -->
+		<script src="modules/macros_ide/ai/fetch-polyfill.js"></script>
+		<script src="modules/macros_ide/ai/storage.js"></script>
+		<script src="modules/macros_ide/ai/utils/configuration.js"></script>
+		<script src="modules/macros_ide/ai/utils/model-catalog-fetcher.js"></script>
+		<script src="modules/macros_ide/ai/utils/github-api.js"></script>
+		<script src="modules/macros_ide/ai/utils/gemini-api.js"></script>
+		<script src="modules/macros_ide/ai/utils/tool-registry.js"></script>
+	<script src="modules/macros_ide/ai/utils/instruction-manager.js"></script><!-- TASK-055: Dynamic instruction templates -->
+	<!-- TASK-050: Error class hierarchy (loaded before ai-provider.js which depends on it) -->
+	<script src="modules/macros_ide/ai/errors.js"></script>
+	<!-- Responses API compatibility utilities (must load before ai-provider) -->
+	<script src="modules/macros_ide/ai/utils/responses-compat.js"></script>
+	<script src="modules/macros_ide/ai/ai-provider.js"></script>
+	<script src="modules/macros_ide/ai/providers/openai.js"></script>
+	<script src="modules/macros_ide/ai/providers/github.js"></script>
+	<script src="modules/macros_ide/ai/providers/gemini.js"></script>
+
+	<!-- TASK-058: Request/Response Logging Infrastructure -->
+	<script src="modules/macros_ide/ai/utils/security-filter.js"></script>
+	<script src="modules/macros_ide/ai/services/external-log-service.js"></script>
+	<script src="modules/macros_ide/ai/providers/logging-provider.js"></script>
+  <script src="modules/macros_ide/ai/agent-gateway.js"></script>
+  <script src="modules/macros_ide/ai/macro-workspace.js"></script>
+  <script src="modules/macros_ide/ai/agent-tools.js"></script>
+  <script src="modules/macros_ide/ai/agent-engine.js"></script>
+
+		<!-- TASK-051 Phase 2: VBA Conversion Service -->
+    <script src="modules/macros_ide/scripts/managers/vba-conversion-rules.js"></script>
+    <script src="modules/macros_ide/scripts/managers/vba-js-emitter.js"></script>
+		<script src="modules/macros_ide/scripts/managers/vba-converter.js"></script>
+		<script src="modules/macros_ide/scripts/ui/conversion-dialog.js"></script>
+
+	  <!-- Utility modules -->
+	  <script src="modules/macros_ide/scripts/utils/common-namespace-utils.js"></script>
+	  <script src="modules/macros_ide/scripts/services/global-search-service.js"></script>
+	  <script src="modules/macros_ide/scripts/services/monaco-global-search-service.js"></script>
+	  <script src="modules/macros_ide/scripts/services/monaco-replace-service.js"></script>
+	  <script src="modules/macros_ide/scripts/services/macro-search-service.js"></script>
+  <script src="modules/macros_ide/scripts/services/api-explorer-data-store.js"></script>
+  <script src="modules/macros_ide/scripts/services/wasm-data-service.js"></script>
+  <script src="modules/macros_ide/scripts/services/macro-data-service.js"></script>
+  <script src="modules/macros_ide/scripts/services/macro-run-progress-service.js"></script>
+  <script src="modules/macros_ide/scripts/services/current-document-service.js"></script>
+  <!-- TASK-030: External Scripts persistence (workspace-local) -->
+  <script src="modules/macros_ide/scripts/services/external-scripts-settings.js"></script>
+  <script src="modules/macros_ide/scripts/services/external-scripts-state-service.js"></script>
+  <script src="modules/macros_ide/scripts/services/batch-transfer-manager.js"></script>
+  <script src="modules/macros_ide/scripts/services/table-exporter.js"></script>
+  <script src="modules/macros_ide/scripts/services/batch-operation-handler.js"></script>
+  <script src="modules/macros_ide/scripts/services/document-export-service.js"></script>
+  <script src="modules/macros_ide/scripts/services/examples-health-check-service.js"></script>
+  <script src="modules/macros_ide/scripts/services/examples-run-report-service.js"></script>
+  <script src="modules/macros_ide/scripts/utils/app-config.js"></script>
+	<script src="modules/macros_ide/scripts/utils/telegram-license-gate.js"></script>
+	<script src="modules/macros_ide/scripts/utils/trial.js"></script>
+	<script src="modules/macros_ide/scripts/utils/debug.js"></script>
+
+		<!-- TASK-116: VSCode Sidebar Debug Utility (auto-diagnostic) -->
+		<script>
+				(function() {
+					let isDeveloperMode = false;
+					try { isDeveloperMode = localStorage.getItem('developerMode') === 'true'; } catch (_) {}
+					if (!isDeveloperMode) return;
+
+					// Cache-busting timestamp
+					const timestamp = new Date().getTime();
+					const script = document.createElement('script');
+					script.src = 'modules/macros_ide/scripts/debug/vscode-sidebar-debug.js?v=' + timestamp;
+					script.async = false; // Load synchronously to ensure it runs before main.js
+					document.head.appendChild(script);
+					try { window.debug?.info?.('Debug', 'VSCode Sidebar debug utility loaded', { timestamp }) } catch (_) {}
+				})();
+			</script>
+	<!-- Excel utilities removed -->
+
+	  <!-- Examples Run Report UI helper (opens report as Monaco tab) -->
+	  <script src="modules/macros_ide/scripts/ui/examples-run-report.js"></script>
+
+		<!-- TASK-097: Test suite scripts (developer mode only; lazy-loaded) -->
+		<script>
+			(function() {
+				let isDeveloperMode = false;
+				try { isDeveloperMode = localStorage.getItem('developerMode') === 'true'; } catch (_) {}
+				if (!isDeveloperMode) return;
+
+				const scripts = [
+					'modules/macros_ide/scripts/core/test-suite.js',
+					'modules/macros_ide/scripts/tests/example-test.js',
+					'modules/macros_ide/scripts/tests/unit/test-wasm-sdk.js',
+					'modules/macros_ide/scripts/tests/unit/test-examples-health-check.js',
+					'modules/macros_ide/scripts/tests/unit/test-macro-run-progress.js',
+					'modules/macros_ide/scripts/tests/unit/test-examples-run-report.js',
+					'modules/macros_ide/scripts/tests/integration/test-single-plugin.js',
+					'modules/macros_ide/scripts/tests/integration/test-two-plugin-interaction.js',
+					'modules/macros_ide/scripts/tests/integration/test-three-plugin-workflow.js',
+					'modules/macros_ide/scripts/tests/integration/test-full-system.js',
+					'modules/macros_ide/scripts/tests/integration/test-task-103-phase1.js',
+					'modules/macros_ide/scripts/tests/validation/test-window-exports.js',
+					'modules/macros_ide/scripts/tests/validation/test-behavior-equivalence.js',
+					'modules/macros_ide/scripts/tests/validation/test-state-equivalence.js',
+					'modules/macros_ide/scripts/tests/validation/test-error-handling.js',
+					'modules/macros_ide/scripts/tests/performance/test-startup-performance.js',
+					'modules/macros_ide/scripts/tests/performance/test-event-bus-performance.js',
+					'modules/macros_ide/scripts/tests/performance/test-plugin-activation.js',
+					'modules/macros_ide/scripts/tests/performance/test-memory-footprint.js',
+					// TASK-135: Agentic smoke tests helper
+					'modules/macros_ide/scripts/tests/agentic-smoke-tests.js'
+				];
+
+				function loadScript(src) {
+					return new Promise((resolve, reject) => {
+						const script = document.createElement('script');
+						script.src = src;
+						script.async = false;
+						script.onload = () => resolve();
+						script.onerror = (err) => reject(err);
+						document.head.appendChild(script);
+					});
+				}
+
+				(async () => {
+					for (const src of scripts) {
+						try { await loadScript(src); } catch (_) {}
+					}
+				})();
+			})();
+		</script>
+
+  <!-- TASK-103: CodeGraphAnalyzer + Monaco assists load lazily via ModuleRegistry ('code-graph' module). -->
+  <!-- TASK-116-PART-10: JavaScript scrollbar control -->
+  <!-- TASK-118: Disabled ScrollbarController - conflicts with PerfectScrollbar VS Code styling -->
+  <!-- <script src="modules/macros_ide/scripts/ui/scrollbar-controller.js"></script> -->
+
+  <!-- Main orchestration -->
+  <script src="modules/macros_ide/scripts/ai/agent-store.js"></script>
+  <script src="modules/macros_ide/scripts/ai/agent-tree-view.js"></script>
+  <script src="modules/macros_ide/scripts/ai/prompt-service.js"></script>
+  <script src="modules/macros_ide/scripts/ai/provider-factory.js"></script>
+  <script src="modules/macros_ide/scripts/ai/agent-jobs.js"></script>
+
+	  <!-- TASK-129: Debug plugins stack loads lazily via ModuleRegistry ('debug-insights' module). -->
+
+	  <script src="modules/macros_ide/scripts/main.js"></script>
+	  <!-- TASK-135: Agentic smoke tests helper loads in developer mode (see TASK-097 loader above) -->
+
+	<!-- Removed focus guard to let Monaco manage focus natively -->
+	
+
+	<!-- Button event handlers -->
+	<script>
+		(function () {
+			try {
+				if (window.__IndexHtmlHandlersHandle && typeof window.__IndexHtmlHandlersHandle.start === 'function') {
+					try { window.__IndexHtmlHandlersHandle.start(); } catch (_) {}
+					return;
+				}
+			} catch (_) {}
+
+			const state = {
+				disposers: []
+			};
+
+			function addListener(target, type, handler, options) {
+				if (!target || typeof target.addEventListener !== 'function') return;
+				try { target.addEventListener(type, handler, options); } catch (_) {}
+				state.disposers.push(function () {
+					try { target.removeEventListener(type, handler, options); } catch (_) {}
+				});
+			}
+
+			function addTimer(timerId) {
+				if (!timerId) return;
+				state.disposers.push(function () {
+					try { clearTimeout(timerId); } catch (_) {}
+				});
+			}
+
+			function dispose() {
+				const disposers = state.disposers.splice(0);
+				for (const fn of disposers) {
+					try { fn(); } catch (_) {}
+				}
+			}
+
+			function start() {
+				dispose();
+
+				// TASK-075 Feature 3: Tab key navigation and focus indicators
+				try {
+					const treePane = document.querySelector('.common_menu');
+					const editorPane = document.getElementById('editorWrapper');
+
+					if (treePane && editorPane) {
+						function updateFocusClasses() {
+							const active = document.activeElement;
+							const isTreeFocused = active === treePane || treePane.contains(active);
+							const isEditorFocused = active === editorPane ||
+								editorPane.contains(active) ||
+								(active && typeof active.closest === 'function' && active.closest('#editorWrapper'));
+
+							treePane.classList.toggle('pane-focused', isTreeFocused);
+							editorPane.classList.toggle('pane-focused', isEditorFocused);
+						}
+
+						const onTreeClick = function (e) {
+							if (e.target === treePane) {
+								try { treePane.focus(); } catch (e) {}
+							}
+							updateFocusClasses();
+						};
+
+						const onEditorClick = function () {
+							updateFocusClasses();
+						};
+
+						const onKeyDown = function (e) {
+							if (e.key === 'Tab' && !e.shiftKey && !e.ctrlKey && !e.altKey && !e.metaKey) {
+								const active = document.activeElement;
+								const isTreeFocused = active === treePane || treePane.contains(active);
+								const isEditorFocused = active === editorPane ||
+									editorPane.contains(active) ||
+									(active && typeof active.closest === 'function' && active.closest('#editorWrapper'));
+
+								if (isTreeFocused) {
+									e.preventDefault();
+									try { editorPane.focus(); } catch (_) {}
+									updateFocusClasses();
+								} else if (isEditorFocused) {
+									e.preventDefault();
+									try { treePane.focus(); } catch (_) {}
+									updateFocusClasses();
+								}
+							}
+						};
+
+						addListener(treePane, 'click', onTreeClick, false);
+						addListener(editorPane, 'click', onEditorClick, false);
+						addListener(document, 'focusin', updateFocusClasses);
+						addListener(document, 'focusout', updateFocusClasses);
+						addListener(document, 'keydown', onKeyDown);
+
+						const timerId = setTimeout(function () {
+							try { updateFocusClasses(); } catch (_) {}
+							let devMode = false;
+							try { devMode = localStorage.getItem('developerMode') === 'true'; } catch (_) {}
+							if (devMode) {
+								const isDarkTheme = document.body.classList.contains('theme-type-dark');
+								console.log('[Feature 3] Initial state:', {
+									darkTheme: isDarkTheme,
+									treePane: treePane ? 'Found' : 'Missing',
+									editorPane: editorPane ? 'Found' : 'Missing',
+									treeFocusable: treePane.hasAttribute('tabindex'),
+									editorFocusable: editorPane.hasAttribute('tabindex')
+								});
+							}
+						}, 100);
+						addTimer(timerId);
+					}
+				} catch (_) {}
+
+				// Create macro button (if exists)
+				try {
+					const createMacrosBtn = document.getElementById('create_macros');
+					if (createMacrosBtn) {
+						createMacrosBtn.onclick = async function () {
+							if (window.macroManager) {
+								try {
+									await window.macroManager.createMacro();
+									if (window.macroTreeManager && typeof window.macroTreeManager.updateMacrosMenu === 'function') {
+										await window.macroTreeManager.updateMacrosMenu();
+									}
+								} catch (error) {
+									if (window.MacroErrors) {
+										window.MacroErrors.ErrorHandler.handleError(error);
+									}
+								}
+							}
+						};
+					}
+				} catch (_) {}
+
+				// Run button (if exists)
+				try {
+					const runBtn = document.getElementById('button_run');
+					if (runBtn) {
+						runBtn.onclick = async function () {
+							if (window.macroManager && window.pluginState) {
+								try {
+									const snapshot = window.pluginState.getState();
+									if (snapshot.currentMode === 1 && snapshot.userMacros.current >= 0) {
+										await window.macroManager.executeMacro(snapshot.userMacros.current);
+									}
+								} catch (error) {
+									if (window.MacroErrors) {
+										window.MacroErrors.ErrorHandler.handleError(error);
+									}
+								}
+							}
+						};
+					}
+				} catch (_) {}
+
+				// Rename dialog buttons
+				try {
+					const ok = document.getElementById('rename_ok');
+					const cancel = document.getElementById('rename_cancel');
+					if (ok) {
+						ok.onclick = function () {
+							if (window.unShowRename) {
+								window.unShowRename(true);
+							}
+						};
+					}
+					if (cancel) {
+						cancel.onclick = function () {
+							if (window.unShowRename) {
+								window.unShowRename(false);
+							}
+						};
+					}
+				} catch (_) {}
+
+				// Context menu click handler
+				try {
+					window.onClickCC = function (event) {
+						event.preventDefault();
+						event.stopPropagation();
+					};
+				} catch (_) {}
+
+				// Resizable splitter functionality
+				try {
+					const splitter = document.getElementById('resizable-splitter');
+					const sideBar = document.getElementById('vscode-sidebar');
+					const rightPanel = document.getElementById('editorWrapper');
+
+					if (splitter && rightPanel) {
+						const ACTIVITY_BAR_PX = 48;
+						const MIN_SIDEBAR_PX = 200;
+						const MAX_SIDEBAR_PX = 600;
+
+						let isDragging = false;
+						let startX = 0;
+						let startLeftWidth = 0;
+
+						const MIN_WIDTH = 15;
+						const MAX_WIDTH = 85;
+
+						function getLeftWidthPercentage() {
+							const containerWidth = document.body.clientWidth;
+							const sidebarWidth = sideBar ? sideBar.offsetWidth : 0;
+							const leftPx = ACTIVITY_BAR_PX + sidebarWidth;
+							return (leftPx / containerWidth) * 100;
+						}
+
+						function setPanelWidths(leftWidthPercent) {
+							leftWidthPercent = Math.max(MIN_WIDTH, Math.min(MAX_WIDTH, leftWidthPercent));
+							const containerWidth = document.body.clientWidth;
+							let boundaryPx = (leftWidthPercent / 100) * containerWidth;
+							let sidebarPx = Math.max(MIN_SIDEBAR_PX, Math.min(MAX_SIDEBAR_PX, boundaryPx - ACTIVITY_BAR_PX));
+							boundaryPx = ACTIVITY_BAR_PX + sidebarPx;
+							const actualLeftPercent = (boundaryPx / containerWidth) * 100;
+
+							if (sideBar) {
+								sideBar.style.width = sidebarPx + 'px';
+							}
+							rightPanel.style.left = actualLeftPercent + '%';
+							splitter.style.right = '';
+							splitter.style.left = boundaryPx + 'px';
+
+							if (window.editor && window.editor.resize) {
+								setTimeout(() => { window.editor.resize(); }, 150);
+							}
+
+							try { localStorage.setItem('macros-panel-split', actualLeftPercent); } catch (_) {}
+						}
+
+						const onSplitterMouseDown = function (e) {
+							isDragging = true;
+							startX = e.clientX;
+							startLeftWidth = getLeftWidthPercentage();
+
+							splitter.classList.add('dragging');
+							document.body.style.cursor = 'col-resize';
+							document.body.style.userSelect = 'none';
+
+							if (sideBar) sideBar.style.transition = 'none';
+							rightPanel.style.transition = 'none';
+							splitter.style.transition = 'none';
+
+							e.preventDefault();
+						};
+
+						const onDocumentMouseMove = function (e) {
+							if (!isDragging) return;
+
+							const deltaX = e.clientX - startX;
+							const containerWidth = document.body.clientWidth;
+							const deltaPercent = (deltaX / containerWidth) * 100;
+
+							const newLeftWidth = startLeftWidth + deltaPercent;
+							setPanelWidths(newLeftWidth);
+
+							e.preventDefault();
+						};
+
+						const onDocumentMouseUp = function () {
+							if (!isDragging) return;
+
+							isDragging = false;
+							splitter.classList.remove('dragging');
+							document.body.style.cursor = '';
+							document.body.style.userSelect = '';
+
+							if (sideBar) sideBar.style.transition = 'width 0.1s ease';
+							rightPanel.style.transition = 'left 0.1s ease';
+							splitter.style.transition = 'left 0.1s ease';
+						};
+
+						const onSplitterDoubleClick = function () {
+							setPanelWidths(30);
+						};
+
+						const onWindowResize = function () {
+							const currentPercent = getLeftWidthPercentage();
+							setTimeout(() => {
+								setPanelWidths(currentPercent);
+							}, 10);
+						};
+
+						addListener(splitter, 'mousedown', onSplitterMouseDown);
+						addListener(splitter, 'dblclick', onSplitterDoubleClick);
+						addListener(document, 'mousemove', onDocumentMouseMove);
+						addListener(document, 'mouseup', onDocumentMouseUp);
+						addListener(window, 'resize', onWindowResize);
+
+						state.disposers.push(function () {
+							try {
+								isDragging = false;
+								splitter.classList.remove('dragging');
+								document.body.style.cursor = '';
+								document.body.style.userSelect = '';
+							} catch (_) {}
+						});
+
+						// Load saved preference
+						try {
+							const savedWidth = localStorage.getItem('macros-panel-split');
+							if (savedWidth) {
+								setPanelWidths(parseFloat(savedWidth));
+							}
+						} catch (_) {}
+					}
+				} catch (_) {}
+			}
+
+			try {
+				window.__IndexHtmlHandlersHandle = { start, dispose };
+			} catch (_) {}
+
+			start();
+		})();
+	</script>
+
+	<div id="context-menu-id" class="context-menu noselect" data-testid="context-menu-root">
+		<ul class="context-menu-options">
+			<li id="menu_create_macro_id" class="context-menu-option" data-testid="context-menu-create-macro" onclick="window.CustomContextMenu.onCreateMacroClick();">Create new macro</li>
+			<li id="menu_refresh_id" class="context-menu-option" data-testid="context-menu-refresh" onclick="window.CustomContextMenu.onRefreshClick();">Refresh</li>
+			<li id="menu_run_id" class="context-menu-option" data-testid="context-menu-run" onclick="window.CustomContextMenu.onRunClick();">Run</li>
+			<li id="menu_autostart_id" class="context-menu-option" data-testid="context-menu-autostart" onclick="window.CustomContextMenu.onAutostartClick();">Make autostart</li>
+			<li id="menu_rename_id" class="context-menu-option" data-testid="context-menu-rename" onclick="window.CustomContextMenu.onRenameClick();">Rename</li>
+			<li id="menu_delete_id" class="context-menu-option" data-testid="context-menu-delete" onclick="window.CustomContextMenu.onDeleteClick();">Delete</li>
+			<li id="menu_copy_id" class="context-menu-option" data-testid="context-menu-copy" onclick="window.CustomContextMenu.onCopyClick();">Copy</li>
+		</ul>
+	</div>
+
+	<!-- Console Panel (TASK-014): Now created dynamically by ConsoleManager -->
+
+
+		<!-- TASK-029: Run button moved to plugin footer (config.json buttons array) -->
+
+		<div id="slider-flyout" class="slider-fly-button" role="button" aria-label="Open Slider AI data portal" tabindex="0">
+			<img id="slider-flyout-logo" alt="Slider AI" />
+		</div>
+
+		<!-- Slider AI flyout logo embedding (see ADR-067-slider-data-branding-entrypoints) -->
+		<script src="modules/macros_ide/scripts/ui/r7-check-api.js"></script>
+
+		<script>
+		/**
+		 * Slider AI flyout logo embedding
+		 * ADR References:
+		 * - ADR-067-slider-data-branding-entrypoints
+		 *
+		 * The button icon is embedded as a base64 array so it cannot
+		 * be removed by deleting slider_logo.png from the filesystem.
+		 */
+		;(function () {
+			var parts = [
+				'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'
+			]
+
+			try {
+				var img = document.getElementById('slider-flyout-logo')
+				if (img) {
+					img.src = 'data:image/png;base64,' + parts.join('')
+				}
+			} catch (e) {
+				// If embedding fails, leave img without src; UI remains usable
+			}
+		})()
+	</script>
+
+</body>
+</html>

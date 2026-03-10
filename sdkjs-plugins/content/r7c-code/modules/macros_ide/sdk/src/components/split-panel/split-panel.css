@@ -1,0 +1,522 @@
+@import '../shared/panel-base.css';
+@import '../shared/spinner.css';
+
+/**
+ * SplitPanel Component Styles
+ * OnlyOffice UI SDK Component
+ */
+
+/* Horizontal Layout */
+.split-panel-container[data-orientation="horizontal"] {
+    flex-direction: row;
+}
+
+/* Vertical Layout */
+.split-panel-container[data-orientation="vertical"] {
+    flex-direction: column;
+}
+
+/* Split Panel States */
+.split-panel-container.split-panel-resizing {
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+.split-panel-container.split-panel-resizing * {
+    pointer-events: none;
+}
+
+.split-panel-container.split-panel-resizing .split-panel-handle {
+    pointer-events: auto;
+}
+
+.split-panel-container.disabled {
+    pointer-events: none;
+    opacity: 0.6;
+}
+
+/* Split Panel Panels */
+.split-panel-primary,
+.split-panel-secondary {
+    position: relative;
+    overflow: hidden;
+    background: var(--sdk-color-background, #ffffff);
+    border: none;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+}
+
+.split-panel-primary.scrollable,
+.split-panel-secondary.scrollable {
+    overflow: auto;
+}
+
+.split-panel-primary.collapsed,
+.split-panel-secondary.collapsed {
+    min-width: 0 !important;
+    min-height: 0 !important;
+}
+
+/* Split Panel Content */
+.split-panel-content {
+    flex: 1;
+    width: 100%;
+    height: 100%;
+    padding: var(--sdk-spacing-sm, 8px);
+    box-sizing: border-box;
+    overflow: auto;
+}
+
+.split-panel-content:empty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--sdk-color-textSecondary, #666666);
+}
+
+.split-panel-content:empty::before {
+    content: 'No content';
+    font-style: italic;
+    opacity: 0.7;
+}
+
+/* Split Panel Handle */
+.split-panel-handle {
+    position: relative;
+    background: var(--sdk-color-border, #e0e0e0);
+    border: none;
+    cursor: col-resize;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s ease, opacity 0.2s ease;
+    box-sizing: border-box;
+}
+
+.split-panel-container[data-orientation="vertical"] .split-panel-handle {
+    cursor: row-resize;
+}
+
+.split-panel-handle:hover {
+    background: var(--sdk-color-primary, #4CAF50);
+}
+
+.split-panel-handle:active {
+    background: var(--sdk-color-success, #45a049);
+}
+
+.split-panel-handle:focus {
+    outline: 2px solid var(--sdk-color-primary, #4CAF50);
+    outline-offset: -2px;
+}
+
+.split-panel-handle.disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+.split-panel-handle.disabled:hover {
+    background: var(--sdk-color-border, #e0e0e0);
+}
+
+/* Split Panel Handle Inner */
+.split-panel-handle-inner {
+    position: absolute;
+    background: var(--sdk-color-textSecondary, #666666);
+    border-radius: 2px;
+    opacity: 0.5;
+    transition: opacity 0.2s ease;
+    pointer-events: none;
+}
+
+.split-panel-container[data-orientation="horizontal"] .split-panel-handle-inner {
+    width: 2px;
+    height: 20px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.split-panel-container[data-orientation="vertical"] .split-panel-handle-inner {
+    width: 20px;
+    height: 2px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.split-panel-handle:hover .split-panel-handle-inner {
+    opacity: 1;
+    background: white;
+}
+
+.split-panel-handle:active .split-panel-handle-inner {
+    opacity: 1;
+    background: white;
+}
+
+/* Split Panel Handle Variants */
+.split-panel-handle.minimal {
+    background: transparent;
+    border: none;
+}
+
+.split-panel-handle.minimal:hover {
+    background: var(--sdk-color-surface, #f5f5f5);
+}
+
+.split-panel-handle.minimal .split-panel-handle-inner {
+    opacity: 0.3;
+}
+
+.split-panel-handle.minimal:hover .split-panel-handle-inner {
+    opacity: 0.8;
+}
+
+.split-panel-handle.thick {
+    background: var(--sdk-color-surface, #f5f5f5);
+    border: 1px solid var(--sdk-color-border, #e0e0e0);
+}
+
+.split-panel-handle.thick:hover {
+    background: var(--sdk-color-border, #e0e0e0);
+}
+
+.split-panel-handle.thick .split-panel-handle-inner {
+    opacity: 0.7;
+}
+
+.split-panel-handle.thick:hover .split-panel-handle-inner {
+    opacity: 1;
+}
+
+/* Split Panel Handle Sizes */
+.split-panel-container[data-orientation="horizontal"] .split-panel-handle {
+    width: 8px;
+    height: 100%;
+    min-width: 8px;
+}
+
+.split-panel-container[data-orientation="vertical"] .split-panel-handle {
+    width: 100%;
+    height: 8px;
+    min-height: 8px;
+}
+
+.split-panel-handle.size-small {
+    width: 4px;
+    min-width: 4px;
+}
+
+.split-panel-container[data-orientation="vertical"] .split-panel-handle.size-small {
+    width: 100%;
+    height: 4px;
+    min-height: 4px;
+}
+
+.split-panel-handle.size-large {
+    width: 12px;
+    min-width: 12px;
+}
+
+.split-panel-container[data-orientation="vertical"] .split-panel-handle.size-large {
+    width: 100%;
+    height: 12px;
+    min-height: 12px;
+}
+
+/* Split Panel Animations */
+.split-panel-primary.animated,
+.split-panel-secondary.animated {
+    transition: width 0.2s ease-out, height 0.2s ease-out;
+}
+
+.split-panel-primary.animated.fast,
+.split-panel-secondary.animated.fast {
+    transition: width 0.1s ease-out, height 0.1s ease-out;
+}
+
+.split-panel-primary.animated.slow,
+.split-panel-secondary.animated.slow {
+    transition: width 0.4s ease-out, height 0.4s ease-out;
+}
+
+/* Split Panel Collapse States */
+.split-panel-container.primary-collapsed .split-panel-primary {
+    min-width: 0;
+    min-height: 0;
+    overflow: hidden;
+}
+
+.split-panel-container.secondary-collapsed .split-panel-secondary {
+    min-width: 0;
+    min-height: 0;
+    overflow: hidden;
+}
+
+.split-panel-container.primary-collapsed .split-panel-primary .split-panel-content {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.split-panel-container.secondary-collapsed .split-panel-secondary .split-panel-content {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Split Panel Scrollbars */
+.split-panel-content::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+.split-panel-content::-webkit-scrollbar-track {
+    background: var(--sdk-color-surface, #f5f5f5);
+}
+
+.split-panel-content::-webkit-scrollbar-thumb {
+    background: var(--sdk-color-border, #e0e0e0);
+    border-radius: 4px;
+}
+
+.split-panel-content::-webkit-scrollbar-thumb:hover {
+    background: var(--sdk-color-textSecondary, #666666);
+}
+
+.split-panel-content::-webkit-scrollbar-corner {
+    background: var(--sdk-color-surface, #f5f5f5);
+}
+
+/* Split Panel Borders */
+.split-panel-container.show-borders .split-panel-primary {
+    border-right: 1px solid var(--sdk-color-border, #e0e0e0);
+}
+
+.split-panel-container[data-orientation="vertical"].show-borders .split-panel-primary {
+    border-right: none;
+    border-bottom: 1px solid var(--sdk-color-border, #e0e0e0);
+}
+
+.split-panel-container.show-borders .split-panel-secondary {
+    border-left: 1px solid var(--sdk-color-border, #e0e0e0);
+}
+
+.split-panel-container[data-orientation="vertical"].show-borders .split-panel-secondary {
+    border-left: none;
+    border-top: 1px solid var(--sdk-color-border, #e0e0e0);
+}
+
+/* Split Panel Min/Max Indicators */
+.split-panel-handle::before {
+    content: '';
+    position: absolute;
+    background: var(--sdk-color-warning, #FF9800);
+    border-radius: 1px;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    pointer-events: none;
+}
+
+.split-panel-container[data-orientation="horizontal"] .split-panel-handle::before {
+    width: 1px;
+    height: 100%;
+    left: 0;
+    top: 0;
+}
+
+.split-panel-container[data-orientation="vertical"] .split-panel-handle::before {
+    width: 100%;
+    height: 1px;
+    left: 0;
+    top: 0;
+}
+
+.split-panel-handle.at-min::before,
+.split-panel-handle.at-max::before {
+    opacity: 0.8;
+}
+
+/* Split Panel Loading State */
+.split-panel-container.loading {
+    pointer-events: none;
+    --sdk-spinner-size: 32px;
+    --sdk-spinner-border-width: 3px;
+    --sdk-spinner-z-index: 100;
+}
+
+.split-panel-container.loading .split-panel-content {
+    opacity: 0.6;
+}
+
+/* Split Panel Error State */
+.split-panel-container.error {
+    border-color: var(--sdk-color-error, #F44336);
+}
+
+.split-panel-container.error .split-panel-handle {
+    background: var(--sdk-color-error, #F44336);
+}
+
+.split-panel-container.error .split-panel-content {
+    background: rgba(244, 67, 54, 0.1);
+}
+
+/* Dark Theme Support */
+.sdk-theme-dark .split-panel-container {
+    background: var(--sdk-color-background, #1E1E1E);
+    border-color: var(--sdk-color-border, #404040);
+    color: var(--sdk-color-text, #FFFFFF);
+}
+
+.sdk-theme-dark .split-panel-primary,
+.sdk-theme-dark .split-panel-secondary {
+    background: var(--sdk-color-background, #1E1E1E);
+}
+
+.sdk-theme-dark .split-panel-handle {
+    background: var(--sdk-color-border, #404040);
+}
+
+.sdk-theme-dark .split-panel-handle:hover {
+    background: var(--sdk-color-primary, #66BB6A);
+}
+
+.sdk-theme-dark .split-panel-handle:active {
+    background: var(--sdk-color-success, #5da85d);
+}
+
+.sdk-theme-dark .split-panel-handle-inner {
+    background: var(--sdk-color-textSecondary, #CCCCCC);
+}
+
+.sdk-theme-dark .split-panel-handle.minimal:hover {
+    background: var(--sdk-color-surface, #2D2D2D);
+}
+
+.sdk-theme-dark .split-panel-handle.thick {
+    background: var(--sdk-color-surface, #2D2D2D);
+    border-color: var(--sdk-color-border, #404040);
+}
+
+.sdk-theme-dark .split-panel-handle.thick:hover {
+    background: var(--sdk-color-border, #404040);
+}
+
+.sdk-theme-dark .split-panel-content::-webkit-scrollbar-track {
+    background: var(--sdk-color-surface, #2D2D2D);
+}
+
+.sdk-theme-dark .split-panel-content::-webkit-scrollbar-thumb {
+    background: var(--sdk-color-border, #404040);
+}
+
+.sdk-theme-dark .split-panel-content::-webkit-scrollbar-thumb:hover {
+    background: var(--sdk-color-textSecondary, #CCCCCC);
+}
+
+.sdk-theme-dark .split-panel-content::-webkit-scrollbar-corner {
+    background: var(--sdk-color-surface, #2D2D2D);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .split-panel-container {
+        border-radius: 0;
+    }
+    
+    .split-panel-handle {
+        width: 12px;
+        min-width: 12px;
+    }
+    
+    .split-panel-container[data-orientation="vertical"] .split-panel-handle {
+        width: 100%;
+        height: 12px;
+        min-height: 12px;
+    }
+    
+    .split-panel-content {
+        padding: var(--sdk-spacing-xs, 4px);
+    }
+}
+
+@media (max-width: 480px) {
+    .split-panel-container[data-orientation="horizontal"] {
+        flex-direction: column;
+    }
+    
+    .split-panel-container[data-orientation="horizontal"] .split-panel-handle {
+        width: 100%;
+        height: 12px;
+        min-height: 12px;
+        cursor: row-resize;
+    }
+    
+    .split-panel-container[data-orientation="horizontal"] .split-panel-handle-inner {
+        width: 20px;
+        height: 2px;
+    }
+}
+
+/* High Contrast Theme Support */
+@media (prefers-contrast: high) {
+    .split-panel-container {
+        border: 2px solid var(--sdk-color-text, #333333);
+    }
+    
+    .split-panel-handle {
+        border: 1px solid var(--sdk-color-text, #333333);
+    }
+    
+    .split-panel-handle:focus {
+        outline: 3px solid var(--sdk-color-primary, #4CAF50);
+        outline-offset: 2px;
+    }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+    .split-panel-container *,
+    .split-panel-handle,
+    .split-panel-primary,
+    .split-panel-secondary {
+        transition: none !important;
+        animation: none !important;
+    }
+    
+    .split-panel-container.loading::after {
+        animation: none;
+        border: 3px solid var(--sdk-color-primary, #4CAF50);
+        border-top: none;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .split-panel-container {
+        display: block;
+        border: 1px solid #000;
+        height: auto;
+    }
+    
+    .split-panel-handle {
+        display: none !important;
+    }
+    
+    .split-panel-primary,
+    .split-panel-secondary {
+        width: 100% !important;
+        height: auto !important;
+        page-break-inside: avoid;
+        border: 1px solid #000;
+        margin-bottom: 10px;
+    }
+    
+    .split-panel-content {
+        overflow: visible;
+    }
+}

@@ -1,0 +1,14 @@
+{
+	"New" : "නව",
+	"Delete" : "මකන්න",
+	"Rename" : "නම් කරන්න",
+	"Autostart" : "ස්වයං ආරම්භය",
+	"Run" : "ධාවනය",
+	"Cancel" : "අවලංගු",
+	"Macros" : "සාර්ව",
+	"Title" : "සිරැසිය",
+  "macro.error.executionFailed": "මැක්රෝ ක්‍රියාත්මක කිරීමට අසමත් විය",
+  "macro.error.securityBlocked": "මැක්රෝව ආරක්ෂක නීති අනුව අවහිර කරන ලදී",
+  "macro.error.validationFailed": "මැක්රෝ වලංගු කිරීම අසමත් විය",
+  "macro.error.details": "විස්තර"
+}

@@ -1,0 +1,46 @@
+/**
+ * Sidebar View State Switches
+ * ---------------------------
+ * Applied via data-active-view attribute on #menu_content.
+ * Controls visibility and layout hand-off between tree sections.
+ */
+
+#menu_content[data-active-view="macros"] #macros-tree-node,
+#menu_content[data-active-view="examples"] #examples-tree-node,
+#menu_content[data-active-view="external-scripts"] #external-scripts-tree-node,
+#menu_content[data-active-view="logs"] #logs-tree-node {
+  display: flex;
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+#menu_content[data-active-view="macros"] #macros-tree-node .tree-node-header,
+#menu_content[data-active-view="examples"] #examples-tree-node .tree-node-header,
+#menu_content[data-active-view="external-scripts"] #external-scripts-tree-node .tree-node-header,
+#menu_content[data-active-view="logs"] #logs-tree-node .tree-node-header {
+  display: flex;
+}
+
+/* Hide inactive sections */
+#menu_content[data-active-view="macros"] #examples-tree-node,
+#menu_content[data-active-view="macros"] #external-scripts-tree-node,
+#menu_content[data-active-view="macros"] #logs-tree-node,
+
+#menu_content[data-active-view="examples"] #macros-tree-node,
+#menu_content[data-active-view="examples"] #external-scripts-tree-node,
+#menu_content[data-active-view="examples"] #logs-tree-node,
+
+#menu_content[data-active-view="external-scripts"] #macros-tree-node,
+#menu_content[data-active-view="external-scripts"] #examples-tree-node,
+#menu_content[data-active-view="external-scripts"] #logs-tree-node,
+
+#menu_content[data-active-view="logs"] #macros-tree-node,
+#menu_content[data-active-view="logs"] #examples-tree-node,
+#menu_content[data-active-view="logs"] #external-scripts-tree-node {
+  display: none;
+}
+
+#menu_content[data-active-view="logs"] #logs-tree-node .tree-node-header {
+  display: none;
+}
+

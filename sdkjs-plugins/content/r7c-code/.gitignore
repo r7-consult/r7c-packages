@@ -1,0 +1,21 @@
+
+*.zip
+*.tar
+*.gz
+node_modules/
+/tmp
+vectors.db
+vectors.db-shm
+vectors.db-wal
+/__tests__
+/.memory_bank/tmp
+/.memory_bank/logs
+/logs_llm
+/.codemachine
+
+# local caches
+/data/
+/data/**/*.db
+/data/**/*.db-*
+
+/dist/modules.min.plugin

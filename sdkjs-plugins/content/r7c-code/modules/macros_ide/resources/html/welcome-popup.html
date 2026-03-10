@@ -1,0 +1,52 @@
+<div id="welcome-popup-overlay" class="settings-modal-overlay" data-testid="welcome-popup-overlay" style="display:none;">
+  <div class="settings-modal" data-testid="welcome-popup-modal" style="max-width:640px;">
+    <div class="settings-modal-header">
+      <h3 class="settings-modal-title">{r7c}.code  Редактирование макросов Р7</h3>
+    </div>
+    <div class="settings-modal-body" style="padding:18px;">
+      <div class="welcome-popup" data-testid="welcome-popup-content">
+        <div class="welcome-main">
+          <div class="welcome-title"><a href="https://r7-consult.ru/r7_code" target="_blank" rel="noopener noreferrer">Бесплатная версия для некоммерческого использования</a></div>
+          <div class="welcome-body">
+            <p>Инструмент для создания и редактирования JavaScript‑макросов в редакторах R7. Сфокусирован на удобной разработке, отладке и интеграции с данными.</p>
+            <ul class="welcome-list">
+              <li><strong>Интерфейс в стиле VS Code</strong>: вкладки, хлебные крошки, сплит‑экран и быстрые переключения между файлами.</li>
+              <li><strong>AI Sputnik</strong>: подключение провайдеров, быстрые подсказки и чат для ускорения разработки (правая панель).</li>
+              <li><strong>Доступ к внешним файлам </strong>: встроенный SQLite/WASM‑движок для чтения CSV, Excel и других табличных форматов с пагинацией результатов.</li>
+              <li><strong>Внешние скрипты</strong>: подключайте JS/VBA‑файлы как библиотеку решений; дерево группируется по файлам.</li>
+              <li><strong>Импорт Excel VBA</strong>: импорт проектов и настраиваемая трансляция кода в JavaScript.</li>
+              <li><strong>Синтаксический анализ кода</strong>: подсветка ошибок и предупреждений напрямую в редакторе.</li>              
+              </br>              
+              <li><strong>Журнал логов</strong>: фильтрация, копирование и экспорт сообщений для удобной отладки.</li>
+              <li><strong>Debug Insights</strong>: отчёты «Покрытие кода», «Использование API», «Линтер», «Производительность» и «Граф зависимостей». Откройте правую панель и нажмите кнопку с иконкой графа. Отчёты обновляются при каждом открытии.</li>             
+              <li><strong>700+ примеров API R7</strong>: готовые фрагменты на вкладке «Примеры» для быстрого старта.</li>
+              </br>
+              <li><strong>Сравнение скриптов</strong>: два редактора бок о бок для визуального сравнения и правок.</li>
+              <li><strong>Быстрый обзор документа</strong>: сворачивание панелей для просмотра данных без закрытия редактора.</li>
+            </ul>
+            <div class="welcome-callout">
+              <div class="welcome-subtitle">Поддержка и коммерческая версия</div>
+              <p class="welcome-muted">Пишите: <a href="https://t.me/datacons" target="_blank" rel="noopener noreferrer">tg:@datacons</a>. Вопросы по функционалу: <a href="https://github.com/r7-consult/r7_code/issues" target="_blank" rel="noopener noreferrer">GitHub Issues</a>.</p>
+              <p class="welcome-muted">Все права принадлежат ООО Датаконс.</p>
+            </div>
+            <div class="welcome-callout" id="trial-info" data-testid="welcome-popup-trial-info">
+              <span class="welcome-subtitle">Доступ</span>
+              <div><strong id="trial-days" data-testid="welcome-popup-trial-days">Полный функционал доступен</strong> <span id="trial-deadline" data-testid="welcome-popup-trial-deadline" class="welcome-muted">без ограничений</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="welcome-aside">
+          <a href="https://data.slider-ai.ru" target="_blank" rel="noopener noreferrer">
+            <img src="modules/macros_ide/resources/img/slider_logo.png" alt="Brand" class="welcome-brand"/>
+          </a>
+          <div class="welcome-body" style="margin-top:10px; font-size:12px;">
+            Создан при содействии <a href="https://data.slider-ai.ru" target="_blank" rel="noopener noreferrer">data.slider</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="settings-modal-footer" style="justify-content:flex-end;">
+      <button class="settings-btn settings-btn-primary" id="welcome-ok" data-testid="welcome-popup-ok-btn">ОК</button>
+    </div>
+  </div>
+</div>

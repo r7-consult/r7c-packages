@@ -1,0 +1,37 @@
+/**
+ * Logs View
+ * ---------
+ * Styles applied when the Activity Bar activates the Logs panel.
+ * Assumes #menu_content has data-active-view="logs".
+ */
+
+#menu_content[data-active-view="logs"] {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+#menu_content[data-active-view="logs"] #logs-tree-node {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+#menu_content[data-active-view="logs"] #logs-tree-node .tree-node-children {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  overflow: hidden;
+}
+
+#menu_content[data-active-view="logs"] #logs-tree-node .sidebar-logs-output {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  border-left: none;
+}
+

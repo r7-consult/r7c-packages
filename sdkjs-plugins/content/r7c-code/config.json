@@ -1,0 +1,63 @@
+{
+	"name": "{r7c}.code", 
+	"guid": "asc.{12537f7a-8ab7-49a6-85a9-r70code070000}",
+	"version": "2.3.8",
+	"group": {
+		"name": "{r7c}.code",
+		"rank": 1
+	},
+
+	"variations": [
+		{
+			"description": "Automate your routine tasks and standardize documents using macros (JavaScript language syntax is used).",
+			"descriptionLocale": {
+				"ru": "Автоматизируйте рутинные задачи и стандартизируйте документы с помощью макросов (работает на синтаксисе JavaScript).",
+				"fr": "Automatisez vos tâches de routine et standardisez vos documents à l’aide des macros (la syntaxe du langage JavaScript est utilisée).",
+				"es": "Automatice sus tareas rutinarias y estandarice los documentos mediante macros (se utiliza la sintaxis del lenguaje JavaScript).",
+				"pt-BR": "Automatize suas tarefas rotineiras e padronize documentos usando macros (é usada a sintaxe da linguagem JavaScript).",
+				"de": "Automatisieren Sie Routineaufgaben und standardisieren Sie Dokumente mit Makros (die JavaScript-Syntax wird verwendet).",
+				"si": "සාර්ව භාවිතයෙන් ඔබගේ දෛනික කාර්යන් ස්වයංක්‍රිය කරන්න සහ ලේඛන ප්‍රමිතියකට තබා ගන්න (ජාවාස්ක්‍රිප්ට් භාෂා පද ගැළපුම් භාවිතා වේ).",
+				"it": "Automatizza i tuoi compiti di routine e rendi i tuoi documenti standard utilizzando le macro (viene utilizzata la sintassi del linguaggio JavaScript).",
+				"sq-AL": "Automatizoni detyrat tuaja të përditshme dhe standardizoni dokumentet duke përdorur makro (është përdorur sintaksa gjuhës JavaScript).",
+				"sr-Cyrl-RS": "Аутоматизујте своје рутинске задатке и стандардизујте документе користећи макрое (користи се синтакса језика JavaScript).",
+				"sr-Latn-RS": "Automatizujte svoje rutinske zadatke i standardizujte dokumente koristeći makroe (koristi se sintaksa jezika JavaScript).",
+				"zh-ZH": "使用宏（基于JavaScript语法）实现日常任务自动化并使文档标准化。"
+			},
+			"url": "index.html",
+			"help" : "https://data.slider-ai.ru",
+
+
+			"icons": [
+				"modules/macros_ide/resources/light/icon.png",
+				"modules/macros_ide/resources/dark/icon.png"
+			],
+			"isViewer": false,
+			"EditorsSupport": [ "word", "cell", "slide" ],
+			"isVisual": true,
+			"isModal": false,
+			"isInsideMode": false,
+			"isUpdateOleOnResize": true,
+			"size": [1200, 600],
+    "buttons": [],
+    "logging": {
+      "level": "INFO"
+    },
+			"store": {
+				"background": {
+					"light" : "linear-gradient(136.1deg, #FF8E3D -1.99%, #FF6F3D 100%)",
+					"dark" : "linear-gradient(136.1deg, #FF8E3D -1.99%, #FF6F3D 100%)"
+				},
+				"screenshots" : [
+					"modules/macros_ide/resources/store/screenshots/screen_1.png",
+					"modules/macros_ide/resources/store/screenshots/screen_2.png",
+					"modules/macros_ide/resources/store/screenshots/screen_3.png"
+				],
+				"icons" : {
+					"light" : "modules/macros_ide/resources/store/icons/icon.png",
+					"dark"  : "modules/macros_ide/resources/store/icons/icon.png"
+				},
+				"categories": ["specAbilities", "work", "recommended", "devTools"]
+			}
+		}
+	]
+}

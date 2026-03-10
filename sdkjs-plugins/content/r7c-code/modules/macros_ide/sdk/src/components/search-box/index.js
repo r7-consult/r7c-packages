@@ -1,0 +1,1 @@
+import _0x520a0d from'./search-box.js';import'./search-box.css';export default _0x520a0d;export{_0x520a0d as SearchBox};

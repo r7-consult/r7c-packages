@@ -1,0 +1,3760 @@
+/**
+ * TASK-105-IMP: Consolidated Application Styles
+ * Architecture: 2-Level Compliance (Level 2 - Application Styles)
+ *
+ * Consolidates:
+ * - style.css (buttons, forms, labels, tree sections, progress, API decorations)
+ * - controls.css (console, settings, toolbar, dialogs)
+ * - tree-view.css (tree component)
+ * - splitter.css (splitter component)
+ * - sidebar/state/view-state.css (view switching logic - Level 3 → Level 2)
+ * - sidebar/views/*.css (view-specific layouts - Level 3 → Level 2)
+ *
+ * All hardcoded values replaced with design tokens from tokens/design-tokens.css
+ * Theme-specific overrides in themes/*.css
+ */
+
+
+/* =========================================================================
+   BUTTONS, FORMS, LABELS (from style.css)
+   ========================================================================= */
+.btn-text-default {
+    background: var(--color-button-default-bg);
+    border: 1px solid var(--color-button-default-border);
+    border-radius: var(--radius-xs);
+    color: var(--color-button-default-text);
+    font-size: var(--fs-sm);
+    font-family: var(--app-font-family);
+    height: var(--height-base);
+    cursor: pointer;
+}
+
+.btn-text-default::-moz-focus-inner {
+    border: 0;
+    padding: 0;
+}
+
+.btn-text-default.primary {
+	color: var(--color-text-inverse);
+	background-color: var(--color-state-selected-bg);
+}
+
+.btn-text-default:focus {
+    outline: 0;
+    outline-offset: 0;
+}
+
+.btn-text-default:hover {
+    background-color: var(--color-button-default-hover-bg);
+}
+
+.btn-text-default.primary:hover {
+	background-color: var(--color-state-active-dark) !important;
+}
+
+.btn-text-default:active,
+.btn-text-default.active {
+    background-color: var(--color-state-selected-bg) !important;
+    color: var(--color-text-inverse);
+    -webkit-box-shadow: none; 
+    box-shadow: none; 
+}
+
+.btn-text-default[disabled]:hover,
+.btn-text-default.disabled:hover,
+.btn-text-default[disabled]:active,
+.btn-text-default[disabled].active,
+.btn-text-default.disabled:active,
+.btn-text-default.disabled.active {
+    background-color: var(--color-button-default-bg) !important;
+    color: var(--color-button-default-text);
+    cursor: default;
+}
+
+.btn-text-default[disabled],
+.btn-text-default.disabled {
+    opacity: 0.65;
+}
+
+.form-control {
+    border: 1px solid var(--color-border-default);
+    border-radius: var(--radius-xs);
+    box-sizing: border-box;
+    color: var(--color-text-secondary);
+    font-size: var(--fs-sm);
+    height: var(--height-base);
+    padding: 1px 3px;
+    -webkit-box-shadow: none; 
+    box-shadow: none; 
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+}
+
+.form-control:focus {
+    border-color: var(--color-border-default);
+    outline: 0;
+    -webkit-box-shadow: none; 
+    box-shadow: none; 
+}
+
+.form-control[readonly] {
+    background-color: var(--color-bg-primary);
+    cursor: pointer;
+}
+
+.form-control[disabled] {
+    background-color: var(--color-bg-primary);
+    cursor: default;
+     -webkit-user-select: none; 
+    -moz-user-select: none; 
+    -ms-user-select: none; 
+    user-select: none; 
+}
+
+.defaultlable {
+	color: var(--color-text-secondary);
+	cursor: default;
+	font-family: var(--app-font-family);
+	font-size: var(--fs-sm);
+	font-weight: normal;
+	-webkit-user-select: none; 
+    -moz-user-select: none; 
+    -ms-user-select: none; 
+    user-select: none; 	
+}
+
+.defaultcenterlable {
+	color: var(--color-text-secondary);
+	cursor: default;
+	text-align: center;
+	font-family: var(--app-font-family);
+	font-size: var(--fs-sm);
+	font-style: normal;
+	font-weight: normal;
+	-webkit-user-select: none; 
+	-moz-user-select: none; 
+	-ms-user-select: none; 
+	user-select: none; 
+	margin: 0;
+	padding: 0;
+	width: 100%;
+}
+
+.noselect{
+    -khtml-user-select: none; 
+    user-select: none; 
+    -moz-user-select: none; 
+    -webkit-user-select: none; 
+}
+
+/* Tree Section Styles */
+.tree-section {
+    margin-bottom: 8px;
+}
+
+.tree-section-header {
+    font-weight: bold;
+    font-size: 12px;
+    color: var(--color-text-secondary);
+    padding: 4px 8px;
+    background-color: var(--color-bg-tertiary);
+    border-bottom: 1px solid var(--color-border-light);
+    cursor: default;
+    -webkit-user-select: none; 
+    -moz-user-select: none; 
+    -ms-user-select: none; 
+    user-select: none; 
+}
+
+.tree-section-content {
+    padding-left: 0;
+}
+
+/* Tree Item Styles */
+.tree-item {
+    display: flex;
+    align-items: center;
+    padding: 4px 8px;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: background-color 0.2s ease;
+}
+
+.tree-item:hover {
+    background-color: var(--color-bg-hover);
+}
+
+.tree-item.selected {
+    background-color: var(--color-success-light);
+}
+
+.tree-item-icon {
+    width: 16px;
+    height: 16px;
+    margin-right: 6px;
+    background-image: url('../img/code.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    flex-shrink: 0;
+}
+
+.tree-item-icon.example-icon { background-image: url('../img/code.svg'); opacity: 1; }
+
+.tree-item-name {
+    flex: 1;
+    font-size: 11px;
+    color: var(--color-text-secondary);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.tree-item-example .tree-item-name { color: inherit; font-style: normal; }
+
+.tree-item-autostart {
+    width: 16px;
+    height: 16px;
+    margin-left: 4px;
+    background-color: var(--color-success-primary);
+    color: white;
+    font-size: 10px;
+    font-weight: bold;
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.tree-item-autostart:not(.active) {
+    display: none;
+}
+
+.tree-item-actions {
+    display: flex;
+    gap: 2px;
+    margin-left: 8px;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.tree-item:hover .tree-item-actions {
+    opacity: 1;
+}
+
+.tree-item-action-btn {
+    width: 20px;
+    height: 20px;
+    border: none; 
+    background: none; 
+    cursor: pointer;
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s ease;
+}
+
+.tree-item-action-btn:hover {
+    background-color: var(--color-border-light);
+}
+
+.tree-item-action-btn img {
+    width: 14px;
+    height: 14px;
+}
+
+/* Example specific styles */
+.tree-item-example { opacity: 1; }
+.tree-item-example:hover { background-color: inherit; }
+.tree-item-example.selected { background-color: inherit; }
+
+/* ========================================================================== */
+/* TASK-041: VBA Read-Only Mode Styles (Document VBA Blue Theme)            */
+/* ========================================================================== */
+
+/* Document VBA tree item (blue theme) */
+.document-vba-item {
+    background: var(--color-vba-bg) !important;
+    border-left: 3px solid var(--color-vba-border) !important;
+    color: var(--color-vba-text) !important;
+}
+
+.document-vba-item:hover {
+    background: var(--color-vba-hover) !important;
+}
+
+/* VBA read-only banner in Monaco Editor */
+.vba-readonly-banner {
+    background: rgba(21, 101, 192, 0.1);
+    border-bottom: 2px solid var(--color-vba-border);
+}
+
+/* VBA read-only glyph margin icon */
+.vba-readonly-glyph {
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><text x="1" y="13" font-family="Arial" font-size="12" fill="%231565c0">📘</text></svg>') no-gradient !important;
+}
+
+.vba-readonly-glyph::before {
+    content: '📘';
+    color: var(--color-vba-border);
+    font-size: 14px;
+}
+
+/* =============================================================================
+ * TASK-051 PHASE 3: VBA CONVERSION PROGRESS OVERLAY
+ * ============================================================================= */
+
+.vscode-progress-overlay,
+#conversion-progress-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+/* Legacy conversion overlay card */
+.progress-content { /* kept for backward compatibility */
+    background: var(--vscode-editorWidget-background, #1f1f1f);
+    color: var(--vscode-foreground, #d4d4d4);
+    padding: 24px 28px;
+    border-radius: 8px;
+    text-align: center;
+    max-width: 400px;
+    border: 1px solid var(--vscode-widget-border, #3c3c3c);
+    box-shadow: var(--shadow-overlay, 0 2px 8px rgba(0, 0, 0, 0.24));
+}
+
+/* Legacy spinner */
+.spinner { /* kept for backward compatibility */
+    width: 32px;
+    height: 32px;
+    border: 3px solid rgba(255, 255, 255, 0.08);
+    border-top-color: var(--vscode-progressBar-background, #0e639c);
+    border-radius: 50%;
+    animation: vscodeSpin 1s linear infinite;
+    margin: 0 auto 16px;
+}
+
+@keyframes vscodeSpin { to { transform: rotate(360deg); } }
+
+.progress-hint {
+    font-size: 12px;
+    color: var(--vscode-descriptionForeground, #9b9b9b);
+    margin-top: 10px;
+}
+
+/* =============================================================================
+ * DARK THEME SUPPORT (.theme-type-dark)
+ * ============================================================================= */
+
+/* Body and general containers */
+.theme-type-dark {
+    background-color: var(--color-bg-primary);
+    color: var(--color-text-primary);
+}
+
+/* VSCode-style progress card (used by translation-progress-overlay) */
+.vscode-progress-card {
+    background: var(--vscode-editorWidget-background, #1f1f1f);
+    color: var(--vscode-foreground, #d4d4d4);
+    padding: 24px 28px;
+    border-radius: 8px;
+    text-align: center;
+    width: 360px;
+    max-width: 90vw;
+    border: 1px solid var(--vscode-widget-border, #3c3c3c);
+    box-shadow: var(--shadow-overlay, 0 2px 8px rgba(0, 0, 0, 0.24));
+}
+
+.vscode-spinner {
+    width: 32px;
+    height: 32px;
+    border: 3px solid rgba(255, 255, 255, 0.08);
+    border-top-color: var(--vscode-progressBar-background, #0e639c);
+    border-radius: 50%;
+    animation: vscodeSpin 1s linear infinite;
+    margin: 0 auto 16px;
+}
+
+.vscode-progress-title {
+    font-size: 14px;
+    font-weight: 600;
+    margin: 8px 0 2px;
+    color: var(--vscode-foreground, #d4d4d4);
+}
+
+.vscode-progress-subtitle {
+    font-size: 12px;
+    margin: 0;
+    color: var(--vscode-descriptionForeground, #9b9b9b);
+}
+
+/* Buttons */
+.theme-type-dark .btn-text-default {
+    background: var(--color-bg-tertiary);
+    border-color: var(--color-border-default);
+    color: var(--color-text-primary);
+}
+
+.theme-type-dark .btn-text-default:hover {
+    background-color: var(--color-bg-active);
+}
+
+.theme-type-dark .btn-text-default.primary {
+    background-color: var(--color-button-primary-bg);
+    color: var(--color-text-inverse);
+}
+
+.theme-type-dark .btn-text-default.primary:hover {
+    background-color: var(--color-button-primary-hover) !important;
+}
+
+.theme-type-dark .btn-text-default:active,
+.theme-type-dark .btn-text-default.active {
+    background-color: var(--color-state-active-bg) !important;
+    color: var(--color-text-inverse);
+}
+
+.theme-type-dark .btn-text-default[disabled],
+.theme-type-dark .btn-text-default.disabled {
+    background-color: var(--color-bg-tertiary) !important;
+    color: var(--color-text-disabled);
+}
+
+/* Form Controls */
+.theme-type-dark .form-control {
+    background-color: var(--vscode-input-background);
+    border-color: var(--color-border-default);
+    color: var(--color-text-primary);
+}
+
+.theme-type-dark .form-control:focus {
+    border-color: var(--color-border-focus);
+}
+
+.theme-type-dark .form-control[readonly],
+.theme-type-dark .form-control[disabled] {
+    background-color: var(--color-bg-tertiary);
+    color: var(--color-text-disabled);
+}
+
+/* Labels */
+.theme-type-dark .defaultlable,
+.theme-type-dark .defaultcenterlable {
+    color: var(--color-text-primary);
+}
+
+/* Tree Section Header */
+.theme-type-dark .tree-section-header {
+    background-color: var(--color-bg-secondary);
+    color: var(--color-text-primary);
+    border-bottom-color: var(--color-border-default);
+}
+
+/* Tree Items */
+.theme-type-dark .tree-item:hover {
+    background-color: var(--color-bg-hover);
+}
+
+.theme-type-dark .tree-item.selected {
+    background-color: var(--color-state-active-bg);
+    color: var(--color-text-inverse);
+}
+
+.theme-type-dark .tree-item.selected .tree-item-name {
+    color: var(--color-text-inverse);
+}
+
+.theme-type-dark .tree-item-name {
+    color: var(--color-text-primary);
+}
+
+.theme-type-dark .tree-item-example .tree-item-name { color: inherit; }
+
+/* Tree Item Action Buttons */
+.theme-type-dark .tree-item-action-btn:hover {
+    background-color: var(--color-bg-active);
+}
+
+/* Example Items */
+.theme-type-dark .tree-item-example:hover { background-color: inherit; }
+.theme-type-dark .tree-item-example.selected { background-color: inherit; }
+
+/* Document VBA Items (Blue Theme for Dark Mode) */
+.theme-type-dark .document-vba-item {
+    background: var(--color-vba-bg) !important;
+    border-left-color: var(--color-vba-border) !important;
+    color: var(--color-vba-text) !important;
+}
+
+.theme-type-dark .document-vba-item:hover {
+    background: var(--color-vba-hover) !important;
+}
+
+.theme-type-dark .document-vba-item .tree-item-name {
+    color: var(--color-vba-text) !important;
+}
+
+/* VBA Read-Only Banner */
+.theme-type-dark .vba-readonly-banner {
+    background: rgba(79, 195, 247, 0.15);
+    border-bottom-color: var(--color-vba-border);
+}
+
+/* Progress Overlay */
+.theme-type-dark .progress-content {
+    background: var(--color-bg-secondary);
+    color: var(--color-text-primary);
+}
+
+.theme-type-dark .spinner {
+    border-color: var(--color-border-default);
+    border-top-color: var(--color-border-focus);
+}
+
+.theme-type-dark .progress-hint {
+    color: var(--color-text-quaternary);
+}
+
+/* SVG Icons - Filter to light color in dark theme */
+.theme-type-dark .tree-item-icon {
+    filter: invert(1) brightness(0.9);
+}
+
+.theme-type-dark .tree-item-icon.example-icon { filter: invert(1) brightness(0.9); }
+
+/* =============================================================================
+ * TASK-077: METHOD 1 - CSS Class-Based Dark Theme (Refactored Architecture)
+ * Eliminates inline styles and JavaScript workaround for clean, robust theming
+ * ============================================================================= */
+
+/* LIGHT THEME (Default) - VBA Section */
+.vba-section .tree-node-header { background: inherit !important; }
+
+.vba-section .section-title { color: inherit !important; font-weight: 600; }
+
+.vba-section .section-count { color: inherit !important; }
+
+.vba-section .vba-import-btn {
+    width: 24px;
+    height: 24px;
+    border: 1px solid var(--color-error-primary);
+    background: var(--color-bg-primary);
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 0;
+    margin-left: 8px;
+}
+
+/* LIGHT THEME (Default) - JavaScript Section */
+.js-section .tree-node-header { background: inherit !important; }
+
+.js-section .section-title { color: inherit !important; font-weight: 600; }
+
+.js-section .section-count { color: inherit !important; }
+
+.js-section .js-import-btn,
+.js-section .js-refresh-btn {
+    width: 24px;
+    height: 24px;
+    border: 1px solid var(--color-success-dark);
+    background: var(--color-bg-primary);
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 0;
+}
+
+.js-section .js-import-btn {
+    margin-left: 8px;
+}
+
+.js-section .js-refresh-btn {
+    margin-left: 4px;
+}
+
+/* DARK THEME - VBA Section Overrides */
+.theme-type-dark .vba-section .tree-node-header { background: inherit !important; }
+
+.theme-type-dark .vba-section .section-title { color: inherit !important; }
+
+.theme-type-dark .vba-section .section-count { color: inherit !important; }
+
+.theme-type-dark .vba-section .vba-import-btn {
+    border-color: var(--color-warning-primary);
+    background: var(--color-bg-tertiary);
+    color: var(--color-warning-primary);
+}
+
+.theme-type-dark .vba-section .vba-import-btn:hover {
+    background: var(--color-bg-active);
+}
+
+/* DARK THEME - JavaScript Section Overrides */
+.theme-type-dark .js-section .tree-node-header { background: inherit !important; }
+
+.theme-type-dark .js-section .section-title { color: inherit !important; }
+
+.theme-type-dark .js-section .section-count { color: inherit !important; }
+
+.theme-type-dark .js-section .js-import-btn,
+.theme-type-dark .js-section .js-refresh-btn {
+    border-color: var(--color-success-dark);
+    background: var(--color-bg-tertiary);
+    color: var(--color-success-dark);
+}
+
+.theme-type-dark .js-section .js-import-btn:hover,
+.theme-type-dark .js-section .js-refresh-btn:hover {
+    background: var(--color-bg-active);
+}
+
+/* =============================================================================
+ * SETTINGS MODAL TAB STYLES
+ * ============================================================================= */
+
+/* Tab Container */
+.settings-tabs {
+    display: flex;
+    border-bottom: 2px solid var(--color-border-light);
+    background: var(--color-bg-tertiary);
+    margin: 0;
+    padding: 0;
+}
+
+/* Tab Buttons */
+.settings-tab-button {
+    background: none; 
+    border: none; 
+    padding: 12px 24px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--color-text-tertiary);
+    border-bottom: 3px solid transparent;
+    transition: var(--transition-interactive, background-color 0.12s ease, color 0.12s ease, border-color 0.12s ease);
+}
+
+.settings-tab-button:hover {
+    background: var(--vscode-interactive-hoverBackground, var(--vscode-list-hoverBackground, rgba(0, 0, 0, 0.05)));
+    color: var(--vscode-interactive-hoverForeground, var(--color-text-primary));
+}
+
+.settings-tab-button.active {
+    color: var(--vscode-focusBorder, var(--color-border-focus));
+    border-bottom-color: var(--vscode-focusBorder, var(--color-border-focus));
+    background: var(--vscode-interactive-activeBackground, var(--color-bg-primary));
+}
+
+.settings-tab-button:focus-visible {
+    outline: 2px solid var(--vscode-interactive-focusRing, var(--vscode-focusBorder, #007acc));
+    outline-offset: -2px;
+}
+
+/* Tab Content */
+.settings-tab-content {
+    display: none;
+}
+
+.settings-tab-content.active {
+    display: block;
+}
+
+/* Dark Theme - Tabs */
+.theme-type-dark .settings-tabs {
+    background: var(--color-bg-secondary);
+    border-bottom-color: var(--color-border-default);
+}
+
+.theme-type-dark .settings-tab-button {
+    color: var(--color-text-primary);
+}
+
+.theme-type-dark .settings-tab-button:hover {
+    background: var(--vscode-interactive-hoverBackground, rgba(255, 255, 255, 0.05));
+    color: var(--vscode-interactive-hoverForeground, var(--color-text-primary));
+}
+
+.theme-type-dark .settings-tab-button.active {
+    color: var(--vscode-focusBorder, var(--color-border-focus));
+    background: var(--vscode-interactive-activeBackground, var(--color-bg-primary));
+    border-bottom-color: var(--vscode-focusBorder, var(--color-border-focus));
+}
+
+/* =============================================================================
+ * REFACTORED INLINE STYLES TO CSS CLASSES
+ * Eliminates all inline style="" attributes for better maintainability
+ * ============================================================================= */
+
+/* Filter Label Styling */
+.filter-label {
+    font-size: 11px;
+    color: var(--vscode-sideBarTitle-foreground, var(--color-text-tertiary));
+    margin: 0;
+    flex-shrink: 0;
+}
+
+/* Filter Row Wrapper */
+.tree-pane-filter {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+    padding: 6px 8px;
+    background: var(--vscode-sideBar-background, var(--color-bg-secondary));
+    border-bottom: 1px solid var(--vscode-sideBar-border, var(--color-border-default));
+}
+
+#sidebar-view-prelude {
+    padding: 12px 14px 10px;
+    background: var(--vscode-sideBar-background, var(--color-bg-secondary));
+    border-bottom: 1px solid var(--vscode-sideBar-border, var(--color-border-default));
+}
+
+#sidebar-view-prelude:empty {
+    display: none;
+}
+
+#sidebar-view-prelude .prelude-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--vscode-sideBarTitle-foreground, var(--color-text-primary));
+    margin-bottom: 6px;
+}
+
+#sidebar-view-prelude .prelude-hint {
+    font-size: 11px;
+    color: var(--vscode-sideBar-foreground, var(--color-text-tertiary));
+    margin-bottom: 8px;
+}
+
+#sidebar-view-prelude .prelude-actions {
+    display: flex;
+    gap: 8px;
+}
+
+#sidebar-view-prelude .prelude-actions button {
+    font-size: 11px;
+    padding: 4px 10px;
+    border-radius: 4px;
+    border: 1px solid var(--vscode-button-border, var(--color-border-default));
+    background: var(--vscode-button-secondaryBackground, var(--color-bg-secondary));
+    color: var(--vscode-button-secondaryForeground, var(--color-text-primary));
+    cursor: pointer;
+    transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+#sidebar-view-prelude .prelude-actions button:hover {
+    background: var(--vscode-button-secondaryHoverBackground, var(--color-bg-hover));
+    border-color: var(--vscode-button-border, var(--color-border-focus));
+}
+
+/* Filter Input Container */
+.filter-input-container {
+    position: relative;
+    flex: 1 1 0;
+    min-width: 0;
+    max-width: none;
+    margin-right: 12px;
+}
+
+/* Filter Input Field */
+.filter-input-field {
+    width: 100%;
+    min-width: 0;
+    padding: 5px 24px 5px 8px;
+    font-size: 11px;
+    border: 1px solid var(--vscode-input-border, var(--color-border-default));
+    border-radius: 3px;
+    background-color: var(--vscode-input-background);
+    color: var(--vscode-input-foreground, var(--color-text-primary));
+    box-shadow: none;
+}
+
+.filter-input-field:focus {
+    outline: 1px solid var(--vscode-focusBorder, var(--color-border-focus));
+    outline-offset: 0;
+}
+
+.filter-input-field::placeholder {
+    color: var(--vscode-sideBarSectionHeader-foreground, var(--color-text-tertiary));
+    opacity: 0.7;
+}
+
+/* Filter Clear Button */
+.filter-clear-button {
+    position: absolute;
+    right: 6px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: var(--vscode-sideBar-foreground, var(--color-text-quaternary));
+    font-size: 12px;
+    display: none;
+}
+
+/* Search Stats Display */
+.search-stats-display {
+    font-size: 10px;
+    color: var(--vscode-sideBar-foreground, var(--color-text-quaternary));
+    margin-left: 4px;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+/* Tree Container */
+.tree-container-main {
+    flex: 1 1 0;
+    min-height: 0;
+    height: auto;
+}
+
+/* TASK-106-FIX-PARENT: Parent container flex chain completion */
+/* TASK-106-FIX-POSITION: Absolute positioning creates height constraint */
+/* Common menu container - establishes flex context AND height boundary for tree pane */
+.common_menu {
+    position: absolute;
+    top: 42px;       /* Below toolbar */
+    left: 48px;      /* After activity bar */
+    right: 0;        /* Stretch to right edge */
+    bottom: 0;       /* Stretch to bottom - creates height constraint */
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* Prevent scrollbar on parent container */
+}
+
+/* Menu macros wrapper - propagates flex constraint to tree-container-main */
+#menu_macros {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow: hidden;
+}
+
+/* Icon Sizing */
+.icon-14 {
+    width: 14px;
+    height: 14px;
+}
+
+/* Hidden Elements */
+.hidden {
+    display: none;
+}
+
+/* Footer Container */
+.footer-container {
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    left: 10px;
+    top: 10px;
+    right: 10px;
+    bottom: 10px;
+}
+
+/* Footer Buttons Positioning */
+.footer-btn-left {
+    left: 10px;
+    top: 0;
+    position: relative;
+    bottom: 0;
+}
+
+.footer-btn-left-20 {
+    left: 20px;
+    top: 0;
+    position: relative;
+    bottom: 0;
+}
+
+.footer-btn-left-30 {
+    left: 30px;
+    top: 0;
+    position: relative;
+    bottom: 0;
+}
+
+.footer-btn-run {
+    right: 10px;
+    top: 10px;
+    position: absolute;
+    bottom: 10px;
+}
+
+/* Rename Dialog Styles */
+.rename-mask {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 9998;
+    /* When hidden, ensure it never intercepts clicks */
+    pointer-events: none;
+}
+
+.rename-dialog {
+    display: none;
+    background: var(--vscode-editorWidget-background, #1f1f1f);
+    color: var(--vscode-foreground, #d4d4d4);
+    border: 1px solid var(--vscode-widget-border, #3c3c3c);
+    border-radius: 8px;
+    box-shadow: var(--shadow-overlay, 0 2px 8px rgba(0, 0, 0, 0.24));
+    z-index: 9999;
+}
+
+.rename-header {
+    background: var(--vscode-titleBar-activeBackground, #2b2b2b) !important;
+    border-bottom: 1px solid var(--vscode-widget-border, #3c3c3c) !important;
+    color: var(--vscode-titleBar-activeForeground, #d4d4d4) !important;
+}
+
+.rename-input {
+    top: 38px;
+    margin: 0;
+    width: 260px;
+    left: 20px;
+    position: absolute;
+    background: var(--vscode-input-background, #2b2b2b) !important;
+    color: var(--vscode-input-foreground, #d4d4d4) !important;
+    border: 1px solid var(--vscode-input-border, #3c3c3c) !important;
+    border-radius: 4px;
+    height: 26px;
+    padding: 2px 6px;
+}
+
+.rename-error {
+    position: absolute;
+    top: 20px;
+    right: 0;
+    width: 0;
+    height: 16px;
+    display: none;
+}
+
+.rename-ok-btn {
+    left: 75px;
+    top: 10px;
+    width: 70px;
+    position: absolute;
+    bottom: 10px;
+    background: var(--vscode-button-background, #0e639c) !important;
+    color: var(--vscode-button-foreground, #ffffff) !important;
+    border: 1px solid var(--vscode-button-border, #0e639c) !important;
+}
+
+.rename-cancel-btn {
+    right: 75px;
+    top: 10px;
+    width: 70px;
+    position: absolute;
+    bottom: 10px;
+    background: var(--vscode-button-secondaryBackground, #2b2d30) !important;
+    color: var(--vscode-button-foreground, #ffffff) !important;
+    border: 1px solid var(--vscode-button-border, #3c3c3c) !important;
+}
+
+/* TASK-103 Phase 1: Monaco Editor API Call Decorations */
+.api-call-decoration-blue {
+    border-bottom: 2px solid var(--color-border-focus);
+    cursor: help;
+}
+
+.api-call-decoration-green {
+    border-bottom: 2px solid var(--color-success-dark);
+    cursor: help;
+}
+
+/* Dark theme support */
+.theme-type-dark .api-call-decoration-blue {
+    border-bottom-color: var(--color-info-primary);
+}
+
+.theme-type-dark .api-call-decoration-green {
+    border-bottom-color: var(--color-success-dark);
+}
+
+
+/* =========================================================================
+   CONSOLE, SETTINGS, TOOLBAR, DIALOGS (from controls.css)
+   ========================================================================= */
+/**
+ * Controls CSS - Buttons, Inputs, Dialogs, Console, Settings
+ * Extracted from index.html inline styles
+ *
+ * Contains:
+ * - Console panel styles (TASK-014, TASK-027, TASK-031)
+ * - Settings modal dialog (TASK-033)
+ * - Freshness indicator (TASK-036)
+ * - Unified functional buttons (TASK-049)
+ * - Macro toolbar (TASK-049)
+ * - Header status line (TASK-075 Feature 2)
+ * - Focus mode indicator (TASK-075 Feature 3)
+ * - AI settings dialog (TASK-051 Phase 4)
+ */
+	/* ===================================================================== */
+	/* CONSOLE PANEL STYLES (TASK-014)                                      */
+	/* ===================================================================== */
+
+	/* Console Drag Handle */
+	.console-drag-handle {
+		position: fixed;
+		bottom: 222px;
+		left: 0;
+		right: 0;
+		height: 4px;
+		background: var(--color-splitter-border);
+		cursor: ns-resize;
+		z-index: 20;
+		transition: background 0.2s;
+	}
+
+	.console-drag-handle:hover {
+		background: var(--color-border-focus);
+	}
+
+	.console-drag-handle:active {
+		background: var(--vscode-button-hoverBackground);
+	}
+
+	/* Console Panel Container */
+	.console-panel {
+		position: fixed;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		height: 200px;
+		background: var(--color-bg-primary);
+		border-top: 1px solid var(--color-border-default);
+		display: flex;
+		flex-direction: column;
+		z-index: 15;
+		overflow: hidden;
+	}
+
+	/* Console Header */
+	.console-header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 4px 8px;
+		background: var(--color-bg-secondary);
+		border-bottom: 1px solid var(--color-border-default);
+		font-size: 12px;
+		flex-shrink: 0;
+	}
+
+	.console-title {
+		font-weight: bold;
+		color: var(--color-text-primary);
+	}
+
+	/* TASK-031: Debug mode toggle CSS removed - console capture now always enabled */
+
+	.console-buttons {
+		display: flex;
+		gap: 4px;
+	}
+
+	.console-btn {
+		padding: 2px 8px;
+		font-size: 11px;
+		border: 1px solid var(--color-border-default);
+		background: var(--color-bg-primary);
+		color: var(--color-text-primary);
+		cursor: pointer;
+		border-radius: var(--radius-sm);
+		transition: var(--transition-interactive, background-color 0.12s ease, color 0.12s ease, border-color 0.12s ease);
+	}
+
+	.console-btn:hover {
+		background: var(--vscode-interactive-hoverBackground, var(--color-border-light));
+		border-color: var(--vscode-interactive-border, var(--color-text-quaternary));
+	}
+
+	.console-btn:active {
+		background: var(--vscode-interactive-activeBackground, var(--color-state-hover-light));
+	}
+
+	.console-btn:focus-visible {
+		outline: 2px solid var(--vscode-interactive-focusRing, var(--vscode-focusBorder, #007acc));
+		outline-offset: 1px;
+	}
+
+	/* TASK-027: External Toggle Button - Positioned outside console panel for permanent visibility */
+	.console-external-toggle {
+		position: fixed;
+		bottom: 204px; /* Just above drag handle (200px console + 4px handle) */
+		right: 8px;
+		padding: 4px 10px;
+		font-size: 14px;
+		border: 1px solid var(--color-border-default);
+		background: var(--color-bg-primary);
+		color: var(--color-text-primary);
+		cursor: pointer;
+		border-radius: var(--radius-base);
+		z-index: 25; /* Above console (15) and drag handle (20) */
+		transition: var(--transition-interactive, background-color 0.12s ease, color 0.12s ease, border-color 0.12s ease);
+		box-shadow: var(--shadow-overlay, 0 2px 8px rgba(0, 0, 0, 0.24));
+		font-family: monospace;
+		line-height: 1;
+		min-width: 32px;
+		text-align: center;
+	}
+
+	.console-external-toggle:hover {
+		background: var(--vscode-interactive-hoverBackground, var(--color-border-light));
+		border-color: var(--vscode-interactive-border, #007acc);
+	}
+
+	.console-external-toggle:active {
+		background: var(--vscode-interactive-activeBackground, var(--color-state-hover-light));
+	}
+
+	.console-external-toggle:focus-visible {
+		outline: 2px solid var(--vscode-interactive-focusRing, var(--vscode-focusBorder, #007acc));
+		outline-offset: 1px;
+	}
+
+	/* Console Output Container */
+	.console-output {
+		flex: 1;
+		overflow-y: auto;
+		overflow-x: hidden;
+		padding: 8px;
+		font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+		font-size: 12px;
+		line-height: 1.4;
+		background: var(--color-bg-primary);
+		color: var(--color-text-primary);
+	}
+
+	/* Console Log Entries */
+	.console-log {
+		padding: 2px 0;
+		word-wrap: break-word;
+		white-space: pre-wrap;
+	}
+
+	.console-log.console-log {
+		color: var(--color-text-primary);
+	}
+
+	.console-log.console-info {
+		color: var(--color-info-primary);
+	}
+
+	.console-log.console-warn {
+		color: var(--color-warning-primary);
+		background: rgba(255, 153, 0, 0.1);
+		padding: 2px 4px;
+		border-left: 3px solid var(--color-warning-primary);
+	}
+
+	.console-log.console-error {
+		color: var(--color-error-primary);
+		background: rgba(204, 0, 0, 0.1);
+		padding: 2px 4px;
+		border-left: 3px solid var(--color-error-primary);
+		font-weight: bold;
+	}
+
+	/* Dark Theme Support */
+	.theme-type-dark .console-drag-handle {
+		background: var(--vscode-input-background);
+	}
+
+	.theme-type-dark .console-drag-handle:hover {
+		background: var(--color-info-primary);
+	}
+
+	.theme-type-dark .console-panel {
+		background: var(--color-bg-primary);
+		border-color: var(--vscode-input-border);
+	}
+
+	.theme-type-dark .console-header {
+		background: var(--color-bg-secondary);
+		border-color: var(--vscode-input-border);
+	}
+
+	.theme-type-dark .console-title {
+		color: var(--color-text-primary);
+	}
+
+	/* TASK-031: console-debug-toggle dark theme CSS removed - always enabled */
+
+	.theme-type-dark .console-btn {
+		background: var(--vscode-input-background);
+		border-color: var(--color-border-medium);
+		color: var(--color-text-primary);
+	}
+
+	.theme-type-dark .console-btn:hover {
+		background: var(--color-state-hover-light);
+		border-color: var(--color-text-tertiary);
+	}
+
+	.theme-type-dark .console-btn:active {
+		background: var(--color-state-active-dark);
+	}
+
+	/* TASK-027: External Toggle Button - Dark Theme */
+	.theme-type-dark .console-external-toggle {
+		background: var(--vscode-input-background);
+		border-color: var(--color-border-medium);
+		color: var(--color-text-primary);
+		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+	}
+
+	.theme-type-dark .console-external-toggle:hover {
+		background: var(--color-state-hover-light);
+		border-color: var(--color-info-primary);
+		box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+	}
+
+	.theme-type-dark .console-external-toggle:active {
+		background: var(--color-state-active-dark);
+	}
+
+	.theme-type-dark .console-output {
+		background: var(--color-bg-primary);
+		color: var(--color-text-primary);
+	}
+
+	.theme-type-dark .console-log.console-log {
+		color: var(--color-text-primary);
+	}
+
+	.theme-type-dark .console-log.console-info {
+		color: var(--color-info-primary);
+	}
+
+	.theme-type-dark .console-log.console-warn {
+		color: #ffcc00;
+		background: rgba(255, 204, 0, 0.1);
+		border-left-color: #ffcc00;
+	}
+
+	.theme-type-dark .console-log.console-error {
+		color: #f48771;
+		background: rgba(244, 135, 113, 0.1);
+		border-left-color: #f48771;
+	}
+
+	/* Removed TASK-030: Fixed-Position Run Macros Button styles */
+
+	/* Adjust main layout for console panel */
+    body {
+        padding-bottom: 0; /* no reserved space; console shown only via Activity Bar view */
+    }
+
+    /* ===================================================================== */
+    /* CONSOLE FULL-VIEW MODE (Activity Bar -> Console)                      */
+    /* When the Console view is selected in the Activity Bar, dedicate the   */
+    /* entire workspace (right of Activity Bar) to show logs only.           */
+    /* ===================================================================== */
+
+    /* Remove bottom padding in full-view to let console fill available area */
+    body.console-view-active {
+        padding-bottom: 0 !important;
+    }
+
+    /* Hide non-console workspace panels */
+    body.console-view-active #macro-toolbar,
+    body.console-view-active #status-line,
+    body.console-view-active #vscode-sidebar,
+    body.console-view-active .resizable-splitter,
+    body.console-view-active #editorWrapper {
+        display: none !important;
+    }
+
+    /* Console panel fills the workspace (right of 48px Activity Bar, above status bar) */
+    body.console-view-active #console-panel {
+        position: fixed;
+        top: 0;
+        left: 48px; /* to the right of Activity Bar */
+        right: 0;
+        bottom: 22px; /* leave room for status bar */
+        height: auto !important;
+        z-index: 100 !important;
+        display: flex !important;
+    }
+
+    /* Hide console drag handle and external toggle in full-view */
+    body.console-view-active #console-drag-handle,
+    body.console-view-active #console-external-toggle {
+        display: none !important;
+    }
+
+    /* Place Status Bar at the very bottom in full-view */
+    body.console-view-active .vscode-status-bar {
+        bottom: 0 !important;
+        z-index: 101 !important;
+    }
+
+    .,
+    #editorWrapper {
+        bottom: 0; /* parent (#vscode-workbench) already reserves bottom space */
+    }
+
+    .resizable-splitter {
+        bottom: 0; /* inside workbench */
+    }
+
+	/* ===================================================================== */
+	/* TASK-033: Settings Modal Dialog Styles                               */
+	/* ===================================================================== */
+
+	/* Modal Overlay */
+	.settings-modal-overlay {
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background: rgba(0, 0, 0, 0.5);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		z-index: 2000;
+	}
+
+	/* Modal Container */
+	.settings-modal {
+		background: var(--background-normal);
+		border-radius: 8px;
+		box-shadow: var(--shadow-modal, 0 4px 12px rgba(0, 0, 0, 0.3));
+		width: 90%;
+		max-width: 600px;
+		max-height: 80vh;
+		display: flex;
+		flex-direction: column;
+		/* Allow native dropdowns (select) to render outside container bounds on Linux */
+		overflow: visible;
+		position: relative;
+		z-index: 2001;
+	}
+
+	/* Modal Header */
+	.settings-modal-header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 16px 20px;
+		border-bottom: 1px solid var(--border-control);
+    background: var(--vscode-editorGroupHeader-tabsBackground, var(--background-toolbar));
+	}
+
+	.settings-modal-title {
+		margin: 0;
+		font-size: 18px;
+		font-weight: 600;
+		color: var(--text-normal);
+	}
+
+	.settings-modal-close {
+		background: none; 
+		border: none; 
+		font-size: 24px;
+		color: var(--text-normal);
+		cursor: pointer;
+		padding: 0;
+		width: 32px;
+		height: 32px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border-radius: var(--radius-base);
+		transition: var(--transition-interactive, background-color 0.12s ease, color 0.12s ease, border-color 0.12s ease);
+	}
+
+	.settings-modal-close:hover {
+		background: var(--vscode-interactive-hoverBackground, var(--highlight-button-hover));
+		color: var(--vscode-interactive-hoverForeground, var(--text-normal));
+	}
+
+	.settings-modal-close:focus-visible {
+		outline: 2px solid var(--vscode-interactive-focusRing, var(--vscode-focusBorder, #007acc));
+		outline-offset: 1px;
+	}
+
+	/* Modal Body */
+	.settings-modal-body {
+		padding: 20px;
+		/* Vertical scrolling when content exceeds modal height */
+		overflow-y: auto;
+		/* Keep horizontal overflow visible to avoid clipping native dropdowns on Linux */
+		overflow-x: visible;
+		flex: 1;
+	}
+
+	/* Settings Rows */
+	.settings-row {
+		margin-bottom: 20px;
+	}
+
+	.settings-row:last-child {
+		margin-bottom: 0;
+	}
+
+	.settings-label {
+		display: flex;
+		align-items: center;
+		font-size: 14px;
+		font-weight: 500;
+		color: var(--color-text-primary);
+		margin-bottom: 8px;
+		cursor: pointer;
+	}
+
+	.settings-label input[type="checkbox"] {
+		margin-right: 8px;
+		cursor: pointer;
+	}
+
+	.settings-hint {
+		margin: 4px 0 0 0;
+		font-size: 12px;
+		color: var(--color-text-tertiary);
+		font-style: italic;
+	}
+
+	/* Input Groups */
+	.settings-input-group {
+		display: flex;
+		gap: 12px;
+		flex-wrap: wrap;
+	}
+
+	.settings-input-pair {
+		display: flex;
+		align-items: center;
+		gap: 6px;
+	}
+
+	.settings-input-pair label {
+		font-size: 13px;
+		color: var(--color-border-medium);
+	}
+
+	.settings-input-pair input[type="number"] {
+		width: 80px;
+		padding: 6px 8px;
+		border: 1px solid var(--color-border-default);
+		border-radius: var(--radius-base);
+		font-size: 13px;
+	}
+
+	.settings-input-pair span {
+		font-size: 12px;
+		color: var(--color-text-tertiary);
+	}
+
+	/* Select Elements */
+	.settings-modal-body select {
+		width: 100%;
+		padding: 8px 10px;
+		border: 1px solid var(--color-border-default);
+		border-radius: var(--radius-base);
+		font-size: 13px;
+		background: var(--color-bg-primary);
+		cursor: pointer;
+	}
+
+	.settings-input-group select {
+		flex: 1;
+		min-width: 150px;
+	}
+
+	/* Interaction Logger: radio toggle (left/right) */
+	.settings-radio-toggle {
+		position: relative;
+		display: inline-grid;
+		grid-template-columns: 1fr 1fr;
+		align-items: center;
+		width: 150px;
+		height: 32px;
+		padding: 2px;
+		border-radius: 999px;
+		border: 1px solid var(--color-border-default);
+		background: var(--vscode-input-background, var(--color-bg-primary));
+	}
+
+	.settings-radio-toggle input[type="radio"] {
+		position: absolute;
+		opacity: 0;
+		pointer-events: none;
+	}
+
+	.settings-radio-toggle-pill {
+		position: absolute;
+		top: 2px;
+		left: 2px;
+		width: calc(50% - 2px);
+		height: calc(100% - 4px);
+		border-radius: 999px;
+		background: var(--vscode-button-background, #0e639c);
+		transition: transform 0.16s ease;
+	}
+
+	.settings-radio-toggle label {
+		position: relative;
+		z-index: 1;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		height: 100%;
+		margin: 0;
+		cursor: pointer;
+		font-size: 12px;
+		font-weight: 600;
+		color: var(--color-text-tertiary);
+		user-select: none;
+	}
+
+	#settings-interaction-logger-off:checked ~ label[for="settings-interaction-logger-off"],
+	#settings-interaction-logger-on:checked ~ label[for="settings-interaction-logger-on"] {
+		color: var(--vscode-button-foreground, #fff);
+	}
+
+	#settings-interaction-logger-on:checked ~ .settings-radio-toggle-pill {
+		transform: translateX(calc(100% - 2px));
+	}
+
+	#settings-interaction-logger-off:focus-visible ~ label[for="settings-interaction-logger-off"],
+	#settings-interaction-logger-on:focus-visible ~ label[for="settings-interaction-logger-on"] {
+		outline: 2px solid var(--vscode-focusBorder, #007acc);
+		outline-offset: 2px;
+		border-radius: 999px;
+	}
+
+	/* Modal Footer */
+	.settings-modal-footer {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 16px 20px;
+		border-top: 1px solid var(--border-control);
+    background: var(--vscode-editorGroupHeader-tabsBackground, var(--background-toolbar));
+		gap: 10px;
+	}
+
+	.settings-btn-group {
+		display: flex;
+		gap: 8px;
+	}
+
+	/* Buttons */
+	.settings-btn {
+		display: inline-flex;
+		align-items: center;
+		gap: 6px;
+		padding: 9px 18px;
+		font-size: 13px;
+		font-weight: 600;
+		border-radius: 6px;
+		cursor: pointer;
+		border: 1px solid var(--vscode-interactive-border, transparent);
+		transition: var(--transition-interactive, background-color 0.12s ease, color 0.12s ease, border-color 0.12s ease);
+		user-select: none; 
+	}
+
+	.settings-btn-primary {
+		background: var(--vscode-button-background, #0e639c);
+		border-color: var(--vscode-button-border, #0e639c);
+		color: var(--vscode-button-foreground, #fff);
+	}
+
+	.settings-btn-primary:hover {
+		background: var(--vscode-button-hoverBackground, #1177bb);
+		border-color: var(--vscode-button-border, #0e639c);
+	}
+
+	.settings-btn-secondary {
+		background: var(--vscode-button-secondaryBackground, #3a3d41);
+		border-color: var(--vscode-interactive-border, var(--vscode-button-border, transparent));
+		color: var(--vscode-button-secondaryForeground, #ffffff);
+	}
+
+	.settings-btn-secondary:hover {
+		background: var(--vscode-button-secondaryHoverBackground, #45494e);
+		border-color: var(--vscode-interactive-border, var(--vscode-button-border, transparent));
+	}
+
+.settings-btn:active,
+.settings-btn.pressed {
+    background: var(--vscode-interactive-activeBackground, var(--vscode-list-focusBackground, rgba(0, 0, 0, 0.08)));
+}
+
+.settings-btn:focus-visible {
+    outline: 2px solid var(--vscode-interactive-focusRing, var(--vscode-focusBorder, #007acc));
+    outline-offset: 1px;
+}
+
+/* Brand-themed OK button for Welcome popup (blue gradient like logo) */
+#welcome-ok {
+    background: var(--vscode-button-background, #0e639c) !important;
+    border-color: var(--vscode-button-border, #0e639c) !important;
+    color: var(--vscode-button-foreground, #fff) !important;
+    box-shadow: var(--shadow-overlay, 0 2px 8px rgba(0, 0, 0, 0.24));
+}
+#welcome-ok:hover {
+    background: var(--vscode-button-hoverBackground, #1177bb) !important;
+    border-color: var(--vscode-button-border, #0e639c) !important;
+}
+#welcome-ok:active {
+    background: var(--vscode-interactive-activeBackground, var(--vscode-list-focusBackground, rgba(0, 0, 0, 0.08))) !important;
+    border-color: var(--vscode-button-border, #0e639c) !important;
+}
+#welcome-ok:focus-visible {
+    outline: 2px solid var(--vscode-interactive-focusRing, var(--vscode-focusBorder, #007acc)) !important;
+    outline-offset: 1px !important;
+}
+
+/* Welcome popup readability improvements */
+.welcome-popup {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 12px 16px;
+}
+.welcome-title {
+  font-size: 16px;
+  font-weight: 700;
+  margin: 0 0 6px 0;
+  color: var(--text-normal);
+}
+.welcome-subtitle {
+  font-size: 13px;
+  font-weight: 600;
+  margin: 0 0 8px 0;
+  opacity: 0.9;
+  color: var(--text-normal);
+}
+.welcome-body {
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--text-normal);
+}
+.welcome-body p { margin: 6px 0; }
+.welcome-list {
+  margin: 8px 0 0 0;
+  padding-left: 18px;
+}
+.welcome-list li { margin: 4px 0; }
+.welcome-aside {
+  grid-row: 1 / span 3;
+  align-self: start;
+}
+.welcome-brand {
+  width: 80px;
+  height: auto;
+  border-radius: 6px;
+  margin: 0;
+}
+.welcome-callout {
+  margin-top: 10px;
+  padding: 10px 12px;
+  border-radius: 6px;
+  background: var(--vscode-input-background, #050505);
+  color: var(--vscode-foreground, #ddd);
+}
+.welcome-muted { opacity: 0.85; }
+
+/* Dark theme tune for readability */
+.theme-type-dark .welcome-callout {
+  background: var(--color-bg-secondary);
+  color: var(--color-text-secondary);
+}
+.theme-type-dark .welcome-title,
+.theme-type-dark .welcome-subtitle,
+.theme-type-dark .welcome-body {
+  color: var(--color-text-secondary);
+}
+
+/* Brand theme for Chat Send */
+#chat-send {
+  background: var(--vscode-button-background, #0e639c) !important;
+  border-color: var(--vscode-button-border, #0e639c) !important;
+  color: var(--vscode-button-foreground, #fff) !important;
+}
+#chat-send:hover {
+  background: var(--vscode-button-hoverBackground, #1177bb) !important;
+  border-color: var(--vscode-button-border, #0e639c) !important;
+}
+#chat-send:active {
+  background: var(--vscode-interactive-activeBackground, var(--vscode-list-focusBackground, rgba(0, 0, 0, 0.08))) !important;
+}
+#chat-send:focus-visible {
+  outline: 2px solid var(--vscode-interactive-focusRing, var(--vscode-focusBorder, #007acc)) !important;
+  outline-offset: 1px !important;
+}
+
+
+	/* Dark Theme Support */
+	.theme-type-dark .settings-modal {
+		background: var(--color-bg-secondary);
+	}
+
+	.theme-type-dark .settings-modal-header {
+		background: var(--color-bg-secondary);
+		border-color: var(--vscode-input-border);
+	}
+
+	.theme-type-dark .settings-modal-title {
+		color: var(--color-text-primary);
+	}
+
+	.theme-type-dark .settings-modal-close {
+		color: var(--color-text-primary);
+	}
+
+	.theme-type-dark .settings-modal-close:hover {
+		background: var(--color-bg-hover);
+		color: var(--color-text-secondary);
+	}
+
+	.theme-type-dark .settings-modal-body {
+		background: var(--color-bg-secondary);
+	}
+
+	.theme-type-dark .settings-label {
+		color: var(--color-text-primary);
+	}
+
+	.theme-type-dark .settings-hint {
+		color: var(--color-text-quaternary);
+	}
+
+	.theme-type-dark .settings-input-pair label {
+		color: var(--color-text-tertiary);
+	}
+
+	.theme-type-dark .settings-input-pair span {
+		color: var(--color-text-quaternary);
+	}
+
+	.theme-type-dark .settings-input-pair input[type="number"],
+	.theme-type-dark .settings-modal-body select {
+		background: var(--vscode-input-background);
+		border-color: var(--color-border-medium);
+		color: var(--color-text-primary);
+	}
+
+	.theme-type-dark .settings-btn-secondary {
+		background: var(--vscode-button-secondaryBackground, #3a3d41);
+		border-color: var(--vscode-interactive-border, var(--vscode-button-border, transparent));
+		color: var(--vscode-button-secondaryForeground, var(--color-text-secondary));
+	}
+
+	.theme-type-dark .settings-btn-secondary:hover {
+		background: var(--vscode-button-secondaryHoverBackground, #45494e);
+		border-color: var(--vscode-interactive-border, var(--vscode-button-border, transparent));
+	}
+
+@media (prefers-reduced-motion: reduce) {
+    .settings-tab-button,
+    .settings-modal-close,
+    .settings-btn {
+        transition: none;
+    }
+}
+
+	/* TASK-036-REVISION: Freshness indicator styles */
+	.freshness-indicator {
+		font-size: 0.85em;
+		margin-left: 8px;
+		font-weight: normal;
+	}
+
+	.freshness-fresh {
+		color: #28a745; /* green - fresh data */
+	}
+
+	.freshness-stale {
+		color: #fd7e14; /* orange - stale data */
+	}
+
+	.freshness-none {
+		color: var(--color-text-tertiary); /* gray - no data */
+	}
+
+	/* Dark theme support for freshness indicator */
+.theme-type-dark .freshness-fresh {
+	color: #40c463; /* lighter green for dark theme */
+}
+
+/* Compare highlight (line differences) */
+.monaco-editor .compare-diff-line {
+  background-color: rgba(246, 80, 80, 0.22);
+}
+
+/* Compare labels above editors */
+.compare-label {
+  position: absolute;
+  top: 4px;
+  left: 8px;
+  padding: 2px 8px;
+  background: rgba(0,0,0,0.5);
+  color: #fff;
+  border-radius: var(--radius-base);
+  font-size: 12px;
+  z-index: 30;
+  pointer-events: none; 
+}
+.compare-label.right { left: auto; right: 8px; }
+.compare-label.left { left: auto; right: 8px; }
+
+	.theme-type-dark .freshness-stale {
+		color: #ff9a3c; /* lighter orange for dark theme */
+	}
+
+	.theme-type-dark .freshness-none {
+		color: var(--color-text-quaternary); /* lighter gray for dark theme */
+	}
+
+	/* ===================================================================== */
+	/* TASK-049: Unified Functional Button Styles                           */
+	/* ===================================================================== */
+
+	/* Base button style - extends .btn-text-default with modern styling */
+	.btn-standard {
+		display: inline-flex !important;
+		align-items: center !important;
+		justify-content: center !important;
+		gap: 4px !important;
+		background: var(--vscode-button-secondaryBackground, rgba(255, 255, 255, 0.08)) !important;
+		border: 1px solid var(--vscode-button-border, var(--color-border-default)) !important;
+		border-radius: 4px !important;
+		color: var(--vscode-button-secondaryForeground, var(--color-text-primary)) !important;
+		font-size: 12px !important;
+		font-weight: 500 !important;
+		cursor: pointer !important;
+		transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease !important;
+		outline: none !important;
+		box-sizing: border-box !important;
+		box-shadow: none !important;
+	}
+
+	/* Icon + text buttons (e.g., "▶ Run", "⚙ Settings") */
+	.btn-icon-text {
+		padding: 7px 12px !important;
+		font-size: 12px !important;
+		min-width: auto !important;
+	}
+
+	/* Icon-only buttons (e.g., "⚙", "◀") */
+	.btn-icon-only {
+		padding: 7px !important;
+		font-size: 16px !important;
+		min-width: 34px !important;
+		min-height: 34px !important;
+	}
+
+	/* Hover states for standard buttons */
+	.btn-standard:hover {
+		background: var(--vscode-button-secondaryHoverBackground, rgba(255, 255, 255, 0.16)) !important;
+		border-color: var(--vscode-button-border, var(--color-border-hover)) !important;
+	}
+
+	.btn-standard:active {
+		background: var(--vscode-button-secondaryBackground, rgba(255, 255, 255, 0.12)) !important;
+	}
+
+	.btn-standard:focus {
+		outline: 2px solid var(--vscode-focusBorder, #007acc) !important;
+		outline-offset: 2px !important;
+	}
+
+	.btn-standard:disabled {
+		background: rgba(255, 255, 255, 0.05) !important;
+		border-color: rgba(255, 255, 255, 0.12) !important;
+		color: rgba(255, 255, 255, 0.3) !important;
+		cursor: not-allowed !important;
+		transform: none !important;
+		box-shadow: none !important;
+	}
+
+	/* Primary button variant (for main actions) */
+	.btn-primary {
+		background: var(--vscode-button-background, #0e639c) !important;
+		border-color: var(--vscode-button-border, #0e639c) !important;
+		color: var(--vscode-button-foreground, #ffffff) !important;
+	}
+
+	.btn-primary:hover {
+		background: var(--vscode-button-hoverBackground, #1177bb) !important;
+		border-color: var(--vscode-button-border, #1177bb) !important;
+	}
+
+	.btn-primary:active {
+		background: var(--vscode-button-hoverBackground, #0e639c) !important;
+		border-color: var(--vscode-button-border, #0e639c) !important;
+	}
+
+	/* Success button variant (for Run/Execute actions) */
+	.btn-success {
+		background: var(--color-success-dark, #3BA55C) !important;
+		border-color: var(--color-success-dark, #3BA55C) !important;
+		color: var(--vscode-button-foreground, #fff) !important;
+		font-weight: 600 !important;
+	}
+
+	.btn-success:hover {
+		background: color-mix(in srgb, var(--color-success-dark, #3BA55C) 90%, black 10%) !important;
+		border-color: color-mix(in srgb, var(--color-success-dark, #3BA55C) 90%, black 10%) !important;
+		box-shadow: none !important;
+	}
+
+	.btn-success:active {
+		background: color-mix(in srgb, var(--color-success-dark, #3BA55C) 84%, black 16%) !important;
+		border-color: color-mix(in srgb, var(--color-success-dark, #3BA55C) 84%, black 16%) !important;
+	}
+
+	.btn-success:focus-visible {
+		outline: 2px solid var(--vscode-interactive-focusRing, var(--vscode-focusBorder, #007acc)) !important;
+		outline-offset: 1px !important;
+	}
+
+	/* Danger button variant (for Delete actions) */
+.btn-danger {
+	background: var(--color-error-primary, #C74E39);
+	border-color: var(--color-error-primary, #C74E39);
+	color: var(--vscode-button-foreground, #fff);
+}
+
+.btn-danger:hover {
+	background: color-mix(in srgb, var(--color-error-primary, #C74E39) 90%, black 10%);
+	border-color: color-mix(in srgb, var(--color-error-primary, #C74E39) 90%, black 10%);
+}
+
+.btn-danger:active {
+	background: color-mix(in srgb, var(--color-error-primary, #C74E39) 84%, black 16%);
+	border-color: color-mix(in srgb, var(--color-error-primary, #C74E39) 84%, black 16%);
+}
+
+.btn-danger:focus-visible {
+	outline: 2px solid var(--vscode-interactive-focusRing, var(--vscode-focusBorder, #007acc));
+	outline-offset: 1px;
+}
+
+	/* Dark theme support */
+	.theme-type-dark .btn-standard {
+		background: rgba(255, 255, 255, 0.1);
+		border-color: rgba(255, 255, 255, 0.3);
+		color: var(--color-border-light);
+	}
+
+	.theme-type-dark .btn-standard:hover {
+		background: rgba(255, 255, 255, 0.15);
+		border-color: rgba(255, 255, 255, 0.4);
+	}
+
+	.theme-type-dark .btn-standard:disabled {
+		background: rgba(255, 255, 255, 0.05);
+		border-color: rgba(255, 255, 255, 0.1);
+		color: var(--color-text-tertiary);
+	}
+
+	/* Maintain tree-item-action-btn from TASK-047 (already excellent) */
+	/* No changes needed - METHOD 5 implementation is production-ready */
+
+	/* ===================================================================== */
+	/* TASK-049: Macro Toolbar Styles                                       */
+	/* ===================================================================== */
+
+	.macro-toolbar {
+		display: flex !important;
+		align-items: center !important;
+		justify-content: space-between !important;
+		gap: 4px !important;
+	padding: 6px 12px !important;
+	background: var(--vscode-editor-background, #000000) !important;
+	color: var(--vscode-foreground, var(--color-text-primary)) !important;
+	border-bottom: 1px solid var(--vscode-editorGroupHeader-tabsBorder, rgba(255, 255, 255, 0.08)) !important;
+	box-shadow: none !important;
+		position: sticky !important;
+		top: 0 !important;
+		z-index: 10 !important;
+		flex-wrap: nowrap !important;
+	}
+
+.toolbar-section-left {
+		display: flex !important;
+		align-items: center !important;
+		gap: 4px !important;
+		flex: 0 1 auto !important;
+	}
+
+.r7-logo {
+		display: flex !important;
+		align-items: center !important;
+		justify-content: center !important;
+		margin-right: 6px !important;
+		cursor: pointer;
+	}
+
+.r7-logo img {
+		width: 28px;
+		height: 28px;
+		object-fit: contain;
+		border-radius: 3px;
+		display: block;
+	}
+
+.toolbar-button-group {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 4px !important;
+}
+
+#editor-command-group .btn-icon-only {
+    min-width: 30px !important;
+    min-height: 30px !important;
+    font-size: 14px !important;
+}
+
+.toolbar-section-center {
+		display: flex !important;
+		align-items: center !important;
+		justify-content: center !important;
+		flex: 1 1 auto !important;
+		padding: 0 16px !important;
+		overflow: hidden !important;
+}
+
+/* Dedicated window controls so they remain visible even when action buttons are hidden */
+.toolbar-window-controls {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+}
+.toolbar-window-controls.right { margin-left: auto !important; }
+.toolbar-window-controls .btn-icon-only { min-width: 28px; height: 26px; }
+
+	.toolbar-macro-name {
+		font-size: 14px !important;
+		font-weight: 600 !important;
+		color: var(--vscode-foreground, #cccccc) !important;
+		white-space: nowrap !important;
+		overflow: hidden !important;
+		text-overflow: ellipsis !important;
+		max-width: 100% !important;
+		user-select: none !important;
+	}
+
+	.toolbar-section-right {
+		display: flex !important;
+		align-items: center !important;
+		gap: 4px !important;
+		flex: 0 0 auto !important;
+		margin-left: auto !important;
+	}
+
+    /* Keep Run and Save visible; hide other toolbar buttons (including Debug — moved to right pane) */
+    .macro-toolbar #toolbar-debug-btn,
+    .macro-toolbar #toolbar-copy-btn,
+    .macro-toolbar #toolbar-rename-btn,
+    .macro-toolbar #toolbar-delete-btn,
+    .macro-toolbar #toolbar-autostart-label { display: none !important; }
+
+	.toolbar-title {
+		font-size: 13px !important;
+		font-weight: 600 !important;
+		color: var(--vscode-foreground, #cccccc) !important;
+		margin-right: 4px !important;
+		user-select: none !important;
+	}
+
+	.toolbar-separator {
+		width: 1px !important;
+		height: 24px !important;
+		background: var(--vscode-sideBar-border, rgba(255, 255, 255, 0.08)) !important;
+		margin: 0 4px !important;
+	}
+
+	.toolbar-icon {
+		font-size: 14px !important;
+		line-height: 1 !important;
+		display: inline-block !important;
+	}
+
+	.toolbar-label {
+		font-size: 11px !important;
+		font-weight: 500 !important;
+		line-height: 1 !important;
+	}
+
+	.toolbar-checkbox-label {
+		display: inline-flex !important;
+		align-items: center !important;
+		gap: 4px !important;
+		padding: 6px 10px !important;
+		cursor: pointer !important;
+		border-radius: 4px !important;
+		transition: background 0.2s !important;
+		user-select: none !important;
+	}
+
+	.toolbar-checkbox-label:hover {
+		background: var(--vscode-list-hoverBackground, rgba(255, 255, 255, 0.08)) !important;
+	}
+
+	.toolbar-checkbox-label input[type="checkbox"] {
+		cursor: pointer !important;
+		margin: 0 !important;
+	}
+
+	.toolbar-checkbox-label input[type="checkbox"]:disabled {
+		cursor: not-allowed !important;
+		opacity: 0.5 !important;
+	}
+
+	/* Toolbar button specific styling */
+	#macro-toolbar .btn-standard {
+		padding: 6px 10px !important;
+		gap: 5px !important;
+		min-height: 28px !important;
+	}
+
+#macro-toolbar .btn-standard .toolbar-icon {
+	flex-shrink: 0 !important;
+}
+
+.slider-fly-button {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.65);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-overlay, 0 2px 8px rgba(0, 0, 0, 0.24));
+    cursor: pointer;
+    transition: var(--transition-interactive, background-color 0.12s ease, color 0.12s ease, border-color 0.12s ease);
+    z-index: 10000;
+}
+
+.slider-fly-button:hover {
+    background: rgba(0, 0, 0, 0.78);
+}
+
+.slider-fly-button:focus-visible {
+    outline: 2px solid var(--vscode-interactive-focusRing, var(--vscode-focusBorder, #007acc));
+    outline-offset: 2px;
+}
+
+.slider-fly-button img {
+    width: 36px;
+    height: 36px;
+    object-fit: contain;
+    pointer-events: none;
+}
+
+	/* Inactive debug button styling */
+	.toolbar-debug-inactive {
+		opacity: 0.4 !important;
+		cursor: not-allowed !important;
+		background: var(--vscode-button-secondaryBackground, rgba(255, 255, 255, 0.08)) !important;
+		color: var(--vscode-descriptionForeground, var(--color-text-quaternary)) !important;
+		border-color: rgba(255, 255, 255, 0.12) !important;
+	}
+
+	.toolbar-debug-inactive:hover {
+		background: var(--vscode-button-secondaryBackground, rgba(255, 255, 255, 0.12)) !important;
+		color: var(--vscode-descriptionForeground, var(--color-text-quaternary)) !important;
+		border-color: rgba(255, 255, 255, 0.16) !important;
+		box-shadow: none !important;
+	}
+
+	.theme-type-dark .toolbar-debug-inactive {
+		background: rgba(80, 80, 80, 0.5) !important;
+		color: rgba(255, 255, 255, 0.3) !important;
+		border-color: rgba(255, 255, 255, 0.1) !important;
+	}
+
+	.theme-type-dark .toolbar-debug-inactive:hover {
+		background: rgba(80, 80, 80, 0.5) !important;
+		color: rgba(255, 255, 255, 0.3) !important;
+		border-color: rgba(255, 255, 255, 0.1) !important;
+	}
+
+	/* Dark theme support for toolbar */
+	.toolbar-title {
+		color: var(--vscode-foreground, var(--color-border-light)) !important;
+	}
+
+.toolbar-macro-name {
+	color: var(--vscode-foreground, var(--color-border-light)) !important;
+}
+
+.toolbar-macro-name.placeholder {
+	color: var(--vscode-descriptionForeground, #8a8a8a) !important;
+	font-style: italic !important;
+	font-weight: 500 !important;
+}
+
+	.theme-type-dark .toolbar-separator {
+		background: var(--vscode-sideBar-border, rgba(255, 255, 255, 0.08)) !important;
+	}
+
+	.theme-type-dark .toolbar-checkbox-label:hover {
+		background: rgba(255, 255, 255, 0.1) !important;
+	}
+
+	/* ===================================================================== */
+	/* TASK-075 Feature 2: Header Status Line (VSCode Parity Phase 1)       */
+	/* ===================================================================== */
+
+	/* Status Line Container */
+	.status-line { display: none !important; }
+
+	/* Status Line Sections */
+	.status-line-section {
+		display: flex;
+		align-items: center;
+		gap: 4px;
+		color: var(--color-text-primary);
+		user-select: none; 
+	}
+
+	.status-line-icon {
+		font-size: 12px;
+		flex-shrink: 0;
+	}
+
+	.status-line-text {
+		font-size: 11px;
+		font-weight: 500;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+
+	/* Empty state styling */
+	.status-line-text.status-line-empty {
+		color: var(--color-text-quaternary);
+		font-style: italic;
+	}
+
+	/* Mode section */
+	.status-line-mode {
+		font-weight: 600;
+		color: #4A90E2;
+	}
+
+	/* Macro name section */
+	.status-line-macro {
+		flex: 1;
+		max-width: 400px;
+	}
+
+	/* Count section */
+	.status-line-count {
+		color: var(--color-text-tertiary);
+	}
+
+	/* Dark theme support */
+	.theme-type-dark .status-line {
+		background: var(--color-bg-tertiary);
+		border-bottom-color: rgba(255, 255, 255, 0.1);
+	}
+
+	.theme-type-dark .status-line-section {
+		color: var(--color-text-secondary);
+	}
+
+	.theme-type-dark .status-line-text.status-line-empty {
+		color: var(--color-text-tertiary);
+	}
+
+	.theme-type-dark .status-line-mode {
+		color: var(--color-info-primary);
+	}
+
+	.theme-type-dark .status-line-count {
+		color: var(--color-text-tertiary);
+	}
+
+	/* TASK-049: Adjust layout to fit toolbar */
+	. {
+		top: 42px !important; /* Toolbar only */
+	}
+
+	#editorWrapper {
+		top: 42px !important; /* Toolbar only */
+	}
+
+	.resizable-splitter {
+		top: 42px !important; /* Toolbar only */
+	}
+
+	/* TASK 1.2: Adjust layout for Activity Bar (48px left edge) */
+    #vscode-activity-bar {
+        top: 42px !important; /* Start below toolbar */
+        bottom: 0 !important;  /* parent has bottom spacing */
+    }
+
+	. {
+		left: 48px !important; /* Make room for Activity Bar */
+	}
+
+	#editorWrapper {
+		left: 30%; /* Align with tree's right edge (right: 70%) - JavaScript updates dynamically */
+		right: 48px; /* reserve space for right activity bar */
+	}
+
+	/* Split Editor Vertically layout (Tab context menu action) */
+	#editorWrapper.split-vertical #editor {
+		/* occupy left half when split */
+		right: 50% !important;
+	}
+	#editorWrapper.split-vertical #editorRight {
+		position: absolute;
+		top: 28px; /* leave room for tab bar; matches #editor */
+		bottom: 0;
+		left: 50%;
+		right: 0;
+	}
+
+	/* Right Activity Bar positioning (mirror of left) */
+	#vscode-activity-bar-right {
+		top: 42px !important;
+		bottom: 0 !important;
+	}
+
+	/* When right pane is open, shift editor to make room */
+	body.right-pane-open #editorWrapper {
+		right: calc(48px + var(--right-pane-width, 450px));
+	}
+
+	/* TASK-127 METHOD 1: Force Monaco overview ruler creation via CSS class trigger
+	 * Root cause: Monaco's ResizeObserver only fires reliably on CSS class changes
+	 * This 1px shift triggers ResizeObserver -> Monaco creates .decorationsOverviewRuler DOM
+	 * Trinity Analysis (Sonnet + Gemini + Codex) consensus solution after 9 failed attempts */
+	body.enable-monaco-overview-ruler #editorWrapper {
+		right: calc(48px + 1px); /* Minimal shift to trigger ResizeObserver */
+	}
+
+ 	.resizable-splitter {
+		/* TASK 1.2: Position controlled by JavaScript via 'right' property - no CSS 'left' needed */
+		/* right: 70% is set by JavaScript setPanelWidths() */
+	}
+
+	.console-panel {
+		left: 48px !important; /* Start to the right of Activity Bar */
+	}
+
+	/* ===================================================================== */
+	/* TASK-075 Feature 3: Focus Mode Indicator (VSCode Parity Phase 1)     */
+	/* ===================================================================== */
+
+	/* Make containers focusable */
+	.,
+	#editorWrapper {
+		outline: none; 
+	}
+
+	/* Focus indicators without extra borders (avoid double line with splitter) */
+	.:focus-within,
+	..pane-focused {
+		border-right: 0; /* remove blue line to prevent double border */
+		box-shadow: inset -2px 0 8px rgba(74, 144, 226, 0.15);
+	}
+
+	/* ===================================================================== */
+	/* ADR-088: Macro Execution Floating Error Popup                         */
+	/* ===================================================================== */
+
+	.macro-error-popup-root {
+		position: fixed;
+		top: 56px; /* below toolbar + status line */
+		right: 16px;
+		z-index: 9999;
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+		pointer-events: none;
+	}
+
+	.macro-error-popup {
+		min-width: 260px;
+		max-width: 360px;
+		padding: 8px 12px;
+		border-radius: 4px;
+		border: 1px solid rgba(0, 0, 0, 0.08);
+		background: var(--color-bg-tertiary, #ffffff);
+		color: var(--color-text-primary, #222222);
+		box-shadow: 0 4px 14px rgba(0, 0, 0, 0.14);
+		display: flex;
+		flex-direction: column;
+		row-gap: 4px;
+		pointer-events: auto;
+		font-size: 12px;
+	}
+
+	.macro-error-popup-title {
+		font-weight: 600;
+		margin-bottom: 2px;
+	}
+
+	.macro-error-popup-message {
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+
+	.macro-error-popup-meta {
+		font-size: 11px;
+		color: var(--color-text-tertiary, #666666);
+	}
+
+	.macro-error-popup-actions {
+		display: flex;
+		justify-content: flex-end;
+		gap: 6px;
+		margin-top: 4px;
+	}
+
+	.macro-error-popup-btn {
+		border: none;
+		border-radius: 3px;
+		padding: 2px 6px;
+		font-size: 11px;
+		cursor: pointer;
+		background: transparent;
+		color: var(--color-text-primary, #222222);
+	}
+
+	.macro-error-popup-details {
+		background: var(--color-info-primary, #4A90E2);
+		color: #ffffff;
+	}
+
+	.macro-error-popup-close {
+		font-weight: bold;
+		line-height: 1;
+	}
+
+	.theme-type-dark .macro-error-popup {
+		background: var(--color-bg-tertiary, #1e1e1e);
+		border-color: rgba(255, 255, 255, 0.14);
+		color: var(--color-text-primary, #f5f5f5);
+	}
+
+	.theme-type-dark .macro-error-popup-meta {
+		color: var(--color-text-tertiary, #aaaaaa);
+	}
+
+	#editorWrapper:focus-within,
+	#editorWrapper.pane-focused {
+		border-left: 0; /* remove blue line to prevent double border */
+		box-shadow: inset 2px 0 8px rgba(74, 144, 226, 0.15);
+	}
+
+	/* Dark theme focus indicators */
+	.theme-type-dark .:focus-within,
+	.theme-type-dark ..pane-focused {
+		border-right: 0;
+		box-shadow: inset -2px 0 8px rgba(79, 193, 255, 0.25);
+	}
+
+	.theme-type-dark #editorWrapper:focus-within,
+	.theme-type-dark #editorWrapper.pane-focused {
+		border-left: 0;
+		box-shadow: inset 2px 0 8px rgba(79, 193, 255, 0.25);
+	}
+
+	/* TASK-051 Phase 4: AI Settings Dialog Styles */
+	.settings-section {
+		margin-bottom: 20px;
+		padding-bottom: 15px;
+		border-bottom: 1px solid var(--border-control);
+	}
+
+	.settings-section:last-child {
+		border-bottom: none; 
+	}
+
+	.settings-section h3 {
+		margin-bottom: 10px;
+		font-size: 16px;
+		font-weight: 600;
+		color: var(--text-normal);
+	}
+
+	.settings-section h4 {
+		margin-bottom: 8px;
+		font-size: 14px;
+		font-weight: 500;
+		color: var(--text-normal);
+	}
+
+	.input-field {
+		width: 100%;
+		padding: 8px;
+		border: 1px solid var(--border-control);
+		border-radius: var(--radius-base);
+		background: var(--background-normal);
+		color: var(--text-normal);
+		font-size: 13px;
+		margin-bottom: 10px;
+		box-sizing: border-box;
+		pointer-events: auto;
+		position: relative;
+		z-index: 1;
+	}
+
+	.input-field:focus {
+		outline: none; 
+		border-color: var(--highlight-button-hover);
+		z-index: 2;
+	}
+
+	.provider-settings {
+		padding: 15px;
+		background: var(--background-normal);
+		border: 1px solid var(--border-control);
+		border-radius: var(--radius-base);
+		margin-bottom: 10px;
+	}
+
+	.theme-type-dark .provider-settings {
+		background: var(--color-bg-hover);
+	}
+
+	#aiSettingsButton {
+		margin-left: 4px;
+	}
+
+	/* =============================================================================
+	 * DARK THEME OVERRIDES FOR INLINE STYLES
+	 * ============================================================================= */
+
+	/* Context Menu + Floating Surfaces */
+	.context-menu-options {
+		background-color: var(--vscode-menu-background, var(--color-bg-tertiary)) !important;
+		color: var(--vscode-menu-foreground, var(--color-text-primary)) !important;
+		border-color: var(--vscode-menu-border, var(--color-border-default)) !important;
+	}
+
+	.context-menu-option {
+		color: var(--vscode-menu-foreground, var(--color-text-primary)) !important;
+	}
+
+	.context-menu-option:hover {
+		background-color: var(--vscode-menu-selectionBackground, var(--color-state-active-bg)) !important;
+		color: var(--vscode-menu-selectionForeground, var(--color-state-selected-text)) !important;
+	}
+
+	/* Macro tree + primary panels */
+	.macros,
+	.menu_macros_full,
+	.tree-container,
+	#menu_content {
+		background-color: var(--vscode-sideBar-background, var(--color-bg-primary)) !important;
+		color: var(--vscode-sideBar-foreground, var(--color-text-primary)) !important;
+	}
+
+	.tree-node {
+		background-color: transparent !important;
+		color: var(--vscode-sideBar-foreground, var(--color-text-primary)) !important;
+	}
+
+	.tree-node-header {
+		background-color: var(--vscode-sideBarSectionHeader-background, var(--color-bg-secondary)) !important;
+		color: var(--vscode-sideBarSectionHeader-foreground, var(--color-text-primary)) !important;
+		border-bottom: 1px solid var(--vscode-sideBarSectionHeader-border, var(--color-border-default)) !important;
+	}
+
+	.tree-node-title {
+		color: var(--vscode-sideBarTitle-foreground, var(--color-text-primary)) !important;
+	}
+
+	.tree-node-count {
+		color: var(--vscode-sideBarSectionHeader-foreground, var(--color-text-quaternary)) !important;
+	}
+
+	/* Hide entire Macros header row (chevron, label, count) in main explorer */
+	#macros-tree-node > .tree-node-header {
+		display: none !important;
+	}
+
+	/* Hide entire Examples header row (chevron, label, count) in explorer */
+	#examples-tree-node > .tree-node-header {
+		display: none !important;
+	}
+
+	/* Hide WRK folder header (chevron + label + count) in Work Macros view,
+	   while keeping its nested subfolders/items visible */
+	#macros-children .macros-v2-header[data-folder-prefix="WRK"] {
+		display: none !important;
+	}
+
+	.tree-node-expand {
+		color: var(--vscode-sideBar-foreground, var(--color-text-primary)) !important;
+	}
+
+	.tree-node-expand:hover {
+		background-color: var(--vscode-list-hoverBackground, var(--color-bg-hover)) !important;
+		color: var(--vscode-list-activeSelectionForeground, var(--color-text-secondary)) !important;
+	}
+
+	.tree-section-new-btn {
+		filter: invert(1) brightness(0.9);
+		background-color: transparent;
+	}
+
+	.tree-section-new-btn:hover {
+		background-color: var(--vscode-list-hoverBackground, var(--color-bg-hover)) !important;
+	}
+
+	/* Rename Dialog */
+	.theme-type-dark .divRename {
+		background: var(--color-bg-tertiary) !important;
+		border-color: var(--color-border-default) !important;
+	}
+
+	.theme-type-dark .divRename input {
+		background-color: var(--color-bg-secondary) !important;
+		border-color: var(--color-border-default) !important;
+		color: var(--color-text-primary) !important;
+	}
+
+	/* Settings Panel */
+	.theme-type-dark .settings-panel {
+		background: var(--color-bg-primary) !important;
+		color: var(--color-text-primary) !important;
+	}
+
+	.theme-type-dark .settings-content {
+		background: var(--color-bg-secondary) !important;
+	}
+
+	.theme-type-dark .settings-section {
+		border-color: var(--color-border-default) !important;
+	}
+
+	.theme-type-dark .settings-label {
+		color: var(--color-text-primary) !important;
+	}
+
+	.theme-type-dark .settings-input,
+	.theme-type-dark .settings-select {
+		background-color: var(--color-bg-secondary) !important;
+		border-color: var(--color-border-default) !important;
+		color: var(--color-text-primary) !important;
+	}
+
+	/* Toolbar and Top Bar */
+	.theme-type-dark .toolbar {
+		background-color: var(--color-bg-secondary) !important;
+		border-bottom-color: var(--color-border-default) !important;
+	}
+
+	.theme-type-dark .toolbar button {
+		background: var(--color-bg-tertiary) !important;
+		color: var(--color-text-primary) !important;
+		border-color: var(--color-border-default) !important;
+	}
+
+	.theme-type-dark .toolbar button:hover {
+		background-color: var(--color-bg-hover) !important;
+	}
+
+	/* Console Output Panel */
+	.theme-type-dark .console-panel,
+	.theme-type-dark #console-output {
+		background-color: var(--color-bg-primary) !important;
+		color: var(--color-text-primary) !important;
+	}
+
+	/* Scrollbars in Dark Theme */
+	.theme-type-dark ::-webkit-scrollbar {
+		width: 10px;
+		height: 10px;
+	}
+
+	.theme-type-dark ::-webkit-scrollbar-track {
+		background: var(--color-bg-primary);
+	}
+
+	.theme-type-dark ::-webkit-scrollbar-thumb {
+		background: var(--color-border-medium);
+		border-radius: var(--radius-xs);
+	}
+
+	.theme-type-dark ::-webkit-scrollbar-thumb:hover {
+		background: var(--color-border-dark);
+	}
+
+	/* Modal Dialogs */
+	.theme-type-dark .modal {
+		background: var(--color-bg-overlay) !important;
+	}
+
+	.theme-type-dark .modal-content {
+		background: var(--color-bg-secondary) !important;
+		border-color: var(--color-border-default) !important;
+		color: var(--color-text-primary) !important;
+	}
+
+	/* Borders and Dividers */
+	.theme-type-dark .border,
+	.theme-type-dark hr {
+		border-color: var(--color-border-default) !important;
+	}
+
+	/* VBA Section - Dark Theme Override */
+	.theme-type-dark #imported-vba-tree-node .tree-node-header {
+		background: #3d2f1f !important; /* Dark brown instead of yellow */
+	}
+
+	.theme-type-dark #imported-vba-tree-node .tree-node-title span {
+		color: #ffb74d !important; /* Lighter orange for better contrast */
+	}
+
+	.theme-type-dark #imported-vba-count {
+		color: #ffb74d !important;
+	}
+
+	/* JavaScript Section - Dark Theme Override */
+	.theme-type-dark #imported-js-tree-node .tree-node-header {
+		background: #1e3a28 !important; /* Dark green instead of light green */
+	}
+
+	.theme-type-dark #imported-js-tree-node .tree-node-title span {
+		color: #81c784 !important; /* Lighter green for better contrast */
+	}
+
+	.theme-type-dark #imported-js-count {
+		color: #81c784 !important;
+	}
+
+	/* External Scripts Section */
+	.theme-type-dark #external-scripts-tree-node .tree-node-header {
+		background-color: var(--color-bg-secondary) !important;
+	}
+
+
+/* =========================================================================
+   TREE COMPONENT (from tree-view.css)
+   ========================================================================= */
+/**
+ * Tree View CSS - Tree UI, Folders, Items, Actions
+ * Extracted from index.html inline styles
+ *
+ * Contains:
+ * - FancyTree customization
+ * - Macro item styling (light/dark themes)
+ * - Folder styling and expanders
+ * - Tree structure and connection lines
+ * - Tree item action buttons
+ * - Tree pane toggle buttons
+ * - Tree section new button
+ */
+
+/* Tree UI Styling */
+.macro-tree-container {
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+}
+
+/* FancyTree customization */
+.fancytree-container {
+	border: none !important;
+	outline: none !important;
+	font-family: inherit !important;
+	font-size: 11px !important;
+}
+
+.fancytree-node {
+	position: relative !important;
+}
+
+.fancytree-title {
+	font-size: 11px !important;
+	font-family: inherit !important;
+	color: inherit !important;
+	padding: 2px 4px !important;
+	line-height: 16px !important;
+	border-radius: 3px !important;
+}
+
+/* Macro item styling */
+.fancytree-node .macro-item {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+	padding: 4px 8px 3px 4px;
+	margin: 1px 0;
+	font-size: 11px;
+	line-height: 16px;
+	position: relative;
+	min-height: 22px;
+	border-radius: 3px;
+	background: transparent;
+	color: var(--vscode-sideBar-foreground, var(--color-text-primary));
+	transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.fancytree-node .macro-name {
+	flex: 1;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	padding-right: 8px;
+	color: inherit;
+}
+
+.fancytree-node .macro-autostart {
+	position: relative;
+	font-size: 10px;
+	pointer-events: none; 
+	margin-right: 4px;
+	user-select: none; 
+	opacity: 0.85;
+	color: inherit;
+}
+
+.fancytree-node .macro-item:hover {
+	background-color: var(--vscode-list-hoverBackground, var(--color-bg-hover));
+	color: var(--vscode-sideBar-foreground, var(--color-text-primary));
+}
+
+.fancytree-node.macro-selected .macro-item {
+	background-color: var(--vscode-list-activeSelectionBackground, var(--color-state-active-bg));
+	color: var(--vscode-list-activeSelectionForeground, var(--color-state-selected-text));
+}
+
+.fancytree-node.macro-selected .macro-name,
+.fancytree-node.macro-selected .macro-autostart {
+	color: var(--vscode-list-activeSelectionForeground, var(--color-state-selected-text));
+}
+
+/* Folder styling */
+.fancytree-folder > .fancytree-title {
+	font-weight: normal !important;
+	font-size: 11px !important;
+	padding: 4px 8px !important;
+	margin-bottom: 0 !important;
+}
+
+/* Hide default FancyTree icons for macros, keep for folders */
+.fancytree-node:not(.fancytree-folder) > span.fancytree-icon {
+	display: none !important;
+}
+
+/* Custom expander for folders */
+.fancytree-exp-e, .fancytree-exp-c {
+	width: 16px !important;
+	height: 16px !important;
+	margin-right: 4px !important;
+	cursor: pointer !important;
+}
+
+/* Tree structure styles */
+#menu_content {
+	padding-top: 0;
+}
+
+ul.fancytree-container {
+	padding: 0 !important;
+	margin: 0 !important;
+	list-style: none !important;
+	background: transparent !important;
+}
+
+ul.fancytree-container > li {
+	list-style: none !important;
+	margin: 0 !important;
+	padding: 0 !important;
+}
+
+ul.fancytree-container ul {
+	padding-left: 16px !important;
+	margin: 0 !important;
+	list-style: none !important;
+}
+
+span.fancytree-node {
+	display: block !important;
+	position: relative !important;
+	padding: 0 !important;
+	margin: 0 !important;
+}
+
+span.fancytree-expander {
+	display: inline-block !important;
+	width: 16px !important;
+	height: 16px !important;
+	margin-right: 4px !important;
+	cursor: pointer !important;
+	vertical-align: middle !important;
+}
+
+span.fancytree-icon {
+	display: inline-block !important;
+	width: 16px !important;
+	height: 16px !important;
+	margin-right: 4px !important;
+	vertical-align: middle !important;
+}
+
+span.fancytree-title {
+	display: inline-block !important;
+	vertical-align: middle !important;
+	padding: 2px 4px !important;
+	border-radius: 3px !important;
+}
+
+span.fancytree-expander:before {
+	content: '';
+	display: block;
+	width: 0;
+	height: 0;
+	border-style: solid;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+}
+
+span.fancytree-exp-c:before {
+	border-width: 4px 0 4px 6px;
+	border-color: transparent transparent transparent #666;
+	transform: translate(-50%, -50%);
+}
+
+span.fancytree-exp-e:before {
+	border-width: 6px 4px 0 4px;
+	border-color: #666 transparent transparent transparent;
+	transform: translate(-50%, -50%);
+}
+
+.theme-type-dark span.fancytree-exp-c:before {
+	border-color: transparent transparent transparent #AAA;
+}
+
+.theme-type-dark span.fancytree-exp-e:before {
+	border-color: #AAA transparent transparent transparent;
+}
+
+span.fancytree-checkbox {
+	display: none !important;
+}
+
+.fancytree-folder > .fancytree-icon {
+	background-position: center !important;
+	background-size: 16px 16px !important;
+	background-repeat: no-repeat !important;
+}
+
+.fancytree-exp-c.fancytree-folder > .fancytree-icon {
+	background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cGF0aCBkPSJNMTQuNSAxMy41SDE1VjRIMTIuNDEzTDExLjU4NyAySDEuNVYxMy41SDE0LjVaIiBmaWxsPSIjQ0JBMjcwIiBzdHJva2U9IiM3QzY1NEMiLz4KPC9zdmc+Cg==') !important;
+}
+
+.fancytree-exp-e.fancytree-folder > .fancytree-icon {
+	background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cGF0aCBkPSJNMTQuNSAxMy41SDE1VjZIMTIuNDEzTDExLjU4NyAySDE1VjFIMTEuNUwxMC41IDRIMVYxMy41SDE0LjVaIiBmaWxsPSIjRENBRjY5IiBzdHJva2U9IiM5Mzc1NGMiLz4KPC9zdmc+Cg==') !important;
+}
+
+.fancytree-active > .fancytree-title {
+	background-color: transparent !important;
+	border: none !important;
+}
+
+.fancytree-focused .fancytree-active > .fancytree-title {
+	background-color: transparent !important;
+}
+
+ul.fancytree-container {
+	position: relative;
+}
+
+.fancytree-node:before,
+.fancytree-node:after {
+	content: '';
+	position: absolute;
+	left: -12px;
+}
+
+.fancytree-node:before {
+	top: -7px;
+	bottom: 50%;
+	width: 1px;
+	background: rgba(0, 0, 0, 0.1);
+}
+
+.fancytree-node:after {
+	top: 50%;
+	width: 12px;
+	height: 1px;
+	background: rgba(0, 0, 0, 0.1);
+}
+
+.fancytree-lastsib:before {
+	bottom: auto;
+	height: 50%;
+}
+
+.fancytree-exp-e.fancytree-lastsib:before,
+.fancytree-exp-c.fancytree-lastsib:before {
+	bottom: auto;
+	height: 50%;
+}
+
+li:last-child > .fancytree-node:before {
+	height: 50%;
+}
+
+.theme-type-dark .fancytree-node:before,
+.theme-type-dark .fancytree-node:after {
+	background: rgba(255, 255, 255, 0.1);
+}
+
+/* Tree connection lines */
+.fancytree-node {
+	position: relative;
+}
+
+ul.fancytree-container > li > span.fancytree-node:before,
+ul.fancytree-container > li > span.fancytree-node:after {
+	display: none !important;
+}
+
+ul.fancytree-container ul li {
+	position: relative;
+}
+
+ul.fancytree-container ul li:before {
+	content: '';
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: -16px;
+	width: 1px;
+	background: rgba(0, 0, 0, 0.1);
+}
+
+ul.fancytree-container ul li:last-child:before {
+	bottom: 50%;
+}
+
+.theme-type-dark ul.fancytree-container ul li:before {
+	background: rgba(255, 255, 255, 0.1);
+}
+
+/* Tree pane toggle buttons */
+.tree-toggle {
+	position: absolute;
+	bottom: 8px;
+	width: 24px;
+	height: 24px;
+	background-color: var(--vscode-button-secondaryBackground, #E0E0E0);
+	border: 1px solid var(--vscode-interactive-border, #CBCBCB);
+	border-radius: var(--radius-sm);
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	z-index: 101;
+	transition: var(--transition-interactive, background-color 0.12s ease, color 0.12s ease, border-color 0.12s ease);
+}
+
+.tree-toggle:hover {
+	background-color: var(--vscode-button-secondaryHoverBackground, #D0D0D0);
+}
+
+.tree-toggle:focus-visible {
+	outline: 2px solid var(--vscode-interactive-focusRing, var(--vscode-focusBorder, #007acc));
+	outline-offset: 1px;
+}
+
+.tree-toggle-collapse {
+	left: 8px;
+}
+
+.tree-toggle-expand {
+	right: 8px;
+}
+
+/* METHOD 5: Tree item action buttons - Primary (always visible) + Secondary (hover) */
+
+/* Primary action container - Always visible */
+.fancytree-node .macro-actions-primary {
+	display: flex;
+	align-items: center;
+	gap: 2px;
+	margin-left: auto;
+	opacity: 1;
+}
+
+/* Secondary actions container - Shows on hover */
+.fancytree-node .macro-actions-secondary {
+	display: none;
+	align-items: center;
+	gap: 2px;
+	margin-left: 4px;
+}
+
+.fancytree-node:hover .macro-actions-secondary {
+	display: flex;
+}
+
+/* Legacy support - keep for backward compatibility */
+.fancytree-node .macro-actions {
+	display: none;
+	align-items: center;
+	gap: 4px;
+	margin-left: auto;
+}
+
+.fancytree-node:hover .macro-actions {
+	display: flex;
+}
+
+/* Tree item action buttons */
+.macro-action-btn {
+	width: 20px;
+	height: 20px;
+	border: none; 
+	background-color: transparent;
+	background-size: 14px 14px;
+	background-position: center;
+	background-repeat: no-repeat;
+	cursor: pointer;
+	opacity: 0.7;
+	transition: opacity 0.2s ease;
+	flex-shrink: 0;
+}
+
+.macro-action-btn:hover {
+	opacity: 1;
+	background-color: rgba(0, 0, 0, 0.1);
+}
+
+.macro-action-run {
+	background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTQiIGhlaWdodD0iMTQiIHZpZXdCb3g9IjAgMCAxNCAxNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cGF0aCBkPSJNMyAyTDEyIDdMMyAxMloiIGZpbGw9IiM0QkFFNTAiLz4KPC9zdmc+Cg==');
+}
+
+.macro-action-copy {
+	background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTQiIGhlaWdodD0iMTQiIHZpZXdCb3g9IjAgMCAxNCAxNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB4PSI0IiB5PSI0IiB3aWR0aD0iOCIgaGVpZ2h0PSI4IiBzdHJva2U9IiM2NjYiIGZpbGw9Im5vbmUiLz4KICA8cmVjdCB4PSIyIiB5PSIyIiB3aWR0aD0iOCIgaGVpZ2h0PSI4IiBzdHJva2U9IiM2NjYiIGZpbGw9IiNGRkYiLz4KPC9zdmc+Cg==');
+}
+
+.theme-type-dark .macro-action-btn:hover {
+	background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Tree section new button */
+.tree-section-new {
+	padding: 8px;
+	margin: 4px 8px;
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	cursor: pointer;
+	font-size: 11px;
+	color: var(--color-text-tertiary);
+	border-radius: var(--radius-sm);
+	transition: background-color 0.2s ease;
+}
+
+.tree-section-new:hover {
+	background-color: var(--vscode-interactive-hoverBackground, rgba(0, 0, 0, 0.05));
+	color: var(--vscode-interactive-hoverForeground, var(--color-text-primary));
+}
+
+.tree-section-new-icon {
+	width: 16px;
+	height: 16px;
+	background-size: 16px 16px;
+	background-position: center;
+	background-repeat: no-repeat;
+	opacity: 0.7;
+}
+
+.theme-type-dark .tree-section-new {
+	color: var(--vscode-descriptionForeground, #AAA);
+}
+
+.theme-type-dark .tree-section-new:hover {
+	background-color: var(--vscode-interactive-hoverBackground, rgba(255, 255, 255, 0.08));
+	color: var(--vscode-interactive-hoverForeground, #DDD);
+}
+
+/* TASK-029: Editor Run Button CSS removed - button moved to plugin footer */
+
+
+/* =========================================================================
+   SPLITTER COMPONENT (from splitter.css)
+   ========================================================================= */
+/**
+ * Splitter CSS - Resizable Splitter Styles
+ * Extracted from index.html inline styles
+ *
+ * Contains:
+ * - Resizable splitter positioning and sizing
+ * - Hover/active/dragging states
+ * - Dark theme support for splitter
+ */
+
+/* Resizable splitter styles */
+.resizable-splitter {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	width: 12px; /* Narrower so it doesn't cover sidebar UI */
+	left: 30%;   /* JS will override with exact pixel position */
+	transform: none; 
+	background-color: transparent; /* default transparent to avoid covering controls */
+	border-left: 1px solid rgba(0, 0, 0, 0.2); /* visual gray divider */
+	cursor: col-resize;
+	z-index: 100; /* above content to allow dragging */
+	transition: left 0.1s ease, background-color 0.2s ease, border-color 0.2s ease;
+	pointer-events: auto; /* capture mouse events */
+}
+
+.resizable-splitter:hover { background-color: var(--color-splitter-hover); }
+
+.resizable-splitter:active { background-color: var(--color-splitter-active); }
+
+.resizable-splitter.dragging { background-color: var(--color-splitter-active); transition: none;  }
+
+.theme-type-dark .resizable-splitter { border-left-color: rgba(255, 255, 255, 0.15); }
+.theme-type-dark .resizable-splitter:hover { background-color: var(--color-splitter-hover); }
+
+.theme-type-dark .resizable-splitter:active { background-color: var(--color-splitter-active); }
+
+.theme-type-dark .resizable-splitter.dragging { background-color: var(--color-splitter-active); }
+
+
+/* =========================================================================
+   SIDEBAR VIEW STATE SWITCHING (from sidebar/state/view-state.css)
+   Level 3 → Level 2 flattening
+   ========================================================================= */
+/**
+ * Sidebar View State Switches
+ * ---------------------------
+ * Applied via data-active-view attribute on #menu_content.
+ * Controls visibility and layout hand-off between tree sections.
+ */
+
+/* =========================================================================
+   SHARED EXPLORER SCROLLBAR UTILITY (CORRECTED - TASK-106-FIX)
+   Unified scrollbar styling for all 4 explorer views
+
+   FIX: Replaced non-existent selectors ( etc.) with
+   actual DOM element IDs (#macros-children, #examples-children, etc.)
+   ========================================================================= */
+
+/* TASK-116-PART-8: UNIVERSAL SCROLLBAR HIDING - Target ALL sidebar elements (overridden below for explorer panes) */
+/* TASK-118-FIX: Exclude PerfectScrollbar elements from hiding rules */
+
+/* Target ALL elements inside sidebar containers (exclude PerfectScrollbar) */
+#vscode-sidebar *:not(.ps):not(.ps__rail-y):not(.ps__thumb-y),
+#menu_macros *:not(.ps):not(.ps__rail-y):not(.ps__thumb-y),
+#menu_content *:not(.ps):not(.ps__rail-y):not(.ps__thumb-y),
+#examples-children:not(.ps),
+#examples-children *:not(.ps):not(.ps__rail-y):not(.ps__thumb-y),
+#external-scripts-children:not(.ps),
+#external-scripts-children *:not(.ps):not(.ps__rail-y):not(.ps__thumb-y),
+#sidebar-logs-output:not(.ps),
+#sidebar-logs-output *:not(.ps):not(.ps__rail-y):not(.ps__thumb-y),
+.tree-node:not(.ps),
+.tree-node *:not(.ps):not(.ps__rail-y):not(.ps__thumb-y),
+.tree-node-children:not(.ps),
+.tree-node-children *:not(.ps):not(.ps__rail-y):not(.ps__thumb-y) {
+  /* Non-Webkit Fallback (Firefox, older Edge) */
+  scrollbar-width: none !important; /* Force hide native scrollbars only */
+}
+
+/* Webkit Browsers (Chrome, Safari, Edge Chromium) - Universal (exclude PerfectScrollbar) */
+#vscode-sidebar *:not(.ps):not(.ps__rail-y):not(.ps__thumb-y)::-webkit-scrollbar,
+#menu_macros *:not(.ps):not(.ps__rail-y):not(.ps__thumb-y)::-webkit-scrollbar,
+#menu_content *:not(.ps):not(.ps__rail-y):not(.ps__thumb-y)::-webkit-scrollbar,
+#examples-children:not(.ps)::-webkit-scrollbar,
+#examples-children *:not(.ps):not(.ps__rail-y):not(.ps__thumb-y)::-webkit-scrollbar,
+#external-scripts-children:not(.ps)::-webkit-scrollbar,
+#external-scripts-children *:not(.ps):not(.ps__rail-y):not(.ps__thumb-y)::-webkit-scrollbar,
+#sidebar-logs-output:not(.ps)::-webkit-scrollbar,
+#sidebar-logs-output *:not(.ps):not(.ps__rail-y):not(.ps__thumb-y)::-webkit-scrollbar,
+.tree-node:not(.ps)::-webkit-scrollbar,
+.tree-node *:not(.ps):not(.ps__rail-y):not(.ps__thumb-y)::-webkit-scrollbar,
+.tree-node-children:not(.ps)::-webkit-scrollbar,
+.tree-node-children *:not(.ps):not(.ps__rail-y):not(.ps__thumb-y)::-webkit-scrollbar {
+  display: none !important; /* Force hide native scrollbars only */
+  width: 0 !important;
+  height: 0 !important;
+}
+
+/* Allow explorer panes to expose native scrollbars when needed */
+#macros-children,
+#macros-children__legacy,
+[data-tree-slot-container="macros"],
+#examples-children,
+#examples-children__legacy,
+[data-tree-slot-container="examples"],
+#external-scripts-children,
+#external-scripts-children__legacy,
+[data-tree-slot-container="external-scripts"] {
+  scrollbar-width: thin !important;
+}
+
+#macros-children::-webkit-scrollbar,
+#macros-children__legacy::-webkit-scrollbar,
+[data-tree-slot-container="macros"]::-webkit-scrollbar,
+#examples-children::-webkit-scrollbar,
+#examples-children__legacy::-webkit-scrollbar,
+[data-tree-slot-container="examples"]::-webkit-scrollbar,
+#external-scripts-children::-webkit-scrollbar,
+#external-scripts-children__legacy::-webkit-scrollbar,
+[data-tree-slot-container="external-scripts"]::-webkit-scrollbar {
+  display: block !important;
+  width: 8px !important;
+  height: auto !important;
+}
+
+#macros-children::-webkit-scrollbar-track,
+#macros-children__legacy::-webkit-scrollbar-track,
+[data-tree-slot-container="macros"]::-webkit-scrollbar-track,
+#examples-children::-webkit-scrollbar-track,
+#examples-children__legacy::-webkit-scrollbar-track,
+[data-tree-slot-container="examples"]::-webkit-scrollbar-track,
+#external-scripts-children::-webkit-scrollbar-track,
+#external-scripts-children__legacy::-webkit-scrollbar-track,
+[data-tree-slot-container="external-scripts"]::-webkit-scrollbar-track {
+  background: var(--color-bg-secondary);
+}
+
+#macros-children::-webkit-scrollbar-thumb,
+#macros-children__legacy::-webkit-scrollbar-thumb,
+[data-tree-slot-container="macros"]::-webkit-scrollbar-thumb,
+#examples-children::-webkit-scrollbar-thumb,
+#examples-children__legacy::-webkit-scrollbar-thumb,
+[data-tree-slot-container="examples"]::-webkit-scrollbar-thumb,
+#external-scripts-children::-webkit-scrollbar-thumb,
+#external-scripts-children__legacy::-webkit-scrollbar-thumb,
+[data-tree-slot-container="external-scripts"]::-webkit-scrollbar-thumb {
+  background: var(--color-border-default);
+  border-radius: var(--radius-xs);
+}
+
+#macros-children::-webkit-scrollbar-thumb:hover,
+#macros-children__legacy::-webkit-scrollbar-thumb:hover,
+[data-tree-slot-container="macros"]::-webkit-scrollbar-thumb:hover,
+#examples-children::-webkit-scrollbar-thumb:hover,
+#examples-children__legacy::-webkit-scrollbar-thumb:hover,
+[data-tree-slot-container="examples"]::-webkit-scrollbar-thumb:hover,
+#external-scripts-children::-webkit-scrollbar-thumb:hover,
+#external-scripts-children__legacy::-webkit-scrollbar-thumb:hover,
+[data-tree-slot-container="external-scripts"]::-webkit-scrollbar-thumb:hover {
+  background: var(--color-border-hover);
+}
+
+/* Dark theme contrast adjustments for explorer scrollbars */
+.theme-type-dark #macros-children,
+.theme-type-dark #macros-children__legacy,
+.theme-type-dark [data-tree-slot-container="macros"],
+.theme-type-dark #examples-children,
+.theme-type-dark #examples-children__legacy,
+.theme-type-dark [data-tree-slot-container="examples"],
+.theme-type-dark #external-scripts-children,
+.theme-type-dark #external-scripts-children__legacy,
+.theme-type-dark [data-tree-slot-container="external-scripts"] {
+  scrollbar-color: var(--color-bg-active) var(--color-bg-primary);
+}
+
+.theme-type-dark #macros-children::-webkit-scrollbar-track,
+.theme-type-dark #macros-children__legacy::-webkit-scrollbar-track,
+.theme-type-dark [data-tree-slot-container="macros"]::-webkit-scrollbar-track,
+.theme-type-dark #examples-children::-webkit-scrollbar-track,
+.theme-type-dark #examples-children__legacy::-webkit-scrollbar-track,
+.theme-type-dark [data-tree-slot-container="examples"]::-webkit-scrollbar-track,
+.theme-type-dark #external-scripts-children::-webkit-scrollbar-track,
+.theme-type-dark #external-scripts-children__legacy::-webkit-scrollbar-track,
+.theme-type-dark [data-tree-slot-container="external-scripts"]::-webkit-scrollbar-track {
+  background: var(--color-bg-primary);
+}
+
+.theme-type-dark #macros-children::-webkit-scrollbar-thumb,
+.theme-type-dark #macros-children__legacy::-webkit-scrollbar-thumb,
+.theme-type-dark [data-tree-slot-container="macros"]::-webkit-scrollbar-thumb,
+.theme-type-dark #examples-children::-webkit-scrollbar-thumb,
+.theme-type-dark #examples-children__legacy::-webkit-scrollbar-thumb,
+.theme-type-dark [data-tree-slot-container="examples"]::-webkit-scrollbar-thumb,
+.theme-type-dark #external-scripts-children::-webkit-scrollbar-thumb,
+.theme-type-dark #external-scripts-children__legacy::-webkit-scrollbar-thumb,
+.theme-type-dark [data-tree-slot-container="external-scripts"]::-webkit-scrollbar-thumb {
+  background: var(--color-bg-active);
+}
+
+.theme-type-dark #macros-children::-webkit-scrollbar-thumb:hover,
+.theme-type-dark #macros-children__legacy::-webkit-scrollbar-thumb:hover,
+.theme-type-dark [data-tree-slot-container="macros"]::-webkit-scrollbar-thumb:hover,
+.theme-type-dark #examples-children::-webkit-scrollbar-thumb:hover,
+.theme-type-dark #examples-children__legacy::-webkit-scrollbar-thumb:hover,
+.theme-type-dark [data-tree-slot-container="examples"]::-webkit-scrollbar-thumb:hover,
+.theme-type-dark #external-scripts-children::-webkit-scrollbar-thumb:hover,
+.theme-type-dark #external-scripts-children__legacy::-webkit-scrollbar-thumb:hover,
+.theme-type-dark [data-tree-slot-container="external-scripts"]::-webkit-scrollbar-thumb:hover {
+  background: var(--color-state-hover-light);
+}
+
+
+/* =========================================================================
+   SIDEBAR VIEW LAYOUTS (from sidebar/views/*.css)
+   Level 3 → Level 2 flattening
+ ========================================================================= */
+
+/**
+ * Explorer Panel Layout (EXPLORER_VIEW_PANELS)
+ * --------------------------------------------
+ * Dedicated panels per view with flex layout and shared scroll handling.
+ */
+#menu_content[data-layout="panels"] {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 0;
+  min-height: 0;
+  overflow: hidden;
+}
+
+#menu_content[data-layout="panels"] .explorer-view-panels {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 0;
+  min-height: 0;
+}
+
+#menu_content[data-layout="panels"] .explorer-view-panel {
+  display: none;
+  flex: 1 1 0;
+  min-height: 0;
+  flex-direction: column;
+  width: 100%;
+}
+
+#menu_content[data-layout="panels"] .explorer-view-panel[data-active="true"] {
+  display: flex;
+}
+
+#menu_content[data-layout="panels"][data-active-view="macros"] .explorer-view-panel[data-view-id="macros"],
+#menu_content[data-layout="panels"][data-active-view="examples"] .explorer-view-panel[data-view-id="examples"],
+#menu_content[data-layout="panels"][data-active-view="external-scripts"] .explorer-view-panel[data-view-id="external-scripts"],
+#menu_content[data-layout="panels"][data-active-view="logs"] .explorer-view-panel[data-view-id="logs"] {
+  display: flex;
+}
+
+#menu_content[data-layout="panels"] .explorer-view-panel-body {
+  flex: 1 1 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+#menu_content[data-layout="panels"] .explorer-view-panel-body > .tree-node[data-tree-slot] {
+  flex: 1 1 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+#menu_content[data-layout="panels"] .explorer-slot,
+#menu_content[data-layout="panels"] .explorer-slot-body,
+#menu_content[data-layout="panels"] .explorer-slot-container {
+  flex: 1 1 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Harden active slot containers against stray inline heights */
+#menu_content[data-layout="panels"] .explorer-view-panel[data-active="true"] [data-tree-slot-container] {
+  flex: 1 1 0 !important;
+  min-height: 0 !important;
+  height: auto !important;
+  width: 100% !important;
+  display: flex;
+  flex-direction: column;
+}
+
+#menu_content[data-layout="panels"] .explorer-view-panel[data-slot-visible="false"],
+#menu_content[data-layout="panels"] .explorer-slot[data-slot-visible="false"],
+#menu_content[data-layout="panels"] .explorer-slot-container[data-slot-visible="false"],
+#menu_content[data-layout="panels"] .explorer-slot-body[data-slot-visible="false"] {
+  display: none !important;
+}
+
+#menu_content[data-layout="panels"] .explorer-slot[data-slot-active="true"],
+#menu_content[data-layout="panels"] .explorer-slot-container[data-slot-active="true"],
+#menu_content[data-layout="panels"] .explorer-slot-body[data-slot-active="true"] {
+  display: flex;
+}
+
+#menu_content[data-layout="panels"] [data-tree-slot-container] {
+  flex: 1 1 0 !important;
+  min-height: 0 !important;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto !important;
+  overflow-x: hidden;
+  padding: 0;
+}
+
+#menu_content[data-layout="panels"] #sidebar-logs-output {
+  flex: 1 1 0 !important;
+  min-height: 0 !important;
+  overflow: hidden;
+}
+
+#menu_content:not([data-layout="panels"]).tree-container-main {
+  height: calc(100% - 50px);
+}
+
+/* Also hide non-active nodes for external-scripts and logs in legacy mode */
+#menu_content:not([data-layout="panels"])[data-active-view="external-scripts"] .tree-node[data-tree-slot]:not([data-tree-slot="external-scripts"]) {
+  display: none !important;
+}
+#menu_content:not([data-layout="panels"])[data-active-view="logs"] .tree-node[data-tree-slot]:not([data-tree-slot="logs"]) {
+  display: none !important;
+}
+
+/**
+ * Macros View
+ * -----------
+ * Default explorer view (data-active-view="macros").
+ * Maintains legacy filter/header spacing while letting the macro tree scroll.
+ */
+
+#menu_content:not([data-layout="panels"])[data-active-view="macros"] {
+  flex: 1 1 0;  /* TASK-107-TRINITY: Consistent flex-basis chain */
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+#menu_content:not([data-layout="panels"])[data-active-view="macros"] .tree-node[data-tree-slot]:not([data-tree-slot="macros"]) {
+  display: none !important;
+}
+
+#menu_content:not([data-layout="panels"])[data-active-view="macros"] #macros-tree-node {
+  flex: 1 1 0;  /* TASK-107-TRINITY: Changed from flex: 1 1 auto */
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+#menu_content:not([data-layout="panels"])[data-active-view="macros"]  #macros-children,
+#menu_content:not([data-layout="panels"])[data-active-view="macros"]  #macros-children__legacy,
+#menu_content:not([data-layout="panels"])[data-active-view="macros"]  [data-tree-slot-container="macros"] {
+  /* TASK-107-TRINITY: Align with Examples view layout */
+  flex: 1 1 0 !important;
+  min-height: 0 !important;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto !important;
+  overflow-x: hidden;
+  padding: 0;
+}
+
+#macros-children.native-scroll-fallback,
+#macros-children__legacy.native-scroll-fallback,
+[data-tree-slot-container="macros"].native-scroll-fallback {
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  scrollbar-width: thin !important;
+}
+
+#macros-children.native-scroll-fallback::-webkit-scrollbar,
+#macros-children__legacy.native-scroll-fallback::-webkit-scrollbar,
+[data-tree-slot-container="macros"].native-scroll-fallback::-webkit-scrollbar {
+  display: block !important;
+  width: 10px !important;
+}
+
+#macros-children.native-scroll-fallback::-webkit-scrollbar-thumb,
+#macros-children__legacy.native-scroll-fallback::-webkit-scrollbar-thumb,
+[data-tree-slot-container="macros"].native-scroll-fallback::-webkit-scrollbar-thumb {
+  background: rgba(121, 121, 121, 0.4) !important;
+  border-radius: 5px;
+}
+
+#macros-children.native-scroll-fallback::-webkit-scrollbar-thumb:hover,
+#macros-children__legacy.native-scroll-fallback::-webkit-scrollbar-thumb:hover,
+[data-tree-slot-container="macros"].native-scroll-fallback::-webkit-scrollbar-thumb:hover {
+  background: rgba(121, 121, 121, 0.6) !important;
+}
+
+
+
+/**
+ * Examples View
+ * -------------
+ * Activated when data-active-view="examples".
+ * Ensures the examples tree owns its scroll area.
+ */
+
+#menu_content:not([data-layout="panels"])[data-active-view="examples"] {
+  flex: 1 1 0;  /* TASK-107-TRINITY: Consistent flex-basis chain */
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* In legacy layout, force-hide other views when a specific view is active */
+#menu_content:not([data-layout="panels"])[data-active-view="examples"] .tree-node[data-tree-slot]:not([data-tree-slot="examples"]) {
+  display: none !important;
+}
+
+#menu_content:not([data-layout="panels"])[data-active-view="examples"] #examples-tree-node {
+  flex: 1 1 0;  /* TASK-107-TRINITY: Changed from flex: 1 1 auto */
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+#menu_content:not([data-layout="panels"])[data-active-view="examples"] #examples-children,
+#menu_content:not([data-layout="panels"])[data-active-view="examples"] #examples-children__legacy,
+#menu_content:not([data-layout="panels"])[data-active-view="examples"] [data-tree-slot-container="examples"] {
+  /* Explorer panes: allow native scrolling within the flex container */
+  flex: 1 1 0 !important;           /* Allow growth to fill available space */
+  min-height: 0 !important;         /* Enable overflow in flex container */
+  height: auto !important;          /* Override accidental inline heights */
+  max-height: none !important;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto !important;
+  overflow-x: hidden;
+  padding: 0;
+}
+
+/* Scrollbar styling resides in the shared explorer scrollbar utility section */
+
+/**
+ * External Scripts View
+ * ---------------------
+ * Activated with data-active-view="external-scripts".
+ * Mirrors macros/examples layout with independent scroll area.
+ */
+
+#menu_content:not([data-layout="panels"])[data-active-view="external-scripts"] {
+  flex: 1 1 0;  /* TASK-107-TRINITY: Consistent flex-basis chain */
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+#menu_content:not([data-layout="panels"])[data-active-view="external-scripts"] #external-scripts-tree-node {
+  flex: 1 1 0;  /* TASK-107-TRINITY: Changed from flex: 1 1 auto */
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  margin-top: 0;
+}
+
+#menu_content:not([data-layout="panels"])[data-active-view="external-scripts"] #external-scripts-children,
+#menu_content:not([data-layout="panels"])[data-active-view="external-scripts"] #external-scripts-children__legacy,
+#menu_content:not([data-layout="panels"])[data-active-view="external-scripts"] [data-tree-slot-container="external-scripts"] {
+  /* Explorer panes: allow native scrolling within the flex container */
+  flex: 1 1 0 !important;           /* Allow growth to fill available space */
+  min-height: 0 !important;         /* Enable overflow in flex container */
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto !important;
+  overflow-x: hidden;
+}
+
+
+/**
+ * Logs View
+ * ---------
+ * Styles applied when the Activity Bar activates the Logs panel.
+ * Assumes #menu_content has data-active-view="logs".
+ */
+
+#menu_content:not([data-layout="panels"])[data-active-view="logs"] {
+  flex: 1 1 0;  /* TASK-107-TRINITY: Consistent flex-basis chain */
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+#menu_content:not([data-layout="panels"])[data-active-view="logs"] #logs-tree-node {
+  flex: 1 1 0;  /* TASK-107-TRINITY: Changed from flex: 1 1 auto */
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+#menu_content:not([data-layout="panels"])[data-active-view="logs"] #logs-tree-node .tree-node-children {
+  flex: 1 1 0;  /* TASK-107-TRINITY: Changed from flex: 1 1 auto */
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  overflow: hidden;
+}
+
+#menu_content:not([data-layout="panels"])[data-active-view="logs"] #sidebar-logs-output {
+  /* TASK-118-FIX: Allow PerfectScrollbar to manage scrolling */
+  flex: 1 1 0 !important;           /* Allow growth to fill available space */
+  min-height: 0 !important;         /* Enable overflow in flex container */
+  overflow: hidden;                 /* PerfectScrollbar manages scrolling (removed !important) */
+  border-left: none;
+}
+
+/* Scrollbar styling resides in the shared explorer scrollbar utility section */
+#sidebar-view-prelude .prelude-actions button:focus-visible {
+    outline: 1px solid var(--vscode-focusBorder, var(--color-border-focus));
+    outline-offset: 2px;
+}
+
+/* Unified tree layout remains; view switching handled via JS and legacy selectors */
+#menu_content:not([data-layout="panels"]) #external-scripts-tree-node {
+    display: none;
+}
+
+#menu_content:not([data-layout="panels"])[data-active-view="external-scripts"] #external-scripts-tree-node {
+    display: flex !important;
+    order: -1;
+}
+
+#menu_content:not([data-layout="panels"])[data-active-view="external-scripts"] #macros-tree-node,
+#menu_content:not([data-layout="panels"])[data-active-view="external-scripts"] #examples-tree-node,
+#menu_content:not([data-layout="panels"])[data-active-view="external-scripts"] #logs-tree-node {
+    display: none !important;
+}
+#unified-tree {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    min-height: 0;
+}
+
+#unified-tree > .tree-node[data-tree-slot] {
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 auto;
+    min-height: auto;
+}

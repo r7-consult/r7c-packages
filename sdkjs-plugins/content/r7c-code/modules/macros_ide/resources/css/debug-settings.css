@@ -1,0 +1,194 @@
+/**
+ * TASK-129-PHASE-C: Debug Settings Panel Styles
+ *
+ * @fileoverview Modal-centered styling for debug plugin settings panel
+ * @description Provides centered modal panel with checkbox list,
+ * status badges, and Code Graph Visualization highlight.
+ *
+ * Architecture References:
+ * - Implementation Plan: .memory_bank/logs/archive/llm/TASK-129.log
+ *
+ * @task_id TASK-129-PHASE-C
+ * @history
+ *  - 2025-11-06: Updated - TASK-129-PHASE-C Phase 2: Modal-centered design with proper height
+ */
+
+/* =============================================================================
+ * Debug Settings Container (Modal)
+ * ============================================================================= */
+
+#debug-settings-container {
+    display: none; /* Hidden by default, toggled by showDebugSettings() */
+    position: fixed;
+    top: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 600px;
+    height: 600px;
+    max-height: 90vh;
+    overflow-y: auto;
+    background: var(--background-color, #ffffff);
+    border: 1px solid var(--vscode-widget-border, var(--primary-color, #4285f4));
+    border-radius: 8px;
+    padding: 28px;
+    box-shadow: var(--shadow-modal, 0 4px 12px rgba(0, 0, 0, 0.3));
+    z-index: 999999;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* =============================================================================
+ * Panel Content
+ * ============================================================================= */
+
+.debug-settings-panel {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.debug-settings-panel h3 {
+    margin: 0 0 24px 0;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--primary-color, #4285f4);
+    text-align: center;
+}
+
+/* =============================================================================
+ * Plugin List
+ * ============================================================================= */
+
+.debug-plugin-list {
+    display: block;
+    width: 100%;
+}
+
+/* =============================================================================
+ * Plugin Items
+ * ============================================================================= */
+
+.debug-plugin-item {
+    display: flex;
+    align-items: center;
+    padding: 16px;
+    margin-bottom: 12px;
+    background: var(--item-background, #f5f5f5);
+    border: 2px solid var(--border-color, #ddd);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: var(--transition-interactive, background-color 0.12s ease, color 0.12s ease, border-color 0.12s ease);
+}
+
+.debug-plugin-item:hover {
+    background: var(--vscode-interactive-hoverBackground, #e3f2fd);
+    border-color: var(--vscode-interactive-border, var(--primary-color, #4285f4));
+}
+
+.debug-plugin-item:focus-within {
+    outline: 2px solid var(--vscode-interactive-focusRing, var(--vscode-focusBorder, #007acc));
+    outline-offset: 1px;
+}
+
+.debug-plugin-item input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    margin-right: 16px;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.debug-plugin-item .plugin-name {
+    flex: 1;
+    color: var(--text-color, #000);
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.debug-plugin-item .plugin-status {
+    font-size: 11px;
+    padding: 5px 12px;
+    border-radius: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    flex-shrink: 0;
+}
+
+/* =============================================================================
+ * Status Badges
+ * ============================================================================= */
+
+.debug-plugin-item .plugin-status.enabled {
+    background: var(--success-color, #4caf50);
+    color: white;
+}
+
+.debug-plugin-item .plugin-status.disabled {
+    background: var(--warning-color, #ff9800);
+    color: white;
+}
+
+/* =============================================================================
+ * Special Highlight: Code Graph Visualization
+ * ============================================================================= */
+
+#debug-settings-container .debug-plugin-item[data-plugin-id="code-graph-visualization"] {
+    border: 2px solid var(--success-color, #4caf50);
+    background: color-mix(in srgb, var(--success-color, #4caf50) 12%, var(--vscode-sideBar-background, #f3f3f3));
+}
+
+#debug-settings-container .debug-plugin-item[data-plugin-id="code-graph-visualization"] .plugin-name {
+    color: #1565C0;
+    font-size: 17px;
+    font-weight: 700;
+}
+
+#debug-settings-container .debug-plugin-item[data-plugin-id="code-graph-visualization"]:hover {
+    background: color-mix(in srgb, var(--success-color, #4caf50) 16%, var(--vscode-sideBar-background, #f3f3f3));
+    border-color: var(--success-color, #4caf50);
+}
+
+/* =============================================================================
+ * Dark Theme Support
+ * ============================================================================= */
+
+.theme-type-dark #debug-settings-container {
+    background: var(--background-color, #0d1117);
+    border-color: var(--vscode-widget-border, var(--primary-color, #8ab4f8));
+}
+
+.theme-type-dark .debug-plugin-item {
+    background: var(--item-background, #161b22);
+    border-color: var(--border-color, #30363d);
+}
+
+.theme-type-dark .debug-plugin-item .plugin-name {
+    color: var(--text-color, #e6edf3);
+}
+
+.theme-type-dark .debug-plugin-item:hover {
+    background: var(--vscode-interactive-hoverBackground, #1c2128);
+    border-color: var(--vscode-interactive-border, var(--primary-color, #8ab4f8));
+}
+
+/* Dark Theme: Code Graph Visualization Highlight (override generic dark theme) */
+.theme-type-dark #debug-settings-container .debug-plugin-item[data-plugin-id="code-graph-visualization"] {
+    border: 2px solid #4caf50 !important;
+    background: color-mix(in srgb, #4caf50 24%, var(--vscode-sideBar-background, #161b22)) !important;
+}
+
+.theme-type-dark #debug-settings-container .debug-plugin-item[data-plugin-id="code-graph-visualization"] .plugin-name {
+    color: #81c784 !important;
+    font-size: 17px !important;
+    font-weight: 700 !important;
+}
+
+.theme-type-dark #debug-settings-container .debug-plugin-item[data-plugin-id="code-graph-visualization"]:hover {
+    background: color-mix(in srgb, #4caf50 30%, var(--vscode-sideBar-background, #161b22)) !important;
+    border-color: #66bb6a !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .debug-plugin-item {
+        transition: none;
+    }
+}

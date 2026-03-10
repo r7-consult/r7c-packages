@@ -1,0 +1,606 @@
+/**
+ * ProgressBar Component Styles
+ * OnlyOffice UI SDK Component
+ */
+
+/* Base Progress Bar */
+.progress-bar {
+    position: relative;
+    background: var(--sdk-color-surface, #f5f5f5);
+    border-radius: var(--sdk-button-borderRadius, 4px);
+    overflow: hidden;
+    font-family: var(--sdk-typography-fontFamily, Arial, sans-serif);
+    font-size: var(--sdk-typography-fontSize, 14px);
+    color: var(--sdk-color-text, #333333);
+    box-sizing: border-box;
+}
+
+/* Progress Track */
+.progress-track {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: var(--sdk-color-surface, #f5f5f5);
+    border-radius: inherit;
+    overflow: hidden;
+}
+
+/* Progress Fill */
+.progress-fill {
+    position: relative;
+    height: 100%;
+    background: var(--sdk-color-primary, #4CAF50);
+    border-radius: inherit;
+    transition: width 0.3s ease, height 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+/* Progress Text */
+.progress-text {
+    position: relative;
+    font-size: inherit;
+    font-weight: 500;
+    color: inherit;
+    white-space: nowrap;
+    z-index: 1;
+    text-align: center;
+    line-height: 1;
+}
+
+/* Orientation Variants */
+.progress-bar[data-orientation="horizontal"] {
+    width: 100%;
+    min-width: 100px;
+}
+
+.progress-bar[data-orientation="vertical"] {
+    height: 100%;
+    min-height: 100px;
+    width: 20px;
+}
+
+.progress-bar[data-orientation="vertical"] .progress-fill {
+    width: 100%;
+    height: 0%;
+    position: absolute;
+    bottom: 0;
+}
+
+.progress-bar[data-orientation="vertical"] .progress-text {
+    writing-mode: vertical-lr;
+    text-orientation: mixed;
+    transform: rotate(180deg);
+}
+
+/* Size Variants */
+.progress-bar[data-size="small"] {
+    height: 8px;
+    font-size: 11px;
+}
+
+.progress-bar[data-size="medium"] {
+    height: 16px;
+    font-size: 12px;
+}
+
+.progress-bar[data-size="large"] {
+    height: 24px;
+    font-size: 14px;
+}
+
+.progress-bar[data-size="small"][data-orientation="vertical"] {
+    width: 8px;
+}
+
+.progress-bar[data-size="medium"][data-orientation="vertical"] {
+    width: 16px;
+}
+
+.progress-bar[data-size="large"][data-orientation="vertical"] {
+    width: 24px;
+}
+
+/* Variant Styles */
+.progress-bar[data-variant="thin"] {
+    height: 4px;
+}
+
+.progress-bar[data-variant="thin"][data-orientation="vertical"] {
+    width: 4px;
+}
+
+.progress-bar[data-variant="thick"] {
+    height: 32px;
+}
+
+.progress-bar[data-variant="thick"][data-orientation="vertical"] {
+    width: 32px;
+}
+
+.progress-bar[data-variant="rounded"] {
+    border-radius: 50px;
+}
+
+.progress-bar[data-variant="rounded"] .progress-track,
+.progress-bar[data-variant="rounded"] .progress-fill {
+    border-radius: 50px;
+}
+
+/* Color Variants */
+.progress-bar[data-color="primary"] .progress-fill {
+    background: var(--sdk-color-primary, #4CAF50);
+}
+
+.progress-bar[data-color="secondary"] .progress-fill {
+    background: var(--sdk-color-secondary, #757575);
+}
+
+.progress-bar[data-color="success"] .progress-fill {
+    background: var(--sdk-color-success, #4CAF50);
+}
+
+.progress-bar[data-color="warning"] .progress-fill {
+    background: var(--sdk-color-warning, #FF9800);
+}
+
+.progress-bar[data-color="error"] .progress-fill {
+    background: var(--sdk-color-error, #F44336);
+}
+
+.progress-bar[data-color="info"] .progress-fill {
+    background: var(--sdk-color-info, #2196F3);
+}
+
+/* Text Position Variants */
+.progress-bar[data-text-position="inside"] .progress-text {
+    color: var(--sdk-color-onPrimary, #ffffff);
+}
+
+.progress-bar[data-text-position="outside"] .progress-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--sdk-color-text, #333333);
+    background: var(--sdk-color-background, #ffffff);
+    padding: 0 4px;
+    border-radius: 2px;
+    font-size: 0.8em;
+}
+
+.progress-bar[data-text-position="top"] .progress-text {
+    position: absolute;
+    top: -20px;
+    left: 0;
+    color: var(--sdk-color-text, #333333);
+    font-size: 0.8em;
+}
+
+.progress-bar[data-text-position="bottom"] .progress-text {
+    position: absolute;
+    bottom: -20px;
+    left: 0;
+    color: var(--sdk-color-text, #333333);
+    font-size: 0.8em;
+}
+
+.progress-bar[data-text-position="left"] .progress-text {
+    position: absolute;
+    left: -50px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--sdk-color-text, #333333);
+    font-size: 0.8em;
+}
+
+.progress-bar[data-text-position="right"] .progress-text {
+    position: absolute;
+    right: -50px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--sdk-color-text, #333333);
+    font-size: 0.8em;
+}
+
+/* Striped Progress */
+.progress-bar.striped .progress-fill {
+    background-image: linear-gradient(
+        45deg,
+        rgba(255, 255, 255, 0.15) 25%,
+        transparent 25%,
+        transparent 50%,
+        rgba(255, 255, 255, 0.15) 50%,
+        rgba(255, 255, 255, 0.15) 75%,
+        transparent 75%,
+        transparent
+    );
+    background-size: 20px 20px;
+}
+
+/* Animated Stripes */
+.progress-bar.animated .progress-fill {
+    animation: progress-bar-stripes 1s linear infinite;
+}
+
+@keyframes progress-bar-stripes {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: 20px 0;
+    }
+}
+
+/* Indeterminate Progress */
+.progress-bar.indeterminate .progress-fill {
+    width: 30% !important;
+    animation: progress-bar-indeterminate 1.5s ease-in-out infinite;
+}
+
+.progress-bar.indeterminate[data-orientation="vertical"] .progress-fill {
+    height: 30% !important;
+    animation: progress-bar-indeterminate-vertical 1.5s ease-in-out infinite;
+}
+
+@keyframes progress-bar-indeterminate {
+    0% {
+        left: -30%;
+    }
+    100% {
+        left: 100%;
+    }
+}
+
+@keyframes progress-bar-indeterminate-vertical {
+    0% {
+        bottom: -30%;
+    }
+    100% {
+        bottom: 100%;
+    }
+}
+
+/* Gradient Progress */
+.progress-bar.gradient .progress-fill {
+    background: var(--gradient-background, linear-gradient(to right, #4CAF50, #45a049));
+}
+
+/* Segmented Progress */
+.progress-bar.segmented .progress-fill {
+    background-image: repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent var(--segments-gap, 2px),
+        currentColor var(--segments-gap, 2px),
+        currentColor calc(100% / var(--segments-count, 10) - var(--segments-gap, 2px))
+    );
+}
+
+.progress-bar.segmented[data-orientation="vertical"] .progress-fill {
+    background-image: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent var(--segments-gap, 2px),
+        currentColor var(--segments-gap, 2px),
+        currentColor calc(100% / var(--segments-count, 10) - var(--segments-gap, 2px))
+    );
+}
+
+/* Pulse Animation */
+.progress-bar.pulse .progress-fill {
+    animation: progress-bar-pulse var(--pulse-duration, 1000ms) ease-in-out infinite;
+}
+
+@keyframes progress-bar-pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.6;
+    }
+}
+
+/* Loading State */
+.progress-bar.loading .progress-fill {
+    background: var(--sdk-color-surface, #f5f5f5);
+    position: relative;
+    overflow: hidden;
+}
+
+.progress-bar.loading .progress-fill::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.4),
+        transparent
+    );
+    animation: progress-bar-loading 1.5s ease-in-out infinite;
+}
+
+@keyframes progress-bar-loading {
+    0% {
+        left: -100%;
+    }
+    100% {
+        left: 100%;
+    }
+}
+
+/* Smooth Transitions */
+.progress-bar:not(.indeterminate) .progress-fill {
+    transition: width 0.3s ease, height 0.3s ease, background-color 0.3s ease;
+}
+
+/* Hover Effects */
+.progress-bar:hover .progress-fill {
+    filter: brightness(1.1);
+}
+
+/* Focus States */
+.progress-bar:focus {
+    outline: 2px solid var(--sdk-color-primary, #4CAF50);
+    outline-offset: 2px;
+}
+
+/* Disabled State */
+.progress-bar:disabled,
+.progress-bar.disabled {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.progress-bar:disabled .progress-fill,
+.progress-bar.disabled .progress-fill {
+    background: var(--sdk-color-textSecondary, #666666);
+}
+
+/* Dark Theme Support */
+.sdk-theme-dark .progress-bar {
+    background: var(--sdk-color-surface, #2D2D2D);
+    color: var(--sdk-color-text, #FFFFFF);
+}
+
+.sdk-theme-dark .progress-track {
+    background: var(--sdk-color-surface, #2D2D2D);
+}
+
+.sdk-theme-dark .progress-bar[data-color="primary"] .progress-fill {
+    background: var(--sdk-color-primary, #66BB6A);
+}
+
+.sdk-theme-dark .progress-bar[data-color="secondary"] .progress-fill {
+    background: var(--sdk-color-secondary, #BDBDBD);
+}
+
+.sdk-theme-dark .progress-bar[data-color="success"] .progress-fill {
+    background: var(--sdk-color-success, #66BB6A);
+}
+
+.sdk-theme-dark .progress-bar[data-color="warning"] .progress-fill {
+    background: var(--sdk-color-warning, #FFB74D);
+}
+
+.sdk-theme-dark .progress-bar[data-color="error"] .progress-fill {
+    background: var(--sdk-color-error, #EF5350);
+}
+
+.sdk-theme-dark .progress-bar[data-color="info"] .progress-fill {
+    background: var(--sdk-color-info, #42A5F5);
+}
+
+.sdk-theme-dark .progress-bar[data-text-position="outside"] .progress-text {
+    background: var(--sdk-color-background, #1E1E1E);
+    color: var(--sdk-color-text, #FFFFFF);
+}
+
+.sdk-theme-dark .progress-bar[data-text-position="top"] .progress-text,
+.sdk-theme-dark .progress-bar[data-text-position="bottom"] .progress-text,
+.sdk-theme-dark .progress-bar[data-text-position="left"] .progress-text,
+.sdk-theme-dark .progress-bar[data-text-position="right"] .progress-text {
+    color: var(--sdk-color-text, #FFFFFF);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .progress-bar {
+        font-size: 12px;
+    }
+    
+    .progress-bar[data-size="small"] {
+        height: 6px;
+        font-size: 10px;
+    }
+    
+    .progress-bar[data-size="medium"] {
+        height: 12px;
+        font-size: 11px;
+    }
+    
+    .progress-bar[data-size="large"] {
+        height: 18px;
+        font-size: 12px;
+    }
+    
+    .progress-bar[data-text-position="left"] .progress-text {
+        left: -40px;
+    }
+    
+    .progress-bar[data-text-position="right"] .progress-text {
+        right: -40px;
+    }
+}
+
+@media (max-width: 480px) {
+    .progress-bar {
+        font-size: 11px;
+    }
+    
+    .progress-bar[data-text-position="left"] .progress-text,
+    .progress-bar[data-text-position="right"] .progress-text {
+        position: relative;
+        left: auto;
+        right: auto;
+        top: auto;
+        transform: none;
+        margin-top: 4px;
+    }
+}
+
+/* High Contrast Theme Support */
+@media (prefers-contrast: high) {
+    .progress-bar {
+        border: 2px solid var(--sdk-color-text, #333333);
+    }
+    
+    .progress-fill {
+        background: var(--sdk-color-text, #333333);
+    }
+    
+    .progress-text {
+        color: var(--sdk-color-background, #ffffff);
+        font-weight: bold;
+    }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+    .progress-bar *,
+    .progress-fill {
+        transition: none !important;
+        animation: none !important;
+    }
+    
+    .progress-bar.indeterminate .progress-fill {
+        animation: none !important;
+        left: 0 !important;
+        bottom: 0 !important;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .progress-bar {
+        background: transparent !important;
+        border: 1px solid #000 !important;
+    }
+    
+    .progress-fill {
+        background: #000 !important;
+    }
+    
+    .progress-text {
+        color: #000 !important;
+    }
+}
+
+/* Custom Properties for Theming */
+.progress-bar {
+    --progress-bar-height: 16px;
+    --progress-bar-bg: var(--sdk-color-surface, #f5f5f5);
+    --progress-bar-fill: var(--sdk-color-primary, #4CAF50);
+    --progress-bar-text: var(--sdk-color-onPrimary, #ffffff);
+    --progress-bar-border-radius: var(--sdk-button-borderRadius, 4px);
+    --progress-bar-transition: width 0.3s ease, height 0.3s ease;
+}
+
+/* Animation Performance */
+.progress-bar,
+.progress-fill {
+    will-change: transform, width, height;
+}
+
+/* Accessibility Improvements */
+.progress-bar[aria-hidden="true"] {
+    visibility: hidden;
+}
+
+.progress-bar[aria-busy="true"] .progress-fill {
+    animation: progress-bar-busy 1s ease-in-out infinite;
+}
+
+@keyframes progress-bar-busy {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.7;
+    }
+}
+
+/* Multi-level Progress */
+.progress-bar.multi-level {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.progress-bar.multi-level .progress-track {
+    height: 6px;
+}
+
+/* Circular Progress Variant */
+.progress-bar.circular {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: conic-gradient(
+        var(--sdk-color-primary, #4CAF50) var(--progress-angle, 0deg),
+        var(--sdk-color-surface, #f5f5f5) var(--progress-angle, 0deg)
+    );
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.progress-bar.circular .progress-track {
+    display: none;
+}
+
+.progress-bar.circular .progress-text {
+    position: absolute;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+/* State Indicators */
+.progress-bar.completed .progress-fill {
+    background: var(--sdk-color-success, #4CAF50);
+}
+
+.progress-bar.error .progress-fill {
+    background: var(--sdk-color-error, #F44336);
+}
+
+.progress-bar.paused .progress-fill {
+    background: var(--sdk-color-warning, #FF9800);
+    animation-play-state: paused;
+}
+
+/* Micro-interactions */
+.progress-bar:hover {
+    transform: scale(1.01);
+    transition: transform 0.2s ease;
+}
+
+.progress-bar:active {
+    transform: scale(0.99);
+}
+
+/* Custom Scrollbar for Overflow */
+.progress-bar::-webkit-scrollbar {
+    display: none;
+}
+
+.progress-bar {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}

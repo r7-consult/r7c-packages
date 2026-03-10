@@ -1,0 +1,33 @@
+# TASK-027 - 2025-10-09
+Action: Modified
+Changes:
+- Added #externalToggleBtn private field (line 218) for external toggle button reference
+- Modified #createConsoleDOM() method (lines 425-436) to create external toggle button outside console panel
+- External button created BEFORE drag handle and console panel for proper DOM hierarchy
+- Button uses inline onclick handler: window.toggleConsole() per CLAUDE.md pattern
+- Removed internal toggle button from console header (lines 501-518, commented out for reference)
+- Appended external button to document.body (line 535) before drag handle and console panel
+- Updated toggleConsole() method (lines 373-378) to update external button icon and title
+- Icon updates: ▼ when visible (will hide) ↔ ▶ when hidden (will show)
+- Title updates: "Hide console" ↔ "Show console"
+- Updated #restoreState() method (lines 707-712) to set external button initial state
+- External button always visible regardless of console visibility state
+- Updated file history (line 51) with TASK-027 implementation details
+- Added JSDoc comments explaining external button purpose and behavior
+
+Root Cause Fixed:
+Previous toggle button was child element inside #console-panel div. When console.style.display='none' was set, entire panel including button became invisible. User could not click invisible button to restore console visibility. External button is now separate DOM element outside console panel, remaining visible at all times.
+
+Pattern Followed:
+- CLAUDE.md global window export pattern (window.toggleConsole)
+- Inline onclick handler pattern (onclick="window.toggleConsole()")
+- Drag handle external DOM pattern (separate element appended to body)
+- Private field encapsulation (#externalToggleBtn)
+
+Testing:
+- JavaScript syntax validated with node -c: PASSED
+- Button visible when console shown: Expected ✓
+- Button visible when console hidden: Expected ✓ (KEY FIX)
+- Icon updates correctly: Expected ✓
+- Repeated toggle functionality: Expected ✓
+----------------------------------------

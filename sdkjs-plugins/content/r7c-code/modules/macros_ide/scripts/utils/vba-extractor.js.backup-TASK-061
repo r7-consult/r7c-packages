@@ -1,0 +1,1666 @@
+/**
+ * Lightweight VBA extractor for .xlsm files
+ * - Parses vbaProject.bin (CFB container) from SheetJS workbook.vbaraw
+ * - Extracts module streams under VBA storage
+ * - Decompresses VBA module streams (MS-OVBA compression)
+ *
+ * NOTE: This is a minimal implementation intended for common cases.
+ * It supports typical small projects without DIFAT chains and assumes
+ * 512-byte sector size and 64-byte mini sectors (standard defaults).
+ */
+(function () {
+  function toUint8(data) {
+    if (data instanceof Uint8Array) return data;
+    if (data instanceof ArrayBuffer) return new Uint8Array(data);
+    if (typeof data === 'string') {
+      const out = new Uint8Array(data.length);
+      for (let i = 0; i < data.length; i++) out[i] = data.charCodeAt(i) & 0xFF;
+      return out;
+    }
+    throw new Error('Unsupported data type for VBA extractor');
+  }
+
+  // Robustly decompress DIR stream by trying multiple candidate starts
+  function robustDecompressDir(buf) {
+    console.log(`[VBAExtractor] TASK-043: robustDecompressDir called with ${buf.length} bytes`);
+    let b = toUint8(buf);
+
+    // Hexdump first 64 bytes to understand structure
+    let hexStr = '';
+    const hexLen = Math.min(64, b.length);
+    for (let i = 0; i < hexLen; i++) {
+      hexStr += b[i].toString(16).padStart(2, '0') + ' ';
+      if ((i + 1) % 16 === 0) hexStr += '\n';
+    }
+    console.log(`[VBAExtractor] TASK-043: DIR stream first ${hexLen} bytes:\n${hexStr}`);
+
+    // Trial 0: Check if DIR stream is NOT compressed (raw DIR records)
+    console.log('[VBAExtractor] TASK-043: Trial 0 (uncompressed DIR records)');
+    if (isLikelyDir(b)) {
+      console.log('[VBAExtractor] TASK-043: ✓ DIR stream is uncompressed');
+      return b;
+    }
+
+    // First try aligned start
+    let a = alignOvbaStart(b);
+    console.log(`[VBAExtractor] TASK-043: Aligned start at offset ${b.length - a.length}`);
+    try {
+      const d = decompressVBA(a, { strict: true, silent: true });
+      console.log(`[VBAExtractor] TASK-043: Trial 1 (aligned, strict): ${d.length} bytes`);
+      if (isLikelyDir(d)) { console.log('[VBAExtractor] TASK-043: ✓ Accepted by isLikelyDir'); return d; }
+    } catch (_) {}
+    // Try alternative bit15 interpretation
+    try {
+      const d = decompressVBA(a, { strict: true, bit15MeansCompressed: false, silent: true });
+      console.log(`[VBAExtractor] TASK-043: Trial 2 (aligned, alt bit15): ${d.length} bytes`);
+      if (isLikelyDir(d)) { console.log('[VBAExtractor] TASK-043: ✓ Accepted by isLikelyDir'); return d; }
+    } catch (_) {}
+    // Try common prefix lengths (DIR stream might have header before compression)
+    const prefixLengths = [2, 4, 6, 8, 10, 12, 16, 20, 24, 28, 32];
+    for (const skipBytes of prefixLengths) {
+      if (skipBytes >= b.length) break;
+      try {
+        const d = decompressVBA(b.subarray(skipBytes), { strict: false, silent: true });
+        console.log(`[VBAExtractor] TASK-043: Trial skip=${skipBytes}: ${d.length} bytes`);
+        if (isLikelyDir(d)) {
+          console.log(`[VBAExtractor] TASK-043: ✓ Accepted with ${skipBytes}-byte prefix skip`);
+          return d;
+        }
+      } catch (_) {}
+      try {
+        const d2 = decompressVBA(b.subarray(skipBytes), { strict: false, bit15MeansCompressed: false, silent: true });
+        if (isLikelyDir(d2)) {
+          console.log(`[VBAExtractor] TASK-043: ✓ Accepted with ${skipBytes}-byte prefix skip (alt)`);
+          return d2;
+        }
+      } catch (_) {}
+    }
+
+    // Try all 0x01 0x00 positions in first 64KB
+    const limit = Math.min(b.length - 4, 65536);
+    let trial = 3;
+    for (let i = 0; i <= limit; i++) {
+      if (b[i] === 0x01 && b[i+1] === 0x00) {
+        try {
+          const d = decompressVBA(b.subarray(i), { strict: true, silent: true });
+          if (isLikelyDir(d)) { console.log(`[VBAExtractor] TASK-043: ✓ Accepted at offset ${i}`); return d; }
+        } catch (_) {}
+        try {
+          const d2 = decompressVBA(b.subarray(i), { strict: true, bit15MeansCompressed: false, silent: true });
+          if (isLikelyDir(d2)) { console.log(`[VBAExtractor] TASK-043: ✓ Accepted at offset ${i} (alt)`); return d2; }
+        } catch (_) {}
+      }
+    }
+    // Last resort: non-strict at aligned start
+    try {
+      const d3 = decompressVBA(a, { strict: false, silent: true });
+      console.log(`[VBAExtractor] TASK-043: Trial non-strict: ${d3.length} bytes`);
+      if (isLikelyDir(d3)) { console.log('[VBAExtractor] TASK-043: ✓ Accepted non-strict'); return d3; }
+    } catch (_) {}
+    // Non-strict + alt variant
+    try {
+      const d4 = decompressVBA(a, { strict: false, bit15MeansCompressed: false, silent: true });
+      console.log(`[VBAExtractor] TASK-043: Trial non-strict alt: ${d4.length} bytes`);
+      if (isLikelyDir(d4)) { console.log('[VBAExtractor] TASK-043: ✓ Accepted non-strict alt'); return d4; }
+    } catch (_) {}
+    // FALLBACK: Try parsing raw bytes as partially valid DIR records
+    // This handles cases where DIR stream compression is non-standard or corrupt
+    console.log('[VBAExtractor] TASK-043: Attempting fallback - parse raw DIR bytes');
+    const fallbackResult = tryParseDirRaw(b);
+    if (fallbackResult && fallbackResult.length > 0) {
+      console.log(`[VBAExtractor] TASK-043: ✓ Fallback succeeded: ${fallbackResult.length} bytes`);
+      return fallbackResult;
+    }
+
+    console.log('[VBAExtractor] TASK-043: All DIR decompression attempts failed');
+    // Give up: return empty buffer to signal failure
+    return new Uint8Array(0);
+  }
+
+  // Fallback: Try to extract usable DIR data from raw/partially corrupt stream
+  function tryParseDirRaw(bytes) {
+    // Try to find record patterns in raw bytes
+    // DIR records have structure: [RecordID:2][Size:4][Payload:Size]
+    // Look for CodePage record (0x0003) and Module records (0x0019)
+    console.log('[VBAExtractor] TASK-043: Scanning raw bytes for DIR record patterns...');
+
+    // Build a synthetic DIR stream from found patterns
+    const synthetic = [];
+    let found = 0;
+
+    // Scan for CodePage record pattern (0x0003 followed by reasonable size)
+    for (let i = 0; i + 6 < bytes.length; i++) {
+      const recId = bytes[i] | (bytes[i+1] << 8);
+      const recSize = le32(bytes, i + 2);
+
+      // CodePage record
+      if (recId === 0x0003 && recSize >= 2 && recSize <= 8 && i + 6 + recSize <= bytes.length) {
+        console.log(`[VBAExtractor] TASK-043: Found CodePage record at offset ${i}`);
+        synthetic.push(...bytes.subarray(i, i + 6 + recSize));
+        found++;
+      }
+    }
+
+    if (found > 0) {
+      console.log(`[VBAExtractor] TASK-043: Synthetic DIR stream: ${found} records, ${synthetic.length} bytes`);
+      return new Uint8Array(synthetic);
+    }
+
+    return null;
+  }
+
+  function isLikelyDir(bytes) {
+    if (!bytes || bytes.length < 16) {
+      console.log(`[VBAExtractor] TASK-044: isLikelyDir rejected: too small (${bytes ? bytes.length : 0} bytes)`);
+      return false;
+    }
+    // RELAXED: Accept partial DIR streams (Python approach - parse what we can)
+    let off = 0;
+    let seen = 0;
+    let hasCodePage = false;
+    let hasModuleRecord = false;
+    let total = bytes.length;
+
+    while (off + 6 <= bytes.length && seen < 100) {
+      const recId = le16(bytes, off); off += 2;
+      const recSize = le32(bytes, off); off += 4;
+
+      // RELAXED: Allow invalid records later in stream, but accept if we found useful data
+      if (recSize < 0 || recSize > total * 2 || off + recSize > bytes.length + 100) {
+        console.log(`[VBAExtractor] TASK-044: isLikelyDir partial: seen=${seen} valid records before error at offset ${off - 6}`);
+        // Accept if we found CodePage or enough records
+        return (hasCodePage || hasModuleRecord || seen >= 5);
+      }
+
+      if (recId === 0x0003 && recSize >= 2) hasCodePage = true; // CodePage record
+      if (recId === 0x0019 && recSize >= 2) hasModuleRecord = true; // Module record
+      if (recId === 0x0031 && recSize === 4) hasModuleRecord = true; // ModuleOffset record
+
+      off += recSize;
+      seen++;
+    }
+
+    const result = hasCodePage || hasModuleRecord || seen >= 5;
+    console.log(`[VBAExtractor] TASK-044: isLikelyDir: seen=${seen} records, hasCodePage=${hasCodePage}, hasModule=${hasModuleRecord}, result=${result}`);
+    return result;
+  }
+
+  // Parse DIR records to extract code page and per-module stream names & offsets
+  function parseDirRecords(dirBytes) {
+    const modules = [];
+    let current = null;
+    let codePage = null;
+    let off = 0;
+    const n = dirBytes.length;
+    const ascii = (arr) => String.fromCharCode.apply(null, Array.from(arr || []));
+    const ucs2 = (arr) => {
+      let s = '';
+      for (let i = 0; i + 1 < arr.length; i += 2) s += String.fromCharCode(arr[i] | (arr[i+1] << 8));
+      return s.replace(/\u0000+$/, '');
+    };
+
+    let recordCount = 0;
+    while (off + 6 <= n) {
+      const recId = le16(dirBytes, off); off += 2;
+      const recSize = le32(dirBytes, off); off += 4;
+
+      // TASK-044: Relaxed parsing - stop on invalid size but keep modules found so far
+      if (recSize < 0 || off + recSize > n) {
+        console.log(`[VBAExtractor] TASK-044: parseDirRecords stopping at offset ${off - 6}, recId=0x${recId.toString(16)}, recSize=${recSize} (invalid size, parsed ${recordCount} records, found ${modules.length} modules)`);
+        break;
+      }
+      const payload = dirBytes.subarray(off, off + recSize);
+      recordCount++;
+
+      switch (recId) {
+        case 0x0003: // ProjectCodePage
+          if (recSize >= 2) {
+            codePage = le16(payload, 0);
+            console.log(`[VBAExtractor] TASK-044: Found CodePage record: ${codePage}`);
+          }
+          break;
+        case 0x0019: // Module start
+          if (current) {
+            modules.push(current);
+            console.log(`[VBAExtractor] TASK-044: Pushed module: ${JSON.stringify(current)}`);
+          }
+          current = { };
+          console.log(`[VBAExtractor] TASK-044: Started new module at offset ${off - 6}`);
+          break;
+        case 0x001A: // Module name (ANSI): [len:2][bytes]
+          if (current && recSize >= 2) {
+            const len = le16(payload, 0);
+            if (len > 0 && 2 + len <= recSize) {
+              current.name = ascii(payload.subarray(2, 2 + len));
+              console.log(`[VBAExtractor] TASK-044: Module name (ANSI): ${current.name}`);
+            }
+          }
+          break;
+        case 0x0047: // Module name (Unicode): [charLen:2][utf16le]
+          if (current && recSize >= 2) {
+            const chars = le16(payload, 0);
+            const bytesLen = Math.min(recSize - 2, chars * 2);
+            current.nameUnicode = ucs2(payload.subarray(2, 2 + bytesLen));
+            console.log(`[VBAExtractor] TASK-044: Module name (Unicode): ${current.nameUnicode}`);
+          }
+          break;
+        case 0x001C: // Module stream name (ANSI): [len:2][bytes]
+          if (current && recSize >= 2) {
+            const len = le16(payload, 0);
+            if (len > 0 && 2 + len <= recSize) {
+              current.streamName = ascii(payload.subarray(2, 2 + len));
+              console.log(`[VBAExtractor] TASK-044: Module streamName (ANSI): ${current.streamName}`);
+            }
+          }
+          break;
+        case 0x0032: // Module stream name (Unicode)
+          if (current && recSize >= 2) {
+            const chars = le16(payload, 0);
+            const bytesLen = Math.min(recSize - 2, chars * 2);
+            current.streamNameUnicode = ucs2(payload.subarray(2, 2 + bytesLen));
+            console.log(`[VBAExtractor] TASK-044: Module streamName (Unicode): ${current.streamNameUnicode}`);
+          }
+          break;
+        case 0x0031: // Module offset (4 bytes)
+          if (current && recSize === 4) {
+            current.textOffset = le32(payload, 0);
+            console.log(`[VBAExtractor] TASK-044: Module textOffset: ${current.textOffset}`);
+          }
+          break;
+        default:
+          // ignore other records
+          break;
+      }
+      off += recSize;
+    }
+    if (current) modules.push(current);
+    return { codePage, modules };
+  }
+
+  function le32(b, off) { return (b[off] | (b[off+1]<<8) | (b[off+2]<<16) | (b[off+3]<<24)) >>> 0; }
+  function le16(b, off) { return (b[off] | (b[off+1]<<8)) & 0xFFFF; }
+
+  /**
+   * PHASE 1 DIAGNOSTIC: Hexdump utility for VBA encoding analysis
+   * Logs hex + ASCII representation of bytes to console
+   * @param {Uint8Array} bytes - Byte array to dump
+   * @param {number} offset - Starting offset
+   * @param {number} length - Number of bytes to dump
+   * @param {string} label - Label for the dump
+   */
+  function hexDump(bytes, offset, length, label) {
+    const end = Math.min(offset + length, bytes.length);
+    console.log(`[VBAExtractor] HEXDUMP ${label} (offset ${offset}, length ${end - offset}):`);
+
+    for (let i = offset; i < end; i += 16) {
+      const lineEnd = Math.min(i + 16, end);
+
+      // Offset
+      let line = i.toString(16).padStart(4, '0') + '  ';
+
+      // Hex bytes
+      let hexPart = '';
+      let asciiPart = '';
+      for (let j = i; j < lineEnd; j++) {
+        const byte = bytes[j];
+        hexPart += byte.toString(16).padStart(2, '0') + ' ';
+        // ASCII representation (printable chars only)
+        asciiPart += (byte >= 0x20 && byte <= 0x7E) ? String.fromCharCode(byte) : '.';
+      }
+
+      // Pad hex part if line is short
+      hexPart = hexPart.padEnd(48, ' ');
+      line += hexPart + '  ' + asciiPart;
+
+      console.log(line);
+    }
+  }
+
+  /**
+   * METHOD 7 Phase 1: Byte pattern matching helper
+   * Finds exact byte sequence in buffer
+   * @param {Uint8Array} bytes - Byte array to search
+   * @param {Array<number>} pattern - Pattern to find
+   * @returns {number} Index of first match, or -1 if not found
+   */
+  function findBytePattern(bytes, pattern) {
+    const len = pattern.length;
+    const max = bytes.length - len;
+    for (let i = 0; i <= max; i++) {
+      let match = true;
+      for (let j = 0; j < len; j++) {
+        if (bytes[i + j] !== pattern[j]) {
+          match = false;
+          break;
+        }
+      }
+      if (match) return i;
+    }
+    return -1;
+  }
+
+  function readHeader(b) {
+    const sig = le32(b, 0) + (le32(b, 4) * 0x100000000); // rough check
+    // Magic: D0 CF 11 E0 A1 B1 1A E1
+    if (!(b[0]===0xD0 && b[1]===0xCF && b[2]===0x11 && b[3]===0xE0)) {
+      throw new Error('Not a CFB file');
+    }
+    const sectorShift = le16(b, 0x1E); // usually 0x09 -> 512
+    const miniSectorShift = le16(b, 0x20); // usually 0x06 -> 64
+    const numDirSectors = le32(b, 0x28);
+    const numFATSectors = le32(b, 0x2C);
+    const firstDirSID = le32(b, 0x30);
+    const miniCutoff = le32(b, 0x38); // 4096
+    const firstMiniFATSID = le32(b, 0x3C);
+    const numMiniFATSectors = le32(b, 0x40);
+    const firstDIFATSID = le32(b, 0x44);
+    const numDIFATSectors = le32(b, 0x48);
+    const headerDIFAT = [];
+    for (let i = 0; i < 109; i++) {
+      const sid = le32(b, 0x4C + i*4);
+      if (sid !== 0xFFFFFFFF) headerDIFAT.push(sid);
+    }
+    return {
+      sectorShift, miniSectorShift, sectorSize: 1 << sectorShift, miniSectorSize: 1 << miniSectorShift,
+      numDirSectors, numFATSectors, firstDirSID, miniCutoff,
+      firstMiniFATSID, numMiniFATSectors, firstDIFATSID, numDIFATSectors,
+      headerDIFAT
+    };
+  }
+
+  function buildFAT(b, hdr) {
+    // Only handle DIFAT from header (common case). Skip extended DIFAT.
+    const sectorSize = hdr.sectorSize;
+    const FAT = [];
+    const sectors = hdr.headerDIFAT.slice(0, hdr.numFATSectors);
+    for (const sid of sectors) {
+      const off = (sid + 1) * sectorSize; // sector 0 is header
+      for (let i = 0; i < sectorSize; i += 4) FAT.push(le32(b, off + i));
+    }
+    return FAT; // array mapping sector -> next sector id
+  }
+
+  function getChain(FAT, startSid) {
+    const chain = [];
+    let sid = startSid >>> 0;
+    const EOC = 0xFFFFFFFE >>> 0;
+    const FREE = 0xFFFFFFFF >>> 0;
+    let guard = 0;
+    while (sid !== EOC && sid !== FREE && guard++ < 100000) {
+      chain.push(sid);
+      sid = FAT[sid] >>> 0;
+    }
+    return chain;
+  }
+
+  function readSectors(b, sectorSize, chain) {
+    const out = new Uint8Array(chain.length * sectorSize);
+    let p = 0;
+    for (const sid of chain) {
+      const off = (sid + 1) * sectorSize;
+      out.set(b.subarray(off, off + sectorSize), p);
+      p += sectorSize;
+    }
+    return out;
+  }
+
+  function parseDirectory(dirBytes) {
+    const entries = [];
+    for (let off = 0; off + 128 <= dirBytes.length; off += 128) {
+      // Name length (bytes) at 0x40
+      const nameLen = le16(dirBytes, off + 0x40);
+      let name = '';
+      if (nameLen >= 2) {
+        // UTF-16LE string including trailing 0x0000
+        const end = off + Math.min(64, nameLen - 2);
+        for (let p = off; p < off + 64 && p < off + nameLen - 2; p += 2) {
+          const ch = dirBytes[p] | (dirBytes[p+1] << 8);
+          if (ch === 0) break;
+          name += String.fromCharCode(ch);
+        }
+      }
+      const objType = dirBytes[off + 0x42];
+      const startSector = le32(dirBytes, off + 0x74);
+      // Stream size at 0x78 (low 4 bytes sufficient for our use)
+      const sizeLow = le32(dirBytes, off + 0x78);
+      entries.push({ name, objType, startSector, size: sizeLow });
+    }
+    return entries;
+  }
+
+  function buildMiniFAT(b, hdr, FAT) {
+    if (hdr.firstMiniFATSID === 0xFFFFFFFF || hdr.numMiniFATSectors === 0) return [];
+    const chain = getChain(FAT, hdr.firstMiniFATSID);
+    const miniFATBytes = readSectors(b, hdr.sectorSize, chain);
+    const miniFAT = [];
+    for (let i = 0; i < hdr.numMiniFATSectors * hdr.sectorSize; i += 4) {
+      if (i + 4 > miniFATBytes.length) break;
+      miniFAT.push(le32(miniFATBytes, i));
+    }
+    return miniFAT;
+  }
+
+  function readMiniStream(b, hdr, FAT, rootEntry) {
+    if (!rootEntry) return new Uint8Array(0);
+    const chain = getChain(FAT, rootEntry.startSector);
+    return readSectors(b, hdr.sectorSize, chain);
+  }
+
+  function readStream(b, hdr, FAT, miniFAT, miniStreamBytes, entry) {
+    if (entry.size >= hdr.miniCutoff || entry.startSector === 0xFFFFFFFF) {
+      const chain = getChain(FAT, entry.startSector);
+      const buf = readSectors(b, hdr.sectorSize, chain);
+      return buf.subarray(0, entry.size);
+    } else {
+      // Mini stream: follow miniFAT
+      const miniSectorSize = hdr.miniSectorSize;
+      const EOC = 0xFFFFFFFE >>> 0;
+      let sid = entry.startSector >>> 0;
+      const out = new Uint8Array(entry.size >>> 0);
+      let written = 0;
+      let guard = 0;
+      while (sid !== EOC && guard++ < 100000 && written < out.length) {
+        if (!Number.isFinite(sid) || sid < 0 || sid >= miniFAT.length) break;
+        const off = sid * miniSectorSize;
+        const chunk = miniStreamBytes.subarray(off, off + miniSectorSize);
+        const remaining = out.length - written;
+        const slice = chunk.subarray(0, Math.min(remaining, chunk.length));
+        out.set(slice, written);
+        written += slice.length;
+        const next = miniFAT[sid];
+        if (next === undefined) break;
+        sid = next >>> 0;
+      }
+      return out;
+    }
+  }
+
+  /**
+   * Calculate CopyToken bit allocation based on decompression position
+   * Ported from Python oletools.olevba copytoken_help()
+   * Per MS-OVBA spec: Variable bit allocation for Length and Offset fields
+   * @param {number} difference - Distance from chunk start to current position
+   * @returns {Object} { lengthMask, offsetMask, bitCount, maximumLength }
+   */
+  function copyTokenHelp(difference) {
+    // Calculate bit count needed for offset (minimum 4 bits)
+    let bitCount = difference > 0 ? Math.ceil(Math.log2(difference)) : 4;
+    bitCount = Math.max(bitCount, 4);
+
+    // Calculate masks for 16-bit token
+    // Length uses (16 - bitCount) bits, Offset uses bitCount bits
+    const lengthMask = (1 << (16 - bitCount)) - 1; // Low bits
+    const offsetMask = ((1 << bitCount) - 1) << (16 - bitCount); // High bits
+    const maximumLength = lengthMask + 3;
+
+    return { lengthMask, offsetMask, bitCount, maximumLength };
+  }
+
+  // Try to align a buffer to the start of an OVBA container (0x01 0x00 + valid chunk)
+  function alignOvbaStart(buf) {
+    const b = toUint8(buf);
+    const limit = Math.min(b.length - 4, 4096);
+    // Prefer 0x01 0x00 + valid chunk header
+    for (let i = 0; i <= limit; i++) {
+      if (b[i] === 0x01 && b[i+1] === 0x00) {
+        const hdr = b[i+2] | (b[i+3] << 8);
+        if ((hdr & 0x7000) === 0x3000) return b.subarray(i);
+      }
+    }
+    // Fallback: any valid chunk header
+    for (let i = 0; i <= limit; i++) {
+      const hdr = b[i] | (b[i+1] << 8);
+      if ((hdr & 0x7000) === 0x3000) return b.subarray(i);
+    }
+    return b;
+  }
+
+  // MS-OVBA decompression (per MS-OVBA spec)
+  function decompressVBA(comp, opts = {}) {
+    const bit15MeansCompressed = (opts.bit15MeansCompressed !== false); // default true
+    const silent = opts.silent || false; // suppress warnings for trial attempts
+    const inb = toUint8(comp);
+    let pos = 0;
+    const out = [];
+
+    // CRITICAL: Per MS-OVBA spec and Python oletools, signature is SINGLE byte 0x01
+    if (inb.length >= 1 && inb[0] === 0x01) {
+      pos = 1; // Skip signature byte
+    } else {
+      if (!silent) console.warn('[VBAExtractor] Missing compression signature 0x01');
+      // Try to decompress anyway (some streams may not have signature)
+    }
+
+    while (pos + 2 <= inb.length) {
+      const header = inb[pos] | (inb[pos + 1] << 8);
+      pos += 2;
+
+      // Validate chunk signature bits (12..14 must be 0b011)
+      const chunkSig = (header >> 12) & 0x7;
+      if (chunkSig !== 0x3) {
+        if (!silent) console.warn(`[VBAExtractor] TASK-044: Invalid chunk sig: 0x${chunkSig.toString(16)} (header=0x${header.toString(16)})`);
+        break; // bail; likely misaligned
+      }
+
+      const compressed = bit15MeansCompressed ? ((header & 0x8000) !== 0) : ((header & 0x8000) === 0);
+      const chunkSize = (header & 0x0FFF) + 3; // compressed payload size
+      const end = Math.min(pos + chunkSize, inb.length);
+
+      if (!silent) {
+        console.log(`[VBAExtractor] TASK-044: Chunk header=0x${header.toString(16)}, sig=${chunkSig}, compressed=${compressed}, size=${chunkSize}, pos=${pos-2}, end=${end}`);
+      }
+
+      if (!compressed) {
+        // Uncompressed chunk: copy directly
+        for (let i = pos; i < end; i++) out.push(inb[i]);
+        pos = end;
+        continue;
+      }
+
+      // Compressed chunk: build within-chunk output buffer (max 4096)
+      let cpos = pos;
+      const chunkOut = [];
+      const chunkStartPos = out.length; // Track chunk start in global output
+      let produced = 0;
+
+      while (cpos < end && produced < 4096) {
+        const flags = inb[cpos++];
+
+        for (let bit = 0; bit < 8 && cpos < end && produced < 4096; bit++) {
+          if ((flags & (1 << bit)) === 0) {
+            // Literal token: copy byte directly
+            chunkOut.push(inb[cpos++]);
+            produced++;
+          } else {
+            // CopyToken: use DYNAMIC bit allocation (Python oletools approach)
+            if (cpos + 1 >= end) break;
+            const b1 = inb[cpos++], b2 = inb[cpos++];
+            const token = b1 | (b2 << 8);
+
+            // CRITICAL FIX: Calculate masks dynamically based on current position
+            const currentPos = chunkStartPos + chunkOut.length;
+            const chunkStart = chunkStartPos;
+            const difference = currentPos - chunkStart;
+
+            const { lengthMask, offsetMask, bitCount, maximumLength } = copyTokenHelp(difference);
+
+            // Extract length and offset using dynamic masks
+            const length = (token & lengthMask) + 3;
+            const offset = ((token & offsetMask) >> (16 - bitCount)) + 1;
+
+            // Copy sequence from decompression buffer (byte-by-byte for overlapping)
+            for (let k = 0; k < length && produced < 4096; k++) {
+              const refPos = chunkOut.length - offset;
+              if (refPos < 0) {
+                if (opts.strict) throw new Error('OVBA_E_TOKEN_OOB');
+                chunkOut.push(0x20); // Fallback: space character
+              } else {
+                // CRITICAL: Byte-by-byte copy supports overlapping sequences
+                chunkOut.push(chunkOut[refPos]);
+              }
+              produced++;
+            }
+          }
+          if (chunkOut.length >= 4096) break; // safety: each chunk decompresses to <= 4096
+        }
+      }
+      // Append chunk output to global buffer
+      for (let i = 0; i < chunkOut.length; i++) out.push(chunkOut[i]);
+      pos = end;
+    }
+    return new Uint8Array(out);
+  }
+
+  function bytesToText(bytes, codePage) {
+    if (!bytes || bytes.length === 0) return '';
+    // BOM checks
+    const hasLEBOM = bytes.length >= 2 && bytes[0] === 0xFF && bytes[1] === 0xFE;
+    const hasBEBOM = bytes.length >= 2 && bytes[0] === 0xFE && bytes[1] === 0xFF;
+
+    // Heuristic: many NULs in odd positions → UTF-16LE; even positions → UTF-16BE
+    let nulOdd = 0, nulEven = 0, sample = Math.min(bytes.length, 4096);
+    for (let i = 0; i < sample; i++) {
+      if (bytes[i] === 0x00) {
+        if (i & 1) nulOdd++; else nulEven++;
+      }
+    }
+    const ratioOdd = nulOdd / sample;
+    const ratioEven = nulEven / sample;
+
+    try {
+      if (hasLEBOM || ratioOdd > 0.2) {
+        return new TextDecoder('utf-16le').decode(bytes.subarray(hasLEBOM ? 2 : 0));
+      }
+      if (hasBEBOM || ratioEven > 0.2) {
+        return new TextDecoder('utf-16be').decode(bytes.subarray(hasBEBOM ? 2 : 0));
+      }
+    } catch (_) { /* fallback below */ }
+
+    // 8-bit codepage: try requested CP (from PROJECT stream), else Windows-1252, then Latin-1
+    try {
+      if (typeof TextDecoder !== 'undefined') {
+        if (codePage === 65001) return new TextDecoder('utf-8').decode(bytes);
+        if (codePage && codePage >= 1250 && codePage <= 1258) {
+          const dec = new TextDecoder('windows-' + codePage);
+          return dec.decode(bytes);
+        }
+        // Default to Win-1252 when not specified
+        try { return new TextDecoder('windows-1252').decode(bytes); } catch (_) {}
+      }
+    } catch (_) {}
+
+    // Latin-1 fallback
+    let s = '';
+    for (let i = 0; i < bytes.length; i++) s += String.fromCharCode(bytes[i]);
+    return s;
+  }
+
+  /**
+   * TASK-043 Phase 1: Detect encoding hints from byte patterns
+   * Analyzes BOM markers and NUL byte distribution to predict UTF-16LE encoding and alignment
+   * @param {Uint8Array} bytes - Byte array to analyze
+   * @returns {Object} { encoding, confidence, offset }
+   */
+  /**
+   * METHOD 6: Sliding Window Encoding Detection
+   * Scans multiple regions to find clean UTF-16LE signature, skipping binary header
+   */
+  function detectEncodingHint(bytes) {
+    console.log(`[VBAExtractor] METHOD 6: Sliding window analysis on ${bytes.length} bytes`);
+
+    // Check for UTF-16LE BOM (0xFF 0xFE)
+    if (bytes.length >= 2 && bytes[0] === 0xFF && bytes[1] === 0xFE) {
+      console.log('[VBAExtractor] Found UTF-16LE BOM at offset 0');
+      return { encoding: 'utf-16le', confidence: 'high', offset: 2 };
+    }
+
+    // Check for UTF-16BE BOM (0xFE 0xFF)
+    if (bytes.length >= 2 && bytes[0] === 0xFE && bytes[1] === 0xFF) {
+      console.log('[VBAExtractor] Found UTF-16BE BOM at offset 0');
+      return { encoding: 'utf-16be', confidence: 'high', offset: 2 };
+    }
+
+    // Helper: Analyze a single window for UTF-16LE signature
+    function analyzeWindow(startOffset, windowSize) {
+      const endOffset = Math.min(startOffset + windowSize, bytes.length);
+      const actualSize = endOffset - startOffset;
+
+      if (actualSize < 50) return null; // Too small to be meaningful
+
+      let nullsAtOdd = 0, nullsAtEven = 0;
+
+      for (let i = startOffset; i < endOffset; i++) {
+        if (bytes[i] === 0) {
+          const relativePos = i - startOffset;
+          if (relativePos % 2 === 1) nullsAtOdd++;
+          else nullsAtEven++;
+        }
+      }
+
+      const totalNulls = nullsAtOdd + nullsAtEven;
+      const nullRatio = totalNulls / actualSize;
+
+      // Need sufficient NULs for UTF-16LE (at least 30%)
+      if (nullRatio < 0.30) return null;
+
+      // Calculate directional bias (0 to 1, where 1 = all NULs in one direction)
+      const bias = totalNulls > 0 ? Math.abs(nullsAtOdd - nullsAtEven) / totalNulls : 0;
+
+      return {
+        startOffset,
+        nullRatio,
+        bias,
+        nullsAtOdd,
+        nullsAtEven,
+        totalNulls,
+        actualSize
+      };
+    }
+
+    // METHOD 6: Sliding window - try multiple offsets to find clean UTF-16LE region
+    const windowSize = 200;
+    const offsets = [0, 25, 50, 75, 100, 125, 150, 175, 200, 250];
+    let bestWindow = null;
+    let bestScore = 0;
+
+    console.log('[VBAExtractor] Scanning windows for UTF-16LE signature...');
+
+    for (const offset of offsets) {
+      if (offset >= bytes.length - 50) break; // Not enough data left
+
+      const window = analyzeWindow(offset, windowSize);
+      if (!window) continue;
+
+      // Scoring: bias (0-1) * nullRatio (0-1) * 100
+      // Higher score = stronger UTF-16LE signal
+      const score = window.bias * window.nullRatio * 100;
+
+      console.log(`[VBAExtractor]   offset=${offset}: NULs=${window.totalNulls} (${(window.nullRatio*100).toFixed(1)}%), ` +
+                  `bias=${(window.bias*100).toFixed(1)}%, score=${score.toFixed(1)}`);
+
+      if (score > bestScore && window.bias > 0.75) {
+        bestScore = score;
+        bestWindow = window;
+      }
+    }
+
+    // Evaluate best window
+    if (bestWindow && bestScore > 20) {
+      const alignment = bestWindow.nullsAtOdd > bestWindow.nullsAtEven ? 0 : 1;
+      const skipHeader = bestWindow.startOffset;
+
+      console.log(`[VBAExtractor] *** BEST WINDOW: offset=${skipHeader}, bias=${(bestWindow.bias*100).toFixed(1)}%, ` +
+                  `nullRatio=${(bestWindow.nullRatio*100).toFixed(1)}%, score=${bestScore.toFixed(1)}`);
+      console.log(`[VBAExtractor] Detected UTF-16LE with alignment=${alignment}, skipping ${skipHeader}-byte binary header`);
+
+      return {
+        encoding: 'utf-16le',
+        confidence: 'high',
+        offset: skipHeader, // Skip binary header
+        alignment: alignment
+      };
+    }
+
+    console.log('[VBAExtractor] No UTF-16LE signature found in any window');
+    return { encoding: 'unknown', confidence: 'none', offset: 0 };
+  }
+
+  function tryDecodeCandidates(bytes, codePage) {
+    const cand = [];
+    const push = (label, text, meta={}) => {
+      if (typeof text !== 'string') return;
+      const cleaned = text
+        .replace(/\u0000/g, '')
+        .replace(/\r\n/g, '\n')
+        .replace(/\r/g, '\n')
+        .replace(/[\x00-\x08\x0B\x0C\x0E-\x1F]/g, '');
+      cand.push({ label, text: cleaned, meta });
+    };
+
+    // TASK-043 Phase 2: Detect encoding hints and prioritize
+    const hint = detectEncodingHint(bytes);
+    if (hint.confidence === 'high') {
+      try {
+        let hintBytes = bytes;
+        if (hint.offset > 0 && hint.offset < bytes.length) {
+          hintBytes = bytes.subarray(hint.offset);
+        }
+        const hintText = new TextDecoder(hint.encoding).decode(hintBytes);
+        push(`${hint.encoding}-detected`, hintText, { priority: 1000, alignment: hint.offset, source: 'hint' });
+        console.log(`[VBAExtractor] Encoding hint: ${hint.encoding} at offset ${hint.offset} (priority: 1000)`);
+      } catch(e) {
+        console.warn('[VBAExtractor] Failed to decode with hint:', e);
+      }
+    }
+
+    // Unicode heuristics
+    const hasLEBOM = bytes.length >= 2 && bytes[0] === 0xFF && bytes[1] === 0xFE;
+    const hasBEBOM = bytes.length >= 2 && bytes[0] === 0xFE && bytes[1] === 0xFF;
+    if (hasLEBOM) push('utf-16le-bom', new TextDecoder('utf-16le').decode(bytes.subarray(2)));
+    if (hasBEBOM) push('utf-16be-bom', new TextDecoder('utf-16be').decode(bytes.subarray(2)));
+
+    // TASK-043 Phase 2: Try UTF-16LE/BE at BOTH alignments (0 and 1)
+    // Alignment 0: standard decoding
+    try {
+      push('utf-16le-align0', new TextDecoder('utf-16le').decode(bytes), { alignment: 0 });
+    } catch(_){}
+
+    // Alignment 1: skip first byte for misaligned UTF-16LE
+    if (bytes.length > 1) {
+      try {
+        push('utf-16le-align1', new TextDecoder('utf-16le').decode(bytes.subarray(1)), { alignment: 1 });
+      } catch(_){}
+    }
+
+    // UTF-16BE at both alignments
+    try {
+      push('utf-16be-align0', new TextDecoder('utf-16be').decode(bytes), { alignment: 0 });
+    } catch(_){}
+
+    if (bytes.length > 1) {
+      try {
+        push('utf-16be-align1', new TextDecoder('utf-16be').decode(bytes.subarray(1)), { alignment: 1 });
+      } catch(_){}
+    }
+
+    // Codepage from Dir / Project
+    if (codePage) {
+      if (codePage === 65001) {
+        try { push('utf-8-cp', new TextDecoder('utf-8').decode(bytes), { codePage }); } catch(_){}
+      } else if (codePage >= 1250 && codePage <= 1258) {
+        try { push('win-cp', new TextDecoder('windows-' + codePage).decode(bytes), { codePage }); } catch(_){}
+      }
+    }
+    try { push('windows-1252', new TextDecoder('windows-1252').decode(bytes)); } catch(_){}
+
+    // Latin-1 fallback
+    push('latin1', bytesToText(bytes, 28591));
+
+    // Try UTF-8 last (sometimes modules contain UTF-8 without BOM)
+    try { push('utf-8', new TextDecoder('utf-8').decode(bytes)); } catch(_){}
+
+    return cand;
+  }
+
+  /**
+   * TASK-043 Phase 3: Validate VBA structural integrity
+   * Checks for valid VBA syntax patterns and structure
+   * @param {string} text - Decoded text to validate
+   * @returns {Object} { isValid: boolean, score: number, reasons: string[] }
+   */
+  function validateVBAStructure(text) {
+    const reasons = [];
+    let score = 0;
+
+    // Check for paired Sub/End Sub or Function/End Function
+    const subCount = (text.match(/\bSub\s+\w+/gi) || []).length;
+    const endSubCount = (text.match(/\bEnd\s+Sub\b/gi) || []).length;
+    const funcCount = (text.match(/\bFunction\s+\w+/gi) || []).length;
+    const endFuncCount = (text.match(/\bEnd\s+Function\b/gi) || []).length;
+
+    if (subCount > 0 && subCount === endSubCount) {
+      score += 50;
+      reasons.push('Balanced Sub/End Sub pairs');
+    }
+    if (funcCount > 0 && funcCount === endFuncCount) {
+      score += 50;
+      reasons.push('Balanced Function/End Function pairs');
+    }
+
+    // Check for Attribute statements (metadata)
+    const attributeCount = (text.match(/^Attribute\s+\w+/gm) || []).length;
+    if (attributeCount > 0) {
+      score += 30;
+      reasons.push(`Found ${attributeCount} Attribute statements`);
+    }
+
+    // Check for valid VBA keywords
+    const keywords = ['Option', 'Dim', 'As', 'Integer', 'String', 'Long', 'Double', 'Boolean', 'Variant'];
+    let keywordMatches = 0;
+    for (const kw of keywords) {
+      if (new RegExp('\\b' + kw + '\\b', 'i').test(text)) {
+        keywordMatches++;
+      }
+    }
+    if (keywordMatches >= 3) {
+      score += 40;
+      reasons.push(`Found ${keywordMatches} VBA keywords`);
+    }
+
+    // Check for valid VBA line structure (not just mojibake)
+    const lines = text.split('\n');
+    let validLines = 0;
+    for (const line of lines.slice(0, Math.min(20, lines.length))) {
+      const trimmed = line.trim();
+      if (trimmed.length === 0 || trimmed.startsWith("'") || /^(Attribute|Option|Dim|Sub|Function|End|If|Else|For|Next|Do|Loop|While|Wend|Select|Case)\b/i.test(trimmed)) {
+        validLines++;
+      }
+    }
+    const validLineRatio = validLines / Math.min(20, lines.length);
+    if (validLineRatio > 0.5) {
+      score += 30;
+      reasons.push(`${Math.round(validLineRatio * 100)}% valid VBA line structure`);
+    }
+
+    const isValid = score >= 50; // Threshold for valid VBA structure
+    return { isValid, score, reasons };
+  }
+
+  function scoreVBAText(s, meta = {}) {
+    let score = 0;
+    const lower = s.toLowerCase();
+    const tokens = [
+      {t:'sub ', w:40}, {t:'function ', w:40}, {t:'end sub', w:40}, {t:'end function', w:40},
+      {t:'option explicit', w:15}, {t:'attribute ', w:10}, {t:'msgbox', w:15}, {t:'range(', w:15}
+    ];
+    for (const {t,w} of tokens) if (lower.includes(t)) score += w;
+
+    // Penalize non-ascii noise
+    const nonAscii = (s.match(/[\u0080-\uFFFF]/g) || []).length;
+    const total = s.length || 1;
+    const ratio = nonAscii / total;
+    score -= Math.round(ratio * 60);
+
+    // Penalize control pictographs often seen in mojibake
+    const bad = (s.match(/[€®Ž¾™†•‡¶§]/g) || []).length;
+    score -= bad * 10;
+
+    // TASK-043 Phase 3: Add structural validation
+    const validation = validateVBAStructure(s);
+    score += validation.score;
+    if (validation.isValid) {
+      console.log(`[VBAExtractor] Structural validation passed (+${validation.score}): ${validation.reasons.join(', ')}`);
+    }
+
+    // TASK-043 Phase 3: Add priority bonuses from metadata
+    if (meta.priority) {
+      score += meta.priority;
+      console.log(`[VBAExtractor] Priority bonus: +${meta.priority} (${meta.source || 'unknown'})`);
+    }
+    if (meta.codePage) {
+      score += 20;
+      console.log(`[VBAExtractor] CodePage match bonus: +20 (CodePage ${meta.codePage})`);
+    }
+
+    return score;
+  }
+
+  /**
+   * METHOD 7 Phase 3: Enhanced extractCodeFromModuleBytes with encoding hint support
+   * @param {Uint8Array} bytes - Decompressed module bytes
+   * @param {number} codePage - CodePage from DIR stream
+   * @param {string} encodingHint - Encoding hint from findTextStartOffset ('utf-16le', 'ascii', 'unknown')
+   * @returns {string} Decoded VBA code
+   */
+  function extractCodeFromModuleBytes(bytes, codePage, encodingHint) {
+    // METHOD 7: If UTF-16LE pattern found, decode directly
+    if (encodingHint === 'utf-16le') {
+      console.log('[VBAExtractor] METHOD 7: Using UTF-16LE direct decode');
+      try {
+        const text = new TextDecoder('utf-16le').decode(bytes);
+        const cleaned = text
+          .replace(/\u0000/g, '')
+          .replace(/\r\n/g, '\n')
+          .replace(/\r/g, '\n')
+          .replace(/[\x00-\x08\x0B\x0C\x0E-\x1F]/g, '');
+        console.log('[VBAExtractor] METHOD 7: UTF-16LE decode successful');
+        return cleaned;
+      } catch (e) {
+        console.warn('[VBAExtractor] METHOD 7: UTF-16LE decode failed:', e);
+        // Fall through to candidate selection
+      }
+    }
+
+    // Otherwise, use existing candidate selection logic
+    const candidates = tryDecodeCandidates(bytes, codePage);
+    if (!candidates.length) return '';
+
+    // TASK-043 Phase 3: Choose best by enhanced heuristic with metadata
+    let best = candidates[0];
+    let bestScore = scoreVBAText(best.text, best.meta);
+    console.log(`[VBAExtractor] decode= ${best.label} ${JSON.stringify(best.meta || {})} score= ${bestScore}`);
+
+    for (let i = 1; i < candidates.length; i++) {
+      const sc = scoreVBAText(candidates[i].text, candidates[i].meta);
+      console.log(`[VBAExtractor] decode= ${candidates[i].label} ${JSON.stringify(candidates[i].meta || {})} score= ${sc}`);
+      if (sc > bestScore) {
+        best = candidates[i];
+        bestScore = sc;
+      }
+    }
+    console.log(`[VBAExtractor] *** WINNER: ${best.label} (score=${bestScore}) ***`);
+
+    let text = best.text;
+    // Heuristic: find the first occurrence of typical VBA tokens
+    const anchors = ['Attribute VB_Name', 'Option ', 'Sub ', 'Function ', 'Type ', 'Enum ', 'Private Sub ', 'Public Sub '];
+    let idx = -1;
+    for (const a of anchors) { const j = text.indexOf(a); if (j !== -1 && (idx === -1 || j < idx)) idx = j; }
+    let start = 0;
+    if (idx !== -1) {
+      // If prefix before anchor has many non-printables, cut exactly at anchor
+      const prefix = text.slice(0, idx);
+      const nonAscii = (prefix.match(/[\u0080-\uFFFF]/g) || []).length;
+      const ctrl = (prefix.match(/[\x00-\x1F]/g) || []).length;
+      const heaviness = (nonAscii + ctrl) / Math.max(prefix.length, 1);
+      if (heaviness > 0.05) {
+        start = idx; // drop garbage before anchor
+      } else {
+        start = Math.max(0, text.lastIndexOf('\n', idx - 1) + 1);
+      }
+    } else {
+      // Fallback: find first window of printable ASCII and start there
+      const n = text.length;
+      for (let i = 0; i < n; i += 16) {
+        const window = text.slice(i, Math.min(i + 64, n));
+        const printable = (window.match(/[\t\n\r\x20-\x7E]/g) || []).length;
+        if (printable / Math.max(window.length, 1) > 0.85) { start = i; break; }
+      }
+    }
+    const finalText = text.slice(start).replace(/\r\n/g, '\n');
+    try { console.log('[VBAExtractor] decode=', best.label, best.meta || {}, 'score=', bestScore); } catch(_){}
+    return finalText;
+  }
+
+  /**
+   * Brute-force search for optimal decompression offset
+   * Tests multiple offsets and picks the one producing cleanest VBA output
+   * @param {Uint8Array} compressedCode - Compressed module stream
+   * @param {number} codePage - Code page for text decoding
+   * @param {string} moduleName - Module name for logging
+   * @returns {number} Optimal offset (0 if none found)
+   */
+  function findOptimalDecompressionOffset(compressedCode, codePage, moduleName) {
+    console.log(`[VBAExtractor] TASK-043: Brute-force testing offsets for ${moduleName}...`);
+
+    const candidates = [];
+
+    // Test every 0x01 0x00 position (OVBA signature) and nearby offsets
+    const testOffsets = new Set();
+
+    // Add 0x01 0x00 positions
+    for (let i = 0; i < Math.min(compressedCode.length - 4, 2048); i++) {
+      if (compressedCode[i] === 0x01 && compressedCode[i+1] === 0x00) {
+        testOffsets.add(i);
+        // Also test nearby offsets (±8 bytes)
+        for (let delta = -8; delta <= 8; delta++) {
+          if (i + delta >= 0 && i + delta < compressedCode.length - 4) {
+            testOffsets.add(i + delta);
+          }
+        }
+      }
+    }
+
+    // Also test valid chunk header positions
+    for (let i = 0; i < Math.min(compressedCode.length - 4, 2048); i++) {
+      const hdr = compressedCode[i] | (compressedCode[i+1] << 8);
+      if ((hdr & 0x7000) === 0x3000) {
+        testOffsets.add(i);
+      }
+    }
+
+    console.log(`[VBAExtractor] TASK-043: Testing ${testOffsets.size} candidate offsets...`);
+
+    // Test each offset
+    let testedCount = 0;
+    for (const offset of Array.from(testOffsets).sort((a, b) => a - b)) {
+      try {
+        const decompressed = decompressVBA(compressedCode.subarray(offset), { strict: true, silent: true });
+        if (decompressed.length < 50) continue; // Too small
+
+        // Decode to text
+        const text = bytesToText(decompressed, codePage);
+
+        // Score this result
+        const score = scoreDecompressedVBA(text, decompressed);
+
+        candidates.push({ offset, score, text: text.substring(0, 100), decompressed });
+        testedCount++;
+
+        if (testedCount % 20 === 0) {
+          console.log(`[VBAExtractor] TASK-043: Tested ${testedCount}/${testOffsets.size} offsets...`);
+        }
+      } catch (_) {
+        // Decompression failed, skip this offset
+      }
+    }
+
+    if (candidates.length === 0) {
+      console.log('[VBAExtractor] TASK-043: No valid decompression candidates found');
+      return 0;
+    }
+
+    // Sort by score (highest first)
+    candidates.sort((a, b) => b.score - a.score);
+
+    // Log top 5 candidates
+    console.log('[VBAExtractor] TASK-043: Top 5 candidates:');
+    for (let i = 0; i < Math.min(5, candidates.length); i++) {
+      const c = candidates[i];
+      console.log(`  [${i+1}] offset=${c.offset} score=${c.score} preview="${c.text.substring(0, 50).replace(/\n/g, ' ')}"`);
+    }
+
+    return candidates[0].offset;
+  }
+
+  /**
+   * Score decompressed VBA quality
+   * Higher score = better quality (cleaner text, more VBA keywords)
+   */
+  function scoreDecompressedVBA(text, bytes) {
+    let score = 0;
+
+    // Strongly reward "Attribute VB_" at the start (indicates proper module start)
+    if (text.trimLeft().startsWith('Attribute VB_')) {
+      score += 500;
+    }
+
+    // Reward longer output (more complete modules)
+    // But cap at 500 bytes to avoid favoring garbage
+    const lengthBonus = Math.min(bytes.length, 500);
+    score += lengthBonus;
+
+    // Penalize NUL bytes (sign of decompression corruption), but less heavily
+    const nullCount = (text.match(/\u0000/g) || []).length;
+    const nullRatio = nullCount / Math.max(text.length, 1);
+    score -= nullRatio * 300; // Ratio-based penalty instead of absolute count
+
+    // Reward VBA keywords (key structural elements)
+    const keywords = ['Attribute VB_', 'Sub ', 'Function ', 'End Sub', 'End Function', 'Option Explicit', 'Dim ', 'MsgBox'];
+    for (const kw of keywords) {
+      if (text.includes(kw)) score += 100;
+    }
+
+    // Reward printable ASCII ratio
+    const printable = (text.match(/[\x20-\x7E\n\r\t]/g) || []).length;
+    const ratio = printable / Math.max(text.length, 1);
+    score += ratio * 150;
+
+    // Penalize control characters (except tab/CR/LF)
+    const controlChars = (text.match(/[\x00-\x08\x0B\x0C\x0E-\x1F]/g) || []).length;
+    score -= controlChars * 5;
+
+    // Reward balanced parentheses
+    const openParen = (text.match(/\(/g) || []).length;
+    const closeParen = (text.match(/\)/g) || []).length;
+    if (openParen > 0 && openParen === closeParen) score += 50;
+
+    // Reward presence of "=" (assignments)
+    const assignments = (text.match(/=/g) || []).length;
+    score += Math.min(assignments * 3, 60);
+
+    // Reward presence of quotes (string literals)
+    const quotes = (text.match(/"/g) || []).length;
+    if (quotes > 0 && quotes % 2 === 0) score += 30; // Balanced quotes
+
+    return score;
+  }
+
+  function extractFromVbaProjectBin(vbaraw) {
+    const b = toUint8(vbaraw);
+    const hdr = readHeader(b);
+    const FAT = buildFAT(b, hdr);
+    const dirChain = getChain(FAT, hdr.firstDirSID);
+    const dirBytes = readSectors(b, hdr.sectorSize, dirChain);
+    const entries = parseDirectory(dirBytes);
+
+    // Root entry to read mini stream
+    const rootEntry = entries.find(e => e.objType === 5) || null;
+    const miniFAT = buildMiniFAT(b, hdr, FAT);
+    const miniStreamBytes = readMiniStream(b, hdr, FAT, rootEntry);
+
+    // Read CodePage from DIR stream (authoritative), fallback to PROJECT
+    let codePage = 1252; // default
+    const getEntryByName = (n) => entries.find(e => e.objType === 2 && e.name && e.name.toUpperCase() === n.toUpperCase());
+    const dirEntry = getEntryByName('dir') || getEntryByName('DIR');
+    let moduleMap = {};
+    if (dirEntry) {
+      try {
+        let dirComp = readStream(b, hdr, FAT, miniFAT, miniStreamBytes, dirEntry);
+        console.log(`[VBAExtractor] TASK-043: DIR stream found, compressed size: ${dirComp.length} bytes`);
+        const dirDecomp = robustDecompressDir(dirComp);
+        console.log(`[VBAExtractor] TASK-043: DIR stream decompressed, size: ${dirDecomp.length} bytes`);
+        const parsed = parseDirRecords(dirDecomp);
+        if (parsed) {
+          // TASK-044: Update CodePage even if no modules found (corrupt DIR may have CodePage but no modules)
+          if (parsed.codePage) {
+            codePage = parsed.codePage;
+            console.log(`[VBAExtractor] TASK-044: Using CodePage from DIR: ${codePage}`);
+          }
+          // Extract module metadata if modules were found
+          if (parsed.modules && parsed.modules.length) {
+            for (const m of parsed.modules) {
+              const key = (m.streamNameUnicode || m.streamName || m.nameUnicode || m.name || '').toLowerCase();
+              if (!key) continue;
+              if (m.textOffset != null) {
+                moduleMap[key] = { streamName: m.streamName || m.streamNameUnicode || key, textOffset: m.textOffset };
+                console.log(`[VBAExtractor] TASK-043: Module metadata: ${key} → textOffset=${m.textOffset}`);
+              }
+            }
+          }
+        }
+      } catch (e) {
+        console.warn('[VBAExtractor] TASK-043: DIR stream parsing failed:', e);
+      }
+    }
+    console.log(`[VBAExtractor] TASK-043: DIR parsing complete. CodePage=${codePage}, Modules found=${Object.keys(moduleMap).length}`);
+    if (Object.keys(moduleMap).length > 0) {
+      console.log('[VBAExtractor] TASK-043: Module map:', JSON.stringify(moduleMap, null, 2));
+    }
+    if (!codePage || codePage === 1252) {
+      const projectEntry = getEntryByName('PROJECT');
+      if (projectEntry) {
+        try {
+          const projBytes = readStream(b, hdr, FAT, miniFAT, miniStreamBytes, projectEntry);
+          const projText = bytesToText(projBytes, 1252);
+          const m = projText.match(/CodePage\s*=\s*(\d+)/i);
+          if (m) {
+            const cp = parseInt(m[1], 10);
+            if (cp > 0) codePage = cp;
+          }
+        } catch (_) { /* ignore */ }
+      }
+    }
+
+    // Collect module streams: skip known non-code streams
+    const skipNames = new Set(['dir', 'DIR', 'PROJECT', 'PROJECTwm', '_VBA_PROJECT', 'VBA/_VBA_PROJECT']);
+    const modules = [];
+    for (const e of entries) {
+      if (e.objType !== 2) continue; // only streams
+      const name = e.name || '';
+      if (skipNames.has(name)) continue;
+      // Read module stream
+      let raw = readStream(b, hdr, FAT, miniFAT, miniStreamBytes, e);
+      const modInfo = moduleMap[(name || '').toLowerCase()];
+
+      console.log(`[VBAExtractor] TASK-043: ========== Processing module: ${name} ==========`);
+      console.log(`[VBAExtractor] TASK-043: Raw compressed stream size: ${raw.length} bytes`);
+      console.log(`[VBAExtractor] TASK-043: Module info:`, modInfo || 'NOT FOUND IN DIR');
+
+      // CRITICAL FIX (TASK-043): Apply textOffset to COMPRESSED stream BEFORE decompression
+      // Per ADR-034: "Skip to ModuleOffset to reach start of CompressedSourceCode"
+      // This skips binary header bytes that would corrupt LZSS copy tokens
+      let compressedCode = raw;
+      if (modInfo && Number.isFinite(modInfo.textOffset) && modInfo.textOffset > 0 && modInfo.textOffset < raw.length) {
+        console.log(`[VBAExtractor] TASK-043: ✓ Applying textOffset: Skipping ${modInfo.textOffset} bytes in COMPRESSED stream`);
+        compressedCode = raw.subarray(modInfo.textOffset);
+        console.log(`[VBAExtractor] TASK-043: Compressed stream after offset: ${compressedCode.length} bytes`);
+
+        // Hexdump first 64 bytes of compressed stream AFTER offset
+        const hexLen = Math.min(64, compressedCode.length);
+        let hexStr = '';
+        for (let i = 0; i < hexLen; i++) {
+          hexStr += compressedCode[i].toString(16).padStart(2, '0') + ' ';
+          if ((i + 1) % 16 === 0) hexStr += '\n';
+        }
+        console.log(`[VBAExtractor] TASK-043: First ${hexLen} bytes of COMPRESSED stream (after offset):\n${hexStr}`);
+      } else {
+        console.log(`[VBAExtractor] TASK-043: ⚠ No textOffset applied (not in moduleMap or invalid)`);
+      }
+
+      // If no DIR offset, use brute-force quality testing to find optimal offset
+      if ((!modInfo || modInfo.textOffset == null) && compressedCode.length >= 4) {
+        console.log('[VBAExtractor] TASK-043: No DIR offset available - initiating brute-force offset search');
+        const optimalOffset = findOptimalDecompressionOffset(compressedCode, codePage || 1252, name);
+        if (optimalOffset > 0) {
+          console.log(`[VBAExtractor] TASK-043: ✓ Brute-force found optimal offset: +${optimalOffset} bytes`);
+          compressedCode = compressedCode.subarray(optimalOffset);
+        } else {
+          console.log('[VBAExtractor] TASK-043: ⚠ Brute-force failed, using heuristic fallback');
+          // Fallback to old heuristic
+          const limit = Math.min(4096, compressedCode.length - 4);
+          let startAt = -1;
+          for (let i = 0; i <= limit; i++) {
+            if (compressedCode[i] === 0x01 && compressedCode[i+1] === 0x00) {
+              const hdr = compressedCode[i+2] | (compressedCode[i+3] << 8);
+              if ((hdr & 0x7000) === 0x3000) { startAt = i; break; }
+            }
+          }
+          if (startAt >= 0 && startAt !== 0) {
+            console.log(`[VBAExtractor] TASK-043: Heuristic OVBA align: using header at +${startAt} bytes`);
+            compressedCode = compressedCode.subarray(startAt);
+          }
+        }
+      }
+
+      // Fine-tune OVBA start by local search around current start (±64 bytes)
+      compressedCode = refineModuleStart(compressedCode, codePage || 1252);
+
+      // Decompress the clean compressed code (without binary header pollution)
+      let codeBytes;
+      try {
+        // Try strict decode first to avoid OOB backrefs (which manifest as spaces)
+        try {
+          codeBytes = decompressVBA(compressedCode, { strict: true });
+        } catch (_) {
+          // Try alt variant
+          try {
+            codeBytes = decompressVBA(compressedCode, { strict: true, bit15MeansCompressed: false });
+          } catch (_) {
+            // Fallback to heuristic trial offsets if strict failed at current start
+            const trial = tryTrialOvbaOffsets(compressedCode);
+            if (trial > 0) {
+              console.log(`[VBAExtractor] TASK-043: Strict decode failed; retrying at +${trial}`);
+              try {
+                codeBytes = decompressVBA(compressedCode.subarray(trial), { strict: true });
+              } catch (_) {
+                codeBytes = decompressVBA(compressedCode.subarray(trial), { strict: true, bit15MeansCompressed: false });
+              }
+            } else {
+              codeBytes = decompressVBA(compressedCode);
+            }
+          }
+        }
+        console.log(`[VBAExtractor] TASK-043: ✓ Decompression successful: ${codeBytes.length} bytes`);
+
+        // Hexdump first 64 bytes of DECOMPRESSED stream
+        const hexLen = Math.min(64, codeBytes.length);
+        let hexStr = '';
+        let asciiStr = '';
+        for (let i = 0; i < hexLen; i++) {
+          hexStr += codeBytes[i].toString(16).padStart(2, '0') + ' ';
+          asciiStr += (codeBytes[i] >= 0x20 && codeBytes[i] <= 0x7E) ? String.fromCharCode(codeBytes[i]) : '.';
+          if ((i + 1) % 16 === 0) {
+            console.log(`[VBAExtractor] TASK-043:   ${hexStr}  ${asciiStr}`);
+            hexStr = '';
+            asciiStr = '';
+          }
+        }
+        if (hexStr) console.log(`[VBAExtractor] TASK-043:   ${hexStr.padEnd(48)}  ${asciiStr}`);
+      } catch (e) {
+        console.error(`[VBAExtractor] TASK-043: ✗ Decompression FAILED:`, e);
+        codeBytes = compressedCode;
+      }
+
+      // CRITICAL: Find actual VBA text start in decompressed bytes (skip binary header)
+      // Scan decompressed bytes for "Attribute VB_" or other VBA anchors (ASCII and UTF-16LE)
+      const vbaAnchorsAscii = [
+        'Attribute VB_Name',
+        'Attribute VB_',
+        'Option Explicit',
+        'Option ',
+        'Sub ',
+        'Function ',
+        'Private Sub',
+        'Public Sub'
+      ];
+
+      const vbaAnchorsUTF16LE = vbaAnchorsAscii.map(anchor => {
+        // Convert to UTF-16LE byte pattern
+        const utf16 = [];
+        for (let i = 0; i < anchor.length; i++) {
+          utf16.push(anchor.charCodeAt(i), 0x00);
+        }
+        return { text: anchor, bytes: utf16 };
+      });
+
+      let textStartOffset = 0;
+      let encodingHint = 'ascii';
+
+      // Try UTF-16LE anchors FIRST (priority over ASCII to avoid false positives)
+      // UTF-16LE text contains ASCII byte patterns, so UTF-16LE must be checked first
+      console.log(`[VBAExtractor] TASK-043: Searching for UTF-16LE anchors in ${codeBytes.length} bytes...`);
+      for (const {text, bytes} of vbaAnchorsUTF16LE) {
+        for (let i = 0; i <= codeBytes.length - bytes.length; i++) {
+          let match = true;
+          for (let j = 0; j < bytes.length; j++) {
+            if (codeBytes[i + j] !== bytes[j]) {
+              match = false;
+              break;
+            }
+          }
+          if (match) {
+            textStartOffset = i;
+            encodingHint = 'utf-16le';
+            console.log(`[VBAExtractor] TASK-043: Found UTF-16LE VBA anchor "${text}" at byte offset ${i}`);
+            break;
+          }
+        }
+        if (textStartOffset > 0) break;
+      }
+      if (textStartOffset === 0) {
+        console.log('[VBAExtractor] TASK-043: No UTF-16LE anchors found, trying ASCII...');
+      }
+
+      // Fallback to ASCII anchors if UTF-16LE not found
+      if (textStartOffset === 0) {
+        for (const anchor of vbaAnchorsAscii) {
+          const anchorBytes = anchor.split('').map(c => c.charCodeAt(0));
+          for (let i = 0; i <= codeBytes.length - anchorBytes.length; i++) {
+            let match = true;
+            for (let j = 0; j < anchorBytes.length; j++) {
+              if (codeBytes[i + j] !== anchorBytes[j]) {
+                match = false;
+                break;
+              }
+            }
+            if (match) {
+              textStartOffset = i;
+              encodingHint = 'ascii';
+              console.log(`[VBAExtractor] TASK-043: Found ASCII VBA anchor "${anchor}" at byte offset ${i}`);
+
+              // Hexdump around the found anchor to verify encoding
+              const dumpStart = Math.max(0, i - 16);
+              const dumpEnd = Math.min(codeBytes.length, i + anchor.length + 32);
+              let hexStr = '';
+              for (let k = dumpStart; k < dumpEnd; k++) {
+                if (k === i) hexStr += '[';
+                hexStr += codeBytes[k].toString(16).padStart(2, '0') + ' ';
+                if (k === i + anchor.length - 1) hexStr += '] ';
+              }
+              console.log(`[VBAExtractor] TASK-043: Hex at anchor (offset ${i}): ${hexStr}`);
+
+              break;
+            }
+          }
+          if (textStartOffset > 0) break;
+        }
+      }
+
+      // Skip binary header by using found offset
+      const sliceBytes = textStartOffset > 0 ? codeBytes.subarray(textStartOffset) : codeBytes;
+      if (textStartOffset > 0) {
+        console.log(`[VBAExtractor] TASK-043: Skipping ${textStartOffset}-byte binary header in decompressed stream`);
+        console.log(`[VBAExtractor] TASK-043: Encoding hint from anchor: ${encodingHint}`);
+      }
+
+      // Use encoding hint from anchor detection (more reliable than heuristics)
+      let code = extractCodeFromModuleBytes(sliceBytes, codePage, encodingHint);
+      code = sanitizeVbaText(code);
+
+      console.log(`[VBAExtractor] TASK-043: Code extraction result: ${code ? code.length : 0} chars`);
+      if (code) {
+        // Check for mojibake patterns (NUL bytes in keywords)
+        const hasMojibake = /\u0000/.test(code.substring(0, 200));
+        console.log(`[VBAExtractor] TASK-043: Mojibake check: ${hasMojibake ? '✗ CONTAINS NUL BYTES' : '✓ Clean'}`);
+        console.log(`[VBAExtractor] TASK-043: First 200 chars: ${code.substring(0, 200)}`);
+      }
+
+      if (code && /Sub |Function |Attribute |Option /.test(code)) {
+        console.log(`[VBAExtractor] TASK-043: ✓ Module accepted (contains VBA keywords)`);
+        modules.push({ name, code });
+      } else {
+        console.log(`[VBAExtractor] TASK-043: ✗ Module rejected (no VBA keywords found)`);
+      }
+    }
+    return modules;
+  }
+
+  // Try offsets in a small neighborhood to find a start that yields best structural score
+  function refineModuleStart(buf, codePage) {
+    const b = toUint8(buf);
+    const window = 256;
+    let best = { off: 0, score: -1, bytes: null };
+    // Baseline: current start
+    try {
+      const base = decompressVBA(b, { strict: true, silent: true });
+      const text = bytesToText(base.subarray(0, Math.min(4096, base.length)), codePage || 1252);
+      best.score = scoreStartText(text);
+      best.bytes = base;
+    } catch (_) { /* ignore */ }
+    for (let delta = 1; delta <= window; delta++) {
+      const off = delta;
+      if (off >= b.length - 4) break;
+      try {
+        const test = decompressVBA(b.subarray(off), { strict: true, silent: true });
+        if (!test || test.length < 16) continue;
+        const sample = test.subarray(0, Math.min(4096, test.length));
+        const text = bytesToText(sample, codePage || 1252);
+        const sc = scoreStartText(text);
+        if (sc > best.score) {
+          best = { off, score: sc, bytes: test };
+        }
+      } catch (_) { /* try next */ }
+    }
+    if (best.off > 0) {
+      console.log(`[VBAExtractor] TASK-043: Refined OVBA start by +${best.off} (score=${best.score})`);
+      return b.subarray(best.off);
+    }
+    return b;
+  }
+
+  function sanitizeVbaText(text) {
+    if (!text) return text;
+    // Remove NULs and control chars except TAB/CR/LF
+    let s = text.replace(/\u0000/g, '')
+                .replace(/[\x00-\x08\x0B\x0C\x0E-\x1F]/g, '');
+    // Collapse runs of non-ASCII into single space
+    s = s.replace(/[\u0080-\uFFFF]+/g, ' ');
+    // Normalize multiple spaces
+    s = s.replace(/ {2,}/g, ' ');
+    // Trim lines
+    s = s.split('\n').map(l => l.trimRight()).join('\n');
+    return s;
+  }
+
+  function scoreStartText(text) {
+    // Prefer decoding where first anchor is close to start
+    const anchors = ['Attribute VB_', 'Option ', 'Sub ', 'Function '];
+    let idx = Number.MAX_SAFE_INTEGER;
+    for (const a of anchors) {
+      const j = text.indexOf(a);
+      if (j !== -1 && j < idx) idx = j;
+    }
+    const baseScore = scoreVBAText(text);
+    const anchorBonus = (idx < Number.MAX_SAFE_INTEGER) ? Math.max(0, 200 - idx) : 0; // closer to start is better
+    return baseScore + anchorBonus;
+  }
+
+  // Try multiple candidate starts for OVBA container by attempting small decodes
+  function tryTrialOvbaOffsets(buf) {
+    const maxScan = Math.min(buf.length - 4, 4096);
+    let best = -1;
+    // Prefer 0x01 0x00 positions
+    for (let i = 0; i <= maxScan; i++) {
+      if (buf[i] === 0x01 && buf[i+1] === 0x00) {
+        try {
+          const test = decompressVBA(buf.subarray(i), { strict: true, silent: true });
+          if (test && test.length >= 32) {
+            const sample = test.subarray(0, Math.min(1024, test.length));
+            const text = bytesToText(sample, 1252);
+            if (/\b(Attribute VB_|Option |Sub |Function )/.test(text)) {
+              best = i; break;
+            }
+          }
+        } catch (_) { /* try next */ }
+      }
+    }
+    if (best >= 0) return best;
+    // Fallback: any valid chunk header candidates in first 4KB
+    for (let i = 0; i <= maxScan; i++) {
+      const hdr = buf[i] | (buf[i+1] << 8);
+      if ((hdr & 0x7000) === 0x3000) {
+        try {
+          const test = decompressVBA(buf.subarray(i), { strict: true, silent: true });
+          if (test && test.length >= 32) {
+            const sample = test.subarray(0, Math.min(1024, test.length));
+            const text = bytesToText(sample, 1252);
+            if (/\b(Attribute VB_|Option |Sub |Function )/.test(text)) {
+              best = i; break;
+            }
+          }
+        } catch (_) { /* ignore */ }
+      }
+    }
+    return best;
+  }
+
+  /**
+   * METHOD 7 Phase 2: Enhanced findTextStartOffset with UTF-16LE pattern detection
+   * Multi-encoding cascade: UTF-16LE patterns first, then ASCII fallback
+   * @param {Uint8Array} bytes - Decompressed module bytes
+   * @returns {Object} { offset: number, encodingHint: string }
+   */
+  function findTextStartOffset(bytes) {
+    // PHASE 1 DIAGNOSTIC: Log hexdump to identify byte structure and encoding
+    console.log('[VBAExtractor] ========== DIAGNOSTIC HEXDUMP ==========');
+    hexDump(bytes, 0, 512, 'First 512 bytes');
+    if (bytes.length > 1000) {
+      hexDump(bytes, 1000, 256, 'Bytes 1000-1256');
+    }
+    if (bytes.length > 1500) {
+      hexDump(bytes, 1500, 256, 'Bytes 1500-1756');
+    }
+    console.log('[VBAExtractor] ========================================');
+
+    // PASS 1: UTF-16LE Pattern Search
+    // VBA keywords encoded in UTF-16LE (little-endian, each char is 2 bytes)
+    const utf16leAnchors = [
+      // "Attribute VB_Name" in UTF-16LE (uppercase)
+      [0x41,0x00,0x74,0x00,0x74,0x00,0x72,0x00,0x69,0x00,0x62,0x00,0x75,0x00,0x74,0x00,0x65,0x00,0x20,0x00,0x56,0x00,0x42,0x00,0x5F,0x00,0x4E,0x00,0x61,0x00,0x6D,0x00,0x65,0x00],
+      // "attribute vb_name" in UTF-16LE (lowercase)
+      [0x61,0x00,0x74,0x00,0x74,0x00,0x72,0x00,0x69,0x00,0x62,0x00,0x75,0x00,0x74,0x00,0x65,0x00,0x20,0x00,0x76,0x00,0x62,0x00,0x5F,0x00,0x6E,0x00,0x61,0x00,0x6D,0x00,0x65,0x00],
+      // "Sub " in UTF-16LE (uppercase)
+      [0x53,0x00,0x75,0x00,0x62,0x00,0x20,0x00],
+      // "sub " in UTF-16LE (lowercase)
+      [0x73,0x00,0x75,0x00,0x62,0x00,0x20,0x00],
+      // "Function " in UTF-16LE (uppercase)
+      [0x46,0x00,0x75,0x00,0x6E,0x00,0x63,0x00,0x74,0x00,0x69,0x00,0x6F,0x00,0x6E,0x00,0x20,0x00],
+      // "function " in UTF-16LE (lowercase)
+      [0x66,0x00,0x75,0x00,0x6E,0x00,0x63,0x00,0x74,0x00,0x69,0x00,0x6F,0x00,0x6E,0x00,0x20,0x00],
+      // "Option " in UTF-16LE (uppercase)
+      [0x4F,0x00,0x70,0x00,0x74,0x00,0x69,0x00,0x6F,0x00,0x6E,0x00,0x20,0x00],
+      // "option " in UTF-16LE (lowercase)
+      [0x6F,0x00,0x70,0x00,0x74,0x00,0x69,0x00,0x6F,0x00,0x6E,0x00,0x20,0x00]
+    ];
+
+    let bestUtf16 = -1;
+    for (const pattern of utf16leAnchors) {
+      const idx = findBytePattern(bytes, pattern);
+      if (idx !== -1 && (bestUtf16 === -1 || idx < bestUtf16)) {
+        bestUtf16 = idx;
+      }
+    }
+
+    if (bestUtf16 !== -1) {
+      console.log(`[VBAExtractor] METHOD 7: Found UTF-16LE pattern at offset ${bestUtf16}`);
+      return { offset: bestUtf16, encodingHint: 'utf-16le' };
+    }
+
+    // PASS 2: ASCII Pattern Search (existing logic)
+    const anchors = ['Attribute VB_Name', 'Option ', 'Sub ', 'Function '];
+    const toLower = (b) => (b >= 0x41 && b <= 0x5A) ? (b + 32) : b;
+    const lower = new Uint8Array(bytes.length);
+    for (let i = 0; i < bytes.length; i++) lower[i] = toLower(bytes[i]);
+
+    const indexOfAscii = (hay, needleStr) => {
+      const n = needleStr.split('').map(ch => toLower(ch.charCodeAt(0)));
+      const H = hay.length, L = n.length;
+      if (L === 0 || H < L) return -1;
+      outer: for (let i = 0; i <= H - L; i++) {
+        for (let j = 0; j < L; j++) if (hay[i + j] !== n[j]) continue outer;
+        return i;
+      }
+      return -1;
+    };
+
+    let bestAscii = -1;
+    for (const a of anchors) {
+      const idx = indexOfAscii(lower, a.toLowerCase());
+      if (idx !== -1 && (bestAscii === -1 || idx < bestAscii)) {
+        bestAscii = idx;
+      }
+    }
+
+    if (bestAscii !== -1) {
+      console.log(`[VBAExtractor] METHOD 7: Found ASCII pattern at offset ${bestAscii}`);
+      return { offset: bestAscii, encodingHint: 'ascii' };
+    }
+
+    // Fallback: first printable ASCII window
+    const isPrintable = (b) => b === 9 || b === 10 || b === 13 || (b >= 0x20 && b <= 0x7E);
+    const N = bytes.length;
+    const win = 96;
+    for (let i = 0; i < N; i += 16) {
+      const end = Math.min(N, i + win);
+      let printable = 0;
+      for (let k = i; k < end; k++) if (isPrintable(bytes[k])) printable++;
+      const ratio = printable / Math.max(1, (end - i));
+      if (ratio > 0.85) {
+        console.log(`[VBAExtractor] METHOD 7: Found printable ASCII window at offset ${i}`);
+        return { offset: i, encodingHint: 'ascii' };
+      }
+    }
+
+    console.log('[VBAExtractor] METHOD 7: No patterns found, returning offset 0');
+    return { offset: 0, encodingHint: 'unknown' };
+  }
+
+  function extractModulesFromWorkbook(workbook) {
+    const raw = workbook && (workbook.vbaraw || workbook.VBARaw || workbook.vbaRaw);
+    if (!raw) return [];
+    try {
+      return extractFromVbaProjectBin(raw);
+    } catch (e) {
+      console.error('VBAExtractor: Failed to parse vbaProject.bin', e);
+      return [];
+    }
+  }
+
+  // Expose
+  const API = {
+    extractModulesFromWorkbook,
+    extractFromVbaProjectBin
+  };
+  if (typeof window !== 'undefined') window.VBAExtractor = API;
+  if (typeof module !== 'undefined' && module.exports) module.exports = API;
+})();

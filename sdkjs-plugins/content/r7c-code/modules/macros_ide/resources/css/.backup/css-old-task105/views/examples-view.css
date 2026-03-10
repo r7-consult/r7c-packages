@@ -1,0 +1,30 @@
+/**
+ * Examples View
+ * -------------
+ * Activated when data-active-view="examples".
+ * Ensures the examples tree owns its scroll area.
+ */
+
+#menu_content[data-active-view="examples"] {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+#menu_content[data-active-view="examples"] #examples-tree-node {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+#menu_content[data-active-view="examples"] #examples-tree-node .tree-node-children {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 0;
+}
+

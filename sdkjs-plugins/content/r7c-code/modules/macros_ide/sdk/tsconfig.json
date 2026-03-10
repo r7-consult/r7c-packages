@@ -1,0 +1,49 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "allowJs": true,
+    "checkJs": false,
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": false,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "allowSyntheticDefaultImports": true,
+    "downlevelIteration": true,
+    "preserveConstEnums": true,
+    "removeComments": false,
+    "typeRoots": ["./types", "./node_modules/@types"],
+    "types": ["node"],
+    "paths": {
+      "@onlyoffice/ui-sdk": ["./types/index.d.ts"],
+      "@onlyoffice/ui-sdk/*": ["./types/*"],
+      "@/*": ["./src/*"]
+    }
+  },
+  "include": [
+    "src/**/*",
+    "types/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "coverage",
+    "**/*.test.js",
+    "**/*.spec.js"
+  ],
+  "ts-node": {
+    "esm": true
+  }
+}

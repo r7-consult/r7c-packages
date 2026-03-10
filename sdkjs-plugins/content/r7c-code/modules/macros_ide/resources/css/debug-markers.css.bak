@@ -1,0 +1,104 @@
+/* ============================================================================
+   DEBUG MARKERS - TASK-106-DEBUG
+   Highly visible CSS to verify CSS files are actually being loaded
+   If you see these styles, the CSS IS being used by the browser
+
+   EXPECTED VISUAL INDICATORS:
+   1. Red border around entire left sidebar (.common_menu)
+   2. Yellow background in Examples view (#examples-children)
+   3. Lime green background in Macros view (#macros-children)
+   4. Cyan border around #menu_macros
+   5. Red banner at top saying "CSS FILE LOADED"
+   6. HUGE red and yellow scrollbars (20px wide)
+
+   If you DON'T see these, the CSS file is NOT being loaded properly!
+   ============================================================================ */
+
+/* MARKER 1: Red border on .common_menu container */
+.common_menu {
+    border: 5px solid red !important;
+    outline: 3px dashed orange !important;
+}
+
+/* MARKER 2: Bright yellow background on examples scrollable area */
+#examples-children {
+    background: yellow !important;
+    border: 5px solid blue !important;
+}
+
+/* MARKER 3: Green background on macros scrollable area */
+#macros-children {
+    background: lime !important;
+    border: 5px solid purple !important;
+}
+
+/* MARKER 4: Visual indicator on #menu_macros */
+#menu_macros {
+    border: 5px solid cyan !important;
+    background: rgba(255, 0, 255, 0.2) !important;
+}
+
+/* MARKER 5: "CSS LOADED" text on .common_menu */
+.common_menu::before {
+    content: "🔴 CSS FILE LOADED - TASK-106-DEBUG 🔴" "\A" "⬇️ TRY SCROLLING IN LOGS AREA ⬇️" "\A" "(Scrollbar might be invisible - test if you can scroll!)";
+    display: block;
+    background: red;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 10px;
+    text-align: center;
+    z-index: 9999;
+    position: relative;
+    white-space: pre-line;
+    line-height: 1.4;
+}
+
+/* MARKER 6: Scrollbar with bright colors for visibility test */
+#examples-children::-webkit-scrollbar,
+#macros-children::-webkit-scrollbar {
+    width: 20px !important;
+    background: red !important;
+}
+
+#examples-children::-webkit-scrollbar-thumb,
+#macros-children::-webkit-scrollbar-thumb {
+    background: yellow !important;
+    border: 3px solid black !important;
+}
+
+/* MARKER 7: Make scrollable areas obviously scrollable with max-height */
+/* Using highly specific selectors to override module CSS */
+#examples-children,
+#macros-children,
+#logs-tree-node .sidebar-logs-output,
+#sidebar-logs-output {
+    /* FORCE ABSOLUTE HEIGHT CONSTRAINT */
+    height: 300px !important;
+    max-height: 300px !important;
+    min-height: 300px !important;
+    overflow-y: scroll !important; /* Force scrollbar always visible */
+    flex: none !important; /* Override flex: 1 1 auto from module CSS */
+    flex-grow: 0 !important;
+    flex-shrink: 0 !important;
+
+    /* VISUAL PROOF OF HEIGHT CONSTRAINT */
+    border: 10px solid magenta !important;
+    box-shadow: inset 0 0 20px 5px yellow !important;
+    outline: 5px dashed lime !important;
+    outline-offset: -15px !important;
+    background: rgba(0, 255, 255, 0.3) !important; /* Semi-transparent cyan */
+}
+
+/* MARKER 8: Extra bright scrollbar for logs */
+#logs-tree-node .sidebar-logs-output::-webkit-scrollbar,
+#sidebar-logs-output::-webkit-scrollbar {
+    width: 20px !important;
+    background: red !important;
+}
+
+#logs-tree-node .sidebar-logs-output::-webkit-scrollbar-thumb,
+#sidebar-logs-output::-webkit-scrollbar-thumb {
+    background: yellow !important;
+    border: 3px solid black !important;
+}

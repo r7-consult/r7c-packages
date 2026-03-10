@@ -1,0 +1,22 @@
+{
+	"New": "Kreiraj",
+	"Delete": "Obriši",
+	"Rename": "Preimenuj",
+	"Autostart" : "Automatski pokreni",
+	"Run": "Pokreni",
+	"Cancel" : "Otkaži",
+	"Macros" : "Makroi",
+	"Title" : "Ime ne sme biti prazno",
+	"Copy": "Kopiraj",
+	"Make autostart": "Omogući automatsko pokretanje",
+	"Unmake autostart": "Onemogući automatsko pokretanje",
+	"Custom function": "Prilagođena funkcija",
+	"Custom functions": "Prilagođene funkcije",
+	"Ok": "OK",
+	"Add macros": "Dodaj makroe",
+	"Add custom function": "Dodaj prilagođenu funkciju",
+  "macro.error.executionFailed": "Makro nije mogao da se pokrene",
+  "macro.error.securityBlocked": "Makro je blokiran bezbednosnim pravilima",
+  "macro.error.validationFailed": "Validacija makroa nije uspela",
+  "macro.error.details": "Detalji"
+}

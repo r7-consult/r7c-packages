@@ -1,0 +1,22 @@
+{
+	"New" : "Créer",
+	"Delete" : "Supprimer",
+	"Rename" : "Renommer",
+	"Autostart" : "Autostart",
+	"Run" : "Executer",
+	"Cancel" : "Annuler",
+	"Macros" : "Macros",
+	"Title" : "Le nom ne doit pas être vide",
+	"Copy": "Copier",
+	"Make autostart": "Faire démarrer automatiquement",
+	"Unmake autostart": "Annuler le démarrage automatique",
+	"Custom function": "Fonction personnalisée",
+	"Custom functions": "Fonctions personnalisées",
+	"Ok": "OK",
+	"Add macros": "Ajouter des macros",
+	"Add custom function": "Ajouter une fonction personnalisée",
+  "macro.error.executionFailed": "Échec de l’exécution de la macro",
+  "macro.error.securityBlocked": "La macro a été bloquée par les règles de sécurité",
+  "macro.error.validationFailed": "La validation de la macro a échoué",
+  "macro.error.details": "Détails"
+}

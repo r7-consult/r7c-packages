@@ -1,0 +1,439 @@
+/**
+ * OnlyOffice UI SDK SearchBox Component Styles
+ * Advanced search input with autocomplete and filtering capabilities
+ */
+
+.onlyoffice-searchbox {
+    position: relative;
+    width: 100%;
+    font-family: var(--font-family, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+    font-size: 14px;
+}
+
+/* Container */
+.searchbox-container {
+    position: relative;
+    width: 100%;
+}
+
+/* Input Wrapper */
+.searchbox-input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background: var(--input-background, #ffffff);
+    border: 1px solid var(--input-border, #d1d5db);
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+.searchbox-input-wrapper:focus-within {
+    border-color: var(--input-focus-border, #3b82f6);
+    box-shadow: 0 0 0 3px var(--input-focus-shadow, rgba(59, 130, 246, 0.1));
+}
+
+.searchbox-input-wrapper:hover {
+    border-color: var(--input-hover-border, #9ca3af);
+}
+
+/* Input */
+.searchbox-input {
+    flex: 1;
+    padding: 8px 12px;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--input-text, #374151);
+    min-width: 0;
+}
+
+.searchbox-input::placeholder {
+    color: var(--placeholder-color, #9ca3af);
+}
+
+.searchbox-input:disabled {
+    color: var(--input-disabled-text, #9ca3af);
+    cursor: not-allowed;
+}
+
+/* Icons */
+.searchbox-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+    margin: 0 8px;
+    color: var(--icon-color, #6b7280);
+    font-size: 14px;
+    flex-shrink: 0;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.searchbox-icon:hover {
+    color: var(--icon-hover-color, #374151);
+}
+
+.search-icon {
+    margin-left: 12px;
+    cursor: default;
+}
+
+.clear-icon {
+    margin-right: 12px;
+    opacity: 0.7;
+    border-radius: 50%;
+    background: var(--clear-background, #e5e7eb);
+    width: 18px;
+    height: 18px;
+    font-size: 12px;
+}
+
+.clear-icon:hover {
+    opacity: 1;
+    background: var(--clear-hover-background, #d1d5db);
+}
+
+.loading-icon {
+    animation: searchbox-spin 1s linear infinite;
+    margin-right: 12px;
+}
+
+@keyframes searchbox-spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Filters */
+.searchbox-filters {
+    margin-top: 8px;
+    padding: 8px 12px;
+    background: var(--filters-background, #f9fafb);
+    border: 1px solid var(--filters-border, #e5e7eb);
+    border-radius: 4px;
+    font-size: 13px;
+}
+
+.filters-header {
+    font-weight: 500;
+    color: var(--filters-header-color, #374151);
+    margin-bottom: 6px;
+}
+
+.filters-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.filter-option {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+    color: var(--filter-option-color, #6b7280);
+    transition: color 0.2s ease;
+}
+
+.filter-option:hover {
+    color: var(--filter-option-hover-color, #374151);
+}
+
+.filter-option input[type="checkbox"] {
+    margin: 0;
+    width: 14px;
+    height: 14px;
+}
+
+/* Dropdown */
+.searchbox-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: var(--dropdown-background, #ffffff);
+    border: 1px solid var(--dropdown-border, #d1d5db);
+    border-top: none;
+    border-radius: 0 0 6px 6px;
+    box-shadow: var(--dropdown-shadow, 0 4px 6px -1px rgba(0, 0, 0, 0.1));
+    max-height: 300px;
+    overflow: hidden;
+    margin-top: -1px;
+    opacity: 0;
+    transform: translateY(-4px);
+    transition: all 0.2s ease;
+    pointer-events: none;
+}
+
+.searchbox-dropdown.open {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.searchbox-dropdown-content {
+    max-height: 300px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+/* Suggestions */
+.searchbox-suggestion {
+    padding: 8px 12px;
+    cursor: pointer;
+    border-bottom: 1px solid var(--suggestion-border, #f3f4f6);
+    transition: background-color 0.15s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.searchbox-suggestion:last-child {
+    border-bottom: none;
+}
+
+.searchbox-suggestion:hover,
+.searchbox-suggestion.selected {
+    background: var(--suggestion-hover-background, #f8fafc);
+}
+
+.searchbox-suggestion.selected {
+    background: var(--suggestion-selected-background, #eff6ff);
+}
+
+.suggestion-main {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.suggestion-text {
+    flex: 1;
+    color: var(--suggestion-text-color, #374151);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.suggestion-text mark {
+    background: var(--highlight-background, #fef3c7);
+    color: var(--highlight-color, #92400e);
+    padding: 0 1px;
+    border-radius: 2px;
+}
+
+.suggestion-icon {
+    font-size: 14px;
+    flex-shrink: 0;
+}
+
+.suggestion-history-icon {
+    font-size: 12px;
+    opacity: 0.6;
+    flex-shrink: 0;
+}
+
+.suggestion-category {
+    font-size: 11px;
+    color: var(--category-color, #6b7280);
+    background: var(--category-background, #f3f4f6);
+    padding: 2px 6px;
+    border-radius: 10px;
+    flex-shrink: 0;
+}
+
+.suggestion-description {
+    font-size: 12px;
+    color: var(--description-color, #6b7280);
+    line-height: 1.3;
+    margin-top: 2px;
+    padding-left: 20px;
+}
+
+/* No Results */
+.searchbox-no-results {
+    padding: 16px 12px;
+    text-align: center;
+    color: var(--no-results-color, #9ca3af);
+    font-style: italic;
+    font-size: 13px;
+}
+
+/* Size Variants */
+.onlyoffice-searchbox.small {
+    font-size: 12px;
+}
+
+.onlyoffice-searchbox.small .searchbox-input {
+    padding: 6px 10px;
+    font-size: 12px;
+}
+
+.onlyoffice-searchbox.small .searchbox-icon {
+    width: 14px;
+    height: 14px;
+    margin: 0 6px;
+}
+
+.onlyoffice-searchbox.large {
+    font-size: 16px;
+}
+
+.onlyoffice-searchbox.large .searchbox-input {
+    padding: 12px 16px;
+    font-size: 16px;
+}
+
+.onlyoffice-searchbox.large .searchbox-icon {
+    width: 20px;
+    height: 20px;
+    margin: 0 12px;
+}
+
+/* Rounded Variant */
+.onlyoffice-searchbox.rounded .searchbox-input-wrapper {
+    border-radius: 20px;
+}
+
+.onlyoffice-searchbox.rounded .searchbox-dropdown {
+    border-radius: 0 0 12px 12px;
+}
+
+/* Borderless Variant */
+.onlyoffice-searchbox.borderless .searchbox-input-wrapper {
+    border: none;
+    background: var(--borderless-background, #f9fafb);
+}
+
+.onlyoffice-searchbox.borderless .searchbox-input-wrapper:focus-within {
+    box-shadow: 0 0 0 2px var(--input-focus-border, #3b82f6);
+}
+
+/* Loading State */
+.onlyoffice-searchbox.loading .searchbox-input {
+    color: var(--loading-text-color, #9ca3af);
+}
+
+.onlyoffice-searchbox.loading .searchbox-input-wrapper {
+    pointer-events: none;
+}
+
+/* Error State */
+.onlyoffice-searchbox.error .searchbox-input-wrapper {
+    border-color: var(--error-border, #ef4444);
+    box-shadow: 0 0 0 3px var(--error-shadow, rgba(239, 68, 68, 0.1));
+}
+
+/* Focus States for Accessibility */
+.searchbox-suggestion:focus {
+    outline: 2px solid var(--focus-outline, #3b82f6);
+    outline-offset: -2px;
+}
+
+.clear-icon:focus {
+    outline: 2px solid var(--focus-outline, #3b82f6);
+    outline-offset: 2px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .searchbox-dropdown {
+        max-height: 250px;
+    }
+    
+    .searchbox-suggestion {
+        padding: 10px 12px;
+    }
+    
+    .suggestion-main {
+        font-size: 15px;
+    }
+    
+    .searchbox-input {
+        font-size: 16px; /* Prevents zoom on iOS */
+    }
+    
+    .filters-options {
+        flex-direction: column;
+        gap: 8px;
+    }
+}
+
+/* Dark Theme Support */
+.dark .onlyoffice-searchbox {
+    --input-background: #1f2937;
+    --input-text: #f9fafb;
+    --input-border: #374151;
+    --input-focus-border: #60a5fa;
+    --input-hover-border: #6b7280;
+    --input-focus-shadow: rgba(96, 165, 250, 0.1);
+    --input-disabled-text: #6b7280;
+    --placeholder-color: #6b7280;
+    --icon-color: #9ca3af;
+    --icon-hover-color: #e5e7eb;
+    --clear-background: #374151;
+    --clear-hover-background: #4b5563;
+    --filters-background: #111827;
+    --filters-border: #374151;
+    --filters-header-color: #e5e7eb;
+    --filter-option-color: #9ca3af;
+    --filter-option-hover-color: #e5e7eb;
+    --dropdown-background: #1f2937;
+    --dropdown-border: #374151;
+    --dropdown-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+    --suggestion-border: #374151;
+    --suggestion-hover-background: #111827;
+    --suggestion-selected-background: #1e3a8a;
+    --suggestion-text-color: #e5e7eb;
+    --category-color: #9ca3af;
+    --category-background: #374151;
+    --description-color: #9ca3af;
+    --no-results-color: #6b7280;
+    --highlight-background: #92400e;
+    --highlight-color: #fef3c7;
+    --borderless-background: #111827;
+    --loading-text-color: #6b7280;
+    --error-border: #ef4444;
+    --error-shadow: rgba(239, 68, 68, 0.1);
+    --focus-outline: #60a5fa;
+}
+
+/* High Contrast Theme */
+.high-contrast .onlyoffice-searchbox {
+    --input-background: #ffffff;
+    --input-text: #000000;
+    --input-border: #000000;
+    --input-focus-border: #000000;
+    --dropdown-background: #ffffff;
+    --dropdown-border: #000000;
+    --suggestion-selected-background: #000000;
+    --suggestion-text-color: #000000;
+    --clear-background: #000000;
+    --focus-outline: #000000;
+}
+
+/* Print Styles */
+@media print {
+    .searchbox-dropdown {
+        display: none !important;
+    }
+    
+    .searchbox-filters {
+        display: none;
+    }
+    
+    .clear-icon,
+    .loading-icon {
+        display: none;
+    }
+    
+    .searchbox-input-wrapper {
+        border: 1px solid #000;
+    }
+}

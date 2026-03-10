@@ -1,0 +1,559 @@
+
+.vscode-sidebar {
+  background: var(--vscode-sideBar-background, #050505);
+  color: var(--vscode-sideBar-foreground, #d4d4d4);
+  font-family: var(--app-font-family, 'Segoe UI', sans-serif);
+  font-size: var(--fs-sm, 13px);
+}
+.vscode-sidebar .tree-node-header {
+  background: var(--vscode-sideBarSectionHeader-background, rgba(255, 255, 255, 0.08));
+  border-bottom: 1px solid var(--vscode-sideBar-border, #1d1d1d);
+  color: var(--vscode-sideBarSectionHeader-foreground, #bbbbbb);
+  font-weight: 600;
+}
+.vscode-sidebar .tree-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 8px;
+  color: var(--vscode-sideBar-foreground, #cccccc);
+  background: transparent;
+  border-radius: 4px;
+}
+.vscode-sidebar .tree-item .tree-item-name,
+.vscode-sidebar .tree-item .tree-item-count {
+  color: inherit;
+}
+.vscode-sidebar .tree-item:hover {
+  background: var(--vscode-list-hoverBackground, #1a1a1a);
+}
+.vscode-sidebar .tree-item.selected {
+  background: var(--vscode-list-activeSelectionBackground, #094771);
+  color: var(--vscode-list-activeSelectionForeground, #ffffff);
+}
+.vscode-sidebar .tree-item.selected .tree-item-name,
+.vscode-sidebar .tree-item.selected .tree-item-count {
+  color: var(--vscode-list-activeSelectionForeground, #ffffff);
+}
+.theme-type-light .vscode-sidebar .tree-item {
+  color: var(--vscode-sideBar-foreground, #333333);
+}
+.theme-type-light .vscode-sidebar .tree-item:hover {
+  background: var(--vscode-list-hoverBackground, #e8e8e8);
+}
+.theme-type-light .vscode-sidebar .tree-item.selected {
+  background: var(--vscode-list-activeSelectionBackground, #cbe8ff);
+  color: var(--vscode-list-activeSelectionForeground, #000000);
+}
+.vscode-sidebar .tree-item-icon {
+  width: 16px;
+  height: 16px;
+  filter: brightness(0) invert(0.8);
+}
+.theme-type-light .vscode-sidebar .tree-item-icon {
+  filter: none;
+}
+.vscode-sidebar .tree-node-count,
+.vscode-sidebar .section-badge {
+  color: inherit;
+}
+
+.vscode-sidebar .explorer-disabled-message {
+  padding: 16px;
+  margin: 12px;
+  border: 1px dashed var(--vscode-sideBar-border, #313131);
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--vscode-sideBar-foreground, #d4d4d4);
+  line-height: 1.45;
+  font-size: var(--fs-sm, 13px);
+}
+
+.vscode-sidebar .explorer-disabled-message strong {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--vscode-sideBarTitle-foreground, #dcdcdc);
+}
+
+.vscode-sidebar .explorer-disabled-message code {
+  font-family: var(--app-font-family, 'Segoe UI', monospace);
+  background: rgba(255, 255, 255, 0.08);
+  padding: 2px 4px;
+  border-radius: 3px;
+}
+
+.vscode-sidebar .tree-node[data-disabled="true"],
+.vscode-sidebar .tree-node-header[data-disabled="true"],
+.vscode-sidebar [data-tree-slot-container][data-disabled="true"] {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.vscode-sidebar .tree-node[data-disabled="true"] .tree-item,
+.vscode-sidebar .tree-node[data-disabled="true"] .tree-node-header {
+  filter: grayscale(0.2);
+}
+
+.theme-type-light .vscode-sidebar .tree-node[data-disabled="true"],
+.theme-type-light .vscode-sidebar .tree-node-header[data-disabled="true"],
+.theme-type-light .vscode-sidebar [data-tree-slot-container][data-disabled="true"] {
+  opacity: 0.6;
+}
+
+.theme-type-light .vscode-sidebar .explorer-disabled-message {
+  border-color: rgba(0, 0, 0, 0.15);
+  background: rgba(0, 0, 0, 0.04);
+  color: var(--vscode-sideBar-foreground, #333333);
+}
+
+.theme-type-light .vscode-sidebar .explorer-disabled-message code {
+  background: rgba(0, 0, 0, 0.08);
+}
+
+
+.theme-type-light .vscode-sidebar .tree-item {
+  color: var(--vscode-sideBar-foreground, #333);
+}
+.theme-type-light .vscode-sidebar .tree-item:hover {
+  background: var(--vscode-list-hoverBackground, #e8e8e8);
+}
+.theme-type-light .vscode-sidebar .tree-item.selected {
+  background: var(--vscode-list-activeSelectionBackground, #cce6ff);
+  color: var(--vscode-list-activeSelectionForeground, #000);
+}
+
+
+.vscode-sidebar #menu_content {
+  background: var(--vscode-sideBar-background, #050505);
+}
+
+
+/* VSCode list item styling */
+.vscode-sidebar .tree-item {
+  color: var(--vscode-sideBar-foreground, #ccc);
+  background: transparent;
+  border-radius: 0;
+  padding: 2px 8px;
+}
+.vscode-sidebar .tree-item:hover {
+  background: var(--vscode-list-hoverBackground, #1a1a1a);
+}
+.vscode-sidebar .tree-item.selected {
+  background: var(--vscode-list-activeSelectionBackground, #094771);
+  color: var(--vscode-list-activeSelectionForeground, #ffffff);
+}
+.vscode-sidebar .tree-item .tree-item-name {
+  color: inherit;
+}
+
+/* VSCode Explorer-like styling for the side bar (Activity Bar → Explorer) */
+
+.vscode-sidebar .vscode-sidebar-content {
+  --explorer-title-height: 35px;
+  --row-height: 24px;
+}
+
+/* Explorer title bar */
+.vscode-sidebar .explorer-title {
+  display: none !important;
+  height: 0;
+  padding: 0;
+  margin: 0;
+  border: none;
+}
+
+/* Filter input */
+
+.vscode-sidebar #filterInput {
+  height: 24px;
+  border-radius: 4px;
+  border: 1px solid var(--vscode-input-border, #3c3c3c) !important;
+  background: var(--vscode-input-background, #000000) !important;
+  color: var(--vscode-input-foreground, #d4d4d4) !important;
+  padding: 0 8px;
+  box-shadow: none !important;
+}
+.theme-type-light .vscode-sidebar #filterInput {
+  background: var(--vscode-input-background, #ffffff) !important;
+  color: var(--vscode-input-foreground, #1f1f1f) !important;
+  border-color: var(--vscode-input-border, #c8c8c8) !important;
+}
+
+.vscode-sidebar .filter-input-container { padding: 6px 8px; }
+
+/* Section header */
+.vscode-sidebar .tree-node-header {
+  height: 26px;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  border-bottom: 1px solid var(--vscode-sideBar-border, #1d1d1d);
+  background: var(--vscode-sideBar-background, #050505);
+}
+.vscode-sidebar .tree-node-expand {
+  width: 12px;
+  height: 12px;
+  margin-right: 6px;
+  position: relative;
+  cursor: pointer;
+}
+.vscode-sidebar .tree-node-expand::before {
+  content: '';
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 0; height: 0;
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+  border-left: 6px solid var(--vscode-sideBar-foreground, #ccc);
+  transform: translate(-50%, -50%) rotate(0deg);
+  transition: transform .12s ease;
+}
+.vscode-sidebar .tree-node-expand.expanded::before { transform: translate(-50%, -50%) rotate(90deg); }
+.vscode-sidebar .tree-node-children.collapsed { display: none; }
+.vscode-sidebar .tree-node-children.expanded { display: flex; }
+.vscode-sidebar .tree-node-title { display: flex; align-items: center; gap: 6px; }
+.vscode-sidebar .section-badge {
+  display: inline-flex;
+  min-width: 0;
+  height: auto;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: var(--vscode-sideBar-foreground, #ccc);
+  background: transparent; /* remove custom blue background */
+  border-radius: 0;
+  padding: 0;
+}
+.vscode-sidebar .section-actions { margin-left: auto; display: flex; gap: 6px; }
+.vscode-sidebar .section-actions .btn-section {
+  width: 20px;
+  height: 20px;
+  border: none;
+  border-radius: 3px;
+  background: transparent;
+  color: var(--vscode-sideBar-foreground, #ccc);
+  cursor: pointer;
+}
+.vscode-sidebar .section-actions .btn-section:hover {
+  background: var(--vscode-activityBar-hoverBackground, #1a1a1a);
+}
+
+/* Tree rows */
+.vscode-sidebar .tree-item { height: var(--row-height); padding: 0 10px; }
+.vscode-sidebar .tree-item:hover { background: var(--vscode-list-hoverBackground, #1a1a1a); }
+/* Keep primary action (Run) always visible; reveal secondary actions on hover */
+.vscode-sidebar .tree-item .tree-item-primary-action { opacity: 1; }
+.vscode-sidebar .tree-item .tree-item-secondary-actions { opacity: 0; transition: opacity .12s ease; }
+.vscode-sidebar .tree-item:hover .tree-item-secondary-actions { opacity: 1; }
+
+/* Empty hint */
+.vscode-sidebar .empty-hint {
+  padding: 8px 12px;
+  color: var(--vscode-descriptionForeground, #8a8a8a);
+  font-size: var(--fs-sm);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Title 'More' context menu */
+.explorer-context-menu {
+  position: fixed;
+  min-width: 160px;
+  background: var(--vscode-menu-background, #050505);
+  color: var(--vscode-menu-foreground, #cccccc);
+  border: 1px solid var(--vscode-menu-border, #3c3c3c);
+  box-shadow: 0 2px 8px rgba(0,0,0,.35);
+  z-index: 1000;
+  padding: 4px 0;
+  border-radius: 3px;
+}
+.explorer-context-menu .menu-item {
+  padding: 6px 10px;
+  font-size: var(--fs-sm);
+  line-height: 16px;
+  cursor: pointer;
+}
+.explorer-context-menu .menu-item.disabled {
+  opacity: 0.5;
+  cursor: default;
+  pointer-events: none;
+}
+.explorer-context-menu .menu-item:hover { background: var(--vscode-menu-selectionBackground, #094771); color: var(--vscode-menu-selectionForeground, #fff); }
+
+/* Floating "Show" button when Explorer is hidden */
+/* Hide legacy header buttons to avoid duplicates (we render section-actions instead) */
+.vscode-sidebar .vba-section .vba-import-btn,
+.vscode-sidebar .js-section .js-import-btn,
+.vscode-sidebar .js-section .js-refresh-btn {
+  display: none !important;
+}
+
+/* Sidebar logs output */
+.sidebar-logs-output {
+  /* TASK-118-FIX: Enable PerfectScrollbar (removed overflow: hidden) */
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 0 !important;           /* Allow growth to fill available space */
+  min-height: 0 !important;         /* Enable overflow in flex container */
+  max-height: none;
+  /* overflow: hidden removed - PerfectScrollbar manages scrolling */
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 11px;
+  padding: 6px 8px;
+  background: var(--vscode-editor-background, #000000);
+  color: var(--vscode-editor-foreground, #d4d4d4);
+  border-left: 2px solid var(--vscode-sideBar-border, #1d1d1d);
+  /* Enable text selection and copying */
+  user-select: text;
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+}
+
+/* TASK-115-PART-3: Defensive pre-styling to prevent initialization FOUC */
+/* Gemini Trinity Analysis: Apply flex layout via CSS to eliminate 6-16ms gap */
+/* between DOM insertion and JavaScript inline style application. */
+/* This ensures zero-latency flex layout (CSS loads before JavaScript executes). */
+.macros-ide-sidebar-container,
+[data-view="logs"] .sidebar-container,
+#logs-tree-node {
+  display: flex !important;
+  flex-direction: column !important;
+  min-height: 0 !important;
+}
+
+.vscode-sidebar #logs-tree-node { /* legacy logs slot remains hidden unless logs view active */
+  display: flex;
+  flex: 1 1 0;  /* TASK-118-TRINITY-FIX: Changed from 'auto' to '0' - consistent flex-basis ensures proper space distribution */
+  flex-direction: column;
+  min-height: 0;
+}
+.vscode-sidebar #logs-tree-node .tree-node-children {
+  flex: 1 1 0;  /* TASK-118-TRINITY-FIX: Changed from 'flex: 1' to 'flex: 1 1 0' - explicit flex-basis:0 matches parent */
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  min-height: 0;
+}
+.vscode-sidebar #logs-tree-node .sidebar-logs-output {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 0;  /* TASK-118-TRINITY-FIX: Changed from 'auto' to '0' - flex-basis:0 forces container to fill available space instead of sizing to content */
+  /* max-height: none; */ /* REMOVED: This was overriding module.css max-height constraint, preventing scrollbar */
+  min-height: 0;
+}
+.sidebar-logs-output .log-line {
+  white-space: pre-wrap;
+  margin: 0 0 2px 0;
+  /* Ensure log lines are selectable */
+  user-select: text;
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+}
+.sidebar-logs-output .log-line.warn { color: #d7ba7d; }
+.sidebar-logs-output .log-line.error { color: #f48771; }
+.sidebar-logs-output .log-line.info { color: #9cdcfe; }
+.sidebar-logs-output .log-line.log { color: var(--vscode-editor-foreground, #d4d4d4); }
+
+/* Logs toolbar at bottom of canvas */
+.sidebar-logs-toolbar, .floating-logs-toolbar {
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+  display: flex;
+  gap: 8px;
+  padding: 6px;
+  background: color-mix(in srgb, var(--vscode-sideBar-background, #050505) 85%, transparent);
+  border: 1px solid var(--vscode-widget-border, #3c3c3c);
+  border-radius: 6px;
+  box-shadow: var(--shadow-overlay, 0 2px 8px rgba(0, 0, 0, 0.24));
+  z-index: 2;
+}
+.sidebar-logs-toolbar .logs-btn, .floating-logs-toolbar .logs-btn {
+  width: 32px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--vscode-button-border, #0e639c);
+  border-radius: 16px;
+  background: var(--vscode-button-background, #0e639c);
+  color: var(--vscode-button-foreground, #ffffff);
+  cursor: pointer;
+  font-size: 16px;
+  transition: var(--transition-interactive, background-color 0.12s ease, color 0.12s ease, border-color 0.12s ease);
+}
+.sidebar-logs-toolbar .logs-btn:hover, .floating-logs-toolbar .logs-btn:hover {
+  background: var(--vscode-button-hoverBackground, #1177bb);
+  border-color: var(--vscode-button-border, #0e639c);
+}
+.sidebar-logs-toolbar .logs-btn:active,
+.floating-logs-toolbar .logs-btn:active,
+.sidebar-logs-toolbar .logs-btn.pressed,
+.floating-logs-toolbar .logs-btn.pressed {
+  background: var(--vscode-interactive-activeBackground, var(--vscode-list-focusBackground, rgba(0, 0, 0, 0.08)));
+}
+
+.sidebar-logs-toolbar .logs-btn:focus-visible,
+.floating-logs-toolbar .logs-btn:focus-visible {
+  outline: 2px solid var(--vscode-interactive-focusRing, var(--vscode-focusBorder, #007acc));
+  outline-offset: 1px;
+}
+
+/* Floating variant anchored to viewport - DISABLED (buttons moved to header) */
+.floating-logs-toolbar {
+  display: none !important;
+}
+
+/* AI Agent Explorer */
+.vscode-sidebar .agent-tree-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 6px 8px;
+  border-bottom: 1px solid var(--vscode-sideBar-border, rgba(255,255,255,0.1));
+}
+
+.vscode-sidebar .agent-tree-toolbar-left,
+.vscode-sidebar .agent-tree-toolbar-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.vscode-sidebar .agent-tree-version-select {
+  min-width: 140px;
+  background: var(--vscode-input-background, rgba(255,255,255,0.05));
+  color: inherit;
+  border: 1px solid var(--vscode-sideBar-border, rgba(255,255,255,0.12));
+  border-radius: 4px;
+  padding: 2px 6px;
+}
+
+.vscode-sidebar .agent-tree-action-btn {
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--vscode-activityBar-foreground, #ccc);
+  font-size: 11px;
+  padding: 2px 8px;
+  min-width: 64px;
+  height: 24px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: var(--transition-interactive, background-color 0.12s ease, color 0.12s ease, border-color 0.12s ease);
+}
+
+.vscode-sidebar .agent-tree-action-btn:hover,
+.vscode-sidebar .agent-tree-action-btn:focus {
+  background: var(--vscode-interactive-hoverBackground, var(--vscode-list-hoverBackground, rgba(255,255,255,0.08)));
+  border-color: var(--vscode-interactive-border, var(--vscode-sideBar-border, rgba(255,255,255,0.14)));
+  color: var(--vscode-interactive-hoverForeground, var(--vscode-editor-foreground, #fff));
+  outline: none;
+}
+
+.vscode-sidebar .tree-item-agent {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin: 2px 0;
+  transition: var(--transition-interactive, background-color 0.12s ease, color 0.12s ease, border-color 0.12s ease);
+}
+
+.vscode-sidebar .tree-item-agent:hover,
+.vscode-sidebar .tree-item-agent:focus {
+  background: var(--vscode-interactive-hoverBackground, var(--vscode-list-hoverBackground, rgba(255,255,255,0.08)));
+  outline: none;
+}
+
+.vscode-sidebar .tree-item-agent .tree-item-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.vscode-sidebar .tree-item-agent .tree-item-meta {
+  font-size: 11px;
+  color: var(--vscode-descriptionForeground, rgba(255,255,255,0.55));
+}
+
+.vscode-sidebar .tree-item-agent .tree-item-actions,
+.vscode-sidebar .agent-folder-node .tree-node-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  opacity: 0;
+  transition: opacity 0.12s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sidebar-logs-toolbar .logs-btn,
+  .floating-logs-toolbar .logs-btn,
+  .vscode-sidebar .agent-tree-action-btn,
+  .vscode-sidebar .tree-item-agent,
+  .vscode-sidebar .tree-item-agent .tree-item-actions,
+  .vscode-sidebar .agent-folder-node .tree-node-actions {
+    transition: none;
+  }
+}
+
+.vscode-sidebar .tree-item-agent:hover .tree-item-actions,
+.vscode-sidebar .tree-item-agent:focus .tree-item-actions,
+.vscode-sidebar .agent-folder-node .tree-node-header:hover .tree-node-actions {
+  opacity: 1;
+}
+
+.vscode-sidebar .agent-folder-node .tree-node-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.vscode-sidebar .agent-folder-node .tree-node-header .tree-node-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Indentation and stacking for grouped macro items */
+.vscode-sidebar .agent-folder-node .tree-node-header { cursor: pointer; }
+.vscode-sidebar .agent-folder-node .tree-node-children { padding-left: 16px; }
+.vscode-sidebar .agent-folder-node .tree-node-children.expanded { display: flex; flex-direction: column; }
+.vscode-sidebar .agent-folder-node .tree-node-children.collapsed { display: none; }
+
+#menu_content:not([data-layout="panels"]):not([data-active-view="logs"]) #logs-tree-node {
+  display: none;
+}
+
+#menu_content:not([data-layout="panels"]):not([data-active-view="logs"]) #sidebar-logs-output {
+  display: none;
+}
+
+/* TASK-118-FIX: Removed universal scrollbar hiding (conflicts with PerfectScrollbar) */
+/* TASK-116-PART-8 hiding rules disabled - PerfectScrollbar now provides VS Code-style scrollbars */
+
+/* Hide native scrollbars only (not PerfectScrollbar elements) - Webkit */
+.vscode-sidebar *:not(.ps):not(.ps__rail-y):not(.ps__thumb-y)::-webkit-scrollbar,
+.vscode-sidebar:not(.ps)::-webkit-scrollbar,
+#vscode-sidebar *:not(.ps):not(.ps__rail-y):not(.ps__thumb-y)::-webkit-scrollbar,
+#vscode-sidebar:not(.ps)::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+/* Hide native scrollbars only (not PerfectScrollbar elements) - Firefox */
+.vscode-sidebar *:not(.ps),
+.vscode-sidebar:not(.ps),
+#vscode-sidebar *:not(.ps),
+#vscode-sidebar:not(.ps) {
+  scrollbar-width: none !important;
+}

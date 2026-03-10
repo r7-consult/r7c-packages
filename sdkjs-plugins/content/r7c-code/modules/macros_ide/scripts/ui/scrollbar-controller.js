@@ -1,0 +1,1 @@
+class ScrollbarController{['initialize'](){}['dispose'](){}}typeof window!=='undefined'&&(window['ScrollbarController']=ScrollbarController);

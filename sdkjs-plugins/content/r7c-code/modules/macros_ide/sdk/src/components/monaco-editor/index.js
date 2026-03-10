@@ -1,0 +1,1 @@
+import{MonacoEditor}from'./monaco-editor.js';export{MonacoEditor};export default MonacoEditor;

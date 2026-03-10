@@ -1,0 +1,22 @@
+{
+	"New": "Nové",
+	"Delete": "Smazat",
+	"Rename": "Přejmenovat",
+	"Autostart" : "Autostart",
+	"Run": "Spustit",
+	"Cancel" : "Zrušit",
+	"Macros" : "Makra",
+	"Title" : "Jméno nesmí být prázdné",
+	"Copy": "Zkopírovat",
+	"Make autostart": "Udělat automatické spuštění",
+	"Unmake autostart": "Zrušit automatické spuštění",
+	"Custom function": "Vlastní funkce",
+	"Custom functions": "Vlastní funkce",
+	"Ok": "OK",
+	"Add macros": "Přidejte makra",
+	"Add custom function": "Přidejte vlastní funkce",
+  "macro.error.executionFailed": "Makro se nepodařilo spustit",
+  "macro.error.securityBlocked": "Makro bylo zablokováno bezpečnostními pravidly",
+  "macro.error.validationFailed": "Makro neprošlo ověřením",
+  "macro.error.details": "Podrobnosti"
+}

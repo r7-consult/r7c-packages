@@ -1,0 +1,466 @@
+/**
+ * Tree View CSS - Tree UI, Folders, Items, Actions
+ * Extracted from index.html inline styles
+ *
+ * Contains:
+ * - FancyTree customization
+ * - Macro item styling (light/dark themes)
+ * - Folder styling and expanders
+ * - Tree structure and connection lines
+ * - Tree item action buttons
+ * - Tree pane toggle buttons
+ * - Tree section new button
+ */
+
+/* Tree UI Styling */
+.macro-tree-container {
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+}
+
+/* FancyTree customization */
+.fancytree-container {
+	border: none !important;
+	outline: none !important;
+	font-family: inherit !important;
+	font-size: 11px !important;
+}
+
+.fancytree-node {
+	position: relative !important;
+}
+
+.fancytree-title {
+	font-size: 11px !important;
+	font-family: inherit !important;
+	color: inherit !important;
+	padding: 2px 4px !important;
+	line-height: 16px !important;
+	border-radius: 3px !important;
+}
+
+/* Macro item styling */
+.fancytree-node .macro-item {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+	padding: 4px 8px 3px 4px;
+	margin: 1px 0;
+	font-size: 11px;
+	line-height: 16px;
+	position: relative;
+	min-height: 22px;
+}
+
+.fancytree-node .macro-name {
+	flex: 1;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	padding-right: 8px;
+}
+
+.fancytree-node .macro-autostart {
+	position: relative;
+	font-size: 10px;
+	pointer-events: none;
+	margin-right: 4px;
+	user-select: none;
+}
+
+.fancytree-node.macro-selected .macro-item {
+	background-color: #7D858C;
+	color: #FFFFFF;
+}
+
+.fancytree-node.macro-selected .macro-name,
+.fancytree-node.macro-selected .macro-autostart {
+	color: #FFFFFF;
+}
+
+.fancytree-node:not(.macro-selected) .macro-item:hover {
+	background-color: #D8DADC;
+}
+
+/* Light theme */
+.fancytree-node:not(.macro-selected) .macro-item {
+	background-color: #F1F1F1;
+	color: #000000;
+}
+
+.fancytree-node:not(.macro-selected) .macro-item:hover {
+	background-color: #D8DADC;
+}
+
+.fancytree-node:not(.macro-selected) .macro-name,
+.fancytree-node:not(.macro-selected) .macro-autostart {
+	color: #000000;
+}
+
+/* Dark theme */
+.theme-type-dark .fancytree-node:not(.macro-selected) .macro-item {
+	background-color: #2D2D30;
+	color: var(--color-text-primary);
+}
+
+.theme-type-dark .fancytree-node:not(.macro-selected) .macro-item:hover {
+	background-color: #3F3F46;
+}
+
+.theme-type-dark .fancytree-node:not(.macro-selected) .macro-name,
+.theme-type-dark .fancytree-node:not(.macro-selected) .macro-autostart {
+	color: var(--color-text-primary);
+}
+
+.theme-type-dark .fancytree-node.macro-selected .macro-item {
+	background-color: #094771;
+	color: #FFFFFF;
+}
+
+/* Folder styling */
+.fancytree-folder > .fancytree-title {
+	font-weight: normal !important;
+	font-size: 11px !important;
+	padding: 4px 8px !important;
+	margin-bottom: 0px !important;
+}
+
+/* Hide default FancyTree icons for macros, keep for folders */
+.fancytree-node:not(.fancytree-folder) > span.fancytree-icon {
+	display: none !important;
+}
+
+/* Custom expander for folders */
+.fancytree-exp-e, .fancytree-exp-c {
+	width: 16px !important;
+	height: 16px !important;
+	margin-right: 4px !important;
+	cursor: pointer !important;
+}
+
+/* Tree structure styles */
+#menu_content {
+	padding-top: 0px;
+}
+
+ul.fancytree-container {
+	padding: 0 !important;
+	margin: 0 !important;
+	list-style: none !important;
+	background: transparent !important;
+}
+
+ul.fancytree-container > li {
+	list-style: none !important;
+	margin: 0 !important;
+	padding: 0 !important;
+}
+
+ul.fancytree-container ul {
+	padding-left: 16px !important;
+	margin: 0 !important;
+	list-style: none !important;
+}
+
+span.fancytree-node {
+	display: block !important;
+	position: relative !important;
+	padding: 0 !important;
+	margin: 0 !important;
+}
+
+span.fancytree-expander {
+	display: inline-block !important;
+	width: 16px !important;
+	height: 16px !important;
+	margin-right: 4px !important;
+	cursor: pointer !important;
+	vertical-align: middle !important;
+}
+
+span.fancytree-icon {
+	display: inline-block !important;
+	width: 16px !important;
+	height: 16px !important;
+	margin-right: 4px !important;
+	vertical-align: middle !important;
+}
+
+span.fancytree-title {
+	display: inline-block !important;
+	vertical-align: middle !important;
+	padding: 2px 4px !important;
+	border-radius: 3px !important;
+}
+
+span.fancytree-expander:before {
+	content: '';
+	display: block;
+	width: 0;
+	height: 0;
+	border-style: solid;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+}
+
+span.fancytree-exp-c:before {
+	border-width: 4px 0 4px 6px;
+	border-color: transparent transparent transparent #666;
+	transform: translate(-50%, -50%);
+}
+
+span.fancytree-exp-e:before {
+	border-width: 6px 4px 0 4px;
+	border-color: #666 transparent transparent transparent;
+	transform: translate(-50%, -50%);
+}
+
+.theme-type-dark span.fancytree-exp-c:before {
+	border-color: transparent transparent transparent #AAA;
+}
+
+.theme-type-dark span.fancytree-exp-e:before {
+	border-color: #AAA transparent transparent transparent;
+}
+
+span.fancytree-checkbox {
+	display: none !important;
+}
+
+.fancytree-folder > .fancytree-icon {
+	background-position: center !important;
+	background-size: 16px 16px !important;
+	background-repeat: no-repeat !important;
+}
+
+.fancytree-exp-c.fancytree-folder > .fancytree-icon {
+	background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cGF0aCBkPSJNMTQuNSAxMy41SDE1VjRIMTIuNDEzTDExLjU4NyAySDEuNVYxMy41SDE0LjVaIiBmaWxsPSIjQ0JBMjcwIiBzdHJva2U9IiM3QzY1NEMiLz4KPC9zdmc+Cg==') !important;
+}
+
+.fancytree-exp-e.fancytree-folder > .fancytree-icon {
+	background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cGF0aCBkPSJNMTQuNSAxMy41SDE1VjZIMTIuNDEzTDExLjU4NyAySDE1VjFIMTEuNUwxMC41IDRIMVYxMy41SDE0LjVaIiBmaWxsPSIjRENBRjY5IiBzdHJva2U9IiM5Mzc1NGMiLz4KPC9zdmc+Cg==') !important;
+}
+
+.fancytree-active > .fancytree-title {
+	background-color: transparent !important;
+	border: none !important;
+}
+
+.fancytree-focused .fancytree-active > .fancytree-title {
+	background-color: transparent !important;
+}
+
+ul.fancytree-container {
+	position: relative;
+}
+
+.fancytree-node:before,
+.fancytree-node:after {
+	content: '';
+	position: absolute;
+	left: -12px;
+}
+
+.fancytree-node:before {
+	top: -7px;
+	bottom: 50%;
+	width: 1px;
+	background: rgba(0, 0, 0, 0.1);
+}
+
+.fancytree-node:after {
+	top: 50%;
+	width: 12px;
+	height: 1px;
+	background: rgba(0, 0, 0, 0.1);
+}
+
+.fancytree-lastsib:before {
+	bottom: auto;
+	height: 50%;
+}
+
+.fancytree-exp-e.fancytree-lastsib:before,
+.fancytree-exp-c.fancytree-lastsib:before {
+	bottom: auto;
+	height: 50%;
+}
+
+li:last-child > .fancytree-node:before {
+	height: 50%;
+}
+
+.theme-type-dark .fancytree-node:before,
+.theme-type-dark .fancytree-node:after {
+	background: rgba(255, 255, 255, 0.1);
+}
+
+/* Tree connection lines */
+.fancytree-node {
+	position: relative;
+}
+
+ul.fancytree-container > li > span.fancytree-node:before,
+ul.fancytree-container > li > span.fancytree-node:after {
+	display: none !important;
+}
+
+ul.fancytree-container ul li {
+	position: relative;
+}
+
+ul.fancytree-container ul li:before {
+	content: '';
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: -16px;
+	width: 1px;
+	background: rgba(0, 0, 0, 0.1);
+}
+
+ul.fancytree-container ul li:last-child:before {
+	bottom: 50%;
+}
+
+.theme-type-dark ul.fancytree-container ul li:before {
+	background: rgba(255, 255, 255, 0.1);
+}
+
+/* Tree pane toggle buttons */
+.tree-toggle {
+	position: absolute;
+	bottom: 8px;
+	width: 24px;
+	height: 24px;
+	background-color: #E0E0E0;
+	border: 1px solid #CBCBCB;
+	border-radius: var(--radius-sm);
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	z-index: 101;
+	transition: background-color 0.2s ease;
+}
+
+.tree-toggle:hover {
+	background-color: #D0D0D0;
+}
+
+.tree-toggle-collapse {
+	left: 8px;
+}
+
+.tree-toggle-expand {
+	right: 8px;
+}
+
+/* METHOD 5: Tree item action buttons - Primary (always visible) + Secondary (hover) */
+
+/* Primary action container - Always visible */
+.fancytree-node .macro-actions-primary {
+	display: flex;
+	align-items: center;
+	gap: 2px;
+	margin-left: auto;
+	opacity: 1;
+}
+
+/* Secondary actions container - Shows on hover */
+.fancytree-node .macro-actions-secondary {
+	display: none;
+	align-items: center;
+	gap: 2px;
+	margin-left: 4px;
+}
+
+.fancytree-node:hover .macro-actions-secondary {
+	display: flex;
+}
+
+/* Legacy support - keep for backward compatibility */
+.fancytree-node .macro-actions {
+	display: none;
+	align-items: center;
+	gap: 4px;
+	margin-left: auto;
+}
+
+.fancytree-node:hover .macro-actions {
+	display: flex;
+}
+
+/* Tree item action buttons */
+.macro-action-btn {
+	width: 20px;
+	height: 20px;
+	border: none;
+	background-color: transparent;
+	background-size: 14px 14px;
+	background-position: center;
+	background-repeat: no-repeat;
+	cursor: pointer;
+	opacity: 0.7;
+	transition: opacity 0.2s ease;
+	flex-shrink: 0;
+}
+
+.macro-action-btn:hover {
+	opacity: 1;
+	background-color: rgba(0, 0, 0, 0.1);
+}
+
+.macro-action-run {
+	background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTQiIGhlaWdodD0iMTQiIHZpZXdCb3g9IjAgMCAxNCAxNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cGF0aCBkPSJNMyAyTDEyIDdMMyAxMloiIGZpbGw9IiM0QkFFNTAiLz4KPC9zdmc+Cg==');
+}
+
+.macro-action-copy {
+	background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTQiIGhlaWdodD0iMTQiIHZpZXdCb3g9IjAgMCAxNCAxNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB4PSI0IiB5PSI0IiB3aWR0aD0iOCIgaGVpZ2h0PSI4IiBzdHJva2U9IiM2NjYiIGZpbGw9Im5vbmUiLz4KICA8cmVjdCB4PSIyIiB5PSIyIiB3aWR0aD0iOCIgaGVpZ2h0PSI4IiBzdHJva2U9IiM2NjYiIGZpbGw9IiNGRkYiLz4KPC9zdmc+Cg==');
+}
+
+.theme-type-dark .macro-action-btn:hover {
+	background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Tree section new button */
+.tree-section-new {
+	padding: 8px;
+	margin: 4px 8px;
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	cursor: pointer;
+	font-size: 11px;
+	color: var(--color-text-tertiary);
+	border-radius: var(--radius-sm);
+	transition: background-color 0.2s ease;
+}
+
+.tree-section-new:hover {
+	background-color: rgba(0, 0, 0, 0.05);
+	color: var(--color-text-primary);
+}
+
+.tree-section-new-icon {
+	width: 16px;
+	height: 16px;
+	background-size: 16px 16px;
+	background-position: center;
+	background-repeat: no-repeat;
+	opacity: 0.7;
+}
+
+.theme-type-dark .tree-section-new {
+	color: #AAA;
+}
+
+.theme-type-dark .tree-section-new:hover {
+	background-color: rgba(255, 255, 255, 0.08);
+	color: #DDD;
+}
+
+/* TASK-029: Editor Run Button CSS removed - button moved to plugin footer */

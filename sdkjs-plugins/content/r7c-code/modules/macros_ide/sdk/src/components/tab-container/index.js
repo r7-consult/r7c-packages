@@ -1,0 +1,1 @@
+import{TabContainer}from'./tab-container.js';export{TabContainer};export default TabContainer;

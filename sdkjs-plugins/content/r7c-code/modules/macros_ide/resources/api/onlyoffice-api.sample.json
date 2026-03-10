@@ -1,0 +1,46 @@
+{
+  "version": "7.5.0-sample",
+  "categories": [
+    {
+      "id": "document",
+      "name": "Document",
+      "methods": [
+        {
+          "id": "Document.GetInfo",
+          "name": "GetInfo",
+          "description": "Returns metadata about the current document.",
+          "signature": "Api.GetDocumentInfo()",
+          "returnType": "DocumentInfo",
+          "parameters": [],
+          "snippet": "function getDocumentInfo() {\n  var info = Api.GetDocumentInfo();\n  console.log(info.Title);\n}"
+        },
+        {
+          "id": "Document.SetTitle",
+          "name": "SetTitle",
+          "description": "Sets the document title.",
+          "signature": "Api.SetDocumentTitle(title)",
+          "returnType": "void",
+          "parameters": [
+            { "name": "title", "type": "string", "description": "New document title." }
+          ],
+          "snippet": "function setTitle(newTitle) {\n  Api.SetDocumentTitle(newTitle);\n}"
+        }
+      ]
+    },
+    {
+      "id": "worksheet",
+      "name": "Worksheet",
+      "methods": [
+        {
+          "id": "Worksheet.GetActive",
+          "name": "GetActive",
+          "description": "Retrieves the active worksheet instance.",
+          "signature": "Api.GetActiveWorksheet()",
+          "returnType": "Worksheet",
+          "parameters": [],
+          "snippet": "function logActiveSheetName() {\n  var sheet = Api.GetActiveWorksheet();\n  console.log(sheet.GetName());\n}"
+        }
+      ]
+    }
+  ]
+}

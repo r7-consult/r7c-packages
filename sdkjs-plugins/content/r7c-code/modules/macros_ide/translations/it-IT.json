@@ -1,0 +1,22 @@
+{
+	"New" : "Crea",
+	"Delete" : "Elimina",
+	"Rename" : "Rinomina",
+	"Autostart" : "Avvio automatico",
+	"Run" : "Esegui",
+	"Cancel" : "Annulla",
+	"Macros" : "Macro",
+	"Title" : "Il nome non può essere vuoto",
+	"Copy": "Copia",
+	"Make autostart": "Esegui avvio automatico",
+	"Unmake autostart": "Annulla avvio automatico",
+	"Custom function": "Funzione personalizzata",
+	"Custom functions": "Funzioni personalizzate",
+	"Ok": "OK",
+	"Add macros": "Aggiungi macro",
+	"Add custom function": "Aggiungi funzione personalizzata",
+  "macro.error.executionFailed": "Impossibile eseguire la macro",
+  "macro.error.securityBlocked": "La macro è stata bloccata dalle regole di sicurezza",
+  "macro.error.validationFailed": "La convalida della macro non è riuscita",
+  "macro.error.details": "Dettagli"
+}

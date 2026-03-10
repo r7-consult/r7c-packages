@@ -1,0 +1,347 @@
+/**
+ * TASK-082: VSCode Side Bar Chrome & Layout Styles
+ *
+ * VSCode-style resizable side bar component
+ * METHOD 5: Hybrid Pragmatic approach
+ *
+ * @history
+ * - 2025-01-18: Created by Dev-Agent - TASK-082: Initial styles
+ */
+
+/* =============================================================================
+   VSCode Side Bar Container
+   ============================================================================= */
+
+.vscode-sidebar {
+    /* HIDDEN BY DEFAULT: Only show when EXPLORER_TREE_HOST feature flag is enabled */
+    display: none;
+    flex-direction: row;
+    /* Anchor the sidebar in the app layout (below toolbar, above console) */
+    position: absolute;
+    top: 42px;      /* below toolbar */
+    bottom: 0;      /* parent reserves console/status space */
+    left: 48px;     /* leave room for Activity Bar */
+
+    /* Visual gutter between Activity Bar and Explorer (matches macros explorer look) */
+    margin-left: 4px;
+
+    /* Default width aligned with legacy 30% split (minus activity bar) */
+    width: calc(30% - 48px);
+    min-width: 160px;
+    max-width: 600px;
+
+    background-color: var(--vscode-sideBar-background, #050505);
+    color: var(--vscode-sideBar-foreground, #cccccc);
+    /* The movable splitter renders the single visual divider on the right; avoid double border there */
+    border-right: none;
+    box-sizing: border-box;
+    z-index: 12; /* ensure above editor area */
+}
+
+/* Show sidebar only when feature flag is enabled */
+.vscode-sidebar[data-explorer-enabled="true"] {
+    display: flex;
+}
+
+/* =============================================================================
+   Side Bar Content Area
+   ============================================================================= */
+
+.vscode-sidebar-content {
+    flex: 1;
+    overflow: hidden; /* TASK-116: Changed from 'auto' - child .tree-node-children handles scrolling */
+    padding: 0; /* Let child components handle padding */
+    box-sizing: border-box;
+}
+
+/* =============================================================================
+   VSCode Sidebar Layout Fixes - TASK-082 Trinity Analysis Solution
+   ============================================================================= */
+
+/* VSCode sidebar: ensure tree is visible and scrollable */
+/* z-index is defined on .vscode-sidebar above to sit above editor */
+
+/* Allow percent-height children to compute and scroll correctly */
+.vscode-sidebar-content {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;  /* critical for flex + % heights */
+    min-width: 0;
+}
+
+/* Dedicated module host for non-tree views */
+.vscode-sidebar-module-host {
+    flex: 1 1 auto;
+    display: none;
+    flex-direction: column;
+    overflow: hidden; /* TASK-116-PART-7: Changed from 'auto' - no scrollbars */
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.vscode-sidebar-module-host[data-disabled-slot] {
+    justify-content: center;
+    align-items: center;
+    padding: 24px;
+}
+
+/* Ensure #menu_macros acts as a flex column so #menu_content can flex + scroll */
+.vscode-sidebar #menu_macros {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    min-height: 0; /* allow child (#menu_content) to compute scroll height */
+}
+
+/* Make the tree container a column layout and stop clipping */
+/* METHOD 5: Hybrid Flexbox Layout - Allow child scroll zones */
+.vscode-sidebar .common_menu {
+    position: relative;
+    top: auto;
+    bottom: auto;
+    left: auto;
+    right: auto;
+    margin: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+/* Convert from calc-height to flex fill for the scrollable tree */
+.vscode-sidebar #menu_content {
+    /* TASK-118-TRINITY-FIX: Changed flex: 1 1 auto to flex: 1 1 0 */
+    /* Reason: flex-basis:auto conflicts with view-specific rules that use flex-basis:0 */
+    /* This base rule was overriding #menu_content[data-active-view="logs"] { flex: 1 1 0 } */
+    /* causing Logs window to not fill full Explorer height (6+ user reports) */
+    flex: 1 1 0;
+    min-height: 0;           /* allow it to shrink without being clipped */
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding-top: 0;
+    overscroll-behavior: contain;
+    overflow: hidden;
+}
+
+.vscode-sidebar .tree-node {
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 auto;
+    min-height: 0;
+}
+
+.vscode-sidebar .tree-node[data-tree-slot],
+.vscode-sidebar .tree-node[data-legacy-bridge] {
+    flex: 1 1 auto;
+}
+
+.vscode-sidebar .tree-node-children {
+    flex: 1 1 auto;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* Default scroll contract: tree-node-children scroll their content */
+.vscode-sidebar .tree-node-children > .tree-item {
+    flex: 0 0 auto;
+}
+
+.vscode-sidebar .tree-node-children > .sidebar-logs-output {
+    flex: 1 1 auto;
+    min-height: 0;
+    width: 100%;
+}
+
+.vscode-sidebar #logs-children {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    width: 100%;
+}
+
+.vscode-sidebar #sidebar-logs-output {
+    flex: 1 1 auto;
+    min-height: 0;
+    width: 100%;
+}
+
+/* TASK-116-FIX-PART-5: Removed general .tree-node-children overflow rule */
+/* Reason: Created double scrollbars when nested tree sections exist */
+/* View-specific scrolling now handled by app.css rules: */
+/*   - #macros-children (line 3024) */
+/*   - #examples-children (line 3057) */
+/*   - #external-scripts-children (line 3092) */
+/*   - #sidebar-logs-output (line 3132) */
+/* This prevents nested .tree-node-children from creating duplicate scrollbars */
+
+.vscode-sidebar #logs-tree-node .tree-node-children {
+    overflow: hidden;
+}
+
+/* Ensure legacy collapsed/expanded classes still work */
+.vscode-sidebar .tree-node-children.collapsed {
+    display: none;
+}
+
+.vscode-sidebar .tree-node-children.expanded {
+    display: flex;
+}
+
+/* =============================================================================
+   Resize Handle (JS Mode)
+   ============================================================================= */
+
+/* Hide internal resize handle when using external splitter */
+.vscode-sidebar-resize-handle {
+    display: none;
+}
+
+/* No hover/active styles needed when hidden */
+
+/* Focus indicator for accessibility */
+.vscode-sidebar-resize-handle:focus-visible {
+    outline: 2px solid var(--vscode-focusBorder, #007acc);
+    outline-offset: -2px;
+}
+
+/* =============================================================================
+   CSS Fallback Mode
+   ============================================================================= */
+
+.vscode-sidebar.css-fallback-mode {
+    resize: horizontal;
+    overflow: auto;
+}
+
+.vscode-sidebar.css-fallback-mode .vscode-sidebar-resize-handle {
+    display: none; /* Hide custom handle in CSS fallback mode */
+}
+
+/* =============================================================================
+   Responsive Adjustments
+   ============================================================================= */
+
+/* Hide sidebar on very small screens */
+@media (max-width: 768px) {
+    .vscode-sidebar {
+        min-width: 150px;
+    }
+}
+
+/* =============================================================================
+   Theme Integration
+   ============================================================================= */
+
+/* Light theme */
+.vscode-sidebar[data-theme="light"],
+.vscode-sidebar[data-theme="vs"] {
+    background-color: var(--vscode-sideBar-background, #f3f3f3);
+    color: var(--vscode-sideBar-foreground, #333333);
+    border-right-color: var(--vscode-sideBar-border, #e0e0e0);
+}
+
+/* Dark theme */
+.vscode-sidebar[data-theme="dark"],
+.vscode-sidebar[data-theme="vs-dark"] {
+    background-color: var(--vscode-sideBar-background, #050505);
+    color: var(--vscode-sideBar-foreground, #cccccc);
+    border-right-color: var(--vscode-sideBar-border, #3c3c3c);
+}
+
+/* High contrast theme */
+.vscode-sidebar[data-theme="hc-black"],
+.vscode-sidebar[data-theme="hc-light"] {
+    border-right-width: 2px;
+    border-right-color: var(--vscode-contrastBorder, #6fc3df);
+}
+
+/* =============================================================================
+   Scrollbar Styling (HIDDEN - TASK-116-PART-7)
+   ============================================================================= */
+
+/* TASK-118-FIX: Modified scrollbar hiding to exclude PerfectScrollbar elements */
+/* TASK-116-PART-8 hiding rules updated - hide native scrollbars only, not PerfectScrollbar */
+
+/* Hide native scrollbars only (exclude PerfectScrollbar elements) - Webkit */
+#vscode-sidebar *:not(.ps):not(.ps__rail-y):not(.ps__thumb-y)::-webkit-scrollbar,
+#vscode-sidebar:not(.ps)::-webkit-scrollbar,
+.vscode-sidebar *:not(.ps):not(.ps__rail-y):not(.ps__thumb-y)::-webkit-scrollbar,
+.vscode-sidebar:not(.ps)::-webkit-scrollbar,
+.vscode-sidebar-content:not(.ps)::-webkit-scrollbar,
+.vscode-sidebar-module-host:not(.ps)::-webkit-scrollbar,
+.common_menu:not(.ps)::-webkit-scrollbar,
+#menu_macros:not(.ps)::-webkit-scrollbar,
+#menu_content:not(.ps)::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+}
+
+/* Explorer exceptions: allow native scrollbars for macros/examples/external scripts */
+#macros-children::-webkit-scrollbar,
+#macros-children__legacy::-webkit-scrollbar,
+[data-tree-slot-container="macros"]::-webkit-scrollbar,
+#examples-children::-webkit-scrollbar,
+#examples-children__legacy::-webkit-scrollbar,
+[data-tree-slot-container="examples"]::-webkit-scrollbar,
+#external-scripts-children::-webkit-scrollbar,
+#external-scripts-children__legacy::-webkit-scrollbar,
+[data-tree-slot-container="external-scripts"]::-webkit-scrollbar {
+    display: block !important;
+    width: 8px !important;
+    height: auto !important;
+}
+
+/* Hide native scrollbars only (exclude PerfectScrollbar elements) - Firefox */
+#vscode-sidebar:not(.ps),
+#vscode-sidebar *:not(.ps):not(.ps__rail-y):not(.ps__thumb-y),
+.vscode-sidebar:not(.ps),
+.vscode-sidebar *:not(.ps):not(.ps__rail-y):not(.ps__thumb-y),
+.vscode-sidebar-content:not(.ps),
+.vscode-sidebar-module-host:not(.ps),
+.common_menu:not(.ps),
+#menu_macros:not(.ps),
+#menu_content:not(.ps) {
+    scrollbar-width: none !important;
+}
+
+/* Explorer exceptions: restore thin scrollbar width (Firefox) */
+#macros-children,
+#macros-children__legacy,
+[data-tree-slot-container="macros"],
+#examples-children,
+#examples-children__legacy,
+[data-tree-slot-container="examples"],
+#external-scripts-children,
+#external-scripts-children__legacy,
+[data-tree-slot-container="external-scripts"] {
+    scrollbar-width: thin !important;
+}
+
+/* TASK-116-PART-7: Commented out scrollbar track/thumb styling (no longer needed)
+.vscode-sidebar-content::-webkit-scrollbar-track {
+    background: var(--vscode-scrollbarSlider-background, rgba(121, 121, 121, 0.4));
+}
+
+.vscode-sidebar-content::-webkit-scrollbar-thumb {
+    background: var(--vscode-scrollbarSlider-activeBackground, rgba(191, 191, 191, 0.4));
+    border-radius: 5px;
+}
+
+.vscode-sidebar-content::-webkit-scrollbar-thumb:hover {
+    background: var(--vscode-scrollbarSlider-hoverBackground, rgba(191, 191, 191, 0.7));
+}
+
+.vscode-sidebar-content {
+    scrollbar-width: thin;
+    scrollbar-color: var(--vscode-scrollbarSlider-activeBackground, rgba(191, 191, 191, 0.4))
+                     var(--vscode-scrollbarSlider-background, rgba(121, 121, 121, 0.4));
+}
+*/

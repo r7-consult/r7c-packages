@@ -1,0 +1,1 @@
+import{Tooltip}from'./tooltip.js';export{Tooltip};export default Tooltip;

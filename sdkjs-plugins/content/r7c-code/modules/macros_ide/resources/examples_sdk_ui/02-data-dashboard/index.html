@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Dashboard Analyzer</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f8f9fa;
+            line-height: 1.6;
+            height: 100vh;
+            overflow: hidden;
+        }
+        
+        .dashboard-container {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+        
+        .header {
+            background: white;
+            border-bottom: 1px solid #e1e4e8;
+            padding: 16px 24px;
+            flex-shrink: 0;
+        }
+        
+        .header h1 {
+            margin: 0;
+            color: #24292e;
+            font-size: 24px;
+            font-weight: 600;
+        }
+        
+        .header p {
+            margin: 4px 0 0 0;
+            color: #6a737d;
+            font-size: 14px;
+        }
+        
+        .main-content {
+            flex: 1;
+            display: flex;
+            overflow: hidden;
+        }
+        
+        .sidebar {
+            width: 280px;
+            background: white;
+            border-right: 1px solid #e1e4e8;
+            padding: 20px;
+            overflow-y: auto;
+            flex-shrink: 0;
+        }
+        
+        .dashboard-area {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+        }
+        
+        .control-section {
+            margin-bottom: 24px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid #e1e4e8;
+        }
+        
+        .control-section:last-child {
+            border-bottom: none;
+        }
+        
+        .control-section h3 {
+            margin: 0 0 12px 0;
+            color: #24292e;
+            font-size: 16px;
+            font-weight: 600;
+        }
+        
+        .form-group {
+            margin-bottom: 12px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 4px;
+            font-weight: 500;
+            color: #24292e;
+            font-size: 14px;
+        }
+        
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 6px 10px;
+            border: 1px solid #d1d5da;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #0366d6;
+            box-shadow: 0 0 0 2px rgba(3, 102, 214, 0.1);
+        }
+        
+        .btn {
+            padding: 8px 16px;
+            border: 1px solid #d1d5da;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            margin-right: 8px;
+            margin-bottom: 8px;
+            transition: all 0.2s ease;
+            display: inline-block;
+            text-decoration: none;
+            background: white;
+            color: #24292e;
+        }
+        
+        .btn:hover:not(:disabled) {
+            background: #f6f8fa;
+            border-color: #c5c9cc;
+        }
+        
+        .btn-primary {
+            background: #0366d6;
+            border-color: #0366d6;
+            color: white;
+        }
+        
+        .btn-primary:hover:not(:disabled) {
+            background: #0256c7;
+            border-color: #0256c7;
+        }
+        
+        .btn-success {
+            background: #28a745;
+            border-color: #28a745;
+            color: white;
+        }
+        
+        .btn-success:hover:not(:disabled) {
+            background: #218838;
+            border-color: #218838;
+        }
+        
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+        
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .widget {
+            background: white;
+            border: 1px solid #e1e4e8;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        
+        .widget h4 {
+            margin: 0 0 16px 0;
+            color: #24292e;
+            font-size: 18px;
+            font-weight: 600;
+        }
+        
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 16px;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 16px;
+            background: #f6f8fa;
+            border-radius: 6px;
+        }
+        
+        .stat-value {
+            display: block;
+            font-size: 28px;
+            font-weight: 600;
+            color: #0366d6;
+            margin-bottom: 4px;
+        }
+        
+        .stat-label {
+            font-size: 12px;
+            color: #6a737d;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .chart-placeholder {
+            height: 200px;
+            background: #f6f8fa;
+            border: 2px dashed #d1d5da;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6a737d;
+            font-size: 14px;
+        }
+        
+        .data-table-container {
+            grid-column: 1 / -1;
+        }
+        
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 40px;
+        }
+        
+        .loading.active {
+            display: block;
+        }
+        
+        .spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #0366d6;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 16px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .alert {
+            padding: 12px 16px;
+            border-radius: 6px;
+            margin-bottom: 16px;
+            display: none;
+        }
+        
+        .alert.active {
+            display: block;
+        }
+        
+        .alert-info {
+            background: #e1f5fe;
+            border: 1px solid #81d4fa;
+            color: #0277bd;
+        }
+        
+        .alert-success {
+            background: #e8f5e8;
+            border: 1px solid #4caf50;
+            color: #2e7d32;
+        }
+        
+        .alert-error {
+            background: #ffeef0;
+            border: 1px solid #f97583;
+            color: #d73a49;
+        }
+        
+        .range-info {
+            font-size: 12px;
+            color: #6a737d;
+            margin-top: 4px;
+            padding: 4px 8px;
+            background: #f6f8fa;
+            border-radius: 4px;
+        }
+        
+        .filter-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 8px;
+        }
+        
+        .chip {
+            background: #e1f5fe;
+            color: #0277bd;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            display: inline-flex;
+            align-items: center;
+        }
+        
+        .chip .close {
+            margin-left: 6px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <div class="header">
+            <h1>📊 Data Dashboard Analyzer</h1>
+            <p>Analyze your spreadsheet data with interactive insights and visualizations</p>
+        </div>
+        
+        <div class="main-content">
+            <div class="sidebar">
+                <div class="control-section">
+                    <h3>📋 Data Source</h3>
+                    <div class="form-group">
+                        <label for="data-range">Data Range</label>
+                        <input type="text" id="data-range" placeholder="e.g., A1:D10" value="">
+                        <div class="range-info" id="range-info">Select data range in spreadsheet</div>
+                    </div>
+                    <button class="btn btn-primary" onclick="detectDataRange()">Auto-Detect Range</button>
+                    <button class="btn" onclick="loadDataFromRange()">Load Data</button>
+                </div>
+                
+                <div class="control-section">
+                    <h3>🔍 Filters</h3>
+                    <div class="form-group">
+                        <label for="filter-column">Filter Column</label>
+                        <select id="filter-column">
+                            <option value="">Select column...</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="filter-value">Filter Value</label>
+                        <input type="text" id="filter-value" placeholder="Enter value...">
+                    </div>
+                    <button class="btn" onclick="addFilter()">Add Filter</button>
+                    <button class="btn" onclick="clearFilters()">Clear All</button>
+                    <div class="filter-chips" id="active-filters"></div>
+                </div>
+                
+                <div class="control-section">
+                    <h3>📈 Analysis</h3>
+                    <div class="form-group">
+                        <label for="analysis-type">Analysis Type</label>
+                        <select id="analysis-type">
+                            <option value="summary">Summary Statistics</option>
+                            <option value="trends">Trend Analysis</option>
+                            <option value="distribution">Distribution</option>
+                            <option value="correlation">Correlation</option>
+                        </select>
+                    </div>
+                    <button class="btn btn-success" onclick="runAnalysis()">Run Analysis</button>
+                </div>
+                
+                <div class="control-section">
+                    <h3>⚙️ Export</h3>
+                    <button class="btn" onclick="exportToCSV()">Export CSV</button>
+                    <button class="btn" onclick="exportReport()">Export Report</button>
+                    <button class="btn" onclick="shareInsights()">Share Insights</button>
+                </div>
+            </div>
+            
+            <div class="dashboard-area">
+                <div id="alerts-container"></div>
+                
+                <div id="loading" class="loading">
+                    <div class="spinner"></div>
+                    <p>Analyzing your data...</p>
+                </div>
+                
+                <div id="dashboard-content" style="display: none;">
+                    <div class="dashboard-grid">
+                        <div class="widget">
+                            <h4>📊 Summary Statistics</h4>
+                            <div class="stat-grid" id="summary-stats">
+                                <!-- Stats will be populated here -->
+                            </div>
+                        </div>
+                        
+                        <div class="widget">
+                            <h4>📈 Trend Visualization</h4>
+                            <div class="chart-placeholder" id="trend-chart">
+                                Click "Run Analysis" to generate charts
+                            </div>
+                        </div>
+                        
+                        <div class="widget data-table-container">
+                            <h4>🗃️ Data Table</h4>
+                            <div id="data-table-widget">
+                                <!-- Table will be rendered here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Include OnlyOffice UI SDK -->
+    <script type="text/javascript" src="../../../sdk/onlyoffice-ui-sdk-plugin.js"></script>
+    <script type="text/javascript" src="../../../sdk/onlyoffice-ui-sdk-bundle.js"></script>
+    
+    <!-- Main application script -->
+    <script type="text/javascript" src="main.js"></script>
+</body>
+</html>

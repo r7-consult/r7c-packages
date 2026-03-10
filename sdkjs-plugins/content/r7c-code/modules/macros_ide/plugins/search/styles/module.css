@@ -1,0 +1,166 @@
+/**
+ * ADR References:
+ * - ADR-029-plugin-global-search
+ * - ADR-068-macro-text-search-ai-tool-and-panel
+ *
+ * @fileoverview Shared layout styles for the global search view container.
+ */
+
+.global-search-root {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.global-search-view {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 12px;
+  box-sizing: border-box;
+  gap: 12px;
+  background: var(--vscode-sideBar-background, #252526);
+  color: var(--vscode-sideBar-foreground, #cccccc);
+  font-size: 13px;
+}
+
+.global-search-view__form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+  align-items: end;
+}
+
+.global-search-view__field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.global-search-view__field label {
+  font-size: 11px;
+  text-transform: uppercase;
+  color: var(--vscode-sideBarSectionHeader-foreground, #999999);
+}
+
+.global-search-view__input {
+  padding: 6px 8px;
+  border-radius: 6px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(0,0,0,0.25);
+  color: inherit;
+}
+
+.global-search-view__filter-group {
+  display: flex;
+  gap: 12px;
+  font-size: 12px;
+  align-items: center;
+}
+
+.global-search-view__actions {
+  display: flex;
+  gap: 8px;
+}
+
+.global-search-view__btn-primary,
+.global-search-view__btn-secondary {
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.global-search-view__btn-primary {
+  background: #4a90e2;
+  color: #fff;
+}
+
+.global-search-view__btn-secondary {
+  background: rgba(255,255,255,0.08);
+  color: rgba(255,255,255,0.75);
+}
+
+.global-search-view__status {
+  font-size: 12px;
+  color: rgba(255,255,255,0.65);
+}
+
+.global-search-view__error {
+  display: none;
+  color: #ff8080;
+  font-size: 12px;
+}
+
+.global-search-view__error.global-search-view__error--visible {
+  display: block;
+}
+
+.global-search-results {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.global-search-result {
+  border-radius: 6px;
+  background: rgba(255,255,255,0.04);
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.global-search-result__header {
+  font-weight: 600;
+  font-size: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.global-search-result__matches {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.global-search-result__match {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.global-search-result__match mark {
+  background: #ffeb3b;
+  color: #000;
+  padding: 0 2px;
+  border-radius: 2px;
+}
+
+.global-search-result__match:hover {
+  text-decoration: underline;
+}
+
+.global-search-view__preview {
+  background: rgba(0,0,0,0.18);
+  border-radius: 6px;
+  padding: 12px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 12px;
+  min-height: 80px;
+  color: rgba(255,255,255,0.85);
+}
+
+.global-search-view__empty {
+  text-align: center;
+  padding: 16px;
+  color: rgba(255,255,255,0.55);
+  font-size: 12px;
+}

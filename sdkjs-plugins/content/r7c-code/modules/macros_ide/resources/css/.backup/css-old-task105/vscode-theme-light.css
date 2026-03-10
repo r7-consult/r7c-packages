@@ -1,0 +1,77 @@
+/**
+ * VSCode Theme System - Light Plus Theme
+ * Phase 1: 50 Core Tokens
+ * Based on: TRINITY-ANALYSIS-vscode-ui-redesign-2025-01-21.md
+ * ADR: ADR-015-vscode-theme-system.md
+ */
+
+:root[data-vscode-theme="light-plus"] {
+  /* Common Tokens (4 tokens) */
+  --vscode-foreground: #616161;
+  --vscode-focusBorder: #0090f1;
+  --vscode-widget-border: #d4d4d4;
+  --vscode-selection-background: #add6ff;
+
+  /* Activity Bar (10 tokens) - TASK 1.2: Light theme colors */
+  --vscode-activityBar-background: #f3f3f3;
+  --vscode-activityBar-foreground: #424242;
+  --vscode-activityBar-inactiveForeground: #8e8e8e;
+  --vscode-activityBar-border: #e5e5e5;
+  --vscode-activityBarBadge-background: #007acc;
+  --vscode-activityBarBadge-foreground: #ffffff;
+  --vscode-activityBar-activeBorder: #0090f1;
+  --vscode-activityBar-hoverBackground: #e8e8e8;
+  --vscode-activityBar-activeBackground: #ffffff;
+  --vscode-activityBar-dropBorder: #0090f1;
+
+  /* Side Bar (12 tokens) */
+  --vscode-sideBar-background: #f3f3f3;
+  --vscode-sideBar-foreground: #616161;
+  --vscode-sideBar-border: #e5e5e5;
+  --vscode-sideBar-dropBackground: #d1d1d1;
+  --vscode-sideBarTitle-foreground: #6f6f6f;
+  --vscode-sideBarSectionHeader-background: #e7e7e7;
+  --vscode-sideBarSectionHeader-foreground: #616161;
+  --vscode-sideBarSectionHeader-border: #e5e5e5;
+  --vscode-sideBarActivityBarTop-activeBorder: #0090f1;
+  --vscode-sideBarActivityBarTop-background: #f3f3f3;
+  --vscode-sideBarActivityBarTop-foreground: #424242;
+  --vscode-sideBarActivityBarTop-border: #e5e5e5;
+
+  /* Editor (8 tokens) */
+  --vscode-editor-background: #ffffff;
+  --vscode-editor-foreground: #000000;
+  --vscode-editorLineNumber-foreground: #237893;
+  --vscode-editorLineNumber-activeForeground: #0b216f;
+  --vscode-editorCursor-foreground: #000000;
+  --vscode-editor-selectionBackground: #add6ff;
+  --vscode-editor-lineHighlightBackground: #f0f0f0;
+  --vscode-editor-lineHighlightBorder: #eeeeee;
+
+  /* Editor Groups & Tabs (10 tokens) */
+  --vscode-editorGroupHeader-tabsBackground: #f3f3f3;
+  --vscode-editorGroupHeader-tabsBorder: #e5e5e5;
+  --vscode-tab-activeBackground: #ffffff;
+  --vscode-tab-inactiveBackground: #ececec;
+  --vscode-tab-activeForeground: #333333;
+  --vscode-tab-inactiveForeground: #6f6f6f;
+  --vscode-tab-border: #f3f3f3;
+  --vscode-tab-activeBorder: transparent;
+  --vscode-tab-activeBorderTop: #0090f1;
+  --vscode-tab-hoverBackground: #f5f5f5;
+
+  /* Status Bar (6 tokens) */
+  --vscode-statusBar-background: #007acc;
+  --vscode-statusBar-foreground: #ffffff;
+  --vscode-statusBar-border: #007acc;
+  --vscode-statusBar-noFolderBackground: #68217a;
+  --vscode-statusBar-hoverBackground: #0062a3;
+  --vscode-statusBarItem-prominentBackground: #00000033;
+
+  /* Lists (Tree View) (5 tokens) */
+  --vscode-list-activeSelectionBackground: #0060c0;
+  --vscode-list-activeSelectionForeground: #ffffff;
+  --vscode-list-hoverBackground: #e8e8e8;
+  --vscode-list-focusBackground: #d0e3f1;
+  --vscode-list-inactiveSelectionBackground: #e4e6f1;
+}

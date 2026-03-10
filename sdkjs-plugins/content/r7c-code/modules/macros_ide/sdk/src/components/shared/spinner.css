@@ -1,0 +1,58 @@
+/**
+ * Shared spinner utilities for OnlyOffice UI SDK components.
+ */
+
+@keyframes sdk-spinner-rotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+:root {
+  --sdk-spinner-size: 16px;
+  --sdk-spinner-border-width: 2px;
+  --sdk-spinner-track-color: var(--sdk-color-border, #e0e0e0);
+  --sdk-spinner-active-color: var(--sdk-color-primary, #4CAF50);
+  --sdk-spinner-duration: 1s;
+  --sdk-spinner-z-index: 10;
+}
+
+:where(
+  .toolbar.loading,
+  .tab-container.loading .tab-content,
+  .split-panel-container.loading,
+  .modal-dialog.loading,
+  .accessible-data-grid.loading,
+  .chat-interface-loading .chat-send-button,
+  .tooltip-content.loading,
+  .accessible-modal-dialog.loading .accessible-modal-button,
+  .gdpr-consent-banner.loading .consent-buttons button,
+  .monaco-editor-loading-spinner
+) {
+  position: relative;
+}
+
+:where(
+  .toolbar.loading,
+  .tab-container.loading .tab-content,
+  .split-panel-container.loading,
+  .modal-dialog.loading,
+  .accessible-data-grid.loading,
+  .chat-interface-loading .chat-send-button,
+  .tooltip-content.loading,
+  .accessible-modal-dialog.loading .accessible-modal-button,
+  .gdpr-consent-banner.loading .consent-buttons button,
+  .monaco-editor-loading-spinner
+)::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: var(--sdk-spinner-size);
+  height: var(--sdk-spinner-size);
+  border: var(--sdk-spinner-border-width) solid var(--sdk-spinner-track-color);
+  border-top: var(--sdk-spinner-border-width) solid var(--sdk-spinner-active-color);
+  border-radius: 50%;
+  animation: sdk-spinner-rotate var(--sdk-spinner-duration) linear infinite;
+  z-index: var(--sdk-spinner-z-index);
+}

@@ -1,0 +1,195 @@
+#external-scripts-tree-node {
+  color: #000;
+}
+
+#external-scripts-tree-node .tree-item-name,
+#external-scripts-tree-node .external-js-header,
+#external-scripts-tree-node .document-js-header,
+#external-scripts-tree-node .document-js-item > div:first-child,
+#external-scripts-tree-node #imported-vba-tree-node .tree-node-title span,
+#external-scripts-tree-node #imported-js-tree-node .tree-node-title span,
+#external-scripts-tree-node #imported-vba-count,
+#external-scripts-tree-node #imported-js-count,
+#external-scripts-tree-node #external-scripts-count,
+#external-scripts-tree-node .vba-section .vba-import-btn,
+#external-scripts-tree-node .js-section .js-import-btn,
+#external-scripts-tree-node .js-section .js-refresh-btn,
+#external-scripts-tree-node .tree-item-action-btn,
+#external-scripts-tree-node .tree-empty-message,
+#external-scripts-tree-node .empty-hint {
+  color: inherit;
+}
+
+#external-scripts-tree-node #imported-vba-tree-node .tree-node-title span,
+#external-scripts-tree-node #imported-js-tree-node .tree-node-title span,
+#external-scripts-tree-node #imported-vba-count,
+#external-scripts-tree-node #imported-js-count,
+#external-scripts-tree-node #external-scripts-count {
+  color: inherit !important;
+}
+
+.theme-type-dark #external-scripts-tree-node {
+  color: #fff;
+}
+
+#external-scripts-tree-node .external-js-header {
+  background: #e1f5fe;
+  font-weight: 600;
+  padding: 4px 12px;
+  margin: 2px 0;
+  border-radius: 3px;
+  border-left: 3px solid #0288d1;
+}
+
+#external-scripts-tree-node .external-js-macro {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 12px;
+  margin: 2px 0;
+  border-radius: 3px;
+  border-left: 3px solid #0288d1;
+  background: rgba(33, 150, 243, 0.08);
+}
+
+#external-scripts-tree-node .external-js-macro .tree-item-name {
+  font-weight: 500;
+}
+
+#external-scripts-tree-node .external-js-macro .tree-item-secondary-actions {
+  display: flex;
+  gap: 4px;
+}
+
+#external-scripts-tree-node > .tree-node-header {
+  display: none;
+}
+
+#external-scripts-tree-node .imported-section {
+  margin: 2px 0 0;
+}
+
+#external-scripts-tree-node .tree-node-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+#external-scripts-tree-node .tree-node-title .tree-node-count {
+  margin-left: auto;
+}
+
+#external-scripts-tree-node .tree-node-title .empty-inline-hint {
+  font-size: 10px;
+  color: var(--vscode-sideBar-foreground, var(--color-text-tertiary));
+  opacity: 0.75;
+  white-space: nowrap;
+  font-style: italic;
+}
+
+/* Keep empty sections expanded for consistent VSCode-style tree; show placeholders instead */
+#external-scripts-tree-node .imported-section.is-empty > .tree-node-children {
+  display: block;
+}
+
+#external-scripts-tree-node .tree-empty-message {
+  padding: 6px 12px;
+  font-style: italic;
+  color: var(--vscode-sideBar-foreground, var(--color-text-tertiary));
+  opacity: 0.8;
+}
+
+#external-scripts-tree-node .imported-section:first-of-type {
+  margin-top: 0;
+}
+
+#external-scripts-tree-node .imported-section > .tree-node-header {
+  min-height: 20px;
+  padding: 3px 10px;
+}
+
+#external-scripts-tree-node.is-empty > .tree-node-header {
+  border-bottom: none !important;
+}
+
+#external-scripts-tree-node.is-empty .tree-node-count {
+  opacity: 0.7;
+}
+
+#external-scripts-tree-node .document-js-header {
+  background: #e8f5e9;
+  font-weight: 600;
+  padding: 3px 10px;
+  margin: 2px 0 2px;
+  border-radius: 3px;
+  border-left: 3px solid #2e7d32;
+}
+
+#external-scripts-tree-node .document-js-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px 8px 24px;
+  margin: 2px 0;
+  border-radius: 3px;
+  background: #e8f5e9;
+  border-left: 3px solid #2e7d32;
+}
+
+#external-scripts-tree-node .document-js-item .document-js-item-actions {
+  display: flex;
+  gap: 4px;
+}
+
+#external-scripts-tree-node .document-js-item > div:first-child {
+  font-weight: 500;
+}
+
+#external-scripts-tree-node .tree-empty-message,
+#external-scripts-tree-node .empty-hint {
+  padding: 8px 10px;
+  font-style: italic;
+}
+
+/* Inline actions bar displayed when External Scripts is empty */
+#external-scripts-tree-node .external-inline-actions {
+  display: flex;
+  gap: 8px;
+  padding: 8px 10px;
+}
+#external-scripts-tree-node .external-inline-actions .inline-action-btn {
+  background: var(--vscode-button-secondaryBackground, #2b2d30);
+  color: var(--vscode-button-foreground, #fff);
+  border: 1px solid var(--vscode-button-border, #3a3d41);
+  border-radius: 4px;
+  padding: 6px 10px;
+  cursor: pointer;
+}
+#external-scripts-tree-node .external-inline-actions .inline-action-btn:hover {
+  background: var(--vscode-button-hoverBackground, #3a3d41);
+}
+
+/* Hide top-level "External Scripts" label and count in header */
+#external-scripts-tree-node > .tree-node-header .tree-node-title > span:first-child {
+  display: none;
+}
+#external-scripts-tree-node > .tree-node-header #external-scripts-count {
+  display: none;
+}
+
+.theme-type-dark #external-scripts-tree-node .vba-section .vba-import-btn,
+.theme-type-dark #external-scripts-tree-node .js-section .js-import-btn,
+.theme-type-dark #external-scripts-tree-node .js-section .js-refresh-btn {
+  color: inherit;
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
+.theme-type-dark #external-scripts-tree-node .vba-section .vba-import-btn:hover,
+.theme-type-dark #external-scripts-tree-node .js-section .js-import-btn:hover,
+.theme-type-dark #external-scripts-tree-node .js-section .js-refresh-btn:hover {
+  border-color: rgba(255, 255, 255, 0.8);
+}
+
+.theme-type-dark #external-scripts-tree-node .tree-item-action-btn {
+  color: inherit;
+}

@@ -1,0 +1,38 @@
+/**
+ * Splitter CSS - Resizable Splitter Styles
+ * Extracted from index.html inline styles
+ *
+ * Contains:
+ * - Resizable splitter positioning and sizing
+ * - Hover/active/dragging states
+ * - Dark theme support for splitter
+ */
+
+/* Resizable splitter styles */
+.resizable-splitter {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	width: 12px; /* Narrower so it doesn't cover sidebar UI */
+	left: 30%;   /* JS will override with exact pixel position */
+	transform: none;
+	background-color: transparent; /* default transparent to avoid covering controls */
+	border-left: 1px solid rgba(0, 0, 0, 0.2); /* visual gray divider */
+	cursor: col-resize;
+	z-index: 100; /* above content to allow dragging */
+	transition: left 0.1s ease, background-color 0.2s ease, border-color 0.2s ease;
+	pointer-events: auto; /* capture mouse events */
+}
+
+.resizable-splitter:hover { background-color: var(--color-splitter-hover); }
+
+.resizable-splitter:active { background-color: var(--color-splitter-active); }
+
+.resizable-splitter.dragging { background-color: var(--color-splitter-active); transition: none; }
+
+.theme-type-dark .resizable-splitter { border-left-color: rgba(255, 255, 255, 0.15); }
+.theme-type-dark .resizable-splitter:hover { background-color: var(--color-splitter-hover); }
+
+.theme-type-dark .resizable-splitter:active { background-color: var(--color-splitter-active); }
+
+.theme-type-dark .resizable-splitter.dragging { background-color: var(--color-splitter-active); }

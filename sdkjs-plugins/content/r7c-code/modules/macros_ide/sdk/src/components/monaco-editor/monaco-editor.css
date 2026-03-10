@@ -1,0 +1,401 @@
+@import '../shared/panel-base.css';
+@import '../shared/spinner.css';
+
+/**
+ * Monaco Editor Component Styles
+ * OnlyOffice UI SDK Component
+ */
+
+/* Monaco Editor Focus State */
+.monaco-editor-container:focus-within {
+    border-color: var(--sdk-color-primary, #4CAF50);
+    box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+}
+
+/* Loading State */
+.monaco-editor-container.loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--sdk-color-surface, #f5f5f5);
+}
+
+.monaco-editor-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--sdk-color-textSecondary, #666666);
+    font-family: var(--sdk-typography-fontFamily, Arial, sans-serif);
+    font-size: var(--sdk-typography-fontSize, 14px);
+}
+
+.monaco-editor-loading-spinner {
+    --sdk-spinner-size: 32px;
+    --sdk-spinner-border-width: 3px;
+    --sdk-spinner-track-color: var(--sdk-color-border, #e0e0e0);
+    --sdk-spinner-active-color: var(--sdk-color-primary, #4CAF50);
+    margin-bottom: 12px;
+    width: var(--sdk-spinner-size);
+    height: var(--sdk-spinner-size);
+}
+
+.monaco-editor-loading-text {
+    font-size: 14px;
+    color: var(--sdk-color-textSecondary, #666666);
+}
+
+/* Error State */
+.monaco-editor-container.error {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--sdk-color-surface, #f5f5f5);
+}
+
+.monaco-editor-error {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--sdk-color-error, #F44336);
+    font-family: var(--sdk-typography-fontFamily, Arial, sans-serif);
+    text-align: center;
+    padding: 20px;
+}
+
+.monaco-editor-error-icon {
+    font-size: 48px;
+    margin-bottom: 12px;
+    opacity: 0.7;
+}
+
+.monaco-editor-error-title {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.monaco-editor-error-message {
+    font-size: 14px;
+    color: var(--sdk-color-textSecondary, #666666);
+    max-width: 300px;
+    line-height: 1.4;
+}
+
+/* TASK-103-PHASE1: API Call Decorations for Real-Time Code Analysis */
+/* Blue underline for Api.* calls (direct API object methods) */
+.api-call-decoration-blue {
+    border-bottom: 2px solid #007acc;
+}
+
+/* Green underline for chained calls (e.g., sheet.GetRange()) */
+.api-call-decoration-green {
+    border-bottom: 2px solid #16c60c;
+}
+
+/* Monaco Editor Customizations */
+.monaco-editor-container .monaco-editor {
+    font-family: var(--sdk-typography-fontFamily, 'Menlo, Monaco, "Courier New", monospace') !important;
+}
+
+.monaco-editor-container .monaco-editor .margin {
+    background: var(--sdk-color-surface, #f5f5f5) !important;
+}
+
+.monaco-editor-container .monaco-editor .monaco-editor-background {
+    background: var(--sdk-color-background, #ffffff) !important;
+}
+
+.monaco-editor-container .monaco-editor .current-line {
+    background: var(--sdk-color-surface, #f5f5f5) !important;
+}
+
+.monaco-editor-container .monaco-editor .selected-text {
+    background: var(--sdk-color-primary, #4CAF50) !important;
+    color: white !important;
+}
+
+/* Monaco Editor Scrollbars */
+.monaco-editor-container .monaco-scrollable-element .scrollbar {
+    background: transparent !important;
+}
+
+.monaco-editor-container .monaco-scrollable-element .slider {
+    background: var(--sdk-color-border, #e0e0e0) !important;
+}
+
+.monaco-editor-container .monaco-scrollable-element .slider:hover {
+    background: var(--sdk-color-textSecondary, #666666) !important;
+}
+
+/* Monaco Editor Minimap */
+.monaco-editor-container .monaco-editor .minimap {
+    background: var(--sdk-color-surface, #f5f5f5) !important;
+    border-left: 1px solid var(--sdk-color-border, #e0e0e0) !important;
+}
+
+.monaco-editor-container .monaco-editor .minimap-slider {
+    background: rgba(76, 175, 80, 0.2) !important;
+    border: 1px solid var(--sdk-color-primary, #4CAF50) !important;
+}
+
+/* Monaco Editor Suggest Widget */
+.monaco-editor-container .monaco-editor .suggest-widget {
+    background: var(--sdk-color-background, #ffffff) !important;
+    border: 1px solid var(--sdk-color-border, #e0e0e0) !important;
+    border-radius: var(--sdk-button-borderRadius, 4px) !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1) !important;
+}
+
+.monaco-editor-container .monaco-editor .suggest-widget .monaco-list-row:hover {
+    background: var(--sdk-color-surface, #f5f5f5) !important;
+}
+
+.monaco-editor-container .monaco-editor .suggest-widget .monaco-list-row.focused {
+    background: var(--sdk-color-primary, #4CAF50) !important;
+    color: white !important;
+}
+
+/* Monaco Editor Context Menu */
+.monaco-editor-container .monaco-editor .context-view {
+    background: var(--sdk-color-background, #ffffff) !important;
+    border: 1px solid var(--sdk-color-border, #e0e0e0) !important;
+    border-radius: var(--sdk-button-borderRadius, 4px) !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1) !important;
+}
+
+.monaco-editor-container .monaco-editor .context-view .action-item:hover {
+    background: var(--sdk-color-surface, #f5f5f5) !important;
+}
+
+.monaco-editor-container .monaco-editor .context-view .action-item.focused {
+    background: var(--sdk-color-primary, #4CAF50) !important;
+    color: white !important;
+}
+
+/* Monaco Editor Find Widget */
+.monaco-editor-container .monaco-editor .find-widget {
+    background: var(--sdk-color-background, #ffffff) !important;
+    border: 1px solid var(--sdk-color-border, #e0e0e0) !important;
+    border-radius: var(--sdk-button-borderRadius, 4px) !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1) !important;
+}
+
+.monaco-editor-container .monaco-editor .find-widget input {
+    background: var(--sdk-color-background, #ffffff) !important;
+    border: 1px solid var(--sdk-color-border, #e0e0e0) !important;
+    color: var(--sdk-color-text, #333333) !important;
+}
+
+.monaco-editor-container .monaco-editor .find-widget input:focus {
+    border-color: var(--sdk-color-primary, #4CAF50) !important;
+}
+
+/* Monaco Editor Hover Widget */
+.monaco-editor-container .monaco-editor .monaco-hover {
+    background: var(--sdk-color-background, #ffffff) !important;
+    border: 1px solid var(--sdk-color-border, #e0e0e0) !important;
+    border-radius: var(--sdk-button-borderRadius, 4px) !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1) !important;
+}
+
+.monaco-editor-container .monaco-editor .monaco-hover .hover-contents {
+    color: var(--sdk-color-text, #333333) !important;
+    font-family: var(--sdk-typography-fontFamily, Arial, sans-serif) !important;
+}
+
+/* Monaco Editor Parameter Hints */
+.monaco-editor-container .monaco-editor .parameter-hints-widget {
+    background: var(--sdk-color-background, #ffffff) !important;
+    border: 1px solid var(--sdk-color-border, #e0e0e0) !important;
+    border-radius: var(--sdk-button-borderRadius, 4px) !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1) !important;
+}
+
+.monaco-editor-container .monaco-editor .parameter-hints-widget .signature {
+    color: var(--sdk-color-text, #333333) !important;
+    font-family: var(--sdk-typography-fontFamily, 'Menlo, Monaco, "Courier New", monospace') !important;
+}
+
+/* Monaco Editor Glyph Margin */
+.monaco-editor-container .monaco-editor .glyph-margin {
+    background: var(--sdk-color-surface, #f5f5f5) !important;
+}
+
+.monaco-editor-container .monaco-editor .line-numbers {
+    color: var(--sdk-color-textSecondary, #666666) !important;
+}
+
+/* Monaco Editor Folding */
+.monaco-editor-container .monaco-editor .folding-decoration {
+    color: var(--sdk-color-textSecondary, #666666) !important;
+}
+
+.monaco-editor-container .monaco-editor .folding-decoration:hover {
+    color: var(--sdk-color-text, #333333) !important;
+}
+
+/* Monaco Editor Bracket Matching */
+.monaco-editor-container .monaco-editor .bracket-match {
+    background: rgba(76, 175, 80, 0.2) !important;
+    border: 1px solid var(--sdk-color-primary, #4CAF50) !important;
+}
+
+/* Monaco Editor Selection */
+.monaco-editor-container .monaco-editor .selected-text {
+    background: rgba(76, 175, 80, 0.3) !important;
+}
+
+.monaco-editor-container .monaco-editor .focused .selected-text {
+    background: rgba(76, 175, 80, 0.4) !important;
+}
+
+/* Monaco Editor Current Line Highlight */
+.monaco-editor-container .monaco-editor .current-line {
+    background: rgba(76, 175, 80, 0.1) !important;
+}
+
+/* Monaco Editor Whitespace */
+.monaco-editor-container .monaco-editor .whitespace {
+    color: var(--sdk-color-border, #e0e0e0) !important;
+}
+
+/* Monaco Editor Indent Guides */
+.monaco-editor-container .monaco-editor .indent-guide {
+    border-left: 1px solid var(--sdk-color-border, #e0e0e0) !important;
+}
+
+.monaco-editor-container .monaco-editor .indent-guide.active {
+    border-left: 1px solid var(--sdk-color-primary, #4CAF50) !important;
+}
+
+/* Dark Theme Support */
+.sdk-theme-dark .monaco-editor-container {
+    background: var(--sdk-color-background, #1E1E1E);
+    border-color: var(--sdk-color-border, #404040);
+}
+
+.sdk-theme-dark .monaco-editor-container .monaco-editor .margin {
+    background: var(--sdk-color-surface, #2D2D2D) !important;
+}
+
+.sdk-theme-dark .monaco-editor-container .monaco-editor .monaco-editor-background {
+    background: var(--sdk-color-background, #1E1E1E) !important;
+}
+
+.sdk-theme-dark .monaco-editor-container .monaco-editor .current-line {
+    background: var(--sdk-color-surface, #2D2D2D) !important;
+}
+
+.sdk-theme-dark .monaco-editor-container .monaco-editor .line-numbers {
+    color: var(--sdk-color-textSecondary, #CCCCCC) !important;
+}
+
+.sdk-theme-dark .monaco-editor-container .monaco-editor .selected-text {
+    background: rgba(66, 187, 106, 0.3) !important;
+}
+
+.sdk-theme-dark .monaco-editor-container .monaco-editor .current-line {
+    background: rgba(66, 187, 106, 0.1) !important;
+}
+
+.sdk-theme-dark .monaco-editor-container .monaco-editor .minimap {
+    background: var(--sdk-color-surface, #2D2D2D) !important;
+    border-left-color: var(--sdk-color-border, #404040) !important;
+}
+
+.sdk-theme-dark .monaco-editor-container .monaco-editor .suggest-widget {
+    background: var(--sdk-color-background, #1E1E1E) !important;
+    border-color: var(--sdk-color-border, #404040) !important;
+}
+
+.sdk-theme-dark .monaco-editor-container .monaco-editor .suggest-widget .monaco-list-row:hover {
+    background: var(--sdk-color-surface, #2D2D2D) !important;
+}
+
+.sdk-theme-dark .monaco-editor-container .monaco-editor .context-view {
+    background: var(--sdk-color-background, #1E1E1E) !important;
+    border-color: var(--sdk-color-border, #404040) !important;
+}
+
+.sdk-theme-dark .monaco-editor-container .monaco-editor .find-widget {
+    background: var(--sdk-color-background, #1E1E1E) !important;
+    border-color: var(--sdk-color-border, #404040) !important;
+}
+
+.sdk-theme-dark .monaco-editor-container .monaco-editor .find-widget input {
+    background: var(--sdk-color-surface, #2D2D2D) !important;
+    border-color: var(--sdk-color-border, #404040) !important;
+    color: var(--sdk-color-text, #FFFFFF) !important;
+}
+
+.sdk-theme-dark .monaco-editor-container .monaco-editor .monaco-hover {
+    background: var(--sdk-color-background, #1E1E1E) !important;
+    border-color: var(--sdk-color-border, #404040) !important;
+}
+
+.sdk-theme-dark .monaco-editor-container .monaco-editor .parameter-hints-widget {
+    background: var(--sdk-color-background, #1E1E1E) !important;
+    border-color: var(--sdk-color-border, #404040) !important;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .monaco-editor-container {
+        border-radius: 0;
+    }
+    
+    .monaco-editor-container .monaco-editor {
+        font-size: 16px !important;
+    }
+    
+    .monaco-editor-container .monaco-editor .suggest-widget {
+        font-size: 14px !important;
+    }
+}
+
+/* High Contrast Theme Support */
+@media (prefers-contrast: high) {
+    .monaco-editor-container {
+        border: 2px solid var(--sdk-color-text, #333333);
+    }
+    
+    .monaco-editor-container:focus-within {
+        border-color: var(--sdk-color-primary, #4CAF50);
+        box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.3);
+    }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+    .monaco-editor-container * {
+        animation: none !important;
+        transition: none !important;
+    }
+    
+    .monaco-editor-loading-spinner {
+        animation: none;
+        border: 3px solid var(--sdk-color-primary, #4CAF50);
+        border-top: none;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .monaco-editor-container {
+        border: 1px solid #000;
+        background: white !important;
+    }
+    
+    .monaco-editor-container .monaco-editor {
+        color: black !important;
+        background: white !important;
+    }
+    
+    .monaco-editor-container .monaco-editor .margin {
+        background: white !important;
+    }
+    
+    .monaco-editor-container .monaco-editor .line-numbers {
+        color: #666 !important;
+    }
+}

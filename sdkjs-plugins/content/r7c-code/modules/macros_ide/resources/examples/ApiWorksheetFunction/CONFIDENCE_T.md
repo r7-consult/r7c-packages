@@ -1,0 +1,56 @@
+/**
+ * @file CONFIDENCE_T_macroR7.js
+ * @brief R7 Office JavaScript Macro - ApiWorksheetFunction.CONFIDENCE_T
+ * @author R7-Consult
+ * @version 1.0.0
+ * @date July 15, 2025
+ *
+ * @description
+ * This macro demonstrates how to return the confidence interval for a population mean, using a Student's t distribution.
+ * It calculates the confidence interval for specified alpha, standard deviation, and size, and displays the result in cell B2.
+ *
+ * @description (Russian)
+ * Этот макрос демонстрирует, как вернуть доверительный интервал для среднего значения генеральной совокупности, используя t-распределение Стьюдента.
+ * Он вычисляет доверительный интервал для заданных альфа, стандартного отклонения и размера, а затем отображает результат в ячейке B2.
+ *
+ * @returns {void}
+ *
+ * @see https://r7-consult.com/
+ */
+
+(function() {
+    'use strict';
+    
+    try {
+        // Initialize R7 Office API
+        const api = Api;
+        if (!api) {
+            throw new Error('R7 Office API not available');
+        }
+        
+        // Original code enhanced with error handling:
+        // This example shows how to return the confidence interval for a population mean, using a Student's t distribution.
+        
+        // How to return the confidence interval for a population mean, using a Student's t distribution.
+        
+        // Use function to get the confidence interval for a population mean.
+        
+        let worksheet = Api.GetActiveSheet();
+        let func = Api.GetWorksheetFunction();
+        let ans = func.CONFIDENCE_T(0.5, 57, 8);
+        worksheet.GetRange("B2").SetValue(ans);
+        
+        // Success notification
+        console.log('Macro executed successfully');
+        
+    } catch (error) {
+        console.error('Macro execution failed:', error.message);
+        // Optional: Show error to user
+        if (typeof Api !== 'undefined' && Api.GetActiveSheet) {
+            const sheet = Api.GetActiveSheet();
+            if (sheet) {
+                sheet.GetRange('A1').SetValue('Error: ' + error.message);
+            }
+        }
+    }
+})();

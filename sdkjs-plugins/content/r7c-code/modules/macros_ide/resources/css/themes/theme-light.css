@@ -1,0 +1,14 @@
+/**
+ * TASK-105-IMP: Light Theme Overrides
+ * Architecture: 2-Level Compliance (Level 2 - Theme Overrides)
+ *
+ * Note: Light theme values are already defined as defaults in design-tokens.css
+ * This file exists for consistency and future overrides
+ */
+
+:root[data-vscode-theme="light-plus"],
+:root[data-vscode-theme="vs"],
+.theme-type-light {
+  /* Light theme uses design-tokens.css defaults */
+  /* Add overrides here only if needed */
+}

@@ -1,0 +1,819 @@
+.btn-text-default {
+    background: var(--color-button-default-bg);
+    border: 1px solid var(--color-button-default-border);
+    border-radius: var(--radius-xs);
+    color: var(--color-button-default-text);
+    font-size: var(--fs-sm);
+    font-family: var(--app-font-family);
+    height: var(--height-base);
+    cursor: pointer;
+}
+
+.btn-text-default::-moz-focus-inner {
+    border: 0;
+    padding: 0;
+}
+
+.btn-text-default.primary {
+	color: var(--color-text-inverse);
+	background-color: var(--color-state-selected-bg);
+}
+
+.btn-text-default:focus {
+    outline: 0;
+    outline-offset: 0;
+}
+
+.btn-text-default:hover {
+    background-color: var(--color-button-default-hover-bg);
+}
+
+.btn-text-default.primary:hover {
+	background-color: var(--color-state-active-dark) !important;
+}
+
+.btn-text-default:active,
+.btn-text-default.active {
+    background-color: var(--color-state-selected-bg) !important;
+    color: var(--color-text-inverse);
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.btn-text-default[disabled]:hover,
+.btn-text-default.disabled:hover,
+.btn-text-default[disabled]:active,
+.btn-text-default[disabled].active,
+.btn-text-default.disabled:active,
+.btn-text-default.disabled.active {
+    background-color: var(--color-button-default-bg) !important;
+    color: var(--color-button-default-text);
+    cursor: default;
+}
+
+.btn-text-default[disabled],
+.btn-text-default.disabled {
+    opacity: 0.65;
+}
+
+.form-control {
+    border: 1px solid var(--color-border-default);
+    border-radius: var(--radius-xs);
+    box-sizing: border-box;
+    color: var(--color-text-secondary);
+    font-size: var(--fs-sm);
+    height: var(--height-base);
+    padding: 1px 3px;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+}
+
+.form-control:focus {
+    border-color: var(--color-border-default);
+    outline: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.form-control[readonly] {
+    background-color: var(--color-bg-primary);
+    cursor: pointer;
+}
+
+.form-control[disabled] {
+    background-color: var(--color-bg-primary);
+    cursor: default;
+     -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.defaultlable {
+	color: var(--color-text-secondary);
+	cursor: default;
+	font-family: var(--app-font-family);
+	font-size: var(--fs-sm);
+	font-weight: normal;
+	-webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;	
+}
+
+.defaultcenterlable {
+	color: var(--color-text-secondary);
+	cursor: default;
+	text-align: center;
+	font-family: var(--app-font-family);
+	font-size: var(--fs-sm);
+	font-style: normal;
+	font-weight: normal;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	margin: 0px;
+	padding: 0px;
+	width: 100%;
+}
+
+.noselect{
+    -khtml-user-select: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+}
+
+/* Tree Section Styles */
+.tree-section {
+    margin-bottom: 8px;
+}
+
+.tree-section-header {
+    font-weight: bold;
+    font-size: 12px;
+    color: var(--color-text-secondary);
+    padding: 4px 8px;
+    background-color: var(--color-bg-tertiary);
+    border-bottom: 1px solid var(--color-border-light);
+    cursor: default;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.tree-section-content {
+    padding-left: 0px;
+}
+
+/* Tree Item Styles */
+.tree-item {
+    display: flex;
+    align-items: center;
+    padding: 4px 8px;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: background-color 0.2s ease;
+}
+
+.tree-item:hover {
+    background-color: var(--color-bg-hover);
+}
+
+.tree-item.selected {
+    background-color: var(--color-success-light);
+}
+
+.tree-item-icon {
+    width: 16px;
+    height: 16px;
+    margin-right: 6px;
+    background-image: url('../img/code.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    flex-shrink: 0;
+}
+
+.tree-item-icon.example-icon { background-image: url('../img/code.svg'); opacity: 1; }
+
+.tree-item-name {
+    flex: 1;
+    font-size: 11px;
+    color: var(--color-text-secondary);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.tree-item-example .tree-item-name { color: inherit; font-style: normal; }
+
+.tree-item-autostart {
+    width: 16px;
+    height: 16px;
+    margin-left: 4px;
+    background-color: var(--color-success-primary);
+    color: white;
+    font-size: 10px;
+    font-weight: bold;
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.tree-item-autostart:not(.active) {
+    display: none;
+}
+
+.tree-item-actions {
+    display: flex;
+    gap: 2px;
+    margin-left: 8px;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.tree-item:hover .tree-item-actions {
+    opacity: 1;
+}
+
+.tree-item-action-btn {
+    width: 20px;
+    height: 20px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s ease;
+}
+
+.tree-item-action-btn:hover {
+    background-color: var(--color-border-light);
+}
+
+.tree-item-action-btn img {
+    width: 14px;
+    height: 14px;
+}
+
+/* Example specific styles */
+.tree-item-example { opacity: 1; }
+.tree-item-example:hover { background-color: inherit; }
+.tree-item-example.selected { background-color: inherit; }
+
+/* ========================================================================== */
+/* TASK-041: VBA Read-Only Mode Styles (Document VBA Blue Theme)            */
+/* ========================================================================== */
+
+/* Document VBA tree item (blue theme) */
+.document-vba-item {
+    background: var(--color-vba-bg) !important;
+    border-left: 3px solid var(--color-vba-border) !important;
+    color: var(--color-vba-text) !important;
+}
+
+.document-vba-item:hover {
+    background: var(--color-vba-hover) !important;
+}
+
+/* VBA read-only banner in Monaco Editor */
+.vba-readonly-banner {
+    background: rgba(21, 101, 192, 0.1);
+    border-bottom: 2px solid var(--color-vba-border);
+}
+
+/* VBA read-only glyph margin icon */
+.vba-readonly-glyph {
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><text x="1" y="13" font-family="Arial" font-size="12" fill="%231565c0">📘</text></svg>') no-gradient !important;
+}
+
+.vba-readonly-glyph::before {
+    content: '📘';
+    color: var(--color-vba-border);
+    font-size: 14px;
+}
+
+/* =============================================================================
+ * TASK-051 PHASE 3: VBA CONVERSION PROGRESS OVERLAY
+ * ============================================================================= */
+
+#conversion-progress-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+.progress-content {
+    background: var(--background-normal, #fff);
+    padding: 30px;
+    border-radius: 8px;
+    text-align: center;
+    max-width: 400px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid var(--border-control, #ddd);
+    border-top-color: var(--highlight, #4285f4);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 20px;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.progress-hint {
+    font-size: 12px;
+    color: var(--text-normal-disable, #999);
+    margin-top: 10px;
+}
+
+/* =============================================================================
+ * DARK THEME SUPPORT (.theme-type-dark)
+ * ============================================================================= */
+
+/* Body and general containers */
+.theme-type-dark {
+    background-color: var(--color-bg-primary);
+    color: var(--color-text-primary);
+}
+
+/* Buttons */
+.theme-type-dark .btn-text-default {
+    background: var(--color-bg-tertiary);
+    border-color: var(--color-border-default);
+    color: var(--color-text-primary);
+}
+
+.theme-type-dark .btn-text-default:hover {
+    background-color: var(--color-bg-active);
+}
+
+.theme-type-dark .btn-text-default.primary {
+    background-color: var(--color-button-primary-bg);
+    color: var(--color-text-inverse);
+}
+
+.theme-type-dark .btn-text-default.primary:hover {
+    background-color: var(--color-button-primary-hover) !important;
+}
+
+.theme-type-dark .btn-text-default:active,
+.theme-type-dark .btn-text-default.active {
+    background-color: var(--color-state-active-bg) !important;
+    color: var(--color-text-inverse);
+}
+
+.theme-type-dark .btn-text-default[disabled],
+.theme-type-dark .btn-text-default.disabled {
+    background-color: var(--color-bg-tertiary) !important;
+    color: var(--color-text-disabled);
+}
+
+/* Form Controls */
+.theme-type-dark .form-control {
+    background-color: var(--vscode-input-background);
+    border-color: var(--color-border-default);
+    color: var(--color-text-primary);
+}
+
+.theme-type-dark .form-control:focus {
+    border-color: var(--color-border-focus);
+}
+
+.theme-type-dark .form-control[readonly],
+.theme-type-dark .form-control[disabled] {
+    background-color: var(--color-bg-tertiary);
+    color: var(--color-text-disabled);
+}
+
+/* Labels */
+.theme-type-dark .defaultlable,
+.theme-type-dark .defaultcenterlable {
+    color: var(--color-text-primary);
+}
+
+/* Tree Section Header */
+.theme-type-dark .tree-section-header {
+    background-color: var(--color-bg-secondary);
+    color: var(--color-text-primary);
+    border-bottom-color: var(--color-border-default);
+}
+
+/* Tree Items */
+.theme-type-dark .tree-item:hover {
+    background-color: var(--color-bg-hover);
+}
+
+.theme-type-dark .tree-item.selected {
+    background-color: var(--color-state-active-bg);
+    color: var(--color-text-inverse);
+}
+
+.theme-type-dark .tree-item.selected .tree-item-name {
+    color: var(--color-text-inverse);
+}
+
+.theme-type-dark .tree-item-name {
+    color: var(--color-text-primary);
+}
+
+.theme-type-dark .tree-item-example .tree-item-name { color: inherit; }
+
+/* Tree Item Action Buttons */
+.theme-type-dark .tree-item-action-btn:hover {
+    background-color: var(--color-bg-active);
+}
+
+/* Example Items */
+.theme-type-dark .tree-item-example:hover { background-color: inherit; }
+.theme-type-dark .tree-item-example.selected { background-color: inherit; }
+
+/* Document VBA Items (Blue Theme for Dark Mode) */
+.theme-type-dark .document-vba-item {
+    background: var(--color-vba-bg) !important;
+    border-left-color: var(--color-vba-border) !important;
+    color: var(--color-vba-text) !important;
+}
+
+.theme-type-dark .document-vba-item:hover {
+    background: var(--color-vba-hover) !important;
+}
+
+.theme-type-dark .document-vba-item .tree-item-name {
+    color: var(--color-vba-text) !important;
+}
+
+/* VBA Read-Only Banner */
+.theme-type-dark .vba-readonly-banner {
+    background: rgba(79, 195, 247, 0.15);
+    border-bottom-color: var(--color-vba-border);
+}
+
+/* Progress Overlay */
+.theme-type-dark .progress-content {
+    background: var(--color-bg-secondary);
+    color: var(--color-text-primary);
+}
+
+.theme-type-dark .spinner {
+    border-color: var(--color-border-default);
+    border-top-color: var(--color-border-focus);
+}
+
+.theme-type-dark .progress-hint {
+    color: var(--color-text-quaternary);
+}
+
+/* SVG Icons - Filter to light color in dark theme */
+.theme-type-dark .tree-item-icon {
+    filter: invert(1) brightness(0.9);
+}
+
+.theme-type-dark .tree-item-icon.example-icon { filter: invert(1) brightness(0.9); }
+
+/* =============================================================================
+ * TASK-077: METHOD 1 - CSS Class-Based Dark Theme (Refactored Architecture)
+ * Eliminates inline styles and JavaScript workaround for clean, robust theming
+ * ============================================================================= */
+
+/* LIGHT THEME (Default) - VBA Section */
+.vba-section .tree-node-header { background: inherit !important; }
+
+.vba-section .section-title { color: inherit !important; font-weight: 600; }
+
+.vba-section .section-count { color: inherit !important; }
+
+.vba-section .vba-import-btn {
+    width: 24px;
+    height: 24px;
+    border: 1px solid var(--color-error-primary);
+    background: var(--color-bg-primary);
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 0;
+    margin-left: 8px;
+}
+
+/* LIGHT THEME (Default) - JavaScript Section */
+.js-section .tree-node-header { background: inherit !important; }
+
+.js-section .section-title { color: inherit !important; font-weight: 600; }
+
+.js-section .section-count { color: inherit !important; }
+
+.js-section .js-import-btn,
+.js-section .js-refresh-btn {
+    width: 24px;
+    height: 24px;
+    border: 1px solid var(--color-success-dark);
+    background: var(--color-bg-primary);
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 0;
+}
+
+.js-section .js-import-btn {
+    margin-left: 8px;
+}
+
+.js-section .js-refresh-btn {
+    margin-left: 4px;
+}
+
+/* DARK THEME - VBA Section Overrides */
+.theme-type-dark .vba-section .tree-node-header { background: inherit !important; }
+
+.theme-type-dark .vba-section .section-title { color: inherit !important; }
+
+.theme-type-dark .vba-section .section-count { color: inherit !important; }
+
+.theme-type-dark .vba-section .vba-import-btn {
+    border-color: var(--color-warning-primary);
+    background: var(--color-bg-tertiary);
+    color: var(--color-warning-primary);
+}
+
+.theme-type-dark .vba-section .vba-import-btn:hover {
+    background: var(--color-bg-active);
+}
+
+/* DARK THEME - JavaScript Section Overrides */
+.theme-type-dark .js-section .tree-node-header { background: inherit !important; }
+
+.theme-type-dark .js-section .section-title { color: inherit !important; }
+
+.theme-type-dark .js-section .section-count { color: inherit !important; }
+
+.theme-type-dark .js-section .js-import-btn,
+.theme-type-dark .js-section .js-refresh-btn {
+    border-color: var(--color-success-dark);
+    background: var(--color-bg-tertiary);
+    color: var(--color-success-dark);
+}
+
+.theme-type-dark .js-section .js-import-btn:hover,
+.theme-type-dark .js-section .js-refresh-btn:hover {
+    background: var(--color-bg-active);
+}
+
+/* =============================================================================
+ * SETTINGS MODAL TAB STYLES
+ * ============================================================================= */
+
+/* Tab Container */
+.settings-tabs {
+    display: flex;
+    border-bottom: 2px solid var(--color-border-light);
+    background: var(--color-bg-tertiary);
+    margin: 0;
+    padding: 0;
+}
+
+/* Tab Buttons */
+.settings-tab-button {
+    background: none;
+    border: none;
+    padding: 12px 24px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--color-text-tertiary);
+    border-bottom: 3px solid transparent;
+    transition: all 0.2s ease;
+    outline: none;
+}
+
+.settings-tab-button:hover {
+    background: rgba(0, 0, 0, 0.05);
+    color: var(--color-text-primary);
+}
+
+.settings-tab-button.active {
+    color: var(--color-border-focus);
+    border-bottom-color: var(--color-border-focus);
+    background: var(--color-bg-primary);
+}
+
+/* Tab Content */
+.settings-tab-content {
+    display: none;
+}
+
+.settings-tab-content.active {
+    display: block;
+}
+
+/* Dark Theme - Tabs */
+.theme-type-dark .settings-tabs {
+    background: var(--color-bg-secondary);
+    border-bottom-color: var(--color-border-default);
+}
+
+.theme-type-dark .settings-tab-button {
+    color: var(--color-text-primary);
+}
+
+.theme-type-dark .settings-tab-button:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--color-text-inverse);
+}
+
+.theme-type-dark .settings-tab-button.active {
+    color: var(--color-border-focus);
+    background: var(--color-bg-primary);
+    border-bottom-color: var(--color-border-focus);
+}
+
+/* =============================================================================
+ * REFACTORED INLINE STYLES TO CSS CLASSES
+ * Eliminates all inline style="" attributes for better maintainability
+ * ============================================================================= */
+
+/* Filter Label Styling */
+.filter-label {
+    font-size: 11px;
+    color: var(--color-text-tertiary);
+    margin: 0;
+    flex-shrink: 0;
+}
+
+.theme-type-dark .filter-label {
+    color: var(--color-text-primary);
+}
+
+/* Filter Input Container */
+.filter-input-container {
+    position: relative;
+    flex: 0 1 auto;
+    min-width: 120px;
+    max-width: 250px;
+    margin-right: 12px;
+}
+
+/* Filter Input Field */
+.filter-input-field {
+    width: 100%;
+    padding: 5px 24px 5px 8px;
+    font-size: 11px;
+    border: 1px solid var(--color-border-default);
+    border-radius: 3px;
+}
+
+.theme-type-dark .filter-input-field {
+    background-color: var(--vscode-input-background);
+    border-color: var(--color-border-default);
+    color: var(--color-text-primary);
+}
+
+/* Filter Clear Button */
+.filter-clear-button {
+    position: absolute;
+    right: 6px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: var(--color-text-quaternary);
+    font-size: 12px;
+    display: none;
+}
+
+.theme-type-dark .filter-clear-button {
+    color: var(--color-text-quaternary);
+}
+
+/* Search Stats Display */
+.search-stats-display {
+    font-size: 10px;
+    color: var(--color-text-quaternary);
+    margin-left: 4px;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.theme-type-dark .search-stats-display {
+    color: var(--color-text-quaternary);
+}
+
+/* Tree Container */
+.tree-container-main {
+    flex: 1;
+    height: calc(100% - 50px);
+}
+
+/* Icon Sizing */
+.icon-14 {
+    width: 14px;
+    height: 14px;
+}
+
+/* Hidden Elements */
+.hidden {
+    display: none;
+}
+
+/* Footer Container */
+.footer-container {
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    left: 10px;
+    top: 10px;
+    right: 10px;
+    bottom: 10px;
+}
+
+/* Footer Buttons Positioning */
+.footer-btn-left {
+    left: 10px;
+    top: 0px;
+    position: relative;
+    bottom: 0px;
+}
+
+.footer-btn-left-20 {
+    left: 20px;
+    top: 0px;
+    position: relative;
+    bottom: 0px;
+}
+
+.footer-btn-left-30 {
+    left: 30px;
+    top: 0px;
+    position: relative;
+    bottom: 0px;
+}
+
+.footer-btn-run {
+    right: 10px;
+    top: 10px;
+    position: absolute;
+    bottom: 10px;
+}
+
+/* Rename Dialog Styles */
+.rename-mask {
+    display: none;
+}
+
+.rename-dialog {
+    display: none;
+}
+
+.rename-input {
+    top: 38px;
+    margin: 0px;
+    width: 260px;
+    left: 20px;
+    position: absolute;
+}
+
+.rename-error {
+    position: absolute;
+    top: 20px;
+    right: 0px;
+    width: 0px;
+    height: 16px;
+    display: none;
+}
+
+.rename-ok-btn {
+    left: 75px;
+    top: 10px;
+    width: 70px;
+    position: absolute;
+    bottom: 10px;
+}
+
+.rename-cancel-btn {
+    right: 75px;
+    top: 10px;
+    width: 70px;
+    position: absolute;
+    bottom: 10px;
+}
+
+/* TASK-103 Phase 1: Monaco Editor API Call Decorations */
+.api-call-decoration-blue {
+    border-bottom: 2px solid var(--color-border-focus);
+    cursor: help;
+}
+
+.api-call-decoration-green {
+    border-bottom: 2px solid var(--color-success-dark);
+    cursor: help;
+}
+
+/* Dark theme support */
+.theme-type-dark .api-call-decoration-blue {
+    border-bottom-color: var(--color-info-primary);
+}
+
+.theme-type-dark .api-call-decoration-green {
+    border-bottom-color: var(--color-success-dark);
+}

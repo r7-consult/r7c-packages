@@ -1,6 +1,18 @@
-// Placeholder plugin entry point for r7c-code.
-// TODO: Replace with actual obfuscated build when ready.
+(function(window, undefined) {
+	if (!window.Asc)
+		window.Asc = {};
+	if (!window.Asc.plugin)
+		window.Asc.plugin = {};
 
-(function() {
-	console.warn('r7c-code: placeholder plugin.js loaded. Replace with real build.');
-})();
+	window.Asc.plugin.init = function() {
+		// Visual plugin UI is loaded from variations[0].url (index.html).
+		// Keep bootstrap minimal to satisfy plugin runtime lifecycle.
+	};
+
+	window.Asc.plugin.button = function(id, windowID) {
+		if (windowID)
+			window.Asc.plugin.executeMethod('CloseWindow', [windowID]);
+		else
+			this.executeCommand('close', '');
+	};
+})(window, undefined);

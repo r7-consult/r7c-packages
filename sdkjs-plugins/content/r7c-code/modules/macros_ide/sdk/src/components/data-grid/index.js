@@ -1,1 +1,1 @@
-import _0x4283f6 from'./data-grid.js';import'./data-grid.css';export default _0x4283f6;export{_0x4283f6 as DataGrid};
+import _0x355bc3 from'./data-grid.js';import'./data-grid.css';export default _0x355bc3;export{_0x355bc3 as DataGrid};

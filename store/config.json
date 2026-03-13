@@ -202,5 +202,9 @@
 	{
 		"name": "zotero",
 		"discussion": ""
+    },
+    {
+        "name":"game_wizard",
+        "discussion":""
 	}
 ]

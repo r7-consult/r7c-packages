@@ -1,0 +1,504 @@
+/**
+ * 2048 Game Styles
+ * Responsive, animated, and accessible CSS
+ */
+
+/* =============================================
+   CSS Variables for theming and consistency
+   ============================================= */
+:root {
+    /* Colors */
+    --color-background: #faf8ef;
+    --color-board: #bbada0;
+    --color-grid-cell: #cdc1b4;
+    --color-text-dark: #776e65;
+    --color-text-light: #f9f6f2;
+    
+    /* Tile colors */
+    --tile-2: #eee4da;
+    --tile-4: #ede0c8;
+    --tile-8: #f2b179;
+    --tile-16: #f59563;
+    --tile-32: #f67c5f;
+    --tile-64: #f65e3b;
+    --tile-128: #edcf72;
+    --tile-256: #edcc61;
+    --tile-512: #edc850;
+    --tile-1024: #edc53f;
+    --tile-2048: #edc22e;
+    --tile-super: #3c3a32;
+    
+    /* Spacing */
+    --gap-size: 10px;
+    --border-radius: 6px;
+    --tile-radius: 3px;
+    
+    /* Animation */
+    --animation-fast: 100ms;
+    --animation-normal: 150ms;
+    --animation-slow: 300ms;
+    
+    /* Responsive sizes */
+    --board-max-width: 100%;
+    --board-padding: 15px;
+}
+
+/* Dark theme */
+[data-theme="dark"] {
+    --color-background: #2b2b2b;
+    --color-board: #4a4a4a;
+    --color-grid-cell: #363636;
+    --color-text-dark: #f8f9fa;
+    --color-text-light: #212529;
+}
+
+/* =============================================
+   Base Layout
+   ============================================= */
+.game-2048-container {
+    max-width: var(--board-max-width);
+    margin: 0 auto;
+    padding: 20px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: var(--color-background);
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+/* =============================================
+   Game Header
+   ============================================= */
+.game-2048-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.game-2048-title {
+    font-size: clamp(36px, 8vw, 60px);
+    font-weight: bold;
+    color: var(--color-text-dark);
+    margin: 0;
+    line-height: 1;
+}
+
+.game-2048-scores {
+    display: flex;
+    gap: 10px;
+}
+
+.score-container {
+    background: var(--color-board);
+    padding: 10px 20px;
+    border-radius: var(--tile-radius);
+    text-align: center;
+    min-width: 70px;
+    position: relative;
+}
+
+.score-label {
+    color: #eee4da;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.score-value {
+    color: white;
+    font-size: 25px;
+    font-weight: bold;
+    line-height: 1.2;
+}
+
+/* Score animation */
+.score-addition {
+    position: absolute;
+    right: 30px;
+    color: var(--color-text-dark);
+    font-size: 25px;
+    font-weight: bold;
+    animation: scoreAddition 600ms ease-in;
+    animation-fill-mode: both;
+}
+
+@keyframes scoreAddition {
+    0% {
+        opacity: 0;
+        transform: translateY(0);
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+}
+
+/* =============================================
+   Game Controls
+   ============================================= */
+.game-2048-controls {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.btn-2048 {
+    background: #8f7a66;
+    color: var(--color-text-light);
+    border: none;
+    border-radius: var(--tile-radius);
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all var(--animation-fast) ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-2048:hover:not(:disabled) {
+    background: #9f8a76;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.btn-2048:active:not(:disabled) {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+.btn-2048:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Button ripple effect */
+.btn-2048::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.btn-2048:active::after {
+    width: 300px;
+    height: 300px;
+}
+
+/* =============================================
+   Game Board
+   ============================================= */
+.game-2048-board {
+    position: relative;
+    width: 290px;
+    height: 290px;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    touch-action: none;
+}
+
+.game-2048-grid-container {
+    display: block;
+    position: relative;
+    width: 270px;
+    height: 270px;
+    background: var(--color-board);
+    border-radius: var(--border-radius);
+    padding: 10px;
+}
+
+/* =============================================
+   Tiles
+   ============================================= */
+.game-2048-tile-container {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 270px;
+    height: 270px;
+    z-index: 2;
+}
+
+.tile,
+.game-2048-tile {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    border-radius: var(--tile-radius);
+    font-size: 18px;
+    transition: all var(--animation-normal) ease-in-out;
+    animation: tileAppear var(--animation-normal) ease-in-out;
+}
+
+/* Adjust font size for large numbers */
+.game-2048-tile-128,
+.game-2048-tile-256,
+.game-2048-tile-512 {
+    font-size: 16px;
+}
+
+.game-2048-tile-1024,
+.game-2048-tile-2048,
+.game-2048-tile-4096,
+.game-2048-tile-8192 {
+    font-size: 14px;
+}
+
+.game-2048-tile-16384,
+.game-2048-tile-32768,
+.game-2048-tile-65536 {
+    font-size: 12px;
+}
+
+/* Tile appear animation */
+@keyframes tileAppear {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Tile merge animation */
+.tile-merged {
+    animation: tileMerge var(--animation-normal) ease-in-out;
+    z-index: 20;
+}
+
+@keyframes tileMerge {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Tile colors */
+.tile-2 { background: var(--tile-2); color: var(--color-text-dark); }
+.tile-4 { background: var(--tile-4); color: var(--color-text-dark); }
+.tile-8 { background: var(--tile-8); color: var(--color-text-light); }
+.tile-16 { background: var(--tile-16); color: var(--color-text-light); }
+.tile-32 { background: var(--tile-32); color: var(--color-text-light); }
+.tile-64 { background: var(--tile-64); color: var(--color-text-light); }
+.tile-128 { background: var(--tile-128); color: var(--color-text-light); font-size: clamp(20px, 3.5vw, 45px); }
+.tile-256 { background: var(--tile-256); color: var(--color-text-light); font-size: clamp(20px, 3.5vw, 45px); }
+.tile-512 { background: var(--tile-512); color: var(--color-text-light); font-size: clamp(20px, 3.5vw, 45px); }
+.tile-1024 { background: var(--tile-1024); color: var(--color-text-light); font-size: clamp(16px, 3vw, 35px); }
+.tile-2048 { background: var(--tile-2048); color: var(--color-text-light); font-size: clamp(16px, 3vw, 35px); }
+.tile-super { background: var(--tile-super); color: var(--color-text-light); font-size: clamp(14px, 2.5vw, 30px); }
+
+/* =============================================
+   Game Messages
+   ============================================= */
+.game-2048-message {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255, 255, 255, 0.95);
+    padding: 30px;
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    z-index: 1000;
+    display: none;
+    animation: messageAppear var(--animation-slow) ease-out;
+}
+
+.game-2048-message.show {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+@keyframes messageAppear {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+.message-text {
+    font-size: 36px;
+    font-weight: bold;
+    color: var(--color-text-dark);
+    margin: 0;
+}
+
+/* =============================================
+   Loading States
+   ============================================= */
+.loading-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(250, 248, 239, 0.8);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    border-radius: var(--border-radius);
+}
+
+.loading-overlay.show {
+    display: flex;
+}
+
+.loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid var(--color-grid-cell);
+    border-top-color: var(--color-board);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* =============================================
+   Responsive Design
+   ============================================= */
+
+/* Tablet */
+@media (max-width: 768px) {
+    .game-2048-container {
+        padding: 15px;
+    }
+    
+    .game-2048-header {
+        flex-direction: column;
+        align-items: stretch;
+        text-align: center;
+    }
+    
+    .game-2048-scores {
+        justify-content: center;
+    }
+    
+    .game-2048-controls {
+        justify-content: center;
+    }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+    :root {
+        --gap-size: 8px;
+        --board-padding: 10px;
+    }
+    
+    .game-2048-container {
+        padding: 10px;
+    }
+    
+    .score-container {
+        min-width: 60px;
+        padding: 8px 15px;
+    }
+    
+    .btn-2048 {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+    
+    .tile {
+        font-size: clamp(18px, 6vw, 35px);
+    }
+}
+
+/* Small mobile */
+@media (max-width: 320px) {
+    :root {
+        --gap-size: 6px;
+        --board-padding: 8px;
+    }
+    
+    .game-2048-title {
+        font-size: 32px;
+    }
+    
+    .tile-128,
+    .tile-256,
+    .tile-512 {
+        font-size: clamp(16px, 5vw, 30px);
+    }
+    
+    .tile-1024,
+    .tile-2048,
+    .tile-super {
+        font-size: clamp(14px, 4vw, 25px);
+    }
+}
+
+/* =============================================
+   Accessibility
+   ============================================= */
+
+/* Focus styles */
+.btn-2048:focus-visible,
+.game-2048-board:focus-visible {
+    outline: 3px solid #2196F3;
+    outline-offset: 2px;
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+    .tile {
+        border: 2px solid currentColor;
+    }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Print styles */
+@media print {
+    .game-2048-controls,
+    .loading-overlay {
+        display: none !important;
+    }
+    
+    .game-2048-container {
+        max-width: 100%;
+    }
+}

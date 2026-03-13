@@ -1,0 +1,11 @@
+{
+    "newGame": "Nuevo Juego",
+    "undo": "Deshacer",
+    "score": "Puntos",
+    "best": "Mejor",
+    "moves": "Movimientos",
+    "hint": "Pista",
+    "playAgain": "Jugar de Nuevo",
+    "gameOver": "¡Juego Terminado!",
+    "youWin": "¡Ganaste!"
+}

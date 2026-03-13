@@ -1,0 +1,57 @@
+{
+    "name": "Game Wizard",
+    "organization": "",
+    "nameLocale": {
+        "ru": "Game Wizard",
+        "en": "Game Wizard"
+    },
+    "guid": "asc.{D3F58C96-9F8A-4C8E-8D70-8D4A1BAE4C11}",
+    "version": "0.1.0",
+    "variations": [
+        {
+            "description": "Game manager plugin",
+            "descriptionLocale": {
+                "ru": "Менеджер игр",
+                "en": "Game manager"
+            },
+            "url": "index.html",
+            "icons": [
+                "resources/icons/main/light/icon.png",
+                "resources/icons/main/dark/icon.png"
+            ],
+            "isViewer": true,
+            "EditorsSupport": [
+                "cell"
+            ],
+            "isVisual": true,
+            "isModal": false,
+            "isInsideMode": true,
+            "initDataType": "none",
+            "initData": "",
+            "isUpdateOleOnResize": false,
+            "buttons": [],
+            "store": {
+                "background": {
+                    "light": "#696969",
+                    "dark": "#A9A9A9"
+                },
+                "screenshots": [
+                    "resources/store/screenshot/2048.png",
+                    "resources/store/screenshot/solitaire_klondike.png",
+                    "resources/store/screenshot/solitaire_spider.png",
+                    "resources/store/screenshot/solitaire_freecell.png"
+                ],
+                "icons": {
+                    "light": "resources/images/astronaut.png",
+                    "dark": "resources/images/astronaut.png"
+                },
+                "categories": [
+                    "specAbilities",
+                    "work",
+                    "recommended",
+                    "devTools"
+                ]
+            }
+        }
+    ]
+}

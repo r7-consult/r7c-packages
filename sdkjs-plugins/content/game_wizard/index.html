@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Game Wizard</title>
+  <link rel="stylesheet" href="vendor/oo/plugins.css">
+  <link rel="stylesheet" href="styles/main.css">
+  <script src="vendor/oo/plugins.js"></script>
+  <script src="vendor/oo/plugins-ui.js"></script>
+  <script src="scripts/game-registry.js"></script>
+  <script src="scripts/game-launcher.js"></script>
+  <script src="scripts/ui.js"></script>
+  <script src="scripts/plugin.js"></script>
+</head>
+<body>
+  <div class="gw-app" id="gw-app">
+    <header class="gw-header">
+      <div class="gw-heading">
+        <h1 class="gw-title">Game Wizard</h1>
+        <p class="gw-subtitle">Выберите игру для запуска</p>
+      </div>
+      <a
+        class="gw-mascot-link"
+        href="https://data.slider-ai.ru/?utm_source=casual_games%2F"
+        target="_blank"
+        rel="noopener noreferrer"
+        title="Перейти на сайт"
+      >
+        <img class="gw-mascot" src="resources/images/astronaut.png" alt="Mascot">
+      </a>
+    </header>
+
+    <main class="gw-main">
+      <div class="gw-main-title-row">
+        <h2 class="gw-main-title">Игры</h2>
+        <span class="gw-main-meta">Открытие в отдельном окне</span>
+      </div>
+      <div id="games-list" class="games-list" aria-live="polite"></div>
+    </main>
+
+    <footer class="gw-footer">
+      <span id="gw-status" class="gw-status">Готово</span>
+    </footer>
+  </div>
+</body>
+</html>

@@ -1,0 +1,71 @@
+
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spider Solitaire</title>
+    
+    <!-- Running as an internal Game Wizard module: parent plugin provides Asc.plugin context -->
+    
+    <link rel="stylesheet" href="../../styles/game-shell.css">
+    <!-- Game Styles -->
+    <link rel="stylesheet" href="styles/main.css">
+
+</head>
+<body>
+    <div class="slider-plugin-container">
+        <!-- Header Section -->
+        <div class="plugin-header">
+            <a href="https://data.slider-ai.ru/?utm_source=casual_games%2F" target="_blank" rel="noopener noreferrer" class="slider-logo-link" title="Visit Slider AI">
+                <img src="../../resources/images/slider.svg" class="slider-logo" alt="Slider AI">
+            </a>
+            <div class="game-title-group">
+                <h1 class="game-title">Solitaire Spider</h1>
+                <p class="game-subtitle">Stack all suits from King to Ace</p>
+            </div>
+            <a href="https://data.slider-ai.ru/?utm_source=casual_games%2F" target="_blank" rel="noopener noreferrer" class="mascot-link" title="Visit Slider AI">
+                <img src="../../resources/images/astronaut.png" class="astronaut-mascot" alt="Astronaut">
+            </a>
+        </div>
+
+        <!-- Score Section -->
+        <div class="score-section">
+            <div class="score-box">
+                <div class="score-label">Score</div>
+                <div class="score-value" id="current-score">0</div>
+            </div>
+            <div class="score-box">
+                <div class="score-label">Moves</div>
+                <div class="score-value" id="moves-count">0</div>
+            </div>
+            <div class="score-box">
+                <div class="score-label">Best</div>
+                <div class="score-value" id="best-score">0</div>
+            </div>
+        </div>
+
+        <!-- Game Board -->
+        <div id="game-board">
+            <!-- Game is rendered here by JavaScript -->
+        </div>
+
+        <!-- Control Buttons -->
+        <div class="control-buttons">
+            <select class="difficulty-select" id="difficulty-select">
+                <option value="1">1 Suit (Easy)</option>
+                <option value="2">2 Suits (Medium)</option>
+                <option value="4">4 Suits (Hard)</option>
+            </select>
+            <button class="btn-plugin primary" id="new-game-btn">New Game</button>
+            <button class="btn-plugin secondary" id="btn-undo">Undo</button>
+        </div>
+    </div>
+    
+    <!-- Scripts -->
+    <script type="text/javascript" src="scripts/core/SpiderEngine.js"></script>
+    <script type="text/javascript" src="scripts/core/SpiderManager.js"></script>
+    <script type="text/javascript" src="scripts/main.js"></script>
+    
+</body>
+</html>

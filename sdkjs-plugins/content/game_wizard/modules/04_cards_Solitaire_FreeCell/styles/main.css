@@ -1,0 +1,245 @@
+/**
+ * @summary Main stylesheet for the FreeCell Solitaire plugin.
+ * @description Extends shared solitaire styles with FreeCell-specific layout.
+ */
+
+@import url("../../02_cards_Solitaire_Klondike/styles/main.css");
+
+:root {
+  --card-width: 70px;
+  --card-height: 100px;
+  --card-overlap: 28px;
+}
+
+.slider-plugin-container {
+  max-width: none !important;
+  width: 100% !important;
+  height: 100vh;
+}
+
+#game-board {
+  overflow: auto;
+  padding: var(--spacing-md);
+}
+
+.control-buttons {
+  position: sticky;
+  bottom: 0;
+  z-index: 5;
+}
+
+.card-placeholder {
+  min-width: var(--card-width);
+  min-height: var(--card-height);
+}
+
+.playing-card {
+  overflow: hidden;
+}
+
+.playing-card.face-up {
+  position: relative;
+  display: block;
+  padding: 4px;
+  font-size: 1rem;
+}
+
+.playing-card.face-up .card-rank,
+.playing-card.face-up .card-suit,
+.playing-card.face-up .card-suit-center {
+  position: absolute;
+  line-height: 1;
+}
+
+.playing-card.face-up .card-rank {
+  top: 6px;
+  left: 6px;
+}
+
+.playing-card.face-up .card-suit {
+  top: 6px;
+  right: 6px;
+  transform: none;
+}
+
+.playing-card.face-up .card-suit-center {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.8rem;
+}
+
+.freecell-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100%;
+  gap: var(--spacing-md);
+}
+
+.freecell-top-row {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md);
+  min-height: calc(var(--card-height) + var(--spacing-md) * 2);
+}
+
+.freecells-container,
+.foundations-container {
+  display: flex;
+  gap: var(--spacing-sm);
+}
+
+.free-cell {
+  position: relative;
+  width: var(--card-width);
+  height: var(--card-height);
+}
+
+.free-cell[data-label]::before {
+  content: attr(data-label);
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  font-weight: 700;
+}
+
+.foundation-pile {
+  position: relative;
+  width: var(--card-width);
+  height: var(--card-height);
+}
+
+.foundation-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.placeholder-suit {
+  font-size: 2rem;
+  opacity: 0.3;
+  color: var(--text-secondary);
+}
+
+.freecell-tableau-row {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: var(--spacing-sm);
+  padding: 0 var(--spacing-md) var(--spacing-md);
+  flex-grow: 1;
+  overflow-x: auto;
+}
+
+.freecell-tableau-column {
+  position: relative;
+  width: var(--card-width);
+  min-height: calc(var(--card-height) + var(--card-overlap) * 12);
+  flex-shrink: 0;
+}
+
+.freecell-tableau-column .tableau-card {
+  position: absolute !important;
+  left: 0;
+  transition: top 0.2s ease-in-out;
+}
+
+.freecell-card,
+.foundation-card {
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.freecell-card:hover,
+.foundation-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px var(--shadow-color);
+}
+
+.sequence-start {
+  box-shadow: 0 0 0 2px var(--accent-color) inset;
+}
+
+.dragging-sequence {
+  opacity: 0.72;
+  transform: translateX(3px);
+}
+
+.drop-zone-highlight {
+  background: rgba(66, 165, 245, 0.12);
+  border-radius: var(--border-radius);
+  box-shadow: inset 0 0 0 2px var(--accent-color);
+}
+
+.plugin-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--bg-primary);
+  border: 2px solid var(--accent-color);
+  border-radius: var(--border-radius);
+  padding: var(--spacing-lg);
+  text-align: center;
+  z-index: 1200;
+  box-shadow: 0 10px 40px var(--shadow-color);
+}
+
+.modal-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: var(--spacing-md);
+  color: var(--text-primary);
+}
+
+.modal-score {
+  font-size: 1.1rem;
+  margin: var(--spacing-sm) 0;
+  color: var(--text-secondary);
+}
+
+@media (max-width: 980px) {
+  :root {
+    --card-width: 62px;
+    --card-height: 90px;
+    --card-overlap: 24px;
+  }
+
+  .freecell-top-row {
+    gap: var(--spacing-sm);
+  }
+}
+
+@media (max-width: 760px) {
+  :root {
+    --card-width: 54px;
+    --card-height: 78px;
+    --card-overlap: 20px;
+  }
+
+  .freecell-top-row {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .freecell-tableau-row {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 520px) {
+  :root {
+    --card-width: 46px;
+    --card-height: 66px;
+    --card-overlap: 16px;
+  }
+
+  .astronaut-mascot {
+    display: none;
+  }
+}

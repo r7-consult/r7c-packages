@@ -9,10 +9,10 @@
     "version": "0.1.0",
     "variations": [
         {
-            "description": "Game manager plugin",
+            "description": "A collection of classic mini games including 2048, Klondike Solitaire, Spider Solitaire, and FreeCell.",
             "descriptionLocale": {
-                "ru": "Менеджер игр",
-                "en": "Game manager"
+                "ru": "Коллекция классических мини-игр: 2048, Косынка (Klondike), Паук (Spider) и Свободная ячейка (FreeCell).",
+                "en": "A collection of classic mini games including 2048, Klondike Solitaire, Spider Solitaire, and FreeCell."
             },
             "url": "index.html",
             "icons": [

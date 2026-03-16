@@ -46,10 +46,8 @@
                     "dark": "resources/images/astronaut.png"
                 },
                 "categories": [
-                    "specAbilities",
-                    "work",
-                    "recommended",
-                    "devTools"
+                    "entertainment",
+                    "specAbilities"
                 ]
             }
         }

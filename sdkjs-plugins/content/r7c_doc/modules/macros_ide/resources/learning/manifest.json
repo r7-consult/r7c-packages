@@ -1,0 +1,96 @@
+{
+    "version": 1,
+    "defaultCourseId": "macro-dev-zero",
+    "templatesSource": {
+        "manifestPath": "modules/macros_ide/resources/examples-manifest.json",
+        "basePath": "modules/macros_ide/resources/examples"
+    },
+    "sections": [
+        {
+            "id": "training-courses",
+            "title": "УЧЕБНЫЕ КУРСЫ",
+            "description": "Обучающие материалы по работе с Р7-Офис и данными.",
+            "courses": [
+                {
+                    "id": "macro-dev-zero",
+                    "title": "Разработка макросов с нуля",
+                    "description": "Интерактивный курс: теория, задания, запуск макросов и автопроверка.",
+                    "readmePath": "modules/macros_ide/resources/learning/interactive/intro.md",
+                    "interactiveSource": {
+                        "manifestPath": "modules/macros_ide/resources/learning/interactive/interactive-manifest.json"
+                    },
+                    "sections": []
+                },
+                {
+                    "id": "r7-macros",
+                    "title": "Библиотека шаблонных макросов для обучения.",
+                    "description": "Библиотека шаблонных макросов для обучения.",
+                    "sections": [
+                        {
+                            "id": "r7-macros-lessons",
+                            "title": "Уроки",
+                            "draft": true,
+                            "topics": [
+                                {
+                                    "id": "r7-macros-01",
+                                    "title": "Создание первого макроса для Р7-Офис",
+                                    "path": "modules/macros_ide/resources/learning/r7-macros/lesson-01/content.md"
+                                },
+                                {
+                                    "id": "r7-macros-02",
+                                    "title": "Руководство по оформлению кода на Р7 JavaScript и VBA",
+                                    "path": "modules/macros_ide/resources/learning/r7-macros/lesson-02/content.md"
+                                },
+                                {
+                                    "id": "r7-macros-03",
+                                    "title": "Практические примеры миграции VBA на JavaScript ч1",
+                                    "path": "modules/macros_ide/resources/learning/r7-macros/lesson-03/content.md"
+                                },
+                                {
+                                    "id": "r7-macros-04",
+                                    "title": "Практические примеры миграции VBA на JavaScript ч2",
+                                    "path": "modules/macros_ide/resources/learning/r7-macros/lesson-04/content.md"
+                                },
+                                {
+                                    "id": "r7-macros-05",
+                                    "title": "Практические примеры миграции VBA на JavaScript ч3",
+                                    "path": "modules/macros_ide/resources/learning/r7-macros/lesson-05/content.md"
+                                },
+                                {
+                                    "id": "r7-macros-06",
+                                    "title": "Пример макроса: Число в текст",
+                                    "path": "modules/macros_ide/resources/learning/r7-macros/lesson-06/content.md"
+                                },
+                                {
+                                    "id": "r7-macros-07",
+                                    "title": "Пример макроса: Миграция скрипта VBA по объединению данных из листов в одну таблицу в R7 JavaScript",
+                                    "path": "modules/macros_ide/resources/learning/r7-macros/lesson-07/content.md"
+                                },
+                                {
+                                    "id": "r7-macros-08",
+                                    "title": "Пример макроса: Выделение цветом ячеек с одинаковым значением",
+                                    "path": "modules/macros_ide/resources/learning/r7-macros/lesson-08/content.md"
+                                },
+                                {
+                                    "id": "r7-macros-09",
+                                    "title": "Пример макроса: Доступ к локальному файлу",
+                                    "path": "modules/macros_ide/resources/learning/r7-macros/lesson-09/content.md"
+                                },
+                                {
+                                    "id": "r7-macros-10",
+                                    "title": "Справочно: Аудит excel файлов",
+                                    "path": "modules/macros_ide/resources/learning/r7-macros/lesson-10/content.md"
+                                },
+                                {
+                                    "id": "r7-macros-11",
+                                    "title": "Справочно: Функции VBA и их аналоги в JavaScript",
+                                    "path": "modules/macros_ide/resources/learning/r7-macros/lesson-11/content.md"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

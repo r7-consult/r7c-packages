@@ -1,0 +1,379 @@
+/**
+ * TASK-105-IMP: Design Tokens (Consolidated)
+ * CSS Custom Properties - Base Design System
+ *
+ * Architecture: 2-Level Compliance (Level 1 - Base Tokens)
+ * Consolidates: vscode-theme.css + layout.css + extracted values
+ *
+ * Token Categories:
+ * - Typography (font families, sizes, weights)
+ * - Colors (backgrounds, text, borders, semantic)
+ * - Spacing (margins, paddings, gaps)
+ * - Dimensions (widths, heights, sizes)
+ * - Borders & Radius
+ * - Z-Index Layers
+ * - Transitions & Animations
+ * - Shadows & Effects
+ */
+
+:root {
+  /* =========================================================================
+     TYPOGRAPHY TOKENS
+     ========================================================================= */
+
+  /* Font Families */
+  --app-font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --font-family-mono: 'Consolas', 'Monaco', 'Courier New', monospace;
+
+  /* Font Sizes */
+  --fs-xs: 10px;
+  --fs-sm: 11px;
+  --fs-base: 12px;
+  --fs-md: 13px;
+  --fs-lg: 14px;
+  --fs-xl: 16px;
+  --fs-2xl: 18px;
+
+  /* Font Weights */
+  --fw-normal: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+
+  /* Line Heights */
+  --lh-tight: 1.4;
+  --lh-base: 1.5;
+  --lh-relaxed: 1.6;
+
+  /* =========================================================================
+     COLOR TOKENS (Light Theme Defaults)
+     ========================================================================= */
+
+  /* Background Colors */
+  --color-bg-primary: #ffffff;
+  --color-bg-secondary: #ffffff;
+  --color-bg-tertiary: #e1e1e1;
+  --color-bg-quaternary: #f1f1f1;
+  --color-bg-overlay: rgba(0, 0, 0, 0.5);
+  --color-bg-hover: #e1e1e1;
+  --color-bg-active: #e1e1e1;
+  --color-bg-disabled: #e1e1e1;
+
+  /* Input Colors */
+  --color-input-bg: #ffffff;
+  --color-input-text: #000000;
+
+  /* Auxiliary UI color (dividers, misc) */
+  --color-ui-aux: #3a3a3a;
+
+  /* Text Colors */
+  --color-text-primary: #000000;
+  --color-text-secondary: #000000;
+  --color-text-tertiary: #3a3a3a;
+  --color-text-quaternary: #3a3a3a;
+  --color-text-disabled: #3a3a3a;
+  --color-text-link: #00a4f6;
+  --color-text-inverse: #ffffff;
+
+  /* Border Colors */
+  --color-border-default: #e1e1e1;
+  --color-border-light: #f1f1f1;
+  --color-border-medium: #e1e1e1;
+  --color-border-dark: #e1e1e1;
+  --color-border-focus: #00a4f6;
+  --color-border-hover: #00a4f6;
+
+  /* State Colors - Hover/Active/Selected */
+  --color-state-hover-bg: #e1e1e1;
+  --color-state-hover-light: #e1e1e1;
+  --color-state-active-bg: #e1e1e1;
+  --color-state-active-dark: #e1e1e1;
+  --color-state-selected-bg: #00a4f6;
+  --color-state-selected-text: #ffffff;
+
+  /* Semantic Colors - Success/Warning/Error/Info */
+  --color-success-primary: #28a745;
+  --color-success-light: #d4edda;
+  --color-success-dark: #4caf50;
+  --color-warning-primary: #ff9900;
+  --color-warning-light: rgba(255, 153, 0, 0.1);
+  --color-error-primary: #cc0000;
+  --color-error-light: rgba(204, 0, 0, 0.1);
+  --color-info-primary: #0066cc;
+  --color-info-light: rgba(0, 102, 204, 0.1);
+
+  /* VBA Section Colors */
+  --color-vba-bg: #bbdefb;
+  --color-vba-border: #1565c0;
+  --color-vba-text: #0d47a1;
+  --color-vba-hover: #90caf9;
+  --color-vba-banner-bg: rgba(21, 101, 192, 0.1);
+
+  /* Buttons */
+  --color-button-default-bg: #e1e1e1;
+  --color-button-default-border: transparent;
+  --color-button-default-text: #000000;
+  --color-button-default-hover-bg: #e1e1e1;
+  --color-button-default-active-bg: #e1e1e1;
+
+  --color-button-primary-bg: #00a4f6;
+  --color-button-primary-hover: #00a4f6;
+  --color-button-primary-active: #00a4f6;
+
+  --color-button-success-bg: #fdb700;
+  --color-button-success-hover: #fdb700;
+
+  --color-button-danger-bg: #3a3a3a;
+  --color-button-danger-hover: #3a3a3a;
+
+  /* Console Colors */
+  --color-console-bg: #ffffff;
+  --color-console-text: #333333;
+  --color-console-border: #cccccc;
+  --color-console-header-bg: #f3f3f3;
+  --color-console-log: #333333;
+  --color-console-info: #0066cc;
+  --color-console-warn: #ff9900;
+  --color-console-error: #cc0000;
+
+  /* Splitter Colors */
+  --color-splitter-border: rgba(0, 0, 0, 0.2);
+  --color-splitter-hover: rgba(0, 0, 0, 0.05);
+  --color-splitter-active: rgba(0, 0, 0, 0.08);
+
+  /* =========================================================================
+     SPACING TOKENS
+     ========================================================================= */
+
+  --spacing-xs: 2px;
+  --spacing-sm: 4px;
+  --spacing-md: 6px;
+  --spacing-base: 8px;
+  --spacing-lg: 10px;
+  --spacing-xl: 12px;
+  --spacing-2xl: 16px;
+  --spacing-3xl: 20px;
+  --spacing-4xl: 24px;
+  --spacing-5xl: 30px;
+  --spacing-6xl: 35px;
+
+  /* =========================================================================
+     DIMENSION TOKENS
+     ========================================================================= */
+
+  /* Heights */
+  --height-xs: 16px;
+  --height-sm: 20px;
+  --height-base: 22px;
+  --height-md: 24px;
+  --height-lg: 28px;
+  --height-xl: 32px;
+  --height-2xl: 34px;
+  --height-3xl: 42px;
+  --height-4xl: 48px;
+
+  /* Widths */
+  --width-xs: 16px;
+  --width-sm: 20px;
+  --width-md: 24px;
+  --width-lg: 32px;
+  --width-xl: 48px;
+
+  /* Component Dimensions */
+  --activity-bar-width: 48px;
+  --sidebar-min-width: 200px;
+  --sidebar-max-width: 600px;
+  --panel-header-height: 35px;
+  --toolbar-height: 42px;
+  --status-bar-height: 22px;
+  --tab-bar-height: 28px;
+  --console-default-height: 200px;
+
+  /* Icon Sizes */
+  --icon-xs: 12px;
+  --icon-sm: 14px;
+  --icon-base: 16px;
+  --icon-md: 20px;
+  --icon-lg: 24px;
+
+  /* =========================================================================
+     BORDER & RADIUS TOKENS
+     ========================================================================= */
+
+  /* Border Widths */
+  --border-width-thin: 1px;
+  --border-width-base: 1px;
+  --border-width-thick: 2px;
+  --border-width-focus: 2px;
+
+  /* Border Radius */
+  --radius-xs: 5px;
+  --radius-sm: 5px;
+  --radius-base: 5px;
+  --radius-md: 5px;
+  --radius-lg: 5px;
+  --radius-full: 50%;
+
+  /* =========================================================================
+     Z-INDEX TOKENS
+     ========================================================================= */
+
+  --z-base: 1;
+  --z-dropdown: 10;
+  --z-sticky: 11;
+  --z-sidebar: 12;
+  --z-console: 15;
+  --z-drag-handle: 20;
+  --z-external-toggle: 25;
+  --z-tooltip: 50;
+  --z-context-menu: 100;
+  --z-splitter: 100;
+  --z-activity-bar: 300;
+  --z-modal: 1000;
+  --z-dialog: 1001;
+  --z-overlay: 2000;
+
+  /* =========================================================================
+     TRANSITION TOKENS
+     ========================================================================= */
+
+  --transition-instant: 0s;
+  --transition-fast: 0.1s ease;
+  --transition-base: 0.2s ease;
+  --transition-slow: 0.3s ease;
+  --transition-spinner: 1s linear infinite;
+
+  /* Specific Transitions */
+  --transition-bg: background-color 0.2s ease;
+  --transition-opacity: opacity 0.2s ease;
+  --transition-transform: transform 0.12s ease;
+  --transition-all: all 0.2s ease;
+
+  /* =========================================================================
+     SHADOW TOKENS
+     ========================================================================= */
+
+  --shadow-none: none;
+  --shadow-xs: none;
+  --shadow-sm: none;
+  --shadow-base: none;
+  --shadow-md: none;
+  --shadow-lg: none;
+  --shadow-xl: none;
+  --shadow-context-menu: none;
+  --shadow-tooltip: none;
+  --shadow-modal: none;
+  --shadow-button: none;
+
+  /* Inset Shadows */
+  --shadow-inset-sm: none;
+  --shadow-focus-left: none;
+  --shadow-focus-right: none;
+}
+
+/**
+ * VSCODE THEME TOKENS (from vscode-theme.css)
+ * Compatible with existing VSCode components
+ */
+:root {
+  /* Common VSCode Tokens */
+  --vscode-foreground: #616161;
+  --vscode-focusBorder: #0090f1;
+  --vscode-widget-border: #d4d4d4;
+  --vscode-selection-background: #add6ff;
+
+  /* Activity Bar */
+  --vscode-activityBar-background: #f3f3f3;
+  --vscode-activityBar-foreground: #424242;
+  --vscode-activityBar-inactiveForeground: #8e8e8e;
+  --vscode-activityBar-border: #e5e5e5;
+  --vscode-activityBarBadge-background: #007acc;
+  --vscode-activityBarBadge-foreground: #ffffff;
+  --vscode-activityBar-activeBorder: #0090f1;
+  --vscode-activityBar-hoverBackground: #e8e8e8;
+  --vscode-activityBar-activeBackground: #ffffff;
+  --vscode-activityBar-dropBorder: #0090f1;
+
+  /* Side Bar */
+  --vscode-sideBar-background: #f3f3f3;
+  --vscode-sideBar-foreground: #616161;
+  --vscode-sideBar-border: #e5e5e5;
+  --vscode-sideBar-dropBackground: #d1d1d1;
+  --vscode-sideBarTitle-foreground: #6f6f6f;
+  --vscode-sideBarSectionHeader-background: #e7e7e7;
+  --vscode-sideBarSectionHeader-foreground: #616161;
+  --vscode-sideBarSectionHeader-border: #e5e5e5;
+
+  /* Editor */
+  --vscode-editor-background: #ffffff;
+  --vscode-editor-foreground: #000000;
+  --vscode-editorLineNumber-foreground: #237893;
+  --vscode-editorLineNumber-activeForeground: #0b216f;
+  --vscode-editorCursor-foreground: #000000;
+  --vscode-editor-selectionBackground: #add6ff;
+  --vscode-editor-lineHighlightBackground: #f0f0f0;
+  --vscode-editor-lineHighlightBorder: #eeeeee;
+
+  /* Editor Groups & Tabs */
+  --vscode-editorGroupHeader-tabsBackground: #f3f3f3;
+  --vscode-editorGroupHeader-tabsBorder: #e5e5e5;
+  --vscode-tab-activeBackground: #ffffff;
+  --vscode-tab-inactiveBackground: #ececec;
+  --vscode-tab-activeForeground: #333333;
+  --vscode-tab-inactiveForeground: #6f6f6f;
+  --vscode-tab-border: #f3f3f3;
+  --vscode-tab-activeBorder: transparent;
+  --vscode-tab-activeBorderTop: #0090f1;
+  --vscode-tab-hoverBackground: #f5f5f5;
+
+  /* Status Bar */
+  --vscode-statusBar-background: #007acc;
+  --vscode-statusBar-foreground: #ffffff;
+  --vscode-statusBar-border: #007acc;
+  --vscode-statusBar-noFolderBackground: #68217a;
+  --vscode-statusBar-hoverBackground: #0062a3;
+  --vscode-statusBarItem-prominentBackground: #00000033;
+
+  /* Lists (Tree View) */
+  --vscode-list-activeSelectionBackground: #0060c0;
+  --vscode-list-activeSelectionForeground: #ffffff;
+  --vscode-list-hoverBackground: #e8e8e8;
+  --vscode-list-focusBackground: #d0e3f1;
+  --vscode-list-inactiveSelectionBackground: #e4e6f1;
+
+  /* Buttons */
+  --vscode-button-background: #0e639c;
+  --vscode-button-foreground: #ffffff;
+  --vscode-button-hoverBackground: #1177bb;
+  --vscode-button-border: #0e639c;
+  --vscode-button-secondaryBackground: #3a3d41;
+  --vscode-button-secondaryForeground: #ffffff;
+  --vscode-button-secondaryHoverBackground: #45494e;
+
+  /* Inputs */
+  --vscode-input-background: #ffffff;
+  --vscode-input-foreground: #000000;
+  --vscode-input-border: #d4d4d4;
+
+  /* Menus */
+  --vscode-menu-background: #ffffff;
+  --vscode-menu-foreground: #616161;
+  --vscode-menu-border: #d4d4d4;
+  --vscode-menu-selectionBackground: #0060c0;
+  --vscode-menu-selectionForeground: #ffffff;
+
+  /* Breadcrumbs */
+  --vscode-breadcrumb-foreground: #c5c5c5;
+  --vscode-breadcrumb-focusForeground: #ffffff;
+
+  /* Scrollbars */
+  --vscode-scrollbarSlider-background: rgba(121, 121, 121, 0.4);
+  --vscode-scrollbarSlider-activeBackground: rgba(191, 191, 191, 0.4);
+  --vscode-scrollbarSlider-hoverBackground: rgba(191, 191, 191, 0.7);
+
+  /* Description text */
+  --vscode-descriptionForeground: #8a8a8a;
+
+  /* Contrast borders */
+  --vscode-contrastBorder: transparent;
+}

@@ -1,0 +1,37 @@
+# API Run Methods
+
+This directory contains JavaScript macros for API Run methods.
+
+## Available Macros:
+
+- [AddLineBreak_macroR7.js](AddLineBreak_macroR7.js)
+- [AddTabStop_macroR7.js](AddTabStop_macroR7.js)
+- [AddText_macroR7.js](AddText_macroR7.js)
+- [ClearContent_macroR7.js](ClearContent_macroR7.js)
+- [Copy_macroR7.js](Copy_macroR7.js)
+- [Delete_macroR7.js](Delete_macroR7.js)
+- [GetClassType_macroR7.js](GetClassType_macroR7.js)
+- [GetFontNames_macroR7.js](GetFontNames_macroR7.js)
+- [GetTextPr_macroR7.js](GetTextPr_macroR7.js)
+- [RemoveAllElements_macroR7.js](RemoveAllElements_macroR7.js)
+- [SetBold_macroR7.js](SetBold_macroR7.js)
+- [SetCaps_macroR7.js](SetCaps_macroR7.js)
+- [SetColor_macroR7.js](SetColor_macroR7.js)
+- [SetDoubleStrikeout_macroR7.js](SetDoubleStrikeout_macroR7.7.js)
+- [SetFill_macroR7.js](SetFill_macroR7.js)
+- [SetFontFamily_macroR7.js](SetFontFamily_macroR7.js)
+- [SetFontSize_macroR7.js](SetFontSize_macroR7.js)
+- [SetHighlight_macroR7.js](SetHighlight_macroR7.js)
+- [SetItalic_macroR7.js](SetItalic_macroR7.js)
+- [SetLanguage_macroR7.js](SetLanguage_macroR7.js)
+- [SetOutLine_macroR7.js](SetOutLine_macroR7.js)
+- [SetPosition_macroR7.js](SetPosition_macroR7.js)
+- [SetShd_macroR7.js](SetShd_macroR7.js)
+- [SetSmallCaps_macroR7.js](SetSmallCaps_macroR7.js)
+- [SetSpacing_macroR7.js](SetSpacing_macroR7.js)
+- [SetStrikeout_macroR7.js](SetStrikeout_macroR7.js)
+- [SetStyle_macroR7.js](SetStyle_macroR7.js)
+- [SetTextFill_macroR7.js](SetTextFill_macroR7.js)
+- [SetTextPr_macroR7.js](SetTextPr_macroR7.js)
+- [SetUnderline_macroR7.js](SetUnderline_macroR7.js)
+- [SetVertAlign_macroR7.js](SetVertAlign_macroR7.js)

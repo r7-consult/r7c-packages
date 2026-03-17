@@ -206,5 +206,9 @@
     {
         "name":"game_wizard",
         "discussion":""
-	}
+	},
+    {
+        "name":"r7c_doc",
+        "discussion":""
+	},
 ]

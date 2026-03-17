@@ -1,0 +1,173 @@
+/**
+ * TASK-118: VS Code-style Scrollbars for Explorer Activities
+ *
+ * Purpose: Custom PerfectScrollbar styling matching VS Code's thin scrollbar design
+ * Applied to: Macros, Examples, External Scripts, Logs views
+ *
+ * @history
+ * - 2025-10-31: Created - TASK-118: VS Code-style scrollbars
+ */
+
+/* ============================================================================
+   VS Code Scrollbar Styling - PerfectScrollbar
+   ============================================================================ */
+
+/* Scrollbar Track (Rail) */
+.ps__rail-y {
+    width: 10px !important;
+    background-color: transparent !important;
+    opacity: 0 !important;
+    transition: opacity 0.2s ease, background-color 0.2s ease !important;
+    z-index: 10 !important;
+    right: 0 !important;
+}
+
+/* Track appears on hover */
+.ps:hover > .ps__rail-y,
+.ps__rail-y:hover,
+.ps__rail-y.ps--clicking {
+    opacity: 1 !important;
+    background-color: rgba(121, 121, 121, 0.1) !important;
+}
+
+/* Scrollbar Thumb */
+.ps__thumb-y {
+    width: 10px !important;
+    background-color: rgba(121, 121, 121, 0.4) !important;
+    border-radius: 5px !important;
+    transition: background-color 0.2s ease !important;
+    right: 0 !important;
+}
+
+/* Thumb hover state */
+.ps__rail-y:hover > .ps__thumb-y,
+.ps__thumb-y:hover,
+.ps__rail-y.ps--clicking > .ps__thumb-y {
+    background-color: rgba(121, 121, 121, 0.7) !important;
+}
+
+/* Active scrolling state */
+.ps--active-y > .ps__rail-y {
+    opacity: 1 !important;
+    background-color: rgba(121, 121, 121, 0.15) !important;
+}
+
+/* Hide horizontal scrollbar (not needed in sidebar) */
+.ps__rail-x {
+    display: none !important;
+}
+
+/* ============================================================================
+   Theme-specific Scrollbar Colors
+   ============================================================================ */
+
+/* Dark Theme (default) */
+body.theme-type-dark .ps__rail-y:hover,
+body.theme-type-dark .ps__rail-y.ps--clicking {
+    background-color: rgba(121, 121, 121, 0.1) !important;
+}
+
+body.theme-type-dark .ps__thumb-y {
+    background-color: rgba(121, 121, 121, 0.4) !important;
+}
+
+body.theme-type-dark .ps__thumb-y:hover,
+body.theme-type-dark .ps__rail-y.ps--clicking > .ps__thumb-y {
+    background-color: rgba(121, 121, 121, 0.7) !important;
+}
+
+/* Light Theme */
+body.theme-type-light .ps__rail-y:hover,
+body.theme-type-light .ps__rail-y.ps--clicking {
+    background-color: rgba(0, 0, 0, 0.08) !important;
+}
+
+body.theme-type-light .ps__thumb-y {
+    background-color: rgba(0, 0, 0, 0.35) !important;
+}
+
+body.theme-type-light .ps__thumb-y:hover,
+body.theme-type-light .ps__rail-y.ps--clicking > .ps__thumb-y {
+    background-color: rgba(0, 0, 0, 0.6) !important;
+}
+
+/* ============================================================================
+   Container-specific Adjustments
+   ============================================================================ */
+
+/* Main menu content container */
+#menu_content.ps {
+    position: relative;
+}
+
+/* Activity view containers - TASK-118-FIX: Enable scrolling for individual views */
+#macros-children.ps,
+#examples-children.ps,
+#external-scripts-children.ps,
+#sidebar-logs-output.ps {
+    position: relative;
+    overflow: hidden;  /* Hide native scrollbar (PerfectScrollbar takes over) */
+    max-height: 100%;  /* Allow scrolling when content exceeds container */
+}
+
+/* ============================================================================
+   Smooth Scrolling Behavior
+   ============================================================================ */
+
+.ps {
+    -ms-overflow-style: none;  /* IE/Edge fallback */
+    scrollbar-width: none;     /* Firefox fallback */
+}
+
+.ps::-webkit-scrollbar {
+    display: none;  /* Chrome/Safari fallback (PerfectScrollbar overrides this) */
+}
+
+/* ============================================================================
+   Performance Optimizations
+   ============================================================================ */
+
+/* Use GPU acceleration for smooth transitions */
+.ps__rail-y,
+.ps__thumb-y {
+    will-change: opacity, background-color;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+}
+
+/* Prevent text selection on scrollbar */
+.ps__rail-y,
+.ps__thumb-y {
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+/* ============================================================================
+   Accessibility
+   ============================================================================ */
+
+/* Ensure scrollbar is accessible via keyboard focus */
+.ps:focus-within > .ps__rail-y {
+    opacity: 1 !important;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .ps__thumb-y {
+        background-color: rgba(121, 121, 121, 0.9) !important;
+    }
+
+    .ps__rail-y:hover {
+        background-color: rgba(121, 121, 121, 0.3) !important;
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    .ps__rail-y,
+    .ps__thumb-y {
+        transition: none !important;
+    }
+}

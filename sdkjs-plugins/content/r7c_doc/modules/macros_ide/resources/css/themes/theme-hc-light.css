@@ -1,0 +1,228 @@
+/**
+ * TASK-105-IMP: High Contrast Light Theme Overrides
+ * Architecture: 2-Level Compliance (Level 2 - Theme Overrides)
+ *
+ * Overrides light theme defaults for high contrast light mode
+ * Maximum contrast for accessibility
+ */
+
+:root[data-vscode-theme="hc-light"],
+.theme-type-hc-light {
+  /* =========================================================================
+     BACKGROUND COLORS
+     ========================================================================= */
+
+  --color-bg-primary: #FFFFFF;
+  --color-bg-secondary: #FFFFFF;
+  --color-bg-tertiary: #FFFFFF;
+  --color-bg-quaternary: #FFFFFF;
+  --color-bg-overlay: rgba(255, 255, 255, 0.95);
+  --color-bg-hover: #F0F0F0;
+  --color-bg-active: #E0E0E0;
+  --color-bg-disabled: #FFFFFF;
+
+  /* =========================================================================
+     TEXT COLORS
+     ========================================================================= */
+
+  --color-text-primary: #000000;
+  --color-text-secondary: #000000;
+  --color-text-tertiary: #000000;
+  --color-text-quaternary: #292929;
+  --color-text-disabled: #666666;
+  --color-text-link: #0000EE;
+  --color-text-inverse: #FFFFFF;
+
+  /* =========================================================================
+     BORDER COLORS
+     ========================================================================= */
+
+  --color-border-default: #000000;
+  --color-border-light: #000000;
+  --color-border-medium: #000000;
+  --color-border-dark: #000000;
+  --color-border-focus: #0000EE;
+  --color-border-hover: #0000EE;
+
+  /* =========================================================================
+     STATE COLORS
+     ========================================================================= */
+
+  --color-state-hover-bg: #F0F0F0;
+  --color-state-hover-light: #F0F0F0;
+  --color-state-active-bg: #0000EE;
+  --color-state-active-dark: #E0E0E0;
+  --color-state-selected-bg: #0000EE;
+  --color-state-selected-text: #FFFFFF;
+
+  /* =========================================================================
+     SEMANTIC COLORS
+     ========================================================================= */
+
+  --color-success-primary: #008000;
+  --color-success-light: rgba(0, 128, 0, 0.1);
+  --color-success-dark: #008000;
+  --color-warning-primary: #FF8800;
+  --color-warning-light: rgba(255, 136, 0, 0.1);
+  --color-error-primary: #E50000;
+  --color-error-light: rgba(229, 0, 0, 0.1);
+  --color-info-primary: #0000EE;
+  --color-info-light: rgba(0, 0, 238, 0.1);
+
+  /* =========================================================================
+     VBA COLORS (HC Light Mode)
+     ========================================================================= */
+
+  --color-vba-bg: #FFFFFF;
+  --color-vba-border: #000000;
+  --color-vba-text: #0000EE;
+  --color-vba-hover: #F0F0F0;
+  --color-vba-banner-bg: rgba(0, 0, 238, 0.1);
+
+  /* =========================================================================
+     BUTTON COLORS
+     ========================================================================= */
+
+  --color-button-default-bg: #FFFFFF;
+  --color-button-default-border: #000000;
+  --color-button-default-text: #000000;
+  --color-button-default-hover-bg: #F0F0F0;
+  --color-button-default-active-bg: #E0E0E0;
+
+  --color-button-primary-bg: #0000EE;
+  --color-button-primary-hover: #0000CC;
+  --color-button-primary-active: #0000AA;
+
+  --color-button-success-bg: #008000;
+  --color-button-success-hover: #006600;
+
+  --color-button-danger-bg: #E50000;
+  --color-button-danger-hover: #CC0000;
+
+  /* =========================================================================
+     CONSOLE COLORS
+     ========================================================================= */
+
+  --color-console-bg: #FFFFFF;
+  --color-console-text: #000000;
+  --color-console-border: #000000;
+  --color-console-header-bg: #FFFFFF;
+  --color-console-log: #000000;
+  --color-console-info: #0000EE;
+  --color-console-warn: #FF8800;
+  --color-console-error: #E50000;
+
+  /* =========================================================================
+     SPLITTER COLORS
+     ========================================================================= */
+
+  --color-splitter-border: #000000;
+  --color-splitter-hover: #F0F0F0;
+  --color-splitter-active: #0000EE;
+
+  /* =========================================================================
+     VSCODE THEME TOKENS (High Contrast Light)
+     ========================================================================= */
+
+  /* Common Tokens */
+  --vscode-foreground: #000000;
+  --vscode-focusBorder: #0000EE;
+  --vscode-widget-border: #000000;
+  --vscode-selection-background: #ADD6FF;
+
+  /* Activity Bar */
+  --vscode-activityBar-background: #FFFFFF;
+  --vscode-activityBar-foreground: #000000;
+  --vscode-activityBar-inactiveForeground: #292929;
+  --vscode-activityBar-border: #000000;
+  --vscode-activityBarBadge-background: #0000EE;
+  --vscode-activityBarBadge-foreground: #FFFFFF;
+  --vscode-activityBar-activeBorder: #0000EE;
+  --vscode-activityBar-hoverBackground: #F0F0F0;
+  --vscode-activityBar-activeBackground: #FFFFFF;
+  --vscode-activityBar-dropBorder: #0000EE;
+
+  /* Side Bar */
+  --vscode-sideBar-background: #FFFFFF;
+  --vscode-sideBar-foreground: #000000;
+  --vscode-sideBar-border: #000000;
+  --vscode-sideBar-dropBackground: #F0F0F0;
+  --vscode-sideBarTitle-foreground: #000000;
+  --vscode-sideBarSectionHeader-background: #FFFFFF;
+  --vscode-sideBarSectionHeader-foreground: #000000;
+  --vscode-sideBarSectionHeader-border: #000000;
+
+  /* Editor */
+  --vscode-editor-background: #FFFFFF;
+  --vscode-editor-foreground: #000000;
+  --vscode-editorLineNumber-foreground: #292929;
+  --vscode-editorLineNumber-activeForeground: #0000EE;
+  --vscode-editorCursor-foreground: #0000EE;
+  --vscode-editor-selectionBackground: #ADD6FF;
+  --vscode-editor-lineHighlightBackground: #F0F0F0;
+  --vscode-editor-lineHighlightBorder: #0000EE;
+
+  /* Editor Groups & Tabs */
+  --vscode-editorGroupHeader-tabsBackground: #FFFFFF;
+  --vscode-editorGroupHeader-tabsBorder: #000000;
+  --vscode-tab-activeBackground: #FFFFFF;
+  --vscode-tab-inactiveBackground: #FFFFFF;
+  --vscode-tab-activeForeground: #000000;
+  --vscode-tab-inactiveForeground: #292929;
+  --vscode-tab-border: #000000;
+  --vscode-tab-activeBorder: transparent;
+  --vscode-tab-activeBorderTop: #0000EE;
+  --vscode-tab-hoverBackground: #F0F0F0;
+
+  /* Status Bar */
+  --vscode-statusBar-background: #FFFFFF;
+  --vscode-statusBar-foreground: #000000;
+  --vscode-statusBar-border: #000000;
+  --vscode-statusBar-noFolderBackground: #FFFFFF;
+  --vscode-statusBar-hoverBackground: #F0F0F0;
+  --vscode-statusBarItem-prominentBackground: #F0F0F0;
+
+  /* Lists (Tree View) */
+  --vscode-list-activeSelectionBackground: #0000EE;
+  --vscode-list-activeSelectionForeground: #FFFFFF;
+  --vscode-list-hoverBackground: #F0F0F0;
+  --vscode-list-focusBackground: #0000EE;
+  --vscode-list-inactiveSelectionBackground: #E0E0E0;
+
+  /* Buttons */
+  --vscode-button-background: #0000EE;
+  --vscode-button-foreground: #FFFFFF;
+  --vscode-button-hoverBackground: #0000CC;
+  --vscode-button-border: #000000;
+  --vscode-button-secondaryBackground: #FFFFFF;
+  --vscode-button-secondaryForeground: #000000;
+  --vscode-button-secondaryHoverBackground: #F0F0F0;
+
+  /* Inputs */
+  --vscode-input-background: #FFFFFF;
+  --vscode-input-foreground: #000000;
+  --vscode-input-border: #000000;
+
+  /* Menus */
+  --vscode-menu-background: #FFFFFF;
+  --vscode-menu-foreground: #000000;
+  --vscode-menu-border: #000000;
+  --vscode-menu-selectionBackground: #0000EE;
+  --vscode-menu-selectionForeground: #FFFFFF;
+
+  /* Breadcrumbs */
+  --vscode-breadcrumb-foreground: #000000;
+  --vscode-breadcrumb-focusForeground: #0000EE;
+
+  /* Scrollbars */
+  --vscode-scrollbarSlider-background: rgba(0, 0, 0, 0.4);
+  --vscode-scrollbarSlider-activeBackground: rgba(0, 0, 0, 0.6);
+  --vscode-scrollbarSlider-hoverBackground: rgba(0, 0, 0, 0.8);
+
+  /* Description text */
+  --vscode-descriptionForeground: #292929;
+
+  /* Shadows (minimal for HC) */
+  --shadow-focus-left: inset 2px 0 0 #0000EE;
+  --shadow-focus-right: inset -2px 0 0 #0000EE;
+}

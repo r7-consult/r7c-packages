@@ -1,0 +1,39 @@
+/* VSCode Status Bar - Phase 1 (basic) */
+
+.vscode-status-bar {
+  position: absolute;
+  left: 48px; /* to the right of Activity Bar */
+  right: 0;
+  bottom: 0; /* default at the very bottom; console is shown only via Activity Bar */
+  height: 22px;
+  display: none; /* hidden per user request */
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 0 10px;
+  box-sizing: border-box;
+  z-index: 11;
+
+  background: var(--vscode-statusBar-background);
+  color: var(--vscode-statusBar-foreground);
+  border-top: 1px solid var(--vscode-statusBar-border);
+}
+
+.vscode-status-bar .status-left,
+.vscode-status-bar .status-center,
+.vscode-status-bar .status-right {
+  font-size: 12px;
+  line-height: 22px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.vscode-status-bar .status-left { flex: 0 1 25%; }
+.vscode-status-bar .status-center { flex: 1 1 auto; text-align: center; }
+.vscode-status-bar .status-right { flex: 0 1 25%; text-align: right; }
+
+/* High Contrast tweak */
+:root[data-vscode-theme="hc-black"] .vscode-status-bar {
+  border-top: 1px solid var(--vscode-statusBar-border);
+}

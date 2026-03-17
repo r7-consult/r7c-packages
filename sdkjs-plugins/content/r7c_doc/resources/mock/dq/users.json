@@ -1,0 +1,68 @@
+{
+  "table": {
+    "name": "users",
+    "rows": 45000
+  },
+  "schema": {
+    "columns": [
+      { "name": "user_id", "type": "int", "nullable": false, "enabled": true, "typeVariants": ["int", "string"] },
+      { "name": "email", "type": "string", "nullable": false, "enabled": true, "typeVariants": ["string"] },
+      { "name": "first_name", "type": "string", "nullable": true, "enabled": true, "typeVariants": ["string"] },
+      { "name": "last_name", "type": "string", "nullable": true, "enabled": true, "typeVariants": ["string"] },
+      { "name": "country", "type": "string", "nullable": true, "enabled": true, "typeVariants": ["string"] },
+      { "name": "created_at", "type": "datetime", "nullable": false, "enabled": true, "typeVariants": ["datetime", "date", "string"] }
+    ]
+  },
+  "reports": [
+    {
+      "run_id": "seed_users_2025-12-30",
+      "date": "2025-12-30",
+      "report": {
+        "overview": { "table": "users", "rows": 45000, "columns": 6, "issues": 9 },
+        "quality": {
+          "nulls": { "first_name": 0.083, "last_name": 0.041, "country": 0.12 },
+          "duplicates": { "rows": 12 }
+        },
+        "statistics": {
+          "email": { "min": "", "mean": "", "max": "", "cardinality": 44560 },
+          "country": { "min": "", "mean": "", "max": "", "cardinality": 64 }
+        },
+        "schema": {
+          "columns": [
+            { "name": "user_id", "type": "int", "nullable": false, "enabled": true, "typeVariants": ["int", "string"] },
+            { "name": "email", "type": "string", "nullable": false, "enabled": true, "typeVariants": ["string"] },
+            { "name": "first_name", "type": "string", "nullable": true, "enabled": true, "typeVariants": ["string"] },
+            { "name": "last_name", "type": "string", "nullable": true, "enabled": true, "typeVariants": ["string"] },
+            { "name": "country", "type": "string", "nullable": true, "enabled": true, "typeVariants": ["string"] },
+            { "name": "created_at", "type": "datetime", "nullable": false, "enabled": true, "typeVariants": ["datetime", "date", "string"] }
+          ]
+        }
+      }
+    },
+    {
+      "run_id": "seed_users_2025-12-31",
+      "date": "2025-12-31",
+      "report": {
+        "overview": { "table": "users", "rows": 45000, "columns": 6, "issues": 14 },
+        "quality": {
+          "nulls": { "first_name": 0.11, "last_name": 0.052, "country": 0.14 },
+          "duplicates": { "rows": 18 }
+        },
+        "statistics": {
+          "email": { "min": "", "mean": "", "max": "", "cardinality": 44510 },
+          "country": { "min": "", "mean": "", "max": "", "cardinality": 64 }
+        },
+        "schema": {
+          "columns": [
+            { "name": "user_id", "type": "int", "nullable": false, "enabled": true, "typeVariants": ["int", "string"] },
+            { "name": "email", "type": "string", "nullable": false, "enabled": true, "typeVariants": ["string"] },
+            { "name": "first_name", "type": "string", "nullable": true, "enabled": true, "typeVariants": ["string"] },
+            { "name": "last_name", "type": "string", "nullable": true, "enabled": true, "typeVariants": ["string"] },
+            { "name": "country", "type": "string", "nullable": true, "enabled": true, "typeVariants": ["string"] },
+            { "name": "created_at", "type": "datetime", "nullable": false, "enabled": true, "typeVariants": ["datetime", "date", "string"] }
+          ]
+        }
+      }
+    }
+  ]
+}

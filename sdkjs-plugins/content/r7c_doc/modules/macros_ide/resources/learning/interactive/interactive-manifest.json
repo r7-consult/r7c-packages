@@ -1,0 +1,277 @@
+{
+  "version": 1,
+  "course": {
+    "id": "macro-dev-zero",
+    "title": "Разработка макросов с нуля",
+    "description": "Интерактивный курс: теория, задачи, запуск макросов и автопроверка.",
+    "targetEditor": "cell"
+  },
+  "modules": [
+    {
+      "id": "module-01-basics",
+      "title": "Модуль 1: Основы JavaScript и API",
+      "description": "Введение в среду, знакомство с базовым синтаксисом JS и получение доступа к таблице.",
+      "lessons": [
+        {
+          "id": "macro-basics-01-intro",
+          "title": "Урок 1: Введение в макросы и JS",
+          "path": "modules/macros_ide/resources/learning/interactive/modules/module-01-basics/lesson-01-intro.md",
+          "draft": false,
+          "difficulty": "easy"
+        },
+        {
+          "id": "macro-basics-02-object-model",
+          "title": "Урок 2: Объектная модель и Api",
+          "path": "modules/macros_ide/resources/learning/interactive/modules/module-01-basics/lesson-02-object-model.md",
+          "draft": false,
+          "difficulty": "easy"
+        },
+        {
+          "id": "macro-basics-03-read-write",
+          "title": "Урок 3: Практика (Чтение и запись)",
+          "path": "modules/macros_ide/resources/learning/interactive/modules/module-01-basics/lesson-03-read-write.md",
+          "draft": false,
+          "difficulty": "medium"
+        },
+        {
+          "id": "macro-basics-04-math",
+          "title": "Урок 4: Практика (Математика)",
+          "path": "modules/macros_ide/resources/learning/interactive/modules/module-01-basics/lesson-04-math.md",
+          "draft": false,
+          "difficulty": "medium"
+        },
+        {
+          "id": "macro-basics-05-test",
+          "title": "Тест: Итоги 1 модуля",
+          "path": "modules/macros_ide/resources/learning/interactive/modules/module-01-basics/lesson-05-test.md",
+          "draft": false,
+          "difficulty": "hard"
+        }
+      ]
+    },
+    {
+      "id": "module-02-formatting",
+      "title": "Модуль 2: Форматирование и работа с визуалом",
+      "description": "Учимся раскрашивать ячейки, менять шрифты и наводить красоту программным путем.",
+      "lessons": [
+        {
+          "id": "macro-format-06",
+          "title": "Урок 6: Шрифты, цвета и заливка",
+          "path": "modules/macros_ide/resources/learning/interactive/modules/module-02-formatting/lesson-06-formatting.md",
+          "draft": false,
+          "difficulty": "easy"
+        },
+        {
+          "id": "macro-format-07",
+          "title": "Урок 7: Quiz (Границы ячеек)",
+          "path": "modules/macros_ide/resources/learning/interactive/modules/module-02-formatting/lesson-07-borders-quiz.md",
+          "draft": false,
+          "difficulty": "medium"
+        },
+        {
+          "id": "macro-format-08",
+          "title": "Урок 8: Условное форматирование",
+          "path": "modules/macros_ide/resources/learning/interactive/modules/module-02-formatting/lesson-08-conditional.md",
+          "draft": false,
+          "difficulty": "medium"
+        },
+        {
+          "id": "macro-format-09",
+          "title": "Урок 9: Объединение (Merge) и выравнивание",
+          "path": "modules/macros_ide/resources/learning/interactive/modules/module-02-formatting/lesson-09-merge-align.md",
+          "draft": false,
+          "difficulty": "medium"
+        },
+        {
+          "id": "macro-format-10",
+          "title": "Урок 10: Практика создания шапки",
+          "path": "modules/macros_ide/resources/learning/interactive/modules/module-02-formatting/lesson-10-header.md",
+          "draft": false,
+          "difficulty": "medium"
+        },
+        {
+          "id": "macro-format-11",
+          "title": "Тест: Итоги 2 модуля",
+          "path": "modules/macros_ide/resources/learning/interactive/modules/module-02-formatting/lesson-11-test-formatting.md",
+          "draft": false,
+          "difficulty": "hard"
+        }
+      ]
+    },
+    {
+      "id": "module-03-ranges",
+      "title": "Модуль 3: Мастерство диапазонов и миграция логики",
+      "description": "Удаление строк без сдвигов (Clear, Delete, Copy) и перенос старых VBA-макросов на современный JavaScript API.",
+      "lessons": [
+        {
+          "id": "macro-ranges-12-methods",
+          "title": "Урок 12: Теория. Очистка, Удаление, Копирование",
+          "path": "modules/macros_ide/resources/learning/interactive/modules/module-03-ranges/lesson-12-methods.md",
+          "draft": false,
+          "difficulty": "medium"
+        },
+        {
+          "id": "macro-ranges-13-quiz",
+          "title": "Урок 13: Quiz (Очистка vs Удаление)",
+          "path": "modules/macros_ide/resources/learning/interactive/modules/module-03-ranges/lesson-13-quiz-clear-delete.md",
+          "draft": false,
+          "difficulty": "medium"
+        },
+        {
+          "id": "macro-ranges-14-migration",
+          "title": "Урок 14: Теория миграции VBA -> JavaScript",
+          "path": "modules/macros_ide/resources/learning/interactive/modules/module-03-ranges/lesson-14-migration.md",
+          "draft": false,
+          "difficulty": "medium"
+        },
+        {
+          "id": "macro-ranges-15-practice-cleanse",
+          "title": "Урок 15: LeetCode (Удаление мусора)",
+          "path": "modules/macros_ide/resources/learning/interactive/modules/module-03-ranges/lesson-15-practice-cleanse.md",
+          "draft": false,
+          "difficulty": "hard"
+        },
+        {
+          "id": "macro-ranges-16-practice-duplicates",
+          "title": "Урок 16: LeetCode (Поиск дубликатов)",
+          "path": "modules/macros_ide/resources/learning/interactive/modules/module-03-ranges/lesson-16-practice-duplicates.md",
+          "draft": false,
+          "difficulty": "hard"
+        },
+        {
+          "id": "macro-ranges-17-practice-num2text",
+          "title": "Урок 17: Алгоритм (Сумма прописью)",
+          "path": "modules/macros_ide/resources/learning/interactive/modules/module-03-ranges/lesson-17-practice-num2text.md",
+          "draft": false,
+          "difficulty": "hard"
+        },
+        {
+          "id": "macro-ranges-18-test",
+          "title": "Тест: Итоги 3 модуля",
+          "path": "modules/macros_ide/resources/learning/interactive/modules/module-03-ranges/lesson-18-test-ranges.md",
+          "draft": false,
+          "difficulty": "hard"
+        }
+      ]
+    },
+    {
+      "id": "module-04-books",
+      "title": "Модуль 4: Рабочие книги и Матричные фильтры",
+      "description": "Изучаем архитектуру листов, скрытые вкладки, агрегацию данных с 50 филиалов и сверхбыстрые фильтры массивов (Big Data) в оперативной памяти.",
+      "lessons": [
+        {
+          "id": "macro-books-19-theory",
+          "title": "Урок 19: Теория. Архитектура Книги (Workbook)",
+          "path": "modules/macros_ide/resources/learning/interactive/modules/module-04-books/lesson-19-theory.md",
+          "draft": false,
+          "difficulty": "medium"
+        },
+        {
+          "id": "macro-books-20-quiz",
+          "title": "Урок 20: Quiz (Индексы и невидимые листы)",
+          "path": "modules/macros_ide/resources/learning/interactive/modules/module-04-books/lesson-20-quiz-hidden.md",
+          "draft": false,
+          "difficulty": "hard"
+        },
+        {
+          "id": "macro-books-21-practice-create",
+          "title": "Урок 21: Практика создания (Фабрика листов)",
+          "path": "modules/macros_ide/resources/learning/interactive/modules/module-04-books/lesson-21-practice-create.md",
+          "draft": false,
+          "difficulty": "hard"
+        },
+        {
+          "id": "macro-books-22-theory-filters",
+          "title": "Урок 22: Теория. Продвинутые массивы и сборка",
+          "path": "modules/macros_ide/resources/learning/interactive/modules/module-04-books/lesson-22-theory-filters.md",
+          "draft": false,
+          "difficulty": "hard"
+        },
+        {
+          "id": "macro-books-23-practice-aggregator",
+          "title": "Урок 23: LeetCode (Агрегатор 10 филиалов)",
+          "path": "modules/macros_ide/resources/learning/interactive/modules/module-04-books/lesson-23-practice-aggregator.md",
+          "draft": false,
+          "difficulty": "hard"
+        },
+        {
+          "id": "macro-books-24-practice-filter",
+          "title": "Урок 24: LeetCode (Матричный RAM Фильтр VIP)",
+          "path": "modules/macros_ide/resources/learning/interactive/modules/module-04-books/lesson-24-practice-filter.md",
+          "draft": false,
+          "difficulty": "expert"
+        },
+        {
+          "id": "macro-books-25-test",
+          "title": "Тест: Итоги 4 модуля",
+          "path": "modules/macros_ide/resources/learning/interactive/modules/module-04-books/lesson-25-test-books.md",
+          "draft": false,
+          "difficulty": "expert"
+        }
+      ]
+    },
+    {
+      "id": "module-05-templates",
+      "title": "Модуль 5: Изучение эталонных шаблонов (Best Practices)",
+      "description": "Разбор официальных шаблонов макросов. Учимся читать 'use strict', блоки 'try/catch' и использовать уникальные методы API (AddComment, ReplaceTextSmart, RecalculateAllFormulas).",
+      "lessons": [
+        {
+          "id": "macro-templates-26-theory",
+          "title": "Урок 26: Теория. Как читать встроенные шаблоны",
+          "path": "modules/macros_ide/resources/learning/interactive/modules/module-05-templates/lesson-26-theory-templates.md",
+          "draft": false,
+          "difficulty": "medium"
+        },
+        {
+          "id": "macro-templates-27-addcomment",
+          "title": "Урок 27: Шаблон «Добавление Комментариев»",
+          "path": "modules/macros_ide/resources/learning/interactive/modules/module-05-templates/lesson-27-practice-addcomment.md",
+          "draft": false,
+          "difficulty": "medium"
+        },
+        {
+          "id": "macro-templates-28-replacetext",
+          "title": "Урок 28: Шаблон «Умная Замена» (ReplaceTextSmart)",
+          "path": "modules/macros_ide/resources/learning/interactive/modules/module-05-templates/lesson-28-practice-replacetext.md",
+          "draft": false,
+          "difficulty": "hard"
+        },
+        {
+          "id": "macro-templates-29-recalculate",
+          "title": "Урок 29: Шаблон «Пересчет Формул»",
+          "path": "modules/macros_ide/resources/learning/interactive/modules/module-05-templates/lesson-29-practice-recalculate.md",
+          "draft": false,
+          "difficulty": "medium"
+        },
+        {
+          "id": "macro-templates-30-addsheet",
+          "title": "Урок 30: Шаблон «Фабрика листов» (AddSheet)",
+          "path": "modules/macros_ide/resources/learning/interactive/modules/module-05-templates/lesson-30-practice-addsheet.md",
+          "draft": false,
+          "difficulty": "expert"
+        },
+        {
+          "id": "macro-templates-31-grand-exam",
+          "title": "Тест 31: Гранд-Экзамен (API и Шаблоны)",
+          "path": "modules/macros_ide/resources/learning/interactive/modules/module-05-templates/lesson-31-final-exam.md",
+          "draft": false,
+          "difficulty": "expert"
+        }
+      ]
+    },
+    {
+      "id": "module-sandbox",
+      "title": "Редактор макросов",
+      "description": "Свободная песочница — пишите и запускайте любые макросы без заданий и проверок.",
+      "lessons": [
+        {
+          "id": "macro-sandbox-free",
+          "title": "Свободный редактор",
+          "path": "modules/macros_ide/resources/learning/interactive/modules/module-07-sandbox/sandbox-editor.md",
+          "draft": false,
+          "difficulty": "free"
+        }
+      ]
+    }
+  ]
+}

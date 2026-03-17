@@ -1,0 +1,6 @@
+{
+  "devDependencies": {
+    "archiver": "^7.0.1",
+    "javascript-obfuscator": "^5.3.0"
+  }
+}

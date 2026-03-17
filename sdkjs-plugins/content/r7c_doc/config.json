@@ -1,0 +1,63 @@
+{
+    "name": "{r7c}.mlearn",
+    "nameLocale": {
+        "ru": "{r7c}.mlearn",
+        "en": "{r7c}.mlearn"
+    },
+    "guid": "asc.{08A1B2C3-D4E5-46F7-88A9-C0A1A2B3C4D5}",
+    "version": "1.0.3",
+    "variations": [
+        {
+            "description": "{r7c}.mlearn",
+            "descriptionLocale": {
+                "ru": "{r7c}.mlearn"
+            },
+            "url": "index.html",
+            "icons": [
+                "resources/icons/main/light/icon.png",
+                "resources/icons/main/dark/icon.png"
+            ],
+            "isViewer": false,
+            "EditorsSupport": [
+                "cell",
+                "word",
+                "slide"
+            ],
+            "isVisual": true,
+            "isModal": true,
+            "isInsideMode": false,
+            "isResizable": true,
+            "size": [
+                1200,
+                600
+            ],
+            "initDataType": "text",
+            "initData": "",
+            "isUpdateOleOnResize": false,
+            "events": [
+                "onContextMenuShow",
+                "onContextMenuClick",
+                "onDocumentContentReady"
+            ],
+            "buttons": [],
+            "store": {
+                "background": {
+                    "light": "#696969",
+                    "dark": "#A9A9A9"
+                },
+                "screenshots": [
+
+                ],
+                "icons": {
+                    "light": "resources/icons/main/light/icon.png",
+                    "dark": "resources/icons/main/dark/icon.png"
+                },
+                "categories": [
+                    "work",
+                    "recommended",
+                    "devTools"
+                ]
+            }
+        }
+    ]
+}

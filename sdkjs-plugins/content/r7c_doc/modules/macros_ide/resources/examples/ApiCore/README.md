@@ -1,0 +1,37 @@
+# API Core Methods
+
+This directory contains JavaScript macros for API Core methods.
+
+## Available Macros:
+
+- [GetCategory_macroR7.js](GetCategory_macroR7.js)
+- [GetClassType_macroR7.js](GetClassType_macroR7.js)
+- [GetContentStatus_macroR7.js](GetContentStatus_macroR7.js)
+- [GetCreated_macroR7.js](GetCreated_macroR7.js)
+- [GetCreator_macroR7.js](GetCreator_macroR7.js)
+- [GetDescription_macroR7.js](GetDescription_macroR7.js)
+- [GetIdentifier_macroR7.js](GetIdentifier_macroR7.js)
+- [GetKeywords_macroR7.js](GetKeywords_macroR7.js)
+- [GetLanguage_macroR7.js](GetLanguage_macroR7.js)
+- [GetLastModifiedBy_macroR7.js](GetLastModifiedBy_macroR7.js)
+- [GetLastPrinted_macroR7.js](GetLastPrinted_macroR7.js)
+- [GetModified_macroR7.js](GetModified_macroR7.js)
+- [GetRevision_macroR7.js](GetRevision_macroR7.js)
+- [GetSubject_macroR7.js](GetSubject_macroR7.js)
+- [GetTitle_macroR7.js](GetTitle_macroR7.js)
+- [GetVersion_macroR7.js](GetVersion_macroR7.js)
+- [SetCategory_macroR7.js](SetCategory_macroR7.js)
+- [SetContentStatus_macroR7.js](SetContentStatus_macroR7.js)
+- [SetCreated_macroR7.js](SetCreated_macroR7.js)
+- [SetCreator_macroR7.js](SetCreator_macroR7.js)
+- [SetDescription_macroR7.js](SetDescription_macroR7.js)
+- [SetIdentifier_macroR7.js](SetIdentifier_macroR7.js)
+- [SetKeywords_macroR7.js](SetKeywords_macroR7.js)
+- [SetLanguage_macroR7.js](SetLanguage_macroR7.js)
+- [SetLastModifiedBy_macroR7.js](SetLastModifiedBy_macroR7.js)
+- [SetLastPrinted_macroR7.js](SetLastPrinted_macroR7.js)
+- [SetModified_macroR7.js](SetModified_macroR7.js)
+- [SetRevision_macroR7.js](SetRevision_macroR7.js)
+- [SetSubject_macroR7.js](SetSubject_macroR7.js)
+- [SetTitle_macroR7.js](SetTitle_macroR7.js)
+- [SetVersion_macroR7.js](SetVersion_macroR7.js)

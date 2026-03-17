@@ -1,0 +1,74 @@
+{
+    "name": "Data Dashboard Analyzer",
+    "nameLocale": {
+        "en": "Data Dashboard Analyzer",
+        "ru": "Анализатор панели данных"
+    },
+    "guid": "asc.{E82A3C10-B25C-4E13-8F56-2C9D8A7E5B1F}",
+    "version": "1.0.0",
+    "description": "Analyze spreadsheet data and create interactive dashboards using OnlyOffice UI SDK",
+    "descriptionLocale": {
+        "en": "Analyze spreadsheet data and create interactive dashboards using OnlyOffice UI SDK",
+        "ru": "Анализ данных электронных таблиц и создание интерактивных панелей с использованием OnlyOffice UI SDK"
+    },
+    "publisher": {
+        "name": "OnlyOffice UI SDK Team",
+        "url": "https://github.com/onlyoffice"
+    },
+    "help": "https://github.com/onlyoffice/ui-sdk/blob/main/examples/data-dashboard/README.md",
+    "minVersion": "6.0.0",
+    "maxVersion": "",
+    "baseUrl": "",
+    "variations": [
+        {
+            "description": "Analyze spreadsheet data with interactive dashboard",
+            "descriptionLocale": {
+                "en": "Analyze spreadsheet data with interactive dashboard",
+                "ru": "Анализ данных электронных таблиц с интерактивной панелью"
+            },
+            "url": "index.html",
+            "icons": [
+                "icon.png",
+                "icon@2x.png"
+            ],
+            "isViewer": false,
+            "EditorsSupport": [
+                "cell"
+            ],
+            "isVisual": true,
+            "isModal": true,
+            "isInsideMode": false,
+            "initDataType": "text",
+            "initData": "",
+            "isUpdateOleOnResize": false,
+            "buttons": [
+                {
+                    "text": "Analyze Data",
+                    "textLocale": {
+                        "en": "Analyze Data",
+                        "ru": "Анализировать данные"
+                    },
+                    "primary": true
+                },
+                {
+                    "text": "Export Report",
+                    "textLocale": {
+                        "en": "Export Report",
+                        "ru": "Экспорт отчета"
+                    },
+                    "primary": false
+                },
+                {
+                    "text": "Close",
+                    "textLocale": {
+                        "en": "Close",
+                        "ru": "Закрыть"
+                    },
+                    "primary": false
+                }
+            ],
+            "size": [1000, 700],
+            "initOnSelectionChanged": true
+        }
+    ]
+}

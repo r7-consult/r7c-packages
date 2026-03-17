@@ -1,0 +1,60 @@
+{
+  "sales": {
+    "columns": ["id", "date", "amount", "city"],
+    "rowCount": 5000,
+    "generator": {
+      "id": { "type": "int", "base": 1, "step": 1 },
+      "date": { "type": "date", "start": "2024-01-01" },
+      "amount": { "type": "nullable", "every": 12, "inner": { "type": "float", "base": 100.25, "step": 3.5, "decimals": 2 } },
+      "city": { "type": "choice", "values": ["Moscow", "SPB", "Kazan", "Novosibirsk", "Perm"] }
+    },
+    "issues": [
+      { "column": "amount", "level": "warning", "message": "Обнаружены нечисловые значения (примерно 3%)" },
+      { "column": "date", "level": "warning", "message": "Некорректный формат даты в части строк" }
+    ]
+  },
+  "users": {
+    "columns": ["user_id", "email", "age", "country", "signup_date"],
+    "rowCount": 12000,
+    "generator": {
+      "user_id": { "type": "int", "base": 1000, "step": 1 },
+      "email": { "type": "string", "prefix": "user" },
+      "age": { "type": "nullable", "every": 17, "inner": { "type": "int", "base": 18, "step": 1 } },
+      "country": { "type": "choice", "values": ["RU", "KZ", "BY", "AM", "GE", "TR"] },
+      "signup_date": { "type": "date", "start": "2023-10-01" }
+    },
+    "issues": [
+      { "column": "email", "level": "error", "message": "Некорректный email (примерно 0.5%)" },
+      { "column": "age", "level": "warning", "message": "Пропуски в возрасте (NULL)" }
+    ]
+  },
+  "orders": {
+    "columns": ["order_id", "user_id", "total", "status", "created_at"],
+    "rowCount": 25000,
+    "generator": {
+      "order_id": { "type": "int", "base": 50000, "step": 1 },
+      "user_id": { "type": "int", "base": 1000, "step": 1 },
+      "total": { "type": "float", "base": 10.0, "step": 0.75, "decimals": 2 },
+      "status": { "type": "choice", "values": ["new", "paid", "shipped", "delivered", "cancelled"] },
+      "created_at": { "type": "date", "start": "2024-02-01" }
+    },
+    "issues": [
+      { "column": "total", "level": "warning", "message": "Есть отрицательные/нулевые суммы" },
+      { "column": "status", "level": "warning", "message": "Неизвестные статусы в части строк" }
+    ]
+  },
+  "events": {
+    "columns": ["event_id", "user_id", "event_type", "ts", "payload"],
+    "rowCount": 30000,
+    "generator": {
+      "event_id": { "type": "int", "base": 900000, "step": 1 },
+      "user_id": { "type": "int", "base": 1000, "step": 1 },
+      "event_type": { "type": "choice", "values": ["click", "view", "purchase", "login", "logout"] },
+      "ts": { "type": "date", "start": "2024-03-01" },
+      "payload": { "type": "string", "prefix": "json" }
+    },
+    "issues": [
+      { "column": "payload", "level": "warning", "message": "Некорректный JSON в payload" }
+    ]
+  }
+}

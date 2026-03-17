@@ -1,0 +1,202 @@
+/**
+ * TASK 1.2.2: VSCode Activity Bar Styles
+ *
+ * Based on: Trinity Analysis (3/3 AI consensus)
+ * Theme Integration: 10 --vscode-activityBar-* tokens
+ *
+ * Layout: 48px fixed-width vertical bar, full height
+ * Icons: 24x24px, compact vertical spacing
+ * Active State: 2px blue border (left edge) + background highlight
+ * Tooltips: Right-aligned, theme-aware
+ */
+
+/* Container: 48px vertical bar, left edge, full height */
+#vscode-activity-bar {
+	position: absolute;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	width: 48px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 8px 0;
+	gap: 8px;
+	overflow-y: auto;
+	overflow-x: hidden;
+	z-index: 300 !important; /* Ensure always above overlays (e.g., console full-view) */
+	pointer-events: none !important; /* Let events pass through empty space */
+
+	/* Theme Tokens */
+	background-color: var(--vscode-activityBar-background);
+	color: var(--vscode-activityBar-foreground);
+	border-right: 1px solid var(--vscode-activityBar-border);
+}
+
+/* Bottom actions container (e.g., Settings) */
+.activity-bar-bottom {
+	margin-top: auto;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 8px;
+	padding-bottom: 8px;
+}
+
+/* Icon Button: 24x24px icon, ~48x42px clickable area */
+.activity-bar-icon {
+	position: relative;
+	width: 48px;
+	height: 42px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0;
+	border: none;
+	background: transparent;
+	color: var(--vscode-activityBar-inactiveForeground);
+	cursor: pointer;
+	transition: color 0.1s ease, background-color 0.1s ease;
+	outline: none;
+	pointer-events: auto; /* Buttons should capture events */
+}
+
+/* Icon SVG: 24x24px */
+.activity-bar-icon svg {
+	width: 24px;
+	height: 24px;
+	fill: currentColor;
+}
+
+.activity-bar-icon.loading {
+	opacity: 0.6;
+	cursor: default;
+	pointer-events: none;
+}
+
+.activity-bar-icon.loading::after {
+	content: '';
+	position: absolute;
+	width: 12px;
+	height: 12px;
+	border: 2px solid currentColor;
+	border-top-color: transparent;
+	border-radius: 50%;
+	top: 50%;
+	left: 50%;
+	margin-top: -6px;
+	margin-left: -6px;
+	animation: activitybar-spin 1s linear infinite;
+}
+
+@keyframes activitybar-spin {
+	from { transform: rotate(0deg); }
+	to { transform: rotate(360deg); }
+}
+
+/* Hover State */
+.activity-bar-icon:hover {
+	color: var(--vscode-activityBar-foreground);
+}
+
+/* Active State: Blue border (left edge) + background */
+.activity-bar-icon.active {
+	color: var(--vscode-activityBar-foreground);
+	border-left: 2px solid var(--vscode-activityBar-activeBorder);
+}
+
+.activity-bar-icon.active::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: var(--vscode-activityBar-activeBackground);
+	opacity: 0;
+	pointer-events: none;
+}
+
+/* Focus State: Accessible outline */
+.activity-bar-icon:focus-visible {
+	outline: 2px solid var(--vscode-activityBar-activeFocusBorder);
+	outline-offset: -2px;
+}
+
+/* Drop Target State (for drag-and-drop - Phase 2) */
+.activity-bar-icon.drop-target {
+	background-color: var(--vscode-activityBar-dropBackground);
+}
+
+/* Badge (for notifications - Phase 2) */
+.activity-bar-icon .badge {
+	position: absolute;
+	top: 8px;
+	right: 8px;
+	min-width: 16px;
+	height: 16px;
+	padding: 0 4px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 10px;
+	font-weight: 600;
+	line-height: 16px;
+	border-radius: 8px;
+	background-color: var(--vscode-activityBarBadge-background);
+	color: var(--vscode-activityBarBadge-foreground);
+	pointer-events: none;
+}
+
+/* Tooltip: Positioned dynamically by JS */
+.activity-bar-tooltip {
+	position: absolute;
+	padding: 4px 8px;
+	font-size: 12px;
+	line-height: 16px;
+	white-space: nowrap;
+	border-radius: 3px;
+	pointer-events: none;
+	z-index: 50;
+
+	/* Theme Tokens (reuse Side Bar for tooltip) */
+	background-color: var(--vscode-sideBar-background);
+	color: var(--vscode-sideBar-foreground);
+	border: 1px solid var(--vscode-widget-border);
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Accessibility: Reduce Motion */
+@media (prefers-reduced-motion: reduce) {
+	.activity-bar-icon,
+	.activity-bar-tooltip {
+		transition: none;
+	}
+}
+
+/* High Contrast: Enhanced Borders */
+:root[data-vscode-theme="hc-black"] .activity-bar-icon {
+	border: 1px solid var(--vscode-widget-border);
+}
+
+:root[data-vscode-theme="hc-black"] .activity-bar-icon.active {
+	border-left-width: 3px;
+}
+
+/* Scrollbar Styling (optional, matches VSCode) */
+#vscode-activity-bar::-webkit-scrollbar {
+	width: 10px;
+}
+
+#vscode-activity-bar::-webkit-scrollbar-track {
+	background: var(--vscode-activityBar-background);
+}
+
+#vscode-activity-bar::-webkit-scrollbar-thumb {
+	background: var(--vscode-scrollbarSlider-background);
+	border-radius: 5px;
+}
+
+#vscode-activity-bar::-webkit-scrollbar-thumb:hover {
+	background: var(--vscode-scrollbarSlider-hoverBackground);
+}

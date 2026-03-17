@@ -1,0 +1,348 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SmartDocumentation</title>
+
+  <script type="text/javascript" src="vendor/r7/plugins.js"></script>
+  <script type="text/javascript" src="vendor/r7/plugins-ui.js"></script>
+
+  <!-- Fonts -->
+  <link rel="stylesheet" href="resources/css/fonts.css">
+
+  <link rel="stylesheet" href="modules/macros_ide/resources/css/tokens/design-tokens.css?v=3.1">
+  <link rel="stylesheet" href="modules/macros_ide/resources/css/themes/theme-light.css?v=3.1">
+  <link rel="stylesheet" href="modules/macros_ide/resources/css/themes/theme-dark.css?v=3.1">
+  <link rel="stylesheet" href="modules/macros_ide/resources/css/themes/theme-hc-black.css?v=3.1">
+  <link rel="stylesheet" href="modules/macros_ide/resources/css/themes/theme-hc-light.css?v=3.1">
+  <link rel="stylesheet" href="modules/macros_ide/resources/css/smart-docs.css?v=1.0">
+</head>
+
+<body data-testid="smartdocs-body">
+  <div class="smartdocs-app ai-hidden" id="smartdocs-app" data-testid="smartdocs-app">
+    <header class="smartdocs-header" data-testid="smartdocs-header">
+      <div class="smartdocs-header-meta" id="smartdocs-header-meta" data-testid="smartdocs-header-actions">
+        <button class="smartdocs-window-btn" id="window-minimize-btn" onclick="window.minimizeSmartDocsWindow()"
+          type="button" title="Свернуть окно" aria-label="Свернуть окно" data-testid="smartdocs-window-minimize">
+          <span>−</span>
+        </button>
+        <button class="smartdocs-settings-toggle icon-only" id="settings-toggle-btn" type="button"
+          aria-label="Настройки" data-testid="smartdocs-settings-open"></button>
+        <button class="smartdocs-ai-toggle" id="ai-toggle-btn" type="button"
+          data-testid="smartdocs-ai-toggle">AI-помощник</button>
+      </div>
+    </header>
+
+    <div class="smartdocs-body" data-testid="smartdocs-layout">
+      <div class="smartdocs-nav-backdrop" id="smartdocs-nav-backdrop" hidden data-testid="smartdocs-nav-backdrop"></div>
+      <aside class="smartdocs-nav" aria-label="Навигация обучения">
+        <div class="smartdocs-panel-title" id="smartdocs-nav-title" data-testid="smartdocs-nav-title">Разделы</div>
+        <div class="smartdocs-nav-back" id="smartdocs-nav-back" hidden data-testid="smartdocs-nav-back"></div>
+        <div class="smartdocs-nav-list" id="smartdocs-nav-list" data-testid="smartdocs-nav-list">
+          <div class="smartdocs-nav-loading">Загрузка разделов...</div>
+        </div>
+      </aside>
+
+      <main class="smartdocs-content" aria-label="Учебный контент" data-testid="smartdocs-content">
+        <div class="smartdocs-content-header" data-testid="smartdocs-content-header">
+          <div class="smartdocs-content-header-top" data-testid="smartdocs-content-header-top">
+            <button class="smartdocs-nav-toggle" id="nav-toggle-btn" type="button" aria-label="Навигация"
+              title="Навигация" data-testid="smartdocs-nav-toggle"></button>
+            <h1 class="smartdocs-content-title" id="smartdocs-topic-title" data-testid="smartdocs-topic-title">Выберите
+              раздел</h1>
+          </div>
+          <p class="smartdocs-content-subtitle" id="smartdocs-topic-subtitle" data-testid="smartdocs-topic-subtitle">
+            Слева выберите раздел, чтобы начать.</p>
+          <p class="smartdocs-content-description" id="smartdocs-topic-description"
+            data-testid="smartdocs-topic-description"></p>
+        </div>
+        <div class="smartdocs-content-main" id="smartdocs-content-main" data-testid="smartdocs-content-main">
+          <article class="smartdocs-content-body markdown-body" id="smartdocs-content-body"
+            data-testid="smartdocs-lesson-content"></article>
+
+          <section class="smartdocs-interactive-panel" id="smartdocs-interactive-panel" aria-hidden="true" hidden
+            data-testid="smartdocs-interactive-panel">
+            <div class="interactive-head">
+              <div class="interactive-head-copy">
+                <h2 class="interactive-title" id="interactive-lesson-title">Интерактивный урок</h2>
+                <p class="interactive-goal" id="interactive-task-goal">Выполните задание урока.</p>
+              </div>
+              <div class="interactive-actions">
+                <button class="interactive-action" id="interactive-run-btn" type="button"
+                  data-testid="interactive-run-btn">Запуск</button>
+                <button class="interactive-action primary" id="interactive-check-btn" type="button"
+                  data-testid="interactive-check-btn">Проверить</button>
+                <button class="interactive-action" id="interactive-reset-btn" type="button"
+                  data-testid="interactive-reset-btn">Сброс</button>
+              </div>
+            </div>
+
+            <div class="interactive-workbench">
+              <div class="interactive-workbench-main">
+
+                <!-- STATE 1: QUIZ -->
+                <div class="interactive-quiz-container" id="interactive-quiz-container" style="display: none;">
+                  <div class="interactive-quiz-question" id="interactive-quiz-question"></div>
+                  <div class="interactive-quiz-options" id="interactive-quiz-options"></div>
+                  <div class="interactive-quiz-feedback" id="interactive-quiz-feedback" style="display: none;"></div>
+                  <div class="interactive-quiz-actions">
+                    <button class="interactive-action primary" id="interactive-quiz-check-btn" type="button">Проверить
+                      ответ</button>
+                    <button class="interactive-action primary" id="interactive-quiz-continue-btn" type="button"
+                      style="display: none;">Перейти к практике</button>
+                  </div>
+                </div>
+
+                <!-- STATE: TEST (FULL MODULE) -->
+                <div class="interactive-test-container" id="interactive-test-container" style="display: none;">
+
+                  <!-- Экран 1: Интро -->
+                  <div class="test-screen-intro" id="test-screen-intro">
+                    <h3 class="test-title" id="test-intro-title">Тестирование</h3>
+                    <div class="test-meta">
+                      <span id="test-intro-time">Время: — мин</span>
+                      <span id="test-intro-attempts">Попыток: —</span>
+                      <span id="test-intro-passing">Проходной балл: —%</span>
+                    </div>
+                    <button class="interactive-action primary test-start-btn" id="test-start-btn" type="button">Начать
+                      тест</button>
+                  </div>
+
+                  <!-- Экран 2: В процессе -->
+                  <div class="test-screen-running" id="test-screen-running" style="display: none;">
+                    <div class="test-header">
+                      <div class="test-progress" id="test-progress">Вопрос 1 из 10</div>
+                      <div class="test-timer" id="test-timer">00:00</div>
+                    </div>
+                    <div class="test-question-box">
+                      <div class="test-question-text" id="test-question-text"></div>
+                      <div class="test-options" id="test-options"></div>
+                    </div>
+                    <div class="test-actions">
+                      <button class="interactive-action primary" id="test-next-btn" type="button"
+                        disabled>Далее</button>
+                    </div>
+                  </div>
+
+                  <!-- Экран 3: Результаты -->
+                  <div class="test-screen-result" id="test-screen-result" style="display: none;">
+                    <h3 id="test-result-status">Результаты</h3>
+                    <div class="test-result-score" id="test-result-score">0% (0 / 0)</div>
+                    <div class="test-result-recommendations" id="test-result-recommendations" style="display: none;">
+                      <h4>Рекомендуем повторить:</h4>
+                      <ul id="test-recommendations-list"></ul>
+                    </div>
+                    <div class="test-result-actions">
+                      <button class="interactive-action" id="test-retry-btn" type="button"
+                        style="display: none;">Перепройти</button>
+                      <button class="interactive-action primary" id="test-finish-btn" type="button">Перейти к
+                        практике</button>
+                    </div>
+                  </div>
+
+                </div>
+
+                <!-- STATE 2: PRACTICE -->
+                <div class="interactive-practice-container" id="interactive-practice-container">
+                  <div class="interactive-editor-title">Редактор кода</div>
+                  <div class="interactive-editor-shell">
+                    <div class="interactive-editor" id="interactive-editor" data-testid="interactive-editor"></div>
+                  </div>
+
+                  <div class="interactive-status" id="interactive-run-status" aria-live="polite"></div>
+
+                  <div class="interactive-checks">
+                    <div class="interactive-checks-title">Проверки</div>
+                    <ul class="interactive-checks-list" id="interactive-checks-list"></ul>
+                    <div class="interactive-check-results" id="interactive-check-results"></div>
+                  </div>
+                </div>
+              </div>
+
+              <aside class="interactive-workbench-side">
+                <div class="interactive-meta">
+                  <div class="interactive-meta-block">
+                    <div class="interactive-meta-title">Шаги</div>
+                    <ul class="interactive-list" id="interactive-task-steps"></ul>
+                  </div>
+                  <div class="interactive-meta-block">
+                    <div class="interactive-meta-title">Критерии</div>
+                    <ul class="interactive-list" id="interactive-acceptance-list"></ul>
+                  </div>
+                  <div class="interactive-meta-block">
+                    <div class="interactive-meta-title">Подсказки</div>
+                    <ul class="interactive-list" id="interactive-hints-list"></ul>
+                  </div>
+                </div>
+              </aside>
+            </div>
+          </section>
+        </div>
+
+        <section class="smartdocs-settings" id="smartdocs-settings" aria-label="Настройки" aria-hidden="true" hidden
+          data-testid="smartdocs-settings">
+          <div class="smartdocs-settings-panel" data-testid="smartdocs-settings-panel">
+            <button class="smartdocs-settings-close" id="settings-close-btn" type="button"
+              aria-label="Закрыть настройки" data-testid="smartdocs-settings-close"></button>
+            <h2 class="smartdocs-settings-title">Настройки</h2>
+            <p class="smartdocs-settings-subtitle">Управляйте внешним видом и сохраненными параметрами.</p>
+
+            <div class="smartdocs-settings-group">
+              <div class="smartdocs-settings-label">Тема</div>
+              <div class="smartdocs-settings-group-body">
+                <div class="smartdocs-settings-options">
+                  <label class="smartdocs-settings-option">
+                    <input type="radio" name="smartdocs-theme" value="light" data-testid="smartdocs-theme-light">
+                    <span>Светлая</span>
+                  </label>
+                  <label class="smartdocs-settings-option">
+                    <input type="radio" name="smartdocs-theme" value="dark" data-testid="smartdocs-theme-dark">
+                    <span>Темная</span>
+                  </label>
+                </div>
+                <div class="smartdocs-settings-hint">Выбор сохраняется и применяется сразу.</div>
+              </div>
+            </div>
+
+            <div class="smartdocs-settings-group">
+              <div class="smartdocs-settings-label">AI</div>
+              <div class="smartdocs-settings-group-body">
+                <div class="smartdocs-settings-grid">
+                  <label class="smartdocs-settings-field">
+                    <span>Провайдер</span>
+                    <select id="ai-provider" class="smartdocs-settings-input" data-testid="smartdocs-ai-provider">
+                      <option value="gigachat">GigaChat</option>
+                      <option value="yandexgpt">YandexGPT</option>
+                      <option value="openrouter">OpenRouter</option>
+                    </select>
+                  </label>
+                  <label class="smartdocs-settings-field">
+                    <span>Модель</span>
+                    <input id="ai-model" class="smartdocs-settings-input" type="text" placeholder="Введите модель"
+                      data-testid="smartdocs-ai-model">
+                  </label>
+                  <label class="smartdocs-settings-field">
+                    <span>Endpoint</span>
+                    <input id="ai-endpoint" class="smartdocs-settings-input" type="text" placeholder="https://.../v1"
+                      data-testid="smartdocs-ai-endpoint">
+                  </label>
+                  <label class="smartdocs-settings-field">
+                    <span>API-ключ</span>
+                    <input id="ai-api-key" class="smartdocs-settings-input" type="password"
+                      placeholder="Введите API-ключ" data-testid="smartdocs-ai-api-key">
+                  </label>
+                </div>
+                <div class="smartdocs-settings-hint">Ключ хранится локально и отправляется только на выбранный endpoint.
+                </div>
+              </div>
+            </div>
+            <div class="smartdocs-settings-group">
+              <div class="smartdocs-settings-label">Токены (последний запрос)</div>
+              <div class="smartdocs-settings-group-body">
+                <div class="smartdocs-settings-usage">
+                  <div class="smartdocs-settings-usage-item">
+                    <span>Вход</span>
+                    <strong id="ai-usage-input">—</strong>
+                  </div>
+                  <div class="smartdocs-settings-usage-item">
+                    <span>Выход</span>
+                    <strong id="ai-usage-output">—</strong>
+                  </div>
+                  <div class="smartdocs-settings-usage-item">
+                    <span>Всего</span>
+                    <strong id="ai-usage-total">—</strong>
+                  </div>
+                </div>
+                <div class="smartdocs-settings-hint">Отображается статистика последнего ответа AI.</div>
+              </div>
+            </div>
+
+            <div class="smartdocs-settings-group">
+              <div class="smartdocs-settings-label">Размер окна</div>
+              <div class="smartdocs-settings-group-body">
+                <div class="smartdocs-settings-size-grid">
+                  <button class="smartdocs-size-btn" type="button" data-size="s" data-testid="smartdocs-window-size-s">S
+                    800×600</button>
+                  <button class="smartdocs-size-btn" type="button" data-size="m" data-testid="smartdocs-window-size-m">M
+                    980×680</button>
+                  <button class="smartdocs-size-btn" type="button" data-size="l" data-testid="smartdocs-window-size-l">L
+                    1240×820</button>
+                  <button class="smartdocs-size-btn" type="button" data-size="max"
+                    data-testid="smartdocs-window-size-max">MAX 1600×900</button>
+                </div>
+                <div class="smartdocs-settings-hint">Применяется для модального окна и сохраняется локально.</div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <div class="smartdocs-divider" id="smartdocs-divider" aria-hidden="true"></div>
+
+      <aside class="smartdocs-assistant" aria-label="AI-помощник" aria-hidden="true" data-testid="smartdocs-assistant">
+        <div class="assistant-header">
+          <div>
+            <div class="assistant-title">AI-помощник</div>
+            <div class="assistant-subtitle">Твой личный ментор для обучения</div>
+          </div>
+          <div class="assistant-actions">
+            <button class="assistant-action primary" id="chat-new" type="button" data-testid="smartdocs-chat-new">Новый
+              чат</button>
+            <button class="assistant-action danger" id="chat-clear" type="button"
+              data-testid="smartdocs-chat-clear">Очистить чат</button>
+          </div>
+        </div>
+
+        <div class="assistant-chatbar">
+          <label class="assistant-label" for="chat-select">Чаты</label>
+          <select id="chat-select" class="assistant-select" data-testid="smartdocs-chat-select"></select>
+        </div>
+
+        <div class="assistant-messages" id="chat-messages" aria-live="polite" data-testid="smartdocs-chat-messages">
+        </div>
+
+        <div class="assistant-composer">
+          <textarea id="chat-input" class="assistant-textarea" rows="1" placeholder="Спросите по теме..."
+            data-testid="smartdocs-chat-input"></textarea>
+          <button id="chat-send" class="assistant-send" type="button" aria-label="Отправить"
+            data-testid="smartdocs-chat-send">
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false">
+              <path fill="currentColor" d="M2 21l21-9L2 3v7l15 2-15 2v7z"></path>
+            </svg>
+          </button>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <div id="slider-flyout" class="slider-fly-button" role="button" aria-label="Open Slider Data portal" tabindex="0">
+    <img id="slider-flyout-logo" alt="Slider Data" />
+  </div>
+
+
+  <script src="modules/macros_ide/scripts/ui/r7-check-api.js"></script>
+  <script src="modules/macros_ide/scripts/smart-docs/ui/slider-flyout.js"></script>
+
+  <script src="modules/macros_ide/scripts/smart-docs/ui/nav-panel.js"></script>
+  <script src="modules/macros_ide/scripts/smart-docs/ui/content-panel.js"></script>
+  <script src="modules/macros_ide/scripts/smart-docs/ui/assistant-panel.js"></script>
+  <script src="modules/macros_ide/scripts/smart-docs/ui/interactive-panel.js"></script>
+  <script src="modules/macros_ide/scripts/smart-docs/ui/settings-panel.js"></script>
+  <script src="modules/macros_ide/scripts/smart-docs/ui/select.js"></script>
+  <script src="modules/macros_ide/scripts/smart-docs/interactive/frontmatter-parser.js"></script>
+  <script src="modules/macros_ide/scripts/smart-docs/interactive/lesson-schema.js"></script>
+  <script src="modules/macros_ide/scripts/smart-docs/interactive/monaco-lab.js"></script>
+  <script src="modules/macros_ide/scripts/smart-docs/interactive/examples-library.js"></script>
+  <script src="modules/macros_ide/scripts/smart-docs/interactive/check-engine.js"></script>
+  <script src="modules/macros_ide/scripts/smart-docs/ai/ai-client.js"></script>
+  <script src="modules/macros_ide/scripts/smart-docs/r7/adapter.js"></script>
+  <script src="modules/macros_ide/scripts/smart-docs/r7/command-runner.js"></script>
+  <script src="modules/macros_ide/scripts/smart-docs-app.js"></script>
+</body>
+
+</html>

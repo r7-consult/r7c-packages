@@ -1,0 +1,1029 @@
+/**
+ * ═══════════════════════════════════════════════════════════════════════════
+ * 🎨 SLIDER QUERY - MAIN STYLESHEET
+ * ═══════════════════════════════════════════════════════════════════════════
+ * 
+ * @fileOverview    Main stylesheet for Slider Query plugin
+ * @version         1.0.0
+ * @since           2025-10-08
+ * 
+ * @description
+ * Unified stylesheet following OnlyOffice/R7 coding standards
+ * - Theme support (light/dark)
+ * - Responsive design
+ * - Component-based architecture
+ * - CSS custom properties for easy theming
+ * 
+ * @standards
+ * - CODING_STANDARD.md: UI Requirements
+ * - 14_flexible_windows_guide.md: Flexible Windows (OBLIGATORY)
+ * - 15_modal_close_button_guide.md: Modal Close Buttons (OBLIGATORY)
+ * 
+ * ═══════════════════════════════════════════════════════════════════════════
+ */
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   1. CSS CUSTOM PROPERTIES (THEME VARIABLES)
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+:root {
+    /* Light Theme Colors (from instructions\styles.md) */
+    --color-bg-primary: #ffffff;          /* Цвет фона */
+    --color-bg-header: #f1f1f1;           /* Цвет шапок окна */
+    --color-bg-button: #e1e1e1;           /* Цвет кнопок */
+    --color-text-primary: #000000;        /* Цвет текста */
+    --color-text-button: #ffffff;         /* Акцентный текст в кнопках */
+    --color-border: #e1e1e1;              /* Обводка основных окон и колонок */
+    --color-border-light: #f1f1f1;        /* Обводка внутренних контейнеров */
+    --color-accent-primary: #00a4f6;      /* Акцентный цвет (фокус, выделение) */
+    --color-accent-secondary: #fdb700;    /* Акцентный цвет (альтернативный) */
+    --color-cancel-close: #3a3a3a;        /* Кнопки "Отмена" и "Закрыть" */
+    
+    /* Dark Theme Colors (from instructions\styles.md) */
+    --color-bg-primary-dark: #404040;     /* Цвет фона */
+    --color-bg-header-dark: #2a2a2a;      /* Цвет шапок окна */
+    --color-bg-button-dark: #ffffff;      /* Цвет кнопок */
+    --color-text-primary-dark: #000000;   /* Цвет текста */
+    --color-text-button-dark: #ffffff;    /* Акцентный текст в кнопках */
+    --color-border-dark: #e1e1e1;         /* Обводка основных окон и колонок */
+    --color-border-light-dark: #f1f1f1;   /* Обводка внутренних контейнеров */
+    --color-accent-primary-dark: #0030b2; /* Акцентный цвет (фокус, выделение) */
+    --color-accent-secondary-dark: #ec4a00; /* Акцентный цвет (альтернативный) */
+    --color-cancel-close-dark: #2a2a2a;   /* Кнопки "Отмена" и "Закрыть" */
+    
+    /* Spacing */
+    --spacing-xs: 4px;
+    --spacing-sm: 8px;
+    --spacing-md: 16px;
+    --spacing-lg: 24px;
+    --spacing-xl: 32px;
+    
+    /* Typography */
+    --font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    --font-size-sm: 11px;
+    --font-size-base: 12px;
+    --font-size-md: 13px;
+    --font-size-lg: 14px;
+    --font-size-xl: 16px;
+    --font-size-xxl: 18px;
+    
+    /* Transitions */
+    --transition-fast: 0.15s ease;
+    --transition-normal: 0.3s ease;
+    --transition-slow: 0.5s ease;
+    
+    /* Border Radius (from instructions\styles.md: 5px для всех элементов) */
+    --radius-default: 5px;
+}
+
+/* Dark Theme Override */
+body.theme-type-dark {
+    --color-bg-primary: var(--color-bg-primary-dark);
+    --color-bg-header: var(--color-bg-header-dark);
+    --color-bg-button: var(--color-bg-button-dark);
+    --color-text-primary: var(--color-text-primary-dark);
+    --color-text-button: var(--color-text-button-dark);
+    --color-border: var(--color-border-dark);
+    --color-border-light: var(--color-border-light-dark);
+    --color-accent-primary: var(--color-accent-primary-dark);
+    --color-accent-secondary: var(--color-accent-secondary-dark);
+    --color-cancel-close: var(--color-cancel-close-dark);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   2. RESET & BASE STYLES
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Base body styles */
+body {
+    font-family: var(--font-family);
+    font-size: var(--font-size-base);
+    color: var(--color-text-primary);
+    background-color: var(--color-bg-primary);
+    line-height: 1.4;
+}
+
+/* OBLIGATORY: Body must fill viewport (14_flexible_windows_guide.md) */
+body.app-root-body {
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: 0;
+    padding: 32px;
+}
+
+/* Remove default styling from form elements */
+input,
+select,
+textarea,
+button,
+.form-control {
+    border: none !important;
+    box-shadow: none !important;
+    outline: none !important;
+    background-image: none !important;
+    font-family: inherit;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   3. LAYOUT COMPONENTS
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Main Container */
+.app-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: var(--spacing-lg);
+}
+
+/* Content Area */
+.content-area {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+/* Header */
+.page-header {
+    margin-bottom: var(--spacing-lg);
+    padding-bottom: var(--spacing-md);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.page-title {
+    font-size: var(--font-size-xxl);
+    font-weight: bold;
+    color: var(--color-text-primary);
+    margin-bottom: var(--spacing-sm);
+}
+
+.page-description {
+    font-size: var(--font-size-base);
+    color: var(--color-text-primary);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   4. BUTTON STYLES (from instructions\styles.md)
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.btn {
+    display: inline-block;
+    padding: 10px 16px;
+    font-size: var(--font-size-base);
+    font-weight: 500;
+    text-align: center;
+    text-decoration: none;
+    border: none;
+    border-radius: var(--radius-default);
+    cursor: pointer;
+    transition: background-color var(--transition-fast);
+    background-color: var(--color-bg-button);
+    color: var(--color-text-primary);
+    user-select: none;
+    /* Убираем объем, тени (from instructions\styles.md) */
+    box-shadow: none;
+    text-shadow: none;
+}
+
+.btn:hover {
+    opacity: 0.9;
+}
+
+.btn:active {
+    opacity: 0.8;
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+/* Button Variants */
+.btn-primary {
+    background-color: var(--color-accent-primary);
+    color: var(--color-text-button);
+}
+
+.btn-primary:hover {
+    opacity: 0.9;
+}
+
+.btn-success {
+    background-color: var(--color-accent-secondary);
+    color: var(--color-text-button);
+}
+
+.btn-success:hover {
+    opacity: 0.9;
+}
+
+.btn-warning {
+    background-color: var(--color-accent-secondary);
+    color: var(--color-text-button);
+}
+
+.btn-warning:hover {
+    opacity: 0.9;
+}
+
+.btn-danger {
+    background-color: var(--color-accent-primary);
+    color: var(--color-text-button);
+}
+
+.btn-danger:hover {
+    opacity: 0.9;
+}
+
+.btn-secondary {
+    background-color: var(--color-bg-button);
+    color: var(--color-text-primary);
+}
+
+.btn-secondary:hover {
+    opacity: 0.9;
+}
+
+/* Кнопки "Отмена" и "Закрыть" (from instructions\styles.md) */
+.btn-cancel,
+.btn-close {
+    background-color: var(--color-cancel-close);
+    color: var(--color-text-button);
+}
+
+.btn-cancel:hover,
+.btn-close:hover {
+    opacity: 0.9;
+}
+
+/* Button Sizes */
+.btn-sm {
+    padding: 6px 12px;
+    font-size: var(--font-size-sm);
+}
+
+.btn-lg {
+    padding: 12px 20px;
+    font-size: var(--font-size-lg);
+}
+
+/* Full Width Button */
+.btn-block {
+    display: block;
+    width: 100%;
+}
+
+/* Button Group */
+.btn-group {
+    display: flex;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   5. INDEX PAGE - MODE SELECTION (from old/resources/style.css)
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.mode-selection {
+    max-width: 560px;
+    margin: 0 auto;
+    padding: 28px 12px 40px;
+}
+
+.mode-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+/* Main menu button styles */
+.btn-menu {
+    background-color: var(--color-bg-button);
+    color: var(--color-text-primary);
+    border: 1px solid var(--color-border);
+    padding: 8px 16px;
+    border-radius: var(--radius-default);
+    cursor: pointer;
+    font-weight: 500;
+    font-size: var(--font-size-base);
+    transition: background-color var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.btn-menu:hover,
+.btn-menu:focus {
+    background-color: var(--color-accent-primary);
+    color: var(--color-text-button);
+    border-color: var(--color-accent-primary);
+}
+
+.btn-menu:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Button line styling for multi-line buttons */
+.btn-line {
+    display: block;
+    width: 100%;
+    text-align: center;
+}
+
+/* Bold first line for main mode buttons */
+#sql-mode .btn-line:first-child,
+#olap-mode .btn-line:first-child,
+#xlsx-mode .btn-line:first-child,
+#file-mode .btn-line:first-child {
+    font-weight: 700;
+}
+
+/* Secondary line (descriptor text) */
+.btn-menu .btn-line + .btn-line {
+    font-size: var(--font-size-base);
+    font-weight: 500;
+    opacity: 0.6;
+}
+
+/* High contrast for hovered secondary line */
+.btn-menu:hover .btn-line + .btn-line,
+.btn-menu:focus .btn-line + .btn-line {
+    opacity: 1;
+    color: var(--color-text-button);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   6. XLSX SLIDING MENU (from old/resources/style.css)
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.xlsx-container {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    border-radius: var(--radius-default);
+    overflow: hidden;
+    transition: max-height 0.4s ease, background-color 0.3s ease, padding 0.3s ease;
+    background: transparent;
+    border: none;
+    padding: 0;
+}
+
+.xlsx-container.expanded {
+    background: transparent; 
+    border: 1px solid var(--color-border) !important; 
+    padding: 0;
+    border-radius: var(--radius-default);
+}
+
+.xlsx-container.expanded + .btn-menu {
+    margin-top: -80px !important;
+}
+
+.xlsx-main-btn {
+    position: relative;
+    width: 100%;
+    margin: 0;
+    padding-left: 40px !important; /* Отступ слева для стрелочки */
+    padding-right: 16px !important;
+}
+
+.xlsx-container.expanded .xlsx-main-btn {
+    background: var(--color-accent-primary) !important;
+    color: var(--color-text-button) !important;
+    border: none !important;
+    border-radius: var(--radius-default) var(--radius-default) 0 0 !important;
+    border-bottom: 1px solid var(--color-border);
+    margin-bottom: 8px;
+}
+
+/* Отключаем все hover/focus эффекты для раскрытой кнопки */
+.xlsx-container.expanded .xlsx-main-btn:hover,
+.xlsx-container.expanded .xlsx-main-btn:focus,
+.xlsx-container.expanded .xlsx-main-btn:active {
+    background: var(--color-accent-primary) !important;
+    color: var(--color-text-button) !important;
+    border: none !important;
+    border-bottom: 1px solid var(--color-border) !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+/* Отключаем изменение обводки контейнера при hover/focus */
+.xlsx-container.expanded:hover,
+.xlsx-container.expanded:focus,
+.xlsx-container.expanded:focus-within,
+.xlsx-container.expanded .xlsx-main-btn:hover,
+.xlsx-container.expanded .xlsx-main-btn:focus {
+    border-color: var(--color-border) !important;
+}
+
+/* Специфичное правило для контейнера - всегда #e1e1e1 */
+.xlsx-container.expanded,
+.xlsx-container.expanded * {
+    border-color: var(--color-border) !important;
+}
+
+/* Исключение для border-bottom главной кнопки */
+.xlsx-container.expanded .xlsx-main-btn {
+    border-bottom-color: var(--color-border) !important;
+}
+
+.hover-indicator {
+    position: absolute;
+    left: 15px; /* Слева вместо справа */
+    top: 50%;
+    transform: translateY(-50%) rotate(0deg); /* Стрелка вправо по умолчанию (0°) */
+    font-size: 14px;
+    opacity: 0.6;
+    transition: all 0.1s ease;
+}
+
+.xlsx-container.expanded .hover-indicator {
+    transform: translateY(-50%) rotate(90deg); /* Поворот вниз (90°) при раскрытии */
+    opacity: 1;
+    color: var(--color-text-button) !important;
+}
+
+.xlsx-container:not(.expanded) .xlsx-main-btn:hover {
+    background: var(--color-accent-primary) !important;
+    color: var(--color-text-button) !important;
+}
+
+.xlsx-container:not(.expanded) .xlsx-main-btn:hover .btn-line {
+    color: var(--color-text-button) !important;
+}
+
+.xlsx-container:not(.expanded) .xlsx-main-btn:hover .hover-indicator {
+    opacity: 1;
+    color: var(--color-text-button) !important;
+}
+
+.xlsx-container.expanded .xlsx-main-btn .btn-line {
+    color: var(--color-text-button) !important;
+}
+
+.xlsx-sub-buttons {
+    position: relative;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 0 12px 12px 12px;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    display: none;
+    pointer-events: none;
+}
+
+.xlsx-container.expanded .xlsx-sub-buttons {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.sub-button {
+    width: 100%;
+    background: var(--color-bg-button) !important;
+    color: var(--color-text-primary) !important;
+    border: none !important;
+    border-radius: var(--radius-default) !important;
+    padding: 8px 16px !important;
+    text-align: center;
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    line-height: 1.15;
+    gap: 1px;
+    font-size: var(--font-size-base);
+    font-weight: 500;
+    cursor: pointer;
+    margin-bottom: 8px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    box-shadow: none;
+}
+
+.sub-button:last-child {
+    margin-bottom: 0;
+}
+
+.sub-button:hover,
+.sub-button:focus {
+    background: var(--color-accent-primary) !important;
+    color: var(--color-text-button) !important;
+}
+
+.sub-button .btn-line {
+    display: block;
+    width: 100%;
+    text-align: center;
+}
+
+/* Secondary line in sub-buttons (semi-transparent) */
+.sub-button .btn-line + .btn-line {
+    font-size: var(--font-size-base);
+    font-weight: 500;
+    opacity: 0.6;
+}
+
+/* High contrast for hovered secondary line in sub-buttons */
+.sub-button:hover .btn-line + .btn-line,
+.sub-button:focus .btn-line + .btn-line {
+    opacity: 1;
+    color: var(--color-text-button);
+}
+
+.sub-button:active {
+    opacity: 0.8;
+}
+
+/* Dark theme override for sub-buttons */
+body.theme-type-dark .sub-button {
+    background: var(--color-bg-button) !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+    body.app-root-body {
+        padding: 20px 18px 40px;
+    }
+    
+    .mode-selection {
+        padding: 24px 24px 34px;
+    }
+    
+    .btn-menu {
+        padding: 12px 14px !important;
+    }
+    
+    .xlsx-container.expanded {
+        margin-bottom: 84px;
+    }
+    
+    .sub-button {
+        padding: 8px 14px !important;
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   7. MODAL WINDOWS (OBLIGATORY - 15_modal_close_button_guide.md)
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all var(--transition-normal);
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-dialog {
+    background-color: var(--color-bg-primary);
+    border-radius: var(--radius-default);
+    /* Убираем тени (from instructions\styles.md) */
+    box-shadow: none;
+    border: 1px solid var(--color-border);
+    max-width: 90%;
+    max-height: 90%;
+    display: flex;
+    flex-direction: column;
+    animation: modalSlideIn var(--transition-normal);
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.modal-header {
+    padding: var(--spacing-lg);
+    background-color: var(--color-bg-header);
+    border-bottom: 1px solid var(--color-border);
+    border-radius: var(--radius-default) var(--radius-default) 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.modal-title {
+    font-size: var(--font-size-xl);
+    font-weight: bold;
+    color: var(--color-text-primary);
+}
+
+.modal-close {
+    width: 32px;
+    height: 32px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-default);
+    transition: background-color var(--transition-fast);
+}
+
+.modal-close:hover {
+    background-color: var(--color-bg-primary);
+}
+
+.modal-body {
+    padding: var(--spacing-lg);
+    flex: 1;
+    overflow-y: auto;
+}
+
+.modal-footer {
+    padding: var(--spacing-lg);
+    border-top: 1px solid var(--color-border);
+    display: flex;
+    justify-content: flex-end;
+    gap: var(--spacing-sm);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   8. FORM ELEMENTS (from instructions\styles.md)
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.form-group {
+    margin-bottom: var(--spacing-md);
+}
+
+.form-label {
+    display: block;
+    margin-bottom: var(--spacing-xs);
+    font-size: var(--font-size-base);
+    font-weight: 500;
+    color: var(--color-text-primary);
+}
+
+.form-control {
+    width: 100%;
+    padding: 8px 12px;
+    font-size: var(--font-size-base);
+    /* Оставляем обводку только для полей ввода (from instructions\styles.md) */
+    border: 1px solid var(--color-border) !important;
+    border-radius: var(--radius-default);
+    background-color: var(--color-bg-primary);
+    color: var(--color-text-primary);
+    transition: border-color var(--transition-fast);
+    /* Убираем тени */
+    box-shadow: none !important;
+}
+
+.form-control:focus {
+    border-color: var(--color-accent-primary) !important;
+    /* Убираем тени при фокусе */
+    box-shadow: none !important;
+}
+
+.form-control:disabled {
+    background-color: var(--color-bg-header);
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   9. UTILITY CLASSES
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Spacing utilities */
+.mt-1 { margin-top: var(--spacing-xs); }
+.mt-2 { margin-top: var(--spacing-sm); }
+.mt-3 { margin-top: var(--spacing-md); }
+.mt-4 { margin-top: var(--spacing-lg); }
+.mt-5 { margin-top: var(--spacing-xl); }
+
+.mb-1 { margin-bottom: var(--spacing-xs); }
+.mb-2 { margin-bottom: var(--spacing-sm); }
+.mb-3 { margin-bottom: var(--spacing-md); }
+.mb-4 { margin-bottom: var(--spacing-lg); }
+.mb-5 { margin-bottom: var(--spacing-xl); }
+
+.p-1 { padding: var(--spacing-xs); }
+.p-2 { padding: var(--spacing-sm); }
+.p-3 { padding: var(--spacing-md); }
+.p-4 { padding: var(--spacing-lg); }
+.p-5 { padding: var(--spacing-xl); }
+
+/* Text utilities */
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+.text-muted { color: var(--color-border); }
+.text-primary { color: var(--color-accent-primary); }
+.text-success { color: var(--color-accent-secondary); }
+.text-warning { color: var(--color-accent-secondary); }
+.text-danger { color: var(--color-accent-primary); }
+
+.text-bold { font-weight: bold; }
+.text-normal { font-weight: normal; }
+
+/* Display utilities */
+.d-none { display: none !important; }
+.d-block { display: block !important; }
+.d-inline { display: inline !important; }
+.d-inline-block { display: inline-block !important; }
+.d-flex { display: flex !important; }
+
+/* Flex utilities */
+.flex-row { flex-direction: row; }
+.flex-column { flex-direction: column; }
+.align-center { align-items: center; }
+.justify-center { justify-content: center; }
+.justify-between { justify-content: space-between; }
+.flex-1 { flex: 1; }
+
+/* Width utilities */
+.w-100 { width: 100%; }
+.w-50 { width: 50%; }
+.w-auto { width: auto; }
+
+/* Height utilities */
+.h-100 { height: 100%; }
+.h-auto { height: auto; }
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   10. ABOUT PAGE SPECIFIC STYLES
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.about-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: var(--spacing-lg);
+}
+
+.about-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: var(--spacing-lg);
+    padding-bottom: var(--spacing-lg);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.about-logo {
+    width: 80px;
+    height: 80px;
+    margin-right: var(--spacing-lg);
+}
+
+.about-info {
+    flex: 1;
+}
+
+.about-plugin-name {
+    font-size: var(--font-size-xxl);
+    font-weight: bold;
+    margin-bottom: var(--spacing-xs);
+}
+
+.about-version {
+    font-size: var(--font-size-md);
+    color: var(--color-text-primary);
+}
+
+.about-section {
+    margin-bottom: var(--spacing-lg);
+}
+
+.about-section-title {
+    font-size: var(--font-size-lg);
+    font-weight: bold;
+    margin-bottom: var(--spacing-sm);
+}
+
+.about-section-content {
+    font-size: var(--font-size-base);
+    color: var(--color-text-primary);
+    line-height: 1.6;
+}
+
+.license-info {
+    padding: var(--spacing-md);
+    background-color: var(--color-bg-header);
+    border-radius: var(--radius-default);
+    margin-bottom: var(--spacing-md);
+    /* Убираем тени */
+    box-shadow: none;
+}
+
+.license-status {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: var(--radius-default);
+    font-size: var(--font-size-sm);
+    font-weight: bold;
+}
+
+.license-status.trial {
+    background-color: var(--color-accent-secondary);
+    color: var(--color-text-button);
+}
+
+.license-status.pro {
+    background-color: var(--color-accent-primary);
+    color: var(--color-text-button);
+}
+
+.license-status.expired {
+    background-color: var(--color-accent-primary);
+    color: var(--color-text-button);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   11. RESPONSIVE DESIGN
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+@media (max-width: 768px) {
+    .app-container {
+        padding: var(--spacing-md);
+    }
+    
+    .mode-card {
+        padding: var(--spacing-md);
+    }
+    
+    .mode-card-icon {
+        width: 36px;
+        height: 36px;
+        font-size: 24px;
+        margin-right: var(--spacing-md);
+    }
+    
+    .modal-dialog {
+        max-width: 95%;
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   12. LOADING & ANIMATIONS
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.loading-spinner {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid var(--color-border);
+    border-radius: 50%;
+    border-top-color: var(--color-accent-primary);
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.fade-in {
+    animation: fadeIn var(--transition-normal);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   CONNECTION TREE STATES - Connection Manager Icons & States
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.connection-tree {
+    font-family: var(--font-family-ui);
+    font-size: var(--font-size-normal);
+}
+
+.connection-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.connection-item {
+    display: flex;
+    align-items: center;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: var(--border-radius-normal);
+    transition: background-color var(--transition-fast);
+    gap: 8px;
+}
+
+.connection-item:hover {
+    background-color: var(--color-bg-secondary);
+}
+
+.connection-item.selected {
+    background-color: var(--color-accent-primary);
+    color: var(--color-text-button);
+}
+
+.connection-icon {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+}
+
+.connection-title {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Connection States */
+.connection-item.connection-checking {
+    background-color: rgba(255, 193, 7, 0.1);
+    border-left: 3px solid #ffc107;
+}
+
+.connection-item.connection-success {
+    background-color: rgba(40, 167, 69, 0.1);
+    border-left: 3px solid #28a745;
+}
+
+.connection-item.connection-error {
+    background-color: rgba(220, 53, 69, 0.1);
+    border-left: 3px solid #dc3545;
+}
+
+/* Loading animation for connection icons */
+.connection-checking .connection-icon {
+    animation: spin 1s linear infinite;
+}
+
+/* Connection state display */
+.connection-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    text-align: center;
+    color: var(--color-text-secondary);
+}
+
+.connection-state .state-icon {
+    width: 32px;
+    height: 32px;
+    margin-bottom: 10px;
+}
+
+.connection-state.connection-error {
+    color: #dc3545;
+}
+
+.connection-state .error-details {
+    font-size: var(--font-size-small);
+    margin-top: 8px;
+    opacity: 0.7;
+}
+
+/* Dark theme adjustments */
+[data-theme="dark"] .connection-item.connection-checking {
+    background-color: rgba(255, 193, 7, 0.15);
+}
+
+[data-theme="dark"] .connection-item.connection-success {
+    background-color: rgba(40, 167, 69, 0.15);
+}
+
+[data-theme="dark"] .connection-item.connection-error {
+    background-color: rgba(220, 53, 69, 0.15);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   END OF MAIN STYLESHEET
+   ═══════════════════════════════════════════════════════════════════════════ */

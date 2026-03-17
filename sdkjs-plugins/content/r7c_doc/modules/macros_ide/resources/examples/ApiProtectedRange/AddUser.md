@@ -1,0 +1,56 @@
+/**
+ * @file AddUser_macroR7.js
+ * @brief R7 Office JavaScript Macro - ApiProtectedRange.AddUser
+ * @author R7-Consult
+ * @version 1.0.0
+ * @date July 15, 2025
+ *
+ * @description
+ * This macro demonstrates how to add a user to a protected range.
+ * It adds a protected range to the worksheet and then adds a user with view permissions to it.
+ *
+ * @description (Russian)
+ * Этот макрос демонстрирует, как добавить пользователя в защищенный диапазон.
+ * Он добавляет защищенный диапазон на лист, а затем добавляет в него пользователя с правами просмотра.
+ *
+ * @returns {void}
+ *
+ * @see https://r7-consult.ru/
+ */
+
+(function() {
+    'use strict';
+    
+    try {
+        // Initialize R7 Office API
+        const api = Api;
+        if (!api) {
+            throw new Error('R7 Office API not available');
+        }
+        
+        // Original code enhanced with error handling:
+        // This example adds the the user for protected range.
+        
+        // How to open an access for the protected range to user specifing user id, name and access type.
+        
+        // Get an active sheet, add protected range to it and add user with rights.  
+        
+        let worksheet = Api.GetActiveSheet();
+        worksheet.AddProtectedRange("protectedRange", "$A$1:$B$1");
+        let protectedRange = worksheet.GetProtectedRange("protectedRange");
+        protectedRange.AddUser("userId", "name", "CanView");
+        
+        // Success notification
+        console.log('Macro executed successfully');
+        
+    } catch (error) {
+        console.error('Macro execution failed:', error.message);
+        // Optional: Show error to user
+        if (typeof Api !== 'undefined' && Api.GetActiveSheet) {
+            const sheet = Api.GetActiveSheet();
+            if (sheet) {
+                sheet.GetRange('A1').SetValue('Error: ' + error.message);
+            }
+        }
+    }
+})();

@@ -1,0 +1,43 @@
+{
+  "table": {
+    "name": "orders",
+    "rows": 98000
+  },
+  "schema": {
+    "columns": [
+      { "name": "order_id", "type": "int", "nullable": false, "enabled": true, "typeVariants": ["int", "string"] },
+      { "name": "user_id", "type": "int", "nullable": false, "enabled": true, "typeVariants": ["int", "string"] },
+      { "name": "status", "type": "string", "nullable": true, "enabled": true, "typeVariants": ["string"] },
+      { "name": "total_amount", "type": "float", "nullable": true, "enabled": true, "typeVariants": ["float", "int"] },
+      { "name": "created_at", "type": "datetime", "nullable": false, "enabled": true, "typeVariants": ["datetime", "date", "string"] },
+      { "name": "updated_at", "type": "datetime", "nullable": true, "enabled": true, "typeVariants": ["datetime", "date", "string"] }
+    ]
+  },
+  "reports": [
+    {
+      "run_id": "seed_orders_2025-12-31",
+      "date": "2025-12-31",
+      "report": {
+        "overview": { "table": "orders", "rows": 98000, "columns": 6, "issues": 25 },
+        "quality": {
+          "nulls": { "status": 0.031, "total_amount": 0.012, "updated_at": 0.18 },
+          "duplicates": { "rows": 90 }
+        },
+        "statistics": {
+          "total_amount": { "min": 0.5, "mean": 67.2, "max": 2380.8, "cardinality": 23040 },
+          "status": { "min": "", "mean": "", "max": "", "cardinality": 9 }
+        },
+        "schema": {
+          "columns": [
+            { "name": "order_id", "type": "int", "nullable": false, "enabled": true, "typeVariants": ["int", "string"] },
+            { "name": "user_id", "type": "int", "nullable": false, "enabled": true, "typeVariants": ["int", "string"] },
+            { "name": "status", "type": "string", "nullable": true, "enabled": true, "typeVariants": ["string"] },
+            { "name": "total_amount", "type": "float", "nullable": true, "enabled": true, "typeVariants": ["float", "int"] },
+            { "name": "created_at", "type": "datetime", "nullable": false, "enabled": true, "typeVariants": ["datetime", "date", "string"] },
+            { "name": "updated_at", "type": "datetime", "nullable": true, "enabled": true, "typeVariants": ["datetime", "date", "string"] }
+          ]
+        }
+      }
+    }
+  ]
+}

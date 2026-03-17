@@ -1,0 +1,96 @@
+{
+  "table": {
+    "name": "sales",
+    "rows": 120000
+  },
+  "schema": {
+    "columns": [
+      { "name": "sale_id", "type": "int", "nullable": false, "enabled": true, "typeVariants": ["int", "string"] },
+      { "name": "customer_id", "type": "int", "nullable": false, "enabled": true, "typeVariants": ["int", "string"] },
+      { "name": "amount", "type": "float", "nullable": false, "enabled": true, "typeVariants": ["float", "int", "string"] },
+      { "name": "discount", "type": "float", "nullable": true, "enabled": true, "typeVariants": ["float", "int"] },
+      { "name": "sale_date", "type": "date", "nullable": false, "enabled": true, "typeVariants": ["date", "datetime", "string"] },
+      { "name": "region", "type": "string", "nullable": true, "enabled": true, "typeVariants": ["string", "int"] }
+    ]
+  },
+  "reports": [
+    {
+      "run_id": "seed_sales_2025-12-30",
+      "date": "2025-12-30",
+      "report": {
+        "overview": { "table": "sales", "rows": 120000, "columns": 6, "issues": 18 },
+        "quality": {
+          "nulls": { "discount": 0.042, "region": 0.018 },
+          "duplicates": { "rows": 130 }
+        },
+        "statistics": {
+          "amount": { "min": 1.2, "mean": 48.3, "max": 980.1, "cardinality": 5412 },
+          "discount": { "min": 0, "mean": 2.1, "max": 30, "cardinality": 122 },
+          "region": { "min": "", "mean": "", "max": "", "cardinality": 12 }
+        },
+        "schema": {
+          "columns": [
+            { "name": "sale_id", "type": "int", "nullable": false, "enabled": true, "typeVariants": ["int", "string"] },
+            { "name": "customer_id", "type": "int", "nullable": false, "enabled": true, "typeVariants": ["int", "string"] },
+            { "name": "amount", "type": "float", "nullable": false, "enabled": true, "typeVariants": ["float", "int", "string"] },
+            { "name": "discount", "type": "float", "nullable": true, "enabled": true, "typeVariants": ["float", "int"] },
+            { "name": "sale_date", "type": "date", "nullable": false, "enabled": true, "typeVariants": ["date", "datetime", "string"] },
+            { "name": "region", "type": "string", "nullable": true, "enabled": true, "typeVariants": ["string", "int"] }
+          ]
+        }
+      }
+    },
+    {
+      "run_id": "seed_sales_2025-12-31",
+      "date": "2025-12-31",
+      "report": {
+        "overview": { "table": "sales", "rows": 120000, "columns": 6, "issues": 22 },
+        "quality": {
+          "nulls": { "discount": 0.067, "region": 0.021 },
+          "duplicates": { "rows": 180 }
+        },
+        "statistics": {
+          "amount": { "min": 1.0, "mean": 49.1, "max": 1022.4, "cardinality": 5601 },
+          "discount": { "min": 0, "mean": 2.3, "max": 35, "cardinality": 128 },
+          "region": { "min": "", "mean": "", "max": "", "cardinality": 12 }
+        },
+        "schema": {
+          "columns": [
+            { "name": "sale_id", "type": "int", "nullable": false, "enabled": true, "typeVariants": ["int", "string"] },
+            { "name": "customer_id", "type": "int", "nullable": false, "enabled": true, "typeVariants": ["int", "string"] },
+            { "name": "amount", "type": "float", "nullable": false, "enabled": true, "typeVariants": ["float", "int", "string"] },
+            { "name": "discount", "type": "float", "nullable": true, "enabled": true, "typeVariants": ["float", "int"] },
+            { "name": "sale_date", "type": "date", "nullable": false, "enabled": true, "typeVariants": ["date", "datetime", "string"] },
+            { "name": "region", "type": "string", "nullable": true, "enabled": true, "typeVariants": ["string", "int"] }
+          ]
+        }
+      }
+    },
+    {
+      "run_id": "seed_sales_2026-01-01",
+      "date": "2026-01-01",
+      "report": {
+        "overview": { "table": "sales", "rows": 120000, "columns": 6, "issues": 31 },
+        "quality": {
+          "nulls": { "discount": 0.097, "region": 0.024 },
+          "duplicates": { "rows": 260 }
+        },
+        "statistics": {
+          "amount": { "min": 1.0, "mean": 50.0, "max": 1102.3, "cardinality": 5738 },
+          "discount": { "min": 0, "mean": 2.5, "max": 40, "cardinality": 140 },
+          "region": { "min": "", "mean": "", "max": "", "cardinality": 12 }
+        },
+        "schema": {
+          "columns": [
+            { "name": "sale_id", "type": "int", "nullable": false, "enabled": true, "typeVariants": ["int", "string"] },
+            { "name": "customer_id", "type": "int", "nullable": false, "enabled": true, "typeVariants": ["int", "string"] },
+            { "name": "amount", "type": "float", "nullable": false, "enabled": true, "typeVariants": ["float", "int", "string"] },
+            { "name": "discount", "type": "float", "nullable": true, "enabled": true, "typeVariants": ["float", "int"] },
+            { "name": "sale_date", "type": "date", "nullable": false, "enabled": true, "typeVariants": ["date", "datetime", "string"] },
+            { "name": "region", "type": "string", "nullable": true, "enabled": true, "typeVariants": ["string", "int"] }
+          ]
+        }
+      }
+    }
+  ]
+}

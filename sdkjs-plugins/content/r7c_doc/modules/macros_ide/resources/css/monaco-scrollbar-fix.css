@@ -1,0 +1,47 @@
+/**
+ * TASK-127: Monaco Overview Ruler / Scrollbar Visibility Fix
+ *
+ * Forces Monaco editor scrollbar and overview ruler to be visible at all times
+ * even when content doesn't overflow, so error/warning markers always show.
+ */
+
+/* Force Monaco vertical scrollbar to always be visible */
+.monaco-editor .monaco-scrollable-element > .scrollbar.vertical {
+    visibility: visible !important;
+    opacity: 1 !important;
+    display: block !important;
+}
+
+/* Force Monaco overview ruler (decorations) to render */
+.monaco-editor .decorationsOverviewRuler {
+    visibility: visible !important;
+    opacity: 1 !important;
+    display: block !important;
+    width: 14px !important;
+    position: absolute !important;
+    right: 0 !important;
+}
+
+/* Ensure scrollbar track is always visible */
+.monaco-editor .invisible.scrollbar.vertical .slider {
+    visibility: visible !important;
+}
+
+/* Force slider to be visible even when not hovering */
+.monaco-editor .scrollbar .slider {
+    opacity: 0.4 !important;
+}
+
+.monaco-editor .scrollbar .slider:hover {
+    opacity: 1 !important;
+}
+
+/* Ensure editor has space for scrollbar on right */
+.monaco-editor .overflow-guard {
+    padding-right: 14px !important;
+}
+
+/* Make sure overview ruler has proper positioning */
+.monaco-editor .monaco-editor-background {
+    margin-right: 14px !important;
+}

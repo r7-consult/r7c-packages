@@ -1,0 +1,2482 @@
+/**
+ * ═══════════════════════════════════════════════════════════════════════════════════
+ * 🎨 CONNECTION MANAGER STYLES
+ * ═══════════════════════════════════════════════════════════════════════════════════
+ * 
+ * @fileOverview    Styles for SQL Connection Manager interface
+ * @version         2.0.0
+ * @since           2025-10-13
+ * 
+ * @description
+ * Comprehensive styling for the database connection manager including:
+ * - Grid layout for split-panel interface
+ * - Connection tree styling
+ * - Connection form fields
+ * - SSL/CSV/XLSX options blocks
+ * - Buttons and controls
+ * - Checkbox and password fields
+ * 
+ * Color scheme matches sql-theme.css:
+ * - Background: #f1f1f1
+ * - Buttons: #e1e1e1
+ * - Text: #000000
+ * - Hover: #00a4f6 background with #ffffff text
+ * - Borders: #cccccc
+ * 
+ * ═══════════════════════════════════════════════════════════════════════════════════
+ */
+
+/* ═══════════════════════════════════════════════════════════════════════════════════
+ * 🎨 CSS VARIABLES
+ * ═══════════════════════════════════════════════════════════════════════════════════ */
+
+:root {
+    --sql-background-primary: #ffffff;
+    --sql-background-secondary: #f5f5f5;
+    --sql-background-buttons: #e1e1e1;
+    --sql-background-auxiliary: #3a3a3a;
+    --sql-text-primary: #000000;
+    --sql-text-secondary: #666666;
+    --sql-text-hover: #ffffff;
+    --sql-hover-background: #00a4f6;
+    --sql-border-color: #e1e1e1;      /* Обводка основных окон и колонок */
+    --sql-border-light: #f1f1f1;      /* Обводка внутренних контейнеров */
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════════════
+ * 1️⃣ BASE LAYOUT
+ * ═══════════════════════════════════════════════════════════════════════════════════ */
+
+html,
+body {
+	margin: 0 !important;
+	padding: 0 !important;
+	width: 100%;
+	height: 100%;
+	font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+	font-size: 11px;
+	background-color: var(--sql-background-primary) !important;
+	color: var(--sql-text-primary) !important;
+}
+
+#text-res {
+	height: 100%;
+	display: grid;
+	grid-template-rows: 33px 1fr;
+	overflow: hidden;
+}
+
+#content_panel {
+	height: 100%;
+	display: grid;
+	grid-template-columns: 1fr 15px 1fr; /* Расстояние между колонками 15px (как отступы по краям) */
+	grid-template-rows: 100%; /* Фиксируем высоту строки */
+	padding: 10px 15px 10px 15px; /* Отступы от краев окна */
+	box-sizing: border-box;
+	overflow: hidden; /* Убираем скролл с контейнера */
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════════════
+ * 2️⃣ TOP BUTTON PANEL
+ * ═══════════════════════════════════════════════════════════════════════════════════ */
+
+#top_buttons_panel {
+	width: 100%;
+	padding-left: 15px;
+	padding-top: 7px;
+	display: flex;
+	justify-content: flex-start; /* Выравнивание по левому краю */
+	gap: 10px;
+}
+
+#top_buttons_panel button {
+	min-width: 150px;
+	max-width: 200px;
+	flex: 0 0 auto;
+	/* Вертикальное выравнивание текста */
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════════════
+ * 3️⃣ LEFT COLUMN (Connection Tree)
+ * ═══════════════════════════════════════════════════════════════════════════════════ */
+
+#left-column {
+	height: 100%;
+	max-height: 100%;
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+	box-sizing: border-box;
+}
+
+#tree-frame {
+	flex: 1;
+	width: 100%;
+	box-sizing: border-box;
+	background-color: #ffffff;
+	border: 1px solid var(--sql-border-color);
+	border-radius: 5px;
+	overflow-y: auto; /* Скролл только внутри дерева */
+	overflow-x: visible; /* Не обрезаем обводку */
+	padding: 5px;
+	margin-bottom: 5px;
+	min-height: 0; /* Важно для корректной работы flex и скролла */
+}
+
+/* Native JS Tree Styles */
+.connection-tree {
+	width: 100%;
+	height: 100%;
+}
+
+.connection-list {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.connection-item {
+	display: flex;
+	align-items: center;
+	padding: 8px 10px;
+	margin: 2px 0;
+	cursor: pointer;
+	border-radius: 3px;
+	transition: background-color 0.2s ease;
+	user-select: none; /* Запрещаем выделение текста при двойном клике */
+}
+
+.connection-item:hover {
+	background-color: #f5f5f5;
+}
+
+/* Стрелочка раскрытия */
+.expand-arrow {
+	font-size: 10px;
+	color: #666;
+	margin-right: 6px;
+	cursor: pointer;
+	user-select: none;
+	transition: transform 0.2s ease;
+	display: inline-block;
+	width: 12px;
+	text-align: center;
+}
+
+.expand-arrow:hover {
+	color: #00a4f6;
+}
+
+.expand-arrow.expanded {
+	transform: rotate(90deg);
+}
+
+.connection-icon {
+	width: 16px;
+	height: 16px;
+	margin-right: 8px;
+	flex-shrink: 0;
+}
+
+.connection-title {
+	flex: 1;
+	font-size: 14px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+ .connection-item .dq-open-btn {
+ 	margin-left: 8px;
+ 	flex-shrink: 0;
+ 	border: 1px solid var(--sql-border-color);
+ 	background: #fff;
+ 	color: #666;
+ 	border-radius: 3px;
+ 	font-size: 11px;
+ 	line-height: 16px;
+ 	height: 18px;
+ 	padding: 0 6px;
+ 	cursor: pointer;
+ 	opacity: 0;
+ 	pointer-events: none;
+ }
+ 
+ .connection-item:hover .dq-open-btn {
+ 	opacity: 1;
+ 	pointer-events: auto;
+ }
+ 
+ .connection-item .dq-open-btn:hover {
+ 	background: var(--sql-hover-background);
+ 	border-color: var(--sql-hover-background);
+ 	color: #fff;
+ }
+
+/* Кнопка обновления кэша соединения */
+.connection-item .connection-refresh-btn {
+	margin-left: auto;
+	flex-shrink: 0;
+	padding: 4px;
+	border: 1px solid transparent !important;
+	border-radius: 5px;
+	background-color: transparent !important;
+	background-image: none !important;
+	box-shadow: none !important;
+	cursor: pointer;
+	transition: all 0.2s ease;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 22px;
+	height: 22px;
+	opacity: 0;
+	pointer-events: none;
+}
+
+.connection-item .connection-refresh-btn img {
+	width: 14px;
+	height: 14px;
+	display: block;
+}
+
+.connection-item:hover .connection-refresh-btn {
+	opacity: 1;
+	pointer-events: auto;
+}
+
+.connection-item .connection-refresh-btn:hover {
+	border-color: #3a3a3a !important;
+	background-color: transparent !important;
+}
+
+.connection-item .connection-refresh-btn:disabled {
+	opacity: 0.5;
+	cursor: not-allowed;
+}
+
+/* Анимация вращения для иконки обновления */
+.connection-item .connection-refresh-btn img.spinning {
+	animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+	from { transform: rotate(0deg); }
+	to { transform: rotate(360deg); }
+}
+
+/* Подсписок таблиц (без анимации) */
+.connection-tables {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	margin-left: 0; /* Без отступа слева */
+	margin-right: 5px; /* Отступ справа */
+	padding-left: 8px; /* Внутренний отступ */
+	padding-right: 5px; /* Внутренний отступ справа */
+	background: transparent;
+	overflow: visible;
+	display: none; /* Скрыт по умолчанию */
+	border-left: 1px solid var(--sql-border-light); /* Тонкая серая обводка слева */
+	border-right: 1px solid var(--sql-border-light); /* Тонкая серая обводка справа */
+	border-bottom: 1px solid var(--sql-border-light); /* Тонкая серая обводка снизу */
+	border-radius: 0 0 3px 3px; /* Скругление внизу */
+	padding-top: 2px;
+	padding-bottom: 2px;
+}
+
+/* Раскрытая секция таблиц */
+.connection-tables.expanded {
+	display: block;
+}
+
+/* Элемент таблицы (обычный стиль без обводки) */
+.table-item {
+	display: flex;
+	align-items: center;
+	padding: 4px 8px;
+	margin: 1px 0;
+	cursor: pointer;
+	border-radius: 0;
+	transition: background-color 0.2s ease;
+	background: transparent;
+	border: none;
+	border-left: none;
+}
+
+/* Стрелка раскрытия таблицы - серого цвета как текст */
+.table-item .expand-arrow {
+	color: #999;
+}
+
+.table-item .expand-arrow:hover {
+	color: #00a4f6;
+}
+
+.table-item:hover {
+	background-color: rgba(0, 164, 246, 0.08);
+}
+
+/* Иконка таблицы */
+.table-icon {
+	width: 14px;
+	height: 14px;
+	margin-right: 6px;
+	flex-shrink: 0;
+}
+
+/* Название таблицы (обычный серый текст) */
+.table-title {
+	flex: 1;
+	font-size: 12px;
+	color: #555;
+	font-weight: normal;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+/* Пустое состояние (когда нет таблиц) */
+.table-item.empty-state {
+	cursor: default;
+	pointer-events: none;
+}
+
+.table-item.empty-state .table-title {
+	font-style: italic;
+	color: #999;
+}
+
+/* Список полей таблицы */
+.table-fields {
+	list-style: none;
+	padding-left: 40px;
+	margin: 0;
+	background: transparent;
+}
+
+/* Элемент поля таблицы */
+.field-item {
+	display: flex;
+	align-items: center;
+	padding: 3px 8px;
+	margin: 1px 0;
+	cursor: default;
+	border-radius: 0;
+	background: transparent;
+	border: none;
+}
+
+.field-item:hover {
+	background-color: rgba(0, 164, 246, 0.05);
+}
+
+/* Иконка поля */
+.field-icon {
+	width: 14px;
+	height: 14px;
+	margin-right: 6px;
+	flex-shrink: 0;
+}
+
+/* Название поля */
+.field-title {
+	font-size: 11px;
+	color: #666;
+	margin-right: 8px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+/* Тип поля */
+.field-type {
+	font-size: 10px;
+	color: #999;
+	font-style: italic;
+	margin-right: 8px;
+}
+
+/* Значение по умолчанию */
+.field-default {
+	font-size: 10px;
+	color: #aaa;
+	font-style: italic;
+}
+
+/* Пустое состояние полей */
+.field-item.empty-state {
+	cursor: default;
+	pointer-events: none;
+}
+
+.field-item.empty-state .field-title {
+	font-style: italic;
+	color: #bbb;
+}
+
+/* Развернутое соединение */
+.connection-item.expanded > .connection-title {
+	font-weight: bold;
+}
+
+.connection-state {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding: 30px 20px;
+	text-align: center;
+	color: #666666;
+}
+
+.connection-state.connection-error {
+	color: #d32f2f;
+}
+
+.state-icon {
+	width: 32px;
+	height: 32px;
+	margin-bottom: 10px;
+}
+
+.state-text {
+	font-size: 14px;
+	margin-bottom: 5px;
+}
+
+.error-details {
+	font-size: 12px;
+	color: #999999;
+	margin-top: 5px;
+}
+
+#bottom_button_panel {
+	flex-shrink: 0;
+	height: auto;
+	margin-left: 0;
+	margin-top: 0;
+	padding-top: 10px;
+	padding-bottom: 0;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	box-sizing: border-box;
+	gap: 5px;
+	background-color: var(--sql-background-primary);
+}
+
+#connection_saveload_panel {
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+	align-items: flex-start;
+}
+
+#export_button_panel {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	gap: 10px;
+	padding-left: 0;
+	margin-left: 0;
+}
+
+#export_button_panel button {
+	white-space: nowrap;
+	width: auto;
+	margin-left: 0;
+}
+
+#withPasswords-group0 {
+	white-space: nowrap;
+	margin: 0;
+}
+
+#withPasswords-group0 .checkbox-input {
+	margin-left: 0;
+	width: 11px;
+	margin-right: 2px;
+}
+
+#withPasswords-group {
+	font-size: xx-small;
+}
+
+.checkbox-input,
+.checkbox-label {
+	vertical-align: -webkit-baseline-middle;
+	margin-left: 0;
+}
+
+#loader-container3 {
+	height: 0;
+	border: 0 solid;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════════════
+ * 4️⃣ RIGHT COLUMN (Connection Form)
+ * ═══════════════════════════════════════════════════════════════════════════════════ */
+
+#right-column {
+	height: 100%;
+	max-height: 100%;
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+	box-sizing: border-box;
+}
+
+#base_menu {
+	margin-top: 0; /* Убираем отступ сверху для выравнивания с left-column */
+	flex: 1;
+	overflow-y: auto; /* Включаем вертикальный скролл */
+	overflow-x: hidden;
+	padding-right: 5px; /* Отступ для скроллбара */
+}
+
+#connection_menu {
+	overflow-x: hidden;
+	box-sizing: border-box;
+}
+
+#connection_menu input:not([type="checkbox"]),
+#connection_menu select,
+#connection_menu textarea {
+	width: 100%;
+}
+
+#database_connection_params {
+	margin-right: 0;
+	padding-right: 0;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════════════
+ * 5️⃣ FORM FIELDS
+ * ═══════════════════════════════════════════════════════════════════════════════════ */
+
+.labeled_field {
+	margin-bottom: 5px;
+}
+
+.labeled_field label {
+	display: block;
+	margin-bottom: 4px;
+	font-weight: normal;
+	color: var(--sql-text-primary);
+}
+
+.labeled_field input:not([type="checkbox"]),
+.labeled_field select,
+.labeled_field textarea {
+	width: 100%;
+}
+
+.labeled_field.checkbox {
+	display: inline-block;
+}
+
+.labeled_field input[type="checkbox"] {
+	width: initial;
+}
+
+/* Input fields */
+input:not([type="checkbox"]),
+select,
+textarea {
+	max-width: 100%;
+	border: 1px solid var(--sql-border-color) !important;
+	padding: 5px 8px;
+	background-color: #fff;
+	border-radius: 3px;
+	box-sizing: border-box;
+	font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+	font-size: 11px;
+	color: var(--sql-text-primary);
+	box-shadow: none !important;
+	background-image: none !important;
+	outline: none !important;
+	transition: border-color 0.2s;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+	border-color: var(--sql-hover-background) !important;
+	outline: none !important;
+	box-shadow: none !important;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════════════
+ * 6️⃣ CHECKBOX STYLES (Critical for proper display)
+ * ═══════════════════════════════════════════════════════════════════════════════════ */
+
+input[type="checkbox"],
+input[type="checkbox"]:not(.form-control),
+.labeled_field input[type="checkbox"],
+label input[type="checkbox"] {
+	width: 13px !important;
+	height: 13px !important;
+	margin-right: 5px !important;
+	cursor: pointer !important;
+	vertical-align: middle !important;
+	-webkit-appearance: checkbox !important;
+	-moz-appearance: checkbox !important;
+	appearance: checkbox !important;
+	background: none !important;
+	background-color: initial !important;
+	background-image: none !important;
+	border: initial !important;
+	box-shadow: initial !important;
+	outline: initial !important;
+	display: inline-block !important;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════════════
+ * 7️⃣ PASSWORD FIELD WITH SHOW/HIDE BUTTON
+ * ═══════════════════════════════════════════════════════════════════════════════════ */
+
+#show_password {
+	background-color: transparent !important;
+	border: none !important;
+	box-shadow: none !important;
+	outline: none !important;
+	transition: none !important;
+	z-index: 10 !important;
+	position: absolute;
+	right: 5px;
+	top: 50%;
+	transform: translateY(-50%);
+	cursor: pointer;
+	padding: 0;
+	margin: 0;
+	width: 20px;
+	height: 20px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+#show_password:hover,
+#show_password:focus,
+#show_password:active {
+	background-color: transparent !important;
+	border: none !important;
+	box-shadow: none !important;
+	outline: none !important;
+}
+
+#show_password img {
+	width: 12px;
+	height: 12px;
+	object-fit: contain;
+}
+
+.image-button {
+	width: 15px;
+	height: 8px;
+	margin-top: 4px;
+	border: none;
+	background-image: url('../icons/invisible.png');
+	background-size: contain;
+	background-repeat: no-repeat;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════════════
+ * 8️⃣ FILE INPUT CONTAINERS
+ * ═══════════════════════════════════════════════════════════════════════════════════ */
+
+.file-input-container,
+.file-input-group {
+	display: flex;
+	width: 100%;
+	align-items: center;
+	gap: 4px;
+}
+
+.file-path-input {
+	flex-grow: 1;
+	width: 100% !important;
+	border: 1px solid var(--sql-border-light) !important;
+	padding: 5px 8px !important;
+	margin: 2px 0 !important;
+	background-color: #fff !important;
+	border-radius: 3px !important;
+	box-sizing: border-box !important;
+	box-shadow: none !important;
+	background-image: none !important;
+	outline: none !important;
+	font-size: 11px;
+	transition: border-color 0.2s;
+}
+
+.browse-button {
+	padding: 4px 8px !important;
+	background-color: var(--sql-background-buttons) !important; /* #e1e1e1 */
+	color: var(--sql-text-primary) !important;
+	border: none !important;
+	border-radius: 5px !important;
+	cursor: pointer !important;
+	font-size: 11px !important;
+	width: auto !important;
+	white-space: nowrap;
+	box-shadow: none !important;
+	background-image: none !important;
+	transition: background-color 0.15s ease, color 0.15s ease;
+	user-select: none;
+}
+
+.browse-button:hover {
+	background-color: var(--sql-hover-background) !important; /* #00a4f6 */
+	color: var(--sql-text-hover) !important; /* #ffffff */
+}
+
+.browse-button:active {
+	opacity: 0.95 !important;
+}
+
+#connection_directory {
+	width: 96% !important;
+}
+
+#connection_directory-choose::-webkit-file-upload-button {
+	padding: 4px 8px !important;
+	background-color: var(--sql-background-buttons) !important;
+	color: var(--sql-text-primary) !important;
+	border: none !important;
+	border-radius: 5px !important;
+	cursor: pointer !important;
+	font-size: 11px !important;
+	width: auto !important;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════════════
+ * 9️⃣ OPTIONS BLOCKS (SSL, CSV, XLSX)
+ * ═══════════════════════════════════════════════════════════════════════════════════ */
+
+.params_subgroup {
+	margin-bottom: 3px;
+	margin-top: 3px;
+}
+
+.options_block {
+	border: 1px solid var(--sql-border-color);
+	border-radius: 6px;
+	padding: 12px;
+	margin-bottom: 12px;
+	width: 100%;
+	box-sizing: border-box;
+	display: none !important;
+	background-color: #fafafa;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.options_block[style*="display: block"] {
+	display: block !important;
+}
+
+.ssl-options[style*="display: block"],
+.csv-options[style*="display: block"],
+.xlsx-options[style*="display: block"] {
+	display: block !important;
+	border: 1px solid var(--sql-border-color) !important;
+	padding: 12px !important;
+	margin-bottom: 12px !important;
+	border-radius: 6px !important;
+	width: 100% !important;
+	max-width: 100% !important;
+	box-sizing: border-box !important;
+	background-color: #fafafa !important;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08) !important;
+}
+
+.ssl-options .subgroup_body,
+.csv-options .subgroup_body,
+.xlsx-options .subgroup_body {
+	border: none !important;
+	padding: 0 !important;
+	margin: 0 !important;
+}
+
+.subgroup_header {
+	font-weight: bold !important;
+	text-decoration: none !important;
+	margin-bottom: 10px !important;
+	color: var(--sql-text-primary) !important;
+	font-size: 12px !important;
+	padding-bottom: 6px !important;
+	border-bottom: 1px solid var(--sql-border-color) !important;
+}
+
+.options_block .labeled_field,
+.ssl-options .labeled_field,
+.csv-options .labeled_field,
+.xlsx-options .labeled_field {
+	margin-bottom: 8px !important;
+	display: block !important;
+}
+
+/* Options block inputs */
+.options_block input[type="text"],
+.options_block input[type="number"],
+.options_block input[type="password"],
+.options_block select,
+.ssl-options input[type="text"],
+.ssl-options input[type="number"],
+.csv-options input[type="text"],
+.csv-options input[type="number"],
+.csv-options select,
+.xlsx-options input[type="text"],
+.xlsx-options input[type="number"],
+.xlsx-options select,
+.subgroup_body input[type="text"],
+.subgroup_body input[type="number"],
+.subgroup_body input[type="password"],
+.subgroup_body select {
+	width: 100% !important;
+	border: 1px solid var(--sql-border-color) !important;
+	padding: 5px 8px !important;
+	margin: 2px 0 !important;
+	background-color: #fff !important;
+	border-radius: 3px !important;
+	box-sizing: border-box !important;
+	display: block !important;
+	visibility: visible !important;
+	opacity: 1 !important;
+	height: auto !important;
+	min-height: 28px !important;
+	box-shadow: none !important;
+	background-image: none !important;
+	outline: none !important;
+	font-size: 11px;
+	transition: border-color 0.2s;
+}
+
+.options_block input:focus,
+.options_block select:focus,
+.ssl-options input:focus,
+.ssl-options select:focus,
+.csv-options input:focus,
+.csv-options select:focus,
+.xlsx-options input:focus,
+.xlsx-options select:focus,
+.subgroup_body input:focus,
+.subgroup_body select:focus {
+	border-color: var(--sql-hover-background) !important;
+}
+
+.options_block label,
+.ssl-options label,
+.csv-options label,
+.xlsx-options label,
+.subgroup_body label {
+	display: block !important;
+	margin-bottom: 4px !important;
+	font-weight: normal !important;
+	color: var(--sql-text-primary) !important;
+}
+
+.ssl-options .file-path-input,
+.csv-options .file-path-input,
+.xlsx-options .file-path-input,
+.options_block .file-path-input {
+	width: 100% !important;
+}
+
+/* CSV/XLSX autodetect blocks */
+.csv_no_autodetect,
+.csv-options .csv_no_autodetect,
+.xlsx_no_autodetect,
+.xlsx-options .xlsx_no_autodetect {
+	display: block !important;
+}
+
+.csv_no_autodetect[style*="display: none"] {
+	display: none !important;
+}
+
+#connection_ssl_params {
+	display: block;
+	border: 1px solid var(--sql-border-color);
+	padding: 8px;
+	border-radius: 5px;
+	background-color: var(--sql-background-secondary);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════════════
+ * 🔟 SELECT2 DROPDOWN STYLES
+ * ═══════════════════════════════════════════════════════════════════════════════════ */
+
+.connection_typedb .select2-results__options {
+	min-height: 264px;
+	max-height: 500px;
+}
+
+span [class=select2-container--default],
+span [class=select2-container--single],
+span [class=select2-selection__rendered] {
+	background-color: #fff;
+	border: 1px solid var(--sql-border-color);
+	border-radius: 3px;
+}
+
+.select2-container--default .select2-selection--single {
+	background-color: #fff;
+	border: 1px solid var(--sql-border-color);
+	border-radius: 3px;
+	box-shadow: none !important;
+	outline: none !important;
+	padding: 5px 8px;
+	font-size: 11px;
+	transition: border-color 0.2s;
+}
+
+.select2-container--default .select2-selection--single:focus,
+.select2-container--default.select2-container--focus .select2-selection--single {
+	border-color: var(--sql-hover-background);
+	outline: none !important;
+}
+
+.select2-container--default .select2-results__option--highlighted[aria-selected] {
+	background-color: var(--sql-hover-background);
+	color: var(--sql-text-hover);
+}
+
+.select2-dropdown {
+	border: 1px solid var(--sql-border-color);
+	border-radius: 3px;
+	box-shadow: none !important;
+}
+
+#connection_fileTypes {
+	width: 100%;
+}
+
+#connection_directory {
+	width: 100% !important;
+}
+
+#files_connection_params .select2-container {
+	max-height: fit-content !important;
+}
+
+.select2-container1 .select2-selection--multiple {
+	min-height: auto !important;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════════════
+ * 1️⃣1️⃣ BUTTONS
+ * ═══════════════════════════════════════════════════════════════════════════════════ */
+
+button {
+	margin: 0; /* Убираем базовые отступы, управляем через gap в контейнерах */
+	box-shadow: none !important;
+	background-image: none !important;
+	background-color: var(--sql-background-buttons);
+	color: var(--sql-text-primary);
+	border: none !important;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: background-color 0.15s ease, color 0.15s ease;
+	padding: 8px 12px;
+	font-size: 11px;
+	font-weight: 500;
+	user-select: none;
+}
+
+/* Hover для всех кнопок - акцентный цвет #00a4f6 */
+button:hover:not(:disabled) {
+	background-color: var(--sql-hover-background); /* #00a4f6 */
+	color: var(--sql-text-hover); /* #ffffff */
+}
+
+/* Hover для кнопок "Закрыть" и "Отмена" - цвет #3a3a3a */
+button.btn-cancel:hover:not(:disabled),
+button.btn-close:hover:not(:disabled) {
+	background-color: var(--sql-background-auxiliary); /* #3a3a3a */
+	color: var(--sql-text-hover); /* #ffffff */
+}
+
+button:active:not(:disabled) {
+	opacity: 0.95;
+}
+
+button:disabled {
+	opacity: 0.5;
+	cursor: not-allowed;
+}
+
+.connection_buttons {
+	display: flex;
+	flex-wrap: nowrap;
+	justify-content: flex-end; /* Кнопки справа */
+	align-items: center;
+	padding-top: 10px;
+	gap: 10px; /* Расстояние между кнопками */
+}
+
+.connection_button {
+	/* Убираем фиксированную ширину - пусть адаптируется под текст */
+	padding: 8px 12px; /* Такой же padding как у всех кнопок */
+	flex: 0 0 auto; /* Не растягиваем, не сжимаем */
+	margin: 0;
+	white-space: nowrap; /* Текст в одну строку */
+}
+
+/* Delete connection button рядом с основной кнопкой */
+.connection_buttons .delete_connection {
+	/* Также убираем фиксированную ширину */
+	padding: 8px 12px; /* Такой же padding как у всех кнопок */
+	flex: 0 0 auto;
+	margin: 0;
+	white-space: nowrap;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════════════
+ * 1️⃣2️⃣ HELP BLOCKS
+ * ═══════════════════════════════════════════════════════════════════════════════════ */
+
+.help_block {
+	display: none;
+	position: absolute;
+	z-index: 1000;
+}
+
+.help_block:not(.common-modal-styles) {
+	word-break: break-word;
+	width: 280px;
+	overflow: auto;
+	margin: 5px;
+	font-size: 11px;
+	border-radius: 5px;
+}
+
+.help_block_header:not(.common-modal-header) {
+	border: 1px solid currentColor;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+}
+
+#yaml_info_close_button:not(.common-modal-button) {
+	float: right;
+}
+
+#yaml_help_header2 {
+	display: inline-block;
+	padding: 0.4em 1em;
+}
+
+.help_block_content:not(.common-modal-content) {
+	padding: 5px;
+	color: black;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+
+#yaml_example {
+	padding: 5px;
+	background-color: white;
+	color: black;
+	font-size: 10px;
+	margin: 0;
+}
+
+.files-formats-table:not(#yaml_help_content .files-formats-table),
+.files-formats-table:not(#yaml_help_content .files-formats-table) th,
+.files-formats-table:not(#yaml_help_content .files-formats-table) td {
+	border: 1px solid currentColor;
+	border-spacing: 0;
+	border-collapse: collapse;
+}
+
+.files-formats-table .explanation {
+	display: none;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════════════
+ * 1️⃣3️⃣ INFO ICONS
+ * ═══════════════════════════════════════════════════════════════════════════════════ */
+
+.info_icon_container {
+	cursor: pointer;
+	margin-left: 2px;
+}
+
+.info_button {
+	vertical-align: middle;
+}
+
+.info_button:hover {
+	filter: drop-shadow(0px 0px 6px #007aff);
+}
+
+.single_line {
+	display: flex;
+	flex-direction: row;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════════════
+ * 1️⃣4️⃣ TOOLTIPS
+ * ═══════════════════════════════════════════════════════════════════════════════════ */
+
+.demotooltip:hover > .tooltip_demo {
+	display: block;
+}
+
+.tooltip_demo {
+	display: none;
+	background: #f1f1f1;
+	border: 1px solid #3a3a3a;
+	margin-left: 28px;
+	padding: 1px;
+	position: absolute;
+	z-index: 1000;
+	width: 180px;
+	height: 25px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════════════
+ * 1️⃣5️⃣ UTILITY CLASSES
+ * ═══════════════════════════════════════════════════════════════════════════════════ */
+
+.hidden {
+	display: none;
+}
+
+.local-data-form {
+	border: unset;
+}
+
+.local-data-form label,
+.local-data-form input {
+	width: 96%;
+}
+
+.connection_table_div {
+	overflow: auto;
+}
+
+#connection_list {
+	overflow: auto;
+}
+
+.maxlimit_div {
+	height: 20px;
+}
+
+.maxlimit_div label {
+	width: 60%;
+	float: left;
+}
+
+.maxlimit_div input {
+	width: 24%;
+	float: right;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════════════
+ * 1️⃣6️⃣ RESET UNWANTED STYLES
+ * ═══════════════════════════════════════════════════════════════════════════════════ */
+
+/* Remove all shadows and gradients to match SQL theme */
+input:not([type="checkbox"]),
+select,
+textarea,
+button,
+.form-control,
+.ui-widget,
+.ui-widget *,
+.btn,
+.btn-primary {
+	box-shadow: none !important;
+	outline: none !important;
+	background-image: none !important;
+}
+
+/* Remove borders on buttons except when needed */
+button:focus,
+.btn:focus,
+.btn-primary:focus {
+	outline: none !important;
+	box-shadow: none !important;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════════════
+ * 🔄 CONNECTION STATES & ICONS
+ * ═══════════════════════════════════════════════════════════════════════════════════ */
+
+/* Connection tree base styles */
+.connection-tree {
+    font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    font-size: 13px;
+}
+
+.connection-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.connection-item {
+    display: flex;
+    align-items: center;
+    padding: 6px 8px;
+    cursor: pointer;
+    border-radius: 3px;
+    gap: 6px;
+    margin: 1px 0;
+}
+
+.connection-item:hover {
+    outline: 2px solid #00a4f6;
+    outline-offset: -2px;
+}
+
+.connection-item.selected {
+    outline: 2px solid #00a4f6;
+    outline-offset: -2px;
+}
+
+.connection-icon {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+}
+
+.connection-title {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Connection States */
+.connection-item.connection-checking {
+    background-color: rgba(255, 193, 7, 0.15);
+    border-left: 3px solid #ffc107;
+    animation: pulse-checking 2s ease-in-out infinite;
+}
+
+.connection-item.connection-success {
+    background-color: rgba(40, 167, 69, 0.15);
+    border-left: 3px solid #28a745;
+}
+
+.connection-item.connection-error {
+    background-color: rgba(220, 53, 69, 0.15);
+    border-left: 3px solid #dc3545;
+}
+
+/* Hover для состояний проверки - добавляем только обводку, фон остается */
+.connection-item.connection-checking:hover,
+.connection-item.connection-success:hover,
+.connection-item.connection-error:hover {
+    outline: 2px solid #00a4f6;
+    outline-offset: -2px;
+}
+
+/* Selected для состояний проверки - сохраняем цветной фон, чёрный текст и синюю обводку */
+.connection-item.connection-checking.selected,
+.connection-item.connection-success.selected,
+.connection-item.connection-error.selected {
+    color: var(--sql-text-primary); /* Сохраняем чёрный текст */
+    outline: 2px solid #00a4f6; /* Оставляем синюю обводку при выделении */
+    outline-offset: -2px;
+}
+
+/* Loading animation for connection icons */
+.connection-checking .connection-icon {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes pulse-checking {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+/* Connection state display (for empty/loading/error states) */
+.connection-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    text-align: center;
+    color: var(--sql-text-secondary);
+}
+
+.connection-state .state-icon {
+    width: 24px;
+    height: 24px;
+    margin-bottom: 10px;
+}
+
+.connection-state.connection-error {
+    color: #dc3545;
+}
+
+.connection-state .error-details {
+    font-size: 11px;
+    margin-top: 8px;
+    opacity: 0.7;
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════════════════════
+ * 📦 IMPORT/EXPORT DIALOGS
+ * ═══════════════════════════════════════════════════════════════════════════════════ */
+
+/* Dialog body content spacing */
+.dialog-body p {
+    margin: 0 0 10px 0;
+    font-size: 12px;
+}
+
+.dialog-body strong {
+    font-weight: 600;
+}
+
+.dialog-body ul {
+    margin: 10px 0;
+    padding-left: 20px;
+}
+
+.dialog-body ul li {
+    margin: 5px 0;
+}
+
+/* Checkbox labels in dialogs */
+.dialog-body label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    font-size: 12px;
+    margin-top: 12px;
+}
+
+.dialog-body input[type="checkbox"] {
+    cursor: pointer;
+    width: 16px;
+    height: 16px;
+}
+
+/* File name display */
+#import-file-name {
+    color: var(--sql-hover-background);
+    font-weight: 600;
+}
+
+/* Counts display */
+#import-connections-count,
+#import-queries-count {
+    color: var(--sql-hover-background);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════════════
+ * VALIDATION ERROR STYLES
+ * ═══════════════════════════════════════════════════════════════════════════════════ */
+.dialog-overlay .dialog-input.validation-error,
+.dialog-overlay input.validation-error,
+.dialog-input.validation-error,
+input.validation-error {
+    border-color: red !important;
+    border-width: 1px !important;
+    border-style: solid !important;
+}
+
+.dialog-overlay .dialog-input.validation-error:focus,
+.dialog-overlay input.validation-error:focus,
+.dialog-input.validation-error:focus,
+input.validation-error:focus {
+    border-color: red !important;
+    border-width: 1px !important;
+    border-style: solid !important;
+    outline: none !important;
+}
+
+ /* ═══════════════════════════════════════════════════════════════════════════════════
+  * FIRST CONNECT REVIEW (HTML5 dialog)
+  * Изолированные стили: только через .fcr-*
+  * ═══════════════════════════════════════════════════════════════════════════════════ */
+ 
+ .fcr-dialog {
+     border: 1px solid var(--sql-border-color);
+     border-radius: 6px;
+     padding: 0;
+     width: 98vw;
+     height: 98vh;
+ }
+ 
+ .fcr-dialog::backdrop {
+     background: rgba(0, 0, 0, 0.35);
+ }
+ 
+ .fcr-dialog .dialog-content {
+     width: 100%;
+     max-width: none;
+     max-height: none;
+ }
+ 
+ .fcr-dialog-content {
+     width: 100%;
+     height: 100%;
+     box-sizing: border-box;
+     display: flex;
+     flex-direction: column;
+     overflow: hidden;
+ }
+ 
+ .fcr-dialog-header {
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+     gap: 10px;
+ }
+ 
+ .fcr-dialog-title {
+     font-weight: 600;
+ }
+ 
+  .fcr-dialog-header .tools {
+      display: flex;
+      align-items: center;
+  }
+ 
+  .fcr-dialog-header .tool.close {
+      width: 18px;
+      height: 18px;
+      position: relative;
+      cursor: pointer;
+      user-select: none;
+  }
+ 
+  .fcr-dialog-header .tool.close::before,
+  .fcr-dialog-header .tool.close::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 14px;
+      height: 2px;
+      background: #666;
+      border-radius: 1px;
+      transform-origin: center;
+      transform: translate(-50%, -50%) rotate(45deg);
+  }
+ 
+  .fcr-dialog-header .tool.close::after {
+      transform: translate(-50%, -50%) rotate(-45deg);
+  }
+ 
+  .fcr-dialog-header .tool.close:hover::before,
+  .fcr-dialog-header .tool.close:hover::after {
+      background: #444;
+  }
+ 
+  .fcr-dialog-header .tool.close:focus,
+  .fcr-dialog-header .tool.close:focus-visible {
+      outline: none;
+  }
+ 
+ .fcr-close-x {
+     appearance: none;
+     border: none;
+     background: transparent;
+     color: #666;
+     font-size: 18px;
+     line-height: 1;
+     padding: 0 2px;
+     cursor: pointer;
+     outline: none;
+     box-shadow: none;
+ }
+ 
+ .fcr-close-x:hover {
+     background: transparent;
+     color: #444;
+ }
+ 
+ .fcr-close-x:focus,
+ .fcr-close-x:focus-visible {
+     outline: none;
+     box-shadow: none;
+     background: transparent;
+ }
+ 
+ .fcr-dialog-body {
+     padding: 10px;
+     box-sizing: border-box;
+     background-color: var(--sql-background-primary);
+     color: var(--sql-text-primary);
+     flex: 1;
+     min-height: 0;
+ }
+ 
+ .dq-dialog {
+ 	border: 1px solid var(--sql-border-color);
+ 	border-radius: 6px;
+ 	padding: 0;
+ 	width: 98vw;
+ 	height: 98vh;
+ }
+ 
+ .dq-dialog::backdrop {
+ 	background: rgba(0, 0, 0, 0.35);
+ }
+ 
+ .dq-dialog .dialog-content {
+ 	width: 100%;
+ 	max-width: none;
+ 	max-height: none;
+ }
+ 
+ .dq-dialog-content {
+ 	width: 100%;
+ 	height: 100%;
+ 	box-sizing: border-box;
+ 	display: flex;
+ 	flex-direction: column;
+ 	overflow: hidden;
+ }
+ 
+ .dq-dialog-header {
+ 	display: flex;
+ 	align-items: center;
+ 	justify-content: space-between;
+ 	gap: 10px;
+ }
+ 
+ .dq-dialog-title {
+ 	font-weight: 600;
+ }
+ 
+ .dq-dialog-header .tools {
+ 	display: flex;
+ 	align-items: center;
+ }
+ 
+ .dq-dialog-header .tool.close {
+ 	width: 18px;
+ 	height: 18px;
+ 	position: relative;
+ 	cursor: pointer;
+ 	user-select: none;
+ }
+ 
+ .dq-dialog-header .tool.close::before,
+ .dq-dialog-header .tool.close::after {
+ 	content: '';
+ 	position: absolute;
+ 	left: 50%;
+ 	top: 50%;
+ 	width: 14px;
+ 	height: 2px;
+ 	background: #666;
+ 	border-radius: 1px;
+ 	transform-origin: center;
+ 	transform: translate(-50%, -50%) rotate(45deg);
+ }
+ 
+ .dq-dialog-header .tool.close::after {
+ 	transform: translate(-50%, -50%) rotate(-45deg);
+ }
+ 
+ .dq-dialog-header .tool.close:hover::before,
+ .dq-dialog-header .tool.close:hover::after {
+ 	background: #444;
+ }
+ 
+ .dq-dialog-header .tool.close:focus,
+ .dq-dialog-header .tool.close:focus-visible {
+ 	outline: none;
+ }
+ 
+ .dq-dialog-body {
+ 	padding: 10px;
+ 	box-sizing: border-box;
+ 	background-color: var(--sql-background-primary);
+ 	color: var(--sql-text-primary);
+ 	flex: 1;
+ 	min-height: 0;
+ }
+ 
+ .dq-body {
+ 	display: grid;
+ 	grid-template-columns: 220px 1fr;
+ 	gap: 12px;
+ 	height: 100%;
+ 	min-width: 0;
+ 	min-height: 0;
+ }
+ 
+ .dq-left,
+ .dq-right {
+ 	border: 1px solid var(--sql-border-color);
+ 	border-radius: 5px;
+ 	padding: 8px;
+ 	box-sizing: border-box;
+ 	overflow: hidden;
+ }
+ 
+ .dq-left {
+ 	display: flex;
+ 	flex-direction: column;
+ 	gap: 8px;
+ 	min-height: 0;
+ }
+ 
+ .dq-left #dq-tables {
+ 	flex: 1;
+ 	min-height: 0;
+ 	overflow: auto;
+ }
+ 
+ .dq-right {
+ 	display: flex;
+ 	flex-direction: column;
+ 	gap: 8px;
+ 	min-height: 0;
+ }
+ 
+ .dq-toolbar {
+ 	display: flex;
+ 	align-items: center;
+ 	justify-content: space-between;
+ 	gap: 8px;
+ }
+ 
+ .dq-tabs {
+ 	display: flex;
+ 	gap: 0;
+ 	border: 1px solid var(--sql-border-color);
+ 	border-radius: 6px;
+ 	overflow: hidden;
+ 	width: 230px;
+ }
+ 
+ .dq-tabs .btn {
+ 	border-radius: 0;
+ 	border: none;
+ 	flex: 1;
+ 	min-width: 0;
+ }
+ 
+ .dq-tabs .btn + .btn {
+ 	border-left: 1px solid var(--sql-border-color);
+ }
+ 
+ .dq-tabs .btn-primary {
+ 	background-color: var(--sql-hover-background);
+ 	color: #ffffff;
+ 	font-weight: 700;
+ 	box-shadow: inset 0 -2px 0 rgba(0, 0, 0, 0.2);
+ }
+ 
+ .dq-tabs .btn:not(.btn-primary) {
+ 	background-color: var(--sql-background-buttons);
+ 	color: var(--sql-text-primary);
+ }
+ 
+ .dq-content {
+ 	flex: 1;
+ 	min-height: 0;
+ 	overflow: hidden;
+ 	display: flex;
+ 	flex-direction: column;
+ }
+ 
+ .dq-tab-body {
+ 	flex: 1;
+ 	min-height: 0;
+ 	overflow: auto;
+ }
+ 
+ .dq-empty {
+ 	border: 1px dashed var(--sql-border-color);
+ 	border-radius: 6px;
+ 	padding: 12px;
+ 	color: var(--sql-text-secondary);
+ 	background: rgba(0, 0, 0, 0.02);
+ }
+ 
+ .dq-overview {
+ 	border: 1px solid var(--sql-border-color);
+ 	border-radius: 5px;
+ 	padding: 8px;
+ 	margin-bottom: 8px;
+ }
+ 
+ .dq-overview-row {
+ 	display: flex;
+ 	justify-content: space-between;
+ 	gap: 12px;
+ }
+ 
+ .dq-dialog-body ul.connection-list.dq-tables-list {
+ 	padding-left: 0 !important;
+ 	margin-left: 0;
+ }
+ 
+ .dq-table-item-selected {
+ 	background-color: rgba(0, 164, 246, 0.14);
+ }
+ 
+ .dq-table-meta {
+ 	font-size: 11px;
+ 	color: var(--sql-text-secondary);
+ }
+ 
+ .dq-card-grid {
+ 	display: grid;
+ 	grid-template-columns: repeat(3, minmax(0, 1fr));
+ 	gap: 8px;
+ }
+ 
+ .dq-card {
+ 	border: 1px solid var(--sql-border-color);
+ 	border-radius: 6px;
+ 	padding: 8px;
+ 	background: #ffffff;
+ }
+ 
+ .dq-card-title {
+ 	font-size: 11px;
+ 	color: var(--sql-text-secondary);
+ }
+ 
+ .dq-card-value {
+ 	font-size: 16px;
+ 	font-weight: 700;
+ 	color: var(--sql-text-primary);
+ 	margin-top: 2px;
+ }
+ 
+ .dq-section {
+ 	margin-top: 10px;
+ }
+ 
+ .dq-section-title {
+ 	font-weight: 600;
+ 	font-size: 12px;
+ 	margin-bottom: 6px;
+ }
+ 
+ .dq-metric-row {
+ 	display: grid;
+ 	grid-template-columns: minmax(0, 1fr) 120px 48px;
+ 	gap: 8px;
+ 	align-items: center;
+ 	padding: 4px 0;
+ }
+ 
+ .dq-bar {
+ 	height: 8px;
+ 	border-radius: 999px;
+ 	background: rgba(0, 0, 0, 0.08);
+ 	overflow: hidden;
+ }
+ 
+ .dq-bar > div {
+ 	height: 100%;
+ 	background: rgba(0, 164, 246, 0.7);
+ 	width: 0;
+ }
+ 
+ .dq-bar-label {
+ 	font-size: 11px;
+ 	color: var(--sql-text-secondary);
+ 	text-align: right;
+ }
+ 
+ .dq-schema-toolbar {
+ 	display: flex;
+ 	align-items: center;
+ 	justify-content: space-between;
+ 	gap: 8px;
+ 	margin-bottom: 8px;
+ }
+ 
+ .dq-schema-toolbar-left {
+ 	display: flex;
+ 	align-items: center;
+ 	gap: 8px;
+ 	min-width: 0;
+ }
+ 
+ .dq-icon-btn {
+ 	width: 26px;
+ 	height: 26px;
+ 	border: 1px solid var(--sql-border-color);
+ 	border-radius: 6px;
+ 	background: var(--sql-background-buttons);
+ 	cursor: pointer;
+ 	position: relative;
+ 	user-select: none;
+ 	flex: 0 0 auto;
+ }
+ 
+ .dq-icon-btn::before {
+ 	content: '';
+ 	position: absolute;
+ 	left: 50%;
+ 	top: 50%;
+ 	transform: translate(-50%, -52%);
+ 	width: 14px;
+ 	height: 14px;
+ 	background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20width%3D'16'%20height%3D'16'%20viewBox%3D'0%200%2024%2024'%20fill%3D'none'%20stroke%3D'%23555'%20stroke-width%3D'2'%20stroke-linecap%3D'round'%20stroke-linejoin%3D'round'%3E%3Cpath%20d%3D'M12%2020h9'%2F%3E%3Cpath%20d%3D'M16.5%203.5a2.121%202.121%200%200%201%203%203L7%2019l-4%201%201-4L16.5%203.5z'%2F%3E%3C%2Fsvg%3E");
+ 	background-repeat: no-repeat;
+ 	background-size: 14px 14px;
+ 	background-position: center;
+ 	opacity: 0.9;
+ }
+ 
+ .dq-icon-btn:hover::before {
+ 	opacity: 1;
+ 	filter: brightness(0.85);
+ }
+ 
+ .dq-icon-btn:focus,
+ .dq-icon-btn:focus-visible {
+ 	outline: none;
+ }
+ 
+ .dq-schema-title {
+ 	font-weight: 600;
+ 	min-width: 0;
+ 	overflow: hidden;
+ 	text-overflow: ellipsis;
+ 	white-space: nowrap;
+ }
+ 
+ .dq-schema-actions {
+ 	display: flex;
+ 	align-items: center;
+ 	gap: 8px;
+ }
+ 
+ .dq-schema-table {
+ 	width: 100%;
+ 	border-collapse: collapse;
+ 	font-size: 11px;
+ 	background: #ffffff;
+ }
+ 
+ .dq-schema-table th {
+ 	text-align: left;
+ 	font-weight: 600;
+ 	border: 1px solid var(--sql-border-color);
+ 	background-color: #f1f1f1;
+ 	padding: 6px 8px;
+ 	white-space: nowrap;
+ }
+ 
+ .dq-schema-table td {
+ 	border: 1px solid #e0e0e0;
+ 	padding: 6px 8px;
+ 	vertical-align: middle;
+ }
+ 
+ .dq-issue {
+ 	display: inline-flex;
+ 	align-items: center;
+ 	gap: 6px;
+ }
+ 
+ .dq-issue-icon {
+ 	width: 14px;
+ 	height: 14px;
+ 	vertical-align: middle;
+ 	opacity: 0.9;
+ }
+ 
+ .dq-issue-text {
+ 	color: #444;
+ }
+ 
+ .dq-issue-error .dq-issue-text {
+ 	color: #a61b2c;
+ }
+ 
+ .dq-issue-warning .dq-issue-text {
+ 	color: #444;
+ }
+ 
+ .dq-issue-badge {
+ 	display: inline-flex;
+ 	align-items: center;
+ 	justify-content: center;
+ 	border-radius: 999px;
+ 	padding: 2px 8px;
+ 	font-size: 10px;
+ 	font-weight: 700;
+ 	text-transform: uppercase;
+ 	border: 1px solid transparent;
+ }
+ 
+ .dq-issue-badge-warning {
+ 	background: rgba(255, 153, 0, 0.12);
+ 	border-color: rgba(255, 153, 0, 0.35);
+ 	color: #a15f00;
+ }
+ 
+ .dq-issue-badge-error {
+ 	background: rgba(220, 53, 69, 0.12);
+ 	border-color: rgba(220, 53, 69, 0.35);
+ 	color: #a61b2c;
+ }
+ 
+ .dq-history-metrics {
+ 	display: flex;
+ 	align-items: center;
+ 	gap: 10px;
+ 	flex-wrap: wrap;
+ 	justify-content: flex-end;
+ 	font-size: 11px;
+ 	color: var(--sql-text-secondary);
+ }
+ 
+ .dq-history-metrics b {
+ 	color: var(--sql-text-primary);
+ }
+ 
+ .dq-chart-tooltip {
+ 	position: fixed;
+ 	z-index: 100000;
+ 	background: #1f1f1f;
+ 	color: #fff;
+ 	border: 1px solid rgba(255, 255, 255, 0.18);
+ 	box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+ 	border-radius: 6px;
+ 	padding: 8px 10px;
+ 	font-size: 11px;
+ 	line-height: 1.3;
+ 	white-space: pre;
+ 	overflow-wrap: normal;
+ 	word-break: normal;
+ 	pointer-events: none;
+ }
+ 
+ .dq-schema-table select,
+ .dq-schema-table input[type="text"] {
+ 	width: 100%;
+ 	box-sizing: border-box;
+ 	min-height: 28px;
+ }
+ 
+ .dq-history-chart {
+ 	border: 1px solid var(--sql-border-color);
+ 	border-radius: 6px;
+ 	padding: 8px;
+ 	background: #ffffff;
+ 	margin-bottom: 8px;
+ }
+ 
+ .dq-history-detail-toolbar {
+ 	display: flex;
+ 	align-items: center;
+ 	gap: 10px;
+ 	margin-bottom: 10px;
+ }
+ 
+ .dq-history-detail-title {
+ 	font-weight: 600;
+ 	color: var(--sql-text-primary);
+ }
+ 
+ .dq-sparkline {
+ 	width: 100%;
+ 	height: 64px;
+ 	display: block;
+ }
+ 
+ .dq-history-item {
+ 	display: flex;
+ 	align-items: center;
+ 	justify-content: space-between;
+ 	gap: 10px;
+ }
+ 
+ .dq-history-item .dq-history-date {
+ 	font-size: 12px;
+ 	color: var(--sql-text-primary);
+ }
+ 
+ .dq-history-item .dq-history-issues {
+ 	font-size: 12px;
+ 	font-weight: 700;
+ 	color: var(--sql-text-primary);
+ }
+ 
+ .dq-json {
+ 	margin: 0;
+ 	white-space: pre;
+ }
+ 
+ .dq-history-list {
+ 	display: flex;
+ 	flex-direction: column;
+ 	gap: 6px;
+ }
+ 
+ .dq-history-item {
+ 	padding: 6px 8px;
+ 	border: 1px solid var(--sql-border-color);
+ 	border-radius: 4px;
+ 	cursor: pointer;
+ }
+ 
+ .dq-history-item:hover {
+ 	background-color: rgba(0, 164, 246, 0.08);
+ }
+ 
+ .fcr-body {
+     display: grid;
+     grid-template-columns: 150px 1fr;
+     gap: 8px;
+     height: 100%;
+     min-width: 0;
+     min-height: 0;
+ }
+ 
+ .fcr-left,
+ .fcr-right {
+     border: 1px solid var(--sql-border-color);
+     border-radius: 5px;
+     padding: 8px;
+     box-sizing: border-box;
+     overflow: hidden;
+ }
+ 
+ .fcr-left {
+     display: flex;
+     flex-direction: column;
+     gap: 8px;
+     min-height: 0;
+ }
+ 
+ .fcr-dialog-body ul.connection-list.fcr-tables-list {
+     padding-left: 0 !important;
+     margin-left: 0;
+ }
+ 
+ .fcr-left #first-connect-tables {
+     flex: 1;
+     min-height: 0;
+     overflow: auto;
+ }
+ 
+ .fcr-mode-tabs {
+     display: flex;
+     width: 100%;
+     border: 1px solid var(--sql-border-color);
+     border-radius: 6px;
+     overflow: hidden;
+ }
+ 
+ .fcr-mode-tabs .btn {
+     border: none;
+     border-radius: 0;
+     margin: 0;
+     flex: 1;
+     text-align: center;
+ }
+ 
+ .fcr-mode-tabs .btn + .btn {
+     border-left: 1px solid var(--sql-border-color);
+ }
+ 
+ .fcr-mode-tabs .btn-primary {
+     background-color: var(--sql-hover-background);
+     color: #ffffff;
+     font-weight: 700;
+     box-shadow: inset 0 -2px 0 rgba(0, 0, 0, 0.2);
+ }
+ 
+ .fcr-mode-tabs .btn:not(.btn-primary) {
+     background-color: var(--sql-background-buttons);
+     color: var(--sql-text-primary);
+ }
+ 
+ .fcr-edit-table select {
+     min-width: 90px;
+ }
+ 
+ .fcr-preview {
+     display: flex;
+     flex-direction: column;
+     height: 100%;
+     min-height: 0;
+ }
+ 
+ .fcr-right {
+     display: flex;
+     flex-direction: column;
+     gap: 8px;
+     min-height: 0;
+ }
+ 
+ .fcr-right #first-connect-content {
+     flex: 1;
+     min-height: 0;
+     display: flex;
+     flex-direction: column;
+     overflow: hidden;
+ }
+ 
+ .fcr-preview-stats {
+     font-size: 11px;
+     color: var(--sql-text-secondary);
+ }
+ 
+ .fcr-preview-table-wrapper {
+     border: 1px solid var(--sql-border-color);
+     border-radius: 5px;
+     overflow: hidden;
+     flex: 1;
+     min-height: 0;
+ }
+ 
+ .fcr-preview-table-wrapper.virtual-scroll-table-scroll-container {
+     height: 100% !important;
+ }
+ 
+ .fcr-footer {
+     display: flex;
+     justify-content: flex-end;
+     gap: 10px;
+ }
+ 
+ .fcr-col-issue-icon {
+     width: 14px;
+     height: 14px;
+     margin-left: 6px;
+     vertical-align: middle;
+     opacity: 0.85;
+ }
+ 
+ .fcr-col-issue-icon:hover {
+     opacity: 1;
+ }
+ 
+ .fcr-dialog .query-preview-table {
+     width: max-content;
+     min-width: 100%;
+     border-collapse: collapse;
+     font-size: 11px;
+     background-color: #ffffff;
+ }
+ 
+ .fcr-dialog .query-preview-table thead {
+     background-color: #f1f1f1;
+ }
+ 
+ .fcr-dialog .query-preview-table th {
+     padding: 6px 8px;
+     text-align: left;
+     font-weight: 600;
+     color: #333;
+     border: 1px solid var(--sql-border-color);
+     white-space: nowrap;
+     overflow: hidden;
+     text-overflow: ellipsis;
+ }
+ 
+ .fcr-dialog .query-preview-table td {
+     padding: 5px 8px;
+     border: 1px solid #e0e0e0;
+     color: var(--sql-text-primary);
+     white-space: nowrap;
+     overflow: hidden;
+     text-overflow: ellipsis;
+ }
+ 
+ .fcr-dialog .query-preview-table th.row-number-header,
+ .fcr-dialog .query-preview-table td.row-number {
+     width: 35px;
+     min-width: 35px;
+     max-width: 50px;
+     text-align: center;
+     padding: 4px;
+     font-weight: 600;
+     color: #333;
+     font-size: 10px;
+     background-color: #f1f1f1;
+     border: 1px solid var(--sql-border-color);
+ }
+ 
+ .fcr-dialog .query-preview-table tbody tr:hover {
+     background-color: #f5f9ff;
+ }
+ 
+ .fcr-dialog .query-preview-table .null-value {
+     color: #999;
+     font-style: italic;
+     font-size: 10px;
+ }
+ 
+ .fcr-table-item-selected {
+     background-color: rgba(0, 164, 246, 0.14);
+ }
+ 
+ .fcr-edit-table {
+     width: 100%;
+     border-collapse: collapse;
+     font-size: 11px;
+ }
+ 
+ .fcr-edit-table th {
+     text-align: left;
+     font-weight: 600;
+     border: 1px solid var(--sql-border-color);
+     background-color: #f1f1f1;
+     padding: 6px 8px;
+     white-space: nowrap;
+ }
+ 
+ .fcr-edit-table td {
+     border: 1px solid #e0e0e0;
+     padding: 6px 8px;
+     vertical-align: middle;
+ }
+ 
+ .fcr-edit-table input[type="text"] {
+     width: 100%;
+     box-sizing: border-box;
+ }
+ 
+ .fcr-name-from-to {
+     display: grid;
+     grid-template-columns: 1fr 1fr;
+     column-gap: 8px;
+     align-items: center;
+     width: 100%;
+ }
+ 
+ .fcr-name-from {
+     display: flex;
+     align-items: center;
+     min-width: 0;
+     overflow: hidden;
+     color: var(--sql-text-secondary);
+ }
+ 
+ .fcr-name-from-text {
+     flex: 1 1 auto;
+     min-width: 0;
+     overflow: hidden;
+     text-overflow: ellipsis;
+     white-space: nowrap;
+ }
+ 
+ .fcr-name-arrow {
+     flex: 0 0 auto;
+     margin-left: 6px;
+ }
+ 
+ .fcr-name-to {
+     width: 100%;
+     min-width: 0;
+     box-sizing: border-box;
+ }
+ 
+ .fcr-edit-table select {
+     width: 100%;
+     box-sizing: border-box;
+     min-height: 28px;
+ }
+ 
+ .fcr-error-text {
+     margin-left: 6px;
+     color: #444;
+ }
+ 
+ .fcr-error-samples {
+     color: #666;
+     font-style: italic;
+ }
+ 
+ .fcr-tooltip {
+     position: fixed;
+     z-index: 100000;
+     max-width: 420px;
+     background: #1f1f1f;
+     color: #fff;
+     border: 1px solid rgba(255, 255, 255, 0.18);
+     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+     border-radius: 6px;
+     padding: 8px 10px;
+     font-size: 11px;
+     line-height: 1.3;
+     white-space: pre-line;
+     pointer-events: none;
+ }
+
+/* ═══════════════════════════════════════════════════════════════════════════════════
+ * DIALOG OVERLAY AND LOADER STYLES (moved from sql-theme.css)
+ * ═══════════════════════════════════════════════════════════════════════════════════ */
+
+/* Overlay for loader and dialogs */
+.dialog-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+}
+
+/* Show overlay when active class is added */
+.dialog-overlay.active {
+    display: flex;
+}
+
+/* Dialog content container */
+.dialog-content {
+    background-color: #ffffff;
+    border-radius: 5px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    width: 350px;
+    max-width: 90%;
+    max-height: 70vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    animation: slideIn 0.2s ease-out;
+}
+
+@keyframes slideIn {
+    from { transform: translateY(-10px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* Dialog header */
+.dialog-header {
+    background-color: var(--sql-background-buttons);
+    color: var(--sql-text-primary);
+    padding: 12px 20px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+/* Dialog body */
+.dialog-body {
+    padding: 20px;
+    overflow-y: auto;
+    flex: 1;
+    font-size: 12px;
+}
+
+/* Dialog footer */
+.dialog-footer {
+    padding: 12px 20px;
+    background-color: #ffffff;
+    border-top: none;
+    border-radius: 0 0 5px 5px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+}
+
+.dialog-footer .btn {
+    padding: 6px 14px;
+    border: none;
+    border-radius: 3px;
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.dialog-footer .btn-primary {
+    background-color: var(--sql-hover-background);
+    color: #ffffff;
+}
+
+.dialog-footer .btn-primary:hover:not(:disabled) {
+    opacity: 0.9;
+}
+
+.dialog-footer .btn-secondary {
+    background-color: var(--sql-background-buttons);
+    color: var(--sql-text-primary);
+}
+
+.dialog-footer .btn-secondary:hover:not(:disabled) {
+    background-color: #3a3a3a !important;
+    color: #ffffff !important;
+}
+
+/* Dialog labels */
+.dialog-label {
+    display: block;
+    font-size: 11px;
+    font-weight: 500;
+    color: #555;
+    margin-bottom: 4px;
+    margin-top: 8px;
+}
+
+.dialog-label:first-of-type {
+    margin-top: 0;
+}
+
+/* Dialog input fields */
+.dialog-input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid var(--sql-border-color);
+    border-radius: 3px;
+    font-size: 12px;
+    margin-bottom: 12px;
+    box-sizing: border-box;
+}
+
+.dialog-input:focus {
+    border-color: var(--sql-hover-background);
+    outline: none;
+}
+
+/* Dialog error message */
+.dialog-error {
+    color: #dc3545;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+/* Loader spinner */
+.loader {
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid var(--sql-hover-background);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 15px auto;
+}
+
+/* Loader animation */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Loader message text */
+.loader-message {
+    font-size: 14px;
+    color: var(--sql-text-secondary);
+}

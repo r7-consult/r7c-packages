@@ -1,0 +1,74 @@
+{
+    "name": "Document Workflow Manager",
+    "nameLocale": {
+        "en": "Document Workflow Manager",
+        "ru": "Менеджер рабочих процессов документов"
+    },
+    "guid": "asc.{F93B4E20-C36D-4F24-9E67-3D0E9B8C6A4F}",
+    "version": "1.0.0",
+    "description": "Manage document review and approval workflows using OnlyOffice UI SDK",
+    "descriptionLocale": {
+        "en": "Manage document review and approval workflows using OnlyOffice UI SDK",
+        "ru": "Управление рабочими процессами рецензирования и утверждения документов с использованием OnlyOffice UI SDK"
+    },
+    "publisher": {
+        "name": "OnlyOffice UI SDK Team",
+        "url": "https://github.com/onlyoffice"
+    },
+    "help": "https://github.com/onlyoffice/ui-sdk/blob/main/examples/document-workflow/README.md",
+    "minVersion": "6.0.0",
+    "maxVersion": "",
+    "baseUrl": "",
+    "variations": [
+        {
+            "description": "Multi-step document review and approval workflow",
+            "descriptionLocale": {
+                "en": "Multi-step document review and approval workflow",
+                "ru": "Многоэтапный рабочий процесс рецензирования и утверждения документов"
+            },
+            "url": "index.html",
+            "icons": [
+                "icon.png",
+                "icon@2x.png"
+            ],
+            "isViewer": false,
+            "EditorsSupport": [
+                "word"
+            ],
+            "isVisual": true,
+            "isModal": true,
+            "isInsideMode": false,
+            "initDataType": "text",
+            "initData": "",
+            "isUpdateOleOnResize": false,
+            "buttons": [
+                {
+                    "text": "Process Workflow",
+                    "textLocale": {
+                        "en": "Process Workflow",
+                        "ru": "Обработать рабочий процесс"
+                    },
+                    "primary": true
+                },
+                {
+                    "text": "Save Progress",
+                    "textLocale": {
+                        "en": "Save Progress",
+                        "ru": "Сохранить прогресс"
+                    },
+                    "primary": false
+                },
+                {
+                    "text": "Close",
+                    "textLocale": {
+                        "en": "Close",
+                        "ru": "Закрыть"
+                    },
+                    "primary": false
+                }
+            ],
+            "size": [900, 650],
+            "initOnSelectionChanged": false
+        }
+    ]
+}

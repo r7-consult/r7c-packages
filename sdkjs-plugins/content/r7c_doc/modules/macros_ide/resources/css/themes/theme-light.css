@@ -1,0 +1,42 @@
+/**
+ * TASK-105-IMP: Light Theme Overrides
+ * Architecture: 2-Level Compliance (Level 2 - Theme Overrides)
+ *
+ * Note: Light theme values are already defined as defaults in design-tokens.css
+ * This file exists for consistency and future overrides
+ */
+
+:root[data-vscode-theme="light-plus"],
+:root[data-vscode-theme="vs"],
+:root[data-theme="light"],
+.theme-type-light {
+  color-scheme: light;
+  --color-bg-primary: #ffffff;
+  --color-bg-secondary: #ffffff;
+  --color-bg-tertiary: #e1e1e1;
+  --color-bg-quaternary: #f1f1f1;
+  --color-bg-hover: #e1e1e1;
+
+  --color-text-primary: #000000;
+  --color-text-secondary: #000000;
+  --color-text-tertiary: #3a3a3a;
+  --color-text-quaternary: #3a3a3a;
+  --color-text-link: #00a4f6;
+  --color-text-inverse: #ffffff;
+
+  --color-border-light: #f1f1f1;
+  --color-border-medium: #e1e1e1;
+  --color-border-dark: #e1e1e1;
+  --color-border-focus: #00a4f6;
+  --color-border-hover: #00a4f6;
+
+  --color-state-hover-light: #e1e1e1;
+  --color-state-hover-bg: #e1e1e1;
+  --color-state-active-bg: #e1e1e1;
+  --color-state-selected-bg: #00a4f6;
+  --color-state-selected-text: #ffffff;
+
+  --color-button-primary-bg: #00a4f6;
+  --color-button-primary-hover: #00a4f6;
+  --color-button-primary-active: #00a4f6;
+}

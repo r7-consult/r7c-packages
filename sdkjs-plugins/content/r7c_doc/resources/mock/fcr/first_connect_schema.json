@@ -1,0 +1,29 @@
+{
+  "sales": [
+    { "name": "id", "type": "int", "typeVariants": ["int", "bigint", "string"], "nullable": false, "issues": [] },
+    { "name": "date", "type": "date", "typeVariants": ["date", "timestamp", "string"], "nullable": false, "issues": [] },
+    { "name": "amount", "type": "float", "typeVariants": ["float", "decimal(10,2)", "string"], "nullable": true, "issues": [{ "level": "warning", "message": "Встречаются строковые значения" }] },
+    { "name": "city", "type": "string", "typeVariants": ["string"], "nullable": true, "issues": [] }
+  ],
+  "users": [
+    { "name": "user_id", "type": "int", "typeVariants": ["int", "bigint", "string"], "nullable": false, "issues": [] },
+    { "name": "email", "type": "string", "typeVariants": ["string"], "nullable": false, "issues": [{ "level": "error", "message": "Часть email некорректна" }] },
+    { "name": "age", "type": "int", "typeVariants": ["int", "smallint", "string"], "nullable": true, "issues": [{ "level": "warning", "message": "NULL значения" }] },
+    { "name": "country", "type": "string", "typeVariants": ["string"], "nullable": true, "issues": [] },
+    { "name": "signup_date", "type": "date", "typeVariants": ["date", "timestamp", "string"], "nullable": false, "issues": [] }
+  ],
+  "orders": [
+    { "name": "order_id", "type": "int", "typeVariants": ["int", "bigint", "string"], "nullable": false, "issues": [] },
+    { "name": "user_id", "type": "int", "typeVariants": ["int", "bigint", "string"], "nullable": false, "issues": [] },
+    { "name": "total", "type": "decimal(10,2)", "typeVariants": ["decimal(10,2)", "float", "string"], "nullable": false, "issues": [{ "level": "warning", "message": "Есть некорректные суммы" }] },
+    { "name": "status", "type": "string", "typeVariants": ["string"], "nullable": false, "issues": [{ "level": "warning", "message": "Неизвестные статусы" }] },
+    { "name": "created_at", "type": "date", "typeVariants": ["date", "timestamp", "string"], "nullable": false, "issues": [] }
+  ],
+  "events": [
+    { "name": "event_id", "type": "bigint", "typeVariants": ["bigint", "int", "string"], "nullable": false, "issues": [] },
+    { "name": "user_id", "type": "int", "typeVariants": ["int", "bigint", "string"], "nullable": false, "issues": [] },
+    { "name": "event_type", "type": "string", "typeVariants": ["string"], "nullable": false, "issues": [] },
+    { "name": "ts", "type": "timestamp", "typeVariants": ["timestamp", "date", "string"], "nullable": false, "issues": [] },
+    { "name": "payload", "type": "string", "typeVariants": ["string", "json"], "nullable": true, "issues": [{ "level": "warning", "message": "Некорректный JSON" }] }
+  ]
+}

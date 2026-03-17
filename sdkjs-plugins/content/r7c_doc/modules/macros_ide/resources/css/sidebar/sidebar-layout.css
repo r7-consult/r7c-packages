@@ -1,0 +1,86 @@
+/**
+ * Sidebar Layout Core
+ * -------------------
+ * Defines the structural flex/overflow contracts for the left sidebar and
+ * its tree-based views (macros, examples, logs, external scripts).
+ *
+ * Goals:
+ * - Single source of truth for sidebar layout
+ * - Ensure each view owns a scrollable region without relying on legacy calc heights
+ * - Prepare for data-attribute driven view modules
+ */
+
+#vscode-sidebar {
+  display: flex;
+  flex-direction: column;
+}
+
+#vscode-sidebar .common_menu {
+  position: relative !important;
+  top: auto !important;
+  bottom: auto !important;
+  left: auto !important;
+  right: auto !important;
+  margin: 0;
+
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-height: 0;
+  /* Let child views manage scrolling */
+  overflow: hidden;
+}
+
+#vscode-sidebar #menu_content {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding-top: 0;
+  /* Parent never scrolls; individual views own scrollbars */
+  overflow: hidden;
+}
+
+#vscode-sidebar .tree-node {
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 auto;
+  min-height: 0;
+}
+
+#vscode-sidebar .tree-node-children {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Default scroll contract: tree-node-children scroll their content */
+#vscode-sidebar .tree-node-children > .tree-item {
+  flex: 0 0 auto;
+}
+
+#vscode-sidebar .tree-node-children > .sidebar-logs-output {
+  flex: 1 1 auto;
+  min-height: 0;
+  width: 100%;
+}
+
+/* REMOVED duplicate overflow rule (was lines 71-74) - already defined in vscode-sidebar.css:170 */
+/* Duplicate: #vscode-sidebar .tree-node-children { overflow-y: auto; overflow-x: hidden; } */
+/* Fix for double scrollbar issue in examples explorer (TASK-116) */
+
+#vscode-sidebar #logs-tree-node .tree-node-children {
+  overflow: hidden;
+}
+
+/* Ensure legacy collapsed/expanded classes still work */
+#vscode-sidebar .tree-node-children.collapsed {
+  display: none;
+}
+
+#vscode-sidebar .tree-node-children.expanded {
+  display: flex;
+}

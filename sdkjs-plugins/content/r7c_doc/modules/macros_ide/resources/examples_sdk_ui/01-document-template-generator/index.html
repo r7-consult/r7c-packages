@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Template Generator</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #f8f9fa;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 760px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            padding: 24px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 32px;
+            border-bottom: 1px solid #e1e4e8;
+            padding-bottom: 24px;
+        }
+        
+        .header h1 {
+            margin: 0 0 8px 0;
+            color: #24292e;
+            font-size: 28px;
+            font-weight: 600;
+        }
+        
+        .header p {
+            margin: 0;
+            color: #6a737d;
+            font-size: 16px;
+        }
+        
+        .template-selection {
+            margin-bottom: 32px;
+        }
+        
+        .template-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-top: 16px;
+        }
+        
+        .template-card {
+            border: 2px solid #e1e4e8;
+            border-radius: 8px;
+            padding: 16px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-align: center;
+        }
+        
+        .template-card:hover {
+            border-color: #0366d6;
+            box-shadow: 0 4px 12px rgba(3, 102, 214, 0.15);
+        }
+        
+        .template-card.selected {
+            border-color: #0366d6;
+            background: #f1f8ff;
+        }
+        
+        .template-card h3 {
+            margin: 0 0 8px 0;
+            color: #24292e;
+            font-size: 18px;
+        }
+        
+        .template-card p {
+            margin: 0;
+            color: #6a737d;
+            font-size: 14px;
+        }
+        
+        .form-section {
+            margin-bottom: 24px;
+        }
+        
+        .form-section h3 {
+            margin: 0 0 16px 0;
+            color: #24292e;
+            font-size: 20px;
+            font-weight: 600;
+        }
+        
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 16px;
+        }
+        
+        .form-group {
+            margin-bottom: 16px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 500;
+            color: #24292e;
+        }
+        
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #d1d5da;
+            border-radius: 6px;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #0366d6;
+            box-shadow: 0 0 0 3px rgba(3, 102, 214, 0.1);
+        }
+        
+        .form-group textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+        
+        .actions {
+            text-align: right;
+            padding-top: 24px;
+            border-top: 1px solid #e1e4e8;
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            border: 1px solid #d1d5da;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            margin-left: 8px;
+            transition: all 0.2s ease;
+        }
+        
+        .btn-primary {
+            background: #0366d6;
+            border-color: #0366d6;
+            color: white;
+        }
+        
+        .btn-primary:hover:not(:disabled) {
+            background: #0256c7;
+            border-color: #0256c7;
+        }
+        
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+        
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 40px;
+        }
+        
+        .loading.active {
+            display: block;
+        }
+        
+        .spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #0366d6;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 16px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .error {
+            background: #ffeef0;
+            border: 1px solid #f97583;
+            border-radius: 6px;
+            padding: 12px;
+            margin: 16px 0;
+            color: #d73a49;
+            display: none;
+        }
+        
+        .error.active {
+            display: block;
+        }
+        
+        .success {
+            background: #dcffe4;
+            border: 1px solid #34d058;
+            border-radius: 6px;
+            padding: 12px;
+            margin: 16px 0;
+            color: #28a745;
+            display: none;
+        }
+        
+        .success.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Document Template Generator</h1>
+            <p>Create personalized documents from professional templates</p>
+        </div>
+        
+        <div id="main-content">
+            <div class="template-selection">
+                <h3>Select Template Type</h3>
+                <div class="template-grid">
+                    <div class="template-card" data-template="business-letter">
+                        <h3>📄 Business Letter</h3>
+                        <p>Professional correspondence template</p>
+                    </div>
+                    <div class="template-card" data-template="proposal">
+                        <h3>📋 Project Proposal</h3>
+                        <p>Business proposal and project outline</p>
+                    </div>
+                    <div class="template-card" data-template="invoice">
+                        <h3>🧾 Invoice</h3>
+                        <p>Professional billing document</p>
+                    </div>
+                    <div class="template-card" data-template="report">
+                        <h3>📊 Report</h3>
+                        <p>Structured business report template</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="form-container" style="display: none;">
+                <div class="form-section">
+                    <h3>Document Information</h3>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="document-title">Document Title *</label>
+                            <input type="text" id="document-title" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="document-date">Date</label>
+                            <input type="date" id="document-date">
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="dynamic-fields">
+                    <!-- Dynamic form fields will be inserted here -->
+                </div>
+                
+                <div class="actions">
+                    <button type="button" class="btn" onclick="resetForm()">Reset</button>
+                    <button type="button" class="btn btn-primary" id="generate-btn" onclick="generateDocument()">
+                        Generate Document
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div id="loading" class="loading">
+            <div class="spinner"></div>
+            <p>Generating your document...</p>
+        </div>
+        
+        <div id="error-message" class="error"></div>
+        <div id="success-message" class="success"></div>
+    </div>
+
+    <!-- Include OnlyOffice UI SDK -->
+    <script type="text/javascript" src="../../../sdk/onlyoffice-ui-sdk-plugin.js"></script>
+    <script type="text/javascript" src="../../../sdk/onlyoffice-ui-sdk-bundle.js"></script>
+    
+    <!-- Main application script -->
+    <script type="text/javascript" src="main.js"></script>
+</body>
+</html>

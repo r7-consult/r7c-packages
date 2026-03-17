@@ -1,0 +1,66 @@
+{
+    "name": "Document Template Generator",
+    "nameLocale": {
+        "en": "Document Template Generator",
+        "ru": "Генератор шаблонов документов"
+    },
+    "guid": "asc.{D71C2EF0-F15B-4A12-9A45-1B8C9E7D6F2A}",
+    "version": "1.0.0",
+    "description": "Generate personalized documents from templates using OnlyOffice UI SDK",
+    "descriptionLocale": {
+        "en": "Generate personalized documents from templates using OnlyOffice UI SDK",
+        "ru": "Создание персонализированных документов из шаблонов с использованием OnlyOffice UI SDK"
+    },
+    "publisher": {
+        "name": "OnlyOffice UI SDK Team",
+        "url": "https://github.com/onlyoffice"
+    },
+    "help": "https://github.com/onlyoffice/ui-sdk/blob/main/examples/template-generator/README.md",
+    "minVersion": "6.0.0",
+    "maxVersion": "",
+    "baseUrl": "",
+    "variations": [
+        {
+            "description": "Generate personalized documents from predefined templates",
+            "descriptionLocale": {
+                "en": "Generate personalized documents from predefined templates",
+                "ru": "Создание персонализированных документов из предопределенных шаблонов"
+            },
+            "url": "index.html",
+            "icons": [
+                "icon.png",
+                "icon@2x.png"
+            ],
+            "isViewer": false,
+            "EditorsSupport": [
+                "word"
+            ],
+            "isVisual": true,
+            "isModal": true,
+            "isInsideMode": false,
+            "initDataType": "text",
+            "initData": "",
+            "isUpdateOleOnResize": false,
+            "buttons": [
+                {
+                    "text": "Generate Document",
+                    "textLocale": {
+                        "en": "Generate Document",
+                        "ru": "Создать документ"
+                    },
+                    "primary": true
+                },
+                {
+                    "text": "Cancel",
+                    "textLocale": {
+                        "en": "Cancel", 
+                        "ru": "Отмена"
+                    },
+                    "primary": false
+                }
+            ],
+            "size": [800, 600],
+            "initOnSelectionChanged": false
+        }
+    ]
+}

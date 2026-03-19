@@ -1,0 +1,92 @@
+{
+	"name": "Hello World",
+	"nameLocale": {
+		"ru": "Привет, мир"
+	},
+	"offered": "ООО \"Датаконс\"",
+	"guid": "asc.{F4A9A9D0-0A7B-4D37-9BB8-2F8EF20E6801}",
+	"version": "1.0.0",
+	"minVersion": "7.3.3",
+	"variations": [
+		{
+			"description": "A minimal template plugin that displays Hello World and selected text.",
+			"descriptionLocale": {
+				"ru": "Минимальный шаблон плагина: показывает Hello World и выделенный текст."
+			},
+			"url": "index.html",
+			"icons": [
+				"resources/light/icon.png",
+				"resources/light/icon@2x.png"
+			],
+			"icons2": [
+				{
+					"style": "light",
+					"100%": {
+						"normal": "resources/light/icon.png"
+					},
+					"125%": {
+						"normal": "resources/light/icon.png"
+					},
+					"150%": {
+						"normal": "resources/light/icon.png"
+					},
+					"175%": {
+						"normal": "resources/light/icon.png"
+					},
+					"200%": {
+						"normal": "resources/light/icon@2x.png"
+					}
+				},
+				{
+					"style": "dark",
+					"100%": {
+						"normal": "resources/dark/icon.png"
+					},
+					"125%": {
+						"normal": "resources/dark/icon.png"
+					},
+					"150%": {
+						"normal": "resources/dark/icon.png"
+					},
+					"175%": {
+						"normal": "resources/dark/icon.png"
+					},
+					"200%": {
+						"normal": "resources/dark/icon@2x.png"
+					}
+				}
+			],
+			"isViewer": true,
+			"EditorsSupport": [
+				"word",
+				"cell",
+				"slide"
+			],
+			"initDataType": "text",
+			"initData": "",
+			"isVisual": true,
+			"isModal": true,
+			"isInsideMode": false,
+			"isUpdateOleOnResize": false,
+			"size": [980, 680],
+			"buttons": [],
+			"store": {
+				"background": {
+					"light": "#E9F5FF",
+					"dark": "#1F2937"
+				},
+				"screenshots": [
+					"resources/store/screenshots/screen_1.png"
+				],
+				"icons": {
+					"light": "resources/store/icons",
+					"dark": "resources/store/icons"
+				},
+				"categories": [
+					"devTools",
+					"work"
+				]
+			}
+		}
+	]
+}

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello World</title>
+    <link rel="stylesheet" href="https://onlyoffice.github.io/sdkjs-plugins/v1/plugins.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <style id="pluginStyles"></style>
+    <script src="https://onlyoffice.github.io/sdkjs-plugins/v1/plugins.js"></script>
+    <script src="https://onlyoffice.github.io/sdkjs-plugins/v1/plugins-ui.js"></script>
+</head>
+<body class="hello-world-root">
+    <div class="modal-backdrop">
+        <main class="hello-card" role="dialog" aria-modal="true" aria-label="Hello World template checklist">
+            <header class="hello-card__header">
+                <div>
+                    <h1>Hello World</h1>
+                    <p class="subtitle">Шаблон плагина для {r7c}.packages с инструкцией и PR-чеклистом</p>
+                </div>
+                <div class="badge">Template</div>
+            </header>
+
+            <section class="content-block">
+                <h2>Selected text</h2>
+                <pre id="selectedText">No text selected</pre>
+            </section>
+
+            <section class="content-block intro">
+                <div>
+                    <h2>Как использовать</h2>
+                    <p>Скопируйте папку <code>hello-world</code>, переименуйте и адаптируйте файлы. После сборки <code>.plugin</code> проверяйте его напрямую в {r7}/ONLYOFFICE (Plugins → Upload).</p>
+                </div>
+                <a class="doc-link" href="https://github.com/r7-consult/r7c-packages/blob/main/docs/add_plugin_guide.md" target="_blank" rel="noopener noreferrer">Полный гайд</a>
+            </section>
+
+            <section class="guide-grid">
+                <article class="guide-card">
+                    <h3>5 шагов добавления</h3>
+                    <ol class="step-list">
+                        <li>
+                            <span class="step-index">1</span>
+                            <div>
+                                <p class="step-title">Структура</p>
+                                <p class="step-text">Создайте <code>sdkjs-plugins/content/&lt;plugin&gt;/</code>, добавьте <code>config.json</code>, <code>index.html</code>, <code>scripts</code>, <code>resources</code>.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="step-index">2</span>
+                            <div>
+                                <p class="step-title">Иконки и скрины</p>
+                                <p class="step-text">Подготовьте light/dark иконки и минимум один скриншот в <code>resources/store</code>.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="step-index">3</span>
+                            <div>
+                                <p class="step-title">Документация</p>
+                                <p class="step-text">Добавьте <code>README.md</code>, <code>CHANGELOG.md</code>, <code>LICENSE</code>, <code>3rd-Party.txt</code>.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="step-index">4</span>
+                            <div>
+                                <p class="step-title">Регистрация</p>
+                                <p class="step-text">Добавьте плагин в <code>store/config.json</code> и проверьте категории.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="step-index">5</span>
+                            <div>
+                                <p class="step-title">Проверка deploy</p>
+                                <p class="step-text">Соберите <code>deploy/&lt;plugin&gt;.plugin</code> и загрузите его в {r7}/ONLYOFFICE для ручной проверки.</p>
+                            </div>
+                        </li>
+                    </ol>
+                </article>
+
+                <article class="guide-card checklist-card">
+                    <h3>Чеклист перед PR</h3>
+                    <ul class="checklist">
+                        <li>
+                            <input class="check-input" type="checkbox" disabled>
+                            <div>
+                                <p class="check-title">config.json валиден</p>
+                                <p class="check-text">name/guid/version/variations заполнены, entry-point существует.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <input class="check-input" type="checkbox" disabled>
+                            <div>
+                                <p class="check-title">Иконки и скриншоты готовы</p>
+                                <p class="check-text">Пути к light/dark и store/screenshots корректны.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <input class="check-input" type="checkbox" disabled>
+                            <div>
+                                <p class="check-title">store/config.json обновлён</p>
+                                <p class="check-text">Плагин добавлен, категории соответствуют допустимым.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <input class="check-input" type="checkbox" disabled>
+                            <div>
+                                <p class="check-title">deploy собран</p>
+                                <p class="check-text">Файл <code>&lt;plugin&gt;.plugin</code> находится в <code>deploy/</code>.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <input class="check-input" type="checkbox" disabled>
+                            <div>
+                                <p class="check-title">Документация приложена</p>
+                                <p class="check-text">README + CHANGELOG + LICENSE + 3rd-Party есть в корне.</p>
+                            </div>
+                        </li>
+                    </ul>
+                    <p class="check-hint">Подробности: <code>docs/plugin_checklist.md</code> и <code>.github/PULL_REQUEST_TEMPLATE.md</code>.</p>
+                </article>
+            </section>
+        </main>
+    </div>
+
+    <script src="scripts/main.js"></script>
+</body>
+</html>

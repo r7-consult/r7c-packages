@@ -210,5 +210,9 @@
     {
         "name":"r7c_doc",
         "discussion":""
+	},
+	{
+		"name": "hello-world",
+		"discussion": ""
 	}
 ]

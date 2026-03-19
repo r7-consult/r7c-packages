@@ -1,0 +1,6 @@
+This plugin uses ONLYOFFICE Plugin SDK scripts:
+- https://onlyoffice.github.io/sdkjs-plugins/v1/plugins.js
+- https://onlyoffice.github.io/sdkjs-plugins/v1/plugins-ui.js
+- https://onlyoffice.github.io/sdkjs-plugins/v1/plugins.css
+
+No additional third-party dependencies are bundled in this template.

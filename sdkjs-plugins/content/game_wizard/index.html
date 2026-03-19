@@ -8,8 +8,9 @@
   <link rel="stylesheet" href="styles/main.css">
   <script src="vendor/oo/plugins.js"></script>
   <script src="vendor/oo/plugins-ui.js"></script>
-  <script src="scripts/game-registry.js"></script>
+  <script src="scripts/manager-config.js"></script>
   <script src="scripts/game-launcher.js"></script>
+  <script src="scripts/module-service.js"></script>
   <script src="scripts/ui.js"></script>
   <script src="scripts/plugin.js"></script>
 </head>
@@ -17,8 +18,8 @@
   <div class="gw-app" id="gw-app">
     <header class="gw-header">
       <div class="gw-heading">
-        <h1 class="gw-title">Game Wizard</h1>
-        <p class="gw-subtitle">Выберите игру для запуска</p>
+        <h1 id="gw-title" class="gw-title">Game Wizard</h1>
+        <p id="gw-subtitle" class="gw-subtitle">Выберите игру для запуска</p>
       </div>
       <a
         class="gw-mascot-link"
@@ -34,7 +35,7 @@
     <main class="gw-main">
       <div class="gw-main-title-row">
         <h2 class="gw-main-title">Игры</h2>
-        <span class="gw-main-meta">Открытие в отдельном окне</span>
+        <span id="gw-main-meta" class="gw-main-meta">Загрузка каталога...</span>
       </div>
       <div id="games-list" class="games-list" aria-live="polite"></div>
     </main>

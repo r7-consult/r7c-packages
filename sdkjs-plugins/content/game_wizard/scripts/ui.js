@@ -7,74 +7,188 @@
     }
   }
 
-  function createButton(game, onOpen) {
-    const isDisabled = !!game.disabled;
-    const btn = document.createElement('button');
-    btn.type = 'button';
-    btn.className = 'game-card' + (isDisabled ? ' is-disabled' : '');
-    btn.setAttribute('data-game-id', game.id);
-    btn.setAttribute(
-      'aria-label',
-      isDisabled ? ('Игра временно недоступна: ' + game.title) : ('Открыть игру ' + game.title)
-    );
+  function createElement(tagName, className, text) {
+    var node = document.createElement(tagName);
+    if (className) {
+      node.className = className;
+    }
+    if (text != null) {
+      node.textContent = text;
+    }
+    return node;
+  }
 
-    if (isDisabled) {
-      btn.disabled = true;
-      btn.setAttribute('aria-disabled', 'true');
+  function stopEvent(event) {
+    event.preventDefault();
+    event.stopPropagation();
+  }
+
+  function createActionButton(label, className, onClick) {
+    var button = createElement('button', className, label);
+    button.type = 'button';
+    button.addEventListener('click', function(event) {
+      stopEvent(event);
+      onClick();
+    });
+    return button;
+  }
+
+  function createIcon(record) {
+    var icon = createElement('span', 'module-card-icon');
+
+    if (record.iconUrl) {
+      var image = document.createElement('img');
+      image.className = 'module-card-icon-image';
+      image.src = record.iconUrl;
+      image.alt = '';
+      image.addEventListener('error', function() {
+        if (image.parentNode) {
+          image.parentNode.removeChild(image);
+        }
+        icon.textContent = record.iconText || 'GM';
+      }, { once: true });
+      icon.appendChild(image);
+      return icon;
     }
 
-    const icon = document.createElement('span');
-    icon.className = 'game-card-icon';
-    icon.textContent = game.icon || 'GM';
+    icon.textContent = record.iconText || 'GM';
+    return icon;
+  }
 
-    const main = document.createElement('span');
-    main.className = 'game-card-main';
+  function createMetaLine(record) {
+    var meta = createElement('div', 'module-card-meta');
+    var stateLabel = record.state === 'update-available'
+      ? 'Доступно обновление'
+      : record.state === 'available'
+        ? 'Доступно к установке'
+        : record.state === 'local-only'
+          ? 'Локальный модуль'
+          : 'Установлено';
 
-    const title = document.createElement('span');
-    title.className = 'game-card-title';
-    title.textContent = game.title;
+    meta.appendChild(createElement('span', 'module-card-version', 'Версия: ' + (record.version || '0.0.0')));
+    meta.appendChild(createElement('span', 'module-card-state', stateLabel));
+    return meta;
+  }
 
-    const desc = document.createElement('span');
-    desc.className = 'game-card-desc';
-    desc.textContent = game.description || 'Запуск игры';
+  function bindCardActivation(card, onActivate) {
+    card.addEventListener('click', onActivate);
+    card.addEventListener('keydown', function(event) {
+      if (event.key === 'Enter' || event.key === ' ') {
+        stopEvent(event);
+        onActivate();
+      }
+    });
+  }
 
-    const action = document.createElement('span');
-    action.className = 'game-card-action';
-    action.textContent = isDisabled ? 'Недоступно' : 'Открыть';
+  function createCard(record, handlers) {
+    var card = createElement('article', 'module-card module-card--' + record.state);
+    var actions = createElement('div', 'module-card-actions');
+    var main = createElement('div', 'module-card-main');
+    var title = createElement('div', 'module-card-title', record.title);
+    var description = createElement('div', 'module-card-desc', record.description || 'Модуль плагина');
+
+    card.setAttribute('data-record-id', record.id);
+    card.appendChild(createIcon(record));
+
+    if (record.badge) {
+      card.appendChild(createElement('span', 'module-card-badge', record.badge));
+    }
 
     main.appendChild(title);
-    main.appendChild(desc);
-    btn.appendChild(icon);
-    btn.appendChild(main);
-    btn.appendChild(action);
+    main.appendChild(description);
+    main.appendChild(createMetaLine(record));
+    card.appendChild(main);
 
-    if (!isDisabled) {
-      btn.addEventListener('click', function() {
-        onOpen(game.id);
+    if (record.canInstall) {
+      actions.appendChild(createActionButton('Установить', 'module-action module-action--install', function() {
+        handlers.onInstall(record.id);
+      }));
+    }
+
+    if (record.canUpdate) {
+      actions.appendChild(createActionButton('Обновить', 'module-action module-action--secondary', function() {
+        handlers.onUpdate(record.id);
+      }));
+    }
+
+    if (record.canRemove) {
+      actions.appendChild(createActionButton('Удалить', 'module-action module-action--danger', function() {
+        handlers.onRemove(record.id);
+      }));
+    }
+
+    if (!actions.childNodes.length) {
+      actions.appendChild(createElement('span', 'module-card-action-hint', record.canLaunch ? 'Открыть' : '')); 
+    }
+
+    card.appendChild(actions);
+
+    if (record.canLaunch) {
+      card.classList.add('is-clickable');
+      card.tabIndex = 0;
+      card.setAttribute('role', 'button');
+      bindCardActivation(card, function() {
+        handlers.onOpen(record.id);
       });
     }
 
-    return btn;
+    return card;
+  }
+
+  function createEmptyState(text) {
+    var empty = createElement('div', 'modules-empty');
+    empty.appendChild(createElement('div', 'modules-empty-title', 'Игры не найдены'));
+    empty.appendChild(createElement('div', 'modules-empty-text', text || 'В менеджере пока нет доступных модулей.'));
+    return empty;
   }
 
   window.GameWizardUI = {
-    renderGames: function(games, onOpen) {
-      const list = document.getElementById('games-list');
+    renderModules: function(records, handlers) {
+      var list = document.getElementById('games-list');
       if (!list) {
         return;
       }
 
       clearNode(list);
-      for (let i = 0; i < games.length; i += 1) {
-        list.appendChild(createButton(games[i], onOpen));
+
+      if (!records || !records.length) {
+        list.appendChild(createEmptyState('Проверьте локальную папку modules или настройку GitHub-каталога.'));
+        return;
+      }
+
+      for (var i = 0; i < records.length; i += 1) {
+        list.appendChild(createCard(records[i], handlers));
       }
     },
 
     setStatus: function(message) {
-      const status = document.getElementById('gw-status');
+      var status = document.getElementById('gw-status');
       if (status) {
         status.textContent = message;
       }
+    },
+
+    setMeta: function(message) {
+      var meta = document.getElementById('gw-main-meta');
+      if (meta) {
+        meta.textContent = message;
+      }
+    },
+
+    setBranding: function(branding) {
+      var title = branding && branding.title ? branding.title : 'Game Wizard';
+      var subtitle = branding && branding.subtitle ? branding.subtitle : '';
+      var titleNode = document.getElementById('gw-title');
+      var subtitleNode = document.getElementById('gw-subtitle');
+
+      if (titleNode) {
+        titleNode.textContent = title;
+      }
+      if (subtitleNode) {
+        subtitleNode.textContent = subtitle;
+      }
+
+      document.title = title;
     }
   };
 })(window);

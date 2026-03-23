@@ -1,0 +1,579 @@
+/* === Sheet side-by-side preview === */
+.sheet-preview { display:flex; gap:12px; margin:8px 0 16px; padding:0 8px; box-sizing:border-box; }
+.sheet-preview.hidden { display:none; }
+.sheet-preview-col { flex:1 1 0; min-width:0; display:flex; flex-direction:column; overflow:visible; }
+.preview-title { margin:0 0 4px; font-size:13px; font-weight:600; }
+.preview-controls-row { display:none; align-items:center; gap:12px; margin:4px 0 8px 0; padding:0 8px; justify-content:flex-end; width:100%; box-sizing:border-box; overflow:hidden; flex-wrap:wrap; }
+.preview-controls-row.visible { display:flex; }
+/* Anchor controls within previews region and prevent overlap with diff */
+.region-previews { position:relative; }
+.preview-controls-row { position:static; }
+.preview-controls-row .sync-label { font-size:11px; font-weight:400; display:flex; align-items:center; gap:6px; }
+.preview-controls-row input[type=checkbox] { transform:scale(.9); }
+.sheet-grid { position:relative; border:1px solid var(--border-color,#ccc); background:#fff; overflow:auto; flex:1 1 auto; min-height:200px; font:12px/1.3 monospace; width:100%; overscroll-behavior:contain; scroll-behavior:auto; }
+/* Removed will-change:transform to keep sticky headers stable */
+.sheet-grid table { border-collapse:separate; border-spacing:0; table-layout:fixed; width:max-content; min-width:100%; }
+.sheet-grid th, .sheet-grid td { border:1px solid #e0e0e0; padding:2px 4px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+/* Sticky headers & first column */
+/* Sticky header row and first column */
+.sheet-grid thead th { position:sticky !important; top:0 !important; z-index:30 !important; background:#fafafa !important; }
+.sheet-grid tbody th { position:sticky !important; left:0 !important; z-index:25 !important; background:#fafafa !important;  }
+/* Optional dynamic row clamp: can be used later if virtualization added */
+/* table[style*='--preview-rows'] tbody tr:nth-child(n+var(--preview-rows)) { display:none; } */
+/* Ensure structural highlight classes on sticky cells keep background (override row hover/outlines) */
+.sheet-grid thead th.col-struct-inserted, .sheet-grid tbody th.row-struct-inserted { background:#c8e6c9 !important; }
+.sheet-grid thead th.col-struct-deleted, .sheet-grid tbody th.row-struct-deleted { background:#ffcdd2 !important; }
+/* Avoid shifting due to borders when scrolling */
+.sheet-grid thead th, .sheet-grid tbody th { background-clip:padding-box; }
+/* Intersection cell (corner) - sticky both top and left */
+.sheet-grid thead th.corner-cell { position:sticky !important; top:0 !important; left:0 !important; z-index:40 !important; background:#fafafa !important;}
+/* When both sticky (first column + header), raise z-index */
+.sheet-grid thead tr th:first-child { left:0 !important; }
+.sheet-grid tr.diff-row-value { background:#ffffff; }
+.sheet-grid tr.diff-row-formula { background:#f5faff; }
+.sheet-grid tr.diff-row-formulaToValue { background:#fdf5fa; }
+.sheet-grid tr.diff-row-valueToFormula { background:#fff8f0; }
+.sheet-grid tr.diff-row-type { background:#ffffff; }
+.sheet-grid tr.diff-row-inserted-row { background:#f3faf3; }
+.sheet-grid tr.diff-row-deleted-row { background:#fff6f7; }
+/* Cell-level diff colors */
+/* Cell-level diff colors aligned with legend blocks */
+.sheet-grid td.diff-cell-value { background:#fff59d !important; }
+.sheet-grid td.diff-cell-formula { background:#bbdefb !important; }
+.sheet-grid td.diff-cell-formulaToValue { background:#d1c4e9 !important; }
+.sheet-grid td.diff-cell-valueToFormula { background:#ffe0b2 !important; }
+.sheet-grid td.diff-cell-type { background:#f8bbd0 !important; }
+.sheet-grid td.diff-cell-inserted-row { background:#c8e6c9 !important; }
+.sheet-grid td.diff-cell-deleted-row { background:#ffcdd2 !important; }
+/* Added explicit colors for format / inserted-col / deleted-col if not already by row */
+.sheet-grid td.diff-cell-format { background:#cfd8dc !important; }
+.sheet-grid td.diff-cell-inserted-col { background:#c5e1a5 !important; }
+.sheet-grid td.diff-cell-deleted-col { background:#ef9a9a !important; }
+/* Multi-category layering: apply subtle outlines for secondary classes beyond the first.
+	Priority order already applied in code; here we add generic outline stacking using nth-of-type heuristic is not possible, so rely on multiple classes: */
+.sheet-grid td.diff-cell-formula.diff-cell-value { box-shadow:inset 0 0 0 2px #1976d2; }
+.sheet-grid td.diff-cell-formula.diff-cell-type { box-shadow:inset 0 0 0 2px #455a64; }
+.sheet-grid td.diff-cell-value.diff-cell-type { box-shadow:inset 0 0 0 2px #6d4c41; }
+.sheet-grid td.diff-cell-inserted-row.diff-cell-value, .sheet-grid td.diff-cell-inserted-col.diff-cell-value { box-shadow:inset 0 0 0 2px #2e7d32; }
+.sheet-grid td.diff-cell-deleted-row.diff-cell-value, .sheet-grid td.diff-cell-deleted-col.diff-cell-value { box-shadow:inset 0 0 0 2px #c62828; }
+.sheet-grid td.diff-cell-format { outline:1px dashed #607d8b; }
+/* Multi-category diagonal hatch (uses inline --multi-bg) */
+/* Multi-category overlay: background-color remains from first category; pattern is layered */
+.sheet-grid td.multi-cat { background-size:100% 100% !important; }
+/* Structural (row/col) header highlighting */
+.sheet-grid th.row-struct-inserted { background:#c8e6c9 !important; position:sticky; left:0; z-index:26; }
+.sheet-grid th.row-struct-deleted { background:#ffcdd2 !important; position:sticky; left:0; z-index:26; }
+.sheet-grid th.col-struct-inserted { background:#c8e6c9 !important; }
+.sheet-grid th.col-struct-deleted { background:#ffcdd2 !important; }
+/* Multi-category now uses background-image directly (no pseudo-element) */
+.sheet-grid td.multi-cat { background-blend-mode:normal; }
+.sheet-grid tr:hover { outline:1px solid #1976d2; }
+/* Shared hover highlight across synced previews */
+.sheet-grid tr.preview-hover-shared { background:rgba(0,164,246,0.12) !important; position:relative; }
+.sheet-grid tr.preview-hover-shared::after { content:""; position:absolute; inset:0; outline:1px solid #00a4f6; pointer-events:none; mix-blend-mode:normal; }
+.sheet-grid .cell-formula { color:#1976d2; }
+.sheet-grid .cell-empty { color:#bbb; }
+/* Cell with custom formatting */
+.sheet-grid td.cell-formatted {
+  /* Formatting is applied via inline styles */
+  position: relative; /* marker for potential future enhancements */
+}
+/* Resizable preview headers */
+.sheet-grid th { position:relative; }
+.col-resizer, .row-resizer { position:absolute; background:transparent; }
+.col-resizer { top:0; right:0; width:6px; cursor:col-resize; height:100%; }
+.row-resizer { bottom:0; left:0; height:6px; cursor:row-resize; width:100%; }
+.col-resizer:hover, .row-resizer:hover { background:rgba(0,164,246,0.15); }
+/* Core flexible window layout (OBLIGATORY) */
+html, body {height:100%; margin:0; padding:0; font-family:'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; font-size:11px;}
+body {position:absolute; top:0; left:0; right:0; bottom:0; overflow:hidden; color:var(--fg,#222); background:var(--bg,#fff);}
+.layout-root {position:absolute; top:0; left:0; right:0; bottom:0; display:flex; flex-direction:row; padding:8px; gap:8px; box-sizing:border-box;}
+body.sidebar-collapsed .layout-root { gap:0; }
+.panel-left {width:360px; min-width:320px; max-width:460px; background:var(--surface-bg,#f5f5f7); border:1px solid var(--border,#ccc); border-radius:6px; overflow:auto; padding:12px; box-sizing:border-box; margin:0;}
+.panel-right {flex:1; position:relative; display:flex; flex-direction:column; overflow:visible; min-width:0; margin:0;}
+/* Sidebar collapse */
+body.sidebar-collapsed .panel-left { width:0 !important; min-width:0 !important; max-width:0 !important; padding:0 !important; border:0 !important; margin:0 !important; overflow:hidden !important; }
+body.sidebar-collapsed .panel-left * { display:none !important; }
+body.sidebar-collapsed .panel-right { min-width:0; }
+/* Toggle button style (reuse existing button reset) */
+#btnToggleSidebar { width:32px; height:28px; }
+#btnToggleSidebar.topbar-toggle { margin-left:12px; background:transparent !important; border:none !important; width:34px; height:28px; padding:0; display:flex; align-items:center; justify-content:center; cursor:pointer; }
+#btnToggleSidebar.status-toggle { background:transparent !important; border:none !important; width:28px; height:24px; padding:0; margin-left:4px; display:flex; align-items:center; justify-content:center; cursor:pointer; }
+#btnToggleSidebar.status-toggle img { width:26px; height:26px; }
+/* Hidden state */
+.sidebar-toggle-hidden { display:none !important; }
+#btnToggleSidebar .icon-open { display:none; }
+body.sidebar-collapsed #btnToggleSidebar .icon-close { display:none; }
+body.sidebar-collapsed #btnToggleSidebar .icon-open { display:block; }
+
+/* Theme tokens (light defaults) */
+:root {
+	--icon-size:22px;
+	--accent-icon-color:#00a4f6;
+	--bg:#ffffff;
+	--panel-bg:#ffffff;
+	--surface-bg:#ffffff;
+	--toolbar-bg:#ffffff;
+	/* Button background per spec (light) */
+	--btn-bg:#e1e1e1;
+	--btn-border:#cccccc;
+	--btn-fg:#000000;
+	--btn-bg-hover:#00a4f6;
+	--text:#000000;
+	--icon-color:#3a3a3a;
+	--border:#cccccc;
+	--input-bg:#ffffff;
+	--input-fg:#000000;
+	--input-border:#cccccc;
+	--dropdown-bg:#ffffff;
+	--disabled-fg:#666666;
+}
+
+/* (Dark theme removed) */
+.icon-btn img, button.icon-only img, .legend-actions img, #resultsToolbar img, .upload-menu-container img {
+	width:var(--icon-size); height:var(--icon-size); display:inline-block; filter:var(--icon-filter, none); transition:filter .15s ease, opacity .15s ease;
+}
+/* Enforce uniform icon style globally (excluding explicit overrides for sidebar toggle size 26px) */
+img.svg-icon, button.icon-only img, .icon-btn img, .legend-actions img, .upload-menu-container img, .sheet-select-actions button.icon-only img, .diff-search-bar button.icon-only img {
+	width:var(--icon-size); height:var(--icon-size); object-fit:contain; padding:0; margin:0; line-height:1; vertical-align:middle;
+}
+/* Prevent double-scaling: ensure no transform leftovers */
+img.svg-icon, button.icon-only img { transform:none !important; }
+/* Force SVGs without explicit fill to inherit */
+/* Inline SVG theming */
+.icon-svg { width:var(--icon-size); height:var(--icon-size); fill:currentColor; color:var(--icon-color,#444); display:inline-block; }
+button:disabled .icon-svg { opacity:.45; }
+/* Accent variants (apply via data-icon-accent attr if needed later) */
+[data-icon-accent] .icon-svg { color:var(--accent-icon-color,#00a4f6); }
+
+/* Fine-tune: select_all / select_clear were visually heavier (denser fill); scale down to match stroke weight perception */
+/* Removed per-user request: all icons (except sidebar toggle) must share identical style */
+
+/* Old light/dark inline icon filter system removed in favor of color tokens */
+
+
+/* Ensure preview columns always equal width (flex handles) */
+.sheet-preview { width:100%; }
+/* Unified equal-width columns (flex distributes space evenly) */
+.sheet-preview-col { flex:1 1 0 !important; }
+.sheet-preview-col:first-child, .sheet-preview-col:last-child { min-width:0; }
+/* Prevent diff overflow */
+.diff-container, .diff-container .diff-scroll { max-width:100%; box-sizing:border-box; }
+/* 3 fixed vertical regions layout */
+/* Responsive vertical layout: status (fixed), previews (fixed), diff (flex fills rest) */
+.panel-right.layout-fixed-3 { display:flex; flex-direction:column; min-height:0; gap:8px; padding:0; box-sizing:border-box; }
+
+.region-status { flex:0 0 60px; height:60px; overflow:hidden; display:flex; flex-direction:column; background:transparent; }
+
+.region-status .toolbar { flex:0 0 34px; }
+.region-status .toolbar { background:var(--surface-bg,#f1f1f1) !important; }
+
+#region-status .messages { flex:1 1 auto; overflow:auto; }
+#region-previews { flex:0 0 300px; position:relative; display:flex; flex-direction:column; overflow:visible; min-height:140px; background:transparent; }
+
+#region-previews { padding-bottom:6px; box-sizing:border-box; }
+#region-previews .sheet-grid { margin-bottom:0; }
+#region-previews .sheet-preview { flex:1 1 auto; }
+/* Adjust sheet-grid height relative inside previews (will shrink if container shrinks) */
+/* Preview layout & scrolling */
+.sheet-preview { display:flex; gap:16px; flex:1 1 auto; }
+.sheet-preview-col { flex:1 1 50%; display:flex; flex-direction:column; min-height:0; }
+.sheet-preview-col .preview-title { margin:4px 0 4px 4px; font-size:12px; font-weight:600; }
+.sheet-preview-col .sheet-grid { flex:1 1 auto; min-height:0; overflow:auto; border:1px solid var(--border,#ccc); border-radius:4px; background:#fff; scrollbar-gutter:stable; }
+.sheet-preview-col .sheet-grid table { border-collapse:collapse; table-layout:fixed; width:max-content; min-width:100%; }
+.sheet-preview-col .sheet-grid table col[data-col] { width:120px; }
+.sheet-preview-col .sheet-grid table col[data-col="_rownums"] { width:46px; }
+.sheet-preview-col .sheet-grid th, .sheet-preview-col .sheet-grid td { white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.sheet-preview-col .sheet-grid th { position:relative; }
+.sheet-preview-col .sheet-grid th .col-resizer { position:absolute; top:0; right:0; width:6px; height:100%; cursor:col-resize; user-select:none; }
+.sheet-preview-col .sheet-grid th .col-resizer:hover, .sheet-preview-col .sheet-grid th.resizing { background:rgba(0,164,246,0.25); }
+.sheet-preview-col .sheet-grid th.resizing { outline:1px solid #00a4f6; }
+.sheet-preview-col .sheet-grid th, .sheet-preview-col .sheet-grid td { border:1px solid #ddd; padding:2px 4px; font-size:11px; }
+.preview-controls-row { margin:4px 0 6px 0; justify-content:flex-end; box-sizing:border-box; }
+.preview-controls-row .sync-label { max-width:100%; flex:0 1 auto; white-space:nowrap; }
+@media (max-width: 920px){
+	.preview-controls-row .sync-label { white-space:normal; }
+}
+.region-diff { flex:1 1 auto; min-height:0; margin-top:0; overflow:hidden; display:flex; flex-direction:column; border:1px solid var(--border); border-radius:6px; background:var(--surface-bg); }
+
+.region-diff .diff-container { flex:1 1 auto; min-height:0; height:auto; overflow:auto; }
+.toolbar {height:32px; display:flex; align-items:center; gap:12px; padding:0 12px 0 0; border-bottom:1px solid var(--border,#ccc); background:var(--toolbar-bg,var(--panel-bg,#f1f1f1)); font-size:12px; border-radius:6px 6px 0 0;}
+.section { margin-bottom:12px; padding:0; border:0; border-radius:0; background:transparent; }
+
+.section:last-child { margin-bottom:0; }
+
+.section h2 {margin:12px 0 6px; font-size:14px;}
+.app-title {font-size:16px; margin:4px 0 12px;}
+.option-item {font-size:12px; margin:4px 0; display:flex; align-items:center; gap:4px; user-select:none; -webkit-user-select:none; -moz-user-select:none;}
+.option-item label { user-select:none; -webkit-user-select:none; -moz-user-select:none; cursor:pointer; }
+.actions button {display:block; width:100%; margin:4px 0;}
+/* Base button reset moved to unified theme section later */
+button:disabled {cursor:not-allowed; opacity:.6;}
+.legend-list {list-style:none; padding:0; margin:0; font-size:12px;}
+.legend-list li {display:flex; align-items:center; gap:6px; margin:4px 0;}
+/* Diff list grouping */
+.diff-group { border:1px solid #ddd; margin:4px 0 8px; border-radius:4px; overflow:hidden; background:#fff; }
+.diff-group.collapsed .diff-group-body { display:none; }
+.diff-group-header { display:flex; align-items:center; gap:8px; font-size:12px; font-weight:600; padding:4px 8px; cursor:pointer; user-select:none; border-bottom:1px solid #eee; }
+.diff-group-header .dg-toggle { width:16px; display:inline-block; text-align:center; }
+.diff-group-header .dg-count { margin-left:auto; font-weight:500; font-size:11px; opacity:.75; }
+.diff-group-body { padding:4px 6px 6px; }
+.diff-subgroup-header { display:flex; align-items:center; gap:6px; font-size:11px; font-weight:600; margin:4px 0 2px; cursor:pointer; user-select:none; }
+.diff-subgroup-header .dg-toggle { width:14px; text-align:center; }
+.diff-subgroup-body.collapsed { display:none; }
+/* Category color mapping (reuse approximate row background colors) */
+.diff-group-header-value { background:#fff59d; }
+.diff-group-header-formula { background:#bbdefb; }
+.diff-group-header-insertedrow { background:#c8e6c9; }
+.diff-group-header-deletedrow { background:#ffcdd2; }
+.diff-group-header-formulaToValue { background:#d1c4e9; }
+.diff-group-header-valueToFormula { background:#ffe0b2; }
+.diff-group-header-type { background:#f8bbd0; }
+.diff-group-header-format { background:#cfd8dc; }
+.diff-group-header-insertedcol { background:#c5e1a5; }
+.diff-group-header-deletedcol { background:#ef9a9a; }
+/* Fallback mapping via data-diff-type (ensures all headers colored even if dynamic class missing) */
+.diff-group[data-diff-type="value"] > .diff-group-header { background:#fff59d; }
+.diff-group[data-diff-type="formula"] > .diff-group-header { background:#bbdefb; }
+.diff-group[data-diff-type="inserted-row"] > .diff-group-header { background:#c8e6c9; }
+.diff-group[data-diff-type="deleted-row"] > .diff-group-header { background:#ffcdd2; }
+.diff-group[data-diff-type="formulaToValue"] > .diff-group-header { background:#d1c4e9; }
+.diff-group[data-diff-type="valueToFormula"] > .diff-group-header { background:#ffe0b2; }
+.diff-group[data-diff-type="type"] > .diff-group-header { background:#f8bbd0; }
+.diff-group[data-diff-type="format"] > .diff-group-header { background:#cfd8dc; }
+.diff-group[data-diff-type="inserted-col"] > .diff-group-header { background:#c5e1a5; }
+.diff-group[data-diff-type="deleted-col"] > .diff-group-header { background:#ef9a9a; }
+.diff-subgroup-formulaResult { background:linear-gradient(90deg,#f5faff,#e8f2ff); padding:2px 6px; border-radius:3px; }
+.diff-subgroup-oneSide { background:linear-gradient(90deg,#fffef2,#f9ecc2); padding:2px 6px; border-radius:3px; }
+.diff-subgroup-plain { background:linear-gradient(90deg,#fffef2,#fff6cc); padding:2px 6px; border-radius:3px; }
+.diff-group-header:hover, .diff-subgroup-header:hover { filter:brightness(0.96); }
+.diff-group-header:active, .diff-subgroup-header:active { filter:brightness(0.92); }
+.legend-list li label { flex:1; display:flex; align-items:center; }
+.legend-list li.legend-dim { opacity:0.45; }
+.legend-list .cat-count { margin-left:auto; min-width:20px; text-align:right; display:inline-block; font-variant-numeric:tabular-nums; }
+.lgd {display:inline-block; width:14px; height:14px; border:1px solid #000; box-sizing:border-box; border-radius:2px;}
+.legend-actions { display:flex; align-items:center; gap:4px; margin:4px 0 8px 0; }
+/* Smaller legend action icons */
+.legend-actions button.icon-only { width:calc(var(--icon-size) + 4px); height:calc(var(--icon-size) + 4px); padding:2px; }
+.legend-actions .icon-btn img{ width:var(--icon-size); height:var(--icon-size); }
+/* Push reset icon to the far right */
+#btnCatReset { margin-left:auto; }
+.lgd.value-change {background:#fff59d;}
+.lgd.formula-change {background:#bbdefb;}
+.lgd.inserted-row {background:#c8e6c9;}
+.lgd.deleted-row {background:#ffcdd2;}
+.lgd.formulaToValue {background:#d1c4e9;}
+.lgd.valueToFormula {background:#ffe0b2;}
+.lgd.type {background:#f8bbd0;}
+.lgd.format {background:#cfd8dc;}
+.lgd.inserted-col {background:#c5e1a5;}
+.lgd.deleted-col {background:#ef9a9a;}
+
+/* === Analysis KPI and Drill-down Styles === */
+.analysis-kpis { display:flex; flex-wrap:wrap; gap:12px; margin:8px 0 16px; }
+.analysis-kpis .kpi { flex:0 1 160px; background:#fff; border:1px solid #ccc; border-radius:6px; padding:8px 10px; box-sizing:border-box; cursor:default; position:relative; min-height:72px; display:flex; flex-direction:column; justify-content:space-between; }
+.analysis-kpis .kpi[tabindex] { cursor:pointer; }
+.analysis-kpis .kpi:focus { outline:2px solid #1976d2; outline-offset:1px; }
+.analysis-kpis .kpi h3 { margin:0 0 6px; font-size:12px; font-weight:600; line-height:1.2; }
+.analysis-kpis .kpi .val { font-size:20px; font-weight:600; line-height:1; }
+.analysis-kpis .kpi[data-detail-key]:hover { box-shadow:0 0 0 2px #1976d2 inset; }
+.analysis-kpis .kpi[data-detail-key] { position:relative; }
+/* Downward arrow indicator in bottom-right corner */
+.analysis-kpis .kpi[data-detail-key]::after { content:""; position:absolute; width:0; height:0; border-left:6px solid transparent; border-right:6px solid transparent; border-top:8px solid rgba(0,0,0,0.55); bottom:4px; right:8px; pointer-events:none; transition:filter .15s ease, border-top-color .15s ease; }
+.analysis-kpis .kpi[data-detail-key]:hover::after, .analysis-kpis .kpi[data-detail-key]:focus::after { border-top-color:rgba(0,0,0,0.85); }
+
+/* Reuse diff legend colors where possible */
+.analysis-kpis .kpi[data-k="formulas"] { background:#bbdefb; }
+.analysis-kpis .kpi[data-k="volatile"] { background:#ffe0b2; }
+.analysis-kpis .kpi[data-k="errors"] { background:#ffcdd2; }
+.analysis-kpis .kpi[data-k="long"] { background:#fff59d; }
+.analysis-kpis .kpi[data-k="nestedIf"] { background:#c8e6c9; }
+.analysis-kpis .kpi[data-k="nums"] { background:#d1c4e9; }
+
+/* Info-only cards (sheets, cells) - no background, just border */
+.analysis-kpis .kpi.info-only { background:transparent !important; border:1px solid #999; }
+
+/* Metric details panel */
+#analysisMetricDetails { border:1px solid #ccc; background:#fff; border-radius:8px; padding:0; margin:0 0 20px; box-shadow:0 2px 4px rgba(0,0,0,.12); }
+#analysisMetricDetails .amd-header { display:flex; align-items:center; justify-content:space-between; padding:6px 10px; border-bottom:1px solid #e0e0e0; background:#f7f7f9; border-radius:8px 8px 0 0; }
+#analysisMetricDetails .amd-header #amdTitle { font-size:13px; font-weight:600; }
+#analysisMetricDetails .amd-body { max-height:340px; overflow:auto; padding:8px 10px 10px; }
+#analysisMetricDetails table { width:100%; border-collapse:collapse; font-size:11px; }
+#analysisMetricDetails th, #analysisMetricDetails td { border:1px solid #ddd; padding:3px 4px; text-align:left; vertical-align:top; }
+#analysisMetricDetails tbody tr:nth-child(even) { background:#fafafa; }
+#analysisMetricDetails tbody tr:hover { background:#e3f2fd; }
+#analysisMetricDetails .icon-btn { background:transparent; border:none; cursor:pointer; }
+#analysisMetricDetails .icon-btn .icon-svg { width:18px; height:18px; }
+
+/* === Splitters === */
+.h-split { height:12px; cursor:row-resize; background:transparent; position:relative; z-index:50; width:100%; flex:0 0 12px; border-radius:6px; }
+.h-split.attached { margin:0; }
+.h-split::before { content:""; position:absolute; left:8px; right:8px; top:5px; height:2px; border-radius:6px; background:var(--border); opacity:.7; transition:opacity .15s ease, background .15s ease; pointer-events:none; }
+.h-split:hover::before, .h-split.dragging::before { opacity:1; background:var(--accent-icon-color,#00a4f6); }
+
+.panel-left.resizing, .panel-right.resizing, .region-previews.resizing, .region-diff.resizing { user-select:none; }
+/* Extra spacing between color indicator and text */
+.legend-list label { display:flex; align-items:center; gap:3px; }
+.legend-list .lgd { margin-right:3px; }
+.diff-container {flex:1; overflow:hidden; font-size:12px; line-height:1.4; padding:8px 8px 8px; box-sizing:border-box;}
+.diff-container.fixed-header { display:flex; flex-direction:column; overflow:hidden; padding:0; height:100%; }
+/* Non-scrolling header */
+.diff-container.fixed-header .diff-header { flex:0 0 auto; display:grid; grid-template-columns:120px 120px minmax(320px,1fr) minmax(320px,1fr); gap:4px; padding:4px 8px; font-weight:600; background:var(--header-bg,#f0f0f0); border-bottom:1px solid var(--border,#ccc); z-index:20; }
+/* Scroll area */
+.diff-container.fixed-header .diff-scroll { flex:1 1 auto; overflow:auto; }
+.diff-container.fixed-header .diff-rows { padding:4px 8px 8px; }
+.diff-container.fixed-header .diff-rows .diff-row { display:grid; grid-template-columns:120px 120px minmax(320px,1fr) minmax(320px,1fr); }
+.diff-row {display:grid; grid-template-columns:120px 120px minmax(320px,1fr) minmax(320px,1fr); gap:4px; padding:2px 4px; border-bottom:1px solid #ececec;}
+.diff-container .diff-row { cursor:pointer; position:relative; }
+.diff-container .diff-row.active,
+.diff-container .diff-row:focus,
+.diff-container .diff-row:focus-visible { box-shadow:inset 0 0 0 2px #00a4f6; outline:none; }
+
+/* Preview cell focus: persistent outline (override global box-shadow reset) */
+.sheet-grid td.preview-focus { position:relative; outline:2px solid #00a4f6 !important; outline-offset:-2px; /* no background override to preserve original fill/gradients */ }
+/* Structural full-row / full-column highlight */
+/* Row / column structural outline highlight (no fill) */
+/* Structural highlight: only external outline for full row / column */
+/* Row: apply class on <tr> and draw overlay */
+.sheet-grid tr.preview-focus-row { position:relative; }
+.sheet-grid tr.preview-focus-row::after { content:""; position:absolute; left:0; top:0; width:100%; height:100%; border:2px solid #00a4f6; pointer-events:none; box-sizing:border-box; }
+/* Column: per-cell borders only on outer perimeter */
+.sheet-grid td.preview-focus-col { border-left:2px solid #00a4f6 !important; border-right:2px solid #00a4f6 !important; }
+.sheet-grid td.preview-focus-col-top { border-top:2px solid #00a4f6 !important; }
+.sheet-grid td.preview-focus-col-bottom { border-bottom:2px solid #00a4f6 !important; }
+/* Remove legacy flash animation (disabled for persistent highlight) */
+.sheet-grid td.preview-flash,.sheet-grid td.preview-flash::after { animation:none !important; }
+.diff-container .diff-row:hover { box-shadow:inset 0 0 0 1px #00a4f6; }
+
+/* Removed generic white background so category color classes remain visible */
+/* .diff-container.fixed-header .diff-row { background:#fff; } */
+.diff-row.header {font-weight:bold; background:var(--header-bg,#f0f0f0); position:sticky; top:0; z-index:2; box-shadow:0 1px 0 var(--border,#ccc);}
+.diff-row.value-change {background:#fffde7;}
+.diff-row.formula-change {background:#e3f2fd;}
+.diff-row.inserted-row {background:#e8f5e9;}
+.diff-row.deleted-row {background:#ffebee;}
+.diff-row.formulaToValue {background:#f3e5f5;}
+.diff-row.valueToFormula {background:#fff3e0;}
+.diff-row.type {background:#fce4ec;}
+.diff-row.format {background:#eceff1;}
+.diff-row.inserted-col {background:#e7f6d5;}
+.diff-row.deleted-col {background:#ffe5e5;}
+.progress-bar {height:4px; width:100%; background:#ddd; position:relative; margin-top:0;}
+
+.progress-bar span {display:block; height:100%; background:#2d76d2; width:0; transition:width .15s linear;}
+/* Status message coloring */
+#progressText.status-warn { color:#b36b00 !important; font-weight:600; }
+#progressText.status-error { color:#b00020 !important; font-weight:600; }
+/* About modal */
+.about .about-wrapper {padding:16px; font-size:13px;}
+.about body, body.about { background:var(--bg,#f1f1f1) !important; }
+.div_buttons {margin-top:20px; display:flex; gap:12px; justify-content:flex-end;}
+.button {padding:6px 12px; background:var(--btn-bg); color:var(--btn-fg); border-radius:5px; cursor:pointer;}
+.button.secondary {background:var(--btn-bg);}
+.button:hover {background:var(--btn-bg-hover); color:#fff;}
+
+/* === Theme application (replaces legacy overrides) === */
+body, html { background:var(--bg) !important; color:var(--text) !important; }
+.panel-left { background:var(--surface-bg) !important; border:1px solid var(--border) !important; border-radius:6px; }
+.panel-right { background:var(--panel-bg) !important; }
+.toolbar { background:var(--toolbar-bg) !important; border-bottom:1px solid var(--border) !important; box-shadow:none !important; }
+.section, .diff-container { background:var(--surface-bg); }
+
+/* Inputs */
+select, input[type=number], input[type=text] { background:var(--input-bg); border:1px solid var(--input-border); color:var(--input-fg); border-radius:3px; padding:2px 4px; font-size:12px; box-shadow:none; }
+select:focus, input:focus { outline:1px solid #00a4f6; }
+
+/* Buttons */
+button, .button { background:var(--btn-bg) !important; color:var(--btn-fg) !important; border:none !important; border-radius:5px !important; box-shadow:none !important; transition:background .15s, color .15s; font-weight:500; font-size:12px; }
+button.primary, button.secondary { background:var(--btn-bg) !important; color:var(--btn-fg) !important; }
+button:hover:not(.has-icon):not(.icon-only):not(:disabled), button:active:not(.has-icon):not(.icon-only):not(:disabled), .button:hover:not(.has-icon):not(.icon-only):not(:disabled) { background:var(--btn-bg-hover) !important; color:#ffffff !important; }
+/* Add visible border for structure using btn-border token */
+button, .button { border:none !important; }
+/* Ensure base icon color (non-accent) reflects theme token */
+.icon-svg { color:var(--icon-color,#3a3a3a); }
+/* Accent icons already forced via [data-icon-accent] */
+button:disabled { opacity:.55; }
+
+/* Icon buttons (placeholder class) */
+button.has-icon { display:inline-flex; align-items:center; gap:6px; }
+button.has-icon, button.icon-only, .icon-btn, .legend-actions button.icon-only, .sheet-select-actions button.icon-only { cursor:pointer !important; }
+button.has-icon:hover { background:var(--btn-bg-hover) !important; color:#ffffff !important; }
+button.icon-only { display:inline-flex; align-items:center; justify-content:center; padding:4px 6px; width:32px; }
+button.icon-only img { width:var(--icon-size); height:var(--icon-size); pointer-events:none; }
+/* Icon-only buttons keep constant background (no hover color change) */
+button.icon-only:hover { background:var(--btn-bg) !important; color:var(--btn-fg) !important; }
+
+/* Larger height for buttons without icons */
+button:not(.icon-only):not(.has-icon):not(.plugin-icon) {
+	padding:7px 12px !important; /* reduced vertical padding */
+	min-height:32px;
+	line-height:1.25;
+}
+
+/* Input row alignment & select sizing */
+.input-row { display:flex; align-items:center; gap:6px; }
+#sidebar .input-row { width:100%; }
+.input-row select { flex:1 1 auto; }
+.input-row button.icon-only { margin-left:auto; }
+#baseSheetSelect, #targetSheetSelect { min-width:200px; height:28px; box-sizing:border-box; }
+#baseSheetSelect:disabled, #targetSheetSelect:disabled { /* keep normal opacity so visual weight unchanged when uploads blocked */ opacity:1; cursor:not-allowed; }
+.upload-menu-container.disabled { opacity:1; /* keep selects fully visible */ }
+.upload-menu-container.disabled .icon-btn { opacity:.55; }
+.upload-menu-container.disabled button, .upload-menu-container.disabled .icon-btn { cursor:not-allowed !important; }
+button.icon-only { height:28px; }
+/* File name caption above selects */
+.file-name-row { display:flex; justify-content:flex-end; margin:0 0 2px 0; }
+.file-name-label { display:none; font-size:11px; color:#444; max-width:100%; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.file-name-label.visible { display:block; }
+/* Upload dropdown */
+.upload-menu-container { position:relative; }
+.upload-menu-container .upload-dropdown { position:absolute; top:100%; right:0; background:var(--dropdown-bg); border:1px solid var(--input-border); border-radius:6px; padding:0; display:none; flex-direction:column; min-width:160px; z-index:500; box-sizing:border-box; overflow:hidden; box-shadow:0 2px 4px rgba(0,0,0,0.12); }
+/* Dropdown items: use flex to ensure full clickable highlight and remove inner gaps */
+.upload-menu-container .upload-dropdown .dropdown-item { background:transparent !important; border:none !important; text-align:left; width:100%; padding:7px 12px; font-size:12px; cursor:pointer; line-height:1.25; border-radius:0; display:flex; align-items:center; justify-content:flex-start; box-sizing:border-box; position:relative; }
+/* Preserve outer rounding on first/last highlighted items */
+.upload-menu-container .upload-dropdown .dropdown-item:first-child { border-top-left-radius:6px; border-top-right-radius:6px; }
+.upload-menu-container .upload-dropdown .dropdown-item:last-child { border-bottom-left-radius:6px; border-bottom-right-radius:6px; }
+/* Smooth hover covering full width */
+.upload-menu-container .upload-dropdown .dropdown-item:hover:not(.disabled-api),
+.upload-menu-container .upload-dropdown .dropdown-item:focus-visible:not(.disabled-api) { background:#00a4f6 !important; color:#fff !important; outline:none; }
+/* Add subtle separator except last */
+.upload-menu-container .upload-dropdown .dropdown-item + .dropdown-item { border-top:1px solid var(--input-border); }
+/* Remove top border on first child and bottom gap */
+.upload-menu-container .upload-dropdown .dropdown-item:first-child { border-top:none; }
+.upload-menu-container.open .upload-dropdown { display:flex; }
+/* Disabled current-file items (API later) */
+.upload-menu-container .upload-dropdown .dropdown-item.disabled-api { opacity:.5; cursor:not-allowed !important; background:var(--btn-bg) !important; color:var(--disabled-fg) !important; }
+.upload-menu-container .upload-dropdown .dropdown-item.disabled-api:hover,
+.upload-menu-container .upload-dropdown .dropdown-item.disabled-api:focus-visible { background:var(--btn-bg) !important; color:var(--disabled-fg) !important; }
+
+/* Legend indicators: enforce solid black border (override earlier theme border) */
+.lgd { border:1px solid #000 !important; }
+
+/* Diff rows / borders */
+.diff-row { border-bottom:1px solid var(--border) !important; }
+.diff-row.header { background:#e5e5e5 !important; }
+
+/* Remove any shadows globally */
+* { box-shadow:none !important; }
+
+/* Message area */
+.messages { font-size:12px; padding:4px 8px; border-bottom:1px solid #ccc; min-height:18px; }
+.app-blocker { position:absolute; inset:0; background:rgba(255,255,255,0.55); z-index:2000; display:none; cursor:progress; pointer-events:none; }
+.app-blocker.active { display:block; pointer-events:auto; }
+.messages .msg-error { color:#b00020; }
+.messages .msg-warn { color:#b36b00; }
+.messages .msg-info { color:#0d47a1; }
+
+/* Accessibility focus for buttons */
+button:focus-visible, .button:focus-visible { outline:2px solid #00a4f6; outline-offset:1px; }
+
+/* Modal for sheet selection */
+.modal.hidden { display:none; }
+.modal { position:fixed; top:0; left:0; right:0; bottom:0; background:rgba(0,0,0,.35); display:flex; align-items:center; justify-content:center; z-index:3000; }
+.modal-content { background:var(--bg, #f1f1f1) !important; border:1px solid var(--border); padding:20px 20px 16px; width:560px; max-width:80vw; max-height:78vh; overflow:auto; border-radius:8px; box-sizing:border-box; }
+.sheet-list { max-height:48vh; overflow:auto; margin:12px 0 16px; border:1px solid var(--border); padding:10px; display:flex; flex-direction:column; gap:6px; background:var(--bg); }
+.sheet-list label { display:flex; align-items:center; gap:6px; font-size:12px; }
+.modal-actions { display:flex; align-items:center; gap:12px; justify-content:space-between; }
+/* Sheet selection modal specific layout */
+.sheet-select-actions .left-group { display:flex; gap:6px; }
+.sheet-select-actions .right-group { margin-left:auto; display:flex; gap:8px; }
+/* Unify sheet selection modal icons */
+.sheet-select-actions button.icon-only img { width:var(--icon-size); height:var(--icon-size); }
+/* === Diff search bar === */
+.diff-search-bar { display:flex; align-items:center; gap:10px; padding:4px 8px; background:var(--toolbar-bg); border-bottom:1px solid var(--border); font-size:12px; flex-wrap:wrap; }
+.diff-search-bar #diffSearchFields, .diff-search-bar .diff-search-fields { flex:1 1 auto; }
+.diff-search-bar #syncScrollInline { display:flex; align-items:center; gap:6px; font-size:11px; margin-left:auto; flex:0 0 auto; }
+@media (max-width:860px){ .diff-search-bar #syncScrollInline { flex:1 1 100%; } }
+.diff-search-bar button { flex:0 0 auto; }
+/* Ensure diff search bar icons use unified size */
+.diff-search-bar button.icon-only img { width:var(--icon-size); height:var(--icon-size); }
+.diff-search-bar .diff-search-fields { display:flex; align-items:center; gap:6px; }
+.diff-search-bar .diff-search-fields.hidden { display:none; }
+#diffSearchInput { width:160px; }
+#diffSearchCount { min-width:48px; text-align:center; font-variant-numeric:tabular-nums; }
+/* Diff search highlighting (use pseudo-element so global box-shadow reset doesn't kill it) */
+.diff-row.search-match { position:relative; }
+.diff-row.search-match::before { content:""; position:absolute; inset:0; border:2px solid #00A4F6; pointer-events:none; border-radius:2px; box-sizing:border-box; }
+.diff-row.search-current::before { animation:diffSearchPulse 1.2s ease-in-out infinite; }
+@keyframes diffSearchPulse { 0%,100% { border-color:#00A4F6; } 50% { border-color:#5ccfff; } }
+/* Temporary flash for navigated diff row */
+.diff-row.diff-flash { position:relative; }
+.diff-row.diff-flash::after { content:""; position:absolute; inset:0; border:2px solid #00a4f6; pointer-events:none; animation:previewFlashFade 1.5s ease forwards; }
+/* Generic hidden utility (scoped) */
+.diff-search-bar.hidden { display:none; }
+
+/* === Sidebar collapse (instant, no animation) === */
+body.sidebar-collapsed .panel-left { width:0 !important; min-width:0 !important; max-width:0 !important; padding:0 !important; overflow:hidden !important; border:0 !important; margin:0 !important; }
+body.sidebar-collapsed .layout-root { gap:0; }
+body.sidebar-collapsed .panel-left * { display:none !important; }
+body.sidebar-collapsed .panel-right { min-width:0 !important; }
+/* Toggle button (placed in status toolbar) */
+#btnToggleSidebar { background:transparent !important; border:none; width:28px; height:24px; padding:0; display:flex; align-items:center; justify-content:center; cursor:pointer; border-radius:4px; }
+#btnToggleSidebar img { width:var(--icon-size); height:var(--icon-size); pointer-events:none; }
+#btnToggleSidebar .icon-open { display:none; }
+body.sidebar-collapsed #btnToggleSidebar .icon-close { display:none; }
+body.sidebar-collapsed #btnToggleSidebar .icon-open { display:block; }
+
+/* === Enforced button fill (final override) === */
+body button, body .button, body .icon-btn, body button.icon-only { background:var(--btn-bg) !important; color:var(--btn-fg) !important; }
+body [data-icon-accent] .icon-svg { color:var(--accent-icon-color,#00a4f6) !important; }
+
+/* === Custom floating tooltip for disabled upload buttons === */
+.upload-disabled-hint { position:relative; }
+#uploadDisabledHint.floating-hint { position:absolute; max-width:260px; background:#222; color:#fff; padding:6px 10px; border-radius:4px; font-size:12px; line-height:1.4; box-shadow:0 2px 6px rgba(0,0,0,0.35); pointer-events:none; z-index:9999; transition:opacity .12s ease; opacity:0; left:0; top:0; white-space:normal; }
+#uploadDisabledHint.floating-hint::after { content:""; position:absolute; left:50%; top:-6px; transform:translateX(-50%); border:6px solid transparent; border-bottom-color:#222; }
+/* (Removed duplicate hard-coded topbar/plugin styles; token-based styles earlier now govern) */
+/* === Analysis Page Styles (migrated from inline analysis.html) === */
+.analysis-body .topbar { display:none; }
+.analysis-metrics-list { list-style:none; padding:0; margin:4px 0 12px; display:flex; flex-direction:column; gap:4px; }
+.analysis-metrics-list li { display:flex; align-items:center; gap:6px; font-size:12px; }
+.analysis-metrics-actions { display:flex; gap:6px; margin:4px 0 10px; }
+.file-select-row { display:flex; align-items:center; gap:6px; margin:4px 0 8px; }
+#selectedFileName { font-size:11px; opacity:.8; flex:1; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+/* Readonly filename input height align with icon buttons (28px) */
+#selectedFileName.file-name-input { height:28px; line-height:26px; padding:2px 6px; font-size:12px; box-sizing:border-box; }
+.analysis-status-row { display:flex; align-items:center; gap:12px; font-size:12px; margin-top:6px; flex-wrap:wrap; }
+.analysis-results-panel { flex:1 1 auto; position:relative; overflow:auto; padding:0; box-sizing:border-box; background:var(--surface-bg,#f5f5f7); border:1px solid var(--border,#ccc); border-radius:6px; }
+.analysis-results-content { padding:10px; box-sizing:border-box; }
+.analysis-results-panel h2 { margin:16px 0 6px; font-size:14px; }
+.analysis-results-panel h2:first-of-type { margin-top:0; }
+.analysis-placeholder { font-size:12px; opacity:.7; margin:8px 0 16px; }
+.results-toolbar { height:32px; display:flex; align-items:center; gap:12px; padding:0 10px; border-bottom:1px solid var(--border,#ccc); background:var(--surface-bg, var(--panel-bg)) !important; font-size:12px; }
+.results-toolbar .progress-bar { height:4px; flex:1; margin-left:auto; position:relative; top:0; }
+.results-toolbar .progress-bar span { transition:width .15s linear; }
+/* Flexible 1:2 layout ratio for analysis (override fixed sidebar width) */
+.analysis-layout .panel-left { width:auto !important; min-width:0 !important; max-width:none !important; flex:1 1 0 !important; display:flex; flex-direction:column; }
+.analysis-layout .panel-right { flex:2 1 0 !important; }
+.analysis-layout { display:flex; flex-direction:row; }
+/* Hidden before first analysis */
+.pre-analysis-hide { display:none !important; }
+/* Ensure disabled icon buttons show blocked cursor (override global pointer) */
+.icon-btn:disabled, button.icon-only:disabled { cursor:not-allowed !important; }
+/* KPI grid */
+.analysis-kpis { display:grid; grid-template-columns:repeat(auto-fill,minmax(140px,1fr)); gap:10px; margin:12px 0 20px; }
+.analysis-kpis .kpi { background:var(--surface-bg,#fff); border:1px solid var(--border,#ccc); border-radius:6px; padding:8px 10px; display:flex; flex-direction:column; gap:4px; position:relative; }
+.analysis-kpis .kpi h3 { margin:0; font-size:11px; font-weight:600; letter-spacing:.3px; text-transform:uppercase; opacity:.75; }
+.analysis-kpis .kpi .val { font-size:18px; font-weight:600; line-height:1.1; }
+.analysis-kpis .kpi .sub { font-size:11px; opacity:.65; }
+.analysis-kpis .kpi.crit { border-color:#c62828; }
+.analysis-kpis .kpi.warn { border-color:#b36b00; }
+.analysis-kpis .kpi.ok { border-color:#2e7d32; }
+/* KPI color mapping (reuse legend / diff palette) */
+.analysis-kpis .kpi[data-k=formulas] { background:#bbdefb; }
+.analysis-kpis .kpi[data-k=volatile] { background:#d1c4e9; }
+.analysis-kpis .kpi[data-k=errors] { background:#ffcdd2; }
+.analysis-kpis .kpi[data-k=long] { background:#ffe0b2; }
+.analysis-kpis .kpi[data-k=nums] { background:#fff59d; }
+.analysis-kpis .kpi[data-k=ifdepth] { background:#c8e6c9; }
+/* Neutral / structural KPIs */
+.analysis-kpis .kpi[data-k=sheets] { background:#f1f1f1; }
+.analysis-kpis .kpi[data-k=cells] { background:#f1f1f1; }
+/* Enhance text legibility on colored tiles */
+.analysis-kpis .kpi[data-k] h3 { opacity:.85; }
+.analysis-kpis .kpi[data-k] { border-color:rgba(0,0,0,0.15); }
+.analysis-kpis .kpi[data-k]:hover { filter:brightness(.97); }
+.analysis-table { width:100%; border-collapse:collapse; font-size:12px; background:#fff; }
+.analysis-table th, .analysis-table td { border:1px solid var(--border,#ccc); padding:4px 6px; text-align:left; }
+.analysis-table thead th { background:#e5e5e5; font-weight:600; }
+.results-card#resultsPrimary { border: 1px solid var(--border); border-radius: 6px; }
+.region-previews#regionPreviews { flex: 0 0 225px; height: 225px;}

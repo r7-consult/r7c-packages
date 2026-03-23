@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>About</title>
+    <style>
+        p, a{
+            font-size: 12px;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        }
+
+
+        a:link {
+            color: darkgrey;
+        }
+
+        /* visited link */
+        a:visited {
+            color: darkgrey;
+        }
+
+        /* mouse over link */
+        a:hover {
+            color: #8d8d8d;
+        }
+
+        /* selected link */
+        a:active {
+            color: darkgrey;
+        }
+    </style>
+    <link rel="stylesheet" href="../../vendor/oo/plugins.css">
+    <script type="text/javascript" src="../../vendor/oo/plugins.js"></script>
+    <script type="text/javascript" src="../../vendor/oo/plugins-ui.js"></script>
+
+    <script type="text/javascript">
+        window.Asc.plugin.init = function()
+        {
+            this.resizeWindow(392, 147, 392, 147, 392, 147);
+            // none
+        };
+
+        window.Asc.plugin.button = function(id)
+        {
+            this.executeCommand("close", "");
+        };
+
+    </script>
+</head>
+<body style="padding-left: 20px; padding-right: 20px">
+
+    <p style="font-size: 12px">
+      Плагин Slider Данные OLAP предназначен для работы с OLAP-системами непосредственно из табличного редактора
+    </p>
+
+    <p style="font-size: 12px">
+      Разработано в <b>ООО Датаконс</b>
+    </p>
+
+    <p>
+      Бесплатная версия для некоммерческого использования (v0.3.5 beta)
+    </p>
+
+    <p>
+      <a href="https://r7-consult.ru" target="_blank">https://r7-consult.ru</a>
+    </p>
+
+    <p>Версия: 0.3.5 beta</p>
+
+</body>
+</html>

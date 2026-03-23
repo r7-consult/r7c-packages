@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Обработка данных</title>
+  <link rel="stylesheet" href="resources/css/fonts.css">
+  <link rel="stylesheet" href="vendor/oo/plugins.css">
+  <link rel="stylesheet" href="styles/main.css">
+  <script src="vendor/oo/plugins.js"></script>
+  <script src="vendor/oo/plugins-ui.js"></script>
+  <script src="scripts/manager-config.js"></script>
+  <script src="scripts/game-launcher.js"></script>
+  <script src="scripts/module-service.js"></script>
+  <script src="scripts/ui.js"></script>
+  <script src="scripts/plugin.js"></script>
+</head>
+<body>
+  <div class="gw-app" id="gw-app">
+    <header class="gw-header">
+      <div class="gw-heading">
+        <h1 id="gw-title" class="gw-title">Обработка данных</h1>
+        <p id="gw-subtitle" class="gw-subtitle">Каталог решений и модулей для обработки данных</p>
+      </div>
+      <a
+        class="gw-mascot-link"
+        href="https://github.com/r7-consult/data_processing"
+        target="_blank"
+        rel="noopener noreferrer"
+        title="Открыть репозиторий"
+      >
+        <img class="gw-mascot" src="resources/icons/main/light/icon.svg" alt="Обработка данных">
+      </a>
+    </header>
+
+    <main class="gw-main">
+      <div class="gw-main-title-row">
+        <h2 class="gw-main-title">Решения</h2>
+        <span id="gw-main-meta" class="gw-main-meta">Загрузка каталога...</span>
+      </div>
+      <div id="games-list" class="games-list" aria-live="polite"></div>
+    </main>
+
+    <footer class="gw-footer">
+      <span id="gw-status" class="gw-status">Готово</span>
+    </footer>
+  </div>
+</body>
+</html>

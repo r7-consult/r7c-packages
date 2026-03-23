@@ -1,0 +1,11 @@
+{
+    "module":  "macro_checker_card",
+    "files":  [
+                  "config.json",
+                  "index.html",
+                  "resources/card-icon.svg"
+              ],
+    "directories":  [
+                        "resources"
+                    ]
+}

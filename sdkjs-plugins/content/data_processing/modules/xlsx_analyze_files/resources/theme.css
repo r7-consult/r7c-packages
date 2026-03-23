@@ -1,0 +1,4 @@
+/* Delegated theme variables now defined in style.css; keep in sync with SQL/OLAP palette */
+:root { --bg:#ffffff; --fg:#000000; --side-bg:#ffffff; --border:#cccccc; --toolbar-bg:#ffffff; --header-bg:#e5e5e5; }
+/* Force about page to use panel/background token (override plain #fff) */
+body.about { background:var(--bg,#ffffff) !important; }

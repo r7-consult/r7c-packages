@@ -1,0 +1,40 @@
+{
+  "name": "File Comparison",
+  "nameLocale": {
+    "ru": "Сравнение файлов",
+    "en": "File Comparison"
+  },
+  "guid": "asc.{2CB30E24-F904-445B-9FA3-F9EB74882E11}",
+  "version": "09.26",
+  "managerWindow": {
+    "launchMode": "direct",
+    "moduleEntry": "index.html",
+    "size": [1460, 920],
+    "minSize": [980, 700],
+    "maxSize": [1880, 1200]
+  },
+  "variations": [
+    {
+      "description": "Excel and CSV file comparison",
+      "descriptionLocale": {
+        "ru": "Сравнение Excel/CSV файлов и листов",
+        "en": "Compare Excel and CSV files"
+      },
+      "url": "index.html",
+      "icons": [
+        "resources/card-icon.svg"
+      ],
+      "EditorsSupport": [
+        "cell"
+      ],
+      "isViewer": true,
+      "isVisual": true,
+      "isModal": true,
+      "isInsideMode": false,
+      "size": [1460, 920],
+      "initDataType": "none",
+      "initData": "",
+      "buttons": []
+    }
+  ]
+}

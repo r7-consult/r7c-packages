@@ -1,0 +1,42 @@
+{
+    "module":  "xlsx_analyze_files",
+    "files":  [
+                  "analysis.html",
+                  "config.json",
+                  "resources/card-icon.svg",
+                  "resources/font/Nunito/Nunito-Black.ttf",
+                  "resources/font/Nunito/Nunito-BlackItalic.ttf",
+                  "resources/font/Nunito/Nunito-Bold.ttf",
+                  "resources/font/Nunito/Nunito-BoldItalic.ttf",
+                  "resources/font/Nunito/Nunito-ExtraBold.ttf",
+                  "resources/font/Nunito/Nunito-ExtraBoldItalic.ttf",
+                  "resources/font/Nunito/Nunito-ExtraLight.ttf",
+                  "resources/font/Nunito/Nunito-ExtraLightItalic.ttf",
+                  "resources/font/Nunito/Nunito-Italic.ttf",
+                  "resources/font/Nunito/Nunito-Light.ttf",
+                  "resources/font/Nunito/Nunito-LightItalic.ttf",
+                  "resources/font/Nunito/Nunito-Regular.ttf",
+                  "resources/font/Nunito/Nunito-SemiBold.ttf",
+                  "resources/font/Nunito/Nunito-SemiBoldItalic.ttf",
+                  "resources/fonts.css",
+                  "resources/style.css",
+                  "resources/theme.css",
+                  "scripts/common/logger.js",
+                  "scripts/i18n.js",
+                  "scripts/plugin_analysis.js",
+                  "scripts/state.js",
+                  "translations/en.json",
+                  "translations/langs.json",
+                  "translations/ru.json",
+                  "vendor/xlsx.full.min.js"
+              ],
+    "directories":  [
+                        "resources/font/Nunito",
+                        "resources/font",
+                        "scripts/common",
+                        "translations",
+                        "resources",
+                        "scripts",
+                        "vendor"
+                    ]
+}

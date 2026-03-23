@@ -1,0 +1,182 @@
+{
+  "title.main": "Сравнение Таблиц",
+  "msg.apiLater": "Будет добавлено позднее",
+  "label.baseSheet": "Источник 1",
+  "label.targetSheet": "Источник 2",
+  "title.options": "Опции",
+  "opt.ignoreCase": "Игнорировать регистр",
+  "opt.trimSpaces": "Убирать пробелы",
+  "opt.compareFormatting": "Сравнивать форматирование",
+  "opt.tolerance": "Числовая толерантность",
+  "btn.run": "Запуск",
+  "btn.report": "Отчет",
+  "btn.exportJson": "Экспорт JSON",
+  "btn.clearImports": "Очистить импорт",
+  "label.virtualMark": "(импорт)",
+  "btn.uploadBase": "Загрузить базовый файл",
+  "btn.uploadTarget": "Загрузить целевой файл",
+  "title.legend": "Легенда",
+  "legend.valueChange": "Изменено значение",
+  "legend.formulaChange": "Изменена формула",
+  "legend.insertedRow": "Вставлена строка",
+  "legend.deletedRow": "Удалена строка",
+  "legend.formulaToValue": "Формула → Значение",
+  "legend.valueToFormula": "Значение → Формула",
+  "legend.typeChange": "Изменён тип",
+  "legend.formatChange": "Изменён формат",
+  "legend.insertedCol": "Вставлен столбец",
+  "legend.deletedCol": "Удалён столбец",
+  "status.canceled": "Отменено",
+  "msg.noHighlights": "Нет подсветки для снятия",
+  "msg.cancelRequested": "Запрошена отмена",
+  "msg.exported": "JSON экспортирован",
+  "msg.exportFailed": "Ошибка экспорта",
+  "msg.noDiff": "Нет данных для экспорта",
+  "msg.highlightApplied": "Подсветка применена",
+  "msg.highlightFailed": "Ошибка подсветки",
+  "msg.highlightsCleared": "Подсветка снята",
+  "msg.highlightsAlready": "Уже подсвечено",
+  "msg.noSheet": "Лист не выбран",
+  "msg.importFailed": "Ошибка импорта",
+  "msg.fileReadError": "Ошибка чтения файла",
+  "msg.workbookImported": "Книга импортирована",
+  "title.selectSheets": "Выбор листов для импорта",
+  "btn.selectAll": "Все",
+  "btn.selectNone": "Ничего",
+  "status.idle": "Ожидание",
+  "about.title": "Плагин Сравнение Таблиц",
+  "about.desc": "Сравнение листов (значения, формулы, структура).",
+  "about.version": "Версия: 0.4.4",
+  "about.phase": "Этап: BETA",
+  "btn.ok": "ОК"
+  ,"btn.catSelectAll":"Выбрать все"
+  ,"btn.catClearAll":"Снять все"
+  ,"btn.catReset":"Сбросить фильтры"
+  ,"upload.currentBase":"Текущий файл"
+  ,"upload.currentTarget":"Текущий файл"
+  ,"upload.fileBase":"Загрузить файл"
+  ,"upload.fileTarget":"Загрузить файл"
+  ,"msg.rowLimit":"Превышен лимит строк (10000)"
+  ,"msg.colLimit":"Превышен лимит столбцов"
+  ,"msg.skippedSheets":"Некоторые листы пропущены (>10000 строк)"
+  ,"btn.cancel":"Отмена"
+  ,"status.running":"Выполняется"
+  ,"status.complete":"Готово"
+  ,"msg.canceled":"Сравнение отменено"
+  ,"msg.formatNotImplemented":"Сравнение формата пока не реализовано"
+  ,"msg.xlsxLibLoadFailed":"Не удалось загрузить парсер XLSX"
+  ,"msg.xlsxLibMissing":"Парсер XLSX недоступен"
+  ,"status.missingSelection":"Выберите базовый и целевой листы"
+  ,"status.error":"Ошибка"
+  ,"status.importing":"Импорт..."
+  ,"msg.importComplete":"Импорт завершен"
+  ,"preview.enableSyncScroll":"Включить синхронный скроллинг"
+  ,"preview.baseTitle":"Превью базы"
+  ,"preview.targetTitle":"Превью цели"
+  ,"search.toggle":"Поиск отличий"
+  ,"search.placeholder":"Поиск"
+  ,"search.prev":"Предыдущее совпадение"
+  ,"search.next":"Следующее совпадение"
+  ,"search.clear":"Очистить поиск"
+  ,"menu.start":"Старт"
+  ,"menu.about":"О программе"
+  ,"report.header.type":"Тип"
+  ,"report.header.cell":"Ячейка"
+  ,"report.header.from":"Из"
+  ,"report.header.to":"В"
+  ,"report.header.typeLabel":"Категория"
+  ,"report.header.delta":"Δ"
+  ,"report.header.deltaPct":"Δ %"
+  ,"report.header.note":"Примечание"
+  ,"report.header.fromType":"Тип (из)"
+  ,"report.header.toType":"Тип (в)"
+  ,"report.header.formulaBase":"Формула (база)"
+  ,"report.header.formulaTarget":"Формула (цель)"
+  ,"report.summary.title":"Сводка сравнения"
+  ,"report.summary.base":"База"
+  ,"report.summary.target":"Цель"
+  ,"report.summary.generated":"Сгенерировано (ISO)"
+  ,"report.summary.duration":"Длительность (мс)"
+  ,"report.summary.totalDiffRows":"Всего строк различий"
+  ,"report.summary.col.category":"Категория"
+  ,"report.summary.col.label":"Метка"
+  ,"report.summary.col.count":"Кол-во"
+  ,"report.summary.col.percent":"% строк различий"
+  ,"report.summary.legacy":"Счётчики (legacy)"
+  ,"report.label.row":"Строка"
+  ,"report.label.col":"Столбец"
+  ,"report.msg.csvExported":"CSV отчет экспортирован"
+  ,"report.summary.metrics":"Метрики"
+  ,"report.summary.cellsCompared":"Сравнено ячеек"
+  ,"report.summary.changedCells":"Изменённых ячеек"
+  ,"report.summary.changedCellsPct":"% изменённых"
+  ,"report.summary.structuralDiffs":"Структурные различия"
+  ,"report.summary.diffDensity":"Плотность различий"
+  ,"report.summary.baseSize":"Размер базы (R x C)"
+  ,"report.summary.targetSize":"Размер цели (R x C)"
+  ,"report.summary.timings":"Тайминги"
+  ,"report.summary.t.snapshot":"Снимок (мс)"
+  ,"report.summary.t.loop":"Цикл сравнения (мс)"
+  ,"report.summary.t.total":"Итого (мс)"
+  ,"btn.hidePanel":"Скрыть панель"
+  ,"btn.showPanel":"Показать панель"
+  ,"menu.toggle":"Меню"
+  ,"menu.nav":"Навигация плагина"
+  ,"msg.importCleared":"Импорт очищен"
+  ,"msg.truncated":"Показаны первые 5000 (ещё {extra})"
+  ,"note.insertedRow":"вставлена строка"
+  ,"note.deletedRow":"удалена строка"
+  ,"note.insertedCol":"вставлен столбец"
+  ,"note.deletedCol":"удалён столбец"
+  ,"msg.currentImportStarting":"Импорт текущей книги..."
+  ,"msg.currentImportFailed":"Ошибка импорта текущей книги"
+  ,"msg.apiNotReady":"API еще не готов"
+  ,"msg.noCurrentSheets":"Нет листов в текущей книге"
+  ,"msg.currentImportNone":"Листы не импортированы"
+  ,"msg.currentImportDone":"Импорт завершен ({count})"
+  ,"msg.realApiConnected":"Подключено к редактору"
+  ,"placeholder.source1":"Источник 1"
+  ,"placeholder.source2":"Источник 2"
+  ,"msg.importBlocked":"Сначала очистите импорт, затем загрузите новые файлы"
+  ,"hint.clearBeforeImport":"Очистите импорт, чтобы загрузить новые листы"
+  ,"about.new.heading":"{NAME} ({VERSION})"
+  ,"about.new.purpose":"Плагин {NAME} предназначен для быстрого, точного и понятного сравнения электронных таблиц."
+  ,"about.new.developed":"Разработано в \"ООО ДатаКонс\""
+  ,"about.new.license":"Срок действия лицензии по {DATE}"
+  ,"about.new.versionLine":"Версия {VERSION}"
+  ,"label.found":"Найдено:"
+  ,"legend.valueChangeFormulaResult":"Формула: изменился результат"
+  ,"legend.valueOneSide":"Только в одном источнике"
+  ,"legend.valuePlain":"Простые изменения"
+  ,"delta.changedCells":"Изменение ячеек:"
+  ,"delta.structuralDiffs":"Изменение структуры:"
+  ,"delta.diffPercent":"Процент изменений:"
+  ,"delta.rows":"Количество строк:"
+  ,"delta.cols":"Количество столбцов:"
+  ,"delta.time":"Время сравнения:"
+  ,"about.new.licenseExpired":"Срок лицензии истек. Обратитесь к разработчикам!"
+  ,"diff.addr.rowPrefix":"Строка "
+  ,"diff.addr.colPrefix":"Столбец "
+  ,"diff.addr.goTo":"Перейти к {ADDR}"
+  ,"about.redirectInfo":"Окно будет перенаправлено на страницу информации."
+  ,"about.link.licenseInfo":"Перейти к информации о лицензии"
+  ,"format.bold":"Жирный"
+  ,"format.italic":"Курсив"
+  ,"format.underline":"Подчёркнутый"
+  ,"format.font":"Шрифт:"
+  ,"format.textColor":"Цвет текста:"
+  ,"format.background":"Фон:"
+  ,"format.alignment":"Выравнивание:"
+  ,"format.verticalAlignment":"Верт. выравнивание:"
+  ,"format.align.left":"слева"
+  ,"format.align.center":"по центру"
+  ,"format.align.right":"справа"
+  ,"format.align.justify":"по ширине"
+  ,"format.valign.top":"сверху"
+  ,"format.valign.center":"по центру"
+  ,"format.valign.bottom":"снизу"
+  ,"format.none":"Без форматирования"
+  ,"analysis.placeholder":"Выберите файл и запустите анализ."
+  ,"analysis.context.cell":"ячейка"
+  ,"analysis.context.formula":"формула"
+}

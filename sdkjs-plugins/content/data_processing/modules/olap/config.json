@@ -1,0 +1,39 @@
+{
+  "name": "OLAP",
+  "nameLocale": {
+    "ru": "OLAP",
+    "en": "OLAP"
+  },
+  "guid": "asc.{0CAB29C6-BBE4-4981-B1E7-1B83C833AC1F}",
+  "version": "0.3.5",
+  "managerWindow": {
+    "launchMode": "direct",
+    "moduleEntry": "index.html",
+    "size": [1280, 860],
+    "minSize": [980, 680],
+    "maxSize": [1760, 1180]
+  },
+  "variations": [
+    {
+      "description": "OLAP and XMLA data sources",
+      "descriptionLocale": {
+        "ru": "Работа с OLAP/XMLA источниками",
+        "en": "OLAP and XMLA"
+      },
+      "url": "index.html",
+      "icons": [
+        "resources/card-icon.svg"
+      ],
+      "EditorsSupport": [
+        "cell"
+      ],
+      "isViewer": true,
+      "isVisual": true,
+      "isModal": false,
+      "isInsideMode": true,
+      "initDataType": "none",
+      "initData": "",
+      "buttons": []
+    }
+  ]
+}

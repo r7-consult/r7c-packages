@@ -1,0 +1,39 @@
+{
+  "name": "ClickHouse",
+  "nameLocale": {
+    "ru": "ClickHouse",
+    "en": "ClickHouse"
+  },
+  "guid": "asc.{5EA29DFB-263A-4F3B-A0D9-D9D0FCE619C6}",
+  "version": "1.0.4",
+  "managerWindow": {
+    "launchMode": "direct",
+    "moduleEntry": "index.html",
+    "size": [1180, 760],
+    "minSize": [920, 620],
+    "maxSize": [1720, 1100]
+  },
+  "variations": [
+    {
+      "description": "ClickHouse queries for spreadsheets",
+      "descriptionLocale": {
+        "ru": "Запросы к ClickHouse из табличного редактора",
+        "en": "ClickHouse queries"
+      },
+      "url": "index.html",
+      "icons": [
+        "resources/card-icon.svg"
+      ],
+      "EditorsSupport": [
+        "cell"
+      ],
+      "isViewer": true,
+      "isVisual": true,
+      "isModal": false,
+      "isInsideMode": true,
+      "initDataType": "none",
+      "initData": "",
+      "buttons": []
+    }
+  ]
+}

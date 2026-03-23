@@ -1,0 +1,38 @@
+{
+  "name": "Macro Checker",
+  "nameLocale": {
+    "ru": "Macro Checker",
+    "en": "Macro Checker"
+  },
+  "guid": "asc.{F0E6E76D-7BDD-4E9E-B51C-6F4309426F4D}",
+  "version": "0.1.0",
+  "managerWindow": {
+    "launchMode": "external-link",
+    "launchUrl": "https://github.com/r7-consult/r7_macro_checker",
+    "actionLabel": "Перейти",
+    "badge": "Коммерческое"
+  },
+  "variations": [
+    {
+      "description": "Commercial repository card",
+      "descriptionLocale": {
+        "ru": "Коммерческое решение с серверной частью. Открывается по ссылке.",
+        "en": "Commercial repository card"
+      },
+      "url": "index.html",
+      "icons": [
+        "resources/card-icon.svg"
+      ],
+      "EditorsSupport": [
+        "cell"
+      ],
+      "isViewer": true,
+      "isVisual": true,
+      "isModal": false,
+      "isInsideMode": true,
+      "initDataType": "none",
+      "initData": "",
+      "buttons": []
+    }
+  ]
+}

@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+
+    <!-- OnlyOffice -->
+    <link rel="stylesheet" href="../../vendor/oo/plugins.css">
+    <script type="text/javascript" src="../../vendor/oo/plugins.js"></script>
+    <script type="text/javascript" src="../../vendor/oo/plugins-ui.js"></script>
+
+
+    <!-- jQuery -->
+    <script type="text/javascript" src="vendor/jquery-3.7.1.min.js"></script>
+    <script type="text/javascript" src="vendor/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="vendor/jquery-ui.min.css">
+    <link rel="stylesheet" href="vendor/jquery-ui.theme.min.css">
+
+
+    <!-- Fancytree -->
+    <link href="vendor/skin-win8/ui.fancytree.min.css" rel="stylesheet">
+    <script src="vendor/jquery.fancytree-all-deps.min.js"></script>
+
+
+    <!-- conextMenu -->
+    <link rel="stylesheet" href="vendor/jquery.contextMenu.min.css" />
+    <script src="vendor/jquery.contextMenu.min.js"></script>
+
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="vendor/fontawesome/css/all.min.css" />
+
+
+    <!-- Xmla4js -->
+    <script type="text/javascript" src="vendor/Xmla.js"></script>
+
+
+    <!-- blockUI -->
+    <script type="text/javascript" src="vendor/jquery.blockUI.js"></script>
+
+    <!-- Style -->
+    <link href="resources/style.css" rel="stylesheet">
+
+
+    <!-- Code -->
+    <script type="text/javascript" src="scripts/all.js"></script>
+
+    <!-- <script type="text/javascript" src="scripts/code.js"></script> -->
+
+    <!-- <script type="text/javascript" src="scripts/common_olap/errorCommon.js"></script> -->
+    <!-- <script type="text/javascript" src="scripts/common_olap/errorMain.js"></script> -->
+    <!-- <script type="text/javascript" src="scripts/common_olap/global.js"></script> -->
+    <!-- <script type="text/javascript" src="scripts/common_olap/metadata.js"></script> -->
+    <!-- <script type="text/javascript" src="scripts/common_olap/misc.js"></script> -->
+    <!-- <script type="text/javascript" src="scripts/common_olap/queryGenerator.js"></script> -->
+    <!-- <script type="text/javascript" src="scripts/common_olap/storage.js"></script> -->
+    <!-- <script type="text/javascript" src="scripts/common_olap/data.js"></script> -->
+
+    <!-- <script type="text/javascript" src="scripts/presentation_olap/about.js"></script> -->
+    <!-- <script type="text/javascript" src="scripts/presentation_olap/axisGrid.js"></script> -->
+    <!-- <script type="text/javascript" src="scripts/presentation_olap/connectionManager.js"></script> -->
+    <!-- <script type="text/javascript" src="scripts/presentation_olap/cubeTree.js"></script> -->
+    <!-- <script type="text/javascript" src="scripts/presentation_olap/filterManager.js"></script> -->
+    <!-- <script type="text/javascript" src="scripts/presentation_olap/operations.js"></script> -->
+    <!-- <script type="text/javascript" src="scripts/presentation_olap/queryManager.js"></script> -->
+    <!-- <script type="text/javascript" src="scripts/presentation_olap/reportManager.js"></script> -->
+    <!-- <script type="text/javascript" src="scripts/presentation_olap/settings.js"></script> -->
+    <!-- <script type="text/javascript" src="scripts/presentation_olap/staticMenu.js"></script> -->
+    <!-- <script type="text/javascript" src="scripts/presentation_olap/tableManager.js"></script> -->
+    <!-- <script type="text/javascript" src="scripts/presentation_olap/toolbar.js"></script> -->
+    <!-- <script type="text/javascript" src="scripts/freeVersion.js"></script> -->
+
+    <!-- <script type="text/javascript" src="scripts/editor_olap/rendering.js"></script> -->
+    <!-- <script type="text/javascript" src="scripts/infrastructure_olap/xmla.js"></script> -->
+    <!-- <script type="text/javascript" src="scripts/r7_helper_olap/version.js"></script> -->
+
+    <style type="text/css">
+      .ui-tabs .ui-tabs-panel {
+          padding: 0px;
+      }
+
+      ul.fancytree-container {
+          overflow-x: hidden;
+      }
+
+      .ui-accordion .ui-accordion-content {
+          overflow-x: hidden;
+      }
+    </style>
+
+  </head>
+
+  <body class="body" style="margin: 0px">
+
+
+    <div id="free-connection" style="margin:5px; display: flex; flex-flow: column; height: 200px;">
+
+      <label class="header">URL:</label>
+      <input type="text" class="form-control" style="width:100%; margin-bottom:5px" id="url-input">
+
+      <label class="header">Логин:</label>
+      <input type="text" class="form-control" style="width:100%; margin-bottom:5px" id="user-input">
+
+      <label class="header">Пароль:</label>
+      <input type="password" class="form-control" style="width:100%; margin-bottom:5px" id="password-input">
+
+      <div><button id="connect-button" class="btn-text-default" style="width:90px; float:right; margin-bottom:5px">Подключиться</button></div>
+    </div>
+
+
+    <div id="free-catalog" style="margin:5px; display: flex; flex-flow: column; height: 200px; display: none">
+
+      <label class="header">Выберите источник данных:</label>
+      <select id="source-select" class="form-control" style="margin-bottom:5px" disabled></select>
+
+
+      <label class="header">Выберите каталог:</label>
+      <select id="catalog-select" class="form-control" disabled></select>
+    </div>
+
+
+    <dev id="left-panel" style="display: none">
+  <div id="dynamic-manager" style="padding: 7px; display:flex">
+
+  <div id="dynamic-manager-main" style="width: 100%">
+
+    <label class="header" style="">Сводный отчёт:</label>
+    <div style="display:flex; margin-bottom: 6px">
+      <select id="table-select" class="form-control"></select>
+      <button title="Создать таблицу" id="add-table-button" class="btn-text-default"><i class="fa fa-plus"></i></button>
+    </div>
+
+
+    <div id="cube-template" style="display:none">
+      <div class="tabs">
+        <ul>
+          <li><a class="field-tab-header" href="">Поля</a></li>
+          <li><a class="filter-tab-header" href="">Фильтры</a></li>
+        </ul>
+
+        <div class="field-tab">
+          <label class="header">Поля сводной таблицы:</label>
+          <div class="cube-tree"></div>
+          <table class="axis-grid" style="width:100%; margin:0px; table-layout:fixed">
+
+  <tr>
+
+    <td>
+      <label class="header">
+        Фильтры:
+        <!--  <button class="filter-button btn-text-default" title="Настроить фильтры" style="font-size:10px; float:right"> -->
+        <!--   <i class="fa fa-filter"></i> -->
+        <!-- </button> -->
+      </label>
+      <ul class="filters selected"></ul>
+    </td>
+
+    <td>
+      <label class="header" >Столбцы:</label>
+      <ul class="axis0 selected"></ul>
+    </td>
+
+  </tr>
+
+
+  <tr>
+
+    <td>
+      <label class="header">Строки:</label>
+      <ul class="axis1 selected"></ul>
+    </td>
+
+    <td>
+      <label class="header">Значения:</label>
+      <ul class="measures selected"></ul>
+    </td>
+
+  </tr>
+
+</table>
+        </div>
+
+        <div class="filter-tab">
+
+          <label class="header">Выберите фильтр:</label>
+          <select class="filter-select form-control"></select>
+
+          <div class="filter-trees" style=""></div>
+
+        </div>
+      </div>
+    </div>
+
+
+    <div id="table-template" style="display: none">
+
+      <label class="header">Соединение:</label>
+      <select class="connection-select form-control" style="margin-bottom: 6px"></select>
+
+      <label class="header">Куб:</label>
+      <select class="cube-select form-control" style="margin-bottom: 6px" disabled></select>
+
+
+      <div class="cube"></div>
+
+    </div>
+
+
+    <div id="tables"></div>
+  </div>
+  
+
+
+  <div id="axis-filter" style="display:none; height:500px; width: 100%">
+    <label class="header">Фильтры осей:</label>
+    <div id="axis-filter-tree"></div>
+    <button id="axis-filter-back" class="btn-text-default" style="float:right; margin-top:5px;">Назад</button>
+  </div>
+
+
+  <div id="toolbar">
+  <input id="toolbar-update-button" class="toolbar-button" title="Обновить" type="image" src="resources/icons/toolbar/update.png" />
+  <input id="toolbar-zoom-in-button" class="toolbar-button" title="Zoom In" type="image" src="resources/icons/toolbar/zoom-in.png" />
+  <input id="toolbar-zoom-out-button" class="toolbar-button" title="Zoom Out" type="image" src="resources/icons/toolbar/zoom-out.png" />
+  <input id="toolbar-pivot-button" class="toolbar-button" title="Pivot" type="image" src="resources/icons/toolbar/pivot.png" />
+  <input id="toolbar-remove-button" class="toolbar-button" title="Remove" type="image" src="resources/icons/toolbar/remove.png" />
+  <input id="toolbar-keep-only-button" class="toolbar-button" title="Keep Only" type="image" src="resources/icons/toolbar/keep-only.png" />
+  <!-- <input id="toolbar-filter-button" class="toolbar-button" title="Filter" type="image" src="resources/icons/toolbar/filter.png" /> -->
+  <input id="toolbar-undo-button" class="toolbar-button" title="Undo" type="image" src="resources/icons/toolbar/undo.png" />
+  <input id="toolbar-redo-button" class="toolbar-button" title="Redo" type="image" src="resources/icons/toolbar/redo.png" />
+  <input id="toolbar-log-button" class="toolbar-button" title="Лог" type="image" src="resources/icons/toolbar/log.png" />
+  <input id="toolbar-about-button" class="toolbar-button" title="О программе" type="image" src="resources/icons/about.png" />
+</div>
+  
+<div id="add-table-dialog" style="display: none;">
+
+  <div>
+    <label style="">Имя таблицы:</label>
+    <input id="add-table-name-input" type="text" style="margin-top: 5px;"></input>
+    <button id="submit-table-button" class="btn btn-primary" style="margin-top: 5px">Добавить</button>
+  </div>
+
+</div>
+
+</div>
+
+</div>
+
+    <div id="info-dialog" style="display: none;"><p></p></div>
+
+
+  </body>
+</html>

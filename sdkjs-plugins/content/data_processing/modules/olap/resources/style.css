@@ -1,0 +1,107 @@
+m.ui-fancytree-disabled ul.fancytree-container {
+    background-color: white;
+}
+
+
+/* .ui-fancytree-disabled { */
+/*     background-color: white; */
+/* } */
+
+
+/* ul.fancytree-container { */
+/*     height: 300px; */
+/*     width: 100%; */
+/* } */
+
+
+ul.fancytree-container {
+    height: 150px;
+    overflow: auto;
+    position: relative;
+}
+
+
+
+#static-manager {
+    padding: 0px;
+}
+
+
+#static-manager button {
+    width: 100%;
+}
+
+
+/* #main-form button { */
+/*     width: 100%; */
+/* } */
+
+
+.toolbar-button:hover {
+    filter: drop-shadow(0 0px 8px rgba(0, 0, 0, 1));
+}
+
+#filter {
+    display: none;
+    width: 100%;
+}
+
+#toolbar {
+    width: 17px;
+    margin: 0px;
+    padding: 2px;
+    /* margin-left: 0px; */
+    /* margin-right: 0px */
+}
+
+
+.label {
+    display: inline-block;
+    margin-bottom: 4px;
+}
+
+
+.form-control {
+    width: 100%;
+}
+
+
+.header {
+    font-size: 11px;
+}
+
+
+.fixed-size {
+    width: 400px;
+    height: 250px;
+    overflow: auto;
+    position: relative;
+}
+
+ul.selected {
+    height: 50px;
+    padding-inline-start: 2px;    
+}
+
+
+ul.selected li {
+    font-size: 11px;
+    list-style-type: none;   
+}
+
+
+#table, th, td {
+    border: 1px solid black;
+}
+
+
+#toolbar-update-button {
+    padding: 4px;
+}
+
+#toolbar-log-button {
+}
+
+#toolbar-about-button {
+    padding: 4px;
+}

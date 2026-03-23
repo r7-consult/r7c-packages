@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <title data-i18n="title.main">Сравнение Таблиц</title>
+  <link rel="stylesheet" href="resources/fonts.css" />
+  <link rel="stylesheet" href="resources/style.css" />
+  <link rel="stylesheet" href="resources/theme.css" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <script src="scripts/i18n.js"></script>
+  <script>document.documentElement.lang='ru';</script>
+  <script>
+    // XLSX module initialization
+    // Note: OnlyOffice API (Asc, $, etc.) are inherited from parent window
+  </script>
+</head>
+<body>
+  <div id="appRoot" class="layout-root" data-testid="xlsx-app-root">
+  <div id="uiBlocker" class="app-blocker" aria-hidden="true" style="pointer-events:none" data-testid="xlsx-ui-blocker"></div>
+  <div id="sidebar" class="panel-left" data-pane="left" data-testid="xlsx-sidebar">
+  <h1 class="app-title" data-i18n="title.main" id="appTitleMain">Сравнение Таблиц</h1>
+      <section class="section">
+  <label for="baseSheetSelect" data-i18n="label.baseSheet">Источник 1</label>
+        <div class="file-name-row"><span id="baseFileNameLabel" class="file-name-label"></span></div>
+        <div class="input-row upload-menu-container">
+          <select id="baseSheetSelect" aria-labelledby="baseSheetSelect" disabled data-testid="xlsx-base-sheet-select"></select>
+          <button type="button" id="btnUploadBase" class="icon-btn icon-only has-dropdown" data-i18n-aria="btn.uploadBase" aria-label="Загрузить источник 1" data-icon-accent data-testid="xlsx-upload-base-button">
+            <svg class="icon-svg" viewBox="0 -960 960 960" width="22" height="22" aria-hidden="true" focusable="false"><path fill="currentColor" d="M460-249.23h40V-437l84 84 28.31-28.54L480-513.85 347.69-381.54l28.54 28.31L460-437v187.77ZM264.62-120q-27.62 0-46.12-18.5Q200-157 200-184.62v-590.76q0-27.62 18.5-46.12Q237-840 264.62-840H580l180 180v475.38q0 27.62-18.5 46.12Q723-120 695.38-120H264.62ZM560-640v-160H264.62q-9.24 0-16.93 7.69-7.69 7.69-7.69 16.93v590.76q0 9.24 7.69 16.93 7.69 7.69 16.93 7.69h430.76q9.24 0 16.93-7.69 7.69-7.69 7.69-16.93V-640H560ZM240-800v160-160 640-640Z"/></svg>
+          </button>
+          <div class="upload-dropdown" id="ddBaseUpload" role="menu" aria-label="Параметры импорта">
+            <button type="button" id="btnUseCurrentBase" class="dropdown-item disabled-api" role="menuitem" disabled title="Недоступно в этой версии" aria-disabled="true" data-testid="xlsx-upload-base-use-current">Текущий файл (недоступно)</button>
+            <button type="button" id="btnUploadFileBase" class="dropdown-item" role="menuitem" data-i18n="upload.fileBase" data-testid="xlsx-upload-base-file">Загрузить файл</button>
+          </div>
+        </div>
+      </section>
+      <section class="section">
+  <label for="targetSheetSelect" data-i18n="label.targetSheet">Источник 2</label>
+        <div class="file-name-row"><span id="targetFileNameLabel" class="file-name-label"></span></div>
+        <div class="input-row upload-menu-container">
+          <select id="targetSheetSelect" aria-labelledby="targetSheetSelect" disabled data-testid="xlsx-target-sheet-select"></select>
+          <button type="button" id="btnUploadTarget" class="icon-btn icon-only has-dropdown" data-i18n-aria="btn.uploadTarget" aria-label="Загрузить источник 2" data-icon-accent data-testid="xlsx-upload-target-button">
+            <svg class="icon-svg" viewBox="0 -960 960 960" width="22" height="22" aria-hidden="true" focusable="false"><path fill="currentColor" d="M460-249.23h40V-437l84 84 28.31-28.54L480-513.85 347.69-381.54l28.54 28.31L460-437v187.77ZM264.62-120q-27.62 0-46.12-18.5Q200-157 200-184.62v-590.76q0-27.62 18.5-46.12Q237-840 264.62-840H580l180 180v475.38q0 27.62-18.5 46.12Q723-120 695.38-120H264.62ZM560-640v-160H264.62q-9.24 0-16.93 7.69-7.69 7.69-7.69 16.93v590.76q0 9.24 7.69 16.93 7.69 7.69 16.93 7.69h430.76q9.24 0 16.93-7.69 7.69-7.69 7.69-16.93V-640H560ZM240-800v160-160 640-640Z"/></svg>
+          </button>
+          <div class="upload-dropdown" id="ddTargetUpload" role="menu" aria-label="Параметры импорта">
+            <button type="button" id="btnUseCurrentTarget" class="dropdown-item disabled-api" role="menuitem" disabled title="Недоступно в этой версии" aria-disabled="true" data-testid="xlsx-upload-target-use-current">Текущий файл (недоступно)</button>
+            <button type="button" id="btnUploadFileTarget" class="dropdown-item" role="menuitem" data-i18n="upload.fileTarget" data-testid="xlsx-upload-target-file">Загрузить файл</button>
+          </div>
+        </div>
+      </section>
+    <section class="section options">
+  <h2 data-i18n="title.options">Опции</h2>
+    <div class="option-item"><input type="checkbox" id="optIgnoreCase" checked data-testid="xlsx-option-ignore-case" /> <label for="optIgnoreCase" data-i18n="opt.ignoreCase">Игнорировать регистр</label></div>
+    <div class="option-item"><input type="checkbox" id="optTrim" checked data-testid="xlsx-option-trim" /> <label for="optTrim" data-i18n="opt.trimSpaces">Убирать пробелы</label></div>
+    <div class="option-item"><input type="checkbox" id="optFormat" data-testid="xlsx-option-compare-formatting" /> <label for="optFormat" data-i18n="opt.compareFormatting">Сравнивать форматирование</label></div>
+      </section>
+      <section class="section actions">
+  <button id="btnRun" class="primary" data-i18n="btn.run" data-testid="xlsx-run">Запуск</button>
+  <button id="btnReport" class="secondary" data-i18n="btn.report" disabled data-testid="xlsx-report">Отчет</button>
+      <button id="btnClearImports" class="secondary" data-i18n="btn.clearImports" disabled data-testid="xlsx-clear-imports">Очистить импорт</button>
+      </section>
+    <section class="section legend" id="legendSection">
+  <h2 data-i18n="title.legend">Легенда</h2>
+        <div class="legend-actions" id="legendActions">
+          <button type="button" id="btnCatSelectAll" class="icon-btn icon-only" data-i18n-title="btn.catSelectAll" data-i18n-aria="btn.catSelectAll" aria-label="Выбрать все" data-icon-accent data-testid="xlsx-legend-select-all">
+            <svg class="icon-svg" viewBox="0 -960 960 960" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="m424-339.69 255.85-255.85-28.31-28.31L424-396.31l-114-114L281.69-482 424-339.69ZM224.62-160q-27.62 0-46.12-18.5Q160-197 160-224.62v-510.76q0-27.62 18.5-46.12Q197-800 224.62-800h510.76q27.62 0 46.12 18.5Q800-763 800-735.38v510.76q0 27.62-18.5 46.12Q763-160 735.38-160H224.62Zm0-40h510.76q9.24 0 16.93-7.69 7.69-7.69 7.69-16.93v-510.76q0-9.24-7.69-16.93-7.69-7.69-16.93-7.69H224.62q-9.24 0-16.93 7.69-7.69 7.69-7.69 16.93v510.76q0 9.24 7.69 16.93 7.69 7.69 16.93 7.69ZM200-760v560-560Z"/></svg>
+          </button>
+          <button type="button" id="btnCatClearAll" class="icon-btn icon-only" data-i18n-title="btn.catClearAll" data-i18n-aria="btn.catClearAll" aria-label="Снять выделение" data-testid="xlsx-legend-clear-all">
+            <svg class="icon-svg" viewBox="0 -960 960 960" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M224.62-160q-27.62 0-46.12-18.5Q160-197 160-224.62v-510.76q0-27.62 18.5-46.12Q197-800 224.62-800h510.76q27.62 0 46.12 18.5Q800-763 800-735.38v510.76q0 27.62-18.5 46.12Q763-160 735.38-160H224.62Zm0-40h510.76q9.24 0 16.93-7.69 7.69-7.69 7.69-16.93v-510.76q0-9.24-7.69-16.93-7.69-7.69-16.93-7.69H224.62q-9.24 0-16.93 7.69-7.69 7.69-7.69 16.93v510.76q0 9.24 7.69 16.93 7.69 7.69 16.93 7.69Z"/></svg>
+          </button>
+          <button type="button" id="btnCatReset" class="icon-btn icon-only" data-i18n-title="btn.catReset" data-i18n-aria="btn.catReset" aria-label="Сбросить фильтры" data-testid="xlsx-legend-reset">
+            <svg class="icon-svg" viewBox="0 -960 960 960" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M209.38-351.85q-14.3-29.53-21.84-61.46Q180-445.23 180-478q0-125.54 87.62-213.77Q355.23-780 480-780h55.46l-84-84 28.31-28.31L612.08-760 479.77-627.69 451.46-656l84-84H480q-108.46 0-184.23 76.27T220-478q0 23.69 4.85 48.31 4.84 24.61 14.53 47.84l-30 30ZM480.23-67.69 347.92-200l132.31-132.31L508.54-304l-84 84H480q108.46 0 184.23-76.27T740-482q0-23.69-4.85-48.31-4.84-24.61-14.53-47.84l30-30q14.3 29.53 21.84 61.46Q780-514.77 780-482q0 125.54-87.62 213.77Q604.77-180 480-180h-55.46l84 84-28.31 28.31Z"/></svg>
+          </button>
+        </div>
+        <ul class="legend-list" id="legendList">
+  <li data-difftype="value"><label><input type="checkbox" class="cat-filter" data-cat="value" checked data-testid="xlsx-legend-filter-value"><span class="lgd value-change"></span><span data-i18n="legend.valueChange">Изменено значение</span> <span class="cat-count" data-count="value"></span></label></li>
+  <li data-difftype="formula"><label><input type="checkbox" class="cat-filter" data-cat="formula" checked data-testid="xlsx-legend-filter-formula"><span class="lgd formula-change"></span><span data-i18n="legend.formulaChange">Изменена формула</span> <span class="cat-count" data-count="formula"></span></label></li>
+  <li data-difftype="inserted-row"><label><input type="checkbox" class="cat-filter" data-cat="inserted-row" checked data-testid="xlsx-legend-filter-inserted-row"><span class="lgd inserted-row"></span><span data-i18n="legend.insertedRow">Вставлена строка</span> <span class="cat-count" data-count="inserted-row"></span></label></li>
+  <li data-difftype="deleted-row"><label><input type="checkbox" class="cat-filter" data-cat="deleted-row" checked data-testid="xlsx-legend-filter-deleted-row"><span class="lgd deleted-row"></span><span data-i18n="legend.deletedRow">Удалена строка</span> <span class="cat-count" data-count="deleted-row"></span></label></li>
+  <li data-difftype="formulaToValue"><label><input type="checkbox" class="cat-filter" data-cat="formulaToValue" checked data-testid="xlsx-legend-filter-formulaToValue"><span class="lgd formulaToValue"></span><span data-i18n="legend.formulaToValue">Формула → Значение</span> <span class="cat-count" data-count="formulaToValue"></span></label></li>
+  <li data-difftype="valueToFormula"><label><input type="checkbox" class="cat-filter" data-cat="valueToFormula" checked data-testid="xlsx-legend-filter-valueToFormula"><span class="lgd valueToFormula"></span><span data-i18n="legend.valueToFormula">Значение → Формула</span> <span class="cat-count" data-count="valueToFormula"></span></label></li>
+  <li data-difftype="type"><label><input type="checkbox" class="cat-filter" data-cat="type" checked data-testid="xlsx-legend-filter-type"><span class="lgd type"></span><span data-i18n="legend.typeChange">Изменён тип</span> <span class="cat-count" data-count="type"></span></label></li>
+  <li data-difftype="format" style="display:none;"><label><input type="checkbox" class="cat-filter" data-cat="format" checked data-testid="xlsx-legend-filter-format"><span class="lgd format"></span><span data-i18n="legend.formatChange">Изменён формат</span> <span class="cat-count" data-count="format"></span></label></li>
+  <li data-difftype="inserted-col"><label><input type="checkbox" class="cat-filter" data-cat="inserted-col" checked data-testid="xlsx-legend-filter-inserted-col"><span class="lgd inserted-col"></span><span data-i18n="legend.insertedCol">Вставлен столбец</span> <span class="cat-count" data-count="inserted-col"></span></label></li>
+  <li data-difftype="deleted-col"><label><input type="checkbox" class="cat-filter" data-cat="deleted-col" checked data-testid="xlsx-legend-filter-deleted-col"><span class="lgd deleted-col"></span><span data-i18n="legend.deletedCol">Удалён столбец</span> <span class="cat-count" data-count="deleted-col"></span></label></li>
+  </ul>
+      </section>
+    </div>
+  <div id="results" class="panel-right layout-fixed-3" data-pane="right" data-testid="xlsx-results">
+      <div class="results-card" id="resultsPrimary">
+      <!-- Region 1: Status / progress (60px) -->
+      <div id="regionStatus" class="region-status">
+        <div class="toolbar" id="resultsToolbar">
+          <button id="btnToggleSidebar" class="status-toggle" data-i18n-title="btn.hidePanel" data-i18n-aria="btn.hidePanel" data-testid="xlsx-toggle-sidebar">
+            <img class="icon-close" src="resources/icons/leftpanel_close.svg" alt="закрыть" />
+            <img class="icon-open" src="resources/icons/leftpanel_open.svg" alt="открыть" />
+          </button>
+          <span id="progressText" data-i18n="status.idle">Ожидание</span>
+          <button id="btnCancel" class="secondary" style="display:none" data-i18n="btn.cancel" data-testid="xlsx-cancel">Отмена</button>
+          <div class="progress-bar" id="progressBar" aria-label="Прогресс" data-testid="xlsx-progress-bar"><span></span></div>
+        </div>
+        <div id="messageArea" class="messages" aria-live="polite" data-testid="xlsx-message-area"></div>
+      </div>
+      <!-- Region 2: Previews (300px) -->
+        <div id="regionPreviews" class="region-previews" data-region="previews" data-testid="xlsx-region-previews">
+  <!-- previewControlsRow removed: sync checkbox moved to diffSearchBar -->
+        <div id="sheetPreviewWrapper" class="sheet-preview hidden" data-testid="xlsx-sheet-preview-wrapper">
+          <div class="sheet-preview-col">
+            <h3 class="preview-title" data-i18n="preview.baseTitle">Превью базы</h3>
+            <div id="basePreview" class="sheet-grid" aria-label="Предпросмотр источника 1" data-testid="xlsx-base-preview"></div>
+          </div>
+          <div class="sheet-preview-col">
+            <h3 class="preview-title" data-i18n="preview.targetTitle">Превью цели</h3>
+            <div id="targetPreview" class="sheet-grid" aria-label="Предпросмотр источника 2" data-testid="xlsx-target-preview"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Horizontal splitter between previews and diff -->
+    <div id="horizontalSplitter" class="h-split attached" role="separator" aria-orientation="horizontal" aria-label="Изменить размер предпросмотра и списка отличий" tabindex="0" data-testid="xlsx-horizontal-splitter"></div>
+    <!-- Region 3: Diff (flex-grow) -->
+  <div id="regionDiff" class="region-diff" data-region="diff" data-testid="xlsx-region-diff">
+  <div id="diffSearchBar" class="diff-search-bar hidden">
+          <button id="btnDiffSearchToggle" class="icon-only" data-i18n-title="search.toggle" data-i18n-aria="search.toggle" data-testid="xlsx-diff-search-toggle">
+            <svg class="icon-svg" viewBox="0 -960 960 960" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M779.38-153.85 528.92-404.31q-30 25.54-69 39.54t-78.38 14q-96.1 0-162.67-66.53-66.56-66.53-66.56-162.57 0-96.05 66.53-162.71 66.53-66.65 162.57-66.65 96.05 0 162.71 66.56Q610.77-676.1 610.77-580q0 41.69-14.77 80.69t-38.77 66.69l250.46 250.47-28.31 28.3ZM381.54-390.77q79.61 0 134.42-54.81 54.81-54.8 54.81-134.42 0-79.62-54.81-134.42-54.81-54.81-134.42-54.81-79.62 0-134.42 54.81-54.81 54.8-54.81 134.42 0 79.62 54.81 134.42 54.8 54.81 134.42 54.81Z"/></svg>
+          </button>
+          <div class="diff-search-fields hidden" id="diffSearchFields">
+            <input id="diffSearchInput" type="text" data-i18n-ph="search.placeholder" placeholder="Поиск" aria-label="Поиск по отличиям" data-testid="xlsx-diff-search-input" />
+            <span id="diffSearchCount" aria-live="polite">0/0</span>
+            <button id="btnDiffSearchPrev" class="icon-only" data-i18n-title="search.prev" data-i18n-aria="search.prev" data-testid="xlsx-diff-search-prev">
+              <svg class="icon-svg" viewBox="0 -960 960 960" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M560-267.69 347.69-480 560-692.31 588.31-664l-184 184 184 184L560-267.69Z"/></svg>
+            </button>
+            <button id="btnDiffSearchNext" class="icon-only" data-i18n-title="search.next" data-i18n-aria="search.next" data-testid="xlsx-diff-search-next">
+              <svg class="icon-svg" viewBox="0 -960 960 960" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="m531.69-480-184-184L376-692.31 588.31-480 376-267.69 347.69-296l184-184Z"/></svg>
+            </button>
+            <button id="btnDiffSearchClear" class="icon-only" data-i18n-title="search.clear" data-i18n-aria="search.clear" data-testid="xlsx-diff-search-clear">
+              <svg class="icon-svg" viewBox="0 -960 960 960" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M256-227.69 227.69-256l224-224-224-224L256-732.31l224 224 224-224L732.31-704l-224 224 224 224L704-227.69l-224-224-224 224Z"/></svg>
+            </button>
+          </div>
+          <label class="sync-label" id="syncScrollInline"><input type="checkbox" id="chkSyncScroll" data-testid="xlsx-sync-scroll" /> <span data-i18n="preview.enableSyncScroll">Синхр. скроллинг</span></label>
+        </div>
+        <div id="diffContainer" class="diff-container" aria-live="polite" data-testid="xlsx-diff-container"></div>
+      </div>
+    </div>
+  </div>
+  <!-- Sidebar toggle handled in status toolbar button (#btnToggleSidebar) -->
+  <!-- Sheet selection modal -->
+  <div id="sheetSelectModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="sheetSelectTitle" data-testid="xlsx-sheet-select-modal">
+    <div class="modal-content">
+  <h2 id="sheetSelectTitle" data-i18n="title.selectSheets">Выбор листов для импорта</h2>
+      <div id="sheetSelectList" class="sheet-list"></div>
+      <div class="modal-actions sheet-select-actions">
+        <div class="left-group">
+          <button id="btnSheetSelectAll" class="icon-only" data-i18n-title="btn.selectAll" data-i18n-aria="btn.selectAll" data-icon-accent data-testid="xlsx-sheet-select-all">
+            <svg class="icon-svg" viewBox="0 -960 960 960" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="m424-339.69 255.85-255.85-28.31-28.31L424-396.31l-114-114L281.69-482 424-339.69ZM224.62-160q-27.62 0-46.12-18.5Q160-197 160-224.62v-510.76q0-27.62 18.5-46.12Q197-800 224.62-800h510.76q27.62 0 46.12 18.5Q800-763 800-735.38v510.76q0 27.62-18.5 46.12Q763-160 735.38-160H224.62Zm0-40h510.76q9.24 0 16.93-7.69 7.69-7.69 7.69-16.93v-510.76q0-9.24-7.69-16.93-7.69-7.69-16.93-7.69H224.62q-9.24 0-16.93 7.69-7.69 7.69-7.69 16.93v510.76q0 9.24 7.69 16.93 7.69 7.69 16.93 7.69ZM200-760v560-560Z"/></svg>
+          </button>
+          <button id="btnSheetSelectNone" class="icon-only" data-i18n-title="btn.selectNone" data-i18n-aria="btn.selectNone" data-testid="xlsx-sheet-select-none">
+            <svg class="icon-svg" viewBox="0 -960 960 960" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M224.62-160q-27.62 0-46.12-18.5Q160-197 160-224.62v-510.76q0-27.62 18.5-46.12Q197-800 224.62-800h510.76q27.62 0 46.12 18.5Q800-763 800-735.38v510.76q0 27.62-18.5 46.12Q763-160 735.38-160H224.62Zm0-40h510.76q9.24 0 16.93-7.69 7.69-7.69 7.69-16.93v-510.76q0-9.24-7.69-16.93-7.69-7.69-16.93-7.69H224.62q-9.24 0-16.93 7.69-7.69 7.69-7.69 16.93v510.76q0 9.24 7.69 16.93 7.69 7.69 16.93 7.69Z"/></svg>
+          </button>
+        </div>
+        <div class="right-group">
+          <button id="btnSheetSelectOk" class="primary" data-i18n="btn.ok" data-testid="xlsx-sheet-select-ok">ОК</button>
+          <button id="btnSheetSelectCancel" class="secondary cancel-alt" data-i18n="btn.cancel" data-testid="xlsx-sheet-select-cancel">Отмена</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <input type="file" id="fileBase" accept=".csv,.tsv,.txt,.xls,.xlsx,.xlsm,.xlsb,.ods,.fods" style="display:none" data-testid="xlsx-file-base-input" />
+  <input type="file" id="fileTarget" accept=".csv,.tsv,.txt,.xls,.xlsx,.xlsm,.xlsb,.ods,.fods" style="display:none" data-testid="xlsx-file-target-input" />
+  <script type="module">
+    import { CustomSelectOverlay } from './scripts/common/CustomSelectOverlay.js';
+    import { PlatformDetect } from './scripts/common/PlatformDetect.js';
+
+    if (PlatformDetect.shouldUseCustomSelectOverlay()) {
+      CustomSelectOverlay.enableAutoAttach(document.body, 'select:not([multiple])');
+    }
+  </script>
+  <script src="scripts/common/api_r7.js"></script>
+  <script src="scripts/common/api.js"></script>
+  <script src="scripts/common/logger.js"></script>
+  <script src="scripts/state.js"></script>
+  <script src="scripts/common/utils.js"></script>
+  <script src="scripts/alignment_heuristic.js"></script>
+  <script src="scripts/diff_engine.js"></script>
+  <script src="scripts/diff_provider.js"></script>
+  <script src="scripts/cell_visuals.js"></script>
+  <script src="scripts/highlight.js"></script>
+  <script src="scripts/diff_search.js"></script>
+  <script src="scripts/report_export.js"></script>
+  <script src="scripts/preview_renderer.js"></script>
+  <script src="scripts/diff_list_renderer.js"></script>
+  <script src="scripts/resize_handler.js"></script>
+  <script src="scripts/splitter.js"></script>
+  <script src="scripts/legend.js"></script>
+  <script src="scripts/import.js"></script>
+  <script src="scripts/ui.js"></script>
+  <script src="scripts/plugin.js"></script>
+  <script src="scripts/dropdown_menu.js"></script>
+  <script>
+    (function(){
+      if (window.I18n && typeof I18n.init === 'function') {
+        I18n.init({lang: document.documentElement.lang || 'ru'});
+      }
+    })();
+  </script>
+</body>
+<script>
+// Refresh placeholder labels after translations load (in case no imports yet)
+document.addEventListener('DOMContentLoaded', ()=>{
+  try { if(window.UI && window.UI.init) { /* UI.init already triggers label update; explicit refresh if state empty */ setTimeout(()=>{
+    if(window.State && State.get){ const st=State.get(); if(!st.baseOriginalFile){ const f=document.querySelector('label[for="baseSheetSelect"]'); if(f) f.textContent=(window.__i18n&&window.__i18n['placeholder.source1'])||f.textContent; } if(!st.targetOriginalFile){ const t=document.querySelector('label[for="targetSheetSelect"]'); if(t) t.textContent=(window.__i18n&&window.__i18n['placeholder.source2'])||t.textContent; } }
+  },300); }
+  } catch(e){}
+});
+</script>
+</html>

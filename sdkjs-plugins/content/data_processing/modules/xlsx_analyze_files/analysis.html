@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <title data-i18n="analysis.title">Анализ источников</title>
+  <link rel="stylesheet" href="resources/fonts.css" />
+  <link rel="stylesheet" href="resources/style.css" />
+  <link rel="stylesheet" href="resources/theme.css" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <script src="scripts/i18n.js"></script>
+  <script>document.documentElement.lang='ru';</script>
+  <script>
+    // XLSX Analysis module initialization
+    // Note: OnlyOffice API (Asc, $, etc.) are inherited from parent window
+  </script>
+</head>
+<body class="analysis-body" data-testid="xlsx-analysis-body">
+
+  <div class="layout-root analysis-layout" data-testid="xlsx-analysis-layout">
+    <!-- Left control panel -->
+    <aside class="panel-left" id="analysisSidebar" data-testid="xlsx-analysis-sidebar">
+      <h1 class="app-title" data-i18n="analysis.header">Анализ источников</h1>
+
+      <!-- Source upload -->
+      <section class="section analysis-section" id="analysisSourceSection" data-mode="metrics">
+        <h2 data-i18n="analysis.source">Загрузить</h2>
+        <div class="file-select-row" style="justify-content:flex-start;">
+          <input type="text" id="selectedFileName" class="file-name-input" data-i18n-ph="analysis.noFile" placeholder="Файл не выбран" readonly style="order:0; flex:1;" data-testid="xlsx-analysis-selected-file-name" />
+          <input type="file" id="analysisFileInput" accept=".xlsx,.xlsm,.xlsb,.csv" style="display:none;" data-testid="xlsx-analysis-file-input" />
+          <button id="btnSelectFile" class="icon-btn icon-only" data-i18n-title="analysis.selectFile" data-i18n-aria="analysis.selectFile" aria-label="Выбрать файл" title="Выбрать файл" data-icon-accent style="order:1;" data-testid="xlsx-analysis-select-file">
+            <svg class="icon-svg" viewBox="0 -960 960 960" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M460-249.23h40V-437l84 84 28.31-28.54L480-513.85 347.69-381.54l28.54 28.31L460-437v187.77ZM264.62-120q-27.62 0-46.12-18.5Q200-157 200-184.62v-590.76q0-27.62 18.5-46.12Q237-840 264.62-840H580l180 180v475.38q0 27.62-18.5 46.12Q723-120 695.38-120H264.62ZM560-640v-160H264.62q-9.24 0-16.93 7.69-7.69 7.69-7.69 16.93v590.76q0 9.24 7.69 16.93 7.69 7.69 16.93 7.69h430.76q9.24 0 16.93-7.69 7.69-7.69 7.69-16.93V-640H560ZM240-800v160-160 640-640Z"/></svg>
+          </button>
+          <button id="btnClearFile" class="icon-btn icon-only" data-i18n-title="analysis.clearFile" data-i18n-aria="analysis.clearFile" aria-label="Очистить файл" title="Очистить файл" style="order:2;" disabled data-testid="xlsx-analysis-clear-file">
+            <svg class="icon-svg" viewBox="0 -960 960 960" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M304.62-160q-26.85 0-45.74-18.88Q240-197.77 240-224.62V-720h-40v-40h160v-30.77h240V-760h160v40h-40v495.38q0 27.62-18.5 46.12Q683-160 655.38-160H304.62ZM680-720H280v495.38q0 10.77 6.92 17.7 6.93 6.92 17.7 6.92h350.76q9.24 0 16.93-7.69 7.69-7.69 7.69-16.93V-720ZM392.31-280h40v-360h-40v360Zm135.38 0h40v-360h-40v360ZM280-720v520-520Z"/></svg>
+          </button>
+        </div>
+      </section>
+
+      <!-- Metric selection -->
+      <div class="section" id="analysisStartInline">
+        <button id="btnStartAnalysis" class="primary" data-i18n="analysis.start" style="width:100%;" disabled data-testid="xlsx-analysis-start">Запустить анализ</button>
+        <button id="btnReportAnalysis" class="secondary" data-i18n="analysis.report" style="width:100%; margin-top:6px;" disabled data-testid="xlsx-analysis-report">Отчет</button>
+      </div>
+      <section class="section analysis-section" id="analysisMetricsSection">
+        <h2 data-i18n="analysis.metrics">Параметры анализа</h2>
+        <div class="analysis-metrics-actions" id="analysisMetricsActions">
+          <button id="btnSelectAllMetrics" class="icon-btn icon-only" data-i18n-title="analysis.metrics.selectAll" data-i18n-aria="analysis.metrics.selectAll" title="Все" aria-label="Все" data-icon-accent data-testid="xlsx-analysis-metrics-select-all">
+            <svg class="icon-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" role="img" focusable="false" aria-hidden="true"><path d="m424-339.69 255.85-255.85-28.31-28.31L424-396.31l-114-114L281.69-482 424-339.69ZM224.62-160q-27.62 0-46.12-18.5Q160-197 160-224.62v-510.76q0-27.62 18.5-46.12Q197-800 224.62-800h510.76q27.62 0 46.12 18.5Q800-763 800-735.38v510.76q0 27.62-18.5 46.12Q763-160 735.38-160H224.62Zm0-40h510.76q9.24 0 16.93-7.69 7.69-7.69 7.69-16.93v-510.76q0-9.24-7.69-16.93-7.69-7.69-16.93-7.69H224.62q-9.24 0-16.93 7.69-7.69 7.69-7.69 16.93v510.76q0 9.24 7.69 16.93 7.69 7.69 16.93 7.69ZM200-760v560-560Z"/></svg>
+          </button>
+          <button id="btnClearMetrics" class="icon-btn icon-only" data-i18n-title="analysis.metrics.clear" data-i18n-aria="analysis.metrics.clear" title="Очистить" aria-label="Очистить" data-testid="xlsx-analysis-metrics-clear">
+            <svg class="icon-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" role="img" focusable="false" aria-hidden="true"><path d="M224.62-160q-27.62 0-46.12-18.5Q160-197 160-224.62v-510.76q0-27.62 18.5-46.12Q197-800 224.62-800h510.76q27.62 0 46.12 18.5Q800-763 800-735.38v510.76q0 27.62-18.5 46.12Q763-160 735.38-160H224.62Zm0-40h510.76q9.24 0 16.93-7.69 7.69-7.69 7.69-16.93v-510.76q0-9.24-7.69-16.93-7.69-7.69-16.93-7.69H224.62q-9.24 0-16.93 7.69-7.69 7.69-7.69 16.93v510.76q0 9.24 7.69 16.93 7.69 7.69 16.93 7.69Z"/></svg>
+          </button>
+        </div>
+        <ul class="analysis-metrics-list" id="metricsList">
+          <li><label><input type="checkbox" value="formulasCount" checked data-testid="xlsx-analysis-metric-formulasCount"> <span data-i18n="analysis.metric.formulas">Количество формул</span></label></li>
+          <li><label><input type="checkbox" value="volatileFunctions" checked data-testid="xlsx-analysis-metric-volatileFunctions"> <span data-i18n="analysis.metric.volatile">Волатильные функции</span></label></li>
+          <li><label><input type="checkbox" value="errorCells" checked data-testid="xlsx-analysis-metric-errorCells"> <span data-i18n="analysis.metric.errors">Ошибки (#DIV/0!, #N/A ...)</span></label></li>
+          <li><label><input type="checkbox" value="longFormulas" checked data-testid="xlsx-analysis-metric-longFormulas"> <span data-i18n="analysis.metric.long">Длинные формулы</span></label></li>
+          <li><label><input type="checkbox" value="nestedIf" checked data-testid="xlsx-analysis-metric-nestedIf"> <span data-i18n="analysis.metric.nestedIf">Глубокий ЕСЛИ</span></label></li>
+          <li><label><input type="checkbox" value="numericConstants" checked data-testid="xlsx-analysis-metric-numericConstants"> <span data-i18n="analysis.metric.constants">Числовые константы в формулах</span></label></li>
+          <li><label><input type="checkbox" value="sheetAggregates" checked data-testid="xlsx-analysis-metric-sheetAggregates"> <span data-i18n="analysis.metric.sheetAgg">Агрегаты по листам</span></label></li>
+        </ul>
+      </section>
+
+      <!-- Actions / status -->
+  <!-- Removed separate run section; start button moved above parameters -->
+    </aside>
+
+    <!-- Right results panel -->
+    <main class="panel-right analysis-results-panel" id="analysisResultsPanel">
+      <div class="results-toolbar">
+        <span id="analysisStatusTop" data-i18n="status.idle" data-testid="xlsx-analysis-status">Ожидание</span>
+        <div class="progress-bar" id="analysisProgressTop" data-testid="xlsx-analysis-progress"><span></span></div>
+      </div>
+      <div class="analysis-results-content">
+  <div id="analysisEmptyHint" class="analysis-placeholder pre-analysis-hide" data-i18n="analysis.placeholder" data-testid="xlsx-analysis-empty-hint">Выберите файл и запустите анализ.</div>
+  <h2 data-i18n="analysis.summary" class="pre-analysis-hide">Сводка</h2>
+  <div id="analysisSummary" class="analysis-summary pre-analysis-hide" data-testid="xlsx-analysis-summary"></div>
+  <div id="analysisKpiGrid" class="analysis-kpis pre-analysis-hide" data-testid="xlsx-analysis-kpi-grid"></div>
+  <!-- Drill-down details for selected KPI -->
+  <div id="analysisMetricDetails" class="analysis-metric-details pre-analysis-hide" style="display:none;" data-testid="xlsx-analysis-metric-details">
+    <div class="amd-header">
+      <span id="amdTitle">Детали</span>
+      <button id="amdClose" class="icon-btn icon-only" aria-label="Закрыть" title="Скрыть детали" data-testid="xlsx-analysis-metric-details-close">
+        <svg class="icon-svg" viewBox="0 -960 960 960" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M256-227.69 227.69-256l224-224-224-224L256-732.31l224 224 224-224L732.31-704l-224 224 224 224L704-227.69l-224-224-224 224Z"/></svg>
+      </button>
+    </div>
+    <div id="amdBody" class="amd-body" data-testid="xlsx-analysis-metric-details-body"></div>
+  </div>
+  <h2 data-i18n="analysis.details" class="pre-analysis-hide">Детали по листам</h2>
+  <div id="analysisDetails" class="analysis-details pre-analysis-hide" data-testid="xlsx-analysis-details"></div>
+      </div>
+    </main>
+  </div>
+
+  <script src="scripts/common/logger.js"></script>
+  <script src="scripts/state.js"></script>
+  <script src="scripts/plugin_analysis.js"></script>
+  <script>
+    (function(){
+      // Initialize I18n if available
+      if(window.I18n && typeof I18n.init === 'function'){
+        I18n.init({lang: document.documentElement.lang||'ru'}).then(()=>{ /* keys applied later */ });
+      }
+      // Basic UI wiring for file selection & metric helpers (placeholder logic)
+      const fileInput = document.getElementById('analysisFileInput');
+  const btnSelectFile = document.getElementById('btnSelectFile');
+  const btnClearFile = document.getElementById('btnClearFile');
+      const fileNameInput = document.getElementById('selectedFileName');
+      if(btnSelectFile){ btnSelectFile.addEventListener('click',()=>fileInput.click()); }
+      function resetAnalysisUI(){
+        // Clear results / placeholders
+        const summary = document.getElementById('analysisSummary');
+        const details = document.getElementById('analysisDetails');
+        const kpiGrid = document.getElementById('analysisKpiGrid');
+        const empty = document.getElementById('analysisEmptyHint');
+        const metricDetails = document.getElementById('analysisMetricDetails');
+        if(summary) summary.innerHTML='';
+        if(details) details.innerHTML='';
+        if(kpiGrid) kpiGrid.innerHTML='';
+        if(empty) empty.classList.remove('pre-analysis-hide');
+        if(metricDetails) metricDetails.style.display='none';
+        const statusTop = document.getElementById('analysisStatusTop');
+        const statusIdle = (window.I18n && typeof I18n.t === 'function') ? (I18n.t('status.idle') || 'Ожидание') : 'Ожидание';
+        if(statusTop) statusTop.textContent = statusIdle;
+        const pTop = document.querySelector('#analysisProgressTop span');
+        if(pTop) pTop.style.width='0';
+      }
+
+      function resolveNoFile(){
+        var fallback='Файл не выбран';
+        if(window.I18n && typeof I18n.t === 'function'){
+          try { var tr=I18n.t('analysis.noFile'); if(tr && tr!== 'analysis.noFile') fallback=tr; } catch(_e){}
+        }
+        return fallback;
+      }
+      // Helper: hide results until analysis runs again
+      function hideResultUI(){
+        // Show only the empty hint; hide results
+        const empty = document.getElementById('analysisEmptyHint');
+        if(empty) empty.classList.remove('pre-analysis-hide');
+        document.querySelectorAll('.analysis-results-panel h2, .analysis-results-panel .analysis-summary, .analysis-results-panel .analysis-details, .analysis-results-panel .analysis-kpis, #analysisMetricDetails')
+          .forEach(el=>el.classList.add('pre-analysis-hide'));
+      }
+      function showResultUI(){
+        // Hide empty hint; show results
+        const empty = document.getElementById('analysisEmptyHint');
+        if(empty) empty.classList.add('pre-analysis-hide');
+        document.querySelectorAll('.analysis-results-panel h2, .analysis-results-panel .analysis-summary, .analysis-results-panel .analysis-details, .analysis-results-panel .analysis-kpis, #analysisMetricDetails')
+          .forEach(el=>el.classList.remove('pre-analysis-hide'));
+      }
+
+      if(fileInput){ fileInput.addEventListener('change',()=>{
+        const noFile = resolveNoFile();
+        const hasFile = fileInput.files && fileInput.files[0];
+        const txt = hasFile ? fileInput.files[0].name : noFile;
+        fileNameInput.value = txt;
+        fileNameInput.title = txt;
+        resetAnalysisUI();
+        hideResultUI(); // hide results until analysis starts
+        const startBtn = document.getElementById('btnStartAnalysis');
+        const reportBtn = document.getElementById('btnReportAnalysis');
+        const uploadBtn = document.getElementById('btnSelectFile');
+        const clearBtn = document.getElementById('btnClearFile');
+        if(startBtn){ startBtn.disabled = !hasFile; }
+        if(reportBtn){ reportBtn.disabled = true; }
+        if(uploadBtn){ uploadBtn.disabled = !!hasFile; }
+        if(clearBtn){ clearBtn.disabled = !hasFile; }
+      }); }
+      if(btnClearFile){ btnClearFile.addEventListener('click',()=>{
+        if(fileInput){ fileInput.value=''; }
+        const noFile = resolveNoFile();
+        fileNameInput.value=noFile;
+        fileNameInput.title=noFile;
+        resetAnalysisUI();
+        hideResultUI();
+        // ✅ ОПТИМИЗАЦИЯ: Очищаем память от данных анализа
+        if(window.PluginAnalysis && typeof window.PluginAnalysis.cleanup === 'function'){
+          window.PluginAnalysis.cleanup();
+        }
+        const startBtn = document.getElementById('btnStartAnalysis');
+        const reportBtn = document.getElementById('btnReportAnalysis');
+        const uploadBtn = document.getElementById('btnSelectFile');
+        const clearBtn = document.getElementById('btnClearFile');
+        if(startBtn) startBtn.disabled = true;
+        if(reportBtn) reportBtn.disabled = true;
+        if(uploadBtn) uploadBtn.disabled = false;
+        if(clearBtn) clearBtn.disabled = true;
+      }); }
+      // Ensure initial visible value (not placeholder only)
+      (function initFileName(){
+        const noFile = resolveNoFile();
+        if(fileNameInput && !fileNameInput.value){ fileNameInput.value = noFile; fileNameInput.title = noFile; }
+  hideResultUI();
+  // initial disable state assurance
+  const uploadBtn = document.getElementById('btnSelectFile');
+  const clearBtn = document.getElementById('btnClearFile');
+  if(uploadBtn) uploadBtn.disabled = false;
+  if(clearBtn) clearBtn.disabled = true;
+      })();
+      // Start analysis button: reveal headings/results container
+      const btnStartAnalysis = document.getElementById('btnStartAnalysis');
+      const btnReportAnalysis = document.getElementById('btnReportAnalysis');
+      if(btnStartAnalysis){
+        btnStartAnalysis.addEventListener('click',()=>{
+          if(btnStartAnalysis.disabled) return;
+          showResultUI();
+          if(btnReportAnalysis) btnReportAnalysis.disabled = true; // enable report after analysis started
+        });
+      }
+      // Select all / clear
+      const metricsList = document.getElementById('metricsList');
+      const btnAll = document.getElementById('btnSelectAllMetrics');
+      const btnClear = document.getElementById('btnClearMetrics');
+      if(btnAll){ btnAll.addEventListener('click',()=>{ metricsList.querySelectorAll('input[type=checkbox]').forEach(cb=>cb.checked=true); }); }
+      if(btnClear){ btnClear.addEventListener('click',()=>{ metricsList.querySelectorAll('input[type=checkbox]').forEach(cb=>cb.checked=false); }); }
+      // Sync duplicated status / progress (placeholder for future logic)
+  // Simplified status/progress (only top toolbar now)
+  // Placeholder hooks for future dynamic updates
+    })();
+  </script>
+</body>
+</html>

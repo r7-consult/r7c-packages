@@ -1,0 +1,38 @@
+{
+  "name": "FileService",
+  "nameLocale": {
+    "ru": "FileService",
+    "en": "FileService"
+  },
+  "guid": "asc.{D533242A-CE7F-4193-8C45-B4ED369FBE41}",
+  "version": "0.1.0",
+  "managerWindow": {
+    "launchMode": "external-link",
+    "launchUrl": "https://github.com/r7-consult/r7_fileservice",
+    "actionLabel": "Перейти",
+    "badge": "Коммерческое"
+  },
+  "variations": [
+    {
+      "description": "Commercial repository card",
+      "descriptionLocale": {
+        "ru": "Коммерческое решение с серверной частью. Открывается по ссылке.",
+        "en": "Commercial repository card"
+      },
+      "url": "index.html",
+      "icons": [
+        "resources/card-icon.svg"
+      ],
+      "EditorsSupport": [
+        "cell"
+      ],
+      "isViewer": true,
+      "isVisual": true,
+      "isModal": false,
+      "isInsideMode": true,
+      "initDataType": "none",
+      "initData": "",
+      "buttons": []
+    }
+  ]
+}

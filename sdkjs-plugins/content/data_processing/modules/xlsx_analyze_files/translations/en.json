@@ -1,0 +1,183 @@
+{
+  "title.main": "Compare Tables",
+  "preview.enableSyncScroll": "Enable sync scrolling",
+  "label.baseSheet": "Base sheet",
+  "label.targetSheet": "Target sheet",
+  "title.options": "Options",
+  "opt.ignoreCase": "Ignore case",
+  "opt.trimSpaces": "Trim spaces",
+  "opt.compareFormatting": "Compare formatting",
+  "opt.tolerance": "Numeric tolerance",
+  "btn.run": "Run Compare",
+  "btn.report": "Insert Report",
+  "btn.exportJson": "Export JSON",
+  "btn.clearImports": "Clear imports",
+  "label.virtualMark": "(imported)",
+  "btn.uploadBase": "Upload base sheet file",
+  "btn.uploadTarget": "Upload target sheet file",
+  "title.legend": "Legend",
+  "legend.valueChange": "Value changed",
+  "legend.formulaChange": "Formula changed",
+  "legend.insertedRow": "Inserted row",
+  "legend.deletedRow": "Deleted row",
+  "legend.formulaToValue": "Formula → Value",
+  "legend.valueToFormula": "Value → Formula",
+  "legend.typeChange": "Type changed",
+  "legend.formatChange": "Format changed",
+  "legend.insertedCol": "Inserted column",
+  "legend.deletedCol": "Deleted column",
+  "status.canceled": "Canceled",
+  "msg.noHighlights": "No highlights to clear",
+  "msg.cancelRequested": "Cancel requested",
+  "msg.exported": "JSON exported",
+  "msg.exportFailed": "Export failed",
+  "msg.noDiff": "No diff to export",
+  "msg.highlightApplied": "Highlights applied",
+  "msg.highlightFailed": "Highlight failed",
+  "msg.highlightsCleared": "Highlights cleared",
+  "msg.highlightsAlready": "Already highlighted",
+  "msg.noSheet": "No sheet selected",
+  "msg.importFailed": "Import failed",
+  "msg.fileReadError": "File read error",
+  "msg.workbookImported": "Workbook imported",
+  "title.selectSheets": "Select sheets to import",
+  "btn.selectAll": "All",
+  "btn.selectNone": "None",
+  "status.idle": "Idle",
+  "about.title": "Compare Tables Plugin",
+  "about.desc": "Plugin for comparing worksheets (values, formulas, structure).",
+  "about.version": "Version: 0.1.0",
+  "about.phase": "Phase: Skeleton",
+  "btn.ok": "OK"
+  ,"btn.catSelectAll":"Select all categories"
+  ,"btn.catClearAll":"Clear all selections"
+  ,"btn.catReset":"Reset to defaults"
+  ,"upload.currentBase":"Current file"
+  ,"upload.currentTarget":"Current file"
+  ,"upload.fileBase":"Upload file"
+  ,"upload.fileTarget":"Upload file"
+  ,"msg.rowLimit":"Row limit exceeded (10000)"
+  ,"msg.colLimit":"Column limit exceeded"
+  ,"msg.skippedSheets":"Some sheets were skipped (>10000 rows)"
+  ,"btn.cancel":"Cancel"
+  ,"status.running":"Running"
+  ,"status.complete":"Complete"
+  ,"msg.canceled":"Comparison canceled"
+  ,"msg.formatNotImplemented":"Format comparison not implemented yet"
+  ,"msg.xlsxLibLoadFailed":"Failed to load XLSX parser"
+  ,"msg.xlsxLibMissing":"XLSX parser not available"
+  ,"status.missingSelection":"Select both base and target sheets" 
+  ,"status.error":"Error"
+  ,"status.importing":"Importing..."
+  ,"msg.importComplete":"Import complete"
+  ,"report.header.type":"Type"
+  ,"report.header.cell":"Cell"
+  ,"report.header.from":"From"
+  ,"report.header.to":"To"
+  ,"report.sheet.diff":"Diff"
+  ,"report.sheet.summary":"Summary"
+  ,"report.summary.title":"Compare Report Summary"
+  ,"report.summary.base":"Base"
+  ,"report.summary.target":"Target"
+  ,"report.summary.generated":"Generated ISO"
+  ,"report.summary.duration":"Duration (ms)"
+  ,"report.summary.totalDiffRows":"Total diff rows"
+  ,"report.summary.col.category":"Category"
+  ,"report.summary.col.label":"Label"
+  ,"report.summary.col.count":"Count"
+  ,"report.summary.col.percent":"% of diff rows"
+  ,"report.summary.legacy":"Legacy counters"
+  ,"report.label.row":"Row"
+  ,"report.label.col":"Col"
+  ,"report.msg.xlsxExported":"XLSX report exported"
+  ,"report.msg.csvExported":"CSV report exported"
+  ,"report.header.typeLabel":"Type label"
+  ,"report.header.delta":"Delta"
+  ,"report.header.deltaPct":"Delta %"
+  ,"report.header.note":"Note"
+  ,"report.header.fromType":"From type"
+  ,"report.header.toType":"To type"
+  ,"report.header.formulaBase":"Formula (base)"
+  ,"report.header.formulaTarget":"Formula (target)"
+  ,"report.summary.metrics":"Metrics"
+  ,"report.summary.cellsCompared":"Cells compared"
+  ,"report.summary.changedCells":"Changed cells"
+  ,"report.summary.changedCellsPct":"Changed cells %"
+  ,"report.summary.structuralDiffs":"Structural diffs"
+  ,"report.summary.diffDensity":"Diff density"
+  ,"report.summary.baseSize":"Base size (R x C)"
+  ,"report.summary.targetSize":"Target size (R x C)"
+  ,"report.summary.timings":"Timings"
+  ,"report.summary.t.snapshot":"Snapshot (ms)"
+  ,"report.summary.t.loop":"Diff loop (ms)"
+  ,"report.summary.t.total":"Total (ms)"
+  ,"menu.toggle":"Menu"
+  ,"menu.nav":"Plugin navigation"
+  ,"msg.importCleared":"Imports cleared"
+  ,"msg.truncated":"Showing first 5000 (extra {extra})"
+  ,"note.insertedRow":"row inserted"
+  ,"note.deletedRow":"row deleted"
+  ,"note.insertedCol":"column inserted"
+  ,"note.deletedCol":"column deleted"
+  ,"msg.currentImportStarting":"Current workbook import..."
+  ,"msg.currentImportFailed":"Current workbook import failed"
+  ,"msg.apiNotReady":"API not ready"
+  ,"msg.noCurrentSheets":"No sheets in current workbook"
+  ,"msg.currentImportNone":"No sheets imported"
+  ,"msg.currentImportDone":"Import complete ({count})"
+  ,"msg.mockMode":"Mock mode: not connected to editor"
+  ,"msg.realApiConnected":"Connected to editor"
+  ,"hint.clearBeforeImport":"Clear imports first to add new sheets"
+  ,"about.new.heading":"{NAME} ({VERSION})"
+  ,"about.new.purpose":"The {NAME} plugin is intended for fast, accurate and clear spreadsheet comparison."
+  ,"about.new.developed":"Developed at \"OOO DataCons\""
+  ,"about.new.license":"License valid until {DATE}"
+  ,"about.new.versionLine":"Version {VERSION}"
+  ,"delta.changedCells":"Changed cells:"
+    ,"delta.cols":"Columns:"
+    ,"delta.time":"Compare time:"
+    ,"preview.baseTitle":"Base preview"
+    ,"preview.targetTitle":"Target preview"
+    ,"search.toggle":"Search diffs"
+    ,"search.placeholder":"Search"
+    ,"search.prev":"Previous match"
+    ,"search.next":"Next match"
+    ,"search.clear":"Clear search"
+    ,"menu.start":"Start"
+    ,"menu.about":"About"
+    ,"btn.hidePanel":"Hide panel"
+    ,"btn.showPanel":"Show panel"
+    ,"placeholder.source1":"Source 1"
+    ,"placeholder.source2":"Source 2"
+    ,"msg.importBlocked":"Clear imports first, then upload new files"
+    ,"legend.valueChangeFormulaResult":"Formula: result changed"
+    ,"legend.valueOneSide":"Only in one source"
+    ,"legend.valuePlain":"Simple changes"
+    ,"label.found":"Found:" 
+    ,"about.new.licenseExpired":"License expired. Contact developers!"
+    ,"diff.addr.rowPrefix":"Row "
+    ,"diff.addr.colPrefix":"Col "
+  ,"diff.addr.goTo":"Go to {ADDR}"
+  ,"about.redirectInfo":"You will be redirected to the information page."
+  ,"about.link.licenseInfo":"Go to license information"
+  ,"delta.rows":"Rows:"
+  ,"format.bold":"Bold"
+  ,"format.italic":"Italic"
+  ,"format.underline":"Underline"
+  ,"format.font":"Font:"
+  ,"format.textColor":"Text color:"
+  ,"format.background":"Background:"
+  ,"format.alignment":"Alignment:"
+  ,"format.verticalAlignment":"Vert. align:"
+  ,"format.align.left":"left"
+  ,"format.align.center":"center"
+  ,"format.align.right":"right"
+  ,"format.align.justify":"justify"
+  ,"format.valign.top":"top"
+  ,"format.valign.center":"center"
+  ,"format.valign.bottom":"bottom"
+  ,"format.none":"No formatting"
+  ,"analysis.context.cell":"cell"
+  ,"analysis.context.formula":"formula"
+  
+}

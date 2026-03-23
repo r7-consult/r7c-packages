@@ -11,9 +11,10 @@
 	"minVersion": "8.2.0",
 	"variations": [
 		{
-			"description": "Slider Query",
+			"description": "Персональный BI для ежедневной работы (импортозамещение PowerBi)",
 			"descriptionLocale": {
-				"ru": "Слайдер Данные"
+				"ru": "Персональный BI для ежедневной работы (импортозамещение PowerBi)",
+                "en": "Personal BI for daily work (PowerBI import substitution)"
 			},
 			"url": "index.html",
 			"icons": [
@@ -30,6 +31,7 @@
 			"events": [],
 			"store": {
 				"categories": ["commercial"],
+                "priority": 3405691582,
 				"commercial": {
 					"external": true,
 					"landingUrl": "https://data.slider-ai.ru/"

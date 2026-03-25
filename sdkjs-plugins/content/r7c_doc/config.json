@@ -8,9 +8,19 @@
     "version": "1.0.3",
     "variations": [
         {
-            "description": "{r7c}.mlearn",
+            "description": "Documentation and training for R7-Office macros, API, and data workflows. Includes examples, templates, and interactive lessons with code execution and validation.",
             "descriptionLocale": {
-                "ru": "{r7c}.mlearn"
+                "ru": "Документация и обучение по макросам Р7-Офис, API и работе с данными. Внутри: примеры, шаблоны и интерактивные уроки с запуском и проверкой кода.",
+                "fr": "Documentation et formation sur les macros R7-Office, l’API et le travail avec les données. Inclut des exemples, des modèles et des leçons interactives avec exécution et vérification du code.",
+                "es": "Documentación y formación sobre macros de R7-Office, API y trabajo con datos. Incluye ejemplos, plantillas y lecciones interactivas con ejecución y verificación de código.",
+                "pt-BR": "Documentação e treinamento sobre macros do R7-Office, API e trabalho com dados. Inclui exemplos, modelos e lições interativas com execução e validação de código.",
+                "de": "Dokumentation und Schulung zu R7-Office-Makros, API und der Arbeit mit Daten. Enthält Beispiele, Vorlagen und interaktive Lektionen mit Codeausführung und Validierung.",
+                "si": "R7-Office මැක්‍රෝ, API සහ දත්ත සමඟ වැඩ කිරීම සඳහා ලේඛන සහ පුහුණුව. උදාහරණ, ආකෘති සහ කේත ක්‍රියාත්මක කිරීම හා සත්‍යාපනය සහිත අන්තර්ක්‍රියාකාරී පාඩම් ඇතුළත් වේ.",
+                "it": "Documentazione e formazione su macro R7-Office, API e lavoro con i dati. Include esempi, modelli e lezioni interattive con esecuzione e verifica del codice.",
+                "sq-AL": "Dokumentim dhe trajnim për makrot e R7-Office, API-në dhe punën me të dhënat. Përfshin shembuj, shabllone dhe mësime interaktive me ekzekutim dhe verifikim të kodit.",
+                "sr-Cyrl-RS": "Документација и обука за R7-Office макрое, API и рад са подацима. Укључује примере, шаблоне и интерактивне лекције са покретањем и провером кода.",
+                "sr-Latn-RS": "Dokumentacija i obuka za R7-Office makroe, API i rad sa podacima. Uključuje primere, šablone i interaktivne lekcije sa pokretanjem i proverom koda.",
+                "zh-ZH": "提供 R7-Office 宏、API 和数据处理的文档与学习内容，包含示例、模板以及可执行和校验代码的交互式课程。"
             },
             "url": "index.html",
             "icons": [

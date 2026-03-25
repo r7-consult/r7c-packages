@@ -4,6 +4,7 @@
   var HOSTED_OLE_MARKER = '__data_processing_hosted_module__';
   var CHILD_WINDOW_COMMAND_KEY = 'data_processing_child_window_command';
   var ACTIVE_CHILD_WINDOW_KEY = 'data_processing_active_child_window_id';
+  var r7cFlyoutLastSeenDateKey = 'r7c_flyout_last_seen_date';
 
   function getPluginInfo() {
     return window.Asc && window.Asc.plugin ? window.Asc.plugin.info || {} : {};
@@ -33,6 +34,7 @@
     this.initialized = false;
     this.busy = false;
     this.service = null;
+    this.r7cFlyout = null;
     this.initText = '';
     this.pendingHostedOleContext = null;
     this.hostedOleLaunchRequested = false;
@@ -51,9 +53,132 @@
     this.resizePanel();
     this.applyTheme(this.readTheme());
     window.GameWizardUI.setBranding(window.GameWizardConfig.branding || {});
+    this.setupR7cFlyout();
     this.service = new window.GameWizardModuleService(window.GameWizardConfig);
     this.initialized = true;
     this.refreshModules('Обновление каталога решений...');
+  };
+
+  GameWizardPlugin.prototype.openExternalUrl = function(url) {
+    var popup = null;
+    var anchor = null;
+
+    if (!url) {
+      return;
+    }
+
+    try {
+      if (window.Asc && window.Asc.plugin && typeof window.Asc.plugin.executeMethod === 'function') {
+        window.Asc.plugin.executeMethod('OpenLink', [url]);
+      }
+    } catch (_) {}
+
+    try {
+      popup = window.open(url, '_blank', 'noopener');
+    } catch (_) {
+      popup = null;
+    }
+
+    if (popup) {
+      try {
+        popup.opener = null;
+      } catch (_) {}
+      return;
+    }
+
+    try {
+      if (window.top && window.top !== window && typeof window.top.open === 'function') {
+        popup = window.top.open(url, '_blank', 'noopener');
+      }
+    } catch (_) {
+      popup = null;
+    }
+
+    if (popup) {
+      try {
+        popup.opener = null;
+      } catch (_) {}
+      return;
+    }
+
+    try {
+      anchor = document.createElement('a');
+      anchor.href = url;
+      anchor.target = '_blank';
+      anchor.rel = 'noopener noreferrer';
+      anchor.style.position = 'absolute';
+      anchor.style.left = '-9999px';
+      anchor.style.width = '1px';
+      anchor.style.height = '1px';
+      document.body.appendChild(anchor);
+      anchor.click();
+    } catch (_) {
+    } finally {
+      if (anchor && anchor.parentNode) {
+        anchor.parentNode.removeChild(anchor);
+      }
+    }
+  };
+
+  GameWizardPlugin.prototype.getLocalDateStamp = function() {
+    var date = new Date();
+    var yyyy = date.getFullYear();
+    var mm = String(date.getMonth() + 1).padStart(2, '0');
+    var dd = String(date.getDate()).padStart(2, '0');
+    return yyyy + '-' + mm + '-' + dd;
+  };
+
+  GameWizardPlugin.prototype.canShowR7cFlyoutToday = function() {
+    try {
+      return window.localStorage.getItem(r7cFlyoutLastSeenDateKey) !== this.getLocalDateStamp();
+    } catch (_) {
+      return true;
+    }
+  };
+
+  GameWizardPlugin.prototype.hideR7cFlyoutForToday = function() {
+    if (this.r7cFlyout) {
+      this.r7cFlyout.classList.add('hidden');
+    }
+
+    try {
+      window.localStorage.setItem(r7cFlyoutLastSeenDateKey, this.getLocalDateStamp());
+    } catch (_) {}
+  };
+
+  GameWizardPlugin.prototype.setupR7cFlyout = function() {
+    var self = this;
+    var openTarget;
+
+    this.r7cFlyout = document.getElementById('r7c-flyout');
+    if (!this.r7cFlyout) {
+      return;
+    }
+
+    if (!this.canShowR7cFlyoutToday()) {
+      this.r7cFlyout.classList.add('hidden');
+      return;
+    }
+
+    this.r7cFlyout.classList.remove('hidden');
+
+    openTarget = function(event) {
+      if (event) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
+      self.openExternalUrl('https://data.slider-ai.ru/?utm_source=data_processing');
+      self.hideR7cFlyoutForToday();
+    };
+
+    this.r7cFlyout.addEventListener('click', openTarget);
+    this.r7cFlyout.addEventListener('keydown', function(event) {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        event.stopPropagation();
+        openTarget();
+      }
+    });
   };
 
   GameWizardPlugin.prototype.resizePanel = function() {
@@ -200,6 +325,7 @@
     }
 
     try {
+      this.hideR7cFlyoutForToday();
       window.GameLauncher.open(record);
       statusPrefix = record.launchMode === 'external-link' ? 'Открыта ссылка: ' : 'Открыто: ';
       window.GameWizardUI.setStatus(statusPrefix + record.title);

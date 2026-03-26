@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>{r7c}.ChatLLM</title>
+    <script type="text/javascript" src="https://onlyoffice.github.io/sdkjs-plugins/v1/plugins.js"></script>
+    <script type="text/javascript" src="https://onlyoffice.github.io/sdkjs-plugins/v1/plugins-ui.js"></script>
+    <link rel="stylesheet" href="https://onlyoffice.github.io/sdkjs-plugins/v1/plugins.css">
+    <link rel="stylesheet" href="styles/style.css">
+    <script defer src="scripts/api_reference.js"></script>
+    <script defer src="scripts/bootstrap.js"></script>
+    <script defer src="scripts/core/r7chat_state.js"></script>
+    <script defer src="scripts/core/r7chat_utils.js"></script>
+    <script defer src="scripts/shared/r7chat_error_normalizer.js"></script>
+    <script defer src="scripts/shared/r7chat_web_text.js"></script>
+    <script defer src="scripts/platform/r7chat_storage.js"></script>
+    <script defer src="scripts/platform/r7chat_host_bridge.js"></script>
+    <script defer src="scripts/platform/r7chat_http_client.js"></script>
+    <script defer src="scripts/platform/openrouter_client.js"></script>
+    <script defer src="scripts/platform/r7chat_web_tools_client.js"></script>
+    <script defer src="scripts/platform/image_client.js"></script>
+    <script defer src="scripts/features/settings/r7chat_settings_service.js"></script>
+    <script defer src="scripts/features/settings/r7chat_settings_panel.js"></script>
+    <script defer src="scripts/features/context/r7chat_context_runtime.js"></script>
+    <script defer src="scripts/features/chat/r7chat_thread_title.js"></script>
+    <script defer src="scripts/features/chat/r7chat_thread_store.js"></script>
+    <script defer src="scripts/features/chat/r7chat_attachment_store.js"></script>
+    <script defer src="scripts/features/chat/r7chat_thread_export.js"></script>
+    <script defer src="scripts/features/chat/r7chat_tool_loop.js"></script>
+    <script defer src="scripts/features/chat/r7chat_chat_runtime.js"></script>
+    <script defer src="scripts/features/spreadsheet_agent/r7chat_agent_runtime.js"></script>
+    <script defer src="scripts/features/chat/r7chat_chat_service.js"></script>
+    <script defer src="scripts/features/context/r7chat_context_service.js"></script>
+    <script defer src="scripts/features/spreadsheet_agent/r7chat_agent_service.js"></script>
+    <script defer src="scripts/features/ui/r7chat_ui_shell.js"></script>
+    <script defer src="scripts/context/r7chat_cache.js"></script>
+    <script defer src="scripts/agent/r7chat_planner_profiles.js"></script>
+    <script defer src="scripts/agent/r7chat_fastpath.js"></script>
+    <script defer src="scripts/ui/r7chat_ui.js"></script>
+    <script defer src="scripts/prompt.js"></script>
+    
+    <!-- Text Annotations Subsystem -->
+    <script defer src="scripts/features/text_annotations/custom-annotations/types.js"></script>
+    <script defer src="scripts/features/text_annotations/text-annotator.js"></script>
+    <script defer src="scripts/features/text_annotations/grammar.js"></script>
+    <script defer src="scripts/features/text_annotations/spelling.js"></script>
+    <script defer src="scripts/features/text_annotations/custom-annotations/custom-annotator.js"></script>
+    <script defer src="scripts/features/text_annotations/custom-annotations/assistant-hint.js"></script>
+    <script defer src="scripts/features/text_annotations/custom-annotations/assistant-replace.js"></script>
+    <script defer src="scripts/features/text_annotations/custom-annotations/assistant-replace-hint.js"></script>
+    <script defer src="scripts/features/text_annotations/custom-annotations/manager.js"></script>
+    <script defer src="scripts/features/text_annotations/annotation-popup.js"></script>
+    <script defer src="scripts/features/text_annotations/word_slides_integration.js"></script>
+
+    <script defer src="scripts/main.js"></script>
+    <script defer src="scripts/cell_functions_core.js"></script>
+    <script defer src="scripts/cell_functions.js"></script>
+</head>
+
+<body>
+<div class="chat-container">
+    <div class="chat-header">
+        <div class="chat-title-static chat-title-block">
+            <span class="chat-brand-mark">{r7c}.ChatLLM</span>
+        </div>
+        <div class="header-actions">
+            <button class="context-button" id="context-button" type="button" title="Data Context" aria-label="Open data context" aria-expanded="false" hidden>
+                <span class="context-icon" aria-hidden="true"></span>
+            </button>
+            <button class="new-chat-button" id="new-chat-button" type="button" title="New Chat" aria-label="Create new chat">
+                <span class="new-chat-icon" aria-hidden="true">+</span>
+            </button>
+            <button class="thread-history-button" id="thread-switcher-button" type="button" aria-expanded="false" aria-controls="threadHistoryPanel" aria-label="Chat history" data-tooltip="Chat history">
+                <span class="thread-history-icon" aria-hidden="true">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true">
+                        <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
+                        <path d="M3 3v5h5"></path>
+                        <path d="M12 7v5l4 2"></path>
+                    </svg>
+                </span>
+            </button>
+            <button class="settings-button" id="settings-button" type="button" title="Settings" aria-label="Open settings" aria-expanded="false">
+                <span class="settings-icon" aria-hidden="true">&#x2699;</span>
+            </button>
+            <button class="cellai-button" id="cellai-button" type="button" title="Cell AI Functions" aria-label="Open cell AI helper" aria-expanded="false" hidden>
+                <span class="cellai-icon" aria-hidden="true">fx</span>
+            </button>
+            <button class="theme-toggle" id="theme-toggle" type="button" title="Toggle Theme">
+                <span id="theme-icon" class="theme-icon">&#x1F319;</span>
+            </button>
+            <button class="thread-menu-button" id="thread-menu-button" type="button" title="Thread Actions" aria-label="Open thread actions" aria-haspopup="menu" aria-expanded="false">
+                <span class="thread-menu-icon" aria-hidden="true">&#8942;</span>
+            </button>
+        </div>
+    </div>
+    <div class="chat-body" id="chatBody">
+        <div class="thread-history-panel" id="threadHistoryPanel" style="display: none;">
+            <div class="thread-history-top">
+                <div class="thread-history-heading">
+                    <span class="thread-history-kicker" id="threadHistoryKicker">Chats</span>
+                    <span class="thread-history-copy" id="threadHistoryCopy">Recent conversations stay local on this device.</span>
+                </div>
+                <button class="thread-history-close" id="thread-history-close" type="button" title="Close history" aria-label="Close history">&#10005;</button>
+            </div>
+            <div class="thread-search-shell">
+                <input type="search" id="thread-search-input" class="thread-search-input" placeholder="Search chats by title" autocomplete="off" spellcheck="false">
+            </div>
+            <div class="thread-list" id="thread-list"></div>
+        </div>
+        <div class="message-history" >
+        </div>
+        <button class="slider-ai-button" id="slider-ai-button" type="button" title="Open Slider AI data portal" aria-label="Open Slider AI data portal">
+            <img class="slider-ai-logo" id="slider-ai-logo" src="resources/images/slider_logo.png" alt="" aria-hidden="true">
+        </button>
+        <div class="chat-footer">
+            <button type="button" class="stop-button" id="stop-button"><span>&#x25A0;</span>Stop</button>
+            <button type="button" class="regenerate-button" id="regenerate-button"><span>&#x21BA;</span>Regenerate</button>
+            <div class="composer-attachment-strip" id="composerAttachmentStrip" style="display: none;"></div>
+            <div class="composer-shell">
+                <button class="attachment-trigger-button" id="attachmentTriggerButton" type="button" aria-haspopup="menu" aria-expanded="false" aria-controls="attachmentPopover" title="Add attachment">
+                    <span class="attachment-trigger-icon" aria-hidden="true">+</span>
+                </button>
+                <textarea id="userInput" placeholder="Type a message..."></textarea>
+                <button type="button" class="send-button" id="send-button">
+                    <img src="resources/send.png" alt="Send" width="20px" height="20px">
+                </button>
+                <input type="file" id="attachmentFileInput" class="attachment-file-input" accept=".png,.jpg,.jpeg,.webp,.docx,.xlsx,.pptx,.pdf,image/png,image/jpeg,image/webp,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.openxmlformats-officedocument.presentationml.presentation" multiple>
+            </div>
+            <div class="attachment-popover" id="attachmentPopover" style="display: none;" role="menu" aria-label="Attachment menu">
+                <div class="attachment-popover-section">
+                    <button type="button" class="attachment-popover-action" id="attachmentAddFileAction">
+                        <span class="attachment-popover-action-icon" aria-hidden="true">&#128196;</span>
+                        <span class="attachment-popover-action-copy">
+                            <span class="attachment-popover-action-title">Add file</span>
+                            <span class="attachment-popover-action-meta">PNG, JPG, WEBP, DOCX, XLSX, PPTX, PDF</span>
+                        </span>
+                    </button>
+                    <button type="button" class="attachment-popover-action" id="attachmentRecentToggleAction" aria-expanded="false">
+                        <span class="attachment-popover-action-icon" aria-hidden="true">&#9716;</span>
+                        <span class="attachment-popover-action-copy">
+                            <span class="attachment-popover-action-title">Recent Files</span>
+                            <span class="attachment-popover-action-meta" id="attachmentRecentMeta">Quick access to recent files</span>
+                        </span>
+                    </button>
+                </div>
+                <div class="attachment-recent-panel" id="attachmentRecentPanel" style="display: none;">
+                    <div class="attachment-recent-empty" id="attachmentRecentEmpty" style="display: none;">No recent files yet.</div>
+                    <div class="attachment-recent-list" id="attachmentRecentList"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="thread-action-menu" id="threadActionMenu" style="display: none;" role="menu" aria-label="Thread actions">
+        <button type="button" class="thread-action-item" data-thread-action="rename">Rename</button>
+        <button type="button" class="thread-action-item" data-thread-action="export">Export .docx</button>
+        <button type="button" class="thread-action-item danger" data-thread-action="delete">Delete chat</button>
+    </div>
+
+    <div class="thread-dialog-backdrop" id="threadDialogBackdrop" style="display: none;">
+        <div class="thread-dialog" role="dialog" aria-modal="true" aria-labelledby="threadDialogTitle">
+            <div class="thread-dialog-header">
+                <div class="thread-dialog-title" id="threadDialogTitle">Dialog</div>
+                <button type="button" class="thread-dialog-close" id="threadDialogClose" aria-label="Close dialog">&#10005;</button>
+            </div>
+            <div class="thread-dialog-body">
+                <div class="thread-dialog-copy" id="threadDialogCopy"></div>
+                <input type="text" id="threadDialogInput" class="thread-dialog-input" style="display: none;" maxlength="64" autocomplete="off" spellcheck="false">
+            </div>
+            <div class="thread-dialog-actions">
+                <button type="button" class="thread-dialog-button thread-dialog-button-secondary" id="threadDialogCancel">Cancel</button>
+                <button type="button" class="thread-dialog-button thread-dialog-button-primary" id="threadDialogConfirm">Confirm</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="thread-toast" id="threadToast" style="display: none;" aria-live="polite"></div>
+
+    <!-- Inline Settings Panel -->
+    <div class="settings-panel" id="settingsPanel" style="display: none;">
+        <div class="settings-content">
+            <div class="settings-heading">
+                <div class="settings-title" id="inlineSettingsTitle">Operator</div>
+                <div class="settings-helper" id="inlineSettingsSummary">Choose a provider first, then configure only its credentials, model and capabilities.</div>
+            </div>
+
+            <div class="settings-section settings-auth-section">
+                <div class="settings-title" id="inlineLanguageSectionTitle">Language</div>
+                <div class="settings-helper" id="inlineLanguageSectionHelp">Choose the UI language and the default response language for the assistant.</div>
+
+                <label for="inlineLanguageSelect" id="inlineLanguageLabel">Interface language</label>
+                <select id="inlineLanguageSelect">
+                    <option value="auto">Use editor language</option>
+                    <option value="en">English</option>
+                    <option value="ru">Russian</option>
+                </select>
+            </div>
+
+            <div id="inlineProviderSwitcher" class="provider-switcher"></div>
+            <div id="inlineProviderCards" class="provider-cards"></div>
+
+            <div class="settings-section settings-auth-section">
+                <div class="settings-title" id="inlineImageSectionTitle">Image Generation</div>
+                <div class="settings-helper" id="inlineImageSectionHelp">Image generation stays on the existing separate operator.</div>
+
+                <label for="inlineCustomImageModel" id="inline_label_customImageModel">Image model</label>
+                <input type="text" id="inlineCustomImageModel" placeholder="e.g. google/gemini-2.5-flash-image">
+
+                <label id="inlineImageAPILabel" for="inlineImageTokenInput">Image API Key (Optional)</label>
+                <input type="password" id="inlineImageTokenInput" placeholder="Leave empty to use the active provider key">
+            </div>
+
+            <div class="settings-section settings-auth-section">
+                <div class="settings-title" id="inlineWebToolsSectionTitle">Web Tools</div>
+                <div class="settings-helper" id="inlineWebToolsSectionHelp">Web tools are available only for OpenRouter in this release.</div>
+
+                <label for="inlineWebToolsProvider" id="inlineWebToolsProviderLabel">Web Tools Provider</label>
+                <select id="inlineWebToolsProvider">
+                    <option value="">Off</option>
+                    <option value="exa">Exa</option>
+                    <option value="brave">Brave</option>
+                </select>
+
+                <label id="inlineExaApiLabel" for="inlineExaApiKeyInput">Exa API Key</label>
+                <input type="password" id="inlineExaApiKeyInput" placeholder="Used when Exa web tools are enabled">
+
+                <label id="inlineBraveApiLabel" for="inlineBraveApiKeyInput">Brave API Key</label>
+                <input type="password" id="inlineBraveApiKeyInput" placeholder="Used when Brave web tools are enabled">
+
+                <div id="inlineWebToolsHelp" class="settings-helper">Enable Exa or Brave to allow model web search and crawling tools.</div>
+            </div>
+
+            <div id="inlineValidationMessage" class="validation-message"></div>
+
+            <button type="button" id="inlineSaveSettings" class="save-button">Save Settings</button>
+        </div>
+    </div>
+
+    <!-- Data Context Panel -->
+    <div class="context-panel" id="contextPanel" style="display: none;">
+        <div class="context-content">
+            <div class="context-heading">
+                <span id="contextPanelTitle">Data Context</span>
+                <span id="contextAutoMode" class="context-mode-pill">Auto mode</span>
+            </div>
+            <div class="context-agent-summary">
+                <span id="agentModeIndicator" class="context-mode-pill">Agent mode: OFF</span>
+                <span id="agentStatusIndicator" class="context-mode-pill">Status: idle</span>
+            </div>
+            <div id="contextDescription" class="context-description"></div>
+            <div id="agentHostDiagnostics" class="context-diagnostic" style="display: none;"></div>
+            <div id="contextControls" class="context-controls">
+                <button id="refreshSheetList" class="save-button context-refresh-button">Refresh sheets</button>
+            </div>
+            <div class="context-agent-controls">
+                <button id="agentStopLoop" class="sheet-action-btn" type="button">Stop</button>
+                <button id="agentRetryStep" class="sheet-action-btn" type="button">Retry step</button>
+                <button id="agentRunFromStart" class="sheet-action-btn" type="button">Run from step 1</button>
+            </div>
+            <div id="contextSheetList" class="context-sheet-list"></div>
+            <div id="contextTraceTitle" class="context-trace-title">Execution Trace</div>
+            <div id="agentTraceList" class="agent-trace-list"></div>
+            <div id="cellAiContextTraceTitle" class="context-trace-title">Cell AI Trace</div>
+            <div id="cellAiContextTraceList" class="agent-trace-list"></div>
+        </div>
+    </div>
+
+    <div class="cell-ai-panel" id="cellAiPanel" style="display: none;">
+        <div class="cell-ai-content">
+            <div class="cell-ai-heading">
+                <span id="cellAiPanelTitle">Cell AI Functions</span>
+                <div class="cell-ai-heading-right">
+                    <span id="cellAiMode" class="context-mode-pill">mode</span>
+                    <button class="sheet-action-btn" id="cellAiClose" type="button">Close</button>
+                </div>
+            </div>
+            <div id="cellAiHint" class="cell-ai-hint">Use canonical formulas R7_* (helper accepts alias R7.*).</div>
+            <div id="cellAiStatus" class="cell-ai-status">Ready</div>
+
+            <label id="cellAiInsertLabel" class="cell-ai-label" for="cellAiFormulaInput">Formula</label>
+            <div class="cell-ai-insert-row">
+                <input type="text" id="cellAiFormulaInput" class="cell-ai-formula-input" placeholder="=R7_ASK(&quot;Summarize briefly&quot;; A2)">
+                <button id="cellAiInsert" class="save-button" type="button">Insert Formula</button>
+            </div>
+
+            <div id="cellAiFunctionList" class="cell-ai-function-list"></div>
+
+            <div class="cell-ai-actions">
+                <button id="cellAiRefreshSelected" class="sheet-action-btn" type="button">Refresh selected AI formulas</button>
+                <button id="cellAiRefreshAll" class="sheet-action-btn" type="button">Refresh all AI formulas</button>
+                <button id="cellAiClearSelected" class="sheet-action-btn" type="button">Clear selected AI cache</button>
+                <button id="cellAiClearAll" class="sheet-action-btn" type="button">Clear all AI cache</button>
+            </div>
+
+            <div id="cellAiTraceTitle" class="context-trace-title">Cell AI Trace</div>
+            <div id="cellAiTraceList" class="agent-trace-list"></div>
+        </div>
+    </div>
+</div>
+</body>
+
+
+</html>
+
+

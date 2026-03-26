@@ -6,6 +6,11 @@
     },
     {
         "name": "slider-query",
+        "priority": 4276215469,
+        "discussion": ""
+    },
+    {
+        "name": "r7c_chatLLM",
         "priority": 3735928559,
         "discussion": ""
     },

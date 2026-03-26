@@ -9,6 +9,7 @@
 	},
 	{
 		"name": "data_processing",
+        "priority": 1405691582,
 		"discussion": ""
 	},
 	{
@@ -21,6 +22,7 @@
 	},
 	{
 		"name": "slider-query",
+        "priority": 3405691582,
 		"discussion": ""
 	},
 	{

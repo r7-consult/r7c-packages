@@ -38,8 +38,8 @@
                     "landingUrl": "https://diagram.slider-ai.ru/"
                 },
                 "icons": {
-                    "light": "resources/store/icons",
-                    "dark": "resources/store/icons"
+                    "light": "resources/store/icons/icon.png",
+                    "dark": "resources/store/icons/icon.png"
                 },
                 "background": {
                     "light": "#00ADF1",

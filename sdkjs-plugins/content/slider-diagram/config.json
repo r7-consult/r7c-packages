@@ -1,0 +1,51 @@
+{
+    "name": "Slider Diagram",
+    "nameLocale": {
+        "ru": "Слайдер диаграммы",
+        "en": "Slider Diagram"
+    },
+    "guid": "asc.{5DA2785F-775A-4D1F-BBC1-35E8264E5F4D0}",
+    "version": "10.0.0",
+    "variations": [
+        {
+            "description": "Слайдер Диаграммы  - плагин для визуализации графиков и диаграмм для офисных пакетов Р7 Офис и Microsoft Office. Надстройка для Power Point или редактора презентаций Р7 офис позволяет автоматизировать работу с диаграммами и экономить до 70% времени  на составлении отчетных презентаций.\n\nВ надстройке представлено более 40 профессиональных графиков и диаграмм, встроенные функции привязки excel файлов и обновления диаграмм, автоматизированные функции настройки элементов (авто расчет разницы уровней, разрывы, работа с осями и метками).\n\nПО Слайдер Диаграммы является полноценным аналогом зарубежного Think-Cell, входит в реестр отечественного ПО и широко применим в крупнейших корпорациях в РФ.",
+            "url": "plugin-main.html",
+            "icons": [
+                "resources/img/icon.png",
+                "resources/img/icon.png"
+            ],
+            "isViewer": false,
+            "EditorsSupport": [
+                "slide"
+            ],
+            "isVisual": true,
+            "isModal": true,
+            "isInsideMode": false,
+            "isCustomWindow": true,
+            "initDataType": "ole",
+            "isUpdateOleOnResize": true,
+            "type": "background",
+            "size": [
+                1200,
+                1000
+            ],
+            "store": {
+                "categories": [
+                    "commercial"
+                ],
+                "commercial": {
+                    "external": true,
+                    "landingUrl": "https://diagram.slider-ai.ru/"
+                },
+                "icons": {
+                    "light": "resources/store/icons",
+                    "dark": "resources/store/icons"
+                },
+                "background": {
+                    "light": "#00ADF1",
+                    "dark": "#00ADF1"
+                }
+            }
+        }
+    ]
+}

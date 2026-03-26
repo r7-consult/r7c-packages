@@ -1,224 +1,236 @@
 [
-	{
-		"name": "cell-statistics",
-		"discussion": ""
-	},
-	{
-		"name": "cell-formatter",
-		"discussion": ""
-	},
-	{
-		"name": "data_processing",
-        "priority": 1405691582,
-		"discussion": ""
-	},
-	{
-		"name": "data-generator",
-		"discussion": ""
-	},
-	{
-		"name": "cell-converter",
-		"discussion": ""
-	},
-	{
-		"name": "slider-query",
-        "priority": 3405691582,
-		"discussion": ""
-	},
-	{
-		"name": "r7c-code",
-		"discussion": ""
-	},
-	{
-		"name": "ai",
-		"discussion": ""
-	},
-	{
-		"name": "apertium",
-		"discussion": ""
-	},
-	{
-		"name": "autocomplete",
-		"discussion": ""
-	},
-	{
-		"name": "bergamot",
-		"discussion": ""
-	},
-	{
-		"name": "chess",
-		"discussion": ""
-	},
-	{
-		"name": "cvbuilder",
-		"discussion": ""
-	},
-	{
-		"name": "datepicker",
-		"discussion": ""
-	},
-	{
-		"name": "deepl",
-		"discussion": ""
-	},
-	{
-		"name": "doc2md",
-		"discussion": ""
-	},
-	{
-		"name": "drawio",
-		"discussion": ""
-	},
-	{
-		"name": "easybib",
-		"discussion": ""
-	},
-	{
-		"name": "glavred",
-		"discussion": ""
-	},
-	{
-		"name": "grammalecte",
-		"discussion": ""
-	},
-	{
-		"name": "highlightcode",
-		"discussion": ""
-	},
-	{
-		"name": "html",
-		"discussion": ""
-	},
-	{
-		"name": "icons",
-		"discussion": ""
-	},
-	{
-		"name": "idphoto",
-		"discussion": ""
-	},
-	{
-		"name": "insertQR",
-		"discussion": ""
-	},
-	{
-		"name": "jitsi",
-		"discussion": ""
-	},
-	{
-		"name": "languagetool",
-		"discussion": ""
-	},
-	{
-		"name": "mathpix",
-		"discussion": ""
-	},
-	{
-		"name": "mendeley",
-		"discussion": ""
-	},
-	{
-		"name": "news",
-		"discussion": ""
-	},
-	{
-		"name": "ocr",
-		"discussion": ""
-	},
-	{
-		"name": "onlydraw",
-		"discussion": ""
-	},
-	{
-		"name": "photoeditor",
-		"discussion": ""
-	},
-	{
-		"name": "pixabay",
-		"discussion": ""
-	},
-	{
-		"name": "pomodoro",
-		"discussion": ""
-	},
-	{
-		"name": "rainbow",
-		"discussion": ""
-	},
-	{
-		"name": "speech",
-		"discussion": ""
-	},
-	{
-		"name": "speechrecognition",
-		"discussion": ""
-	},
-	{
-		"name": "telegram",
-		"discussion": ""
-	},
-	{
-		"name": "termef",
-		"discussion": ""
-	},
-	{
-		"name": "textcleaner",
-		"discussion": ""
-	},
-	{
-		"name": "texthighlighter",
-		"discussion": ""
-	},
-	{
-		"name": "thesaurus",
-		"discussion": ""
-	},
-	{
-		"name": "translator",
-		"discussion": ""
-	},
-	{
-		"name": "typograf",
-		"discussion": ""
-	},
-	{
-		"name": "videoembedder",
-		"discussion": ""
-	},
-	{
-		"name": "wordpress",
-		"discussion": ""
-	},
-	{
-		"name": "wordscounter",
-		"discussion": ""
-	},
-	{
-		"name": "youtube",
-		"discussion": ""
-	},
-	{
-		"name": "zhipu",
-		"discussion": ""
-	},
-	{
-		"name": "zoom",
-		"discussion": ""
-	},
-	{
-		"name": "zotero",
-		"discussion": ""
+    {
+        "name": "r7c-code",
+        "priority": 4277009102,
+        "discussion": ""
     },
     {
-        "name":"game_wizard",
-        "discussion":""
-	},
+        "name": "slider-query",
+        "priority": 3735928559,
+        "discussion": ""
+    },
     {
-        "name":"r7c_doc",
-        "discussion":""
-	},
-	{
-		"name": "hello-world",
-		"discussion": ""
-	}
+        "name": "slider-diagram",
+        "priority": 3405691582,
+        "discussion": ""
+    },
+    {
+        "name": "data_processing",
+        "priority": 3237998080,
+        "discussion": ""
+    },
+    {
+        "name": "hello-world",
+        "priority": 2343432205,
+        "discussion": ""
+    },
+    {
+        "name": "game_wizard",
+        "priority": 464384013,
+        "discussion": ""
+    },
+    {
+        "name": "r7c_doc",
+        "priority": 195948557,
+        "discussion": ""
+    },
+
+
+
+    {
+        "name": "cell-statistics",
+        "discussion": ""
+    },
+    {
+        "name": "cell-formatter",
+        "discussion": ""
+    },
+    {
+        "name": "data-generator",
+        "discussion": ""
+    },
+    {
+        "name": "cell-converter",
+        "discussion": ""
+    },
+    {
+        "name": "ai",
+        "discussion": ""
+    },
+    {
+        "name": "apertium",
+        "discussion": ""
+    },
+    {
+        "name": "autocomplete",
+        "discussion": ""
+    },
+    {
+        "name": "bergamot",
+        "discussion": ""
+    },
+    {
+        "name": "chess",
+        "discussion": ""
+    },
+    {
+        "name": "cvbuilder",
+        "discussion": ""
+    },
+    {
+        "name": "datepicker",
+        "discussion": ""
+    },
+    {
+        "name": "deepl",
+        "discussion": ""
+    },
+    {
+        "name": "doc2md",
+        "discussion": ""
+    },
+    {
+        "name": "drawio",
+        "discussion": ""
+    },
+    {
+        "name": "easybib",
+        "discussion": ""
+    },
+    {
+        "name": "glavred",
+        "discussion": ""
+    },
+    {
+        "name": "grammalecte",
+        "discussion": ""
+    },
+    {
+        "name": "highlightcode",
+        "discussion": ""
+    },
+    {
+        "name": "html",
+        "discussion": ""
+    },
+    {
+        "name": "icons",
+        "discussion": ""
+    },
+    {
+        "name": "idphoto",
+        "discussion": ""
+    },
+    {
+        "name": "insertQR",
+        "discussion": ""
+    },
+    {
+        "name": "jitsi",
+        "discussion": ""
+    },
+    {
+        "name": "languagetool",
+        "discussion": ""
+    },
+    {
+        "name": "mathpix",
+        "discussion": ""
+    },
+    {
+        "name": "mendeley",
+        "discussion": ""
+    },
+    {
+        "name": "news",
+        "discussion": ""
+    },
+    {
+        "name": "ocr",
+        "discussion": ""
+    },
+    {
+        "name": "onlydraw",
+        "discussion": ""
+    },
+    {
+        "name": "photoeditor",
+        "discussion": ""
+    },
+    {
+        "name": "pixabay",
+        "discussion": ""
+    },
+    {
+        "name": "pomodoro",
+        "discussion": ""
+    },
+    {
+        "name": "rainbow",
+        "discussion": ""
+    },
+    {
+        "name": "speech",
+        "discussion": ""
+    },
+    {
+        "name": "speechrecognition",
+        "discussion": ""
+    },
+    {
+        "name": "telegram",
+        "discussion": ""
+    },
+    {
+        "name": "termef",
+        "discussion": ""
+    },
+    {
+        "name": "textcleaner",
+        "discussion": ""
+    },
+    {
+        "name": "texthighlighter",
+        "discussion": ""
+    },
+    {
+        "name": "thesaurus",
+        "discussion": ""
+    },
+    {
+        "name": "translator",
+        "discussion": ""
+    },
+    {
+        "name": "typograf",
+        "discussion": ""
+    },
+    {
+        "name": "videoembedder",
+        "discussion": ""
+    },
+    {
+        "name": "wordpress",
+        "discussion": ""
+    },
+    {
+        "name": "wordscounter",
+        "discussion": ""
+    },
+    {
+        "name": "youtube",
+        "discussion": ""
+    },
+    {
+        "name": "zhipu",
+        "discussion": ""
+    },
+    {
+        "name": "zoom",
+        "discussion": ""
+    },
+    {
+        "name": "zotero",
+        "discussion": ""
+    }
 ]

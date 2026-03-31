@@ -5,7 +5,7 @@
         "en": "{r7c}.mlearn"
     },
     "guid": "asc.{08A1B2C3-D4E5-46F7-88A9-C0A1A2B3C4D5}",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "variations": [
         {
             "description": "Documentation and training for R7-Office macros, API, and data workflows. Includes examples, templates, and interactive lessons with code execution and validation.",

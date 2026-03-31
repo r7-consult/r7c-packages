@@ -6,7 +6,7 @@
         "en": "Game Wizard"
     },
     "guid": "asc.{D3F58C96-9F8A-4C8E-8D70-8D4A1BAE4C11}",
-    "version": "0.2.0",
+    "version": "0.2.1",
     "variations": [
         {
             "description": "A collection of classic mini games including 2048, Klondike Solitaire, Spider Solitaire, and FreeCell.",

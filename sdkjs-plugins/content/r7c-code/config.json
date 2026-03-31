@@ -10,9 +10,10 @@
 
 	"variations": [
 		{
-			"description": "Automate your routine tasks and standardize documents using macros (JavaScript language syntax is used).",
+			"description": "Create macros, automate routine work, and turn repeatable document tasks into fast one-click actions.",
 			"descriptionLocale": {
-				"ru": "Автоматизируйте рутинные задачи и стандартизируйте документы с помощью макросов (работает на синтаксисе JavaScript).",
+				"ru": "Создавайте макросы, автоматизируйте рутинные действия и превращайте повторяющиеся задачи с документами в быстрые сценарии на один клик.",
+				"en": "Create macros, automate routine work, and turn repeatable document tasks into fast one-click actions.",
 				"fr": "Automatisez vos tâches de routine et standardisez vos documents à l’aide des macros (la syntaxe du langage JavaScript est utilisée).",
 				"es": "Automatice sus tareas rutinarias y estandarice los documentos mediante macros (se utiliza la sintaxis del lenguaje JavaScript).",
 				"pt-BR": "Automatize suas tarefas rotineiras e padronize documentos usando macros (é usada a sintaxe da linguagem JavaScript).",

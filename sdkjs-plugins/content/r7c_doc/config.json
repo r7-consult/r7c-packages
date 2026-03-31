@@ -8,9 +8,10 @@
     "version": "1.0.4",
     "variations": [
         {
-            "description": "Documentation and training for R7-Office macros, API, and data workflows. Includes examples, templates, and interactive lessons with code execution and validation.",
+            "description": "A learning hub for macros, automation, and the R7/ONLYOFFICE API with examples, lessons, and ready-made starting points.",
             "descriptionLocale": {
-                "ru": "Документация и обучение по макросам Р7-Офис, API и работе с данными. Внутри: примеры, шаблоны и интерактивные уроки с запуском и проверкой кода.",
+                "ru": "Учебный центр по макросам, автоматизации и API R7/ONLYOFFICE с примерами, уроками и готовыми точками старта.",
+                "en": "A learning hub for macros, automation, and the R7/ONLYOFFICE API with examples, lessons, and ready-made starting points.",
                 "fr": "Documentation et formation sur les macros R7-Office, l’API et le travail avec les données. Inclut des exemples, des modèles et des leçons interactives avec exécution et vérification du code.",
                 "es": "Documentación y formación sobre macros de R7-Office, API y trabajo con datos. Incluye ejemplos, plantillas y lecciones interactivas con ejecución y verificación de código.",
                 "pt-BR": "Documentação e treinamento sobre macros do R7-Office, API e trabalho com dados. Inclui exemplos, modelos e lições interativas com execução e validação de código.",

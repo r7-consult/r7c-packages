@@ -20,12 +20,12 @@
   "offered": "r7-consult",
   "variations": [
     {
-      "description": "{r7c}.ChatLLM is a multi-provider AI assistant for R7/ONLYOFFICE with chat, document and sheet context, spreadsheet AI formulas, image generation, and spreadsheet-agent automation.",
+      "description": "{r7c}.ChatLLM is an AI copilot for documents, spreadsheets, and presentations: ask questions, rewrite text, work with formulas, and generate ideas without leaving the editor.",
       "descriptionLocale": {
-        "en": "{r7c}.ChatLLM is a multi-provider AI assistant for R7/ONLYOFFICE with chat, document and sheet context, spreadsheet AI formulas, image generation, and spreadsheet-agent automation.",
+        "en": "{r7c}.ChatLLM is an AI copilot for documents, spreadsheets, and presentations: ask questions, rewrite text, work with formulas, and generate ideas without leaving the editor.",
         "zh": "{r7c}.ChatLLM is a multi-provider AI assistant for R7/ONLYOFFICE with chat, document and sheet context, spreadsheet AI formulas, image generation, and spreadsheet-agent automation.",
         "de": "{r7c}.ChatLLM is a multi-provider AI assistant for R7/ONLYOFFICE with chat, document and sheet context, spreadsheet AI formulas, image generation, and spreadsheet-agent automation.",
-        "ru": "{r7c}.ChatLLM — мультипровайдерный ИИ-ассистент для R7/ONLYOFFICE с чатом, контекстом документа и таблиц, ИИ-формулами для таблиц, генерацией изображений и автоматизацией через табличного-агента.",
+        "ru": "{r7c}.ChatLLM — это ИИ-помощник для документов, таблиц и презентаций: отвечает на вопросы, переписывает текст, помогает с формулами и подсказывает идеи прямо в редакторе.",
         "fr": "{r7c}.ChatLLM is a multi-provider AI assistant for R7/ONLYOFFICE with chat, document and sheet context, spreadsheet AI formulas, image generation, and spreadsheet-agent automation.",
         "pt-BR": "{r7c}.ChatLLM is a multi-provider AI assistant for R7/ONLYOFFICE with chat, document and sheet context, spreadsheet AI formulas, image generation, and spreadsheet-agent automation.",
         "es": "{r7c}.ChatLLM is a multi-provider AI assistant for R7/ONLYOFFICE with chat, document and sheet context, spreadsheet AI formulas, image generation, and spreadsheet-agent automation.",

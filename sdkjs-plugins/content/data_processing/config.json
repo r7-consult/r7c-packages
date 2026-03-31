@@ -10,10 +10,10 @@
   "version": "0.1.2",
   "variations": [
     {
-      "description": "Каталог решений для сравнения и анализа файлов, ClickHouse, OLAP и коммерческих инструментов обработки данных.",
+      "description": "Подборка инструментов для сравнения, анализа и подготовки данных в таблицах — от файловых операций до ClickHouse и OLAP.",
       "descriptionLocale": {
-        "ru": "Каталог решений для сравнения и анализа файлов, ClickHouse, OLAP и коммерческих инструментов обработки данных.",
-        "en": "Catalog of solutions for file comparison, file analysis, ClickHouse, OLAP, and commercial data-processing tools."
+        "ru": "Подборка инструментов для сравнения, анализа и подготовки данных в таблицах — от файловых операций до ClickHouse и OLAP.",
+        "en": "A practical workspace for comparing files, analysing data, and working with ClickHouse and OLAP directly from spreadsheets."
       },
       "url": "index.html",
       "icons": [

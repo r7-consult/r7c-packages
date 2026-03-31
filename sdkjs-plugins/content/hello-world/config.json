@@ -9,9 +9,10 @@
 	"minVersion": "7.3.3",
 	"variations": [
 		{
-			"description": "A minimal template plugin that displays Hello World and selected text.",
+			"description": "A simple demo plugin that shows how an extension can greet the user and work with selected text inside the editor.",
 			"descriptionLocale": {
-				"ru": "Минимальный шаблон плагина: показывает Hello World и выделенный текст."
+				"ru": "Простой демонстрационный плагин, который показывает, как расширение может приветствовать пользователя и работать с выделенным текстом прямо в редакторе.",
+				"en": "A simple demo plugin that shows how an extension can greet the user and work with selected text inside the editor."
 			},
 			"url": "index.html",
 			"icons": [

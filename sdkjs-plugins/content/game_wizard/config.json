@@ -9,10 +9,10 @@
     "version": "0.2.1",
     "variations": [
         {
-            "description": "A collection of classic mini games including 2048, Klondike Solitaire, Spider Solitaire, and FreeCell.",
+            "description": "Take a quick break right inside the editor with a collection of familiar mini games, all in one convenient launcher.",
             "descriptionLocale": {
-                "ru": "Коллекция классических мини-игр: 2048, Косынка (Klondike), Паук (Spider) и Свободная ячейка (FreeCell).",
-                "en": "A collection of classic mini games including 2048, Klondike Solitaire, Spider Solitaire, and FreeCell."
+                "ru": "Сделайте короткий перерыв прямо в редакторе: коллекция знакомых мини-игр собрана в одном удобном лаунчере.",
+                "en": "Take a quick break right inside the editor with a collection of familiar mini games, all in one convenient launcher."
             },
             "url": "index.html",
             "icons": [

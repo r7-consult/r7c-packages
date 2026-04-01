@@ -62,8 +62,9 @@
   <script>
     window.__R7CGuardOptions = {
       pluginName: '{r7c}.code',
+      pluginIcon: 'modules/macros_ide/resources/light/icon.png',
       managerName: '{r7} consult',
-      installUrl: 'https://r7-consult.ru/'
+      installUrl: 'https://r7-consult.ru/r7_market'
     };
   </script>
   <script src="r7c-required.js"></script>
@@ -268,7 +269,7 @@
 					type="button"
 					title="Create new macro (JavaScript)"
 				>
-					<span class="toolbar-icon">＋</span>
+					<span class="toolbar-icon">РїСвЂ№</span>
 				</button>
 				<button
 					id="editor-cut-btn"
@@ -278,7 +279,7 @@
 					title="Cut selection (Ctrl+X)"
 					disabled
 				>
-					<span class="toolbar-icon">✂</span>
+					<span class="toolbar-icon">РІСљвЂљ</span>
 				</button>
 				<button
 					id="editor-copy-btn"
@@ -288,7 +289,7 @@
 					title="Copy selection (Ctrl+C)"
 					disabled
 				>
-					<span class="toolbar-icon">⎘</span>
+					<span class="toolbar-icon">РІР‹В</span>
 				</button>
 				<button
 					id="editor-paste-btn"
@@ -297,7 +298,7 @@
 					type="button"
 					title="Paste (Ctrl+V)"
 				>
-					<span class="toolbar-icon">📋</span>
+					<span class="toolbar-icon">СЂСџвЂњвЂ№</span>
 				</button>
 				<button
 					id="editor-undo-btn"
@@ -307,7 +308,7 @@
 					title="Undo (Ctrl+Z)"
 					disabled
 				>
-					<span class="toolbar-icon">↺</span>
+					<span class="toolbar-icon">РІвЂ С”</span>
 				</button>
 				<button
 					id="editor-redo-btn"
@@ -317,7 +318,7 @@
 					title="Redo (Ctrl+Y)"
 					disabled
 				>
-					<span class="toolbar-icon">↻</span>
+					<span class="toolbar-icon">РІвЂ В»</span>
 				</button>
 			</div>
 
@@ -339,7 +340,7 @@
 				title="Run current macro (Ctrl+Enter)"
 				disabled
 			>
-				<span class="toolbar-icon">▶</span>
+				<span class="toolbar-icon">РІвЂ“В¶</span>
 				<span class="toolbar-label">Run</span>
 			</button>
 			<button
@@ -349,7 +350,7 @@
 				onclick="window.saveMacros()"
 				title="Save all macros to document"
 			>
-				<span class="toolbar-icon">💾</span>
+				<span class="toolbar-icon">СЂСџвЂ™С•</span>
 				<span class="toolbar-label">Save</span>
 			</button>
 			<button
@@ -359,7 +360,7 @@
 				onclick="window.showDebugSettings()"
 				title="Toggle debug plugins settings panel"
 			>
-				<span class="toolbar-icon">🐞</span>
+				<span class="toolbar-icon">СЂСџС’С›</span>
 				<span class="toolbar-label">Debug</span>
 			</button>
 			<button
@@ -370,7 +371,7 @@
 				title="Copy current macro"
 				disabled
 			>
-				<span class="toolbar-icon">📋</span>
+				<span class="toolbar-icon">СЂСџвЂњвЂ№</span>
 				<span class="toolbar-label">Copy</span>
 			</button>
 			<button
@@ -381,7 +382,7 @@
 				title="Rename current macro"
 				disabled
 			>
-				<span class="toolbar-icon">✏️</span>
+				<span class="toolbar-icon">РІСљРЏРїС‘РЏ</span>
 				<span class="toolbar-label">Rename</span>
 			</button>
 			<button
@@ -392,7 +393,7 @@
 				title="Delete current macro"
 				disabled
 			>
-				<span class="toolbar-icon">🗑️</span>
+				<span class="toolbar-icon">СЂСџвЂ”вЂРїС‘РЏ</span>
 				<span class="toolbar-label">Delete</span>
 			</button>
 			<div class="toolbar-separator"></div>
@@ -416,7 +417,7 @@
 				onclick="window.maximizeWindow()"
 				title="Maximize window (fill screen)"
 			>
-				<span class="toolbar-icon" id="toolbar-maximize-icon">⛶</span>
+				<span class="toolbar-icon" id="toolbar-maximize-icon">РІвЂєВ¶</span>
 			</button>
 			<button
 				id="toolbar-minimize-btn"
@@ -425,7 +426,7 @@
 				onclick="window.minimizePluginWindow()"
 				title="Minimize window (hide plugin)"
 			>
-				<span class="toolbar-icon">—</span>
+				<span class="toolbar-icon">РІР‚вЂќ</span>
 			</button>
 		</div>
 
@@ -460,7 +461,7 @@
 							class="filter-clear-button"
 							onclick="clearFilter()"
 						>
-							✕
+							РІСљвЂў
 						</span>
 					</div>
 					<!-- TASK-075 Step 2: Search statistics display -->
@@ -603,7 +604,7 @@
               class="btn-action"
               title="Hide pane"
               onclick="(window.toggleRightPane && typeof window.toggleRightPane === 'function') && window.toggleRightPane()"
-            >▶</button>
+            >РІвЂ“В¶</button>
         </div>
 		<div class="right-pane-content" id="right-pane-content" data-testid="activity-right-pane-content">
 			<!-- Add actions/content here in future -->
@@ -654,9 +655,9 @@
 		// Verify JSZip loaded as global (no AMD exists yet)
 		if (typeof JSZip !== 'undefined') {
 			window.JSZip = JSZip;
-			console.log('✓ JSZip loaded successfully as global (pre-AMD):', JSZip.version || 'version unknown');
+			console.log('РІСљвЂњ JSZip loaded successfully as global (pre-AMD):', JSZip.version || 'version unknown');
 		} else {
-			console.error('✗ CRITICAL: JSZip failed to load!');
+			console.error('РІСљвЂ” CRITICAL: JSZip failed to load!');
 		}
 	</script>
 

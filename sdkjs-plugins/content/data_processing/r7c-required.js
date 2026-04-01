@@ -3,10 +3,39 @@
 
   var options = window.__R7CGuardOptions || {};
   var REQUIRED_GUID = 'asc.{AA2EA9B6-9EC2-415F-9762-634EE8D9A95E}';
-  var INSTALL_URL = options.installUrl || 'https://r7-consult.ru/';
-  var PLUGIN_NAME = options.pluginName || document.title || 'Plugin';
+  var INSTALL_URL = options.installUrl || 'https://r7-consult.ru/r7_market';
+  var PLUGIN_NAME = options.pluginName || document.title || '\u041f\u043b\u0430\u0433\u0438\u043d';
+  var PLUGIN_ICON = options.pluginIcon || '';
   var MANAGER_NAME = options.managerName || '{r7} consult';
   var MIN_MANAGER_VERSION = options.minManagerVersion || '';
+
+  var RU = {
+    runsWith: '\u0417\u0430\u043f\u0443\u0441\u043a \u0447\u0435\u0440\u0435\u0437 ',
+    checkingTitle: '\u041f\u0440\u043e\u0432\u0435\u0440\u044f\u0435\u043c \u0437\u0430\u043f\u0443\u0441\u043a',
+    checkingMessageStart: '\u041f\u0440\u043e\u0432\u0435\u0440\u044f\u0435\u043c, \u0443\u0441\u0442\u0430\u043d\u043e\u0432\u043b\u0435\u043d \u043b\u0438 \u043c\u0435\u043d\u0435\u0434\u0436\u0435\u0440 \u043f\u043b\u0430\u0433\u0438\u043d\u043e\u0432 ',
+    checkingMessageEnd: ' \u0434\u043b\u044f \u0437\u0430\u043f\u0443\u0441\u043a\u0430 "',
+    checkingPending: '\u042d\u0442\u043e \u0437\u0430\u043d\u0438\u043c\u0430\u0435\u0442 \u043f\u0430\u0440\u0443 \u0441\u0435\u043a\u0443\u043d\u0434.',
+    needManager: '\u041d\u0443\u0436\u0435\u043d ',
+    pluginPrefix: '\u041f\u043b\u0430\u0433\u0438\u043d "',
+    pluginNeedsManagerMid: '" \u0440\u0430\u0431\u043e\u0442\u0430\u0435\u0442 \u0442\u043e\u043b\u044c\u043a\u043e \u0432\u043c\u0435\u0441\u0442\u0435 \u0441 \u043c\u0435\u043d\u0435\u0434\u0436\u0435\u0440\u043e\u043c \u043f\u043b\u0430\u0433\u0438\u043d\u043e\u0432 ',
+    installManagerStart: '\u0423\u0441\u0442\u0430\u043d\u043e\u0432\u0438\u0442\u0435 ',
+    installManagerEnd: ', \u0437\u0430\u0442\u0435\u043c \u043e\u0442\u043a\u0440\u043e\u0439\u0442\u0435 \u044d\u0442\u043e\u0442 \u043f\u043b\u0430\u0433\u0438\u043d \u0441\u043d\u043e\u0432\u0430.',
+    install: '\u0423\u0441\u0442\u0430\u043d\u043e\u0432\u0438\u0442\u044c',
+    updateManager: '\u041e\u0431\u043d\u043e\u0432\u0438\u0442\u0435 ',
+    pluginNeedsNewerStart: '\u0414\u043b\u044f \u0437\u0430\u043f\u0443\u0441\u043a\u0430 "',
+    pluginNeedsNewerMid: '" \u043d\u0443\u0436\u043d\u0430 \u0431\u043e\u043b\u0435\u0435 \u043d\u043e\u0432\u0430\u044f \u0432\u0435\u0440\u0441\u0438\u044f \u043c\u0435\u043d\u0435\u0434\u0436\u0435\u0440\u0430 \u043f\u043b\u0430\u0433\u0438\u043d\u043e\u0432 ',
+    currentVersion: '\u0422\u0435\u043a\u0443\u0449\u0430\u044f \u0432\u0435\u0440\u0441\u0438\u044f: ',
+    unknown: '\u043d\u0435\u0438\u0437\u0432\u0435\u0441\u0442\u043d\u043e',
+    requiredVersion: '. \u0422\u0440\u0435\u0431\u0443\u0435\u0442\u0441\u044f \u0432\u0435\u0440\u0441\u0438\u044f ',
+    orHigher: ' \u0438\u043b\u0438 \u0432\u044b\u0448\u0435.',
+    update: '\u041e\u0431\u043d\u043e\u0432\u0438\u0442\u044c',
+    verifyFailed: '\u041d\u0435 \u0443\u0434\u0430\u043b\u043e\u0441\u044c \u043f\u0440\u043e\u0432\u0435\u0440\u0438\u0442\u044c ',
+    verifyMessageStart: '\u0420\u0435\u0434\u0430\u043a\u0442\u043e\u0440 \u043d\u0435 \u0441\u043c\u043e\u0433 \u043f\u043e\u0434\u0442\u0432\u0435\u0440\u0434\u0438\u0442\u044c \u043d\u0430\u043b\u0438\u0447\u0438\u0435 \u043c\u0435\u043d\u0435\u0434\u0436\u0435\u0440\u0430 \u043f\u043b\u0430\u0433\u0438\u043d\u043e\u0432 \u043f\u0435\u0440\u0435\u0434 \u0437\u0430\u043f\u0443\u0441\u043a\u043e\u043c "',
+    retryMessageStart: '\u041d\u0430\u0436\u043c\u0438\u0442\u0435 \u043a\u043d\u043e\u043f\u043a\u0443 \u043f\u043e\u0432\u0442\u043e\u0440\u043d\u043e\u0439 \u043f\u0440\u043e\u0432\u0435\u0440\u043a\u0438. \u0415\u0441\u043b\u0438 \u043f\u0440\u043e\u0431\u043b\u0435\u043c\u0430 \u043d\u0435 \u0438\u0441\u0447\u0435\u0437\u043d\u0435\u0442, \u043f\u0435\u0440\u0435\u0437\u0430\u043f\u0443\u0441\u0442\u0438\u0442\u0435 \u0440\u0435\u0434\u0430\u043a\u0442\u043e\u0440 \u0438 \u0443\u0431\u0435\u0434\u0438\u0442\u0435\u0441\u044c, \u0447\u0442\u043e ',
+    installed: ' \u0443\u0441\u0442\u0430\u043d\u043e\u0432\u043b\u0435\u043d.',
+    retry: '\u041f\u043e\u0432\u0442\u043e\u0440\u0438\u0442\u044c \u043f\u0440\u043e\u0432\u0435\u0440\u043a\u0443',
+    close: '\u0417\u0430\u043a\u0440\u044b\u0442\u044c \u043f\u043b\u0430\u0433\u0438\u043d'
+  };
 
   var state = {
     inFlight: null,
@@ -28,17 +57,25 @@
 
   function getLanguage() {
     var raw = '';
+
     try {
-      raw = String((window.Asc && window.Asc.plugin && window.Asc.plugin.info && window.Asc.plugin.info.lang) || 'ru');
+      raw = String(
+        (window.Asc && window.Asc.plugin && window.Asc.plugin.info && window.Asc.plugin.info.lang) ||
+        document.documentElement.lang ||
+        navigator.language ||
+        'ru'
+      );
     } catch (_) {
       raw = 'ru';
     }
+
     raw = raw.substring(0, 2).toLowerCase();
     return raw === 'ru' ? 'ru' : 'en';
   }
 
   function tr(ruText, enText) {
-    return getLanguage() === 'ru' ? ruText : enText;
+    void enText;
+    return ruText;
   }
 
   function compareVersions(left, right) {
@@ -66,22 +103,45 @@
     if (!pluginRecord || !pluginRecord.obj || !pluginRecord.obj.version) {
       return '';
     }
+
     return String(pluginRecord.obj.version || '').trim();
   }
 
   function isDarkTheme(theme) {
     var rawType = '';
+
     if (theme && typeof theme === 'object' && theme.type) {
       rawType = String(theme.type);
     } else if (typeof theme === 'string') {
       rawType = String(theme);
     }
+
     return rawType.toLowerCase().indexOf('dark') !== -1;
   }
 
   function getTheme() {
     if (!hasHost()) return null;
-    return (window.Asc.plugin.theme || (window.Asc.plugin.info && window.Asc.plugin.info.theme) || null);
+    return window.Asc.plugin.theme || (window.Asc.plugin.info && window.Asc.plugin.info.theme) || null;
+  }
+
+  function getPluginSubtitle() {
+    return tr(RU.runsWith + MANAGER_NAME, RU.runsWith + MANAGER_NAME);
+  }
+
+  function getFallbackMark(name) {
+    var normalized = String(name || '')
+      .replace(/[^\p{L}\p{N}]+/gu, ' ')
+      .trim()
+      .split(/\s+/)
+      .filter(Boolean);
+
+    if (!normalized.length) {
+      return '{r7}';
+    }
+
+    return normalized.slice(0, 2).map(function (part) {
+      return part.charAt(0);
+    }).join('').toUpperCase();
   }
 
   function ensureStyles() {
@@ -103,139 +163,242 @@
       '  display: flex;',
       '  align-items: center;',
       '  justify-content: center;',
-      '  padding: 24px;',
+      '  padding: 16px;',
       '  box-sizing: border-box;',
-      '  font-family: "Segoe UI", Arial, sans-serif;',
+      '  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", sans-serif;',
+      '  --pm-surface: #ffffff;',
+      '  --pm-surface-alt: #f3f3f3;',
+      '  --pm-border: #cfcfcf;',
+      '  --pm-text: #333333;',
+      '  --pm-text-muted: #8a8a8a;',
+      '  --pm-button: #e9e9e9;',
+      '  --pm-accent: #007acc;',
+      '  --pm-overlay: rgba(15, 23, 42, 0.34);',
+      '  --pm-shadow: 0 22px 48px rgba(15, 23, 42, 0.18);',
       '}',
       '#r7c-manager-guard[hidden] {',
       '  display: none !important;',
       '}',
+      '#r7c-manager-guard.r7c-guard--dark {',
+      '  --pm-surface: #1e1e1e;',
+      '  --pm-surface-alt: #252526;',
+      '  --pm-border: #3e3e42;',
+      '  --pm-text: #d4d4d4;',
+      '  --pm-text-muted: #9da1a6;',
+      '  --pm-button: #313135;',
+      '  --pm-accent: #0090f1;',
+      '  --pm-overlay: rgba(0, 0, 0, 0.54);',
+      '  --pm-shadow: 0 24px 54px rgba(0, 0, 0, 0.34);',
+      '}',
       '.r7c-guard__backdrop {',
       '  position: absolute;',
       '  inset: 0;',
-      '  background: rgba(15, 23, 42, 0.56);',
-      '  backdrop-filter: blur(10px);',
+      '  background: var(--pm-overlay);',
+      '  backdrop-filter: blur(6px);',
       '}',
       '.r7c-guard__panel {',
       '  position: relative;',
-      '  width: min(100%, 560px);',
-      '  border-radius: 20px;',
-      '  border: 1px solid #d7deea;',
-      '  background: linear-gradient(180deg, #ffffff 0%, #f6f8fb 100%);',
-      '  color: #111827;',
-      '  box-shadow: 0 30px 80px rgba(15, 23, 42, 0.28);',
-      '  padding: 28px;',
-      '  box-sizing: border-box;',
+      '  width: min(100%, 580px);',
+      '  border: 1px solid var(--pm-border);',
+      '  border-radius: 14px;',
+      '  background: var(--pm-surface);',
+      '  color: var(--pm-text);',
+      '  box-shadow: var(--pm-shadow);',
+      '  overflow: hidden;',
       '}',
-      '.r7c-guard--dark .r7c-guard__panel {',
-      '  border-color: #334155;',
-      '  background: linear-gradient(180deg, #161c26 0%, #0f172a 100%);',
-      '  color: #f8fafc;',
+      '.r7c-guard__header {',
+      '  display: flex;',
+      '  align-items: center;',
+      '  justify-content: space-between;',
+      '  gap: 16px;',
+      '  padding: 16px 18px;',
+      '  border-bottom: 1px solid var(--pm-border);',
       '}',
-      '.r7c-guard__badge {',
+      '.r7c-guard__brand {',
+      '  display: flex;',
+      '  align-items: center;',
+      '  gap: 12px;',
+      '  min-width: 0;',
+      '}',
+      '.r7c-guard__brand-media {',
+      '  width: 42px;',
+      '  height: 42px;',
+      '  min-width: 42px;',
       '  display: inline-flex;',
       '  align-items: center;',
-      '  gap: 8px;',
-      '  padding: 8px 12px;',
-      '  border-radius: 999px;',
-      '  background: rgba(255, 143, 61, 0.14);',
-      '  color: #c2410c;',
-      '  font-size: 12px;',
-      '  font-weight: 700;',
-      '  letter-spacing: 0.04em;',
-      '  text-transform: uppercase;',
+      '  justify-content: center;',
+      '  border-radius: 10px;',
+      '  overflow: hidden;',
+      '  background: linear-gradient(136.1deg, #ff8e3d -1.99%, #ff6f3d 100%);',
+      '  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.14);',
       '}',
-      '.r7c-guard--dark .r7c-guard__badge {',
-      '  color: #fdba74;',
+      '.r7c-guard__brand-icon {',
+      '  width: 100%;',
+      '  height: 100%;',
+      '  object-fit: cover;',
+      '  display: block;',
+      '}',
+      '.r7c-guard__brand-fallback {',
+      '  color: #ffffff;',
+      '  font-size: 13px;',
+      '  font-weight: 700;',
+      '  letter-spacing: 0.02em;',
+      '}',
+      '.r7c-guard__brand-text {',
+      '  min-width: 0;',
+      '}',
+      '.r7c-guard__brand-title {',
+      '  font-size: 15px;',
+      '  font-weight: 700;',
+      '  color: var(--pm-text);',
+      '  line-height: 1.25;',
+      '  white-space: nowrap;',
+      '  overflow: hidden;',
+      '  text-overflow: ellipsis;',
+      '}',
+      '.r7c-guard__brand-subtitle {',
+      '  margin-top: 2px;',
+      '  font-size: 12px;',
+      '  color: var(--pm-text-muted);',
+      '  line-height: 1.35;',
+      '}',
+      '.r7c-guard__icon-button {',
+      '  width: 32px;',
+      '  height: 32px;',
+      '  min-width: 32px;',
+      '  display: inline-flex;',
+      '  align-items: center;',
+      '  justify-content: center;',
+      '  padding: 0;',
+      '  border: 1px solid var(--pm-border);',
+      '  border-radius: 9px;',
+      '  background: var(--pm-surface-alt);',
+      '  color: var(--pm-text-muted);',
+      '  cursor: pointer;',
+      '  appearance: none;',
+      '  -webkit-appearance: none;',
+      '  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease, transform 0.15s ease;',
+      '}',
+      '.r7c-guard__icon-button:hover {',
+      '  border-color: var(--pm-accent);',
+      '  background: var(--pm-button);',
+      '  color: var(--pm-text);',
+      '}',
+      '.r7c-guard__icon-button:active {',
+      '  transform: translateY(1px);',
+      '}',
+      '.r7c-guard__icon-button svg {',
+      '  width: 16px;',
+      '  height: 16px;',
+      '  stroke: currentColor;',
+      '  fill: none;',
+      '  stroke-width: 1.9;',
+      '  stroke-linecap: round;',
+      '  stroke-linejoin: round;',
+      '}',
+      '.r7c-guard__body {',
+      '  padding: 18px;',
       '}',
       '.r7c-guard__title {',
-      '  margin: 18px 0 12px;',
-      '  font-size: 28px;',
-      '  line-height: 1.15;',
+      '  margin: 0 0 10px;',
+      '  font-size: 22px;',
+      '  font-weight: 700;',
+      '  line-height: 1.2;',
+      '  color: var(--pm-text);',
       '}',
       '.r7c-guard__message {',
       '  margin: 0;',
-      '  font-size: 16px;',
-      '  line-height: 1.55;',
-      '  color: #334155;',
-      '}',
-      '.r7c-guard--dark .r7c-guard__message {',
-      '  color: #cbd5e1;',
+      '  font-size: 14px;',
+      '  line-height: 1.6;',
+      '  color: var(--pm-text-muted);',
       '}',
       '.r7c-guard__details {',
       '  margin-top: 14px;',
       '  padding: 14px 16px;',
-      '  border-radius: 14px;',
-      '  background: rgba(148, 163, 184, 0.12);',
-      '  font-size: 14px;',
-      '  line-height: 1.5;',
-      '  color: #475569;',
-      '}',
-      '.r7c-guard--dark .r7c-guard__details {',
-      '  color: #cbd5e1;',
-      '  background: rgba(148, 163, 184, 0.12);',
-      '}',
-      '.r7c-guard__actions {',
-      '  display: flex;',
-      '  flex-wrap: wrap;',
-      '  gap: 12px;',
-      '  margin-top: 22px;',
-      '}',
-      '.r7c-guard__button {',
-      '  appearance: none;',
-      '  border: none;',
-      '  border-radius: 12px;',
-      '  padding: 12px 16px;',
-      '  font-size: 14px;',
-      '  font-weight: 600;',
-      '  cursor: pointer;',
-      '  transition: transform 0.16s ease, opacity 0.16s ease, background 0.16s ease;',
-      '}',
-      '.r7c-guard__button:hover {',
-      '  transform: translateY(-1px);',
-      '}',
-      '.r7c-guard__button--primary {',
-      '  background: #ff8f3d;',
-      '  color: #ffffff;',
-      '}',
-      '.r7c-guard__button--secondary {',
-      '  background: rgba(59, 130, 246, 0.12);',
-      '  color: #1d4ed8;',
-      '}',
-      '.r7c-guard--dark .r7c-guard__button--secondary {',
-      '  color: #bfdbfe;',
-      '  background: rgba(59, 130, 246, 0.16);',
-      '}',
-      '.r7c-guard__button--ghost {',
-      '  background: rgba(148, 163, 184, 0.16);',
-      '  color: inherit;',
-      '}',
-      '.r7c-guard__spinner {',
-      '  width: 20px;',
-      '  height: 20px;',
-      '  border-radius: 50%;',
-      '  border: 3px solid rgba(255, 143, 61, 0.22);',
-      '  border-top-color: #ff8f3d;',
-      '  animation: r7c-guard-spin 0.8s linear infinite;',
+      '  border: 1px solid var(--pm-border);',
+      '  border-radius: 10px;',
+      '  background: var(--pm-surface-alt);',
+      '  color: var(--pm-text);',
+      '  font-size: 13px;',
+      '  line-height: 1.55;',
       '}',
       '.r7c-guard__pending {',
       '  display: flex;',
       '  align-items: center;',
       '  gap: 12px;',
-      '  margin-top: 18px;',
-      '  color: #475569;',
-      '  font-size: 14px;',
+      '  margin-top: 14px;',
+      '  padding: 14px 16px;',
+      '  border: 1px solid var(--pm-border);',
+      '  border-radius: 10px;',
+      '  background: var(--pm-surface-alt);',
+      '  color: var(--pm-text);',
+      '  font-size: 13px;',
       '}',
-      '.r7c-guard--dark .r7c-guard__pending {',
-      '  color: #cbd5e1;',
+      '.r7c-guard__spinner {',
+      '  width: 18px;',
+      '  height: 18px;',
+      '  border-radius: 50%;',
+      '  border: 2px solid rgba(14, 99, 156, 0.18);',
+      '  border-top-color: var(--pm-accent);',
+      '  animation: r7c-guard-spin 0.8s linear infinite;',
       '}',
-      '.r7c-guard__actions[hidden],',
+      '.r7c-guard__footer {',
+      '  display: flex;',
+      '  justify-content: flex-end;',
+      '  gap: 10px;',
+      '  padding: 0 18px 18px;',
+      '}',
+      '.r7c-guard__button {',
+      '  min-width: 132px;',
+      '  height: 36px;',
+      '  padding: 0 14px;',
+      '  border-radius: 8px;',
+      '  border: 1px solid var(--pm-border);',
+      '  background: var(--pm-button);',
+      '  color: var(--pm-text);',
+      '  font-size: 13px;',
+      '  font-weight: 600;',
+      '  cursor: pointer;',
+      '  transition: background-color 0.15s ease, border-color 0.15s ease;',
+      '}',
+      '.r7c-guard__button:hover {',
+      '  border-color: var(--pm-accent);',
+      '}',
+      '.r7c-guard__button--primary {',
+      '  border-color: rgba(14, 99, 156, 0.45);',
+      '  background: var(--pm-accent);',
+      '  color: #ffffff;',
+      '}',
+      '.r7c-guard__button--primary:hover {',
+      '  border-color: var(--pm-accent);',
+      '  background: #1177bb;',
+      '}',
+      '.r7c-guard__button--ghost {',
+      '  background: var(--pm-button);',
+      '  color: var(--pm-text);',
+      '}',
+      '.r7c-guard__icon-button[hidden],',
+      '.r7c-guard__footer[hidden],',
       '.r7c-guard__details[hidden],',
       '.r7c-guard__pending[hidden] {',
       '  display: none !important;',
       '}',
       '@keyframes r7c-guard-spin {',
       '  to { transform: rotate(360deg); }',
+      '}',
+      '@media (max-width: 640px) {',
+      '  #r7c-manager-guard {',
+      '    padding: 12px;',
+      '  }',
+      '  .r7c-guard__panel {',
+      '    width: 100%;',
+      '  }',
+      '  .r7c-guard__footer {',
+      '    flex-direction: column;',
+      '  }',
+      '  .r7c-guard__button {',
+      '    width: 100%;',
+      '  }',
       '}'
     ].join('\n');
 
@@ -254,6 +417,40 @@
     }, { once: true });
   }
 
+  function applyBrand() {
+    if (!state.overlay) return;
+
+    var titleNode = state.overlay.querySelector('#r7c-guard-brand-title');
+    var subtitleNode = state.overlay.querySelector('#r7c-guard-brand-subtitle');
+    var iconNode = state.overlay.querySelector('#r7c-guard-plugin-icon');
+    var fallbackNode = state.overlay.querySelector('#r7c-guard-plugin-fallback');
+
+    titleNode.textContent = PLUGIN_NAME;
+    subtitleNode.textContent = getPluginSubtitle();
+    fallbackNode.textContent = getFallbackMark(PLUGIN_NAME);
+
+    if (!PLUGIN_ICON) {
+      iconNode.hidden = true;
+      iconNode.removeAttribute('src');
+      fallbackNode.hidden = false;
+      return;
+    }
+
+    iconNode.onload = function () {
+      fallbackNode.hidden = true;
+      iconNode.hidden = false;
+    };
+
+    iconNode.onerror = function () {
+      iconNode.hidden = true;
+      iconNode.removeAttribute('src');
+      fallbackNode.hidden = false;
+    };
+
+    iconNode.src = PLUGIN_ICON;
+    iconNode.alt = PLUGIN_NAME;
+  }
+
   function ensureOverlay() {
     mountWhenReady(function () {
       if (state.overlay) {
@@ -268,17 +465,35 @@
       root.innerHTML = [
         '<div class="r7c-guard__backdrop"></div>',
         '<section class="r7c-guard__panel" role="dialog" aria-modal="true" aria-labelledby="r7c-guard-title">',
-        '  <div class="r7c-guard__badge" id="r7c-guard-badge"></div>',
-        '  <h1 class="r7c-guard__title" id="r7c-guard-title"></h1>',
-        '  <p class="r7c-guard__message" id="r7c-guard-message"></p>',
-        '  <div class="r7c-guard__pending" id="r7c-guard-pending">',
-        '    <div class="r7c-guard__spinner" aria-hidden="true"></div>',
-        '    <span id="r7c-guard-pending-text"></span>',
+        '  <div class="r7c-guard__header">',
+        '    <div class="r7c-guard__brand">',
+        '      <div class="r7c-guard__brand-media">',
+        '        <img class="r7c-guard__brand-icon" id="r7c-guard-plugin-icon" hidden>',
+        '        <div class="r7c-guard__brand-fallback" id="r7c-guard-plugin-fallback">{r7}</div>',
+        '      </div>',
+        '      <div class="r7c-guard__brand-text">',
+        '        <div class="r7c-guard__brand-title" id="r7c-guard-brand-title"></div>',
+        '        <div class="r7c-guard__brand-subtitle" id="r7c-guard-brand-subtitle"></div>',
+        '      </div>',
+        '    </div>',
+        '    <button class="r7c-guard__icon-button" type="button" data-action="retry" hidden>',
+        '      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">',
+        '        <path d="M21 12a9 9 0 1 1-2.64-6.36"></path>',
+        '        <path d="M21 4v6h-6"></path>',
+        '      </svg>',
+        '    </button>',
         '  </div>',
-        '  <div class="r7c-guard__details" id="r7c-guard-details"></div>',
-        '  <div class="r7c-guard__actions" id="r7c-guard-actions">',
+        '  <div class="r7c-guard__body">',
+        '    <h1 class="r7c-guard__title" id="r7c-guard-title"></h1>',
+        '    <p class="r7c-guard__message" id="r7c-guard-message"></p>',
+        '    <div class="r7c-guard__pending" id="r7c-guard-pending">',
+        '      <div class="r7c-guard__spinner" aria-hidden="true"></div>',
+        '      <span id="r7c-guard-pending-text"></span>',
+        '    </div>',
+        '    <div class="r7c-guard__details" id="r7c-guard-details"></div>',
+        '  </div>',
+        '  <div class="r7c-guard__footer" id="r7c-guard-actions">',
         '    <button class="r7c-guard__button r7c-guard__button--primary" type="button" data-action="install"></button>',
-        '    <button class="r7c-guard__button r7c-guard__button--secondary" type="button" data-action="retry"></button>',
         '    <button class="r7c-guard__button r7c-guard__button--ghost" type="button" data-action="close"></button>',
         '  </div>',
         '</section>'
@@ -286,6 +501,7 @@
 
       document.body.appendChild(root);
       state.overlay = root;
+      applyBrand();
 
       root.querySelector('[data-action="install"]').addEventListener('click', function () {
         openInstallUrl();
@@ -314,6 +530,7 @@
 
   function setHtmlState(nextState) {
     document.documentElement.classList.remove('r7c-guard-pending', 'r7c-guard-blocked');
+
     if (nextState) {
       document.documentElement.classList.add(nextState);
     }
@@ -333,20 +550,23 @@
 
   function showPending() {
     ensureOverlay();
+
     mountWhenReady(function () {
       if (!state.overlay) return;
+
+      applyBrand();
       setHtmlState('r7c-guard-pending');
       state.overlay.hidden = false;
-      state.overlay.querySelector('#r7c-guard-badge').textContent = tr('Проверка зависимости', 'Dependency check');
-      state.overlay.querySelector('#r7c-guard-title').textContent = tr('Подготавливаем запуск', 'Preparing startup');
+      state.overlay.querySelector('#r7c-guard-title').textContent = tr(RU.checkingTitle, RU.checkingTitle);
       state.overlay.querySelector('#r7c-guard-message').textContent = tr(
-        'Проверяем, установлен ли менеджер плагинов ' + MANAGER_NAME + ' для запуска "' + PLUGIN_NAME + '".',
-        'Checking whether ' + MANAGER_NAME + ' is installed before starting "' + PLUGIN_NAME + '".'
+        RU.checkingMessageStart + MANAGER_NAME + RU.checkingMessageEnd + PLUGIN_NAME + '".',
+        RU.checkingMessageStart + MANAGER_NAME + RU.checkingMessageEnd + PLUGIN_NAME + '".'
       );
       state.overlay.querySelector('#r7c-guard-pending-text').textContent = tr(
-        'Это занимает пару секунд.',
-        'This usually takes a couple of seconds.'
+        RU.checkingPending,
+        RU.checkingPending
       );
+      state.overlay.querySelector('[data-action="retry"]').hidden = true;
       state.overlay.querySelector('#r7c-guard-pending').hidden = false;
       state.overlay.querySelector('#r7c-guard-details').hidden = true;
       state.overlay.querySelector('#r7c-guard-actions').hidden = true;
@@ -360,48 +580,45 @@
 
     if (reason === 'missing') {
       return {
-        badge: tr('Нужен менеджер', 'Manager required'),
-        title: tr('Нужен ' + MANAGER_NAME, MANAGER_NAME + ' is required'),
+        title: tr(RU.needManager + MANAGER_NAME, RU.needManager + MANAGER_NAME),
         message: tr(
-          'Плагин "' + PLUGIN_NAME + '" работает только вместе с менеджером плагинов ' + MANAGER_NAME + '.',
-          '"' + PLUGIN_NAME + '" works only together with the ' + MANAGER_NAME + ' plugin manager.'
+          RU.pluginPrefix + PLUGIN_NAME + RU.pluginNeedsManagerMid + MANAGER_NAME + '.',
+          RU.pluginPrefix + PLUGIN_NAME + RU.pluginNeedsManagerMid + MANAGER_NAME + '.'
         ),
         details: tr(
-          'Установите ' + MANAGER_NAME + ', затем откройте этот плагин снова.',
-          'Install ' + MANAGER_NAME + ' and then reopen this plugin.'
+          RU.installManagerStart + MANAGER_NAME + RU.installManagerEnd,
+          RU.installManagerStart + MANAGER_NAME + RU.installManagerEnd
         ),
-        primary: tr('Как установить', 'How to install')
+        primary: tr(RU.install, RU.install)
       };
     }
 
     if (reason === 'outdated') {
       return {
-        badge: tr('Нужно обновление', 'Update required'),
-        title: tr('Обновите ' + MANAGER_NAME, 'Update ' + MANAGER_NAME),
+        title: tr(RU.updateManager + MANAGER_NAME, RU.updateManager + MANAGER_NAME),
         message: tr(
-          'Найден установленный менеджер плагинов, но его версия слишком старая для "' + PLUGIN_NAME + '".',
-          'The plugin manager is installed, but its version is too old for "' + PLUGIN_NAME + '".'
+          RU.pluginNeedsNewerStart + PLUGIN_NAME + RU.pluginNeedsNewerMid + MANAGER_NAME + '.',
+          RU.pluginNeedsNewerStart + PLUGIN_NAME + RU.pluginNeedsNewerMid + MANAGER_NAME + '.'
         ),
         details: tr(
-          'Текущая версия: ' + (managerVersion || 'unknown') + '. Требуемая версия: ' + MIN_MANAGER_VERSION + ' или выше.',
-          'Current version: ' + (managerVersion || 'unknown') + '. Required version: ' + MIN_MANAGER_VERSION + ' or newer.'
+          RU.currentVersion + (managerVersion || RU.unknown) + RU.requiredVersion + MIN_MANAGER_VERSION + RU.orHigher,
+          RU.currentVersion + (managerVersion || RU.unknown) + RU.requiredVersion + MIN_MANAGER_VERSION + RU.orHigher
         ),
-        primary: tr('Как обновить', 'How to update')
+        primary: tr(RU.update, RU.update)
       };
     }
 
     return {
-      badge: tr('Проверка не выполнена', 'Check failed'),
-      title: tr('Не удалось проверить ' + MANAGER_NAME, 'Unable to verify ' + MANAGER_NAME),
+      title: tr(RU.verifyFailed + MANAGER_NAME, RU.verifyFailed + MANAGER_NAME),
       message: tr(
-        'Редактор не смог получить список установленных плагинов перед запуском "' + PLUGIN_NAME + '".',
-        'The editor could not get the list of installed plugins before starting "' + PLUGIN_NAME + '".'
+        RU.verifyMessageStart + PLUGIN_NAME + '".',
+        RU.verifyMessageStart + PLUGIN_NAME + '".'
       ),
       details: tr(
-        'Нажмите "Повторить проверку". Если проблема повторится, перезапустите редактор и проверьте, что ' + MANAGER_NAME + ' установлен.',
-        'Click "Retry check". If the problem persists, restart the editor and verify that ' + MANAGER_NAME + ' is installed.'
+        RU.retryMessageStart + MANAGER_NAME + RU.installed,
+        RU.retryMessageStart + MANAGER_NAME + RU.installed
       ),
-      primary: tr('Открыть сайт', 'Open website')
+      primary: tr(RU.install, RU.install)
     };
   }
 
@@ -413,9 +630,10 @@
       if (!state.overlay) return;
 
       var copy = getFailureCopy(result);
+
+      applyBrand();
       setHtmlState('r7c-guard-blocked');
       state.overlay.hidden = false;
-      state.overlay.querySelector('#r7c-guard-badge').textContent = copy.badge;
       state.overlay.querySelector('#r7c-guard-title').textContent = copy.title;
       state.overlay.querySelector('#r7c-guard-message').textContent = copy.message;
       state.overlay.querySelector('#r7c-guard-details').textContent = copy.details;
@@ -423,8 +641,10 @@
       state.overlay.querySelector('#r7c-guard-pending').hidden = true;
       state.overlay.querySelector('#r7c-guard-actions').hidden = false;
       state.overlay.querySelector('[data-action="install"]').textContent = copy.primary;
-      state.overlay.querySelector('[data-action="retry"]').textContent = tr('Повторить проверку', 'Retry check');
-      state.overlay.querySelector('[data-action="close"]').textContent = tr('Закрыть плагин', 'Close plugin');
+      state.overlay.querySelector('[data-action="retry"]').hidden = false;
+      state.overlay.querySelector('[data-action="retry"]').title = tr(RU.retry, RU.retry);
+      state.overlay.querySelector('[data-action="retry"]').setAttribute('aria-label', tr(RU.retry, RU.retry));
+      state.overlay.querySelector('[data-action="close"]').textContent = tr(RU.close, RU.close);
       applyTheme(getTheme());
     });
   }
@@ -432,6 +652,7 @@
   function hideOverlay() {
     cancelPending();
     setHtmlState('');
+
     if (state.overlay) {
       state.overlay.hidden = true;
     }
@@ -492,6 +713,7 @@
 
     for (index = 0; index < installedPlugins.length; index += 1) {
       var current = installedPlugins[index];
+
       if (normalizeGuid(current && current.guid) === requiredGuid) {
         return current;
       }
@@ -554,6 +776,7 @@
           }
 
           var managerVersion = getManagerVersion(manager);
+
           if (MIN_MANAGER_VERSION && compareVersions(managerVersion, MIN_MANAGER_VERSION) < 0) {
             finish({
               ok: false,

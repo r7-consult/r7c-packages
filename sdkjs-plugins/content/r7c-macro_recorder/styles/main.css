@@ -168,6 +168,39 @@ button {
   word-break: break-word;
 }
 
+.slider-fly-button {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.65);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-overlay, 0 2px 8px rgba(0, 0, 0, 0.24));
+  cursor: pointer;
+  transition: var(--transition-interactive, background-color 0.12s ease, color 0.12s ease, border-color 0.12s ease);
+  z-index: 10000;
+}
+
+.slider-fly-button:hover {
+  background: rgba(0, 0, 0, 0.78);
+}
+
+.slider-fly-button:focus-visible {
+  outline: 2px solid var(--vscode-interactive-focusRing, var(--vscode-focusBorder, #007acc));
+  outline-offset: 2px;
+}
+
+.slider-fly-button img {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+  pointer-events: none;
+}
+
 body.theme-type-light .code-shell {
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(244, 244, 244, 0.96)),
@@ -194,7 +227,8 @@ body.recording-mode .topbar {
 
 body.recording-mode .topbar__title-block,
 body.recording-mode .run-button,
-body.recording-mode .workspace {
+body.recording-mode .workspace,
+body.recording-mode .slider-fly-button {
   display: none;
 }
 

@@ -1,0 +1,6 @@
+﻿This plugin uses code from the following 3rd party projects.
+
+1. typst.ts (`@myriaddreamin/typst.ts`) - a TypeScript/WebAssembly toolchain for compiling and rendering Typst documents directly in the browser. (https://github.com/Myriad-Dreamin/typst.ts)
+
+License:        Apache License 2.0
+License File:   licenses/typst-ts.license

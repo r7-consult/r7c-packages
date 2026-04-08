@@ -147,3 +147,15 @@
 
 ## 3.0.7
 * Bug fix.
+
+## 3.0.8
+* Fix bug with external fetch error.
+
+## 3.1.0
+* Bug fix.
+
+## 3.2.0
+* Chat has been redesigned.
+
+## 3.2.1
+* Update storage version.

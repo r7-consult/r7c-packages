@@ -1,8 +1,8 @@
 # Autocomplete plugin
 
-This plugin is an example of an input assistant for R7-Office editors.
+This plugin is an example of an input assistant for ONLYOFFICE editors.
 
-The plugin is compatible with [self-hosted](https://github.com/R7-Office/DocumentServer) and [desktop](https://github.com/R7-Office/DesktopEditors) versions of R7-Office editors. It can be added to R7-Office instances manually.
+The plugin is compatible with [self-hosted](https://github.com/ONLYOFFICE/DocumentServer) and [desktop](https://github.com/ONLYOFFICE/DesktopEditors) versions of ONLYOFFICE editors. It can be added to ONLYOFFICE instances manually.
 
 ## How to use
 
@@ -13,18 +13,18 @@ Please note that it is the system plugin so that's OK that you can't see it in t
 
 ## How to install
 
-Detailed instructions can be found in [R7-Office API documentation](https://api.R7-Office.com/docs/plugin-and-macros/tutorials/installing/R7-Office-docs-on-premises/).
+Detailed instructions can be found in [ONLYOFFICE API documentation](https://api.onlyoffice.com/docs/plugin-and-macros/tutorials/installing/onlyoffice-docs-on-premises/).
 
 ## Documentation
 
-Plugins structure and installation https://api.R7-Office.com/docs/plugin-and-macros/get-started/overview/.
+Plugins structure and installation https://api.onlyoffice.com/docs/plugin-and-macros/get-started/overview/.
 
-Plugins code and methods https://api.R7-Office.com/docs/document-builder/get-started/overview/.
+Plugins code and methods https://api.onlyoffice.com/docs/document-builder/get-started/overview/.
+
+## Third-party
+
+- [english-words](https://github.com/dwyl/english-words) - A text file containing 370k+ English words (Unlicense)
 
 ## User feedback and support
 
 To ask questions and share feedback, use Issues in this repository.
-
-
----
-создано при поддержке [https://r7-consult.ru/](https://r7-consult.ru/)

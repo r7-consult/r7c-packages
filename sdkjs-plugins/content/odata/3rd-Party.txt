@@ -1,0 +1,1 @@
+﻿This plugin does not bundle additional third-party libraries.

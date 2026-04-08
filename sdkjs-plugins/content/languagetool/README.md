@@ -4,7 +4,7 @@ Find and correct grammar and style mistakes.
 
 The plugin uses [LanguageTool](https://languagetool.org/), multilingual grammar and style checker.
 
-It is compatible with [self-hosted](https://github.com/R7-Office/DocumentServer) and [desktop](https://github.com/R7-Office/DesktopEditors) versions of R7-Office editors. It can be added to R7-Office instances manually.
+It is compatible with [self-hosted](https://github.com/ONLYOFFICE/DocumentServer) and [desktop](https://github.com/ONLYOFFICE/DesktopEditors) versions of ONLYOFFICE editors. It can be added to ONLYOFFICE instances manually.
 
 ## How to use
 
@@ -17,14 +17,10 @@ It is compatible with [self-hosted](https://github.com/R7-Office/DocumentServer)
 
 ## How to install
 
-Detailed instructions can be found in [R7-Office API documentation](https://api.R7-Office.com/docs/plugin-and-macros/tutorials/installing/R7-Office-docs-on-premises/).
+Detailed instructions can be found in [ONLYOFFICE API documentation](https://api.onlyoffice.com/docs/plugin-and-macros/tutorials/installing/onlyoffice-docs-on-premises/).
 
 ## Using your service
 
 You can install LanguageTool to your own server and send requests to it. 
 
 To do so, you need to change the url address of the `serviceUrl` variable in the `./scripts/langTool.js` file.
-
-
----
-создано при поддержке [https://r7-consult.ru/](https://r7-consult.ru/)

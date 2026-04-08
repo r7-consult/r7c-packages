@@ -1,32 +1,47 @@
 ﻿<!--
- (c) Copyright Ascensio System SIA 2020
+ (c) Copyright Ascensio System SIA 2010
 
- Licensed under the Apache License, Version 2.0 (the "License");
- you may not use this file except in compliance with the License.
- You may obtain a copy of the License at
+ This program is a free software product. You can redistribute it and/or
+ modify it under the terms of the GNU Affero General Public License (AGPL)
+ version 3 as published by the Free Software Foundation. In accordance with
+ Section 7(a) of the GNU AGPL its Section 15 shall be amended to the effect
+ that Ascensio System SIA expressly excludes the warranty of non-infringement
+ of any third-party rights.
 
-     http://www.apache.org/licenses/LICENSE-2.0
+ This program is distributed WITHOUT ANY WARRANTY; without even the implied
+ warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR  PURPOSE. For
+ details, see the GNU AGPL at: http://www.gnu.org/licenses/agpl-3.0.html
 
- Unless required by applicable law or agreed to in writing, software
- distributed under the License is distributed on an "AS IS" BASIS,
- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- See the License for the specific language governing permissions and
- limitations under the License.
- -->
+ You can contact Ascensio System SIA at 20A-6 Ernesta Birznieka-Upish
+ street, Riga, Latvia, EU, LV-1050.
+
+ The  interactive user interfaces in modified source and object code versions
+ of the Program must display Appropriate Legal Notices, as required under
+ Section 5 of the GNU AGPL version 3.
+
+ Pursuant to Section 7(b) of the License you must retain the original Product
+ logo when distributing the program. Pursuant to Section 7(e) we decline to
+ grant you any rights under trademark law for use of our trademarks.
+
+ All the Product's GUI elements, including illustrations and icon sets, as
+ well as technical writing content are licensed under the terms of the
+ Creative Commons Attribution-ShareAlike 4.0 International. See the License
+ terms at http://creativecommons.org/licenses/by-sa/4.0/legalcode
+
+-->
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <title>Zotero</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://onlyoffice.github.io/sdkjs-plugins/v1/plugins.css" />
     <link rel="stylesheet" href="dist/styles.css">
     <style id="componentsStyles"></style>
     <style id="pluginStyles"></style>
     <script src="https://onlyoffice.github.io/sdkjs-plugins/v1/plugins.js"></script>
     <script src="https://onlyoffice.github.io/sdkjs-plugins/v1/plugins-ui.js"></script>
-    <script src="dist/citeproc_commonjs.js"></script>
+    <script src="vendor/citeproc/citeproc_commonjs.js"></script>
     <script>
         if (typeof Promise === 'function' && typeof Promise.any === 'function') {
             document.write(
@@ -85,12 +100,16 @@
                     <span class="i18n">Click</span>
                     <b class="i18n">Unlink citations</b>
                     <span class="i18n">to replace all active Zotero citations and Bibliography with plain text.</span>
-                    <span class="i18n"></span>After conversion, citations can no longer be updated.</span>
+                    <span class="i18n">After conversion, citations can no longer be updated.</span>
                 </p>
                 <button id="saveAsTextBtn" class="i18n" style="width: 100%;">Unlink citations</button>
             </div>
             <div id="mainState" class="flexCol flexSize hidden">
-                <label for="searchField" class="i18n">Search the references you want to cite in this document.</label>
+                <label for="searchField" id="searchLabel">
+                    <span class="i18n when-empty">Search the references you want to cite in this document.</span>
+                    <span class="i18n when-not-empty hidden">Select the references you want to cite in this document.</span>
+                    <span class="i18n when-started hidden">You see sources from My library, use the search to see others.</span>
+                </label>
                 <div id="searchWrapper">
                     <div id="librarySelectList"></div>
                     <input id="searchField" autocomplete="off" class="i18n" type="text"

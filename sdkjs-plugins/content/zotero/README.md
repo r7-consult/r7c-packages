@@ -1,8 +1,8 @@
-# R7-Office Zotero plugin
+# ONLYOFFICE Zotero plugin
 
-Zotero plugin allows users to create bibliographies in R7-Office editors using Zotero service.
+Zotero plugin allows users to create bibliographies in ONLYOFFICE editors using Zotero service.
 
-The plugin is pre-installed in R7-Office Workspace (both Enterprise and Community Edition), R7-Office cloud service, and R7-Office Personal. It can also be installed to Document Server and desktop editors manually.
+The plugin is pre-installed in ONLYOFFICE Workspace (both Enterprise and Community Edition), ONLYOFFICE cloud service, and ONLYOFFICE Personal. It can also be installed to Document Server and desktop editors manually.
 
 ## How to use
 
@@ -14,7 +14,7 @@ The plugin is pre-installed in R7-Office Workspace (both Enterprise and Communit
 
 4. Press `Insert citation`.
 
-5. Press the button `Isert bibliography` to add or refresh a bibliography.
+5. Press the button `Insert bibliography` to add or refresh a bibliography.
 
 6. Press the button `Refresh` to refresh all citations and a bibliography fields into the document.
 
@@ -26,13 +26,13 @@ Please note that Zotero works only with user’s personal library associated wit
 
 Two installation ways are available:
 
-1.  Put the folder with the plugin code to R7-Office Document Server folder depending on the operating system:
+1.  Put the folder with the plugin code to ONLYOFFICE Document Server folder depending on the operating system:
 
-    For Linux - `/var/www/R7-Office/documentserver/sdkjs-plugins/`.
+    For Linux - `/var/www/onlyoffice/documentserver/sdkjs-plugins/`.
 
-    For Windows - `%ProgramFiles%\R7-Office\DocumentServer\sdkjs-plugins\`.
+    For Windows - `%ProgramFiles%\ONLYOFFICE\DocumentServer\sdkjs-plugins\`.
 
-    The plugins will be available to all the users users of R7-Office Document Server.
+    The plugins will be available to all the users of ONLYOFFICE Document Server.
     No service restart is required.
 
 2.  Edit the Document Server config to add the following lines:
@@ -56,7 +56,7 @@ Two installation ways are available:
         });
         ```
 
-    **Important**: when you integrate R7-Office Document Server with a 3rd-party storage, you need to use special connectors (integration apps). If you compile a connector from source code or create a new one, you can add plugins using Document Server config. If you use ready connectors (e.g. from ownCloud/Nextcloud marketplaces) adding plugins via config is not applicable.
+    **Important**: when you integrate ONLYOFFICE Document Server with a 3rd-party storage, you need to use special connectors (integration apps). If you compile a connector from source code or create a new one, you can add plugins using Document Server config. If you use ready connectors (e.g. from ownCloud/Nextcloud marketplaces) adding plugins via config is not applicable.
 
 ## How to install to desktop
 
@@ -66,7 +66,7 @@ Two installation ways are available:
 
 ## Configuration
 
-1. Find Zotero plugin in `Plugins` tab of the R7-Office Document Editor and click it.
+1. Find Zotero plugin in `Plugins` tab of the ONLYOFFICE Document Editor and click it.
 
 2. Log in to your Zotero account.
 
@@ -110,7 +110,7 @@ npm run watch
 For CentOS users with SELinx enabled, after copying the src folder to sdkjs-plugins, plugins may not work due to the variable file security context. To restore the rights, use the following command:
 
 ```
-sudo restorecon -Rv /var/www/R7-Office/documentserver/sdkjs-plugins/
+sudo restorecon -Rv /var/www/onlyoffice/documentserver/sdkjs-plugins/
 ```
 
 After that restart the services:
@@ -122,7 +122,3 @@ sudo supervisorctl restart ds:docservice
 ## User feedback and support
 
 To ask questions and share feedback, use Issues in this repository.
-
-
----
-создано при поддержке [https://r7-consult.ru/](https://r7-consult.ru/)

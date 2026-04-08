@@ -1,0 +1,229 @@
+/**
+ * TASK-105-IMP: Dark Theme Overrides
+ * Architecture: 2-Level Compliance (Level 2 - Theme Overrides)
+ *
+ * Overrides light theme defaults for dark mode
+ * Based on: vscode-theme.css dark-plus theme
+ */
+
+:root[data-vscode-theme="dark-plus"],
+:root[data-vscode-theme="vs-dark"],
+.theme-type-dark {
+  /* =========================================================================
+     BACKGROUND COLORS
+     ========================================================================= */
+
+  --color-bg-primary: #1E1E1E;
+  --color-bg-secondary: #252526;
+  --color-bg-tertiary: #2D2D30;
+  --color-bg-quaternary: #2B2B2B;
+  --color-bg-overlay: rgba(0, 0, 0, 0.8);
+  --color-bg-hover: #2A2D2E;
+  --color-bg-active: #3E3E42;
+  --color-bg-disabled: #2D2D30;
+
+  /* =========================================================================
+     TEXT COLORS
+     ========================================================================= */
+
+  --color-text-primary: #CCCCCC;
+  --color-text-secondary: #E0E0E0;
+  --color-text-tertiary: #AAA;
+  --color-text-quaternary: #858585;
+  --color-text-disabled: #656565;
+  --color-text-link: #4FC1FF;
+  --color-text-inverse: #000000;
+
+  /* =========================================================================
+     BORDER COLORS
+     ========================================================================= */
+
+  --color-border-default: #3E3E42;
+  --color-border-light: #555;
+  --color-border-medium: #3C3C3C;
+  --color-border-dark: #666;
+  --color-border-focus: #007ACC;
+  --color-border-hover: #666;
+
+  /* =========================================================================
+     STATE COLORS
+     ========================================================================= */
+
+  --color-state-hover-bg: #3F3F46;
+  --color-state-hover-light: #505050;
+  --color-state-active-bg: #094771;
+  --color-state-active-dark: #404040;
+  --color-state-selected-bg: #094771;
+  --color-state-selected-text: #ffffff;
+
+  /* =========================================================================
+     SEMANTIC COLORS
+     ========================================================================= */
+
+  --color-success-primary: #40c463;
+  --color-success-light: rgba(64, 196, 99, 0.1);
+  --color-success-dark: #40c463;
+  --color-warning-primary: #ffcc00;
+  --color-warning-light: rgba(255, 204, 0, 0.1);
+  --color-error-primary: #f48771;
+  --color-error-light: rgba(244, 135, 113, 0.1);
+  --color-info-primary: #4fc1ff;
+  --color-info-light: rgba(79, 193, 255, 0.1);
+
+  /* =========================================================================
+     VBA COLORS (Dark Mode)
+     ========================================================================= */
+
+  --color-vba-bg: #1A3A52;
+  --color-vba-border: #4FC3F7;
+  --color-vba-text: #81D4FA;
+  --color-vba-hover: #1F4A66;
+  --color-vba-banner-bg: rgba(79, 195, 247, 0.15);
+
+  /* =========================================================================
+     BUTTON COLORS
+     ========================================================================= */
+
+  --color-button-default-bg: rgba(255, 255, 255, 0.1);
+  --color-button-default-border: rgba(255, 255, 255, 0.3);
+  --color-button-default-text: #e0e0e0;
+  --color-button-default-hover-bg: rgba(255, 255, 255, 0.15);
+  --color-button-default-active-bg: rgba(255, 255, 255, 0.05);
+
+  --color-button-primary-bg: #0E639C;
+  --color-button-primary-hover: #1177BB;
+  --color-button-primary-active: #094771;
+
+  --color-button-success-bg: #4CAF50;
+  --color-button-success-hover: #45a049;
+
+  --color-button-danger-bg: #f44336;
+  --color-button-danger-hover: #da190b;
+
+  /* =========================================================================
+     CONSOLE COLORS
+     ========================================================================= */
+
+  --color-console-bg: #1E1E1E;
+  --color-console-text: #CCCCCC;
+  --color-console-border: #3C3C3C;
+  --color-console-header-bg: #252526;
+  --color-console-log: #CCCCCC;
+  --color-console-info: #4fc1ff;
+  --color-console-warn: #ffcc00;
+  --color-console-error: #f48771;
+
+  /* =========================================================================
+     SPLITTER COLORS
+     ========================================================================= */
+
+  --color-splitter-border: rgba(255, 255, 255, 0.15);
+  --color-splitter-hover: rgba(255, 255, 255, 0.05);
+  --color-splitter-active: rgba(255, 255, 255, 0.08);
+
+  /* =========================================================================
+     VSCODE THEME TOKENS (Dark Plus)
+     ========================================================================= */
+
+  /* Common Tokens */
+  --vscode-foreground: #cccccc;
+  --vscode-focusBorder: #007acc;
+  --vscode-widget-border: #303031;
+  --vscode-selection-background: #264f78;
+
+  /* Activity Bar */
+  --vscode-activityBar-background: #333333;
+  --vscode-activityBar-foreground: #ffffff;
+  --vscode-activityBar-inactiveForeground: #b3b3b3;
+  --vscode-activityBar-border: #2e2e2e;
+  --vscode-activityBarBadge-background: #007acc;
+  --vscode-activityBarBadge-foreground: #ffffff;
+  --vscode-activityBar-activeBorder: #007acc;
+  --vscode-activityBar-hoverBackground: #3c3c3c;
+  --vscode-activityBar-activeBackground: #2a2d2e;
+  --vscode-activityBar-dropBorder: #007acc;
+
+  /* Side Bar */
+  --vscode-sideBar-background: #252526;
+  --vscode-sideBar-foreground: #cccccc;
+  --vscode-sideBar-border: #2e2e2e;
+  --vscode-sideBar-dropBackground: #383b3d;
+  --vscode-sideBarTitle-foreground: #bbbbbb;
+  --vscode-sideBarSectionHeader-background: #80808033;
+  --vscode-sideBarSectionHeader-foreground: #cccccc;
+  --vscode-sideBarSectionHeader-border: #2e2e2e;
+
+  /* Editor */
+  --vscode-editor-background: #1e1e1e;
+  --vscode-editor-foreground: #d4d4d4;
+  --vscode-editorLineNumber-foreground: #858585;
+  --vscode-editorLineNumber-activeForeground: #c6c6c6;
+  --vscode-editorCursor-foreground: #ffffff;
+  --vscode-editor-selectionBackground: #264f78;
+  --vscode-editor-lineHighlightBackground: #2a2d2e;
+  --vscode-editor-lineHighlightBorder: #282828;
+
+  /* Editor Groups & Tabs */
+  --vscode-editorGroupHeader-tabsBackground: #252526;
+  --vscode-editorGroupHeader-tabsBorder: #252526;
+  --vscode-tab-activeBackground: #1e1e1e;
+  --vscode-tab-inactiveBackground: #2d2d2d;
+  --vscode-tab-activeForeground: #ffffff;
+  --vscode-tab-inactiveForeground: #969696;
+  --vscode-tab-border: #252526;
+  --vscode-tab-activeBorder: transparent;
+  --vscode-tab-activeBorderTop: #007acc;
+  --vscode-tab-hoverBackground: #1e1e1e80;
+
+  /* Status Bar */
+  --vscode-statusBar-background: #007acc;
+  --vscode-statusBar-foreground: #ffffff;
+  --vscode-statusBar-border: #007acc;
+  --vscode-statusBar-noFolderBackground: #68217a;
+  --vscode-statusBar-hoverBackground: #006bb3;
+  --vscode-statusBarItem-prominentBackground: #00000080;
+
+  /* Lists (Tree View) */
+  --vscode-list-activeSelectionBackground: #094771;
+  --vscode-list-activeSelectionForeground: #ffffff;
+  --vscode-list-hoverBackground: #2a2d2e;
+  --vscode-list-focusBackground: #062f4a;
+  --vscode-list-inactiveSelectionBackground: #37373d;
+
+  /* Buttons */
+  --vscode-button-background: #0e639c;
+  --vscode-button-foreground: #ffffff;
+  --vscode-button-hoverBackground: #1177bb;
+  --vscode-button-border: #0e639c;
+  --vscode-button-secondaryBackground: #3a3d41;
+  --vscode-button-secondaryForeground: #ffffff;
+  --vscode-button-secondaryHoverBackground: #45494e;
+
+  /* Inputs */
+  --vscode-input-background: #3C3C3C;
+  --vscode-input-foreground: #CCCCCC;
+  --vscode-input-border: #3E3E42;
+
+  /* Menus */
+  --vscode-menu-background: #252526;
+  --vscode-menu-foreground: #cccccc;
+  --vscode-menu-border: #3c3c3c;
+  --vscode-menu-selectionBackground: #094771;
+  --vscode-menu-selectionForeground: #ffffff;
+
+  /* Breadcrumbs */
+  --vscode-breadcrumb-foreground: #c5c5c5;
+  --vscode-breadcrumb-focusForeground: #ffffff;
+
+  /* Scrollbars */
+  --vscode-scrollbarSlider-background: rgba(121, 121, 121, 0.4);
+  --vscode-scrollbarSlider-activeBackground: rgba(191, 191, 191, 0.4);
+  --vscode-scrollbarSlider-hoverBackground: rgba(191, 191, 191, 0.7);
+
+  /* Description text */
+  --vscode-descriptionForeground: #858585;
+
+  /* Shadows (darker for dark theme) */
+  --shadow-focus-left: inset 2px 0 8px rgba(79, 193, 255, 0.25);
+  --shadow-focus-right: inset -2px 0 8px rgba(79, 193, 255, 0.25);
+}

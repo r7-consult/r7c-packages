@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>R7C Macro Recorder</title>
+  <script src="vendor/r7/plugins.js"></script>
+  <script src="vendor/r7/plugins-ui.js"></script>
+  <link rel="stylesheet" href="vendor/r7/plugins.css">
+  <link rel="stylesheet" href="styles/r7c-design-tokens.css">
+  <link rel="stylesheet" href="styles/r7c-theme-dark.css">
+  <link rel="stylesheet" href="styles/main.css">
+</head>
+<body class="theme-type-dark">
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="topbar__title-block">
+        <img class="topbar__logo" src="resources/icons/dark/icon.svg" alt="Macro Recorder">
+        <div class="topbar__copy">
+          <h1 class="topbar__title">Macro Recorder</h1>
+        </div>
+      </div>
+      <div class="topbar__actions">
+        <span class="topbar__recording-status" id="recordingStatusText">Выделение: n/a</span>
+        <button class="record-button" id="recordMacroButton" type="button">Запись</button>
+        <button class="run-button" id="runMacroButton" type="button">
+          <span class="run-button__icon">▶</span>
+          <span>Запустить</span>
+        </button>
+      </div>
+    </header>
+
+    <main class="workspace">
+      <section class="code-shell">
+        <pre class="code-view" id="codeView">Запись ещё не создана.</pre>
+      </section>
+    </main>
+  </div>
+
+  <script src="scripts/r7-bridge.js"></script>
+  <script src="scripts/store.js"></script>
+  <script src="scripts/recorder.js"></script>
+  <script src="scripts/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+{
+  "name": "R7C Macro Recorder",
+  "offered": "ООО \"Датаконс\"",
+  "guid": "asc.{12b9e2f8-6d68-4e9e-8b8f-bf23f34cc401}",
+  "version": "0.1.0",
+  "variations": [
+    {
+      "description": "Record spreadsheet actions and replay the latest scenario in R7.",
+      "descriptionLocale": {
+        "ru": "Записывайте действия в таблице и повторно запускайте последний сценарий в R7."
+      },
+      "url": "index.html",
+      "icons": [
+        "resources/icons/light/icon.svg",
+        "resources/icons/dark/icon.svg"
+      ],
+      "isViewer": false,
+      "EditorsSupport": [
+        "cell"
+      ],
+      "isVisual": true,
+      "isModal": false,
+      "isInsideMode": false,
+      "isUpdateOleOnResize": true,
+      "size": [
+        760,
+        520
+      ],
+      "buttons": [],
+      "store": {
+        "background": {
+          "light": "linear-gradient(136.1deg, #FF8E3D -1.99%, #FF6F3D 100%)",
+          "dark": "linear-gradient(136.1deg, #FF8E3D -1.99%, #FF6F3D 100%)"
+        },
+        "icons": {
+          "light": "resources/icons/light/icon.png",
+          "dark": "resources/icons/dark/icon.png"
+        },
+        "categories": [
+          "specAbilities",
+          "work",
+          "recommended",
+          "devTools"
+        ]
+      }
+    }
+  ]
+}

@@ -1,1 +1,1048 @@
-const DEFAULT_TIMEOUT=0x7530,DEFAULT_MAX_TOKENS=0x1000,USE_ASC_SIMPLE_REQUEST=![],isLocalDesktop=(function(){if(window['navigator']&&window['navigator']['userAgent']['toLowerCase']()['indexOf']('ascdesktopeditor')<0x0)return![];if(window['location']&&window['location']['protocol']==='file:')return!![];if(window['document']&&window['document']['currentScript']&&window['document']['currentScript']['src']['indexOf']('file:///')===0x0)return!![];return![];}()),isLocalDesktopForNotStreamedRequests=(function(){if(isLocalDesktop)return!![];if(window['location']&&window['location']['protocol']==='onlyoffice:')return!![];return![];}());isLocalDesktopForNotStreamedRequests?USE_ASC_SIMPLE_REQUEST?console['log']('[AI\x20Engine]\x20Desktop\x20mode:\x20using\x20AscSimpleRequest\x20for\x20CORS\x20bypass'):console['log']('[AI\x20Engine]\x20Desktop\x20mode:\x20using\x20fetch()\x20with\x20polyfill\x20(AscSimpleRequest\x20disabled)'):console['log']('[AI\x20Engine]\x20Online\x20mode\x20detected\x20-\x20using\x20standard\x20fetch()\x20API');class AIProvider{constructor(_0x227b09,_0x1933c6,_0x9a25f7='v1'){this['name']=_0x227b09,this['baseUrl']=_0x1933c6,this['apiVersion']=_0x9a25f7,this['apiKey']=null,this['timeout']=DEFAULT_TIMEOUT;}['setApiKey'](_0x4ddf9c){this['apiKey']=_0x4ddf9c;}['getApiKey'](){if(this['apiKey'])return this['apiKey'];if(window['AIStorage']){const _0x34580d=this['name']['toLowerCase']()['replace']('-','');return window['AIStorage']['getApiKey'](_0x34580d);}return null;}['hasApiKey'](){return this['getApiKey']()!==null;}['buildUrl'](_0x4d93ff){const _0x2b5967=(this['baseUrl']||'')['replace'](/\/+$/,''),_0x51bd17=typeof _0x4d93ff==='string'?_0x4d93ff:'',_0xe6530b=_0x51bd17?_0x51bd17['indexOf']('/')===0x0?_0x51bd17:'/'+_0x51bd17:'',_0x4d370c=this['apiVersion']==null?'':String(this['apiVersion'])['replace'](/^\/+|\/+$/g,'');if(!_0x4d370c)return''+_0x2b5967+_0xe6530b;return _0x2b5967+'/'+_0x4d370c+_0xe6530b;}['buildHeaders'](){const _0x4249b7={'Content-Type':'application/json;\x20charset=utf-8','Accept':'application/json'},_0x4a3155=this['getApiKey']();return _0x4a3155&&(_0x4249b7['Authorization']='Bearer\x20'+_0x4a3155),_0x4249b7;}['buildChatRequest'](_0x54c03e,_0x5b45aa={}){let _0x5de4c4=DEFAULT_MAX_TOKENS,_0x1978ef=0.7;try{if(typeof window!=='undefined'&&window['AIConfiguration']){const _0x4a1c9b=window['AIConfiguration']['get']?.('defaultMaxTokens');typeof _0x4a1c9b==='number'&&Number['isFinite'](_0x4a1c9b)&&_0x4a1c9b>0x0&&(_0x5de4c4=_0x4a1c9b);const _0x10ea02=window['AIConfiguration']['get']?.('defaultTemperature');typeof _0x10ea02==='number'&&Number['isFinite'](_0x10ea02)&&(_0x1978ef=_0x10ea02);}}catch(_0x1c5466){}const _0x15dd30={'model':_0x5b45aa['model']||'gpt-4','messages':_0x54c03e,'max_tokens':_0x5b45aa['max_tokens']||_0x5de4c4,'temperature':typeof _0x5b45aa['temperature']==='number'?_0x5b45aa['temperature']:_0x1978ef};return{..._0x15dd30,..._0x5b45aa};}['_createAbortContext'](_0x48d6ba){const _0x4e0647={'controller':new AbortController(),'abortReason':'timeout','timeoutId':null,'detachPluginAbort':null,'detachExternalAbort':null};_0x4e0647['timeoutId']=setTimeout(()=>{_0x4e0647['abortReason']='timeout',_0x4e0647['controller']['abort']();},this['timeout']);const _0x241069=window['AbortUtils']?.['getPluginAbortSignal']?.()||null;return _0x4e0647['detachPluginAbort']=window['AbortUtils']?.['linkAbortController']?window['AbortUtils']['linkAbortController'](_0x4e0647['controller'],_0x241069,{'onAbort':()=>{_0x4e0647['abortReason']='shutdown';}}):null,_0x4e0647['detachExternalAbort']=window['AbortUtils']?.['linkAbortController']&&_0x48d6ba?window['AbortUtils']['linkAbortController'](_0x4e0647['controller'],_0x48d6ba,{'onAbort':()=>{_0x4e0647['abortReason']!=='shutdown'&&(_0x4e0647['abortReason']='external');}}):null,_0x4e0647;}['_throwTransportError'](_0x20cc08,_0x3d895b){if(_0x20cc08&&_0x20cc08['name']==='AbortError'){if(_0x3d895b==='shutdown')throw new window['AIErrors']['APIConnectionError']('['+this['name']+']\x20Request\x20aborted\x20during\x20plugin\x20shutdown.');if(_0x3d895b==='external')throw new window['AIErrors']['APIConnectionError']('['+this['name']+']\x20Request\x20aborted.');throw new window['AIErrors']['APIConnectionError']('['+this['name']+']\x20Request\x20timeout\x20after\x20'+this['timeout']+'ms.\x20Please\x20check\x20your\x20internet\x20connection.');}if(_0x20cc08 instanceof window['AIErrors']['AIError'])throw _0x20cc08;throw new window['AIErrors']['APIConnectionError']('['+this['name']+']\x20Network\x20error:\x20'+_0x20cc08['message']+'.\x20Please\x20check\x20your\x20internet\x20connection.');}async['sendRequest'](_0x3881d4,_0x37d77b,_0x1323ad={}){if(!this['hasApiKey']())throw new window['AIErrors']['AuthenticationError']('['+this['name']+']\x20API\x20key\x20not\x20configured.\x20Please\x20set\x20your\x20API\x20key\x20in\x20settings.');const _0x10e348=this['__aiAdvancedLogging']===!![];if(_0x10e348)try{const _0x513da4=this['buildHeaders'](),_0x244e80={..._0x513da4};_0x244e80['Authorization']&&(_0x244e80['Authorization']='***');let _0x43c4a9=null;if(_0x37d77b&&typeof _0x37d77b==='object'){const _0x464f4b=Array['isArray'](_0x37d77b['messages'])?_0x37d77b['messages']['map'](_0x115916=>({'role':_0x115916&&_0x115916['role'],'length':typeof _0x115916?.['content']==='string'?_0x115916['content']['length']:0x0})):undefined;_0x43c4a9={'model':_0x37d77b['model'],'temperature':_0x37d77b['temperature'],'max_tokens':_0x37d77b['max_tokens'],'messages':_0x464f4b};}const _0x49aa98={'provider':this['name'],'url':_0x3881d4,'connectionId':this['__aiConnectionId']||null,'headers':_0x244e80,'bodySummary':_0x43c4a9},_0x3e5e73=this['name']==='GitHub'?'GitHubAI':'AIProvider';window['debug']&&typeof window['debug']['debug']==='function'?window['debug']['debug'](_0x3e5e73,'advanced-request',_0x49aa98):console['debug']('['+_0x3e5e73+']\x20advanced-request',_0x49aa98);}catch(_0x47a37d){}if(USE_ASC_SIMPLE_REQUEST&&isLocalDesktopForNotStreamedRequests&&typeof window['AscSimpleRequest']!=='undefined')return new Promise((_0xd8dafb,_0x46c7bb)=>{const _0x16f6b3=setTimeout(()=>{_0x46c7bb(new window['AIErrors']['APIConnectionError']('['+this['name']+']\x20Request\x20timeout\x20after\x20'+this['timeout']+'ms.\x20Please\x20check\x20your\x20internet\x20connection.'));},this['timeout']);console['log']('[AI\x20Engine]\x20AscSimpleRequest\x20-\x20URL:',_0x3881d4),console['log']('[AI\x20Engine]\x20AscSimpleRequest\x20-\x20Headers:',this['buildHeaders']()),console['log']('[AI\x20Engine]\x20AscSimpleRequest\x20-\x20Body\x20object:',_0x37d77b);const _0x551b09=_0x37d77b?JSON['stringify'](_0x37d77b):'';console['log']('[AI\x20Engine]\x20AscSimpleRequest\x20-\x20Body\x20string:',_0x551b09),console['log']('[AI\x20Engine]\x20AscSimpleRequest\x20-\x20Body\x20string\x20length:',_0x551b09['length']);try{window['AscSimpleRequest']['createRequest']({'url':_0x3881d4,'method':'POST','headers':this['buildHeaders'](),'body':_0x551b09,'complete':(_0x32a5cc,_0x5ac5f8)=>{clearTimeout(_0x16f6b3);try{const _0x532517=_0x32a5cc&&_0x32a5cc['responseText']!=null?String(_0x32a5cc['responseText']):'',_0x3749d3=JSON['parse'](_0x532517);if(_0x3749d3['error']){const _0x4135f8=_0x3749d3['error']['message']||_0x3749d3['error']['code']||'Unknown\x20API\x20error',_0x56e6a3=_0x3749d3['error']['type']||'api_error';if(_0x56e6a3==='insufficient_quota'||_0x5ac5f8===0x1ad)_0x46c7bb(new window['AIErrors']['RateLimitError']('['+this['name']+']\x20'+_0x4135f8,null,_0x56e6a3));else{if(_0x5ac5f8===0x191)_0x46c7bb(new window['AIErrors']['AuthenticationError']('['+this['name']+']\x20'+_0x4135f8));else _0x5ac5f8===0x190?_0x46c7bb(new window['AIErrors']['InvalidRequestError']('['+this['name']+']\x20'+_0x4135f8)):_0x46c7bb(new window['AIErrors']['AIError']('['+this['name']+']\x20'+_0x4135f8,_0x5ac5f8));}return;}_0xd8dafb(_0x3749d3);}catch(_0x278283){console['error']('[AI\x20Engine][AscSimpleRequest]\x20JSON\x20parse\x20failed.\x20Status:',_0x5ac5f8,'Raw:',_0x32a5cc&&_0x32a5cc['responseText']),_0x46c7bb(new window['AIErrors']['APIConnectionError']('['+this['name']+']\x20Failed\x20to\x20parse\x20response:\x20'+_0x278283['message']));}},'error':(_0x5b2b8c,_0x136770,_0xf8d66c)=>{clearTimeout(_0x16f6b3);const _0x329a6a=_0x5b2b8c['statusCode']===-0x66?0x194:_0x5b2b8c['statusCode'];_0x46c7bb(new window['AIErrors']['APIConnectionError']('['+this['name']+']\x20Request\x20failed\x20(status\x20'+_0x329a6a+'):\x20'+(_0xf8d66c||'Internal\x20error')));}});}catch(_0x4a23f6){clearTimeout(_0x16f6b3),_0x46c7bb(new window['AIErrors']['APIConnectionError']('['+this['name']+']\x20Failed\x20to\x20create\x20request:\x20'+_0x4a23f6['message']));}});const _0x2311ba=this['_createAbortContext'](_0x1323ad&&_0x1323ad['signal']),_0x289638=_0x2311ba['controller'];try{const _0x1b9b6a=await fetch(_0x3881d4,{'method':'POST','headers':this['buildHeaders'](),'body':JSON['stringify'](_0x37d77b),'signal':_0x289638['signal']});clearTimeout(_0x2311ba['timeoutId']);try{_0x2311ba['detachPluginAbort']?.();}catch(_0x4ec752){}try{_0x2311ba['detachExternalAbort']?.();}catch(_0x555f83){}const _0x2101ef=_0x1b9b6a['headers']['get']('x-request-id')||_0x1b9b6a['headers']['get']('cf-ray')||_0x1b9b6a['headers']['get']('request-id')||null;if(!_0x1b9b6a['ok']){const _0x59787f=await _0x1b9b6a['text']();let _0x1b8076=null;try{_0x1b8076=JSON['parse'](_0x59787f);}catch(_0x427350){}const _0x574a92=_0x1b8076?.['error']?.['message']||_0x1b8076?.['message']||_0x59787f||'Unknown\x20error';switch(_0x1b9b6a['status']){case 0x191:throw new window['AIErrors']['AuthenticationError']('['+this['name']+']\x20Authentication\x20failed:\x20'+_0x574a92,_0x2101ef);case 0x193:throw new window['AIErrors']['PermissionDeniedError']('['+this['name']+']\x20Permission\x20denied:\x20'+_0x574a92,_0x2101ef);case 0x194:throw new window['AIErrors']['NotFoundError']('['+this['name']+']\x20Resource\x20not\x20found:\x20'+_0x574a92,_0x2101ef);case 0x199:throw new window['AIErrors']['ConflictError']('['+this['name']+']\x20Conflict:\x20'+_0x574a92,_0x2101ef);case 0x1a6:throw new window['AIErrors']['UnprocessableEntityError']('['+this['name']+']\x20Unprocessable\x20entity:\x20'+_0x574a92,_0x2101ef);case 0x1ad:const _0x2c58b1=_0x1b8076?.['error']?.['type']||'rate_limit';throw new window['AIErrors']['RateLimitError']('['+this['name']+']\x20Rate\x20limit\x20exceeded:\x20'+_0x574a92,_0x2101ef,_0x2c58b1);case 0x190:throw new window['AIErrors']['InvalidRequestError']('['+this['name']+']\x20Invalid\x20request:\x20'+_0x574a92,_0x2101ef);case 0x1f4:case 0x1f6:case 0x1f7:case 0x1f8:throw new window['AIErrors']['InternalServerError']('['+this['name']+']\x20Service\x20error:\x20'+_0x574a92,_0x1b9b6a['status'],_0x2101ef);default:throw new window['AIErrors']['AIError']('['+this['name']+']\x20API\x20error\x20('+_0x1b9b6a['status']+'):\x20'+_0x574a92,_0x1b9b6a['status'],_0x2101ef);}}return await _0x1b9b6a['json']();}catch(_0x47c6bc){clearTimeout(_0x2311ba['timeoutId']);try{_0x2311ba['detachPluginAbort']?.();}catch(_0x5a2e86){}try{_0x2311ba['detachExternalAbort']?.();}catch(_0x250e22){}this['_throwTransportError'](_0x47c6bc,_0x2311ba['abortReason']);}}async['sendMessage'](_0x24b8eb,_0x123b56={}){const _0x6da213=_0x123b56&&_0x123b56['signal']?_0x123b56['signal']:null,_0x2c4ba9={..._0x123b56};Object['prototype']['hasOwnProperty']['call'](_0x2c4ba9,'signal')&&delete _0x2c4ba9['signal'];const _0x22e5bc=typeof window!=='undefined'?window['isLocalDesktopForNotStreamedRequests']===!![]:![],_0x380cc6=typeof window!=='undefined'&&window['AIConfiguration']?window['AIConfiguration']['getUseResponsesAPI']():!![],_0x2533cd=typeof window!=='undefined'&&window['AIConfiguration']?window['AIConfiguration']['getResponsesDesktopStrategy']():'fallback',_0x433976=typeof window!=='undefined'&&window['AIConfiguration']?window['AIConfiguration']['getEnableStreaming']():![];let _0x44b0bf=_0x123b56&&_0x123b56['model']||(typeof window!=='undefined'&&window['AIConfiguration']?window['AIConfiguration']['getDefaultModel']('openai'):'gpt-4o-mini');try{if(typeof window!=='undefined'&&window['AIModelNormalizer']){const _0x51ee1f=window['AIModelNormalizer']['normalize'](_0x44b0bf,'openai');if(_0x51ee1f&&_0x51ee1f['canonical'])_0x44b0bf=_0x51ee1f['canonical'];}}catch(_0x213f2c){}const _0x15af25=typeof _0x44b0bf==='string'&&/codex/i['test'](_0x44b0bf),_0x533681=_0x380cc6&&(!_0x22e5bc||_0x2533cd==='nonstream'),_0x2c4735=_0x533681?'/responses':'/chat/completions',_0x2b9b3e=this['buildUrl'](_0x2c4735);let _0x130e9f;if(_0x2c4735==='/responses'&&typeof window!=='undefined'&&window['ResponsesCompat']){const _0x5367b7={..._0x2c4ba9};!_0x22e5bc?_0x5367b7['stream']=_0x433976===!![]:_0x5367b7['stream']=![],!_0x5367b7['model']&&(_0x5367b7['model']=_0x44b0bf),_0x130e9f=window['ResponsesCompat']['buildPayload'](_0x24b8eb,_0x5367b7);}else{const _0x2fc5d2={..._0x2c4ba9,'_endpoint':_0x2c4735};!_0x2fc5d2['model']&&(_0x2fc5d2['model']=_0x44b0bf),_0x130e9f=this['buildChatRequest'](_0x24b8eb,_0x2fc5d2);}if(_0x2c4735==='/responses'&&!_0x22e5bc&&_0x433976===!![]&&typeof window!=='undefined'&&window['ResponsesCompat'])try{return await this['_sendResponsesStreaming'](_0x2b9b3e,_0x130e9f,null,_0x6da213);}catch(_0x592d5f){const _0xf5535e=this['buildUrl']('/chat/completions'),_0x5b62db=this['buildChatRequest'](_0x24b8eb,{..._0x2c4ba9,'_endpoint':'/chat/completions'}),_0x690ff=await this['sendRequest'](_0xf5535e,_0x5b62db,{'signal':_0x6da213});return this['extractResponse'](_0x690ff);}try{const _0x3464a4=await this['sendRequest'](_0x2b9b3e,_0x130e9f,{'signal':_0x6da213});if(_0x2c4735==='/responses'&&typeof window!=='undefined'&&window['ResponsesCompat'])return window['ResponsesCompat']['extractText'](_0x3464a4);return this['extractResponse'](_0x3464a4);}catch(_0x2717b1){if(_0x2c4735==='/responses'&&typeof window!=='undefined'&&window['ResponsesCompat']){try{const _0x41976e=window['ResponsesCompat']['buildFallbackPayload'](_0x24b8eb,{..._0x2c4ba9||{},'stream':![]}),_0x3287b1=await this['sendRequest'](_0x2b9b3e,_0x41976e,{'signal':_0x6da213});return window['ResponsesCompat']['extractText'](_0x3287b1);}catch(_0x10ba27){}try{const _0x118f82=this['buildUrl']('/chat/completions'),_0x514838=this['buildChatRequest'](_0x24b8eb,{..._0x2c4ba9,'_endpoint':'/chat/completions'}),_0x3981b7=await this['sendRequest'](_0x118f82,_0x514838,{'signal':_0x6da213});return this['extractResponse'](_0x3981b7);}catch(_0x4bb757){throw _0x4bb757;}}throw _0x2717b1;}}async['_sendResponsesStreaming'](_0x209591,_0x521b33,_0x17f952,_0x3dbfb5,_0x2900ba=![]){const _0x96822a=this['_createAbortContext'](_0x3dbfb5),_0x500335=_0x96822a['controller'];let _0x74cd9=null;try{const _0x2de674=await fetch(_0x209591,{'method':'POST','headers':this['buildHeaders'](),'body':JSON['stringify'](_0x521b33),'signal':_0x500335['signal']});if(!_0x2de674['ok']){const _0x5e9010=await _0x2de674['text']();let _0x23e877=null;try{_0x23e877=JSON['parse'](_0x5e9010);}catch(_0x4fc93a){}const _0x1799c5=_0x23e877?.['error']?.['message']||_0x23e877?.['message']||_0x5e9010||'Unknown\x20error';switch(_0x2de674['status']){case 0x191:throw new window['AIErrors']['AuthenticationError']('['+this['name']+']\x20Authentication\x20failed:\x20'+_0x1799c5);case 0x193:throw new window['AIErrors']['PermissionDeniedError']('['+this['name']+']\x20Permission\x20denied:\x20'+_0x1799c5);case 0x194:throw new window['AIErrors']['NotFoundError']('['+this['name']+']\x20Resource\x20not\x20found:\x20'+_0x1799c5);case 0x199:throw new window['AIErrors']['ConflictError']('['+this['name']+']\x20Conflict:\x20'+_0x1799c5);case 0x1a6:throw new window['AIErrors']['UnprocessableEntityError']('['+this['name']+']\x20Unprocessable\x20entity:\x20'+_0x1799c5);case 0x1ad:throw new window['AIErrors']['RateLimitError']('['+this['name']+']\x20Rate\x20limit\x20exceeded:\x20'+_0x1799c5);case 0x1f4:case 0x1f6:case 0x1f7:case 0x1f8:throw new window['AIErrors']['InternalServerError']('['+this['name']+']\x20Service\x20error:\x20'+_0x1799c5,_0x2de674['status']);default:throw new window['AIErrors']['AIError']('['+this['name']+']\x20API\x20error\x20('+_0x2de674['status']+'):\x20'+_0x1799c5,_0x2de674['status']);}}_0x74cd9=_0x2de674['body']['getReader']();const _0x5d3aa8=new TextDecoder();let _0x5c8b32='';const _0x23ecc1=window['ResponsesCompat']['createAccumulator']();while(!![]){const {done:_0x33b9c6,value:_0x4599f4}=await _0x74cd9['read']();if(_0x33b9c6)break;_0x5c8b32+=_0x5d3aa8['decode'](_0x4599f4,{'stream':!![]});let _0x5d082b;while((_0x5d082b=_0x5c8b32['indexOf']('\x0a\x0a'))!==-0x1){const _0x3d021d=_0x5c8b32['slice'](0x0,_0x5d082b);_0x5c8b32=_0x5c8b32['slice'](_0x5d082b+0x2);const _0x2b00e4=_0x3d021d['split']('\x0a');for(const _0x5133c4 of _0x2b00e4){if(!_0x5133c4['startsWith']('data:\x20'))continue;const _0x31cae7=_0x5133c4['slice'](0x6)['trim']();if(!_0x31cae7)continue;if(_0x31cae7==='[DONE]')break;try{const _0x6407f7=JSON['parse'](_0x31cae7);if(_0x6407f7&&_0x6407f7['type']==='response.output_text.delta'&&typeof _0x6407f7['delta']==='string'){if(typeof _0x17f952==='function')_0x17f952(_0x6407f7['delta']);}window['ResponsesCompat']['accumulateEvent'](_0x6407f7,_0x23ecc1);}catch(_0x134ec){}}}}clearTimeout(_0x96822a['timeoutId']);try{_0x96822a['detachPluginAbort']?.();}catch(_0x567910){}try{_0x96822a['detachExternalAbort']?.();}catch(_0x4fbc30){}try{await _0x74cd9['releaseLock']?.();}catch(_0x6f1711){}return _0x2900ba?_0x23ecc1:_0x23ecc1['text']||'';}catch(_0x5861c4){clearTimeout(_0x96822a['timeoutId']);try{_0x96822a['detachPluginAbort']?.();}catch(_0x4e07f0){}try{_0x96822a['detachExternalAbort']?.();}catch(_0x9d34ae){}try{await _0x74cd9?.['cancel']();}catch(_0x45812b){}this['_throwTransportError'](_0x5861c4,_0x96822a['abortReason']);}}async['sendMessageStream'](_0x2dc89c,_0x3f9e4f={},_0x4be0a1){const _0x290b3f=_0x3f9e4f&&_0x3f9e4f['signal']?_0x3f9e4f['signal']:null,_0x3abb84={..._0x3f9e4f};Object['prototype']['hasOwnProperty']['call'](_0x3abb84,'signal')&&delete _0x3abb84['signal'];const _0xc1e942=typeof window!=='undefined'?window['isLocalDesktopForNotStreamedRequests']===!![]:![],_0x16c51a=typeof window!=='undefined'&&window['AIConfiguration']?window['AIConfiguration']['getUseResponsesAPI']():!![],_0x32345e=typeof window!=='undefined'&&window['AIConfiguration']?window['AIConfiguration']['getEnableStreaming']():![];if(!_0xc1e942&&_0x16c51a&&_0x32345e&&typeof window!=='undefined'&&window['ResponsesCompat']){const _0x36deb2=this['buildUrl']('/responses'),_0x69fbc1={..._0x3abb84,'stream':!![]};!_0x69fbc1['model']&&typeof window!=='undefined'&&window['AIConfiguration']&&(_0x69fbc1['model']=window['AIConfiguration']['getDefaultModel']('openai'));const _0x1063b0=window['ResponsesCompat']['buildPayload'](_0x2dc89c,_0x69fbc1),_0x2a7279=_0x3abb84&&_0x3abb84['returnMeta']===!![];return await this['_sendResponsesStreaming'](_0x36deb2,_0x1063b0,_0x4be0a1,_0x290b3f,_0x2a7279);}return await this['sendMessage'](_0x2dc89c,{..._0x3abb84,'signal':_0x290b3f});}['extractResponse'](_0x2c9eb6){if(_0x2c9eb6['error']){const _0xd01794=_0x2c9eb6['error']['message']||_0x2c9eb6['error']['code']||'Unknown\x20API\x20error';throw new Error('['+this['name']+']\x20API\x20Error:\x20'+_0xd01794);}if(_0x2c9eb6['choices']&&_0x2c9eb6['choices']['length']>0x0){const _0x2c6521=_0x2c9eb6['choices'][0x0];if(_0x2c6521['message']&&_0x2c6521['message']['content'])return _0x2c6521['message']['content']['trim']();if(_0x2c6521['text'])return _0x2c6521['text']['trim']();}if(_0x2c9eb6['content'])return _0x2c9eb6['content']['trim']();console['error']('['+this['name']+']\x20Unexpected\x20response\x20format.\x20Response:',_0x2c9eb6);throw new Error('['+this['name']+']\x20Unexpected\x20response\x20format.\x20Check\x20console\x20for\x20details.');}['createMessages'](_0x5d5124,_0x466e85){const _0x28b521=[];return _0x5d5124&&_0x28b521['push']({'role':'system','content':_0x5d5124}),_0x28b521['push']({'role':'user','content':_0x466e85}),_0x28b521;}['extractSystemMessage'](_0x165f39,_0x56b3c5=![]){const _0x3ff9cd=_0x165f39['findIndex'](_0x11ac1e=>_0x11ac1e['role']==='system');if(_0x3ff9cd===-0x1)return'';const _0x46a21c=_0x165f39[_0x3ff9cd]['content'];return _0x56b3c5&&_0x165f39['splice'](_0x3ff9cd,0x1),_0x46a21c;}}class OpenAICompatibleChatProvider extends AIProvider{static['normalizeBaseUrl'](_0x405e7a,_0xedc8b2){const _0x33f874=_0x405e7a||{},_0x4ab52a=_0x33f874['baseUrl']||_0x33f874['baseURL'];if(typeof _0x4ab52a==='string'&&_0x4ab52a['trim']())return _0x4ab52a['trim']()['replace'](/\/+$/,'');return _0xedc8b2;}constructor(_0x3712a6,_0x2ea974,_0x55a887='v1',_0x4862e6={}){super(_0x3712a6,_0x2ea974,_0x55a887);const _0x2a6ba7=_0x4862e6||{};this['fallbackMaxTokens']=typeof _0x2a6ba7['fallbackMaxTokens']==='number'&&Number['isFinite'](_0x2a6ba7['fallbackMaxTokens'])&&_0x2a6ba7['fallbackMaxTokens']>0x0?_0x2a6ba7['fallbackMaxTokens']:DEFAULT_MAX_TOKENS;if(_0x2a6ba7['timeout'])this['timeout']=_0x2a6ba7['timeout'];else typeof window!=='undefined'&&window['AIConfiguration']&&(this['timeout']=window['AIConfiguration']['getTimeout']());try{typeof window!=='undefined'&&window['AILogger']&&window['AILogger']['info'](this['name'],'Provider\x20initialized\x20with\x20base\x20URL:\x20'+this['baseUrl']+',\x20timeout:\x20'+this['timeout']+'ms');}catch(_0x3b15c8){}}['resolveDefaultModelFromConfig'](_0x14a241,_0x2e77c6){try{if(typeof window!=='undefined'&&window['AIConfiguration']&&typeof window['AIConfiguration']['getDefaultModel']==='function'){const _0x404c9c=window['AIConfiguration']['getDefaultModel'](_0x14a241);if(_0x404c9c&&typeof _0x404c9c==='string')return _0x404c9c;}}catch(_0x36078c){}return _0x2e77c6;}['getDefaultModel'](){return this['defaultModel'];}['getAvailableModels'](){const _0x4eda5a=this['models']||{};return Object['keys'](_0x4eda5a)['map'](_0x3d9bc6=>{const _0x54f562=_0x4eda5a[_0x3d9bc6]||{};return{'id':_0x3d9bc6,'name':_0x54f562['name']||_0x3d9bc6,'maxTokens':typeof _0x54f562['maxTokens']==='number'?_0x54f562['maxTokens']:this['fallbackMaxTokens']};});}['buildChatRequest'](_0x480222,_0x561e04={}){const _0x2579fe=_0x561e04['model']||this['getDefaultModel'](),_0x25bc47=super['buildChatRequest'](_0x480222,{..._0x561e04,'model':_0x2579fe});return _0x25bc47;}async['sendMessage'](_0xf11fec,_0x3640b9={}){const _0x289eda=_0x3640b9&&_0x3640b9['signal']?_0x3640b9['signal']:null,_0x167bee={..._0x3640b9};Object['prototype']['hasOwnProperty']['call'](_0x167bee,'signal')&&delete _0x167bee['signal'];const _0x12de53=_0x167bee['model']||this['getDefaultModel'](),_0x472c11=this['buildUrl']('/chat/completions'),_0xebfe0=this['buildChatRequest'](_0xf11fec,{..._0x167bee,'model':_0x12de53}),_0x4db6ab=await this['sendRequest'](_0x472c11,_0xebfe0,{'signal':_0x289eda});return this['extractResponse'](_0x4db6ab);}async['sendMessageStream'](_0x192de1,_0x4ddebc={},_0x1cc67b){const _0x10ce06=await this['sendMessage'](_0x192de1,_0x4ddebc);if(typeof _0x1cc67b==='function'&&_0x10ce06)try{_0x1cc67b(_0x10ce06);}catch(_0x13f928){}return _0x10ce06;}}typeof window!=='undefined'&&(window['AIProvider']=AIProvider,window['OpenAICompatibleChatProvider']=OpenAICompatibleChatProvider,window['isLocalDesktop']=isLocalDesktop,window['isLocalDesktopForNotStreamedRequests']=isLocalDesktopForNotStreamedRequests);
+/*
+ * ADR References:
+ * - ADR-009-ai-vba-converter
+ * - ADR-011-openai-integration-patterns
+ * - ADR-032-plugin-ai-chat-and-settings
+ * - ADR-035-ai-agent-architecture
+ *
+ * TASK-051: AI-Powered VBA Conversion - Phase 1 (Base Provider)
+ * TASK-050: Rebuild AI Provider Using Official SDK Patterns
+ * TASK-055: OpenAI-only support (removed Claude and Gemini)
+ * ADR-009: AI-Powered VBA Conversion Architecture
+ *
+ * Base AI provider class for unified interface to OpenAI.
+ * Simplified from AI Plugin to focus on text completion for VBA conversion.
+ *
+ * External Dependencies:
+ * - Fetch API: https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API
+ * - AI Storage: ./storage.js
+ * - Fetch Polyfill: ./fetch-polyfill.js
+ * - AI Errors: ./errors.js (TASK-050)
+ *
+ * Architecture References:
+ * - ADR-008: System Role Transformation Pattern
+ * - AI Plugin: scripts/engine/providers/provider.js
+ * - OpenAI SDK: https://github.com/openai/openai-node (v6.3.0)
+ *
+ * @task_id TASK-051, TASK-050, TASK-055
+ * @adr_ref ADR-009
+ * @coding_standard Adheres to: .memory_bank/guides/coding_standards.md
+ * @history
+ *  - 2025-10-13: Created by Dev-Agent - TASK-051: Simplified base provider for VBA conversion
+ *  - 2025-10-14: Updated by Dev-Agent - TASK-050: Added error hierarchy and request ID tracking from official SDKs
+ *  - 2025-10-14: Updated by Claude - TASK-055: Removed Claude and Gemini support, OpenAI-only
+ *  - 2025-10-15: Updated by Claude - q2.log Issue #3: Added AscSimpleRequest for Desktop CORS bypass (file:// origins)
+ *  - 2025-10-15: Updated by Claude - q2.log Issue #4: Fixed JSON body formatting with null check (line 240)
+ *  - 2025-10-15: Updated by Claude - q2.log Issue #5: Changed default model to gpt-4 (API key access issue)
+ *  - 2025-10-15: Fixed by Dev - q2.log JSON parse: disable AscSimpleRequest and use fetch polyfill
+ */
+
+// =============================================================================
+// 1. IMPORTS AND DEPENDENCIES
+// =============================================================================
+// Requires: errors.js, storage.js, fetch-polyfill.js to be loaded first
+
+// =============================================================================
+// 2. CONSTANTS AND CONFIGURATION
+// =============================================================================
+
+const DEFAULT_TIMEOUT = 30000; // 30 seconds
+const DEFAULT_MAX_TOKENS = 4096;
+
+// Temporary mitigation flag for Desktop mode
+// AscSimpleRequest path led to OpenAI "could not parse JSON body" (tmp/q2.log)
+// Route all requests through fetch/fetch-polyfill instead.
+const USE_ASC_SIMPLE_REQUEST = false;  // TASK-068: Disable buggy AscSimpleRequest, use fetch polyfill
+
+// =============================================================================
+// 3. DESKTOP MODE DETECTION (CORS Bypass)
+// =============================================================================
+
+function isFileProtocolContext() {
+	if (window.location && window.location.protocol === 'file:') {
+		return true;
+	}
+	if (window.document && window.document.currentScript &&
+	    typeof window.document.currentScript.src === 'string' &&
+	    window.document.currentScript.src.indexOf('file:///') === 0) {
+		return true;
+	}
+	return false;
+}
+
+function hasDesktopBridge() {
+	return !!(
+		typeof window.AscDesktopEditor !== 'undefined' ||
+		typeof window.AscSimpleRequest !== 'undefined' ||
+		(window.Asc && window.Asc.plugin)
+	);
+}
+
+/**
+ * Detect OnlyOffice Desktop mode (file:// origins that need CORS bypass)
+ * Pattern from AI Plugin: scripts/engine/storage.js:41-59
+ */
+const isLocalDesktop = (function() {
+	const userAgent = (window.navigator && typeof window.navigator.userAgent === 'string')
+		? window.navigator.userAgent.toLowerCase()
+		: '';
+	const hasDesktopUserAgent = userAgent.indexOf('ascdesktopeditor') >= 0;
+
+	if (!isFileProtocolContext()) {
+		return false;
+	}
+
+	// Linux desktop builds are not guaranteed to expose the same user-agent
+	// token as Windows/macOS, so also trust the host bridge objects.
+	return hasDesktopUserAgent || hasDesktopBridge();
+})();
+
+/**
+ * Check if we should use AscSimpleRequest for non-streamed requests
+ * This bypasses browser CORS by routing through OnlyOffice application layer
+ */
+const isLocalDesktopForNotStreamedRequests = (function() {
+	if (isLocalDesktop)
+		return true;
+	if (window.location && window.location.protocol === "onlyoffice:")
+		return true;  // OnlyOffice custom protocol
+	return false;
+})();
+
+function isDesktopLikeRuntime() {
+	return isLocalDesktopForNotStreamedRequests === true ||
+		isLocalDesktop === true ||
+		(window.AIFetchPolyfill && window.AIFetchPolyfill.isDesktopMode === true) ||
+		(hasDesktopBridge() && isFileProtocolContext());
+}
+
+// Log Desktop mode detection for debugging
+if (isLocalDesktopForNotStreamedRequests) {
+	if (USE_ASC_SIMPLE_REQUEST) {
+		console.log('[AI Engine] Desktop mode: using AscSimpleRequest for CORS bypass');
+	} else {
+		console.log('[AI Engine] Desktop mode: using fetch() with polyfill (AscSimpleRequest disabled)');
+	}
+} else {
+	console.log('[AI Engine] Online mode detected - using standard fetch() API');
+}
+
+// =============================================================================
+// 4. BASE PROVIDER CLASS
+// =============================================================================
+
+/**
+ * AIProvider - Base class for AI service providers
+ *
+ * Provides unified interface for OpenAI API.
+ * Subclasses override specific methods for provider-specific behavior.
+ */
+class AIProvider {
+	/**
+	 * Create AI provider instance
+	 * @param {string} name - Provider name (OpenAI)
+	 * @param {string} baseUrl - Base API URL
+	 * @param {string} apiVersion - API version (v1, v1beta, etc.)
+	 */
+	constructor(name, baseUrl, apiVersion = 'v1') {
+		this.name = name;
+		this.baseUrl = baseUrl;
+		this.apiVersion = apiVersion;
+		this.apiKey = null;
+		this.timeout = DEFAULT_TIMEOUT;
+	}
+
+	// =========================================================================
+	// 5. API KEY MANAGEMENT
+	// =========================================================================
+
+	/**
+	 * Set API key for this provider
+	 * @param {string} apiKey - API key
+	 */
+	setApiKey(apiKey) {
+		this.apiKey = apiKey;
+	}
+
+	/**
+	 * Get API key from storage or instance
+	 * @returns {string|null} API key or null
+	 */
+	getApiKey() {
+		if (this.apiKey) return this.apiKey;
+
+		// Try to load from storage
+		if (window.AIStorage) {
+			const storageKey = this.name.toLowerCase().replace('-', '');
+			return window.AIStorage.getApiKey(storageKey);
+		}
+
+		return null;
+	}
+
+	/**
+	 * Check if provider has valid API key
+	 * @returns {boolean} True if API key is configured
+	 */
+	hasApiKey() {
+		return this.getApiKey() !== null;
+	}
+
+	// =========================================================================
+	// 6. REQUEST BUILDING
+	// =========================================================================
+
+	/**
+	 * Build full API endpoint URL
+	 * @param {string} endpoint - Endpoint path (e.g., '/chat/completions')
+	 * @returns {string} Full URL
+	 */
+	buildUrl(endpoint) {
+		const base = (this.baseUrl || '').replace(/\/+$/, '');
+		const rawEndpoint = (typeof endpoint === 'string') ? endpoint : '';
+		const endpointPath = rawEndpoint
+			? (rawEndpoint.indexOf('/') === 0 ? rawEndpoint : `/${rawEndpoint}`)
+			: '';
+		const version = (this.apiVersion == null)
+			? ''
+			: String(this.apiVersion).replace(/^\/+|\/+$/g, '');
+
+		if (!version) {
+			return `${base}${endpointPath}`;
+		}
+
+		return `${base}/${version}${endpointPath}`;
+	}
+
+	/**
+	 * Build request headers
+	 * @returns {Object} Headers object
+	 */
+    buildHeaders() {
+        const headers = {
+            'Content-Type': 'application/json; charset=utf-8',
+            'Accept': 'application/json'
+        };
+
+		const apiKey = this.getApiKey();
+		if (apiKey) {
+			headers['Authorization'] = `Bearer ${apiKey}`;
+		}
+
+		return headers;
+	}
+
+	/**
+	 * Build chat completion request body
+	 * @param {Array} messages - Array of message objects {role, content}
+	 * @param {Object} options - Additional options (model, temperature, etc.)
+	 * @returns {Object} Request body
+	 */
+	buildChatRequest(messages, options = {}) {
+		let defaultMaxTokens = DEFAULT_MAX_TOKENS;
+		let defaultTemperature = 0.7;
+		try {
+			if (typeof window !== 'undefined' && window.AIConfiguration) {
+				const maxFromConfig = window.AIConfiguration.get?.('defaultMaxTokens');
+				if (typeof maxFromConfig === 'number' && Number.isFinite(maxFromConfig) && maxFromConfig > 0) {
+					defaultMaxTokens = maxFromConfig;
+				}
+				const tempFromConfig = window.AIConfiguration.get?.('defaultTemperature');
+				if (typeof tempFromConfig === 'number' && Number.isFinite(tempFromConfig)) {
+					defaultTemperature = tempFromConfig;
+				}
+			}
+		} catch (_) {}
+
+		const base = {
+			model: options.model || 'gpt-4',
+			messages: messages,
+			max_tokens: options.max_tokens || defaultMaxTokens,
+			temperature: typeof options.temperature === 'number'
+				? options.temperature
+				: defaultTemperature
+		};
+
+		return {
+			...base,
+			...options
+		};
+	}
+
+	// =========================================================================
+	// 7. API COMMUNICATION
+	// =========================================================================
+
+	_createAbortContext(externalSignal) {
+		const ctx = {
+			controller: new AbortController(),
+			abortReason: 'timeout',
+			timeoutId: null,
+			detachPluginAbort: null,
+			detachExternalAbort: null
+		};
+		ctx.timeoutId = setTimeout(() => {
+			ctx.abortReason = 'timeout';
+			ctx.controller.abort();
+		}, this.timeout);
+		const pluginSignal = window.AbortUtils?.getPluginAbortSignal?.() || null;
+		ctx.detachPluginAbort = window.AbortUtils?.linkAbortController
+			? window.AbortUtils.linkAbortController(ctx.controller, pluginSignal, {
+				onAbort: () => {
+					ctx.abortReason = 'shutdown';
+				}
+			})
+			: null;
+		ctx.detachExternalAbort = window.AbortUtils?.linkAbortController && externalSignal
+			? window.AbortUtils.linkAbortController(ctx.controller, externalSignal, {
+				onAbort: () => {
+					if (ctx.abortReason !== 'shutdown') {
+						ctx.abortReason = 'external';
+					}
+				}
+			})
+			: null;
+		return ctx;
+	}
+
+	_throwTransportError(error, abortReason) {
+		if (error && error.name === 'AbortError') {
+			if (abortReason === 'shutdown') {
+				throw new window.AIErrors.APIConnectionError(`[${this.name}] Request aborted during plugin shutdown.`);
+			}
+			if (abortReason === 'external') {
+				throw new window.AIErrors.APIConnectionError(`[${this.name}] Request aborted.`);
+			}
+			throw new window.AIErrors.APIConnectionError(`[${this.name}] Request timeout after ${this.timeout}ms. Please check your internet connection.`);
+		}
+
+		if (error instanceof window.AIErrors.AIError) {
+			throw error;
+		}
+
+		throw new window.AIErrors.APIConnectionError(
+			`[${this.name}] Network error: ${error.message}. Please check your internet connection.`
+		);
+	}
+
+	/**
+	 * Send HTTP request to AI provider with Desktop/Online mode support
+	 *
+	 * **Desktop Mode (file:// origins)**:
+	 * - Uses window.AscSimpleRequest.createRequest() to bypass browser CORS
+	 * - Requests route through OnlyOffice application layer, not browser
+	 * - Authorization headers work because they bypass browser security sandbox
+	 * - Pattern from AI Plugin: scripts/engine/engine.js:197-211
+	 *
+	 * **Online Mode (http:// origins)**:
+	 * - Uses standard fetch() API with polyfill fallback
+	 * - Standard browser CORS applies
+	 * - fetch-polyfill.js provides XMLHttpRequest compatibility for older Desktop versions
+	 *
+	 * @param {string} url - Full URL
+	 * @param {Object} body - Request body
+	 * @returns {Promise<Object>} Response data
+	 * @throws {AuthenticationError} - 401 Invalid API key
+	 * @throws {RateLimitError} - 429 Rate limit or quota exceeded
+	 * @throws {InvalidRequestError} - 400 Bad request
+	 * @throws {PermissionDeniedError} - 403 Forbidden
+	 * @throws {NotFoundError} - 404 Not found
+	 * @throws {InternalServerError} - 500+ Server errors
+	 * @throws {APIConnectionError} - Network or timeout errors
+	 */
+	async sendRequest(url, body, options = {}) {
+		if (!this.hasApiKey()) {
+			throw new window.AIErrors.AuthenticationError(
+				`[${this.name}] API key not configured. Please set your API key in settings.`
+			);
+		}
+
+		// Optional advanced logging (per-connection)
+		const advancedLogging = this.__aiAdvancedLogging === true;
+		if (advancedLogging) {
+			try {
+				const headers = this.buildHeaders();
+				const safeHeaders = { ...headers };
+				if (safeHeaders.Authorization) {
+					safeHeaders.Authorization = '***';
+				}
+				let bodySummary = null;
+				if (body && typeof body === 'object') {
+					const messages = Array.isArray(body.messages)
+						? body.messages.map((m) => ({
+								role: m && m.role,
+								length: typeof m?.content === 'string' ? m.content.length : 0
+						  }))
+						: undefined;
+					bodySummary = {
+						model: body.model,
+						temperature: body.temperature,
+						max_tokens: body.max_tokens,
+						messages
+					};
+				}
+				const payload = {
+					provider: this.name,
+					url,
+					connectionId: this.__aiConnectionId || null,
+					headers: safeHeaders,
+					bodySummary
+				};
+				const tag = this.name === 'GitHub' ? 'GitHubAI' : 'AIProvider';
+				if (window.debug && typeof window.debug.debug === 'function') {
+					window.debug.debug(tag, 'advanced-request', payload);
+				} else {
+					console.debug(`[${tag}] advanced-request`, payload);
+				}
+			} catch (_) {}
+		}
+
+		// ===================================================================
+		// DESKTOP MODE: Use AscSimpleRequest to bypass CORS
+		// ===================================================================
+		if (USE_ASC_SIMPLE_REQUEST && isLocalDesktopForNotStreamedRequests && typeof window.AscSimpleRequest !== 'undefined') {
+			return new Promise((resolve, reject) => {
+				const timeoutId = setTimeout(() => {
+					reject(new window.AIErrors.APIConnectionError(
+						`[${this.name}] Request timeout after ${this.timeout}ms. Please check your internet connection.`
+					));
+				}, this.timeout);
+
+				// Debug logging to see exact request being sent
+				console.log('[AI Engine] AscSimpleRequest - URL:', url);
+				console.log('[AI Engine] AscSimpleRequest - Headers:', this.buildHeaders());
+				console.log('[AI Engine] AscSimpleRequest - Body object:', body);
+				const bodyString = body ? JSON.stringify(body) : "";
+				console.log('[AI Engine] AscSimpleRequest - Body string:', bodyString);
+				console.log('[AI Engine] AscSimpleRequest - Body string length:', bodyString.length);
+
+				try {
+					window.AscSimpleRequest.createRequest({
+						url: url,
+						method: 'POST',
+						headers: this.buildHeaders(),
+						body: bodyString,
+						complete: (e, status) => {
+							clearTimeout(timeoutId);
+                    try {
+                        const rawText = e && e.responseText != null ? String(e.responseText) : '';
+                        const data = JSON.parse(rawText);
+
+								// Check for API error responses
+								if (data.error) {
+									const errorMessage = data.error.message || data.error.code || 'Unknown API error';
+									const errorType = data.error.type || 'api_error';
+
+									// Map error types to specific error classes
+									if (errorType === 'insufficient_quota' || status === 429) {
+										reject(new window.AIErrors.RateLimitError(
+											`[${this.name}] ${errorMessage}`,
+											null,
+											errorType
+										));
+									} else if (status === 401) {
+										reject(new window.AIErrors.AuthenticationError(
+											`[${this.name}] ${errorMessage}`
+										));
+									} else if (status === 400) {
+										reject(new window.AIErrors.InvalidRequestError(
+											`[${this.name}] ${errorMessage}`
+										));
+									} else {
+										reject(new window.AIErrors.AIError(
+											`[${this.name}] ${errorMessage}`,
+											status
+										));
+									}
+									return;
+								}
+
+								resolve(data);
+                    } catch (parseError) {
+                        console.error('[AI Engine][AscSimpleRequest] JSON parse failed. Status:', status, 'Raw:', e && e.responseText);
+                        reject(new window.AIErrors.APIConnectionError(
+                            `[${this.name}] Failed to parse response: ${parseError.message}`
+                        ));
+                    }
+						},
+						error: (e, status, error) => {
+							clearTimeout(timeoutId);
+							const statusCode = (e.statusCode === -102) ? 404 : e.statusCode;
+							reject(new window.AIErrors.APIConnectionError(
+								`[${this.name}] Request failed (status ${statusCode}): ${error || 'Internal error'}`
+							));
+						}
+					});
+				} catch (error) {
+					clearTimeout(timeoutId);
+					reject(new window.AIErrors.APIConnectionError(
+						`[${this.name}] Failed to create request: ${error.message}`
+					));
+				}
+			});
+		}
+
+			// ===================================================================
+			// ONLINE MODE: Use standard fetch() API
+			// ===================================================================
+			const abortContext = this._createAbortContext(options && options.signal);
+			const controller = abortContext.controller;
+
+			try {
+				const response = await fetch(url, {
+					method: 'POST',
+					headers: this.buildHeaders(),
+					body: JSON.stringify(body),
+					signal: controller.signal
+				});
+
+				clearTimeout(abortContext.timeoutId);
+				try { abortContext.detachPluginAbort?.(); } catch (_) {}
+				try { abortContext.detachExternalAbort?.(); } catch (_) {}
+
+			// Extract request ID from response headers (OpenAI SDK pattern)
+			const requestId = response.headers.get('x-request-id') ||
+			                 response.headers.get('cf-ray') ||
+			                 response.headers.get('request-id') ||
+			                 null;
+
+			if (!response.ok) {
+				const errorText = await response.text();
+				let errorData = null;
+
+				try {
+					errorData = JSON.parse(errorText);
+				} catch (e) {
+					// Not JSON, use raw text
+				}
+
+				// Extract error message (support multiple API formats)
+				const errorMessage = errorData?.error?.message ||
+				                    errorData?.message ||
+				                    errorText ||
+				                    'Unknown error';
+
+				// Throw specific error types based on HTTP status code
+				// Pattern from OpenAI SDK: https://github.com/openai/openai-node/blob/main/src/error.ts
+				switch (response.status) {
+					case 401:
+						throw new window.AIErrors.AuthenticationError(
+							`[${this.name}] Authentication failed: ${errorMessage}`,
+							requestId
+						);
+
+					case 403:
+						throw new window.AIErrors.PermissionDeniedError(
+							`[${this.name}] Permission denied: ${errorMessage}`,
+							requestId
+						);
+
+					case 404:
+						throw new window.AIErrors.NotFoundError(
+							`[${this.name}] Resource not found: ${errorMessage}`,
+							requestId
+						);
+
+					case 409:
+						throw new window.AIErrors.ConflictError(
+							`[${this.name}] Conflict: ${errorMessage}`,
+							requestId
+						);
+
+					case 422:
+						throw new window.AIErrors.UnprocessableEntityError(
+							`[${this.name}] Unprocessable entity: ${errorMessage}`,
+							requestId
+						);
+
+					case 429:
+						// Determine rate limit type from error data
+						const errorType = errorData?.error?.type || 'rate_limit';
+						throw new window.AIErrors.RateLimitError(
+							`[${this.name}] Rate limit exceeded: ${errorMessage}`,
+							requestId,
+							errorType
+						);
+
+					case 400:
+						throw new window.AIErrors.InvalidRequestError(
+							`[${this.name}] Invalid request: ${errorMessage}`,
+							requestId
+						);
+
+					case 500:
+					case 502:
+					case 503:
+					case 504:
+						throw new window.AIErrors.InternalServerError(
+							`[${this.name}] Service error: ${errorMessage}`,
+							response.status,
+							requestId
+						);
+
+					default:
+						throw new window.AIErrors.AIError(
+							`[${this.name}] API error (${response.status}): ${errorMessage}`,
+							response.status,
+							requestId
+						);
+				}
+			}
+
+				return await response.json();
+			} catch (error) {
+				clearTimeout(abortContext.timeoutId);
+				try { abortContext.detachPluginAbort?.(); } catch (_) {}
+				try { abortContext.detachExternalAbort?.(); } catch (_) {}
+				this._throwTransportError(error, abortContext.abortReason);
+			}
+		}
+
+	/**
+	 * Send chat completion request
+	 * @param {Array} messages - Array of message objects {role, content}
+	 * @param {Object} options - Additional options
+	 * @returns {Promise<string>} AI response text
+	 */
+	    async sendMessage(messages, options = {}) {
+	        const externalSignal = options && options.signal ? options.signal : null;
+	        const safeOptions = { ...options };
+	        if (Object.prototype.hasOwnProperty.call(safeOptions, 'signal')) {
+	            delete safeOptions.signal;
+	        }
+	        const isDesktop = isDesktopLikeRuntime();
+	        const useResponses = (typeof window !== 'undefined' && window.AIConfiguration)
+	            ? window.AIConfiguration.getUseResponsesAPI()
+	            : true;
+        const desktopStrategy = (typeof window !== 'undefined' && window.AIConfiguration)
+            ? window.AIConfiguration.getResponsesDesktopStrategy()
+            : 'fallback';
+        const enableStreaming = (typeof window !== 'undefined' && window.AIConfiguration)
+            ? window.AIConfiguration.getEnableStreaming()
+            : false;
+
+        // Determine effective model and whether it is a Codex-family model
+        let effectiveModel = (options && options.model) || ((typeof window !== 'undefined' && window.AIConfiguration)
+            ? window.AIConfiguration.getDefaultModel('openai')
+            : 'gpt-4o-mini');
+        try {
+            if (typeof window !== 'undefined' && window.AIModelNormalizer) {
+                const normalized = window.AIModelNormalizer.normalize(effectiveModel, 'openai');
+                if (normalized && normalized.canonical) effectiveModel = normalized.canonical;
+            }
+        } catch (_) {}
+        const isCodexModel = typeof effectiveModel === 'string' && /codex/i.test(effectiveModel);
+
+        // TASK-072: Route based on configuration and Desktop mode, not model type
+        // Responses API has limited parameter support but is required for certain models
+        const canUseResponses = useResponses && (!isDesktop || desktopStrategy === 'nonstream');
+        const endpoint = canUseResponses ? '/responses' : '/chat/completions';
+        const url = this.buildUrl(endpoint);
+
+	        let requestBody;
+	        if (endpoint === '/responses' && typeof window !== 'undefined' && window.ResponsesCompat) {
+	            const opts = { ...safeOptions };
+	            if (!isDesktop) {
+	                opts.stream = enableStreaming === true;
+	            } else {
+	                opts.stream = false;
+	            }
+            // Ensure a model is present
+            if (!opts.model) {
+                opts.model = effectiveModel;
+            }
+	            requestBody = window.ResponsesCompat.buildPayload(messages, opts);
+	        } else {
+	            // Pass endpoint marker so provider overrides can adjust params
+	            const opts = { ...safeOptions, _endpoint: endpoint };
+	            if (!opts.model) {
+	                opts.model = effectiveModel;
+	            }
+	            requestBody = this.buildChatRequest(messages, opts);
+	        }
+
+        // Streaming path for Responses API (online only)
+	        if (endpoint === '/responses' && !isDesktop && enableStreaming === true && typeof window !== 'undefined' && window.ResponsesCompat) {
+	            try {
+	                return await this._sendResponsesStreaming(url, requestBody, null, externalSignal);
+	            } catch (err) {
+	                // Fallback to Chat Completions on Responses API failure
+	                const url2 = this.buildUrl('/chat/completions');
+	                const body2 = this.buildChatRequest(messages, { ...safeOptions, _endpoint: '/chat/completions' });
+	                const resp2 = await this.sendRequest(url2, body2, { signal: externalSignal });
+	                return this.extractResponse(resp2);
+	            }
+	        }
+
+	        try {
+	            const response = await this.sendRequest(url, requestBody, { signal: externalSignal });
+	            if (endpoint === '/responses' && typeof window !== 'undefined' && window.ResponsesCompat) {
+	                return window.ResponsesCompat.extractText(response);
+	            }
+	            return this.extractResponse(response);
+	        } catch (err) {
+	            if (endpoint === '/responses' && typeof window !== 'undefined' && window.ResponsesCompat) {
+	                // Retry with conservative Responses payload before falling back to Chat Completions
+	                try {
+	                    const fallbackBody = window.ResponsesCompat.buildFallbackPayload(messages, { ...(safeOptions || {}), stream: false });
+	                    const resp = await this.sendRequest(url, fallbackBody, { signal: externalSignal });
+	                    return window.ResponsesCompat.extractText(resp);
+	                } catch (err2) {
+	                    // Fall through to Chat Completions
+	                }
+	                // Fallback to Chat Completions API
+	                try {
+	                    const url2 = this.buildUrl('/chat/completions');
+	                    const body2 = this.buildChatRequest(messages, { ...safeOptions, _endpoint: '/chat/completions' });
+	                    const resp2 = await this.sendRequest(url2, body2, { signal: externalSignal });
+	                    return this.extractResponse(resp2);
+	                } catch (err3) {
+	                    throw err3;
+	                }
+	            }
+	            throw err;
+	        }
+	    }
+
+    /**
+     * Streaming fetch for OpenAI Responses API using SSE
+     * Aggregates text deltas and returns final text. Emits deltas via optional callback.
+     * @private
+     * @param {string} url
+     * @param {Object} body
+     * @param {Function} [onDelta] - Optional callback(deltaText)
+     * @returns {Promise<string>} Final aggregated text
+     */
+		    async _sendResponsesStreaming(url, body, onDelta, externalSignal, returnMeta = false) {
+		        const abortContext = this._createAbortContext(externalSignal);
+		        const controller = abortContext.controller;
+            let reader = null;
+            const acc = window.ResponsesCompat.createAccumulator();
+		        try {
+		            const response = await fetch(url, {
+	                method: 'POST',
+	                headers: this.buildHeaders(),
+	                body: JSON.stringify(body),
+	                signal: controller.signal
+	            });
+
+            // Handle non-OK HTTP
+            if (!response.ok) {
+                const errorText = await response.text();
+                let errorData = null;
+                try { errorData = JSON.parse(errorText); } catch (_) {}
+                const errorMessage = errorData?.error?.message || errorData?.message || errorText || 'Unknown error';
+                switch (response.status) {
+                    case 401: throw new window.AIErrors.AuthenticationError(`[${this.name}] Authentication failed: ${errorMessage}`);
+                    case 403: throw new window.AIErrors.PermissionDeniedError(`[${this.name}] Permission denied: ${errorMessage}`);
+                    case 404: throw new window.AIErrors.NotFoundError(`[${this.name}] Resource not found: ${errorMessage}`);
+                    case 409: throw new window.AIErrors.ConflictError(`[${this.name}] Conflict: ${errorMessage}`);
+                    case 422: throw new window.AIErrors.UnprocessableEntityError(`[${this.name}] Unprocessable entity: ${errorMessage}`);
+                    case 429: throw new window.AIErrors.RateLimitError(`[${this.name}] Rate limit exceeded: ${errorMessage}`);
+                    case 500: case 502: case 503: case 504:
+                        throw new window.AIErrors.InternalServerError(`[${this.name}] Service error: ${errorMessage}`, response.status);
+                    default:
+                        throw new window.AIErrors.AIError(`[${this.name}] API error (${response.status}): ${errorMessage}`, response.status);
+                }
+            }
+
+            // Desktop/polyfilled runtimes can return a fully buffered response
+            // without a readable stream. In that case degrade to non-streaming
+            // extraction instead of hard-failing on response.body.getReader().
+            if (!response.body || typeof response.body.getReader !== 'function') {
+                const payload = await response.json();
+                acc.text = window.ResponsesCompat.extractText(payload);
+                acc.responseId = typeof payload?.id === 'string' ? payload.id : '';
+                acc.model = typeof payload?.model === 'string' ? payload.model : '';
+                if (Array.isArray(payload?.output) && typeof window.ResponsesCompat.mapToolCall === 'function') {
+                    payload.output.forEach((item) => {
+                        const toolCall = window.ResponsesCompat.mapToolCall(item);
+                        if (toolCall) acc.toolCalls.push(toolCall);
+                    });
+                }
+                clearTimeout(abortContext.timeoutId);
+                try { abortContext.detachPluginAbort?.(); } catch (_) {}
+                try { abortContext.detachExternalAbort?.(); } catch (_) {}
+                return returnMeta ? acc : (acc.text || '');
+            }
+
+            // Read SSE stream
+            reader = response.body.getReader();
+            const decoder = new TextDecoder();
+            let buffer = '';
+
+            while (true) {
+                const { done, value } = await reader.read();
+                if (done) break;
+                buffer += decoder.decode(value, { stream: true });
+
+                // Split on double newlines which separate events
+                let idx;
+                while ((idx = buffer.indexOf('\n\n')) !== -1) {
+                    const rawEvent = buffer.slice(0, idx);
+                    buffer = buffer.slice(idx + 2);
+
+                    // Process lines that begin with 'data: '
+                    const lines = rawEvent.split('\n');
+                    for (const line of lines) {
+                        if (!line.startsWith('data: ')) continue;
+                        const data = line.slice(6).trim();
+                        if (!data) continue;
+                        if (data === '[DONE]') {
+                            // Stream finished
+                            break;
+                        }
+                        try {
+                            const evt = JSON.parse(data);
+                            // Emit delta text chunks if present
+                            if (evt && evt.type === 'response.output_text.delta' && typeof evt.delta === 'string') {
+                                if (typeof onDelta === 'function') onDelta(evt.delta);
+                            }
+                            window.ResponsesCompat.accumulateEvent(evt, acc);
+                        } catch (e) {
+                            // Ignore malformed line
+                        }
+                    }
+                }
+            }
+
+	            clearTimeout(abortContext.timeoutId);
+	            try { abortContext.detachPluginAbort?.(); } catch (_) {}
+	            try { abortContext.detachExternalAbort?.(); } catch (_) {}
+	            try { await reader.releaseLock?.(); } catch (_) {}
+	            return returnMeta ? acc : (acc.text || '');
+	        } catch (error) {
+	            clearTimeout(abortContext.timeoutId);
+	            try { abortContext.detachPluginAbort?.(); } catch (_) {}
+	            try { abortContext.detachExternalAbort?.(); } catch (_) {}
+	            try { await reader?.cancel(); } catch (_) {}
+	            this._throwTransportError(error, abortContext.abortReason);
+	        }
+	    }
+
+    /**
+     * Public streaming API. Falls back to non-stream when not available.
+     * @param {Array} messages
+     * @param {Object} options
+     * @param {Function} onDelta - Receives text delta chunks
+     * @returns {Promise<string>} Final text
+     */
+	    async sendMessageStream(messages, options = {}, onDelta) {
+	        const externalSignal = options && options.signal ? options.signal : null;
+	        const safeOptions = { ...options };
+	        if (Object.prototype.hasOwnProperty.call(safeOptions, 'signal')) {
+	            delete safeOptions.signal;
+	        }
+	        const isDesktop = isDesktopLikeRuntime();
+	        const useResponses = (typeof window !== 'undefined' && window.AIConfiguration)
+	            ? window.AIConfiguration.getUseResponsesAPI()
+	            : true;
+        const enableStreaming = (typeof window !== 'undefined' && window.AIConfiguration)
+            ? window.AIConfiguration.getEnableStreaming()
+            : false;
+
+	        if (!isDesktop && useResponses && enableStreaming && typeof window !== 'undefined' && window.ResponsesCompat) {
+	            const url = this.buildUrl('/responses');
+	            const opts = { ...safeOptions, stream: true };
+	            if (!opts.model && typeof window !== 'undefined' && window.AIConfiguration) {
+	                opts.model = window.AIConfiguration.getDefaultModel('openai');
+	            }
+	            const requestBody = window.ResponsesCompat.buildPayload(messages, opts);
+	            const returnMeta = safeOptions && safeOptions.returnMeta === true;
+	            return await this._sendResponsesStreaming(url, requestBody, onDelta, externalSignal, returnMeta);
+	        }
+	        // Fallback to non-stream
+	        return await this.sendMessage(messages, { ...safeOptions, signal: externalSignal });
+	    }
+
+	// =========================================================================
+	// 8. RESPONSE PROCESSING
+	// =========================================================================
+
+	/**
+	 * Extract text content from AI response
+	 * @param {Object} response - Raw API response
+	 * @returns {string} Extracted text
+	 */
+	extractResponse(response) {
+		// Check for API error responses first
+		if (response.error) {
+			const errorMessage = response.error.message || response.error.code || 'Unknown API error';
+			throw new Error(`[${this.name}] API Error: ${errorMessage}`);
+		}
+
+		// Standard OpenAI-compatible response format
+		if (response.choices && response.choices.length > 0) {
+			const choice = response.choices[0];
+
+			if (choice.message && choice.message.content) {
+				return choice.message.content.trim();
+			}
+
+			if (choice.text) {
+				return choice.text.trim();
+			}
+		}
+
+		// Fallback for other formats
+		if (response.content) {
+			return response.content.trim();
+		}
+
+		// More helpful error message with response details
+		console.error(`[${this.name}] Unexpected response format. Response:`, response);
+		throw new Error(`[${this.name}] Unexpected response format. Check console for details.`);
+	}
+
+	// =========================================================================
+	// 9. HELPER METHODS
+	// =========================================================================
+
+	/**
+	 * Create chat messages array from system prompt and user input
+	 * @param {string} systemPrompt - System role instruction
+	 * @param {string} userInput - User's input text
+	 * @returns {Array} Messages array
+	 */
+	createMessages(systemPrompt, userInput) {
+		const messages = [];
+
+		if (systemPrompt) {
+			messages.push({
+				role: 'system',
+				content: systemPrompt
+			});
+		}
+
+		messages.push({
+			role: 'user',
+			content: userInput
+		});
+
+		return messages;
+	}
+
+	/**
+	 * Extract system message from messages array
+	 * @param {Array} messages - Messages array
+	 * @param {boolean} remove - If true, remove system message from array
+	 * @returns {string} System message content or empty string
+	 */
+	extractSystemMessage(messages, remove = false) {
+		const systemIndex = messages.findIndex(m => m.role === 'system');
+
+		if (systemIndex === -1) {
+			return '';
+		}
+
+		const systemMessage = messages[systemIndex].content;
+
+		if (remove) {
+			messages.splice(systemIndex, 1);
+		}
+
+		return systemMessage;
+	}
+}
+
+// =============================================================================
+// 9A. OPENAI-COMPATIBLE CHAT PROVIDER BASE
+// =============================================================================
+
+	class OpenAICompatibleChatProvider extends AIProvider {
+		static normalizeBaseUrl(options, fallbackUrl) {
+			const opts = options || {};
+			const baseFromOptions = opts.baseUrl || opts.baseURL;
+			if (typeof baseFromOptions === 'string' && baseFromOptions.trim()) {
+				return baseFromOptions.trim().replace(/\/+$/, '');
+			}
+			return fallbackUrl;
+		}
+
+		constructor(name, baseUrl, apiVersion = 'v1', options = {}) {
+			super(name, baseUrl, apiVersion);
+
+			const opts = options || {};
+		this.fallbackMaxTokens = (typeof opts.fallbackMaxTokens === 'number' && Number.isFinite(opts.fallbackMaxTokens) && opts.fallbackMaxTokens > 0)
+			? opts.fallbackMaxTokens
+			: DEFAULT_MAX_TOKENS;
+
+		if (opts.timeout) {
+			this.timeout = opts.timeout;
+		} else if (typeof window !== 'undefined' && window.AIConfiguration) {
+			this.timeout = window.AIConfiguration.getTimeout();
+		}
+
+		try {
+			if (typeof window !== 'undefined' && window.AILogger) {
+				window.AILogger.info(this.name, `Provider initialized with base URL: ${this.baseUrl}, timeout: ${this.timeout}ms`);
+			}
+		} catch (_) {}
+	}
+
+	resolveDefaultModelFromConfig(providerId, fallbackModel) {
+		try {
+			if (typeof window !== 'undefined' &&
+				window.AIConfiguration &&
+				typeof window.AIConfiguration.getDefaultModel === 'function') {
+				const configured = window.AIConfiguration.getDefaultModel(providerId);
+				if (configured && typeof configured === 'string') return configured;
+			}
+		} catch (_) {}
+		return fallbackModel;
+	}
+
+	getDefaultModel() {
+		return this.defaultModel;
+	}
+
+	getAvailableModels() {
+		const source = this.models || {};
+		return Object.keys(source).map((id) => {
+			const info = source[id] || {};
+			return {
+				id,
+				name: info.name || id,
+				maxTokens: typeof info.maxTokens === 'number' ? info.maxTokens : this.fallbackMaxTokens
+			};
+		});
+	}
+
+	buildChatRequest(messages, options = {}) {
+		const model = options.model || this.getDefaultModel();
+		const body = super.buildChatRequest(messages, { ...options, model });
+		return body;
+	}
+
+		async sendMessage(messages, options = {}) {
+			const externalSignal = options && options.signal ? options.signal : null;
+			const safeOptions = { ...options };
+			if (Object.prototype.hasOwnProperty.call(safeOptions, 'signal')) {
+				delete safeOptions.signal;
+			}
+			const model = safeOptions.model || this.getDefaultModel();
+			const url = this.buildUrl('/chat/completions');
+			const body = this.buildChatRequest(messages, { ...safeOptions, model });
+			const response = await this.sendRequest(url, body, { signal: externalSignal });
+			return this.extractResponse(response);
+		}
+
+	async sendMessageStream(messages, options = {}, onDelta) {
+		const text = await this.sendMessage(messages, options);
+		if (typeof onDelta === 'function' && text) {
+			try { onDelta(text); } catch (_) {}
+		}
+		return text;
+	}
+}
+
+// =============================================================================
+// 10. MODULE EXPORTS
+// =============================================================================
+
+if (typeof window !== 'undefined') {
+	window.AIProvider = AIProvider;
+	window.OpenAICompatibleChatProvider = OpenAICompatibleChatProvider;
+	window.isLocalDesktop = isLocalDesktop;  // Export for debugging
+	window.isLocalDesktopForNotStreamedRequests = isLocalDesktopForNotStreamedRequests;  // Export for debugging
+}

@@ -1,5 +1,10 @@
 [
     {
+        "name": "r7c-macro_recorder",
+        "priority": 4277140174,
+        "discussion": ""
+    },
+    {
         "name": "r7c-code",
         "priority": 4277009102,
         "discussion": ""

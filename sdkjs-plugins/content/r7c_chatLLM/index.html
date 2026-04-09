@@ -6,25 +6,20 @@
     <title>{r7c}.ChatLLM</title>
     <script type="text/javascript" src="https://onlyoffice.github.io/sdkjs-plugins/v1/plugins.js"></script>
     <script type="text/javascript" src="https://onlyoffice.github.io/sdkjs-plugins/v1/plugins-ui.js"></script>
-    <script>
-        window.__R7CGuardOptions = {
-            pluginName: '{r7c}.ChatLLM',
-            pluginIcon: 'resources/light/icon.png',
-            managerName: '{r7} consult',
-            installUrl: 'https://r7-consult.ru/r7_market'
-        };
-    </script>
-    <script src="r7c-required.js"></script>
     <link rel="stylesheet" href="https://onlyoffice.github.io/sdkjs-plugins/v1/plugins.css">
     <link rel="stylesheet" href="styles/style.css">
     <script defer src="scripts/api_reference.js"></script>
     <script defer src="scripts/bootstrap.js"></script>
     <script defer src="scripts/core/r7chat_state.js"></script>
     <script defer src="scripts/core/r7chat_utils.js"></script>
+    <script defer src="scripts/shared/fflate.min.js"></script>
+    <script defer src="scripts/shared/r7chat_xlsx_parser.js"></script>
     <script defer src="scripts/shared/r7chat_error_normalizer.js"></script>
     <script defer src="scripts/shared/r7chat_web_text.js"></script>
     <script defer src="scripts/platform/r7chat_storage.js"></script>
     <script defer src="scripts/platform/r7chat_host_bridge.js"></script>
+    <script defer src="scripts/platform/r7chat_desktop_tools_bridge.js"></script>
+    <script defer src="scripts/platform/r7chat_host_tools_client.js"></script>
     <script defer src="scripts/platform/r7chat_http_client.js"></script>
     <script defer src="scripts/platform/openrouter_client.js"></script>
     <script defer src="scripts/platform/r7chat_web_tools_client.js"></script>
@@ -46,6 +41,7 @@
     <script defer src="scripts/context/r7chat_cache.js"></script>
     <script defer src="scripts/agent/r7chat_planner_profiles.js"></script>
     <script defer src="scripts/agent/r7chat_fastpath.js"></script>
+    <script defer src="scripts/ui/r7chat_trace_presenter.js"></script>
     <script defer src="scripts/ui/r7chat_ui.js"></script>
     <script defer src="scripts/prompt.js"></script>
     
@@ -65,14 +61,15 @@
     <script defer src="scripts/main.js"></script>
     <script defer src="scripts/cell_functions_core.js"></script>
     <script defer src="scripts/cell_functions.js"></script>
+
     <!-- Yandex.Metrika counter -->
     <script type="text/javascript">
         (function(m,e,t,r,i,k,a){
             m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
             m[i].l=1*new Date();
             for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
-            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
-        })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=108328041', 'ym');
+            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a);
+        })(window, document, 'script', 'https://mc.yandex.ru/metrika/tag.js?id=108328041', 'ym');
 
         ym(108328041, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
     </script>
@@ -88,10 +85,10 @@
         </div>
         <div class="header-actions">
             <button class="context-button" id="context-button" type="button" title="Data Context" aria-label="Open data context" aria-expanded="false" hidden>
-                <span class="context-icon" aria-hidden="true"></span>
+                <span class="context-icon" aria-hidden="true"><svg width="1em" height="1em" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M128,24C74.17,24,32,48.6,32,80v96c0,31.4,42.17,56,96,56s96-24.6,96-56V80C224,48.6,181.83,24,128,24Zm80,104c0,9.62-7.88,19.43-21.61,26.92C170.93,163.35,150.19,168,128,168s-42.93-4.65-58.39-13.08C55.88,147.43,48,137.62,48,128V111.36c17.06,15,46.23,24.64,80,24.64s62.94-9.68,80-24.64ZM69.61,53.08C85.07,44.65,105.81,40,128,40s42.93,4.65,58.39,13.08C200.12,60.57,208,70.38,208,80s-7.88,19.43-21.61,26.92C170.93,115.35,150.19,120,128,120s-42.93-4.65-58.39-13.08C55.88,99.43,48,89.62,48,80S55.88,60.57,69.61,53.08ZM186.39,202.92C170.93,211.35,150.19,216,128,216s-42.93-4.65-58.39-13.08C55.88,195.43,48,185.62,48,176V159.36c17.06,15,46.23,24.64,80,24.64s62.94-9.68,80-24.64V176C208,185.62,200.12,195.43,186.39,202.92Z"/></svg></span>
             </button>
             <button class="new-chat-button" id="new-chat-button" type="button" title="New Chat" aria-label="Create new chat">
-                <span class="new-chat-icon" aria-hidden="true">+</span>
+                <span class="new-chat-icon" aria-hidden="true"><svg width="1em" height="1em" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M224,128a8,8,0,0,1-8,8H136v80a8,8,0,0,1-16,0V136H40a8,8,0,0,1,0-16h80V40a8,8,0,0,1,16,0v80h80A8,8,0,0,1,224,128Z"/></svg></span>
             </button>
             <button class="thread-history-button" id="thread-switcher-button" type="button" aria-expanded="false" aria-controls="threadHistoryPanel" aria-label="Chat history" data-tooltip="Chat history">
                 <span class="thread-history-icon" aria-hidden="true">
@@ -103,17 +100,17 @@
                 </span>
             </button>
             <button class="settings-button" id="settings-button" type="button" title="Settings" aria-label="Open settings" aria-expanded="false">
-                <span class="settings-icon" aria-hidden="true">&#x2699;</span>
+                <span class="settings-icon" aria-hidden="true"><svg width="1em" height="1em" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M128,80a48,48,0,1,0,48,48A48.05,48.05,0,0,0,128,80Zm0,80a32,32,0,1,1,32-32A32,32,0,0,1,128,160Zm88-29.84q.06-2.16,0-4.32l14.92-18.64a8,8,0,0,0,1.48-7.06,107.21,107.21,0,0,0-10.88-26.25,8,8,0,0,0-6-3.93l-23.72-2.64q-1.48-1.56-3-3L186,40.54a8,8,0,0,0-3.94-6,107.71,107.71,0,0,0-26.25-10.87,8,8,0,0,0-7.06,1.49L130.16,40Q128,40,125.84,40L107.2,25.11a8,8,0,0,0-7.06-1.48A107.6,107.6,0,0,0,73.89,34.51a8,8,0,0,0-3.93,6L67.32,64.27q-1.56,1.49-3,3L40.54,70a8,8,0,0,0-6,3.94,107.71,107.71,0,0,0-10.87,26.25,8,8,0,0,0,1.49,7.06L40,125.84Q40,128,40,130.16L25.11,148.8a8,8,0,0,0-1.48,7.06,107.21,107.21,0,0,0,10.88,26.25,8,8,0,0,0,6,3.93l23.72,2.64q1.49,1.56,3,3L70,215.46a8,8,0,0,0,3.94,6,107.71,107.71,0,0,0,26.25,10.87,8,8,0,0,0,7.06-1.49L125.84,216q2.16.06,4.32,0l18.64,14.92a8,8,0,0,0,7.06,1.48,107.21,107.21,0,0,0,26.25-10.88,8,8,0,0,0,3.93-6l2.64-23.72q1.56-1.48,3-3L215.46,186a8,8,0,0,0,6-3.94,107.71,107.71,0,0,0,10.87-26.25,8,8,0,0,0-1.49-7.06Zm-16.1-6.5a73.93,73.93,0,0,1,0,8.68,8,8,0,0,0,1.74,5.48l14.19,17.73a91.57,91.57,0,0,1-6.23,15L187,173.11a8,8,0,0,0-5.1,2.64,74.11,74.11,0,0,1-6.14,6.14,8,8,0,0,0-2.64,5.1l-2.51,22.58a91.32,91.32,0,0,1-15,6.23l-17.74-14.19a8,8,0,0,0-5-1.75h-.48a73.93,73.93,0,0,1-8.68,0,8,8,0,0,0-5.48,1.74L100.45,215.8a91.57,91.57,0,0,1-15-6.23L82.89,187a8,8,0,0,0-2.64-5.1,74.11,74.11,0,0,1-6.14-6.14,8,8,0,0,0-5.1-2.64L46.43,170.6a91.32,91.32,0,0,1-6.23-15l14.19-17.74a8,8,0,0,0,1.74-5.48,73.93,73.93,0,0,1,0-8.68,8,8,0,0,0-1.74-5.48L40.2,100.45a91.57,91.57,0,0,1,6.23-15L69,82.89a8,8,0,0,0,5.1-2.64,74.11,74.11,0,0,1,6.14-6.14A8,8,0,0,0,82.89,69L85.4,46.43a91.32,91.32,0,0,1,15-6.23l17.74,14.19a8,8,0,0,0,5.48,1.74,73.93,73.93,0,0,1,8.68,0,8,8,0,0,0,5.48-1.74L155.55,40.2a91.57,91.57,0,0,1,15,6.23L173.11,69a8,8,0,0,0,2.64,5.1,74.11,74.11,0,0,1,6.14,6.14,8,8,0,0,0,5.1,2.64l22.58,2.51a91.32,91.32,0,0,1,6.23,15l-14.19,17.74A8,8,0,0,0,199.87,123.66Z"/></svg></span>
             </button>
             <button class="cellai-button" id="cellai-button" type="button" title="Cell AI Functions" aria-label="Open cell AI helper" aria-expanded="false" hidden>
-                <span class="cellai-icon" aria-hidden="true">fx</span>
+                <span class="cellai-icon" aria-hidden="true"><svg width="1em" height="1em" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M208,40a8,8,0,0,1-8,8H170.71a24,24,0,0,0-23.62,19.71L137.59,120H184a8,8,0,0,1,0,16H134.68l-10,55.16A40,40,0,0,1,85.29,224H56a8,8,0,0,1,0-16H85.29a24,24,0,0,0,23.62-19.71l9.5-52.29H72a8,8,0,0,1,0-16h49.32l10-55.16A40,40,0,0,1,170.71,32H200A8,8,0,0,1,208,40Z"/></svg></span>
             </button>
             <button class="theme-toggle" id="theme-toggle" type="button" title="Toggle Theme">
-                <span id="theme-icon" class="theme-icon">&#x1F319;</span>
+                <span id="theme-icon" class="theme-icon"><svg width="1em" height="1em" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M233.54,142.23a8,8,0,0,0-8-2,88.08,88.08,0,0,1-109.8-109.8,8,8,0,0,0-10-10,104.84,104.84,0,0,0-52.91,37A104,104,0,0,0,136,224a103.09,103.09,0,0,0,62.52-20.88,104.84,104.84,0,0,0,37-52.91A8,8,0,0,0,233.54,142.23ZM188.9,190.34A88,88,0,0,1,65.66,67.11a89,89,0,0,1,31.4-26A106,106,0,0,0,96,56,104.11,104.11,0,0,0,200,160a106,106,0,0,0,14.92-1.06A89,89,0,0,1,188.9,190.34Z"/></svg></span>
             </button>
-            <button class="thread-menu-button" id="thread-menu-button" type="button" title="Thread Actions" aria-label="Open thread actions" aria-haspopup="menu" aria-expanded="false">
+            <!-- <button class="thread-menu-button" id="thread-menu-button" type="button" title="Thread Actions" aria-label="Open thread actions" aria-haspopup="menu" aria-expanded="false">
                 <span class="thread-menu-icon" aria-hidden="true">&#8942;</span>
-            </button>
+            </button> -->
         </div>
     </div>
     <div class="chat-body" id="chatBody">
@@ -123,7 +120,7 @@
                     <span class="thread-history-kicker" id="threadHistoryKicker">Chats</span>
                     <span class="thread-history-copy" id="threadHistoryCopy">Recent conversations stay local on this device.</span>
                 </div>
-                <button class="thread-history-close" id="thread-history-close" type="button" title="Close history" aria-label="Close history">&#10005;</button>
+                <button class="thread-history-close" id="thread-history-close" type="button" title="Close history" aria-label="Close history"><svg width="1em" height="1em" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"/></svg></button>
             </div>
             <div class="thread-search-shell">
                 <input type="search" id="thread-search-input" class="thread-search-input" placeholder="Search chats by title" autocomplete="off" spellcheck="false">
@@ -136,12 +133,12 @@
             <img class="slider-ai-logo" id="slider-ai-logo" src="resources/images/slider_logo.png" alt="" aria-hidden="true">
         </button>
         <div class="chat-footer">
-            <button type="button" class="stop-button" id="stop-button"><span>&#x25A0;</span>Stop</button>
-            <button type="button" class="regenerate-button" id="regenerate-button"><span>&#x21BA;</span>Regenerate</button>
+            <button type="button" class="stop-button" id="stop-button"><span><svg width="1em" height="1em" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216ZM160,88H96a8,8,0,0,0-8,8v64a8,8,0,0,0,8,8h64a8,8,0,0,0,8-8V96A8,8,0,0,0,160,88Zm-8,64H104V104h48Z"/></svg></span>Stop</button>
+            <button type="button" class="regenerate-button" id="regenerate-button"><span><svg width="1em" height="1em" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M224,48V96a8,8,0,0,1-8,8H168a8,8,0,0,1,0-16h28.69L182.06,73.37a79.56,79.56,0,0,0-56.13-23.43h-.45A79.52,79.52,0,0,0,69.59,72.71,8,8,0,0,1,58.41,61.27a96,96,0,0,1,135,.79L208,76.69V48a8,8,0,0,1,16,0ZM186.41,183.29a80,80,0,0,1-112.47-.66L59.31,168H88a8,8,0,0,0,0-16H40a8,8,0,0,0-8,8v48a8,8,0,0,0,16,0V179.31l14.63,14.63A95.43,95.43,0,0,0,130,222.06h.53a95.36,95.36,0,0,0,67.07-27.33,8,8,0,0,0-11.18-11.44Z"/></svg></span>Regenerate</button>
             <div class="composer-attachment-strip" id="composerAttachmentStrip" style="display: none;"></div>
             <div class="composer-shell">
                 <button class="attachment-trigger-button" id="attachmentTriggerButton" type="button" aria-haspopup="menu" aria-expanded="false" aria-controls="attachmentPopover" title="Add attachment">
-                    <span class="attachment-trigger-icon" aria-hidden="true">+</span>
+                    <span class="attachment-trigger-icon" aria-hidden="true"><svg width="1em" height="1em" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M209.66,122.34a8,8,0,0,1,0,11.32l-82.05,82a56,56,0,0,1-79.2-79.21L147.67,35.73a40,40,0,1,1,56.61,56.55L105,193A24,24,0,1,1,71,159L154.3,74.38A8,8,0,1,1,165.7,85.6L82.39,170.31a8,8,0,1,0,11.27,11.36L192.93,81A24,24,0,1,0,159,47L59.76,147.68a40,40,0,1,0,56.53,56.62l82.06-82A8,8,0,0,1,209.66,122.34Z"/></svg></span>
                 </button>
                 <textarea id="userInput" placeholder="Type a message..."></textarea>
                 <button type="button" class="send-button" id="send-button">
@@ -152,14 +149,14 @@
             <div class="attachment-popover" id="attachmentPopover" style="display: none;" role="menu" aria-label="Attachment menu">
                 <div class="attachment-popover-section">
                     <button type="button" class="attachment-popover-action" id="attachmentAddFileAction">
-                        <span class="attachment-popover-action-icon" aria-hidden="true">&#128196;</span>
+                        <span class="attachment-popover-action-icon" aria-hidden="true"><svg width="1em" height="1em" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M213.66,82.34l-56-56A8,8,0,0,0,152,24H56A16,16,0,0,0,40,40V216a16,16,0,0,0,16,16H200a16,16,0,0,0,16-16V88A8,8,0,0,0,213.66,82.34ZM160,51.31,188.69,80H160ZM200,216H56V40h88V88a8,8,0,0,0,8,8h48V216Z"/></svg></span>
                         <span class="attachment-popover-action-copy">
                             <span class="attachment-popover-action-title">Add file</span>
                             <span class="attachment-popover-action-meta">PNG, JPG, WEBP, DOCX, XLSX, PPTX, PDF</span>
                         </span>
                     </button>
                     <button type="button" class="attachment-popover-action" id="attachmentRecentToggleAction" aria-expanded="false">
-                        <span class="attachment-popover-action-icon" aria-hidden="true">&#9716;</span>
+                        <span class="attachment-popover-action-icon" aria-hidden="true"><svg width="1em" height="1em" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M136,80v43.47l36.12,21.67a8,8,0,0,1-8.24,13.72l-40-24A8,8,0,0,1,120,128V80a8,8,0,0,1,16,0Zm-8-48A95.44,95.44,0,0,0,60.08,60.15C52.81,67.51,46.35,74.59,40,82V64a8,8,0,0,0-16,0v40a8,8,0,0,0,8,8H72a8,8,0,0,0,0-16H49c7.15-8.42,14.27-16.35,22.39-24.57a80,80,0,1,1,1.66,114.75,8,8,0,1,0-11,11.64A96,96,0,1,0,128,32Z"/></svg></span>
                         <span class="attachment-popover-action-copy">
                             <span class="attachment-popover-action-title">Recent Files</span>
                             <span class="attachment-popover-action-meta" id="attachmentRecentMeta">Quick access to recent files</span>
@@ -184,7 +181,7 @@
         <div class="thread-dialog" role="dialog" aria-modal="true" aria-labelledby="threadDialogTitle">
             <div class="thread-dialog-header">
                 <div class="thread-dialog-title" id="threadDialogTitle">Dialog</div>
-                <button type="button" class="thread-dialog-close" id="threadDialogClose" aria-label="Close dialog">&#10005;</button>
+                <button type="button" class="thread-dialog-close" id="threadDialogClose" aria-label="Close dialog"><svg width="1em" height="1em" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"/></svg></button>
             </div>
             <div class="thread-dialog-body">
                 <div class="thread-dialog-copy" id="threadDialogCopy"></div>
@@ -201,61 +198,146 @@
 
     <!-- Inline Settings Panel -->
     <div class="settings-panel" id="settingsPanel" style="display: none;">
-        <div class="settings-content">
-            <div class="settings-heading">
-                <div class="settings-title" id="inlineSettingsTitle">Operator</div>
-                <div class="settings-helper" id="inlineSettingsSummary">Choose a provider first, then configure only its credentials, model and capabilities.</div>
+        <div class="settings-header-sticky">
+            <div class="settings-header-copy">
+                <div class="settings-header-title">Settings</div>
+                <div class="settings-header-subtitle">Providers & configuration</div>
+            </div>
+            <button id="settingsCloseBtn" class="settings-close-btn" type="button" title="Close Settings" aria-label="Close Settings"><svg width="1em" height="1em" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"/></svg></button>
+        </div>
+
+        <div class="settings-body accordion-group">
+            <!-- SECTION 1: Chat -->
+            <div class="accordion-item is-open" id="acc-chat">
+                <button class="accordion-header" type="button">
+                    <div class="accordion-header-left">
+                        <span class="accordion-icon"><svg width="1em" height="1em" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M172,112a8,8,0,0,1-8,8H96a8,8,0,0,1,0-16h68A8,8,0,0,1,172,112Zm-8,24H96a8,8,0,0,0,0,16h68a8,8,0,0,0,0-16Zm68-12A100.11,100.11,0,0,1,132,224H48a16,16,0,0,1-16-16V124a100,100,0,0,1,200,0Zm-16,0a84,84,0,0,0-168,0v84h84A84.09,84.09,0,0,0,216,124Z"/></svg></span>
+                        <span class="accordion-title">Text generation</span>
+                    </div>
+                    <div class="accordion-header-right">
+                        <span class="accordion-summary" id="chatSummary">Configure chat</span>
+                        <span class="accordion-chevron"></span>
+                    </div>
+                </button>
+                <div class="accordion-content">
+                    <div class="settings-grid">
+                        <div class="settings-col">
+                            <label>Provider</label>
+                            <div id="inlineProviderSwitcher"></div>
+                        </div>
+                        <div class="settings-col" id="inlineModelContainer">
+                            <!-- Model injected here -->
+                        </div>
+                    </div>
+                    <div class="settings-row full-width" id="inlineApiKeyContainer">
+                        <!-- API Key injected here -->
+                    </div>
+                    <div class="settings-grid" id="inlineSecondaryContainer">
+                        <!-- Base URL & Reasoning injected here -->
+                    </div>
+                </div>
             </div>
 
-            <div class="settings-section settings-auth-section">
-                <div class="settings-title" id="inlineLanguageSectionTitle">Language</div>
-                <div class="settings-helper" id="inlineLanguageSectionHelp">Choose the UI language and the default response language for the assistant.</div>
-
-                <label for="inlineLanguageSelect" id="inlineLanguageLabel">Interface language</label>
-                <select id="inlineLanguageSelect">
-                    <option value="auto">Use editor language</option>
-                    <option value="en">English</option>
-                    <option value="ru">Russian</option>
-                </select>
+            <!-- SECTION 2: Images -->
+            <div class="accordion-item" id="acc-images">
+                <button class="accordion-header" type="button">
+                    <div class="accordion-header-left">
+                        <span class="accordion-icon"><svg width="1em" height="1em" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M216,40H40A16,16,0,0,0,24,56V200a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V56A16,16,0,0,0,216,40Zm0,16V158.75l-26.07-26.06a16,16,0,0,0-22.63,0l-20,20-44-44a16,16,0,0,0-22.62,0L40,149.37V56ZM40,172l52-52,80,80H40Zm176,28H194.63l-36-36,20-20L216,181.38V200ZM144,100a12,12,0,1,1,12,12A12,12,0,0,1,144,100Z"/></svg></span>
+                        <span class="accordion-title">Images</span>
+                    </div>
+                    <div class="accordion-header-right">
+                        <span class="accordion-summary" id="imageSummary">Not configured</span>
+                        <span class="accordion-chevron"></span>
+                    </div>
+                </button>
+                <div class="accordion-content">
+                    <div class="settings-grid">
+                        <div class="settings-col">
+                            <label for="inlineCustomImageModel">Model</label>
+                            <input type="text" id="inlineCustomImageModel" placeholder="e.g. dall-e-3">
+                        </div>
+                    </div>
+                    <div class="settings-checkbox-row">
+                        <label for="inlineUseChatKey">Use same API key as chat</label>
+                        <input type="checkbox" id="inlineUseChatKey" checked>
+                    </div>
+                    <div class="settings-row full-width" id="inlineImageKeyWrapper" style="display: none;">
+                        <label for="inlineImageTokenInput">Image API Key</label>
+                        <input type="password" id="inlineImageTokenInput" placeholder="Enter image API key">
+                    </div>
+                </div>
             </div>
 
-            <div id="inlineProviderSwitcher" class="provider-switcher"></div>
-            <div id="inlineProviderCards" class="provider-cards"></div>
-
-            <div class="settings-section settings-auth-section">
-                <div class="settings-title" id="inlineImageSectionTitle">Image Generation</div>
-                <div class="settings-helper" id="inlineImageSectionHelp">Image generation stays on the existing separate operator.</div>
-
-                <label for="inlineCustomImageModel" id="inline_label_customImageModel">Image model</label>
-                <input type="text" id="inlineCustomImageModel" placeholder="e.g. google/gemini-2.5-flash-image">
-
-                <label id="inlineImageAPILabel" for="inlineImageTokenInput">Image API Key (Optional)</label>
-                <input type="password" id="inlineImageTokenInput" placeholder="Leave empty to use the active provider key">
+            <!-- SECTION 3: Web tools -->
+            <div class="accordion-item" id="acc-webtools">
+                <button class="accordion-header" type="button">
+                    <div class="accordion-header-left">
+                        <span class="accordion-icon"><svg width="1em" height="1em" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M128,24h0A104,104,0,1,0,232,128,104.12,104.12,0,0,0,128,24Zm88,104a87.61,87.61,0,0,1-3.33,24H174.16a157.44,157.44,0,0,0,0-48h38.51A87.61,87.61,0,0,1,216,128ZM102,168H154a115.11,115.11,0,0,1-26,45A115.27,115.27,0,0,1,102,168Zm-3.9-16a140.84,140.84,0,0,1,0-48h59.88a140.84,140.84,0,0,1,0,48ZM40,128a87.61,87.61,0,0,1,3.33-24H81.84a157.44,157.44,0,0,0,0,48H43.33A87.61,87.61,0,0,1,40,128ZM154,88H102a115.11,115.11,0,0,1,26-45A115.27,115.27,0,0,1,154,88Zm52.33,0H170.71a135.28,135.28,0,0,0-22.3-45.6A88.29,88.29,0,0,1,206.37,88ZM107.59,42.4A135.28,135.28,0,0,0,85.29,88H49.63A88.29,88.29,0,0,1,107.59,42.4ZM49.63,168H85.29a135.28,135.28,0,0,0,22.3,45.6A88.29,88.29,0,0,1,49.63,168Zm98.78,45.6a135.28,135.28,0,0,0,22.3-45.6h35.66A88.29,88.29,0,0,1,148.41,213.6Z"/></svg></span>
+                        <span class="accordion-title">Web tools</span>
+                    </div>
+                    <div class="accordion-header-right">
+                        <span class="accordion-summary" id="webToolsSummary">Off</span>
+                        <span class="accordion-chevron"></span>
+                    </div>
+                </button>
+                <div class="accordion-content">
+                    <div class="settings-row full-width">
+                        <label for="inlineWebToolsProvider">Provider</label>
+                        <select id="inlineWebToolsProvider">
+                            <option value="">Off</option>
+                            <option value="exa">Exa</option>
+                            <option value="brave">Brave</option>
+                        </select>
+                    </div>
+                    <div class="settings-row full-width" id="inlineExaKeyWrapper" style="display: none;">
+                        <label for="inlineExaApiKeyInput">Exa API Key</label>
+                        <input type="password" id="inlineExaApiKeyInput" placeholder="Enter Exa key">
+                    </div>
+                    <div class="settings-row full-width" id="inlineBraveKeyWrapper" style="display: none;">
+                        <label for="inlineBraveApiKeyInput">Brave API Key</label>
+                        <input type="password" id="inlineBraveApiKeyInput" placeholder="Enter Brave key">
+                    </div>
+                    <div id="inlineWebToolsHelp" class="settings-helper-short">Enable web search capabilities for OpenRouter.</div>
+                </div>
             </div>
 
-            <div class="settings-section settings-auth-section">
-                <div class="settings-title" id="inlineWebToolsSectionTitle">Web Tools</div>
-                <div class="settings-helper" id="inlineWebToolsSectionHelp">Web tools are available only for OpenRouter in this release.</div>
-
-                <label for="inlineWebToolsProvider" id="inlineWebToolsProviderLabel">Web Tools Provider</label>
-                <select id="inlineWebToolsProvider">
-                    <option value="">Off</option>
-                    <option value="exa">Exa</option>
-                    <option value="brave">Brave</option>
-                </select>
-
-                <label id="inlineExaApiLabel" for="inlineExaApiKeyInput">Exa API Key</label>
-                <input type="password" id="inlineExaApiKeyInput" placeholder="Used when Exa web tools are enabled">
-
-                <label id="inlineBraveApiLabel" for="inlineBraveApiKeyInput">Brave API Key</label>
-                <input type="password" id="inlineBraveApiKeyInput" placeholder="Used when Brave web tools are enabled">
-
-                <div id="inlineWebToolsHelp" class="settings-helper">Enable Exa or Brave to allow model web search and crawling tools.</div>
+            <!-- SECTION 4: Advanced -->
+            <div class="accordion-item" id="acc-advanced">
+                <button class="accordion-header" type="button">
+                    <div class="accordion-header-left">
+                        <span class="accordion-icon"><svg width="1em" height="1em" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M64,105V40a8,8,0,0,0-16,0v65a32,32,0,0,0,0,62v49a8,8,0,0,0,16,0V167a32,32,0,0,0,0-62Zm-8,47a16,16,0,1,1,16-16A16,16,0,0,1,56,152Zm80-95V40a8,8,0,0,0-16,0V57a32,32,0,0,0,0,62v97a8,8,0,0,0,16,0V119a32,32,0,0,0,0-62Zm-8,47a16,16,0,1,1,16-16A16,16,0,0,1,128,104Zm104,64a32.06,32.06,0,0,0-24-31V40a8,8,0,0,0-16,0v97a32,32,0,0,0,0,62v17a8,8,0,0,0,16,0V199A32.06,32.06,0,0,0,232,168Zm-32,16a16,16,0,1,1,16-16A16,16,0,0,1,200,184Z"/></svg></span>
+                        <span class="accordion-title">Advanced</span>
+                    </div>
+                    <div class="accordion-header-right">
+                        <span class="accordion-chevron"></span>
+                    </div>
+                </button>
+                <div class="accordion-content">
+                    <div class="settings-row full-width">
+                        <label for="inlineLanguageSelect">Interface language</label>
+                        <select id="inlineLanguageSelect">
+                            <option value="auto">Use editor language</option>
+                            <option value="en">English</option>
+                            <option value="ru">Russian</option>
+                        </select>
+                    </div>
+                    <div class="settings-checkbox-row">
+                        <label for="inlineShowModelReasoning">Show model thinking in trace</label>
+                        <input type="checkbox" id="inlineShowModelReasoning" checked>
+                    </div>
+                    <div class="settings-inline-action">
+                        <button type="button" id="inlineCopyMainKey" class="text-btn">Copy active API key</button>
+                    </div>
+                </div>
             </div>
+        </div>
 
-            <div id="inlineValidationMessage" class="validation-message"></div>
-
-            <button type="button" id="inlineSaveSettings" class="save-button">Save Settings</button>
+        <div class="settings-footer-sticky">
+            <div id="inlineValidationMessage" class="validation-message-compact"></div>
+            <div class="settings-footer-actions">
+                <button type="button" id="inlineResetSettings" class="secondary-btn">Reset</button>
+                <button type="button" id="inlineSaveSettings" class="primary-btn">Save Settings</button>
+            </div>
         </div>
     </div>
 
@@ -324,5 +406,3 @@
 
 
 </html>
-
-

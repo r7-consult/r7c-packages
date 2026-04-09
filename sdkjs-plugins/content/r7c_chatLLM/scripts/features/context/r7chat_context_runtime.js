@@ -1,1 +1,1499 @@
-(function(_0x34d8e0){'use strict';if(typeof module==='object'&&module['exports']){module['exports']=_0x34d8e0(typeof globalThis!=='undefined'?globalThis:global,!![]);return;}_0x34d8e0(typeof window!=='undefined'?window:this,![]);}(function(_0x41e9c6,_0x4a4757){'use strict';var _0x42afce=_0x41e9c6['R7Chat']=_0x41e9c6['R7Chat']||{};_0x42afce['features']=_0x42afce['features']||{},_0x42afce['services']=_0x42afce['services']||{},_0x42afce['context']=_0x42afce['context']||{},_0x42afce['runtime']=_0x42afce['runtime']||{},_0x42afce['runtime']['state']=_0x42afce['runtime']['state']||{},_0x42afce['runtime']['state']['context']=_0x42afce['runtime']['state']['context']||{'autoModeWord':'full_document','autoModeCell':'active_sheet','attachedSheets':[],'smartLimit':!![],'workbookSheetCache':[]};function _0x4a4ac1(){return _0x42afce['runtime']['constants']||{'contextStateKey':'openrouter_context_state_v1','contextCacheTtlMs':0x708,'contextCommandTimeoutMs':0x9c4,'contextLimits':{'maxDocumentChars':0x2ee0,'maxSheetChars':0x2328,'maxPreviewChars':0x708,'maxRowsPerSheet':0x50,'maxColsPerSheet':0x14,'maxPreviewRows':0x10,'maxPreviewCols':0x8,'maxAttachedSheets':0x6}};}function _0x4b8776(){return _0x42afce['runtime']['state']['context'];}function _0x581017(){if(typeof _0x41e9c6['localStorage']!=='undefined'&&_0x41e9c6['localStorage'])return _0x41e9c6['localStorage'];return null;}function _0x7fe92a(){return _0x42afce['platform']&&_0x42afce['platform']['hostBridge']?_0x42afce['platform']['hostBridge']:null;}function _0x21b466(){return _0x42afce['context']&&_0x42afce['context']['cache']?_0x42afce['context']['cache']:null;}function _0x2e6be3(_0x4f258b){if(_0x4f258b===null||_0x4f258b===undefined)return'';return String(_0x4f258b)['replace'](/\r\n/g,'\x0a')['replace'](/\r/g,'\x0a');}function _0x22573a(_0x5e8996,_0x339248){var _0x5d115c=_0x2e6be3(_0x5e8996);if(!_0x4b8776()['smartLimit']||_0x5d115c['length']<=_0x339248)return{'text':_0x5d115c,'truncated':![]};return{'text':_0x5d115c['slice'](0x0,_0x339248),'truncated':!![]};}function _0x47829f(_0x1409bc){if(!Array['isArray'](_0x1409bc))return[[_0x2e6be3(_0x1409bc)]];return _0x1409bc['map'](function(_0x2c6475){if(Array['isArray'](_0x2c6475))return _0x2c6475;return[_0x2c6475];});}function _0x49043d(_0x21c841,_0x16f0d4){var _0x40cb26=_0x47829f(_0x21c841),_0x311475=_0x16f0d4&&typeof _0x16f0d4==='object'?_0x16f0d4:{},_0xa34eb8=Number(_0x311475['maxRows']||_0x4a4ac1()['contextLimits']['maxRowsPerSheet']),_0x34eba6=Number(_0x311475['maxCols']||_0x4a4ac1()['contextLimits']['maxColsPerSheet']),_0x2dc00b=Number(_0x311475['maxChars']||_0x4a4ac1()['contextLimits']['maxSheetChars']),_0x422b2d=_0x40cb26['length'],_0x3d219d=_0x40cb26['reduce'](function(_0x374341,_0x5b80ba){return Math['max'](_0x374341,Array['isArray'](_0x5b80ba)?_0x5b80ba['length']:0x0);},0x0),_0x210c09=_0x4b8776()['smartLimit']?Math['min'](_0x422b2d,_0xa34eb8):_0x422b2d,_0x2da528=_0x4b8776()['smartLimit']?Math['min'](_0x3d219d||0x1,_0x34eba6):_0x3d219d||0x1,_0x49fd5c=_0x210c09<_0x422b2d||_0x2da528<_0x3d219d,_0x355329=_0x210c09,_0x279463='';while(_0x355329>0x0){var _0x31e30a=[];for(var _0x1f975a=0x0;_0x1f975a<_0x355329;_0x1f975a+=0x1){var _0x520f22=Array['isArray'](_0x40cb26[_0x1f975a])?_0x40cb26[_0x1f975a]:[_0x40cb26[_0x1f975a]],_0x4a1182=[];for(var _0x3a671e=0x0;_0x3a671e<_0x2da528;_0x3a671e+=0x1){var _0x512d46=_0x520f22[_0x3a671e]===undefined?'':_0x520f22[_0x3a671e],_0x4c0aae=_0x2e6be3(_0x512d46)['replace'](/\n/g,'\x20')['trim']();_0x4a1182['push'](_0x4c0aae);}_0x31e30a['push'](_0x4a1182['join']('\x09'));}_0x279463=_0x31e30a['join']('\x0a');if(!_0x4b8776()['smartLimit']||_0x279463['length']<=_0x2dc00b)break;_0x355329-=0x1,_0x49fd5c=!![];}return _0x4b8776()['smartLimit']&&_0x279463['length']>_0x2dc00b&&(_0x279463=_0x279463['slice'](0x0,_0x2dc00b),_0x49fd5c=!![]),{'text':_0x279463,'totalRows':_0x422b2d,'totalCols':_0x3d219d,'sampledRows':_0x355329,'sampledCols':_0x2da528,'truncated':_0x49fd5c};}function _0xf3123b(_0x3f65fd){var _0x243245=0x0,_0x389147=String(_0x3f65fd||'')['toUpperCase']();for(var _0x2580c3=0x0;_0x2580c3<_0x389147['length'];_0x2580c3+=0x1){_0x243245=_0x243245*0x1a+(_0x389147['charCodeAt'](_0x2580c3)-0x40);}return _0x243245;}function _0x2c7f61(_0x2764a2){if(!_0x2764a2||typeof _0x2764a2!=='string')return{'rows':0x0,'cols':0x0};var _0x53b98d=_0x2764a2['split']('!')['pop']()['replace'](/\$/g,''),_0x5dcc55=_0x53b98d['match'](/^([A-Z]+)(\d+)(?::([A-Z]+)(\d+))?$/i);if(!_0x5dcc55)return{'rows':0x0,'cols':0x0};var _0xed6807=_0xf3123b(_0x5dcc55[0x1]),_0x2605d7=Number(_0x5dcc55[0x2]),_0x22b95a=_0xf3123b(_0x5dcc55[0x3]||_0x5dcc55[0x1]),_0x431255=Number(_0x5dcc55[0x4]||_0x5dcc55[0x2]);return{'rows':Math['max'](0x0,_0x431255-_0x2605d7+0x1),'cols':Math['max'](0x0,_0x22b95a-_0xed6807+0x1)};}function _0x2a5212(_0x130642){if(!Array['isArray'](_0x130642))return[];return _0x130642['map'](function(_0x583c0e){var _0x37fc84={'role':_0x583c0e['role'],'content':_0x583c0e['content']};Array['isArray'](_0x583c0e['attachments'])&&(_0x37fc84['attachments']=_0x583c0e['attachments']['map'](function(_0x225483){return _0x225483&&typeof _0x225483==='object'?Object['assign']({},_0x225483):_0x225483;})['filter'](Boolean));if(_0x583c0e['tool_call_id'])_0x37fc84['tool_call_id']=_0x583c0e['tool_call_id'];if(_0x583c0e['name'])_0x37fc84['name']=_0x583c0e['name'];if(Array['isArray'](_0x583c0e['tool_calls']))_0x37fc84['tool_calls']=_0x583c0e['tool_calls']['slice']();return _0x37fc84;});}function _0x26ebae(){return{'autoModeWord':'full_document','autoModeCell':'active_sheet','attachedSheets':[],'smartLimit':!![],'workbookSheetCache':[]};}function _0x2d90e9(_0x3c7e70){if(!Array['isArray'](_0x3c7e70))return[];var _0xc746d4=[],_0x1b16e6={};return _0x3c7e70['forEach'](function(_0xb52ba){var _0x1cb0ef=String(_0xb52ba||'')['trim']();if(!_0x1cb0ef['length'])return;var _0x299ced=_0x1cb0ef['toLowerCase']();if(_0x1b16e6[_0x299ced])return;_0x1b16e6[_0x299ced]=!![],_0xc746d4['push'](_0x1cb0ef);}),_0xc746d4;}function _0x41aae9(_0x234756){var _0x4cbb4b=_0x26ebae(),_0x4e9c0c=_0x234756||{};return{'autoModeWord':_0x4e9c0c['autoModeWord']==='full_document'?_0x4e9c0c['autoModeWord']:_0x4cbb4b['autoModeWord'],'autoModeCell':_0x4e9c0c['autoModeCell']==='active_sheet'?_0x4e9c0c['autoModeCell']:_0x4cbb4b['autoModeCell'],'attachedSheets':_0x2d90e9(_0x4e9c0c['attachedSheets']),'smartLimit':_0x4e9c0c['smartLimit']!==![],'workbookSheetCache':Array['isArray'](_0x4e9c0c['workbookSheetCache'])?_0x4e9c0c['workbookSheetCache']['slice']():[]};}function _0x2c2543(){var _0x16540e=_0x581017(),_0x1ff2b2=_0x26ebae();try{var _0x12a601=_0x16540e?_0x16540e['getItem'](_0x4a4ac1()['contextStateKey']):null;_0x12a601&&(_0x1ff2b2=_0x41aae9(JSON['parse'](_0x12a601)));}catch(_0x1c5617){console['error']('Failed\x20to\x20parse\x20context\x20state,\x20fallback\x20to\x20defaults',_0x1c5617);}return _0x42afce['runtime']['state']['context']=_0x1ff2b2,_0x1ff2b2;}function _0x53e4b3(){var _0x5b4afe=_0x581017();return _0x42afce['runtime']['state']['context']=_0x41aae9(_0x42afce['runtime']['state']['context']),_0x5b4afe&&_0x5b4afe['setItem'](_0x4a4ac1()['contextStateKey'],JSON['stringify']({'autoModeWord':_0x4b8776()['autoModeWord'],'autoModeCell':_0x4b8776()['autoModeCell'],'attachedSheets':_0x4b8776()['attachedSheets'],'smartLimit':_0x4b8776()['smartLimit']})),_0x4b8776();}function _0xcb501b(_0x1e0aee,_0x46f92a,_0x822b74){var _0x54a123=_0x7fe92a();if(!_0x54a123||typeof _0x54a123['callEditorCommand']!=='function')return Promise['resolve'](null);var _0x3f26a3=Object['assign']({'timeoutMs':Number(_0x4a4ac1()['contextCommandTimeoutMs']||0x9c4)},_0x822b74&&typeof _0x822b74==='object'?_0x822b74:{});return _0x54a123['callEditorCommand'](_0x1e0aee,_0x46f92a,_0x3f26a3);}function _0x51c8db(_0x213928,_0x4acb11){var _0x5263dc=_0x7fe92a();if(!_0x5263dc||typeof _0x5263dc['callEditorMethod']!=='function')return Promise['resolve'](null);return _0x5263dc['callEditorMethod'](_0x213928,_0x4acb11);}async function _0x3a315d(){var _0x433812=await _0xcb501b(function(){try{var _0x2282c9=Api['GetDocument']();if(!_0x2282c9)return JSON['stringify']({'source':'full_document','totalParagraphs':0x0,'text':''});var _0x156cd4=[];typeof _0x2282c9['GetAllParagraphs']==='function'&&(_0x156cd4=_0x2282c9['GetAllParagraphs']()||[]);var _0x286102=[];for(var _0x20f4d5=0x0;_0x20f4d5<_0x156cd4['length'];_0x20f4d5+=0x1){var _0x1d4d95=_0x156cd4[_0x20f4d5]['GetText']();_0x1d4d95!==null&&_0x1d4d95!==undefined&&String(_0x1d4d95)['trim']()['length']&&_0x286102['push'](String(_0x1d4d95));}return JSON['stringify']({'source':'full_document','totalParagraphs':_0x156cd4['length'],'text':_0x286102['join']('\x0a')});}catch(_0x37a3eb){return JSON['stringify']({'source':'full_document_error','totalParagraphs':0x0,'text':'','error':String(_0x37a3eb&&_0x37a3eb['message']?_0x37a3eb['message']:_0x37a3eb)});}});if(typeof _0x433812==='string')try{_0x433812=JSON['parse'](_0x433812);}catch(_0x580aa7){console['error']('Failed\x20to\x20parse\x20doc\x20context',_0x580aa7);}return _0x433812;}async function _0x1d0f4c(_0x70d1c5){var _0x3a52ff=_0x70d1c5&&typeof _0x70d1c5==='object'?_0x70d1c5:{},_0x1f2566=_0x3a52ff['force']===!![],_0x23d8b8=Math['max'](0x0,Number(_0x3a52ff['ttlMs']||_0x4a4ac1()['contextCacheTtlMs'])),_0x25e730=_0x21b466();if(_0x25e730&&typeof _0x25e730['getActiveSheet']==='function'){var _0x470c6c=_0x25e730['getActiveSheet']({'force':_0x1f2566,'ttlMs':_0x23d8b8});if(_0x470c6c)return JSON['parse'](JSON['stringify'](_0x470c6c));}var _0x345337=await _0xcb501b(function(){function _0x23bbdc(_0x31abc2){try{if(!_0x31abc2)return'';if(_0x31abc2['Name'])return String(_0x31abc2['Name']);if(typeof _0x31abc2['GetName']==='function')return String(_0x31abc2['GetName']()||'');}catch(_0x23fee5){return'';}return'';}function _0x30c38b(_0x226b83){if(!_0x226b83)return'';try{if(_0x226b83['Address'])return String(_0x226b83['Address']);}catch(_0xe344c5){}try{if(typeof _0x226b83['GetAddress']==='function')return String(_0x226b83['GetAddress'](!![],!![],'xlA1',![])||'');}catch(_0x5e88d0){}return'';}function _0x2e5c0a(_0x31eded){if(Array['isArray'](_0x31eded))return _0x31eded;if(_0x31eded===null||_0x31eded===undefined)return[];return[[_0x31eded]];}function _0x4d6591(_0x33730e){if(!_0x33730e)return[];try{if(typeof _0x33730e['GetValue2']==='function')return _0x2e5c0a(_0x33730e['GetValue2']());}catch(_0xb93ce0){}try{if(typeof _0x33730e['GetValue']==='function')return _0x2e5c0a(_0x33730e['GetValue']());}catch(_0x2a903c){}try{if(typeof _0x33730e['GetText']==='function'){var _0xf4add9=String(_0x33730e['GetText']()||'');if(_0xf4add9['length'])return[[_0xf4add9]];}}catch(_0x1f7bfa){}return[];}var _0x517920=null;try{_0x517920=Api['GetActiveSheet']?Api['GetActiveSheet']():null;}catch(_0x190334){_0x517920=null;}if(!_0x517920)return{'sheetName':'Active\x20sheet','address':'','values':[]};var _0x161b47=null,_0x1a4d4a=null;try{if(typeof _0x517920['GetUsedRange']==='function')_0x161b47=_0x517920['GetUsedRange']();}catch(_0x378919){}try{if(typeof _0x517920['GetSelection']==='function')_0x1a4d4a=_0x517920['GetSelection']();}catch(_0x4b359d){}if(!_0x1a4d4a)_0x1a4d4a=_0x161b47;return{'sheetName':_0x23bbdc(_0x517920)||'Active\x20sheet','address':_0x30c38b(_0x1a4d4a||_0x161b47),'values':_0x4d6591(_0x1a4d4a||_0x161b47)};});return _0x25e730&&typeof _0x25e730['setActiveSheet']==='function'&&_0x345337&&_0x25e730['setActiveSheet'](JSON['parse'](JSON['stringify'](_0x345337))),_0x345337;}async function _0x3642a5(_0x5667d1){var _0x14798c=_0x5667d1&&typeof _0x5667d1==='object'?_0x5667d1:{},_0xe345c3=_0x14798c['force']===!![],_0x47651b=Math['max'](0x0,Number(_0x14798c['ttlMs']||_0x4a4ac1()['contextCacheTtlMs'])),_0x313206=_0x21b466();if(_0x313206&&typeof _0x313206['getWorkbookSheets']==='function'){var _0x7592=_0x313206['getWorkbookSheets']({'force':_0xe345c3,'ttlMs':_0x47651b});if(_0x7592)return JSON['parse'](JSON['stringify'](_0x7592));}var _0x2c8b74=await _0xcb501b(function(){function _0x1b0f2f(_0x21d514,_0x592715){try{if(!_0x21d514)return _0x592715||'';if(_0x21d514['Name'])return String(_0x21d514['Name']);if(typeof _0x21d514['GetName']==='function')return String(_0x21d514['GetName']()||_0x592715||'');}catch(_0x3ba1c3){}return _0x592715||'';}function _0x466fc8(_0x308d83){if(!_0x308d83)return'';try{if(_0x308d83['Address'])return String(_0x308d83['Address']);}catch(_0x458bcb){}try{if(typeof _0x308d83['GetAddress']==='function')return String(_0x308d83['GetAddress'](!![],!![],'xlA1',![])||'');}catch(_0x5e82eb){}return'';}function _0x5b8efb(){if(typeof Api['GetSheets']==='function')try{return Api['GetSheets']();}catch(_0x289175){}if(Array['isArray'](Api['Sheets']))return Api['Sheets'];if(Api['Sheets']&&typeof Api['Sheets']['length']==='number'){var _0x7aa7bc=[];for(var _0x587315=0x0;_0x587315<Api['Sheets']['length'];_0x587315+=0x1){if(Api['Sheets'][_0x587315])_0x7aa7bc['push'](Api['Sheets'][_0x587315]);}return _0x7aa7bc;}return[];}var _0x2a1838=_0x5b8efb(),_0x245768=[];for(var _0x2d04bb=0x0;_0x2d04bb<_0x2a1838['length'];_0x2d04bb+=0x1){var _0x389025=_0x2a1838[_0x2d04bb],_0x56acc9=null;try{_0x389025&&typeof _0x389025['GetUsedRange']==='function'&&(_0x56acc9=_0x389025['GetUsedRange']());}catch(_0x20b830){}_0x245768['push']({'name':_0x1b0f2f(_0x389025,'Sheet\x20'+(_0x2d04bb+0x1)),'address':_0x466fc8(_0x56acc9)});}return{'sheets':_0x245768,'discovery_status':_0x245768['length']?'ok':'failed','sources_tried':['Api.Sheets']};});return!_0x2c8b74&&(_0x2c8b74={'sheets':[],'discovery_status':'failed','sources_tried':[]}),_0x313206&&typeof _0x313206['setWorkbookSheets']==='function'&&_0x313206['setWorkbookSheets'](JSON['parse'](JSON['stringify'](_0x2c8b74))),_0x2c8b74;}async function _0x350364(_0x253bc3){return _0xcb501b(function(){function _0x330651(_0x291aa7){if(Array['isArray'](_0x291aa7))return _0x291aa7;if(_0x291aa7===null||_0x291aa7===undefined)return[];return[[_0x291aa7]];}function _0x4ca585(_0x22e603){if(!_0x22e603)return[];try{if(typeof _0x22e603['GetValue2']==='function')return _0x330651(_0x22e603['GetValue2']());}catch(_0x7c780d){}try{if(typeof _0x22e603['GetValue']==='function')return _0x330651(_0x22e603['GetValue']());}catch(_0x29785b){}return[];}var _0x415b15=null;if(typeof Api['GetSheet']==='function')try{_0x415b15=Api['GetSheet'](Asc['scope']['sheetName']);}catch(_0x3ece3c){_0x415b15=null;}if(!_0x415b15)return null;var _0x4fe2c0=null;try{if(typeof _0x415b15['GetUsedRange']==='function')_0x4fe2c0=_0x415b15['GetUsedRange']();}catch(_0x14fdb9){}return{'sheetName':String(Asc['scope']['sheetName']||''),'address':_0x4fe2c0&&_0x4fe2c0['Address']?String(_0x4fe2c0['Address']):'','values':_0x4ca585(_0x4fe2c0)};},{'sheetName':_0x253bc3});}async function _0x5af212(_0x484ed3,_0x2977ea){return _0xcb501b(function(){function _0x10f18c(_0x2f547e){if(Array['isArray'](_0x2f547e))return _0x2f547e;if(_0x2f547e===null||_0x2f547e===undefined)return[];return[[_0x2f547e]];}function _0x1d22a4(_0x4a8ed2){if(!_0x4a8ed2)return[];try{if(typeof _0x4a8ed2['GetValue2']==='function')return _0x10f18c(_0x4a8ed2['GetValue2']());}catch(_0x54e960){}try{if(typeof _0x4a8ed2['GetValue']==='function')return _0x10f18c(_0x4a8ed2['GetValue']());}catch(_0x568816){}return[];}var _0x357e6a=null;try{_0x357e6a=Api['GetSheet']?Api['GetSheet'](Asc['scope']['sheetName']):null;}catch(_0x2dcd2d){_0x357e6a=null;}if(!_0x357e6a&&typeof Api['GetActiveSheet']==='function')try{_0x357e6a=Api['GetActiveSheet']();}catch(_0x2f1c6b){_0x357e6a=null;}if(!_0x357e6a)return null;var _0x8d6301=null;try{typeof _0x357e6a['GetRange']==='function'&&String(Asc['scope']['range']||'')['trim']()['length']&&(_0x8d6301=_0x357e6a['GetRange'](Asc['scope']['range']));}catch(_0x13901f){_0x8d6301=null;}if(!_0x8d6301&&typeof _0x357e6a['GetUsedRange']==='function')try{_0x8d6301=_0x357e6a['GetUsedRange']();}catch(_0x2b51b9){}return{'sheetName':String(Asc['scope']['sheetName']||''),'address':_0x8d6301&&_0x8d6301['Address']?String(_0x8d6301['Address']):String(Asc['scope']['range']||''),'values':_0x1d22a4(_0x8d6301)};},{'sheetName':_0x484ed3||'','range':_0x2977ea||''});}function _0x41f8e7(_0x3a5dd8){var _0x1e39b1=String(_0x3a5dd8||'')['toLowerCase']();return _0x4b8776()['attachedSheets']['some'](function(_0x5b1d8f){return String(_0x5b1d8f)['toLowerCase']()===_0x1e39b1;});}function _0xe0695(_0x59e707){var _0x550f8e=String(_0x59e707||'')['toLowerCase'](),_0x416bee=_0x4b8776()['attachedSheets'],_0x288c19=_0x416bee['findIndex'](function(_0xed7a6f){return String(_0xed7a6f)['toLowerCase']()===_0x550f8e;});if(_0x288c19>=0x0)_0x416bee['splice'](_0x288c19,0x1);else{if(_0x416bee['length']>=_0x4a4ac1()['contextLimits']['maxAttachedSheets'])return!_0x4a4757&&_0x41e9c6['alert']&&_0x41e9c6['alert']('You\x20can\x20attach\x20up\x20to\x206\x20sheets\x20at\x20once.'),![];_0x416bee['push'](_0x59e707);}return _0x53e4b3(),!![];}async function _0x1563f0(_0x3a4188,_0x10cc36){var _0x1b075b=[],_0x3df76c=_0x4a4ac1()['contextLimits'];if(_0x3a4188==='word'&&_0x4b8776()['autoModeWord']==='full_document'){var _0x58f995=await _0x3a315d();if(_0x58f995){var _0x29d717=_0x22573a(_0x58f995['text'],_0x3df76c['maxDocumentChars']);_0x1b075b['push']({'type':'document_context','source':_0x58f995['error']?'full_document_error':'full_document_auto','sheetName':null,'range':null,'rows':_0x58f995['totalParagraphs']||0x0,'cols':0x1,'truncated':_0x29d717['truncated'],'payload':_0x58f995['error']?'Error\x20extracting\x20document\x20text:\x20'+_0x58f995['error']:_0x29d717['text']});}}if(_0x3a4188==='cell'&&_0x4b8776()['autoModeCell']==='active_sheet'){var _0x2daeae=await _0x1d0f4c();if(_0x2daeae){var _0x55798d=_0x49043d(_0x2daeae['values'],{'maxRows':_0x3df76c['maxRowsPerSheet'],'maxCols':_0x3df76c['maxColsPerSheet'],'maxChars':_0x3df76c['maxSheetChars']});_0x1b075b['push']({'type':'sheet_context','source':'active_sheet_auto','sheetName':_0x2daeae['sheetName']||'','range':_0x2daeae['address']||'','rows':_0x55798d['totalRows'],'cols':_0x55798d['totalCols'],'truncated':_0x55798d['truncated'],'payload':_0x55798d['text']});}var _0x78c03d=await _0x3642a5(),_0x25170f=Array['isArray'](_0x78c03d&&_0x78c03d['sheets'])?_0x78c03d['sheets']:[];if(_0x25170f['length']){var _0x54a4cc=_0x25170f['map'](function(_0x4dd059,_0x17b241){var _0x3dc6d6=_0x2c7f61(_0x4dd059['address']||'');return _0x17b241+0x1+'.\x20'+_0x4dd059['name']+'\x20|\x20range:\x20'+(_0x4dd059['address']||'-')+'\x20|\x20rows:\x20'+_0x3dc6d6['rows']+'\x20|\x20cols:\x20'+_0x3dc6d6['cols'];})['join']('\x0a'),_0x5d5fc9=_0x22573a(_0x54a4cc,0x898);_0x1b075b['push']({'type':'workbook_context','source':'workbook_sheet_list','sheetName':null,'range':null,'rows':_0x25170f['length'],'cols':0x2,'truncated':_0x5d5fc9['truncated'],'payload':_0x5d5fc9['text']});}else _0x1b075b['push']({'type':'workbook_context','source':'workbook_sheet_list_unavailable','sheetName':null,'range':null,'rows':0x0,'cols':0x1,'truncated':![],'payload':'sheet_enumeration_failed\x20status='+(_0x78c03d&&_0x78c03d['discovery_status']?_0x78c03d['discovery_status']:'failed')});var _0x5bff70=_0x2d90e9(_0x4b8776()['attachedSheets'])['slice'](0x0,_0x3df76c['maxAttachedSheets']);_0x4b8776()['attachedSheets']=_0x5bff70,_0x53e4b3();for(var _0x17ad82=0x0;_0x17ad82<_0x5bff70['length'];_0x17ad82+=0x1){var _0x1a375d=_0x5bff70[_0x17ad82];if(_0x2daeae&&String(_0x2daeae['sheetName']||'')['toLowerCase']()===_0x1a375d['toLowerCase']())continue;var _0x3e1dda=await _0x350364(_0x1a375d);if(!_0x3e1dda)continue;var _0x380915=_0x49043d(_0x3e1dda['values'],{'maxRows':_0x3df76c['maxRowsPerSheet'],'maxCols':_0x3df76c['maxColsPerSheet'],'maxChars':_0x3df76c['maxSheetChars']});_0x1b075b['push']({'type':'sheet_context','source':'attached_sheet','sheetName':_0x3e1dda['sheetName']||_0x1a375d,'range':_0x3e1dda['address']||'','rows':_0x380915['totalRows'],'cols':_0x380915['totalCols'],'truncated':_0x380915['truncated'],'payload':_0x380915['text']});}}if(!_0x1b075b['length'])return null;var _0x2bd403={'editorType':_0x3a4188,'smartLimit':_0x4b8776()['smartLimit']===!![],'generatedAt':new Date()['toISOString'](),'userMessage':_0x2e6be3(_0x10cc36||''),'contexts':_0x1b075b};return['PLUGIN_DATA_CONTEXT_START','The\x20following\x20JSON\x20contains\x20document/sheet\x20data\x20extracted\x20by\x20the\x20plugin.','You\x20MUST\x20use\x20this\x20data\x20when\x20user\x20asks\x20about\x20document,\x20workbook,\x20sheet,\x20rows,\x20columns,\x20or\x20cells.','Do\x20NOT\x20claim\x20you\x20have\x20no\x20access\x20to\x20files/data\x20if\x20context\x20is\x20provided\x20below.',JSON['stringify'](_0x2bd403,null,0x2),'When\x20context\x20item\x20has\x20truncated=true\x20and\x20details\x20are\x20missing,\x20ask\x20user\x20to\x20specify\x20sheet\x20name\x20or\x20range.','PLUGIN_DATA_CONTEXT_END']['join']('\x0a');}async function _0x3a4cd5(_0x3d51dd,_0x531d31){var _0x155bd0=_0x2a5212(_0x3d51dd),_0x3dccf0=_0x7fe92a(),_0x5e3249=_0x3dccf0&&typeof _0x3dccf0['getEditorTypeSafe']==='function'?_0x3dccf0['getEditorTypeSafe']():'',_0x3693e7=await _0x1563f0(_0x5e3249,_0x531d31);if(!_0x3693e7)return _0x155bd0;var _0x537f40={'role':'user','content':_0x3693e7},_0x2fdc82=_0x155bd0[_0x155bd0['length']-0x1];return _0x2fdc82&&_0x2fdc82['role']==='user'?_0x155bd0['splice'](_0x155bd0['length']-0x1,0x0,_0x537f40):_0x155bd0['push'](_0x537f40),_0x155bd0;}var _0x1103c2={'getState':function(){return _0x4b8776();},'getDefaultContextState':_0x26ebae,'sanitizeContextState':_0x41aae9,'loadContextState':_0x2c2543,'saveContextState':_0x53e4b3,'normalizeTextPayload':_0x2e6be3,'applyTextSmartLimit':_0x22573a,'formatTablePayload':_0x49043d,'parseRangeDimensions':_0x2c7f61,'cloneMessages':_0x2a5212,'collectWordDocumentContext':_0x3a315d,'collectActiveSheetContext':_0x1d0f4c,'collectWorkbookSheetsList':_0x3642a5,'collectSheetByName':_0x350364,'collectSheetRangeContext':_0x5af212,'buildContextEnvelope':_0x1563f0,'prepareRequestWithContext':_0x3a4cd5,'isSheetAttached':_0x41f8e7,'toggleAttachedSheet':_0xe0695,'getWorkbookSheets':function(_0x3a4be7){return _0x3642a5(_0x3a4be7);},'getActiveSheet':function(_0x191e97){return _0x1d0f4c(_0x191e97);}};return _0x42afce['features']['contextRuntime']=_0x1103c2,_0x42afce['services']['context']=_0x42afce['services']['context']||_0x1103c2,_0x42afce['context']['collectSheetByName']=_0x350364,_0x42afce['context']['getWorkbookSheets']=_0x1103c2['getWorkbookSheets'],_0x42afce['context']['getActiveSheet']=_0x1103c2['getActiveSheet'],_0x1103c2;}));
+(function (rootFactory) {
+    'use strict';
+
+    if (typeof module === 'object' && module.exports) {
+        module.exports = rootFactory(typeof globalThis !== 'undefined' ? globalThis : global, true);
+        return;
+    }
+
+    rootFactory(typeof window !== 'undefined' ? window : this, false);
+})(function (globalRoot, isNode) {
+    'use strict';
+
+    var root = globalRoot.R7Chat = globalRoot.R7Chat || {};
+    root.features = root.features || {};
+    root.services = root.services || {};
+    root.context = root.context || {};
+    root.runtime = root.runtime || {};
+    root.runtime.state = root.runtime.state || {};
+    root.runtime.state.context = root.runtime.state.context || {
+        autoModeWord: 'full_document',
+        autoModeCell: 'active_sheet',
+        attachedSheets: [],
+        smartLimit: true,
+        workbookSheetCache: [],
+        lastToolSummary: null
+    };
+
+    function constants() {
+        return root.runtime.constants || {
+            contextStateKey: 'openrouter_context_state_v1',
+            contextCacheTtlMs: 1800,
+            contextCommandTimeoutMs: 2500,
+            contextLimits: {
+                maxDocumentChars: 12000,
+                maxSheetChars: 9000,
+                maxPreviewChars: 1800,
+                maxRowsPerSheet: 80,
+                maxColsPerSheet: 20,
+                maxPreviewRows: 16,
+                maxPreviewCols: 8,
+                maxAttachedSheets: 6
+            },
+            contextToolLimits: {
+                maxCharsWord: 12000,
+                maxCharsCell: 9000,
+                maxRowsPerChunk: 80,
+                maxColsPerChunk: 20,
+                maxParagraphsPerChunk: 120,
+                maxInternalChunks: 8
+            }
+        };
+    }
+
+    function contextState() {
+        return root.runtime.state.context;
+    }
+
+    function getStorage() {
+        if (typeof globalRoot.localStorage !== 'undefined' && globalRoot.localStorage) {
+            return globalRoot.localStorage;
+        }
+        return null;
+    }
+
+    function getHostBridge() {
+        return root.platform && root.platform.hostBridge ? root.platform.hostBridge : null;
+    }
+
+    function getCacheApi() {
+        return root.context && root.context.cache ? root.context.cache : null;
+    }
+
+    function normalizeTextPayload(value) {
+        if (value === null || value === undefined) return '';
+        return String(value).replace(/\r\n/g, '\n').replace(/\r/g, '\n');
+    }
+
+    function applyTextSmartLimit(text, maxChars) {
+        var sourceText = normalizeTextPayload(text);
+        if (!contextState().smartLimit || sourceText.length <= maxChars) {
+            return { text: sourceText, truncated: false };
+        }
+        return {
+            text: sourceText.slice(0, maxChars),
+            truncated: true
+        };
+    }
+
+    function normalizeTableValues(values) {
+        if (!Array.isArray(values)) {
+            return [[normalizeTextPayload(values)]];
+        }
+        return values.map(function (row) {
+            if (Array.isArray(row)) return row;
+            return [row];
+        });
+    }
+
+    function normalizePreviewRows(values, maxRows, maxCols) {
+        var table = normalizeTableValues(values);
+        var rows = [];
+        var rowLimit = Math.max(1, Number(maxRows || 6) || 6);
+        var colLimit = Math.max(1, Number(maxCols || 8) || 8);
+        for (var r = 0; r < table.length && rows.length < rowLimit; r += 1) {
+            var sourceRow = Array.isArray(table[r]) ? table[r] : [table[r]];
+            var row = [];
+            for (var c = 0; c < sourceRow.length && c < colLimit; c += 1) {
+                row.push(normalizeTextPayload(sourceRow[c]));
+            }
+            rows.push(row);
+        }
+        return rows;
+    }
+
+    function formatTablePayload(values, options) {
+        var table = normalizeTableValues(values);
+        var settings = options && typeof options === 'object' ? options : {};
+        var maxRows = Number(settings.maxRows || constants().contextLimits.maxRowsPerSheet);
+        var maxCols = Number(settings.maxCols || constants().contextLimits.maxColsPerSheet);
+        var maxChars = Number(settings.maxChars || constants().contextLimits.maxSheetChars);
+        var totalRows = table.length;
+        var totalCols = table.reduce(function (maxValue, row) {
+            return Math.max(maxValue, Array.isArray(row) ? row.length : 0);
+        }, 0);
+        var sampledRows = contextState().smartLimit ? Math.min(totalRows, maxRows) : totalRows;
+        var sampledCols = contextState().smartLimit ? Math.min(totalCols || 1, maxCols) : (totalCols || 1);
+        var truncated = sampledRows < totalRows || sampledCols < totalCols;
+        var rowsToRender = sampledRows;
+        var renderedText = '';
+
+        while (rowsToRender > 0) {
+            var lines = [];
+            for (var r = 0; r < rowsToRender; r += 1) {
+                var row = Array.isArray(table[r]) ? table[r] : [table[r]];
+                var cells = [];
+                for (var c = 0; c < sampledCols; c += 1) {
+                    var rawCell = row[c] === undefined ? '' : row[c];
+                    var normalizedCell = normalizeTextPayload(rawCell).replace(/\n/g, ' ').trim();
+                    cells.push(normalizedCell);
+                }
+                lines.push(cells.join('\t'));
+            }
+            renderedText = lines.join('\n');
+            if (!contextState().smartLimit || renderedText.length <= maxChars) {
+                break;
+            }
+            rowsToRender -= 1;
+            truncated = true;
+        }
+
+        if (contextState().smartLimit && renderedText.length > maxChars) {
+            renderedText = renderedText.slice(0, maxChars);
+            truncated = true;
+        }
+
+        return {
+            text: renderedText,
+            totalRows: totalRows,
+            totalCols: totalCols,
+            sampledRows: rowsToRender,
+            sampledCols: sampledCols,
+            truncated: truncated
+        };
+    }
+
+    function colLettersToNumber(value) {
+        var result = 0;
+        var text = String(value || '').toUpperCase();
+        for (var i = 0; i < text.length; i += 1) {
+            result = result * 26 + (text.charCodeAt(i) - 64);
+        }
+        return result;
+    }
+
+    function parseRangeDimensions(address) {
+        if (!address || typeof address !== 'string') return { rows: 0, cols: 0 };
+        var pureAddress = address.split('!').pop().replace(/\$/g, '');
+        var match = pureAddress.match(/^([A-Z]+)(\d+)(?::([A-Z]+)(\d+))?$/i);
+        if (!match) return { rows: 0, cols: 0 };
+
+        var startCol = colLettersToNumber(match[1]);
+        var startRow = Number(match[2]);
+        var endCol = colLettersToNumber(match[3] || match[1]);
+        var endRow = Number(match[4] || match[2]);
+
+        return {
+            rows: Math.max(0, endRow - startRow + 1),
+            cols: Math.max(0, endCol - startCol + 1)
+        };
+    }
+
+    function numberToColLetters(value) {
+        var num = Math.max(1, Number(value) || 1);
+        var output = '';
+        while (num > 0) {
+            var mod = (num - 1) % 26;
+            output = String.fromCharCode(65 + mod) + output;
+            num = Math.floor((num - 1) / 26);
+        }
+        return output || 'A';
+    }
+
+    function parseRangeBounds(address) {
+        if (!address || typeof address !== 'string') {
+            return {
+                address: '',
+                startRow: 0,
+                endRow: 0,
+                startCol: 0,
+                endCol: 0,
+                rows: 0,
+                cols: 0
+            };
+        }
+
+        var pureAddress = address.split('!').pop().replace(/\$/g, '');
+        var match = pureAddress.match(/^([A-Z]+)(\d+)(?::([A-Z]+)(\d+))?$/i);
+        if (!match) {
+            return {
+                address: pureAddress,
+                startRow: 0,
+                endRow: 0,
+                startCol: 0,
+                endCol: 0,
+                rows: 0,
+                cols: 0
+            };
+        }
+
+        var startCol = colLettersToNumber(match[1]);
+        var startRow = Number(match[2]);
+        var endCol = colLettersToNumber(match[3] || match[1]);
+        var endRow = Number(match[4] || match[2]);
+
+        return {
+            address: pureAddress,
+            startRow: Math.min(startRow, endRow),
+            endRow: Math.max(startRow, endRow),
+            startCol: Math.min(startCol, endCol),
+            endCol: Math.max(startCol, endCol),
+            rows: Math.max(0, Math.max(startRow, endRow) - Math.min(startRow, endRow) + 1),
+            cols: Math.max(0, Math.max(startCol, endCol) - Math.min(startCol, endCol) + 1)
+        };
+    }
+
+    function buildRangeAddress(startRow, startCol, endRow, endCol) {
+        if (!startRow || !startCol || !endRow || !endCol) return '';
+        return numberToColLetters(startCol) + String(startRow) + ':' + numberToColLetters(endCol) + String(endRow);
+    }
+
+    function cloneSerializable(value) {
+        if (value === null || value === undefined) return value;
+        try {
+            return JSON.parse(JSON.stringify(value));
+        } catch (error) {
+            return value;
+        }
+    }
+
+    function clampPositiveInt(value, fallback, maxValue) {
+        var parsed = Number(value);
+        if (!Number.isFinite(parsed) || parsed <= 0) parsed = Number(fallback);
+        if (!Number.isFinite(parsed) || parsed <= 0) parsed = 1;
+        parsed = Math.floor(parsed);
+        if (Number.isFinite(maxValue) && maxValue > 0) {
+            parsed = Math.min(parsed, Math.floor(maxValue));
+        }
+        return Math.max(1, parsed);
+    }
+
+    function normalizeContextToolOptions(options, editorType) {
+        var source = options && typeof options === 'object' ? options : {};
+        var toolLimits = constants().contextToolLimits || {};
+        var isWord = editorType === 'word';
+        return {
+            mode: source.mode === 'discover' ? 'discover' : 'collect',
+            editorType: editorType === 'word' ? 'word' : 'cell',
+            sheetName: normalizeTextPayload(source.sheetName || '').trim(),
+            intent: normalizeTextPayload(source.intent || '').trim(),
+            forceRefresh: source.forceRefresh === true,
+            maxChars: clampPositiveInt(
+                source.maxChars,
+                isWord ? toolLimits.maxCharsWord : toolLimits.maxCharsCell,
+                isWord ? 24000 : 24000
+            ),
+            maxRowsPerChunk: clampPositiveInt(source.maxRowsPerChunk, toolLimits.maxRowsPerChunk || 80, 400),
+            maxColsPerChunk: clampPositiveInt(source.maxColsPerChunk, toolLimits.maxColsPerChunk || 20, 64),
+            maxParagraphsPerChunk: clampPositiveInt(source.maxParagraphsPerChunk, toolLimits.maxParagraphsPerChunk || 120, 400),
+            maxInternalChunks: clampPositiveInt(source.maxInternalChunks, toolLimits.maxInternalChunks || 8, 24)
+        };
+    }
+
+    function appendBoundedChunk(currentText, chunkText, maxChars) {
+        var safeCurrent = normalizeTextPayload(currentText || '');
+        var safeChunk = normalizeTextPayload(chunkText || '');
+        if (!safeChunk.length) {
+            return {
+                text: safeCurrent,
+                appended: false,
+                truncated: false
+            };
+        }
+        var nextText = safeCurrent ? (safeCurrent + '\n\n' + safeChunk) : safeChunk;
+        if (nextText.length <= maxChars) {
+            return {
+                text: nextText,
+                appended: true,
+                truncated: false
+            };
+        }
+        if (safeCurrent.length >= maxChars) {
+            return {
+                text: safeCurrent.slice(0, maxChars),
+                appended: false,
+                truncated: true
+            };
+        }
+        var available = maxChars - safeCurrent.length;
+        if (safeCurrent.length && available > 2) {
+            return {
+                text: safeCurrent + '\n\n' + safeChunk.slice(0, Math.max(0, available - 2)),
+                appended: true,
+                truncated: true
+            };
+        }
+        return {
+            text: safeChunk.slice(0, maxChars),
+            appended: true,
+            truncated: true
+        };
+    }
+
+    function setLastToolSummary(summary) {
+        contextState().lastToolSummary = summary && typeof summary === 'object'
+            ? cloneSerializable(summary)
+            : null;
+        return contextState().lastToolSummary;
+    }
+
+    function cloneMessages(messages) {
+        if (!Array.isArray(messages)) return [];
+        return messages.map(function (item) {
+            var output = {
+                role: item.role,
+                content: item.content
+            };
+            if (Array.isArray(item.attachments)) {
+                output.attachments = item.attachments.map(function (attachment) {
+                    return attachment && typeof attachment === 'object' ? Object.assign({}, attachment) : attachment;
+                }).filter(Boolean);
+            }
+            if (item.tool_call_id) output.tool_call_id = item.tool_call_id;
+            if (item.name) output.name = item.name;
+            if (Array.isArray(item.tool_calls)) output.tool_calls = item.tool_calls.slice();
+            return output;
+        });
+    }
+
+    function getDefaultContextState() {
+        return {
+            autoModeWord: 'full_document',
+            autoModeCell: 'active_sheet',
+            attachedSheets: [],
+            smartLimit: true,
+            workbookSheetCache: [],
+            lastToolSummary: null
+        };
+    }
+
+    function normalizeAttachedSheets(sheets) {
+        if (!Array.isArray(sheets)) return [];
+        var unique = [];
+        var seen = {};
+        sheets.forEach(function (item) {
+            var name = String(item || '').trim();
+            if (!name.length) return;
+            var key = name.toLowerCase();
+            if (seen[key]) return;
+            seen[key] = true;
+            unique.push(name);
+        });
+        return unique;
+    }
+
+    function sanitizeContextState(inputState) {
+        var defaults = getDefaultContextState();
+        var safeInput = inputState || {};
+        return {
+            autoModeWord: safeInput.autoModeWord === 'full_document' ? safeInput.autoModeWord : defaults.autoModeWord,
+            autoModeCell: safeInput.autoModeCell === 'active_sheet' ? safeInput.autoModeCell : defaults.autoModeCell,
+            attachedSheets: normalizeAttachedSheets(safeInput.attachedSheets),
+            smartLimit: safeInput.smartLimit !== false,
+            workbookSheetCache: Array.isArray(safeInput.workbookSheetCache) ? safeInput.workbookSheetCache.slice() : [],
+            lastToolSummary: safeInput.lastToolSummary && typeof safeInput.lastToolSummary === 'object'
+                ? JSON.parse(JSON.stringify(safeInput.lastToolSummary))
+                : null
+        };
+    }
+
+    function loadContextState() {
+        var storage = getStorage();
+        var nextState = getDefaultContextState();
+        try {
+            var raw = storage ? storage.getItem(constants().contextStateKey) : null;
+            if (raw) {
+                nextState = sanitizeContextState(JSON.parse(raw));
+            }
+        } catch (error) {
+            console.error('Failed to parse context state, fallback to defaults', error);
+        }
+        root.runtime.state.context = nextState;
+        return nextState;
+    }
+
+    function saveContextState() {
+        var storage = getStorage();
+        root.runtime.state.context = sanitizeContextState(root.runtime.state.context);
+        if (storage) {
+            storage.setItem(constants().contextStateKey, JSON.stringify({
+                autoModeWord: contextState().autoModeWord,
+                autoModeCell: contextState().autoModeCell,
+                attachedSheets: contextState().attachedSheets,
+                smartLimit: contextState().smartLimit
+            }));
+        }
+        return contextState();
+    }
+
+    function callEditorCommand(command, scopeData, options) {
+        var host = getHostBridge();
+        if (!host || typeof host.callEditorCommand !== 'function') {
+            return Promise.resolve(null);
+        }
+        var settings = Object.assign({
+            timeoutMs: Number(constants().contextCommandTimeoutMs || 2500)
+        }, options && typeof options === 'object' ? options : {});
+        return host.callEditorCommand(command, scopeData, settings);
+    }
+
+    function callEditorMethod(name, args) {
+        var host = getHostBridge();
+        if (!host || typeof host.callEditorMethod !== 'function') {
+            return Promise.resolve(null);
+        }
+        return host.callEditorMethod(name, args);
+    }
+
+    function parseJsonEditorPayload(value, fallbackValue, label) {
+        if (value === null || value === undefined || value === '') {
+            return fallbackValue;
+        }
+        if (typeof value === 'string') {
+            try {
+                return JSON.parse(value);
+            } catch (error) {
+                console.error('Failed to parse ' + label, error);
+                return fallbackValue;
+            }
+        }
+        return value;
+    }
+
+    async function collectWordDocumentContext() {
+        var result = await callEditorCommand(function () {
+            try {
+                var doc = Api.GetDocument();
+                if (!doc) {
+                    return JSON.stringify({ source: 'full_document', totalParagraphs: 0, text: '' });
+                }
+                var paragraphs = [];
+                if (typeof doc.GetAllParagraphs === 'function') {
+                    paragraphs = doc.GetAllParagraphs() || [];
+                }
+                var chunks = [];
+                for (var i = 0; i < paragraphs.length; i += 1) {
+                    var text = paragraphs[i].GetText();
+                    if (text !== null && text !== undefined && String(text).trim().length) {
+                        chunks.push(String(text));
+                    }
+                }
+                return JSON.stringify({
+                    source: 'full_document',
+                    totalParagraphs: paragraphs.length,
+                    text: chunks.join('\n')
+                });
+            } catch (error) {
+                return JSON.stringify({
+                    source: 'full_document_error',
+                    totalParagraphs: 0,
+                    text: '',
+                    error: String(error && error.message ? error.message : error)
+                });
+            }
+        });
+        return parseJsonEditorPayload(result, {
+            source: 'full_document_error',
+            totalParagraphs: 0,
+            text: ''
+        }, 'doc context');
+    }
+
+    async function collectWordDocumentMeta() {
+        var payload = await callEditorCommand(function () {
+            try {
+                var doc = Api.GetDocument ? Api.GetDocument() : null;
+                if (!doc) {
+                    return JSON.stringify({
+                        source: 'document_meta',
+                        totalParagraphs: 0
+                    });
+                }
+                var paragraphs = typeof doc.GetAllParagraphs === 'function' ? (doc.GetAllParagraphs() || []) : [];
+                return JSON.stringify({
+                    source: 'document_meta',
+                    totalParagraphs: paragraphs.length
+                });
+            } catch (error) {
+                return JSON.stringify({
+                    source: 'document_meta_error',
+                    totalParagraphs: 0,
+                    error: String(error && error.message ? error.message : error)
+                });
+            }
+        });
+
+        return parseJsonEditorPayload(payload, {
+            source: 'document_meta_error',
+            totalParagraphs: 0
+        }, 'word document meta');
+    }
+
+    async function collectWordDocumentChunk(startIndex, limit) {
+        var payload = await callEditorCommand(function () {
+            try {
+                var doc = Api.GetDocument ? Api.GetDocument() : null;
+                var start = Math.max(0, Number(Asc.scope.startIndex || 0));
+                var size = Math.max(1, Number(Asc.scope.limit || 1));
+                if (!doc) {
+                    return JSON.stringify({
+                        source: 'document_chunk',
+                        startIndex: start,
+                        endIndex: start,
+                        totalParagraphs: 0,
+                        text: ''
+                    });
+                }
+                var paragraphs = typeof doc.GetAllParagraphs === 'function' ? (doc.GetAllParagraphs() || []) : [];
+                var collected = [];
+                var endIndex = Math.min(paragraphs.length, start + size);
+                for (var i = start; i < endIndex; i += 1) {
+                    var paragraph = paragraphs[i];
+                    var text = paragraph && typeof paragraph.GetText === 'function' ? paragraph.GetText() : '';
+                    if (text !== null && text !== undefined) {
+                        text = String(text);
+                        if (text.trim().length) collected.push(text);
+                    }
+                }
+                return JSON.stringify({
+                    source: 'document_chunk',
+                    startIndex: start,
+                    endIndex: endIndex,
+                    totalParagraphs: paragraphs.length,
+                    text: collected.join('\n')
+                });
+            } catch (error) {
+                return JSON.stringify({
+                    source: 'document_chunk_error',
+                    startIndex: Number(Asc.scope.startIndex || 0),
+                    endIndex: Number(Asc.scope.startIndex || 0),
+                    totalParagraphs: 0,
+                    text: '',
+                    error: String(error && error.message ? error.message : error)
+                });
+            }
+        }, {
+            startIndex: Number(startIndex || 0) || 0,
+            limit: Number(limit || 1) || 1
+        });
+
+        return parseJsonEditorPayload(payload, {
+            source: 'document_chunk_error',
+            startIndex: Number(startIndex || 0) || 0,
+            endIndex: Number(startIndex || 0) || 0,
+            totalParagraphs: 0,
+            text: ''
+        }, 'word document chunk');
+    }
+
+    async function collectActiveSheetMeta() {
+        var payload = await callEditorCommand(function () {
+            function safeSheetName(sheet) {
+                try {
+                    if (!sheet) return '';
+                    if (sheet.Name) return String(sheet.Name);
+                    if (typeof sheet.GetName === 'function') return String(sheet.GetName() || '');
+                } catch (error) {}
+                return '';
+            }
+
+            function safeRangeAddress(range) {
+                if (!range) return '';
+                try {
+                    if (range.Address) return String(range.Address);
+                } catch (error) {}
+                try {
+                    if (typeof range.GetAddress === 'function') {
+                        return String(range.GetAddress(true, true, 'xlA1', false) || '');
+                    }
+                } catch (error2) {}
+                return '';
+            }
+
+            var ws = null;
+            try {
+                ws = Api.GetActiveSheet ? Api.GetActiveSheet() : null;
+            } catch (error3) {
+                ws = null;
+            }
+            if (!ws) {
+                return JSON.stringify({
+                    sheetName: '',
+                    address: '',
+                    selectionAddress: ''
+                });
+            }
+
+            var usedRange = null;
+            var selection = null;
+            try {
+                if (typeof ws.GetUsedRange === 'function') usedRange = ws.GetUsedRange();
+            } catch (error4) {}
+            try {
+                if (typeof ws.GetSelection === 'function') selection = ws.GetSelection();
+            } catch (error5) {}
+
+            return JSON.stringify({
+                sheetName: safeSheetName(ws),
+                address: safeRangeAddress(usedRange),
+                selectionAddress: safeRangeAddress(selection || usedRange)
+            });
+        });
+
+        return parseJsonEditorPayload(payload, {
+            sheetName: '',
+            address: '',
+            selectionAddress: ''
+        }, 'active sheet meta');
+    }
+
+    async function collectActiveSheetContext(options) {
+        var settings = options && typeof options === 'object' ? options : {};
+        var force = settings.force === true;
+        var ttlMs = Math.max(0, Number(settings.ttlMs || constants().contextCacheTtlMs));
+        var cacheApi = getCacheApi();
+        if (cacheApi && typeof cacheApi.getActiveSheet === 'function') {
+            var cached = cacheApi.getActiveSheet({ force: force, ttlMs: ttlMs });
+            if (cached) {
+                return JSON.parse(JSON.stringify(cached));
+            }
+        }
+
+        var payload = await callEditorCommand(function () {
+            function safeSheetName(sheet) {
+                try {
+                    if (!sheet) return '';
+                    if (sheet.Name) return String(sheet.Name);
+                    if (typeof sheet.GetName === 'function') return String(sheet.GetName() || '');
+                } catch (error) {
+                    return '';
+                }
+                return '';
+            }
+
+            function safeRangeAddress(range) {
+                if (!range) return '';
+                try {
+                    if (range.Address) return String(range.Address);
+                } catch (error) {}
+                try {
+                    if (typeof range.GetAddress === 'function') {
+                        return String(range.GetAddress(true, true, 'xlA1', false) || '');
+                    }
+                } catch (error2) {}
+                return '';
+            }
+
+            function normalizeValues(values) {
+                if (Array.isArray(values)) return values;
+                if (values === null || values === undefined) return [];
+                return [[values]];
+            }
+
+            function safeRangeValues(range) {
+                if (!range) return [];
+                try {
+                    if (typeof range.GetValue2 === 'function') {
+                        return normalizeValues(range.GetValue2());
+                    }
+                } catch (error) {}
+                try {
+                    if (typeof range.GetValue === 'function') {
+                        return normalizeValues(range.GetValue());
+                    }
+                } catch (error2) {}
+                try {
+                    if (typeof range.GetText === 'function') {
+                        var text = String(range.GetText() || '');
+                        if (text.length) return [[text]];
+                    }
+                } catch (error3) {}
+                return [];
+            }
+
+            var ws = null;
+            try {
+                ws = Api.GetActiveSheet ? Api.GetActiveSheet() : null;
+            } catch (error4) {
+                ws = null;
+            }
+            if (!ws) {
+                return JSON.stringify({ sheetName: 'Active sheet', address: '', values: [] });
+            }
+
+            var usedRange = null;
+            var selection = null;
+            try {
+                if (typeof ws.GetUsedRange === 'function') usedRange = ws.GetUsedRange();
+            } catch (error5) {}
+            try {
+                if (typeof ws.GetSelection === 'function') selection = ws.GetSelection();
+            } catch (error6) {}
+            var targetRange = usedRange || selection;
+
+            return JSON.stringify({
+                sheetName: safeSheetName(ws) || 'Active sheet',
+                address: safeRangeAddress(targetRange),
+                values: safeRangeValues(targetRange)
+            });
+        });
+
+        payload = parseJsonEditorPayload(payload, { sheetName: 'Active sheet', address: '', values: [] }, 'active sheet context');
+
+        if (cacheApi && typeof cacheApi.setActiveSheet === 'function' && payload) {
+            cacheApi.setActiveSheet(JSON.parse(JSON.stringify(payload)));
+        }
+        return payload;
+    }
+
+    async function collectWorkbookSheetsList(options) {
+        var settings = options && typeof options === 'object' ? options : {};
+        var force = settings.force === true;
+        var ttlMs = Math.max(0, Number(settings.ttlMs || constants().contextCacheTtlMs));
+        var cacheApi = getCacheApi();
+        if (cacheApi && typeof cacheApi.getWorkbookSheets === 'function') {
+            var cached = cacheApi.getWorkbookSheets({ force: force, ttlMs: ttlMs });
+            if (cached) {
+                return JSON.parse(JSON.stringify(cached));
+            }
+        }
+
+        var payload = await callEditorCommand(function () {
+            function safeSheetName(sheet, fallback) {
+                try {
+                    if (!sheet) return fallback || '';
+                    if (sheet.Name) return String(sheet.Name);
+                    if (typeof sheet.GetName === 'function') return String(sheet.GetName() || fallback || '');
+                } catch (error) {}
+                return fallback || '';
+            }
+
+            function safeRangeAddress(range) {
+                if (!range) return '';
+                try {
+                    if (range.Address) return String(range.Address);
+                } catch (error) {}
+                try {
+                    if (typeof range.GetAddress === 'function') {
+                        return String(range.GetAddress(true, true, 'xlA1', false) || '');
+                    }
+                } catch (error2) {}
+                return '';
+            }
+
+            function listSheets() {
+                if (typeof Api.GetSheets === 'function') {
+                    try { return Api.GetSheets(); } catch (error) {}
+                }
+                if (Array.isArray(Api.Sheets)) return Api.Sheets;
+                if (Api.Sheets && typeof Api.Sheets.length === 'number') {
+                    var arr = [];
+                    for (var i = 0; i < Api.Sheets.length; i += 1) {
+                        if (Api.Sheets[i]) arr.push(Api.Sheets[i]);
+                    }
+                    return arr;
+                }
+                return [];
+            }
+
+            var sheets = listSheets();
+            var normalized = [];
+            for (var i = 0; i < sheets.length; i += 1) {
+                var sheet = sheets[i];
+                var usedRange = null;
+                try {
+                    if (sheet && typeof sheet.GetUsedRange === 'function') {
+                        usedRange = sheet.GetUsedRange();
+                    }
+                } catch (error3) {}
+                normalized.push({
+                    name: safeSheetName(sheet, 'Sheet ' + (i + 1)),
+                    address: safeRangeAddress(usedRange)
+                });
+            }
+            return JSON.stringify({
+                sheets: normalized,
+                discovery_status: normalized.length ? 'ok' : 'failed',
+                sources_tried: ['Api.Sheets']
+            });
+        });
+
+        payload = parseJsonEditorPayload(payload, { sheets: [], discovery_status: 'failed', sources_tried: [] }, 'workbook sheets list');
+
+        if (!payload) {
+            payload = { sheets: [], discovery_status: 'failed', sources_tried: [] };
+        }
+        if (cacheApi && typeof cacheApi.setWorkbookSheets === 'function') {
+            cacheApi.setWorkbookSheets(JSON.parse(JSON.stringify(payload)));
+        }
+        return payload;
+    }
+
+    async function collectSheetByName(name) {
+        var payload = await callEditorCommand(function () {
+            function normalizeValues(values) {
+                if (Array.isArray(values)) return values;
+                if (values === null || values === undefined) return [];
+                return [[values]];
+            }
+
+            function safeRangeValues(range) {
+                if (!range) return [];
+                try {
+                    if (typeof range.GetValue2 === 'function') return normalizeValues(range.GetValue2());
+                } catch (error) {}
+                try {
+                    if (typeof range.GetValue === 'function') return normalizeValues(range.GetValue());
+                } catch (error2) {}
+                return [];
+            }
+
+            var ws = null;
+            if (typeof Api.GetSheet === 'function') {
+                try {
+                    ws = Api.GetSheet(Asc.scope.sheetName);
+                } catch (error3) {
+                    ws = null;
+                }
+            }
+            if (!ws) return '';
+
+            var usedRange = null;
+            try {
+                if (typeof ws.GetUsedRange === 'function') usedRange = ws.GetUsedRange();
+            } catch (error4) {}
+            return JSON.stringify({
+                sheetName: String(Asc.scope.sheetName || ''),
+                address: usedRange && usedRange.Address ? String(usedRange.Address) : '',
+                values: safeRangeValues(usedRange)
+            });
+        }, { sheetName: name });
+        return parseJsonEditorPayload(payload, null, 'sheet by name context');
+    }
+
+    async function collectSheetRangeContext(sheetName, rangeText) {
+        var payload = await callEditorCommand(function () {
+            function normalizeValues(values) {
+                if (Array.isArray(values)) return values;
+                if (values === null || values === undefined) return [];
+                return [[values]];
+            }
+
+            function safeRangeValues(range) {
+                if (!range) return [];
+                try {
+                    if (typeof range.GetValue2 === 'function') return normalizeValues(range.GetValue2());
+                } catch (error) {}
+                try {
+                    if (typeof range.GetValue === 'function') return normalizeValues(range.GetValue());
+                } catch (error2) {}
+                return [];
+            }
+
+            var ws = null;
+            try {
+                ws = Api.GetSheet ? Api.GetSheet(Asc.scope.sheetName) : null;
+            } catch (error3) {
+                ws = null;
+            }
+            if (!ws && typeof Api.GetActiveSheet === 'function') {
+                try {
+                    ws = Api.GetActiveSheet();
+                } catch (error4) {
+                    ws = null;
+                }
+            }
+            if (!ws) return '';
+
+            var range = null;
+            try {
+                if (typeof ws.GetRange === 'function' && String(Asc.scope.range || '').trim().length) {
+                    range = ws.GetRange(Asc.scope.range);
+                }
+            } catch (error5) {
+                range = null;
+            }
+            if (!range && typeof ws.GetUsedRange === 'function') {
+                try { range = ws.GetUsedRange(); } catch (error6) {}
+            }
+
+            return JSON.stringify({
+                sheetName: String(Asc.scope.sheetName || ''),
+                address: range && range.Address ? String(range.Address) : String(Asc.scope.range || ''),
+                values: safeRangeValues(range)
+            });
+        }, { sheetName: sheetName || '', range: rangeText || '' });
+        return parseJsonEditorPayload(payload, null, 'sheet range context');
+    }
+
+    async function discoverAvailableContext(options) {
+        var host = getHostBridge();
+        var requestedEditor = options && options.editorType ? String(options.editorType) : '';
+        var editorType = requestedEditor || (host && typeof host.getEditorTypeSafe === 'function' ? host.getEditorTypeSafe() : '');
+
+        if (editorType === 'word') {
+            var docMeta = await collectWordDocumentMeta();
+            var docWarnings = [];
+            if (docMeta && docMeta.error) docWarnings.push('document_meta_error');
+            if (!docMeta || !docMeta.totalParagraphs) docWarnings.push('document_empty');
+            var docResult = {
+                editorType: 'word',
+                mode: 'discover',
+                source: 'document',
+                discoveryStatus: docMeta && !docMeta.error ? 'ok' : 'failed',
+                totalParagraphs: Number(docMeta && docMeta.totalParagraphs || 0) || 0,
+                warnings: docWarnings
+            };
+            setLastToolSummary({
+                editorType: 'word',
+                mode: 'discover',
+                source: 'document',
+                discoveryStatus: docResult.discoveryStatus,
+                totalParagraphs: docResult.totalParagraphs,
+                warnings: docWarnings
+            });
+            return docResult;
+        }
+
+        if (editorType !== 'cell') {
+            return {
+                editorType: normalizeTextPayload(editorType || ''),
+                mode: 'discover',
+                source: 'unsupported',
+                discoveryStatus: 'unsupported',
+                warnings: ['editor_not_supported']
+            };
+        }
+
+        var workbookMeta = await collectWorkbookSheetsList({
+            force: options && options.forceRefresh === true
+        });
+        var activeMeta = await collectActiveSheetMeta();
+        var sheets = Array.isArray(workbookMeta && workbookMeta.sheets) ? workbookMeta.sheets.map(function (sheet) {
+            var bounds = parseRangeBounds(sheet && sheet.address || '');
+            return {
+                name: normalizeTextPayload(sheet && sheet.name || ''),
+                address: normalizeTextPayload(sheet && sheet.address || ''),
+                rows: bounds.rows,
+                cols: bounds.cols
+            };
+        }) : [];
+        contextState().workbookSheetCache = sheets.slice();
+        var result = {
+            editorType: 'cell',
+            mode: 'discover',
+            source: 'workbook',
+            activeSheet: normalizeTextPayload(activeMeta && activeMeta.sheetName || ''),
+            sheets: sheets,
+            discoveryStatus: workbookMeta && workbookMeta.discovery_status ? String(workbookMeta.discovery_status) : (sheets.length ? 'ok' : 'failed'),
+            warnings: []
+        };
+        if (!sheets.length) result.warnings.push('sheet_enumeration_failed');
+        if (!result.activeSheet) result.warnings.push('active_sheet_unknown');
+        setLastToolSummary({
+            editorType: 'cell',
+            mode: 'discover',
+            source: 'workbook',
+            activeSheet: result.activeSheet,
+            sheetCount: sheets.length,
+            discoveryStatus: result.discoveryStatus,
+            warnings: result.warnings
+        });
+        return result;
+    }
+
+    async function collectCellContext(options) {
+        var settings = normalizeContextToolOptions(options, 'cell');
+        var warnings = [];
+        var meta = settings.sheetName
+            ? await callEditorCommand(function () {
+                function safeSheetName(sheet) {
+                    try {
+                        if (!sheet) return '';
+                        if (sheet.Name) return String(sheet.Name);
+                        if (typeof sheet.GetName === 'function') return String(sheet.GetName() || '');
+                    } catch (error) {}
+                    return '';
+                }
+
+                function safeRangeAddress(range) {
+                    if (!range) return '';
+                    try {
+                        if (range.Address) return String(range.Address);
+                    } catch (error) {}
+                    try {
+                        if (typeof range.GetAddress === 'function') {
+                            return String(range.GetAddress(true, true, 'xlA1', false) || '');
+                        }
+                    } catch (error2) {}
+                    return '';
+                }
+
+                var ws = null;
+                try {
+                    ws = Api.GetSheet ? Api.GetSheet(Asc.scope.sheetName) : null;
+                } catch (error3) {
+                    ws = null;
+                }
+                if (!ws) {
+                    return JSON.stringify({
+                        sheetName: String(Asc.scope.sheetName || ''),
+                        address: ''
+                    });
+                }
+                var usedRange = null;
+                try {
+                    if (typeof ws.GetUsedRange === 'function') usedRange = ws.GetUsedRange();
+                } catch (error4) {}
+                return JSON.stringify({
+                    sheetName: safeSheetName(ws) || String(Asc.scope.sheetName || ''),
+                    address: safeRangeAddress(usedRange)
+                });
+            }, { sheetName: settings.sheetName })
+            : await collectActiveSheetMeta();
+
+        meta = parseJsonEditorPayload(meta, null, 'sheet meta');
+        var bounds = parseRangeBounds(meta && meta.address || '');
+        if (!meta || !meta.sheetName) {
+            warnings.push('sheet_not_available');
+        }
+        if (!bounds.rows || !bounds.cols) {
+            warnings.push('sheet_empty_or_unavailable');
+        }
+
+        var payloadText = '';
+        var internalChunksUsed = 0;
+        var payloadTruncated = false;
+        var collectedRows = 0;
+        var effectiveCols = bounds.cols ? Math.min(bounds.cols, settings.maxColsPerChunk) : 0;
+        var previewRows = [];
+        if (bounds.cols > effectiveCols) {
+            warnings.push('columns_limited_to_first_' + effectiveCols);
+        }
+
+        if (meta && meta.sheetName && bounds.rows && effectiveCols) {
+            var rowCursor = bounds.startRow;
+            while (rowCursor <= bounds.endRow && internalChunksUsed < settings.maxInternalChunks && payloadText.length < settings.maxChars) {
+                var chunkEndRow = Math.min(bounds.endRow, rowCursor + settings.maxRowsPerChunk - 1);
+                var chunkAddress = buildRangeAddress(rowCursor, bounds.startCol, chunkEndRow, bounds.startCol + effectiveCols - 1);
+                var chunkData = await collectSheetRangeContext(meta.sheetName, chunkAddress);
+                var formattedChunk = formatTablePayload(chunkData && chunkData.values ? chunkData.values : [], {
+                    maxRows: settings.maxRowsPerChunk,
+                    maxCols: effectiveCols,
+                    maxChars: Math.max(settings.maxChars, 4000)
+                });
+                if (previewRows.length < 8 && chunkData && Array.isArray(chunkData.values)) {
+                    Array.prototype.push.apply(previewRows, normalizePreviewRows(chunkData.values, 8 - previewRows.length, effectiveCols));
+                }
+                var bounded = appendBoundedChunk(payloadText, '[' + chunkAddress + ']\n' + (formattedChunk.text || ''), settings.maxChars);
+                payloadText = bounded.text;
+                if (bounded.truncated) payloadTruncated = true;
+                internalChunksUsed += 1;
+                collectedRows += Math.max(0, chunkEndRow - rowCursor + 1);
+                rowCursor = chunkEndRow + 1;
+                if (bounded.truncated) break;
+            }
+
+            if (collectedRows < bounds.rows) {
+                payloadTruncated = true;
+                if (internalChunksUsed >= settings.maxInternalChunks) {
+                    warnings.push('max_internal_chunks_reached');
+                } else {
+                    warnings.push('max_chars_reached');
+                }
+            }
+        }
+
+        if (!payloadText.length && !warnings.length) {
+            warnings.push('sheet_empty');
+        }
+
+        var result = {
+            editorType: 'cell',
+            mode: 'collect',
+            source: 'sheet',
+            sheetName: normalizeTextPayload(meta && meta.sheetName || settings.sheetName || ''),
+            coverage: {
+                range: normalizeTextPayload(meta && meta.address || ''),
+                rows: bounds.rows,
+                cols: bounds.cols,
+                collectedRows: Math.min(bounds.rows, collectedRows),
+                collectedCols: effectiveCols
+            },
+            preview: {
+                rows: previewRows,
+                headers: previewRows.length ? previewRows[0] : []
+            },
+            payload: payloadText,
+            truncated: payloadTruncated || bounds.cols > effectiveCols,
+            internalChunksUsed: internalChunksUsed,
+            warnings: warnings
+        };
+        setLastToolSummary({
+            editorType: 'cell',
+            mode: 'collect',
+            source: 'sheet',
+            sheetName: result.sheetName,
+            truncated: result.truncated,
+            internalChunksUsed: internalChunksUsed,
+            coverage: cloneSerializable(result.coverage),
+            warnings: warnings
+        });
+        return result;
+    }
+
+    async function collectWordToolContext(options) {
+        var settings = normalizeContextToolOptions(options, 'word');
+        var warnings = [];
+        var meta = await collectWordDocumentMeta();
+        var totalParagraphs = Number(meta && meta.totalParagraphs || 0) || 0;
+        if (meta && meta.error) warnings.push('document_meta_error');
+        if (!totalParagraphs) warnings.push('document_empty');
+
+        var payloadText = '';
+        var internalChunksUsed = 0;
+        var payloadTruncated = false;
+        var collectedParagraphs = 0;
+        var paragraphCursor = 0;
+
+        while (paragraphCursor < totalParagraphs && internalChunksUsed < settings.maxInternalChunks && payloadText.length < settings.maxChars) {
+            var chunk = await collectWordDocumentChunk(paragraphCursor, settings.maxParagraphsPerChunk);
+            var startLabel = paragraphCursor + 1;
+            var endLabel = Math.max(startLabel, Number(chunk && chunk.endIndex || paragraphCursor));
+            var bounded = appendBoundedChunk(
+                payloadText,
+                '[Paragraphs ' + startLabel + '-' + endLabel + ']\n' + normalizeTextPayload(chunk && chunk.text || ''),
+                settings.maxChars
+            );
+            payloadText = bounded.text;
+            if (bounded.truncated) payloadTruncated = true;
+            internalChunksUsed += 1;
+            if (chunk && Number(chunk.endIndex || 0) > paragraphCursor) {
+                collectedParagraphs += Number(chunk.endIndex || 0) - paragraphCursor;
+                paragraphCursor = Number(chunk.endIndex || 0);
+            } else {
+                break;
+            }
+        }
+
+        if (collectedParagraphs < totalParagraphs) {
+            payloadTruncated = true;
+            if (internalChunksUsed >= settings.maxInternalChunks) {
+                warnings.push('max_internal_chunks_reached');
+            } else {
+                warnings.push('max_chars_reached');
+            }
+        }
+
+        var result = {
+            editorType: 'word',
+            mode: 'collect',
+            source: 'document',
+            coverage: {
+                totalParagraphs: totalParagraphs,
+                collectedParagraphs: Math.min(totalParagraphs, collectedParagraphs)
+            },
+            payload: payloadText,
+            truncated: payloadTruncated,
+            internalChunksUsed: internalChunksUsed,
+            warnings: warnings
+        };
+        setLastToolSummary({
+            editorType: 'word',
+            mode: 'collect',
+            source: 'document',
+            truncated: result.truncated,
+            internalChunksUsed: internalChunksUsed,
+            coverage: cloneSerializable(result.coverage),
+            warnings: warnings
+        });
+        return result;
+    }
+
+    async function collectContext(options) {
+        var host = getHostBridge();
+        var requestedEditor = options && options.editorType ? String(options.editorType) : '';
+        var editorType = requestedEditor || (host && typeof host.getEditorTypeSafe === 'function' ? host.getEditorTypeSafe() : '');
+        if (editorType === 'word') {
+            return collectWordToolContext(options || {});
+        }
+        if (editorType === 'cell') {
+            return collectCellContext(options || {});
+        }
+        return {
+            editorType: normalizeTextPayload(editorType || ''),
+            mode: 'collect',
+            source: 'unsupported',
+            payload: '',
+            truncated: false,
+            internalChunksUsed: 0,
+            warnings: ['editor_not_supported']
+        };
+    }
+
+    function isSheetAttached(name) {
+        var key = String(name || '').toLowerCase();
+        return contextState().attachedSheets.some(function (item) {
+            return String(item).toLowerCase() === key;
+        });
+    }
+
+    function toggleAttachedSheet(name) {
+        var key = String(name || '').toLowerCase();
+        var list = contextState().attachedSheets;
+        var index = list.findIndex(function (item) {
+            return String(item).toLowerCase() === key;
+        });
+
+        if (index >= 0) {
+            list.splice(index, 1);
+        } else {
+            if (list.length >= constants().contextLimits.maxAttachedSheets) {
+                if (!isNode && globalRoot.alert) {
+                    globalRoot.alert('You can attach up to 6 sheets at once.');
+                }
+                return false;
+            }
+            list.push(name);
+        }
+        saveContextState();
+        return true;
+    }
+
+    async function buildContextEnvelope(editorType, userText, baseMessages) {
+        var contextItems = [];
+        var limits = constants().contextLimits;
+
+        // Add file attachments from the current conversation
+        var safeMessages = Array.isArray(baseMessages) ? baseMessages : [];
+        var recentAttachments = [];
+        for (var i = Math.max(0, safeMessages.length - 4); i < safeMessages.length; i++) {
+            var msg = safeMessages[i];
+            if (msg && Array.isArray(msg.attachments)) {
+                msg.attachments.forEach(function (att) {
+                    if (att && att.attachmentType === 'file') {
+                        recentAttachments.push(att);
+                    }
+                });
+            }
+        }
+        
+        // Deduplicate recent file attachments by ID
+        var uniqueAttachments = [];
+        var seenAttachments = {};
+        recentAttachments.forEach(function (att) {
+            if (att && att.id && !seenAttachments[att.id]) {
+                seenAttachments[att.id] = true;
+                uniqueAttachments.push(att);
+            }
+        });
+
+        uniqueAttachments.forEach(function (att) {
+            var summary = att.contextSummary;
+            if (summary && summary.kind === 'xlsx_workbook') {
+                var previewText = 'XLSX Workbook: ' + (att.name || 'unnamed.xlsx') + '\n';
+                previewText += 'Sheets (' + summary.sheetCount + ' total): ' + summary.sheetNames.join(', ') + '\n\n';
+                if (summary.sheets && summary.sheets.length) {
+                    summary.sheets.forEach(function (sheet) {
+                        previewText += 'Sheet: ' + sheet.name + ' | range: ' + sheet.range + ' | rows: ' + sheet.rows + ' | cols: ' + sheet.cols + '\n';
+                        if (sheet.preview) {
+                            previewText += 'Preview:\n' + sheet.preview + '\n\n';
+                        }
+                    });
+                }
+                
+                var limitedPreview = applyTextSmartLimit(previewText, limits.maxDocumentChars || 12000);
+                contextItems.push({
+                    type: 'attached_workbook',
+                    source: 'file_attachment',
+                    sheetName: null,
+                    range: null,
+                    rows: summary.sheetCount || 0,
+                    cols: 1,
+                    truncated: limitedPreview.truncated || summary.status === 'metadata_only',
+                    payload: limitedPreview.text
+                });
+            }
+        });
+
+        if (editorType === 'word' && contextState().autoModeWord === 'full_document') {
+            var documentContext = await collectWordDocumentContext();
+            if (documentContext) {
+                var limitedDoc = applyTextSmartLimit(documentContext.text, limits.maxDocumentChars);
+                contextItems.push({
+                    type: 'document_context',
+                    source: documentContext.error ? 'full_document_error' : 'full_document_auto',
+                    sheetName: null,
+                    range: null,
+                    rows: documentContext.totalParagraphs || 0,
+                    cols: 1,
+                    truncated: limitedDoc.truncated,
+                    payload: documentContext.error ? 'Error extracting document text: ' + documentContext.error : limitedDoc.text
+                });
+            }
+        }
+
+        if (editorType === 'cell' && contextState().autoModeCell === 'active_sheet') {
+            var activeSheet = await collectActiveSheetContext();
+            if (activeSheet) {
+                var activePayload = formatTablePayload(activeSheet.values, {
+                    maxRows: limits.maxRowsPerSheet,
+                    maxCols: limits.maxColsPerSheet,
+                    maxChars: limits.maxSheetChars
+                });
+                contextItems.push({
+                    type: 'sheet_context',
+                    source: 'active_sheet_auto',
+                    sheetName: activeSheet.sheetName || '',
+                    range: activeSheet.address || '',
+                    rows: activePayload.totalRows,
+                    cols: activePayload.totalCols,
+                    truncated: activePayload.truncated,
+                    payload: activePayload.text
+                });
+            }
+
+            var workbookSheetsMeta = await collectWorkbookSheetsList();
+            var workbookSheets = Array.isArray(workbookSheetsMeta && workbookSheetsMeta.sheets) ? workbookSheetsMeta.sheets : [];
+            if (workbookSheets.length) {
+                var listText = workbookSheets.map(function (sheet, index) {
+                    var dimensions = parseRangeDimensions(sheet.address || '');
+                    return (index + 1) + '. ' + sheet.name + ' | range: ' + (sheet.address || '-') + ' | rows: ' + dimensions.rows + ' | cols: ' + dimensions.cols;
+                }).join('\n');
+                var limitedListText = applyTextSmartLimit(listText, 2200);
+                contextItems.push({
+                    type: 'workbook_context',
+                    source: 'workbook_sheet_list',
+                    sheetName: null,
+                    range: null,
+                    rows: workbookSheets.length,
+                    cols: 2,
+                    truncated: limitedListText.truncated,
+                    payload: limitedListText.text
+                });
+            } else {
+                contextItems.push({
+                    type: 'workbook_context',
+                    source: 'workbook_sheet_list_unavailable',
+                    sheetName: null,
+                    range: null,
+                    rows: 0,
+                    cols: 1,
+                    truncated: false,
+                    payload: 'sheet_enumeration_failed status=' + (workbookSheetsMeta && workbookSheetsMeta.discovery_status ? workbookSheetsMeta.discovery_status : 'failed')
+                });
+            }
+
+            var attachedSheetNames = normalizeAttachedSheets(contextState().attachedSheets).slice(0, limits.maxAttachedSheets);
+            contextState().attachedSheets = attachedSheetNames;
+            saveContextState();
+            for (var i = 0; i < attachedSheetNames.length; i += 1) {
+                var attachedName = attachedSheetNames[i];
+                if (activeSheet && String(activeSheet.sheetName || '').toLowerCase() === attachedName.toLowerCase()) {
+                    continue;
+                }
+                var sheetData = await collectSheetByName(attachedName);
+                if (!sheetData) continue;
+                var sheetPayload = formatTablePayload(sheetData.values, {
+                    maxRows: limits.maxRowsPerSheet,
+                    maxCols: limits.maxColsPerSheet,
+                    maxChars: limits.maxSheetChars
+                });
+                contextItems.push({
+                    type: 'sheet_context',
+                    source: 'attached_sheet',
+                    sheetName: sheetData.sheetName || attachedName,
+                    range: sheetData.address || '',
+                    rows: sheetPayload.totalRows,
+                    cols: sheetPayload.totalCols,
+                    truncated: sheetPayload.truncated,
+                    payload: sheetPayload.text
+                });
+            }
+        }
+
+        if (!contextItems.length) return null;
+
+        var envelope = {
+            editorType: editorType,
+            smartLimit: contextState().smartLimit === true,
+            generatedAt: new Date().toISOString(),
+            userMessage: normalizeTextPayload(userText || ''),
+            contexts: contextItems
+        };
+
+        return [
+            'PLUGIN_DATA_CONTEXT_START',
+            'The following JSON contains document/sheet data extracted by the plugin.',
+            'You MUST use this data when user asks about document, workbook, sheet, rows, columns, or cells.',
+            'Do NOT claim you have no access to files/data if context is provided below.',
+            JSON.stringify(envelope, null, 2),
+            'When context item has truncated=true and details are missing, ask user to specify sheet name or range.',
+            'PLUGIN_DATA_CONTEXT_END'
+        ].join('\n');
+    }
+
+    async function prepareRequestWithContext(baseMessages, userText) {
+        var request = cloneMessages(baseMessages);
+        var host = getHostBridge();
+        var editorType = host && typeof host.getEditorTypeSafe === 'function' ? host.getEditorTypeSafe() : '';
+        var contextEnvelope = await buildContextEnvelope(editorType, userText, baseMessages);
+        if (!contextEnvelope) return request;
+
+        var contextMessage = {
+            role: 'user',
+            content: contextEnvelope
+        };
+        var lastItem = request[request.length - 1];
+        if (lastItem && lastItem.role === 'user') {
+            request.splice(request.length - 1, 0, contextMessage);
+        } else {
+            request.push(contextMessage);
+        }
+        return request;
+    }
+
+    var api = {
+        getState: function () { return contextState(); },
+        getDefaultContextState: getDefaultContextState,
+        sanitizeContextState: sanitizeContextState,
+        loadContextState: loadContextState,
+        saveContextState: saveContextState,
+        normalizeTextPayload: normalizeTextPayload,
+        applyTextSmartLimit: applyTextSmartLimit,
+        formatTablePayload: formatTablePayload,
+        parseRangeDimensions: parseRangeDimensions,
+        cloneMessages: cloneMessages,
+        collectWordDocumentContext: collectWordDocumentContext,
+        collectActiveSheetContext: collectActiveSheetContext,
+        collectWorkbookSheetsList: collectWorkbookSheetsList,
+        collectSheetByName: collectSheetByName,
+        collectSheetRangeContext: collectSheetRangeContext,
+        collectWordDocumentMeta: collectWordDocumentMeta,
+        collectWordDocumentChunk: collectWordDocumentChunk,
+        collectActiveSheetMeta: collectActiveSheetMeta,
+        discoverAvailableContext: discoverAvailableContext,
+        collectContext: collectContext,
+        buildContextEnvelope: buildContextEnvelope,
+        prepareRequestWithContext: prepareRequestWithContext,
+        isSheetAttached: isSheetAttached,
+        toggleAttachedSheet: toggleAttachedSheet,
+        getWorkbookSheets: function (options) {
+            return collectWorkbookSheetsList(options);
+        },
+        getActiveSheet: function (options) {
+            return collectActiveSheetContext(options);
+        },
+        getLastToolSummary: function () {
+            return cloneSerializable(contextState().lastToolSummary || null);
+        }
+    };
+
+    root.features.contextRuntime = api;
+    root.services.context = root.services.context || api;
+    root.context.collectSheetByName = collectSheetByName;
+    root.context.getWorkbookSheets = api.getWorkbookSheets;
+    root.context.getActiveSheet = api.getActiveSheet;
+
+    return api;
+});

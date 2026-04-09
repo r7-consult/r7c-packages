@@ -1,1 +1,1508 @@
-(function(_0x4fcb79){'use strict';if(!_0x4fcb79||!_0x4fcb79['Asc']||!_0x4fcb79['Asc']['plugin'])return;var _0x12b4e5=_0x4fcb79['R7CellAiCore']||{'normalizeScalar':function(_0x1c4a4e){return String(_0x1c4a4e===null||_0x1c4a4e===undefined?'':_0x1c4a4e)['trim']();},'normalizeEnum':function(_0x447d0a){return String(_0x447d0a===null||_0x447d0a===undefined?'':_0x447d0a)['trim']()['toLowerCase']();},'normalizeLabels':function(_0x2baa6c){return String(_0x2baa6c===null||_0x2baa6c===undefined?'':_0x2baa6c)['split'](',')['map'](function(_0x58e9d0){return _0x58e9d0['trim']()['toLowerCase']();})['filter'](Boolean);},'simpleHash':function(_0x5bfd8a){var _0x310556=String(_0x5bfd8a||''),_0x5f58c4=0x811c9dc5;for(var _0xd7e85a=0x0;_0xd7e85a<_0x310556['length'];_0xd7e85a+=0x1){_0x5f58c4^=_0x310556['charCodeAt'](_0xd7e85a),_0x5f58c4=Math['imul'](_0x5f58c4,0x1000193);}return(_0x5f58c4>>>0x0)['toString'](0x10);}},_0x3ee3fb='R7AI_V1',_0x14ecc7='/*R7AI_LIBRARY:'+_0x3ee3fb+'*/',_0x55ea76=0xfa0,_0x5702b5='v1',_0xcbe9c5=[{'name':'R7_ASK','alias':'R7.ASK','signature':'R7_ASK(prompt;\x20value)','example':'=R7_ASK(\x22Сделай\x20краткое\x20резюме\x22;\x20A2)','description':'Универсальная\x20AI-функция\x20для\x20одного\x20значения.'},{'name':'R7_TRANSLATE','alias':'R7.TRANSLATE','signature':'R7_TRANSLATE(text;\x20targetLang)','example':'=R7_TRANSLATE(A2;\x20\x22RU\x22)','description':'Перевод\x20текста\x20в\x20целевой\x20язык.'},{'name':'R7_EXTRACT','alias':'R7.EXTRACT','signature':'R7_EXTRACT(kind;\x20text)','example':'=R7_EXTRACT(\x22email\x22;\x20B2)','description':'Извлечение\x20сущностей:\x20email/phone/company/name/date/amount.'},{'name':'R7_CLASSIFY','alias':'R7.CLASSIFY','signature':'R7_CLASSIFY(text;\x20labels)','example':'=R7_CLASSIFY(C2;\x20\x22lead,spam,client,partner\x22)','description':'Классификация\x20по\x20списку\x20категорий.'},{'name':'R7_SUMMARIZE','alias':'R7.SUMMARIZE','signature':'R7_SUMMARIZE(text;\x20mode)','example':'=R7_SUMMARIZE(D2;\x20\x22short\x22)','description':'Суммаризация:\x20short/medium/long.'}],_0x28dbf3={'initialized':![],'editorType':'','mode':'disabled','version':'0.0.0','supportsAsync':![],'supportsAddress':![],'supportsSetCustomFunctions':![],'hasCallCommand':![],'registrationOk':![],'registrationSource':'none','registerInFlight':![],'latestConfigHash':'','cacheEpoch':0x1,'trace':[],'traceTimer':null},_0xe792fa={'button':null,'panel':null,'close':null,'mode':null,'status':null,'formulaInput':null,'functionList':null,'insert':null,'refreshSelected':null,'refreshAll':null,'clearSelected':null,'clearAll':null,'helperTrace':null,'contextTrace':null};function _0x50e769(_0x23f2ee){if(_0x4fcb79['Asc']&&_0x4fcb79['Asc']['plugin']&&typeof _0x4fcb79['Asc']['plugin']['tr']==='function')return _0x4fcb79['Asc']['plugin']['tr'](_0x23f2ee);return _0x23f2ee;}function _0x1b1edb(_0x19975a,_0x1bf689){if(!_0xe792fa['status'])return;_0xe792fa['status']['textContent']=_0x19975a||'',_0xe792fa['status']['classList']['toggle']('is-error',!!_0x1bf689);}function _0x5b5323(_0x4bd07e,_0x279573,_0x14a504){return new Promise(function(_0x4d8e23,_0x1f0e0d){var _0x618e5e=![],_0x25ae5a=_0x4fcb79['setTimeout'](function(){if(_0x618e5e)return;_0x618e5e=!![],_0x1f0e0d(new Error((_0x14a504||'operation')+'\x20timeout'));},_0x279573||0x9c4);_0x4bd07e(function(_0x4e2977){if(_0x618e5e)return;_0x618e5e=!![],_0x4fcb79['clearTimeout'](_0x25ae5a),_0x4d8e23(_0x4e2977);},function(_0x4cb8d5){if(_0x618e5e)return;_0x618e5e=!![],_0x4fcb79['clearTimeout'](_0x25ae5a),_0x1f0e0d(_0x4cb8d5||new Error((_0x14a504||'operation')+'\x20failed'));});});}function _0x18104a(_0x704fa1,_0x38e1c0,_0x3bf018){return _0x5b5323(function(_0x99c19d,_0x360801){try{if(!_0x4fcb79['Asc']||!Asc['plugin']||typeof Asc['plugin']['executeMethod']!=='function'){_0x360801(new Error('executeMethod\x20is\x20unavailable'));return;}Asc['plugin']['executeMethod'](_0x704fa1,_0x38e1c0||[],function(_0x3f6392){_0x99c19d(_0x3f6392);});}catch(_0x5e27f5){_0x360801(_0x5e27f5);}},_0x3bf018||0xdac,_0x704fa1);}function _0x37dbe5(_0x2f0b5c,_0x2db450,_0x54cc3e,_0x31ddff){return _0x5b5323(function(_0x5987d1,_0x3fd114){try{if(!_0x4fcb79['Asc']||!Asc['plugin']||typeof Asc['plugin']['callCommand']!=='function'){_0x3fd114(new Error('callCommand\x20is\x20unavailable'));return;}_0x2db450&&typeof _0x2db450==='object'&&Object['keys'](_0x2db450)['forEach'](function(_0x4aadfd){Asc['scope'][_0x4aadfd]=_0x2db450[_0x4aadfd];}),Asc['plugin']['callCommand'](_0x2f0b5c,![],_0x54cc3e!==![],function(_0x2aed43){_0x5987d1(_0x2aed43);});}catch(_0x290943){_0x3fd114(_0x290943);}},_0x31ddff||0x1388,'callCommand');}function _0x3f046e(_0x371feb){var _0x4fd893=String(_0x371feb||'0.0.0'),_0x3df3bf=_0x4fd893['match'](/(\d+)\.(\d+)(?:\.(\d+))?/);return{'raw':_0x4fd893,'major':_0x3df3bf?Number(_0x3df3bf[0x1]):0x0,'minor':_0x3df3bf?Number(_0x3df3bf[0x2]):0x0,'patch':_0x3df3bf&&_0x3df3bf[0x3]?Number(_0x3df3bf[0x3]):0x0};}function _0x527841(_0x1f11e5,_0x12780e,_0x1a8f53,_0x1d2272){if(_0x1f11e5['major']>_0x12780e)return!![];if(_0x1f11e5['major']<_0x12780e)return![];if(_0x1f11e5['minor']>_0x1a8f53)return!![];if(_0x1f11e5['minor']<_0x1a8f53)return![];return _0x1f11e5['patch']>=_0x1d2272;}function _0x1dcb11(_0x35d0c7){var _0x58405a=_0x35d0c7;if(typeof _0x58405a==='string')try{var _0x37512d=JSON['parse'](_0x58405a);if(Array['isArray'](_0x37512d))_0x58405a=_0x37512d;else _0x58405a=_0x58405a['trim']()?[_0x58405a]:[];}catch(_0x2d947c){_0x58405a=_0x58405a['trim']()?[_0x58405a]:[];}if(!Array['isArray'](_0x58405a))return{'shape':'array-string','entries':[]};if(!_0x58405a['length'])return{'shape':'array-string','entries':[]};if(_0x58405a[0x0]&&typeof _0x58405a[0x0]==='object')return{'shape':'array-object','entries':_0x58405a['map'](function(_0xbd53b1){return{'name':String(_0xbd53b1&&_0xbd53b1['name']?_0xbd53b1['name']:''),'value':String(_0xbd53b1&&_0xbd53b1['value']?_0xbd53b1['value']:'')};})};return{'shape':'array-string','entries':_0x58405a['map'](function(_0x3abbac){return String(_0x3abbac||'');})};}function _0x5e28ee(_0x8c21f5){if(_0x8c21f5['shape']==='array-object')return _0x8c21f5['entries']['filter'](function(_0xe95ea7){return String(_0xe95ea7['value']||'')['indexOf'](_0x14ecc7)===-0x1&&String(_0xe95ea7['name']||'')!==_0x3ee3fb;});return _0x8c21f5['entries']['filter'](function(_0x26c364){return String(_0x26c364||'')['indexOf'](_0x14ecc7)===-0x1;});}function _0xfceb80(){var _0x5aba9a=_0x4fcb79['R7Chat']&&_0x4fcb79['R7Chat']['features']&&_0x4fcb79['R7Chat']['features']['settings']?_0x4fcb79['R7Chat']['features']['settings']:null,_0xf79dca=_0x5aba9a&&typeof _0x5aba9a['loadSettings']==='function'?_0x5aba9a['loadSettings']():{'apiKey':(localStorage['getItem']('apikey')||'')['trim'](),'model':(localStorage['getItem']('model')||'openrouter/auto')['trim']()},_0x4a5348=_0x5aba9a&&typeof _0x5aba9a['getProviderConfig']==='function'?_0x5aba9a['getProviderConfig'](_0xf79dca,'openrouter'):null;return{'apiKey':_0x4a5348&&_0x4a5348['apiKey']?_0x4a5348['apiKey']:_0xf79dca['apiKey']||'','model':_0x4a5348&&_0x4a5348['model']?_0x4a5348['model']:_0xf79dca['model']||'openrouter/auto','locale':_0x4fcb79['Asc']&&_0x4fcb79['Asc']['plugin']&&_0x4fcb79['Asc']['plugin']['info']&&_0x4fcb79['Asc']['plugin']['info']['lang']?_0x4fcb79['Asc']['plugin']['info']['lang']:'en-US','cacheEpoch':_0x28dbf3['cacheEpoch'],'promptTemplateVersion':_0x5702b5,'libraryId':_0x3ee3fb};}function _0x5e9c33(_0x28a1bb){return _0x12b4e5['simpleHash']([_0x28a1bb['apiKey']||'',_0x28a1bb['model']||'',_0x28a1bb['locale']||'',_0x28a1bb['cacheEpoch']||0x1,_0x28a1bb['promptTemplateVersion']||'']['join']('|'));}function _0x19dfa5(_0x22cdd3){var _0x1f4ad7=typeof globalThis!=='undefined'?globalThis:this,_0x373543=_0x22cdd3||{},_0x54262d={'INVALID_ARGS':'#R7.INVALID_ARGS','RATE_LIMIT':'#R7.RATE_LIMIT','TIMEOUT':'#R7.TIMEOUT','FAILED':'#R7.FAILED'},_0x38e48f={'email':!![],'phone':!![],'company':!![],'name':!![],'date':!![],'amount':!![],'url':!![],'inn':!![],'iban':!![]},_0x1b1d9b={'short':!![],'medium':!![],'long':!![]},_0x24aae7={'R7_ASK':{'maxTokens':0xb4,'maxChars':0xfa0},'R7_TRANSLATE':{'maxTokens':0xb4,'maxChars':0xbb8},'R7_EXTRACT':{'maxTokens':0x78,'maxChars':0xbb8},'R7_CLASSIFY':{'maxTokens':0x5a,'maxChars':0x9c4},'R7_SUMMARIZE':{'maxTokens':0xdc,'maxChars':0x1770}};function _0x352e18(_0xb31288){if(_0xb31288===null||_0xb31288===undefined)return'';if(Array['isArray'](_0xb31288))return _0xb31288['map'](function(_0x7c3fa6){if(Array['isArray'](_0x7c3fa6))return _0x7c3fa6['map'](_0x352e18)['join']('\x09');return _0x352e18(_0x7c3fa6);})['join']('\x0a')['replace'](/\r\n/g,'\x0a')['replace'](/\r/g,'\x0a')['trim']();return String(_0xb31288)['replace'](/\r\n/g,'\x0a')['replace'](/\r/g,'\x0a')['replace'](/[ \t]+/g,'\x20')['replace'](/\n{3,}/g,'\x0a\x0a')['trim']();}function _0x5ee76a(_0x20b1fa){return _0x352e18(_0x20b1fa)['toLowerCase']();}function _0x2fdc30(_0x57b83e){var _0x5485d0=_0x352e18(_0x57b83e)['split'](',')['map'](function(_0x34b8e8){return _0x352e18(_0x34b8e8)['toLowerCase']();})['filter'](Boolean),_0x236d86={},_0x1cf303=[];for(var _0x5620b4=0x0;_0x5620b4<_0x5485d0['length'];_0x5620b4+=0x1){if(_0x236d86[_0x5485d0[_0x5620b4]])continue;_0x236d86[_0x5485d0[_0x5620b4]]=!![],_0x1cf303['push'](_0x5485d0[_0x5620b4]);}return _0x1cf303;}function _0x2752b9(_0x1d2ffe){var _0x5581ac=String(_0x1d2ffe||''),_0x339d44=0x811c9dc5;for(var _0xa17fdc=0x0;_0xa17fdc<_0x5581ac['length'];_0xa17fdc+=0x1){_0x339d44^=_0x5581ac['charCodeAt'](_0xa17fdc),_0x339d44=Math['imul'](_0x339d44,0x1000193);}return(_0x339d44>>>0x0)['toString'](0x10);}function _0x1f8a66(_0x649d61){var _0x1be550=String(_0x649d61||'');return _0x1be550=_0x1be550['replace'](/[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/gi,'[email]'),_0x1be550=_0x1be550['replace'](/\+?\d[\d\s\-()]{6,}\d/g,'[phone]'),_0x1be550=_0x1be550['replace'](/\b\d{12,19}\b/g,'[number]'),_0x1be550;}function _0x5d69fc(){var _0x30efb5=String(_0x373543['libraryId']||'R7AI_V1');return{'libraryId':_0x30efb5,'model':_0x373543['model']||'openrouter/auto','apiKey':_0x373543['apiKey']||'','locale':_0x373543['locale']||'en-US','promptTemplateVersion':_0x373543['promptTemplateVersion']||'v1','cacheEpoch':Number(_0x373543['cacheEpoch']||0x1),'cache':{},'inflight':{},'trace':[],'bypassCells':{},'queue':[],'activeCount':0x0};}var _0x386749=_0x1f4ad7['__R7_CELL_AI_RUNTIME__'];(!_0x386749||_0x386749['cacheEpoch']!==Number(_0x373543['cacheEpoch']||0x1)||_0x386749['model']!==_0x373543['model']||_0x386749['apiKey']!==_0x373543['apiKey'])&&(_0x386749=_0x5d69fc(),_0x1f4ad7['__R7_CELL_AI_RUNTIME__']=_0x386749);_0x386749['clearAllCache']=function(){_0x386749['cache']={},_0x386749['inflight']={},_0x386749['bypassCells']={};},_0x386749['clearTrace']=function(){_0x386749['trace']=[];},_0x386749['getTraceSnapshot']=function(){return _0x386749['trace']['slice'](-0x78);},_0x386749['markBypassCells']=function(_0x3fcefa,_0x2e5677){var _0x5963c3=Number(_0x2e5677||0x7530),_0x395cde=Date['now'](),_0x26e520=Array['isArray'](_0x3fcefa)?_0x3fcefa:[];for(var _0x496d65=0x0;_0x496d65<_0x26e520['length'];_0x496d65+=0x1){var _0x24289d=String(_0x26e520[_0x496d65]||'')['toUpperCase']()['replace'](/\$/g,'');if(!_0x24289d)continue;_0x386749['bypassCells'][_0x24289d]=_0x395cde+_0x5963c3;}};function _0x3caa30(_0x46b1fd){_0x386749['trace']['push'](_0x46b1fd);if(_0x386749['trace']['length']>0x12c)_0x386749['trace']=_0x386749['trace']['slice'](_0x386749['trace']['length']-0x12c);}function _0x3478dc(_0x57431c){var _0x1afd0b=String(_0x57431c&&_0x57431c['cell']?_0x57431c['cell']:'')['toUpperCase']()['replace'](/\$/g,'');if(!_0x1afd0b)return![];var _0x23601e=_0x386749['bypassCells'][_0x1afd0b];if(!_0x23601e)return![];if(_0x23601e<Date['now']())return delete _0x386749['bypassCells'][_0x1afd0b],![];return delete _0x386749['bypassCells'][_0x1afd0b],!![];}function _0x5a6701(_0x2df60e,_0x1503c6){return new Promise(function(_0x58d42f,_0x179bd3){var _0x47a025=![],_0x329366=setTimeout(function(){if(_0x47a025)return;_0x47a025=!![];var _0x45c14b=new Error('timeout');_0x45c14b['code']='TIMEOUT',_0x179bd3(_0x45c14b);},_0x1503c6);_0x2df60e['then'](function(_0x4d08c0){if(_0x47a025)return;_0x47a025=!![],clearTimeout(_0x329366),_0x58d42f(_0x4d08c0);})['catch'](function(_0x4c480f){if(_0x47a025)return;_0x47a025=!![],clearTimeout(_0x329366),_0x179bd3(_0x4c480f);});});}function _0x2433ef(_0x42919b){return new Promise(function(_0x15acfa,_0x22f5b3){function _0x11dd12(){_0x386749['activeCount']+=0x1,Promise['resolve']()['then'](_0x42919b)['then'](_0x15acfa)['catch'](_0x22f5b3)['finally'](function(){_0x386749['activeCount']-=0x1;if(_0x386749['queue']['length']){var _0x55b110=_0x386749['queue']['shift']();_0x55b110();}});}if(_0x386749['activeCount']<0x3)_0x11dd12();else _0x386749['queue']['push'](_0x11dd12);});}function _0x1e4984(_0x326eb0,_0x4b7178){if(_0x326eb0==='R7_ASK')return'Task:\x20'+_0x4b7178[0x0]+'\x0aInput:\x20'+_0x4b7178[0x1]+'\x0aReturn\x20concise\x20answer.';if(_0x326eb0==='R7_TRANSLATE')return'Translate\x20text\x20to\x20'+_0x4b7178[0x1]+'.\x20Return\x20translation\x20only.\x0aText:\x20'+_0x4b7178[0x0];if(_0x326eb0==='R7_EXTRACT')return'Extract\x20\x22'+_0x4b7178[0x0]+'\x22\x20from\x20text.\x20Return\x20only\x20value\x20or\x20empty\x20string.\x0aText:\x20'+_0x4b7178[0x1];if(_0x326eb0==='R7_CLASSIFY')return'Classify\x20text\x20into\x20exactly\x20one\x20label\x20from:\x20'+_0x4b7178[0x1]['join'](',\x20')+'.\x20Return\x20one\x20label\x20only.\x0aText:\x20'+_0x4b7178[0x0];if(_0x326eb0==='R7_SUMMARIZE')return'Summarize\x20text\x20in\x20mode\x20'+_0x4b7178[0x1]+'.\x20Keep\x20concise\x20and\x20deterministic.\x0aText:\x20'+_0x4b7178[0x0];return'Return\x20concise\x20answer.';}function _0x5b0dcb(_0xca7200,_0x209ca7){if(_0xca7200==='R7_ASK'){var _0x471a6f=_0x352e18(_0x209ca7[0x0]),_0x2222b4=_0x352e18(_0x209ca7[0x1]);if(!_0x471a6f||!_0x2222b4)return{'error':'INVALID_ARGS'};return{'args':[_0x471a6f,_0x2222b4]};}if(_0xca7200==='R7_TRANSLATE'){var _0x5dc138=_0x352e18(_0x209ca7[0x0]),_0x346781=_0x352e18(_0x209ca7[0x1])['toUpperCase']();if(!_0x5dc138||!_0x346781)return{'error':'INVALID_ARGS'};return{'args':[_0x5dc138,_0x346781]};}if(_0xca7200==='R7_EXTRACT'){var _0x2c1821=_0x5ee76a(_0x209ca7[0x0]),_0x2c3a84=_0x352e18(_0x209ca7[0x1]);if(!_0x2c1821||!_0x2c3a84||!_0x38e48f[_0x2c1821])return{'error':'INVALID_ARGS'};return{'args':[_0x2c1821,_0x2c3a84]};}if(_0xca7200==='R7_CLASSIFY'){var _0xb5fed2=_0x352e18(_0x209ca7[0x0]),_0x8c804=_0x2fdc30(_0x209ca7[0x1]);if(!_0xb5fed2||_0x8c804['length']<0x2)return{'error':'INVALID_ARGS'};return{'args':[_0xb5fed2,_0x8c804]};}if(_0xca7200==='R7_SUMMARIZE'){var _0x50945e=_0x352e18(_0x209ca7[0x0]),_0x2942bf=_0x5ee76a(_0x209ca7[0x1]);if(!_0x50945e||!_0x2942bf||!_0x1b1d9b[_0x2942bf])return{'error':'INVALID_ARGS'};return{'args':[_0x50945e,_0x2942bf]};}return{'error':'INVALID_ARGS'};}function _0x149abf(_0x5ea776){if(!_0x5ea776)return _0x54262d['FAILED'];if(_0x5ea776['code']==='INVALID_ARGS')return _0x54262d['INVALID_ARGS'];if(_0x5ea776['code']==='RATE_LIMIT')return _0x54262d['RATE_LIMIT'];if(_0x5ea776['code']==='TIMEOUT')return _0x54262d['TIMEOUT'];var _0x154433=Number(_0x5ea776['status']||0x0);if(_0x154433===0x1ad)return _0x54262d['RATE_LIMIT'];if(_0x154433===0x198)return _0x54262d['TIMEOUT'];return _0x54262d['FAILED'];}function _0x225f85(_0x3dee50){var _0x504edf=Number(_0x3dee50&&_0x3dee50['status']?_0x3dee50['status']:0x0);return _0x504edf===0x1ad||_0x504edf===0x1f4||_0x504edf===0x1f6||_0x504edf===0x1f7||_0x504edf===0x1f8;}function _0x1d54da(_0x4f884d,_0x3d18b2,_0x975b){var _0x5d5dc0=_0x352e18(_0x3d18b2||'');if(!_0x5d5dc0)return'';if(_0x4f884d==='R7_CLASSIFY'){var _0x313df2=_0x5ee76a(_0x5d5dc0['split']('\x0a')[0x0]);for(var _0x6533e8=0x0;_0x6533e8<_0x975b[0x1]['length'];_0x6533e8+=0x1){if(_0x313df2===_0x975b[0x1][_0x6533e8])return _0x975b[0x1][_0x6533e8];}return _0x975b[0x1][0x0];}if(_0x4f884d==='R7_EXTRACT')return _0x5d5dc0['split']('\x0a')[0x0]['trim']();return _0x5d5dc0;}async function _0x2ae77e(_0x4da178,_0x366f5c){if(!_0x386749['apiKey']){var _0x348b0b=new Error('Missing\x20API\x20key');_0x348b0b['code']='FAILED';throw _0x348b0b;}var _0x5f40f3=await fetch('https://openrouter.ai/api/v1/chat/completions',{'method':'POST','headers':{'Content-Type':'application/json','Authorization':'Bearer\x20'+_0x386749['apiKey'],'X-Title':'{r7c}.ChatLLM\x20(Cell\x20Functions)'},'body':JSON['stringify']({'model':_0x386749['model']||'openrouter/auto','messages':[{'role':'system','content':'You\x20are\x20deterministic\x20spreadsheet\x20AI\x20operator.\x20Return\x20concise\x20data\x20output\x20only.'},{'role':'user','content':_0x4da178}],'temperature':0x0,'max_tokens':_0x366f5c,'stream':![]})});if(!_0x5f40f3['ok']){var _0x437d13=await _0x5f40f3['text'](),_0x3ce3c4=new Error(_0x437d13||'Request\x20failed');_0x3ce3c4['status']=_0x5f40f3['status'];if(_0x5f40f3['status']===0x1ad)_0x3ce3c4['code']='RATE_LIMIT';throw _0x3ce3c4;}var _0x524ac3=await _0x5f40f3['json'](),_0x533b01=_0x524ac3&&_0x524ac3['choices']&&_0x524ac3['choices'][0x0]?_0x524ac3['choices'][0x0]:null,_0x5e7456=_0x533b01&&_0x533b01['message']?_0x533b01['message']['content']:'';return Array['isArray'](_0x5e7456)&&(_0x5e7456=_0x5e7456['map'](function(_0x4578fa){if(typeof _0x4578fa==='string')return _0x4578fa;return _0x4578fa&&_0x4578fa['text']?_0x4578fa['text']:'';})['join']('')),{'text':_0x352e18(_0x5e7456||''),'usage':_0x524ac3&&_0x524ac3['usage']?_0x524ac3['usage']:null};}async function _0x2fb326(_0x46bb9e,_0x4f685b,_0x1ba177){var _0xd06fc6=Date['now'](),_0x5b26b4=_0x5b0dcb(_0x46bb9e,_0x4f685b||[]),_0x52ec7e=String(_0x1ba177&&_0x1ba177['cell']?_0x1ba177['cell']:'');if(_0x5b26b4['error'])return _0x3caa30({'time':_0xd06fc6,'cell':_0x52ec7e,'fn':_0x46bb9e,'status':'invalid_arguments','cacheHit':![],'inputHash':'','model':_0x386749['model'],'latencyMs':Date['now']()-_0xd06fc6,'errorCode':'INVALID_ARGS'}),_0x54262d['INVALID_ARGS'];var _0x41147e=_0x5b26b4['args'],_0x22c7d8=JSON['stringify'](_0x41147e),_0xbd16b2=_0x24aae7[_0x46bb9e]||{'maxTokens':0xa0,'maxChars':0xbb8};if(_0x22c7d8['length']>_0xbd16b2['maxChars'])return _0x3caa30({'time':_0xd06fc6,'cell':_0x52ec7e,'fn':_0x46bb9e,'status':'invalid_arguments','cacheHit':![],'inputHash':_0x2752b9(_0x22c7d8),'model':_0x386749['model'],'latencyMs':Date['now']()-_0xd06fc6,'errorCode':'INPUT_CAP'}),_0x54262d['INVALID_ARGS'];var _0x312073=JSON['stringify']({'fn':_0x46bb9e,'args':_0x41147e,'model':_0x386749['model'],'locale':_0x386749['locale'],'promptTemplateVersion':_0x386749['promptTemplateVersion'],'cacheEpoch':_0x386749['cacheEpoch']}),_0x4c745e=_0x3478dc(_0x1ba177);if(!_0x4c745e&&Object['prototype']['hasOwnProperty']['call'](_0x386749['cache'],_0x312073)){var _0x389468=_0x386749['cache'][_0x312073];return _0x3caa30({'time':_0xd06fc6,'cell':_0x52ec7e,'fn':_0x46bb9e,'status':'cached','cacheHit':!![],'inputHash':_0x2752b9(_0x22c7d8),'model':_0x386749['model'],'latencyMs':Date['now']()-_0xd06fc6,'tokenUsage':_0x389468&&_0x389468['usage']?_0x389468['usage']:null}),_0x389468['value'];}if(!_0x4c745e&&_0x386749['inflight'][_0x312073])return _0x386749['inflight'][_0x312073];var _0x441a68=_0x1f8a66(_0x1e4984(_0x46bb9e,_0x41147e)),_0x4470f4=_0x2752b9(_0x22c7d8),_0x5db6de=_0x2433ef(async function(){var _0x41f96a=0x0;while(!![]){try{var _0x3be51a=await _0x5a6701(_0x2ae77e(_0x441a68,_0xbd16b2['maxTokens']),0x3a98),_0x5abb38=_0x1d54da(_0x46bb9e,_0x3be51a['text'],_0x41147e);if(!_0x4c745e)_0x386749['cache'][_0x312073]={'value':_0x5abb38,'usage':_0x3be51a['usage']||null,'ts':Date['now']()};return _0x3caa30({'time':_0xd06fc6,'cell':_0x52ec7e,'fn':_0x46bb9e,'status':'ok','cacheHit':![],'inputHash':_0x4470f4,'model':_0x386749['model'],'latencyMs':Date['now']()-_0xd06fc6,'tokenUsage':_0x3be51a['usage']||null}),_0x5abb38;}catch(_0x89c95c){if(_0x89c95c&&_0x89c95c['code']==='TIMEOUT')return _0x3caa30({'time':_0xd06fc6,'cell':_0x52ec7e,'fn':_0x46bb9e,'status':'timeout','cacheHit':![],'inputHash':_0x4470f4,'model':_0x386749['model'],'latencyMs':Date['now']()-_0xd06fc6,'errorCode':'TIMEOUT'}),_0x54262d['TIMEOUT'];if(_0x41f96a<0x1&&_0x225f85(_0x89c95c)){_0x41f96a+=0x1;continue;}var _0x28a82e=_0x149abf(_0x89c95c);return _0x3caa30({'time':_0xd06fc6,'cell':_0x52ec7e,'fn':_0x46bb9e,'status':_0x28a82e===_0x54262d['RATE_LIMIT']?'rate_limited':'failed','cacheHit':![],'inputHash':_0x4470f4,'model':_0x386749['model'],'latencyMs':Date['now']()-_0xd06fc6,'errorCode':_0x28a82e}),_0x28a82e;}}});return _0x386749['inflight'][_0x312073]=_0x5db6de['finally'](function(){delete _0x386749['inflight'][_0x312073];}),_0x386749['inflight'][_0x312073];}function _0x3af479(_0x3b3145){var _0x707b74='';if(_0x3b3145&&_0x3b3145['address'])_0x707b74=String(_0x3b3145['address']);return!_0x707b74&&_0x3b3145&&_0x3b3145['args']&&Array['isArray'](_0x3b3145['args'])&&_0x3b3145['args'][0x0]&&_0x3b3145['args'][0x0]['address']&&(_0x707b74=String(_0x3b3145['args'][0x0]['address'])),{'cell':_0x707b74};}async function _0x5cf625(_0x2f0ff1,_0x327fb4){return _0x2fb326('R7_ASK',[_0x2f0ff1,_0x327fb4],_0x3af479(this));}async function _0x88e566(_0x40923b,_0x481c19){return _0x2fb326('R7_TRANSLATE',[_0x40923b,_0x481c19],_0x3af479(this));}async function _0x4a438d(_0x3c942e,_0x6c0534){return _0x2fb326('R7_EXTRACT',[_0x3c942e,_0x6c0534],_0x3af479(this));}async function _0x5dfffa(_0x39d5fd,_0x5d68c8){return _0x2fb326('R7_CLASSIFY',[_0x39d5fd,_0x5d68c8],_0x3af479(this));}async function _0x3b0cb6(_0x31dc5a,_0x513653){return _0x2fb326('R7_SUMMARIZE',[_0x31dc5a,_0x513653],_0x3af479(this));}try{Api['RemoveCustomFunction']('R7_ASK');}catch(_0x1dadd1){}try{Api['RemoveCustomFunction']('R7_TRANSLATE');}catch(_0x3b3e83){}try{Api['RemoveCustomFunction']('R7_EXTRACT');}catch(_0x1ce9f4){}try{Api['RemoveCustomFunction']('R7_CLASSIFY');}catch(_0x1334e3){}try{Api['RemoveCustomFunction']('R7_SUMMARIZE');}catch(_0x79df4c){}Api['AddCustomFunctionLibrary'](String(_0x373543['libraryId']||'R7AI_V1'),function(){Api['AddCustomFunction'](_0x5cf625),Api['AddCustomFunction'](_0x88e566),Api['AddCustomFunction'](_0x4a438d),Api['AddCustomFunction'](_0x5dfffa),Api['AddCustomFunction'](_0x3b0cb6);});}function _0x23604a(_0x475800){return _0x14ecc7+'\x0a('+_0x19dfa5['toString']()+')('+JSON['stringify'](_0x475800)+');';}async function _0xa95519(){try{var _0x5d49d8=await _0x18104a('GetCustomFunctions',[],0x898),_0x195b6c=_0x1dcb11(_0x5d49d8);return await _0x18104a('SetCustomFunctions',[JSON['stringify'](_0x195b6c['entries'])],0x898),!![];}catch(_0x2d6bc2){return![];}}async function _0x17d43c(){try{await _0x18104a('RecalculateAllFormulas',[],0xdac);}catch(_0x564b34){}}async function _0xd9ac3a(){_0x28dbf3['editorType']=_0x4fcb79['Asc']&&_0x4fcb79['Asc']['plugin']&&_0x4fcb79['Asc']['plugin']['info']&&_0x4fcb79['Asc']['plugin']['info']['editorType']?_0x4fcb79['Asc']['plugin']['info']['editorType']:'',_0x28dbf3['hasCallCommand']=!!(_0x4fcb79['Asc']&&_0x4fcb79['Asc']['plugin']&&typeof _0x4fcb79['Asc']['plugin']['callCommand']==='function');try{_0x28dbf3['version']=String(await _0x18104a('GetVersion',[],0x898)||'0.0.0');}catch(_0x1cc0e2){_0x28dbf3['version']='0.0.0';}var _0x2b1543=_0x3f046e(_0x28dbf3['version']);_0x28dbf3['supportsAsync']=_0x527841(_0x2b1543,0x9,0x0,0x0),_0x28dbf3['supportsAddress']=_0x527841(_0x2b1543,0x9,0x0,0x4),_0x28dbf3['supportsSetCustomFunctions']=await _0xa95519();if(_0x28dbf3['editorType']!=='cell')_0x28dbf3['mode']='disabled';else{if(_0x28dbf3['supportsAsync']&&_0x28dbf3['supportsSetCustomFunctions'])_0x28dbf3['mode']='native_async';else{if(_0x28dbf3['supportsAsync']&&_0x28dbf3['hasCallCommand'])_0x28dbf3['mode']='macro_register_fallback';else _0x28dbf3['mode']='bulk_only_fallback';}}}async function _0x471114(_0x266fc4){var _0x5c7b02=_0x23604a(_0x266fc4);await _0x18104a('SetCustomFunctions',[JSON['stringify']([_0x5c7b02])],0x1388);var _0x578945=await _0x18104a('GetCustomFunctions',[],0xa28),_0x138cc9=_0x1dcb11(_0x578945),_0x3c2f23=JSON['stringify'](_0x138cc9['entries']||[]);if(_0x3c2f23['indexOf']('R7_ASK')===-0x1)throw new Error('native\x20SetCustomFunctions\x20applied,\x20but\x20R7_ASK\x20is\x20not\x20visible\x20in\x20GetCustomFunctions');await _0x17d43c(),_0x28dbf3['registrationSource']='SetCustomFunctions',_0x28dbf3['registrationOk']=!![];}async function _0x26b0a1(_0x253b43){var _0x48b6a2=await _0x37dbe5(function(){try{var _0x409434=Asc['scope']['r7CellConfig']||{},_0x9f41d7={'INVALID_ARGS':'#R7.INVALID_ARGS','RATE_LIMIT':'#R7.RATE_LIMIT','TIMEOUT':'#R7.TIMEOUT','FAILED':'#R7.FAILED'},_0x109489={'email':!![],'phone':!![],'company':!![],'name':!![],'date':!![],'amount':!![],'url':!![],'inn':!![],'iban':!![]},_0x4c03da={'short':!![],'medium':!![],'long':!![]},_0x28a0d6={'R7_ASK':{'maxTokens':0xb4,'maxChars':0xfa0},'R7_TRANSLATE':{'maxTokens':0xb4,'maxChars':0xbb8},'R7_EXTRACT':{'maxTokens':0x78,'maxChars':0xbb8},'R7_CLASSIFY':{'maxTokens':0x5a,'maxChars':0x9c4},'R7_SUMMARIZE':{'maxTokens':0xdc,'maxChars':0x1770}};function _0x195cc1(_0x389f08){if(_0x389f08===null||_0x389f08===undefined)return'';if(Array['isArray'](_0x389f08))return _0x389f08['map'](function(_0x16a42e){if(Array['isArray'](_0x16a42e))return _0x16a42e['map'](_0x195cc1)['join']('\x09');return _0x195cc1(_0x16a42e);})['join']('\x0a')['replace'](/\r\n/g,'\x0a')['replace'](/\r/g,'\x0a')['trim']();return String(_0x389f08)['replace'](/\r\n/g,'\x0a')['replace'](/\r/g,'\x0a')['replace'](/[ \t]+/g,'\x20')['replace'](/\n{3,}/g,'\x0a\x0a')['trim']();}function _0x29573b(_0x293c2d){return _0x195cc1(_0x293c2d)['toLowerCase']();}function _0x1fbf1d(_0x5831bf){var _0x223a5d=_0x195cc1(_0x5831bf)['split'](',')['map'](function(_0x547595){return _0x195cc1(_0x547595)['toLowerCase']();})['filter'](Boolean),_0x356df1={},_0x2a6811=[];for(var _0x1280ec=0x0;_0x1280ec<_0x223a5d['length'];_0x1280ec+=0x1){if(_0x356df1[_0x223a5d[_0x1280ec]])continue;_0x356df1[_0x223a5d[_0x1280ec]]=!![],_0x2a6811['push'](_0x223a5d[_0x1280ec]);}return _0x2a6811;}function _0x5b6506(_0x4c7fca){var _0x3bb326=String(_0x4c7fca||''),_0x77ff2=0x811c9dc5;for(var _0x4a9f87=0x0;_0x4a9f87<_0x3bb326['length'];_0x4a9f87+=0x1){_0x77ff2^=_0x3bb326['charCodeAt'](_0x4a9f87),_0x77ff2=Math['imul'](_0x77ff2,0x1000193);}return(_0x77ff2>>>0x0)['toString'](0x10);}function _0x55dde4(_0x3c16dc){var _0x2c12b8=String(_0x3c16dc||'');return _0x2c12b8=_0x2c12b8['replace'](/[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/gi,'[email]'),_0x2c12b8=_0x2c12b8['replace'](/\+?\d[\d\s\-()]{6,}\d/g,'[phone]'),_0x2c12b8=_0x2c12b8['replace'](/\b\d{12,19}\b/g,'[number]'),_0x2c12b8;}function _0x34cbcd(){return{'libraryId':String(_0x409434['libraryId']||'R7AI_V1'),'model':String(_0x409434['model']||'openrouter/auto'),'apiKey':String(_0x409434['apiKey']||''),'locale':String(_0x409434['locale']||'en-US'),'promptTemplateVersion':String(_0x409434['promptTemplateVersion']||'v1'),'cacheEpoch':Number(_0x409434['cacheEpoch']||0x1),'cache':{},'inflight':{},'trace':[],'bypassCells':{},'queue':[],'activeCount':0x0};}var _0x343d2d=typeof globalThis!=='undefined'?globalThis:this,_0x4c78c1=_0x343d2d['__R7_CELL_AI_RUNTIME__'];(!_0x4c78c1||_0x4c78c1['cacheEpoch']!==Number(_0x409434['cacheEpoch']||0x1)||_0x4c78c1['model']!==_0x409434['model']||_0x4c78c1['apiKey']!==_0x409434['apiKey'])&&(_0x4c78c1=_0x34cbcd(),_0x343d2d['__R7_CELL_AI_RUNTIME__']=_0x4c78c1);_0x4c78c1['clearAllCache']=function(){_0x4c78c1['cache']={},_0x4c78c1['inflight']={},_0x4c78c1['bypassCells']={};},_0x4c78c1['clearTrace']=function(){_0x4c78c1['trace']=[];},_0x4c78c1['getTraceSnapshot']=function(){return _0x4c78c1['trace']['slice'](-0x78);},_0x4c78c1['markBypassCells']=function(_0x51495a,_0x2517d0){var _0x1b1ce8=Number(_0x2517d0||0x7530),_0x2332f0=Date['now'](),_0x308ad0=Array['isArray'](_0x51495a)?_0x51495a:[];for(var _0x4f64f9=0x0;_0x4f64f9<_0x308ad0['length'];_0x4f64f9+=0x1){var _0x3fd8f6=String(_0x308ad0[_0x4f64f9]||'')['toUpperCase']()['replace'](/\$/g,'');if(!_0x3fd8f6)continue;_0x4c78c1['bypassCells'][_0x3fd8f6]=_0x2332f0+_0x1b1ce8;}};function _0xe4a603(_0x7750ce){_0x4c78c1['trace']['push'](_0x7750ce);if(_0x4c78c1['trace']['length']>0x12c)_0x4c78c1['trace']=_0x4c78c1['trace']['slice'](_0x4c78c1['trace']['length']-0x12c);}function _0x517f73(_0x5adddb){var _0x5cfb73=String(_0x5adddb&&_0x5adddb['cell']?_0x5adddb['cell']:'')['toUpperCase']()['replace'](/\$/g,'');if(!_0x5cfb73)return![];var _0x19a460=_0x4c78c1['bypassCells'][_0x5cfb73];if(!_0x19a460)return![];if(_0x19a460<Date['now']())return delete _0x4c78c1['bypassCells'][_0x5cfb73],![];return delete _0x4c78c1['bypassCells'][_0x5cfb73],!![];}function _0x3bd877(_0x33d5ac,_0x571d41){return new Promise(function(_0x39d0ce,_0x309938){var _0x2d3ca6=![],_0x30231d=setTimeout(function(){if(_0x2d3ca6)return;_0x2d3ca6=!![];var _0x5b421d=new Error('timeout');_0x5b421d['code']='TIMEOUT',_0x309938(_0x5b421d);},_0x571d41);_0x33d5ac['then'](function(_0x365af4){if(_0x2d3ca6)return;_0x2d3ca6=!![],clearTimeout(_0x30231d),_0x39d0ce(_0x365af4);})['catch'](function(_0x51c45c){if(_0x2d3ca6)return;_0x2d3ca6=!![],clearTimeout(_0x30231d),_0x309938(_0x51c45c);});});}function _0x57c25f(_0x1ea22e){return new Promise(function(_0x2646de,_0x1f0852){function _0x129be9(){_0x4c78c1['activeCount']+=0x1,Promise['resolve']()['then'](_0x1ea22e)['then'](_0x2646de)['catch'](_0x1f0852)['finally'](function(){_0x4c78c1['activeCount']-=0x1;if(_0x4c78c1['queue']['length']){var _0x3c6970=_0x4c78c1['queue']['shift']();_0x3c6970();}});}if(_0x4c78c1['activeCount']<0x3)_0x129be9();else _0x4c78c1['queue']['push'](_0x129be9);});}function _0x22ab9b(_0x30d2c4,_0xda0cc3){if(_0x30d2c4==='R7_ASK')return'Task:\x20'+_0xda0cc3[0x0]+'\x0aInput:\x20'+_0xda0cc3[0x1]+'\x0aReturn\x20concise\x20answer.';if(_0x30d2c4==='R7_TRANSLATE')return'Translate\x20text\x20to\x20'+_0xda0cc3[0x1]+'.\x20Return\x20translation\x20only.\x0aText:\x20'+_0xda0cc3[0x0];if(_0x30d2c4==='R7_EXTRACT')return'Extract\x20\x22'+_0xda0cc3[0x0]+'\x22\x20from\x20text.\x20Return\x20only\x20value\x20or\x20empty\x20string.\x0aText:\x20'+_0xda0cc3[0x1];if(_0x30d2c4==='R7_CLASSIFY')return'Classify\x20text\x20into\x20exactly\x20one\x20label\x20from:\x20'+_0xda0cc3[0x1]['join'](',\x20')+'.\x20Return\x20one\x20label\x20only.\x0aText:\x20'+_0xda0cc3[0x0];if(_0x30d2c4==='R7_SUMMARIZE')return'Summarize\x20text\x20in\x20mode\x20'+_0xda0cc3[0x1]+'.\x20Keep\x20concise\x20and\x20deterministic.\x0aText:\x20'+_0xda0cc3[0x0];return'Return\x20concise\x20answer.';}function _0xe87320(_0x3c456a,_0x11ad6b){if(_0x3c456a==='R7_ASK'){var _0x241ed1=_0x195cc1(_0x11ad6b[0x0]),_0x5a0462=_0x195cc1(_0x11ad6b[0x1]);if(!_0x241ed1||!_0x5a0462)return{'error':'INVALID_ARGS'};return{'args':[_0x241ed1,_0x5a0462]};}if(_0x3c456a==='R7_TRANSLATE'){var _0x185210=_0x195cc1(_0x11ad6b[0x0]),_0x5873a9=_0x195cc1(_0x11ad6b[0x1])['toUpperCase']();if(!_0x185210||!_0x5873a9)return{'error':'INVALID_ARGS'};return{'args':[_0x185210,_0x5873a9]};}if(_0x3c456a==='R7_EXTRACT'){var _0x37d896=_0x29573b(_0x11ad6b[0x0]),_0x506e84=_0x195cc1(_0x11ad6b[0x1]);if(!_0x37d896||!_0x506e84||!_0x109489[_0x37d896])return{'error':'INVALID_ARGS'};return{'args':[_0x37d896,_0x506e84]};}if(_0x3c456a==='R7_CLASSIFY'){var _0x30cd69=_0x195cc1(_0x11ad6b[0x0]),_0x3a1578=_0x1fbf1d(_0x11ad6b[0x1]);if(!_0x30cd69||_0x3a1578['length']<0x2)return{'error':'INVALID_ARGS'};return{'args':[_0x30cd69,_0x3a1578]};}if(_0x3c456a==='R7_SUMMARIZE'){var _0xf2b14c=_0x195cc1(_0x11ad6b[0x0]),_0x542d44=_0x29573b(_0x11ad6b[0x1]);if(!_0xf2b14c||!_0x542d44||!_0x4c03da[_0x542d44])return{'error':'INVALID_ARGS'};return{'args':[_0xf2b14c,_0x542d44]};}return{'error':'INVALID_ARGS'};}function _0x3193c6(_0x4ada25){if(!_0x4ada25)return _0x9f41d7['FAILED'];if(_0x4ada25['code']==='INVALID_ARGS')return _0x9f41d7['INVALID_ARGS'];if(_0x4ada25['code']==='RATE_LIMIT')return _0x9f41d7['RATE_LIMIT'];if(_0x4ada25['code']==='TIMEOUT')return _0x9f41d7['TIMEOUT'];var _0x193da7=Number(_0x4ada25['status']||0x0);if(_0x193da7===0x1ad)return _0x9f41d7['RATE_LIMIT'];if(_0x193da7===0x198)return _0x9f41d7['TIMEOUT'];return _0x9f41d7['FAILED'];}function _0x48b1d9(_0xa0d69){var _0x454d77=Number(_0xa0d69&&_0xa0d69['status']?_0xa0d69['status']:0x0);return _0x454d77===0x1ad||_0x454d77===0x1f4||_0x454d77===0x1f6||_0x454d77===0x1f7||_0x454d77===0x1f8;}function _0x4b1922(_0x53515d,_0x30b819,_0x16e146){var _0x36f91c=_0x195cc1(_0x30b819||'');if(!_0x36f91c)return'';if(_0x53515d==='R7_CLASSIFY'){var _0xfb8264=_0x29573b(_0x36f91c['split']('\x0a')[0x0]);for(var _0x9cee7d=0x0;_0x9cee7d<_0x16e146[0x1]['length'];_0x9cee7d+=0x1){if(_0xfb8264===_0x16e146[0x1][_0x9cee7d])return _0x16e146[0x1][_0x9cee7d];}return _0x16e146[0x1][0x0];}if(_0x53515d==='R7_EXTRACT')return _0x36f91c['split']('\x0a')[0x0]['trim']();return _0x36f91c;}async function _0x4e20d7(_0x2a5c3e,_0x20ce44){if(!_0x4c78c1['apiKey']){var _0x47b643=new Error('Missing\x20API\x20key');_0x47b643['code']='FAILED';throw _0x47b643;}var _0x1d4975=await fetch('https://openrouter.ai/api/v1/chat/completions',{'method':'POST','headers':{'Content-Type':'application/json','Authorization':'Bearer\x20'+_0x4c78c1['apiKey'],'X-Title':'{r7c}.ChatLLM\x20(Cell\x20Functions)'},'body':JSON['stringify']({'model':_0x4c78c1['model']||'openrouter/auto','messages':[{'role':'system','content':'You\x20are\x20deterministic\x20spreadsheet\x20AI\x20operator.\x20Return\x20concise\x20data\x20output\x20only.'},{'role':'user','content':_0x2a5c3e}],'temperature':0x0,'max_tokens':_0x20ce44,'stream':![]})});if(!_0x1d4975['ok']){var _0x47a524=await _0x1d4975['text'](),_0xccf159=new Error(_0x47a524||'Request\x20failed');_0xccf159['status']=_0x1d4975['status'];if(_0x1d4975['status']===0x1ad)_0xccf159['code']='RATE_LIMIT';throw _0xccf159;}var _0x5ef7e7=await _0x1d4975['json'](),_0x7db0ff=_0x5ef7e7&&_0x5ef7e7['choices']&&_0x5ef7e7['choices'][0x0]?_0x5ef7e7['choices'][0x0]:null,_0x405099=_0x7db0ff&&_0x7db0ff['message']?_0x7db0ff['message']['content']:'';return Array['isArray'](_0x405099)&&(_0x405099=_0x405099['map'](function(_0x9bccb7){if(typeof _0x9bccb7==='string')return _0x9bccb7;return _0x9bccb7&&_0x9bccb7['text']?_0x9bccb7['text']:'';})['join']('')),{'text':_0x195cc1(_0x405099||''),'usage':_0x5ef7e7&&_0x5ef7e7['usage']?_0x5ef7e7['usage']:null};}async function _0x20dad8(_0x587e59,_0x46459f,_0x3cfa2d){var _0x30331d=Date['now'](),_0x3d5fe0=_0xe87320(_0x587e59,_0x46459f||[]),_0x43ab7a=String(_0x3cfa2d&&_0x3cfa2d['cell']?_0x3cfa2d['cell']:'');if(_0x3d5fe0['error'])return _0xe4a603({'time':_0x30331d,'cell':_0x43ab7a,'fn':_0x587e59,'status':'invalid_arguments','cacheHit':![],'inputHash':'','model':_0x4c78c1['model'],'latencyMs':Date['now']()-_0x30331d,'errorCode':'INVALID_ARGS'}),_0x9f41d7['INVALID_ARGS'];var _0x68a92f=_0x3d5fe0['args'],_0x501b4c=JSON['stringify'](_0x68a92f),_0x599408=_0x28a0d6[_0x587e59]||{'maxTokens':0xa0,'maxChars':0xbb8};if(_0x501b4c['length']>_0x599408['maxChars'])return _0xe4a603({'time':_0x30331d,'cell':_0x43ab7a,'fn':_0x587e59,'status':'invalid_arguments','cacheHit':![],'inputHash':_0x5b6506(_0x501b4c),'model':_0x4c78c1['model'],'latencyMs':Date['now']()-_0x30331d,'errorCode':'INPUT_CAP'}),_0x9f41d7['INVALID_ARGS'];var _0x426f6b=JSON['stringify']({'fn':_0x587e59,'args':_0x68a92f,'model':_0x4c78c1['model'],'locale':_0x4c78c1['locale'],'promptTemplateVersion':_0x4c78c1['promptTemplateVersion'],'cacheEpoch':_0x4c78c1['cacheEpoch']}),_0x54c6fb=_0x517f73(_0x3cfa2d);if(!_0x54c6fb&&Object['prototype']['hasOwnProperty']['call'](_0x4c78c1['cache'],_0x426f6b)){var _0x6516a1=_0x4c78c1['cache'][_0x426f6b];return _0xe4a603({'time':_0x30331d,'cell':_0x43ab7a,'fn':_0x587e59,'status':'cached','cacheHit':!![],'inputHash':_0x5b6506(_0x501b4c),'model':_0x4c78c1['model'],'latencyMs':Date['now']()-_0x30331d,'tokenUsage':_0x6516a1&&_0x6516a1['usage']?_0x6516a1['usage']:null}),_0x6516a1['value'];}if(!_0x54c6fb&&_0x4c78c1['inflight'][_0x426f6b])return _0x4c78c1['inflight'][_0x426f6b];var _0xcdc68b=_0x55dde4(_0x22ab9b(_0x587e59,_0x68a92f)),_0x24416a=_0x5b6506(_0x501b4c),_0x3967ce=_0x57c25f(async function(){var _0x5dc766=0x0;while(!![]){try{var _0x47c8d8=await _0x3bd877(_0x4e20d7(_0xcdc68b,_0x599408['maxTokens']),0x3a98),_0x35c4fb=_0x4b1922(_0x587e59,_0x47c8d8['text'],_0x68a92f);if(!_0x54c6fb)_0x4c78c1['cache'][_0x426f6b]={'value':_0x35c4fb,'usage':_0x47c8d8['usage']||null,'ts':Date['now']()};return _0xe4a603({'time':_0x30331d,'cell':_0x43ab7a,'fn':_0x587e59,'status':'ok','cacheHit':![],'inputHash':_0x24416a,'model':_0x4c78c1['model'],'latencyMs':Date['now']()-_0x30331d,'tokenUsage':_0x47c8d8['usage']||null}),_0x35c4fb;}catch(_0x39777d){if(_0x39777d&&_0x39777d['code']==='TIMEOUT')return _0xe4a603({'time':_0x30331d,'cell':_0x43ab7a,'fn':_0x587e59,'status':'timeout','cacheHit':![],'inputHash':_0x24416a,'model':_0x4c78c1['model'],'latencyMs':Date['now']()-_0x30331d,'errorCode':'TIMEOUT'}),_0x9f41d7['TIMEOUT'];if(_0x5dc766<0x1&&_0x48b1d9(_0x39777d)){_0x5dc766+=0x1;continue;}var _0x2f08e3=_0x3193c6(_0x39777d);return _0xe4a603({'time':_0x30331d,'cell':_0x43ab7a,'fn':_0x587e59,'status':_0x2f08e3===_0x9f41d7['RATE_LIMIT']?'rate_limited':'failed','cacheHit':![],'inputHash':_0x24416a,'model':_0x4c78c1['model'],'latencyMs':Date['now']()-_0x30331d,'errorCode':_0x2f08e3}),_0x2f08e3;}}});return _0x4c78c1['inflight'][_0x426f6b]=_0x3967ce['finally'](function(){delete _0x4c78c1['inflight'][_0x426f6b];}),_0x4c78c1['inflight'][_0x426f6b];}function _0x1c948d(_0x502f1c){var _0x4c82ea='';if(_0x502f1c&&_0x502f1c['address'])_0x4c82ea=String(_0x502f1c['address']);return!_0x4c82ea&&_0x502f1c&&_0x502f1c['args']&&Array['isArray'](_0x502f1c['args'])&&_0x502f1c['args'][0x0]&&_0x502f1c['args'][0x0]['address']&&(_0x4c82ea=String(_0x502f1c['args'][0x0]['address'])),{'cell':_0x4c82ea};}async function _0x68fd04(_0x54d92b,_0x11b360){return _0x20dad8('R7_ASK',[_0x54d92b,_0x11b360],_0x1c948d(this));}async function _0x3da692(_0x4b5dc5,_0x350d6b){return _0x20dad8('R7_TRANSLATE',[_0x4b5dc5,_0x350d6b],_0x1c948d(this));}async function _0xf02593(_0x2d2760,_0x1888e0){return _0x20dad8('R7_EXTRACT',[_0x2d2760,_0x1888e0],_0x1c948d(this));}async function _0x3dc15a(_0x5e8ffd,_0x163d77){return _0x20dad8('R7_CLASSIFY',[_0x5e8ffd,_0x163d77],_0x1c948d(this));}async function _0x5dbd3f(_0xe2908c,_0x13cdaa){return _0x20dad8('R7_SUMMARIZE',[_0xe2908c,_0x13cdaa],_0x1c948d(this));}try{Api['RemoveCustomFunction']('R7_ASK');}catch(_0x10b77d){}try{Api['RemoveCustomFunction']('R7_TRANSLATE');}catch(_0x554df2){}try{Api['RemoveCustomFunction']('R7_EXTRACT');}catch(_0x5124b5){}try{Api['RemoveCustomFunction']('R7_CLASSIFY');}catch(_0x407937){}try{Api['RemoveCustomFunction']('R7_SUMMARIZE');}catch(_0x1217a2){}return Api['AddCustomFunctionLibrary'](String(_0x409434['libraryId']||'R7AI_V1'),function(){Api['AddCustomFunction'](_0x68fd04),Api['AddCustomFunction'](_0x3da692),Api['AddCustomFunction'](_0xf02593),Api['AddCustomFunction'](_0x3dc15a),Api['AddCustomFunction'](_0x5dbd3f);}),Api['RecalculateAllFormulas'](),{'ok':!![]};}catch(_0x5ab103){return{'ok':![],'error':String(_0x5ab103&&_0x5ab103['message']?_0x5ab103['message']:_0x5ab103)};}},{'r7CellConfig':_0x253b43},!![],0x2328);if(!_0x48b6a2||!_0x48b6a2['ok'])throw new Error(_0x48b6a2&&_0x48b6a2['error']?_0x48b6a2['error']:'callCommand\x20registration\x20failed');_0x28dbf3['registrationSource']='callCommand',_0x28dbf3['registrationOk']=!![];}function _0x4febb2(){if(!_0xe792fa['mode'])return;_0xe792fa['mode']['textContent']=_0x28dbf3['mode']+'\x20|\x20v'+_0x28dbf3['version'],_0xe792fa['mode']['classList']['toggle']('is-error',_0x28dbf3['mode']==='bulk_only_fallback'||_0x28dbf3['mode']==='disabled');}function _0x34b437(_0x3e055c){var _0x8ae926=String(_0x3e055c||'')['trim']();if(!_0x8ae926)return'';if(_0x8ae926['charAt'](0x0)==='=')_0x8ae926=_0x8ae926['slice'](0x1)['trim']();_0x8ae926=_0x8ae926['replace'](/^R7\./i,'R7_'),_0x8ae926=_0x8ae926['replace'](/^R7\.(ASK|TRANSLATE|EXTRACT|CLASSIFY|SUMMARIZE)\b/i,function(_0x16ae41,_0x59a9e6){return'R7_'+_0x59a9e6['toUpperCase']();});if(!/^R7_(ASK|TRANSLATE|EXTRACT|CLASSIFY|SUMMARIZE)\b/i['test'](_0x8ae926))return'';return'='+_0x8ae926;}async function _0x25f11b(_0x3bfd2b){if(_0x28dbf3['registerInFlight'])return;if(_0x28dbf3['mode']==='disabled'||_0x28dbf3['mode']==='bulk_only_fallback')return;var _0x2852c3=_0xfceb80();if(!_0x2852c3['apiKey']){_0x28dbf3['registrationOk']=![],_0x1b1edb(_0x50e769('Для\x20AI-функций\x20в\x20ячейках\x20укажите\x20OpenRouter\x20API\x20Key\x20в\x20настройках.'),!![]);return;}var _0x570b1a=_0x5e9c33(_0x2852c3);if(!_0x3bfd2b&&_0x28dbf3['registrationOk']&&_0x28dbf3['latestConfigHash']===_0x570b1a)return;_0x28dbf3['registerInFlight']=!![],_0x1b1edb(_0x50e769('Регистрация\x20AI-функций...'),![]);try{if(_0x28dbf3['mode']==='native_async')try{await _0x471114(_0x2852c3);}catch(_0x1d17e8){if(!_0x28dbf3['hasCallCommand'])throw _0x1d17e8;_0x28dbf3['mode']='macro_register_fallback';try{await _0x26b0a1(_0x2852c3);}catch(_0x357532){throw new Error('native\x20failed:\x20'+String(_0x1d17e8&&_0x1d17e8['message']?_0x1d17e8['message']:_0x1d17e8)+'\x20|\x20fallback\x20failed:\x20'+String(_0x357532&&_0x357532['message']?_0x357532['message']:_0x357532));}}else await _0x26b0a1(_0x2852c3);_0x28dbf3['latestConfigHash']=_0x570b1a,_0x4febb2(),_0x1b1edb(_0x50e769('AI-функции\x20зарегистрированы:\x20R7_ASK/R7_TRANSLATE/R7_EXTRACT/R7_CLASSIFY/R7_SUMMARIZE'),![]);}catch(_0xc6c551){_0x28dbf3['registrationOk']=![],_0x1b1edb(_0x50e769('Не\x20удалось\x20зарегистрировать\x20AI-функции:\x20')+String(_0xc6c551&&_0xc6c551['message']?_0xc6c551['message']:_0xc6c551),!![]);}finally{_0x28dbf3['registerInFlight']=![];}}async function _0x9bfcc8(_0x9e8659){var _0x52a32a=_0x34b437(_0x9e8659);if(!_0x52a32a){_0x1b1edb(_0x50e769('Формула\x20должна\x20начинаться\x20с\x20R7_...\x20или\x20R7....'),!![]);return;}try{await _0x37dbe5(function(){var _0x3b4f8f=Api['GetActiveSheet'](),_0x4ba391=_0x3b4f8f?_0x3b4f8f['GetSelection']():null;if(!_0x4ba391)return{'ok':![],'error':'No\x20selection'};return _0x4ba391['SetValue'](Asc['scope']['r7Formula']),Api['RecalculateAllFormulas'](),{'ok':!![]};},{'r7Formula':_0x52a32a},!![],0x1388),_0x1b1edb(_0x50e769('Формула\x20вставлена:\x20')+_0x52a32a,![]);}catch(_0x34cae6){_0x1b1edb(_0x50e769('Ошибка\x20вставки\x20формулы:\x20')+String(_0x34cae6&&_0x34cae6['message']?_0x34cae6['message']:_0x34cae6),!![]);}}async function _0x5b3447(){await _0x17d43c(),_0x1b1edb(_0x50e769('Refresh\x20all\x20выполнен.'),![]),_0x2de463();}async function _0x575fa8(_0x124138){try{var _0x363239=await _0x37dbe5(function(){function _0x5670ea(_0x14aa79){var _0x1db4bc=Number(_0x14aa79||0x1),_0x1c2e18='';while(_0x1db4bc>0x0){var _0x27ec06=(_0x1db4bc-0x1)%0x1a;_0x1c2e18=String['fromCharCode'](0x41+_0x27ec06)+_0x1c2e18,_0x1db4bc=Math['floor']((_0x1db4bc-_0x27ec06)/0x1a);}return _0x1c2e18;}function _0x2ccb6b(_0x9adec4){var _0x46cf9c=0x0,_0x30de84=String(_0x9adec4||'')['toUpperCase']();for(var _0x41ab2b=0x0;_0x41ab2b<_0x30de84['length'];_0x41ab2b+=0x1){var _0x51029a=_0x30de84['charCodeAt'](_0x41ab2b);if(_0x51029a<0x41||_0x51029a>0x5a)continue;_0x46cf9c=_0x46cf9c*0x1a+(_0x51029a-0x40);}return _0x46cf9c;}function _0xb7096e(_0x446fe4){var _0x2f8d98=String(_0x446fe4||'')['replace'](/\$/g,''),_0x500c09=_0x2f8d98['lastIndexOf']('!');if(_0x500c09!==-0x1)_0x2f8d98=_0x2f8d98['slice'](_0x500c09+0x1);var _0x1b7337=_0x2f8d98['split'](':');if(_0x1b7337['length']===0x1)_0x1b7337['push'](_0x1b7337[0x0]);var _0x591716=_0x1b7337[0x0]['match'](/^([A-Za-z]+)(\d+)$/),_0x592179=_0x1b7337[0x1]['match'](/^([A-Za-z]+)(\d+)$/);if(!_0x591716||!_0x592179)return null;var _0x21268b=_0x2ccb6b(_0x591716[0x1]),_0x4868eb=_0x2ccb6b(_0x592179[0x1]),_0x172da5=Number(_0x591716[0x2]),_0x50c6ff=Number(_0x592179[0x2]);return{'startCol':Math['min'](_0x21268b,_0x4868eb),'endCol':Math['max'](_0x21268b,_0x4868eb),'startRow':Math['min'](_0x172da5,_0x50c6ff),'endRow':Math['max'](_0x172da5,_0x50c6ff)};}var _0x43eb4d=Api['GetActiveSheet'](),_0x56e58a=_0x43eb4d?_0x43eb4d['GetSelection']():null;if(!_0x56e58a)return{'ok':![],'error':'No\x20selection'};var _0x5845d4=_0xb7096e(_0x56e58a['GetAddress'](!![],!![],'xlA1',![]));if(!_0x5845d4)return{'ok':![],'error':'Unsupported\x20selection'};var _0x389459=0x0,_0x16b0cd=[];for(var _0x35211f=_0x5845d4['startRow'];_0x35211f<=_0x5845d4['endRow'];_0x35211f+=0x1){for(var _0x5e603f=_0x5845d4['startCol'];_0x5e603f<=_0x5845d4['endCol'];_0x5e603f+=0x1){var _0x3f4068=_0x5670ea(_0x5e603f)+_0x35211f,_0x5c94a3=_0x43eb4d['GetRange'](_0x3f4068);if(!_0x5c94a3||typeof _0x5c94a3['GetFormula']!=='function')continue;var _0x4fb06d=_0x5c94a3['GetFormula']();if(!_0x4fb06d)continue;var _0x490c18=String(_0x4fb06d);if(_0x490c18['charAt'](0x0)!=='=')_0x490c18='='+_0x490c18;if(!/R7_(ASK|TRANSLATE|EXTRACT|CLASSIFY|SUMMARIZE)/i['test'](_0x490c18))continue;_0x5c94a3['SetValue'](_0x490c18),_0x389459+=0x1;if(_0x16b0cd['length']<0x1f4)_0x16b0cd['push'](_0x3f4068);}}if(Asc['scope']['markBypass']){var _0x22c6e7=typeof globalThis!=='undefined'?globalThis:this,_0x245411=_0x22c6e7['__R7_CELL_AI_RUNTIME__'];_0x245411&&typeof _0x245411['markBypassCells']==='function'&&_0x245411['markBypassCells'](_0x16b0cd,0xea60);}return Api['RecalculateAllFormulas'](),{'ok':!![],'refreshed':_0x389459};},{'markBypass':!!_0x124138},!![],0x1f40);if(!_0x363239||!_0x363239['ok'])throw new Error(_0x363239&&_0x363239['error']?_0x363239['error']:'Unknown\x20refresh\x20selected\x20error');_0x1b1edb(_0x50e769('Refresh\x20selected:\x20обновлено\x20формул:\x20')+String(_0x363239['refreshed']||0x0),![]),_0x2de463();}catch(_0x5b01a2){_0x1b1edb(_0x50e769('Ошибка\x20refresh\x20selected:\x20')+String(_0x5b01a2&&_0x5b01a2['message']?_0x5b01a2['message']:_0x5b01a2),!![]);}}async function _0x307819(){_0x28dbf3['cacheEpoch']+=0x1;try{await _0x37dbe5(function(){var _0x6510c6=typeof globalThis!=='undefined'?globalThis:this,_0xb7d6f=_0x6510c6['__R7_CELL_AI_RUNTIME__'];if(_0xb7d6f&&typeof _0xb7d6f['clearAllCache']==='function')_0xb7d6f['clearAllCache']();if(_0xb7d6f&&typeof _0xb7d6f['clearTrace']==='function')_0xb7d6f['clearTrace']();return{'ok':!![]};},null,![],0x9c4);}catch(_0xec27f5){}await _0x25f11b(!![]),await _0x5b3447(),_0x1b1edb(_0x50e769('Кэш\x20AI-функций\x20очищен\x20для\x20всей\x20книги.'),![]);}async function _0x43eb11(){await _0x575fa8(!![]),_0x1b1edb(_0x50e769('Кэш\x20выбранных\x20AI-ячеек\x20сброшен\x20(bypass\x20+\x20refresh).'),![]);}function _0x17b373(){if(!_0xe792fa['functionList'])return;var _0x34ef92=document['createDocumentFragment']();_0xcbe9c5['forEach'](function(_0x42b573){var _0x579dc3=document['createElement']('div');_0x579dc3['className']='cell-ai-function-item';var _0x6fbdd5=document['createElement']('div');_0x6fbdd5['className']='cell-ai-function-top';var _0x57271a=document['createElement']('div');_0x57271a['className']='cell-ai-function-name',_0x57271a['textContent']=_0x42b573['signature'];var _0x984c32=document['createElement']('button');_0x984c32['type']='button',_0x984c32['className']='sheet-action-btn',_0x984c32['textContent']=_0x50e769('Insert'),_0x984c32['addEventListener']('click',function(){_0x9bfcc8(_0x42b573['example']);}),_0x6fbdd5['appendChild'](_0x57271a),_0x6fbdd5['appendChild'](_0x984c32);var _0x219d31=document['createElement']('div');_0x219d31['className']='cell-ai-function-desc',_0x219d31['textContent']=_0x42b573['description'];var _0x6189fb=document['createElement']('div');_0x6189fb['className']='cell-ai-function-example',_0x6189fb['textContent']=_0x42b573['example']+'\x20\x20\x20\x20('+_0x42b573['alias']+')',_0x579dc3['appendChild'](_0x6fbdd5),_0x579dc3['appendChild'](_0x219d31),_0x579dc3['appendChild'](_0x6189fb),_0x34ef92['appendChild'](_0x579dc3);}),_0xe792fa['functionList']['innerHTML']='',_0xe792fa['functionList']['appendChild'](_0x34ef92);}function _0x3790b1(_0x8c2727,_0x3aab59){if(!_0x8c2727)return;if(!_0x3aab59||!_0x3aab59['length']){_0x8c2727['innerHTML']='<div\x20class=\x22context-empty\x22>'+_0x50e769('Trace\x20пока\x20пустой.')+'</div>';return;}var _0x22d063=document['createDocumentFragment']();_0x3aab59['slice'](-0x19)['reverse']()['forEach'](function(_0xd2f1bc){var _0x3ae3d2=document['createElement']('div');_0x3ae3d2['className']='cell-ai-trace-item';var _0x581f8d=document['createElement']('div');_0x581f8d['className']='cell-ai-trace-top',_0x581f8d['textContent']=(_0xd2f1bc['fn']||'unknown')+'\x20·\x20'+(_0xd2f1bc['status']||'n/a');var _0x381c57=document['createElement']('div');_0x381c57['className']='cell-ai-trace-meta';var _0x1659d6=_0xd2f1bc['cell']?'cell='+_0xd2f1bc['cell']+'\x20·\x20':'',_0x4bf273=_0xd2f1bc['cacheHit']?'cache=hit':'cache=miss',_0x47810d=_0xd2f1bc['latencyMs']!==undefined?'\x20·\x20'+_0xd2f1bc['latencyMs']+'ms':'';_0x381c57['textContent']=_0x1659d6+_0x4bf273+_0x47810d,_0x3ae3d2['appendChild'](_0x581f8d),_0x3ae3d2['appendChild'](_0x381c57),_0x22d063['appendChild'](_0x3ae3d2);}),_0x8c2727['innerHTML']='',_0x8c2727['appendChild'](_0x22d063);}async function _0x2de463(){if(_0x28dbf3['mode']==='disabled'||_0x28dbf3['mode']==='bulk_only_fallback')return;try{var _0x17206f=await _0x37dbe5(function(){var _0x37fc41=typeof globalThis!=='undefined'?globalThis:this,_0x96886d=_0x37fc41['__R7_CELL_AI_RUNTIME__'];if(!_0x96886d||typeof _0x96886d['getTraceSnapshot']!=='function')return[];return _0x96886d['getTraceSnapshot']();},null,![],0x9c4);_0x28dbf3['trace']=Array['isArray'](_0x17206f)?_0x17206f:[],_0x3790b1(_0xe792fa['helperTrace'],_0x28dbf3['trace']),_0x3790b1(_0xe792fa['contextTrace'],_0x28dbf3['trace']);}catch(_0x432989){}}function _0x5a2c83(){if(!_0xe792fa['panel']||_0x28dbf3['editorType']!=='cell')return;_0xe792fa['panel']['style']['display']='flex';if(_0xe792fa['button'])_0xe792fa['button']['setAttribute']('aria-expanded','true');_0x2de463();}function _0x431521(){if(!_0xe792fa['panel'])return;_0xe792fa['panel']['style']['display']='none';if(_0xe792fa['button'])_0xe792fa['button']['setAttribute']('aria-expanded','false');}function _0x459496(){if(!_0xe792fa['panel'])return;if(_0xe792fa['panel']['style']['display']==='none'||!_0xe792fa['panel']['style']['display'])_0x5a2c83();else _0x431521();}function _0x451a83(){var _0xf5f25b=[['cellAiPanelTitle','Cell\x20AI\x20Functions'],['cellAiMode','mode'],['cellAiHint','Используйте\x20канонические\x20формулы\x20R7_*\x20(helper\x20принимает\x20alias\x20R7.*).'],['cellAiInsertLabel','Formula'],['cellAiInsert','Insert\x20Formula'],['cellAiRefreshSelected','Refresh\x20selected\x20AI\x20formulas'],['cellAiRefreshAll','Refresh\x20all\x20AI\x20formulas'],['cellAiClearSelected','Clear\x20selected\x20AI\x20cache'],['cellAiClearAll','Clear\x20all\x20AI\x20cache'],['cellAiTraceTitle','Cell\x20AI\x20Trace'],['cellAiContextTraceTitle','Cell\x20AI\x20Trace']];for(var _0x47f5ba=0x0;_0x47f5ba<_0xf5f25b['length'];_0x47f5ba+=0x1){var _0x3e0c3b=document['getElementById'](_0xf5f25b[_0x47f5ba][0x0]);if(!_0x3e0c3b)continue;_0x3e0c3b['textContent']=_0x50e769(_0xf5f25b[_0x47f5ba][0x1]);}var _0x5520ab=document['getElementById']('cellai-button');_0x5520ab&&(_0x5520ab['title']=_0x50e769('Cell\x20AI\x20Functions'),_0x5520ab['setAttribute']('aria-label',_0x50e769('Open\x20cell\x20AI\x20helper')));}function _0xab58f4(){_0xe792fa['button']=document['getElementById']('cellai-button'),_0xe792fa['panel']=document['getElementById']('cellAiPanel'),_0xe792fa['close']=document['getElementById']('cellAiClose'),_0xe792fa['mode']=document['getElementById']('cellAiMode'),_0xe792fa['status']=document['getElementById']('cellAiStatus'),_0xe792fa['formulaInput']=document['getElementById']('cellAiFormulaInput'),_0xe792fa['functionList']=document['getElementById']('cellAiFunctionList'),_0xe792fa['insert']=document['getElementById']('cellAiInsert'),_0xe792fa['refreshSelected']=document['getElementById']('cellAiRefreshSelected'),_0xe792fa['refreshAll']=document['getElementById']('cellAiRefreshAll'),_0xe792fa['clearSelected']=document['getElementById']('cellAiClearSelected'),_0xe792fa['clearAll']=document['getElementById']('cellAiClearAll'),_0xe792fa['helperTrace']=document['getElementById']('cellAiTraceList'),_0xe792fa['contextTrace']=document['getElementById']('cellAiContextTraceList');if(!_0xe792fa['button']||!_0xe792fa['panel'])return![];_0xe792fa['button']['addEventListener']('click',_0x459496);if(_0xe792fa['close'])_0xe792fa['close']['addEventListener']('click',_0x431521);_0xe792fa['insert']&&_0xe792fa['insert']['addEventListener']('click',function(){_0x9bfcc8(_0xe792fa['formulaInput']?_0xe792fa['formulaInput']['value']:'');});if(_0xe792fa['refreshSelected'])_0xe792fa['refreshSelected']['addEventListener']('click',function(){_0x575fa8(![]);});if(_0xe792fa['refreshAll'])_0xe792fa['refreshAll']['addEventListener']('click',_0x5b3447);if(_0xe792fa['clearSelected'])_0xe792fa['clearSelected']['addEventListener']('click',_0x43eb11);if(_0xe792fa['clearAll'])_0xe792fa['clearAll']['addEventListener']('click',_0x307819);return document['addEventListener']('keydown',function(_0x466b7f){_0x466b7f['key']==='Escape'&&_0xe792fa['panel']&&_0xe792fa['panel']['style']['display']!=='none'&&_0x431521();}),!![];}function _0xd373d3(){if(_0x28dbf3['traceTimer'])_0x4fcb79['clearInterval'](_0x28dbf3['traceTimer']);_0x28dbf3['traceTimer']=_0x4fcb79['setInterval'](function(){_0x2de463();},_0x55ea76);}async function _0x4d6341(){if(_0x28dbf3['initialized'])return;if(!_0xab58f4())return;_0x28dbf3['initialized']=!![],_0x451a83(),_0x17b373(),await _0xd9ac3a(),_0x4febb2();if(_0x28dbf3['editorType']!=='cell'){if(_0xe792fa['button'])_0xe792fa['button']['style']['display']='none';_0x1b1edb(_0x50e769('AI-функции\x20доступны\x20только\x20в\x20Spreadsheet\x20Editor.'),!![]);return;}if(_0xe792fa['formulaInput'])_0xe792fa['formulaInput']['value']=_0xcbe9c5[0x0]['example'];if(_0x28dbf3['mode']==='bulk_only_fallback'){_0x1b1edb(_0x50e769('В\x20текущей\x20версии\x20доступен\x20fallback\x20без\x20формульного\x20режима\x20(bulk-only).'),!![]);return;}await _0x25f11b(![]),_0xd373d3(),_0x2de463();}function _0x3d5984(){var _0x23b7ed=_0x4fcb79['Asc']['plugin']['init'];_0x4fcb79['Asc']['plugin']['init']=function(){if(typeof _0x23b7ed==='function')_0x23b7ed['apply'](this,arguments);_0x4fcb79['setTimeout'](function(){_0x4d6341();},0xf0);};var _0x350599=_0x4fcb79['Asc']['plugin']['onTranslate'];_0x4fcb79['Asc']['plugin']['onTranslate']=function(){if(typeof _0x350599==='function')_0x350599['apply'](this,arguments);_0x451a83(),_0x17b373(),_0x4febb2();};}function _0x132739(){var _0x9602e6=document['getElementById']('inlineSaveSettings');if(!_0x9602e6)return;_0x9602e6['addEventListener']('click',function(){_0x4fcb79['setTimeout'](function(){if(_0x28dbf3['editorType']==='cell')_0x25f11b(!![]);},0x1c2);});}_0x3d5984(),document['addEventListener']('DOMContentLoaded',function(){_0x132739(),_0x4fcb79['setTimeout'](function(){_0x4d6341();},0x140);});}(window));
+(function (window) {
+    'use strict';
+
+    if (!window || !window.Asc || !window.Asc.plugin) return;
+
+    var core = window.R7CellAiCore || {
+        normalizeScalar: function (v) { return String(v === null || v === undefined ? '' : v).trim(); },
+        normalizeEnum: function (v) { return String(v === null || v === undefined ? '' : v).trim().toLowerCase(); },
+        normalizeLabels: function (v) { return String(v === null || v === undefined ? '' : v).split(',').map(function (x) { return x.trim().toLowerCase(); }).filter(Boolean); },
+        simpleHash: function (v) {
+            var s = String(v || '');
+            var h = 2166136261;
+            for (var i = 0; i < s.length; i += 1) {
+                h ^= s.charCodeAt(i);
+                h = Math.imul(h, 16777619);
+            }
+            return (h >>> 0).toString(16);
+        }
+    };
+
+    var LIBRARY_ID = 'R7AI_V1';
+    var LIBRARY_MARKER = '/*R7AI_LIBRARY:' + LIBRARY_ID + '*/';
+    var TRACE_PULL_INTERVAL_MS = 4000;
+    var PROMPT_TEMPLATE_VERSION = 'v1';
+
+    var FUNCTION_DEFS = [
+        { name: 'R7_ASK', alias: 'R7.ASK', signature: 'R7_ASK(prompt; value)', example: '=R7_ASK("Сделай краткое резюме"; A2)', description: 'Универсальная AI-функция для одного значения.' },
+        { name: 'R7_TRANSLATE', alias: 'R7.TRANSLATE', signature: 'R7_TRANSLATE(text; targetLang)', example: '=R7_TRANSLATE(A2; "RU")', description: 'Перевод текста в целевой язык.' },
+        { name: 'R7_EXTRACT', alias: 'R7.EXTRACT', signature: 'R7_EXTRACT(kind; text)', example: '=R7_EXTRACT("email"; B2)', description: 'Извлечение сущностей: email/phone/company/name/date/amount.' },
+        { name: 'R7_CLASSIFY', alias: 'R7.CLASSIFY', signature: 'R7_CLASSIFY(text; labels)', example: '=R7_CLASSIFY(C2; "lead,spam,client,partner")', description: 'Классификация по списку категорий.' },
+        { name: 'R7_SUMMARIZE', alias: 'R7.SUMMARIZE', signature: 'R7_SUMMARIZE(text; mode)', example: '=R7_SUMMARIZE(D2; "short")', description: 'Суммаризация: short/medium/long.' }
+    ];
+
+    var state = {
+        initialized: false,
+        editorType: '',
+        mode: 'disabled',
+        version: '0.0.0',
+        supportsAsync: false,
+        supportsAddress: false,
+        supportsSetCustomFunctions: false,
+        hasCallCommand: false,
+        registrationOk: false,
+        registrationSource: 'none',
+        registerInFlight: false,
+        latestConfigHash: '',
+        cacheEpoch: 1,
+        trace: [],
+        traceTimer: null
+    };
+
+    var ui = {
+        button: null,
+        panel: null,
+        close: null,
+        mode: null,
+        status: null,
+        formulaInput: null,
+        functionList: null,
+        insert: null,
+        refreshSelected: null,
+        refreshAll: null,
+        clearSelected: null,
+        clearAll: null,
+        helperTrace: null,
+        contextTrace: null
+    };
+
+    function tr(text) {
+        if (window.Asc && window.Asc.plugin && typeof window.Asc.plugin.tr === 'function') {
+            return window.Asc.plugin.tr(text);
+        }
+        return text;
+    }
+
+    function setStatus(message, isError) {
+        if (!ui.status) return;
+        ui.status.textContent = message || '';
+        ui.status.classList.toggle('is-error', !!isError);
+    }
+
+    function withTimeout(run, timeoutMs, label) {
+        return new Promise(function (resolve, reject) {
+            var done = false;
+            var timer = window.setTimeout(function () {
+                if (done) return;
+                done = true;
+                reject(new Error((label || 'operation') + ' timeout'));
+            }, timeoutMs || 2500);
+
+            run(function (result) {
+                if (done) return;
+                done = true;
+                window.clearTimeout(timer);
+                resolve(result);
+            }, function (error) {
+                if (done) return;
+                done = true;
+                window.clearTimeout(timer);
+                reject(error || new Error((label || 'operation') + ' failed'));
+            });
+        });
+    }
+
+    function executeMethod(name, args, timeoutMs) {
+        return withTimeout(function (resolve, reject) {
+            try {
+                if (!window.Asc || !Asc.plugin || typeof Asc.plugin.executeMethod !== 'function') {
+                    reject(new Error('executeMethod is unavailable'));
+                    return;
+                }
+                Asc.plugin.executeMethod(name, args || [], function (result) {
+                    resolve(result);
+                });
+            } catch (error) {
+                reject(error);
+            }
+        }, timeoutMs || 3500, name);
+    }
+
+    function callCommand(command, scopeData, recalculate, timeoutMs) {
+        return withTimeout(function (resolve, reject) {
+            try {
+                if (!window.Asc || !Asc.plugin || typeof Asc.plugin.callCommand !== 'function') {
+                    reject(new Error('callCommand is unavailable'));
+                    return;
+                }
+                if (scopeData && typeof scopeData === 'object') {
+                    Object.keys(scopeData).forEach(function (key) {
+                        Asc.scope[key] = scopeData[key];
+                    });
+                }
+                Asc.plugin.callCommand(command, false, recalculate !== false, function (result) {
+                    resolve(result);
+                });
+            } catch (error) {
+                reject(error);
+            }
+        }, timeoutMs || 5000, 'callCommand');
+    }
+
+    function parseVersion(value) {
+        var text = String(value || '0.0.0');
+        var match = text.match(/(\d+)\.(\d+)(?:\.(\d+))?/);
+        return {
+            raw: text,
+            major: match ? Number(match[1]) : 0,
+            minor: match ? Number(match[2]) : 0,
+            patch: match && match[3] ? Number(match[3]) : 0
+        };
+    }
+
+    function versionAtLeast(parsed, major, minor, patch) {
+        if (parsed.major > major) return true;
+        if (parsed.major < major) return false;
+        if (parsed.minor > minor) return true;
+        if (parsed.minor < minor) return false;
+        return parsed.patch >= patch;
+    }
+
+    function normalizeCustomFunctionsResult(rawResult) {
+        var parsed = rawResult;
+        if (typeof parsed === 'string') {
+            try {
+                var maybe = JSON.parse(parsed);
+                if (Array.isArray(maybe)) parsed = maybe;
+                else parsed = parsed.trim() ? [parsed] : [];
+            } catch (e) {
+                parsed = parsed.trim() ? [parsed] : [];
+            }
+        }
+        if (!Array.isArray(parsed)) return { shape: 'array-string', entries: [] };
+        if (!parsed.length) return { shape: 'array-string', entries: [] };
+        if (parsed[0] && typeof parsed[0] === 'object') {
+            return {
+                shape: 'array-object',
+                entries: parsed.map(function (item) {
+                    return {
+                        name: String(item && item.name ? item.name : ''),
+                        value: String(item && item.value ? item.value : '')
+                    };
+                })
+            };
+        }
+        return {
+            shape: 'array-string',
+            entries: parsed.map(function (item) { return String(item || ''); })
+        };
+    }
+
+    function removeExistingLibrary(existingState) {
+        if (existingState.shape === 'array-object') {
+            return existingState.entries.filter(function (item) {
+                return String(item.value || '').indexOf(LIBRARY_MARKER) === -1 && String(item.name || '') !== LIBRARY_ID;
+            });
+        }
+        return existingState.entries.filter(function (item) {
+            return String(item || '').indexOf(LIBRARY_MARKER) === -1;
+        });
+    }
+
+    function buildConfig() {
+        var settingsService = window.R7Chat && window.R7Chat.features && window.R7Chat.features.settings
+            ? window.R7Chat.features.settings
+            : null;
+        var runtimeSettings = settingsService && typeof settingsService.loadSettings === 'function'
+            ? settingsService.loadSettings()
+            : {
+                apiKey: (localStorage.getItem('apikey') || '').trim(),
+                model: (localStorage.getItem('model') || 'openrouter/auto').trim()
+            };
+        var openrouterConfig = settingsService && typeof settingsService.getProviderConfig === 'function'
+            ? settingsService.getProviderConfig(runtimeSettings, 'openrouter')
+            : null;
+        return {
+            apiKey: openrouterConfig && openrouterConfig.apiKey ? openrouterConfig.apiKey : (runtimeSettings.apiKey || ''),
+            model: openrouterConfig && openrouterConfig.model ? openrouterConfig.model : (runtimeSettings.model || 'openrouter/auto'),
+            locale: (window.Asc && window.Asc.plugin && window.Asc.plugin.info && window.Asc.plugin.info.lang) ? window.Asc.plugin.info.lang : 'en-US',
+            cacheEpoch: state.cacheEpoch,
+            promptTemplateVersion: PROMPT_TEMPLATE_VERSION,
+            libraryId: LIBRARY_ID
+        };
+    }
+
+    function buildConfigHash(config) {
+        return core.simpleHash([
+            config.apiKey || '',
+            config.model || '',
+            config.locale || '',
+            config.cacheEpoch || 1,
+            config.promptTemplateVersion || ''
+        ].join('|'));
+    }
+
+    function libraryRuntimeFactory(config) {
+        var globalRef = (typeof globalThis !== 'undefined') ? globalThis : this;
+        var SETTINGS = config || {};
+        var STATUS = {
+            INVALID_ARGS: '#R7.INVALID_ARGS',
+            RATE_LIMIT: '#R7.RATE_LIMIT',
+            TIMEOUT: '#R7.TIMEOUT',
+            FAILED: '#R7.FAILED'
+        };
+        var EXTRACT_KINDS = {
+            email: true,
+            phone: true,
+            company: true,
+            name: true,
+            date: true,
+            amount: true,
+            url: true,
+            inn: true,
+            iban: true
+        };
+        var SUMMARY_MODES = {
+            short: true,
+            medium: true,
+            long: true
+        };
+        var CFG = {
+            R7_ASK: { maxTokens: 180, maxChars: 4000 },
+            R7_TRANSLATE: { maxTokens: 180, maxChars: 3000 },
+            R7_EXTRACT: { maxTokens: 120, maxChars: 3000 },
+            R7_CLASSIFY: { maxTokens: 90, maxChars: 2500 },
+            R7_SUMMARIZE: { maxTokens: 220, maxChars: 6000 }
+        };
+
+        function normalizeText(value) {
+            if (value === null || value === undefined) return '';
+            if (Array.isArray(value)) {
+                return value.map(function (row) {
+                    if (Array.isArray(row)) return row.map(normalizeText).join('\t');
+                    return normalizeText(row);
+                }).join('\n').replace(/\r\n/g, '\n').replace(/\r/g, '\n').trim();
+            }
+            return String(value).replace(/\r\n/g, '\n').replace(/\r/g, '\n').replace(/[ \t]+/g, ' ').replace(/\n{3,}/g, '\n\n').trim();
+        }
+
+        function normalizeEnum(value) {
+            return normalizeText(value).toLowerCase();
+        }
+
+        function normalizeLabels(value) {
+            var labels = normalizeText(value).split(',').map(function (x) { return normalizeText(x).toLowerCase(); }).filter(Boolean);
+            var seen = {};
+            var uniq = [];
+            for (var i = 0; i < labels.length; i += 1) {
+                if (seen[labels[i]]) continue;
+                seen[labels[i]] = true;
+                uniq.push(labels[i]);
+            }
+            return uniq;
+        }
+
+        function simpleHash(text) {
+            var input = String(text || '');
+            var hash = 2166136261;
+            for (var i = 0; i < input.length; i += 1) {
+                hash ^= input.charCodeAt(i);
+                hash = Math.imul(hash, 16777619);
+            }
+            return (hash >>> 0).toString(16);
+        }
+
+        function redactSensitive(value) {
+            var text = String(value || '');
+            text = text.replace(/[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/gi, '[email]');
+            text = text.replace(/\+?\d[\d\s\-()]{6,}\d/g, '[phone]');
+            text = text.replace(/\b\d{12,19}\b/g, '[number]');
+            return text;
+        }
+
+        function createRuntime() {
+            var libraryId = String(SETTINGS.libraryId || 'R7AI_V1');
+            return {
+                libraryId: libraryId,
+                model: SETTINGS.model || 'openrouter/auto',
+                apiKey: SETTINGS.apiKey || '',
+                locale: SETTINGS.locale || 'en-US',
+                promptTemplateVersion: SETTINGS.promptTemplateVersion || 'v1',
+                cacheEpoch: Number(SETTINGS.cacheEpoch || 1),
+                cache: {},
+                inflight: {},
+                trace: [],
+                bypassCells: {},
+                queue: [],
+                activeCount: 0
+            };
+        }
+
+        var runtime = globalRef.__R7_CELL_AI_RUNTIME__;
+        if (!runtime || runtime.cacheEpoch !== Number(SETTINGS.cacheEpoch || 1) || runtime.model !== SETTINGS.model || runtime.apiKey !== SETTINGS.apiKey) {
+            runtime = createRuntime();
+            globalRef.__R7_CELL_AI_RUNTIME__ = runtime;
+        }
+
+        runtime.clearAllCache = function () {
+            runtime.cache = {};
+            runtime.inflight = {};
+            runtime.bypassCells = {};
+        };
+        runtime.clearTrace = function () {
+            runtime.trace = [];
+        };
+        runtime.getTraceSnapshot = function () {
+            return runtime.trace.slice(-120);
+        };
+        runtime.markBypassCells = function (addresses, ttlMs) {
+            var ttl = Number(ttlMs || 30000);
+            var now = Date.now();
+            var list = Array.isArray(addresses) ? addresses : [];
+            for (var i = 0; i < list.length; i += 1) {
+                var key = String(list[i] || '').toUpperCase().replace(/\$/g, '');
+                if (!key) continue;
+                runtime.bypassCells[key] = now + ttl;
+            }
+        };
+
+        function pushTrace(entry) {
+            runtime.trace.push(entry);
+            if (runtime.trace.length > 300) runtime.trace = runtime.trace.slice(runtime.trace.length - 300);
+        }
+
+        function shouldBypassCache(meta) {
+            var cell = String(meta && meta.cell ? meta.cell : '').toUpperCase().replace(/\$/g, '');
+            if (!cell) return false;
+            var expires = runtime.bypassCells[cell];
+            if (!expires) return false;
+            if (expires < Date.now()) {
+                delete runtime.bypassCells[cell];
+                return false;
+            }
+            delete runtime.bypassCells[cell];
+            return true;
+        }
+
+        function withTimeout(promise, timeoutMs) {
+            return new Promise(function (resolve, reject) {
+                var done = false;
+                var timer = setTimeout(function () {
+                    if (done) return;
+                    done = true;
+                    var timeoutError = new Error('timeout');
+                    timeoutError.code = 'TIMEOUT';
+                    reject(timeoutError);
+                }, timeoutMs);
+
+                promise.then(function (result) {
+                    if (done) return;
+                    done = true;
+                    clearTimeout(timer);
+                    resolve(result);
+                }).catch(function (error) {
+                    if (done) return;
+                    done = true;
+                    clearTimeout(timer);
+                    reject(error);
+                });
+            });
+        }
+
+        function limitConcurrency(task) {
+            return new Promise(function (resolve, reject) {
+                function runTask() {
+                    runtime.activeCount += 1;
+                    Promise.resolve().then(task).then(resolve).catch(reject).finally(function () {
+                        runtime.activeCount -= 1;
+                        if (runtime.queue.length) {
+                            var next = runtime.queue.shift();
+                            next();
+                        }
+                    });
+                }
+
+                if (runtime.activeCount < 3) runTask();
+                else runtime.queue.push(runTask);
+            });
+        }
+
+        function buildPrompt(functionName, args) {
+            if (functionName === 'R7_ASK') return 'Task: ' + args[0] + '\nInput: ' + args[1] + '\nReturn concise answer.';
+            if (functionName === 'R7_TRANSLATE') return 'Translate text to ' + args[1] + '. Return translation only.\nText: ' + args[0];
+            if (functionName === 'R7_EXTRACT') return 'Extract "' + args[0] + '" from text. Return only value or empty string.\nText: ' + args[1];
+            if (functionName === 'R7_CLASSIFY') return 'Classify text into exactly one label from: ' + args[1].join(', ') + '. Return one label only.\nText: ' + args[0];
+            if (functionName === 'R7_SUMMARIZE') return 'Summarize text in mode ' + args[1] + '. Keep concise and deterministic.\nText: ' + args[0];
+            return 'Return concise answer.';
+        }
+
+        function normalizeArgs(functionName, rawArgs) {
+            if (functionName === 'R7_ASK') {
+                var prompt = normalizeText(rawArgs[0]);
+                var value = normalizeText(rawArgs[1]);
+                if (!prompt || !value) return { error: 'INVALID_ARGS' };
+                return { args: [prompt, value] };
+            }
+            if (functionName === 'R7_TRANSLATE') {
+                var text = normalizeText(rawArgs[0]);
+                var target = normalizeText(rawArgs[1]).toUpperCase();
+                if (!text || !target) return { error: 'INVALID_ARGS' };
+                return { args: [text, target] };
+            }
+            if (functionName === 'R7_EXTRACT') {
+                var kind = normalizeEnum(rawArgs[0]);
+                var source = normalizeText(rawArgs[1]);
+                if (!kind || !source || !EXTRACT_KINDS[kind]) return { error: 'INVALID_ARGS' };
+                return { args: [kind, source] };
+            }
+            if (functionName === 'R7_CLASSIFY') {
+                var clsText = normalizeText(rawArgs[0]);
+                var labels = normalizeLabels(rawArgs[1]);
+                if (!clsText || labels.length < 2) return { error: 'INVALID_ARGS' };
+                return { args: [clsText, labels] };
+            }
+            if (functionName === 'R7_SUMMARIZE') {
+                var sumText = normalizeText(rawArgs[0]);
+                var mode = normalizeEnum(rawArgs[1]);
+                if (!sumText || !mode || !SUMMARY_MODES[mode]) return { error: 'INVALID_ARGS' };
+                return { args: [sumText, mode] };
+            }
+            return { error: 'INVALID_ARGS' };
+        }
+
+        function mapErrorToCode(error) {
+            if (!error) return STATUS.FAILED;
+            if (error.code === 'INVALID_ARGS') return STATUS.INVALID_ARGS;
+            if (error.code === 'RATE_LIMIT') return STATUS.RATE_LIMIT;
+            if (error.code === 'TIMEOUT') return STATUS.TIMEOUT;
+            var status = Number(error.status || 0);
+            if (status === 429) return STATUS.RATE_LIMIT;
+            if (status === 408) return STATUS.TIMEOUT;
+            return STATUS.FAILED;
+        }
+
+        function isTransient(error) {
+            var status = Number(error && error.status ? error.status : 0);
+            return status === 429 || status === 500 || status === 502 || status === 503 || status === 504;
+        }
+
+        function sanitizeResult(functionName, value, args) {
+            var text = normalizeText(value || '');
+            if (!text) return '';
+            if (functionName === 'R7_CLASSIFY') {
+                var first = normalizeEnum(text.split('\n')[0]);
+                for (var i = 0; i < args[1].length; i += 1) {
+                    if (first === args[1][i]) return args[1][i];
+                }
+                return args[1][0];
+            }
+            if (functionName === 'R7_EXTRACT') {
+                return text.split('\n')[0].trim();
+            }
+            return text;
+        }
+
+        async function requestOpenRouter(prompt, maxTokens) {
+            if (!runtime.apiKey) {
+                var keyError = new Error('Missing API key');
+                keyError.code = 'FAILED';
+                throw keyError;
+            }
+
+            var response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + runtime.apiKey,
+                    'X-Title': '{r7c}.ChatLLM (Cell Functions)'
+                },
+                body: JSON.stringify({
+                    model: runtime.model || 'openrouter/auto',
+                    messages: [
+                        { role: 'system', content: 'You are deterministic spreadsheet AI operator. Return concise data output only.' },
+                        { role: 'user', content: prompt }
+                    ],
+                    temperature: 0,
+                    max_tokens: maxTokens,
+                    stream: false
+                })
+            });
+
+            if (!response.ok) {
+                var bodyText = await response.text();
+                var requestError = new Error(bodyText || 'Request failed');
+                requestError.status = response.status;
+                if (response.status === 429) requestError.code = 'RATE_LIMIT';
+                throw requestError;
+            }
+
+            var payload = await response.json();
+            var choice = payload && payload.choices && payload.choices[0] ? payload.choices[0] : null;
+            var content = choice && choice.message ? choice.message.content : '';
+            if (Array.isArray(content)) {
+                content = content.map(function (part) {
+                    if (typeof part === 'string') return part;
+                    return part && part.text ? part.text : '';
+                }).join('');
+            }
+            return {
+                text: normalizeText(content || ''),
+                usage: payload && payload.usage ? payload.usage : null
+            };
+        }
+
+        async function executeFormula(functionName, rawArgs, meta) {
+            var startedAt = Date.now();
+            var normalized = normalizeArgs(functionName, rawArgs || []);
+            var cell = String(meta && meta.cell ? meta.cell : '');
+
+            if (normalized.error) {
+                pushTrace({ time: startedAt, cell: cell, fn: functionName, status: 'invalid_arguments', cacheHit: false, inputHash: '', model: runtime.model, latencyMs: Date.now() - startedAt, errorCode: 'INVALID_ARGS' });
+                return STATUS.INVALID_ARGS;
+            }
+
+            var args = normalized.args;
+            var rawArgJson = JSON.stringify(args);
+            var cfg = CFG[functionName] || { maxTokens: 160, maxChars: 3000 };
+            if (rawArgJson.length > cfg.maxChars) {
+                pushTrace({ time: startedAt, cell: cell, fn: functionName, status: 'invalid_arguments', cacheHit: false, inputHash: simpleHash(rawArgJson), model: runtime.model, latencyMs: Date.now() - startedAt, errorCode: 'INPUT_CAP' });
+                return STATUS.INVALID_ARGS;
+            }
+
+            var cacheKey = JSON.stringify({
+                fn: functionName,
+                args: args,
+                model: runtime.model,
+                locale: runtime.locale,
+                promptTemplateVersion: runtime.promptTemplateVersion,
+                cacheEpoch: runtime.cacheEpoch
+            });
+            var bypassCache = shouldBypassCache(meta);
+            if (!bypassCache && Object.prototype.hasOwnProperty.call(runtime.cache, cacheKey)) {
+                var cached = runtime.cache[cacheKey];
+                pushTrace({ time: startedAt, cell: cell, fn: functionName, status: 'cached', cacheHit: true, inputHash: simpleHash(rawArgJson), model: runtime.model, latencyMs: Date.now() - startedAt, tokenUsage: cached && cached.usage ? cached.usage : null });
+                return cached.value;
+            }
+            if (!bypassCache && runtime.inflight[cacheKey]) {
+                return runtime.inflight[cacheKey];
+            }
+
+            var prompt = redactSensitive(buildPrompt(functionName, args));
+            var inputHash = simpleHash(rawArgJson);
+            var task = limitConcurrency(async function () {
+                var attempt = 0;
+                while (true) {
+                    try {
+                        var result = await withTimeout(requestOpenRouter(prompt, cfg.maxTokens), 15000);
+                        var value = sanitizeResult(functionName, result.text, args);
+                        if (!bypassCache) runtime.cache[cacheKey] = { value: value, usage: result.usage || null, ts: Date.now() };
+                        pushTrace({ time: startedAt, cell: cell, fn: functionName, status: 'ok', cacheHit: false, inputHash: inputHash, model: runtime.model, latencyMs: Date.now() - startedAt, tokenUsage: result.usage || null });
+                        return value;
+                    } catch (error) {
+                        if (error && error.code === 'TIMEOUT') {
+                            pushTrace({ time: startedAt, cell: cell, fn: functionName, status: 'timeout', cacheHit: false, inputHash: inputHash, model: runtime.model, latencyMs: Date.now() - startedAt, errorCode: 'TIMEOUT' });
+                            return STATUS.TIMEOUT;
+                        }
+                        if (attempt < 1 && isTransient(error)) {
+                            attempt += 1;
+                            continue;
+                        }
+                        var code = mapErrorToCode(error);
+                        pushTrace({ time: startedAt, cell: cell, fn: functionName, status: code === STATUS.RATE_LIMIT ? 'rate_limited' : 'failed', cacheHit: false, inputHash: inputHash, model: runtime.model, latencyMs: Date.now() - startedAt, errorCode: code });
+                        return code;
+                    }
+                }
+            });
+
+            runtime.inflight[cacheKey] = task.finally(function () { delete runtime.inflight[cacheKey]; });
+            return runtime.inflight[cacheKey];
+        }
+
+        function contextMeta(ctx) {
+            var cellAddress = '';
+            if (ctx && ctx.address) cellAddress = String(ctx.address);
+            if (!cellAddress && ctx && ctx.args && Array.isArray(ctx.args) && ctx.args[0] && ctx.args[0].address) {
+                cellAddress = String(ctx.args[0].address);
+            }
+            return { cell: cellAddress };
+        }
+
+        async function R7_ASK(prompt, value) { return executeFormula('R7_ASK', [prompt, value], contextMeta(this)); }
+        async function R7_TRANSLATE(text, targetLang) { return executeFormula('R7_TRANSLATE', [text, targetLang], contextMeta(this)); }
+        async function R7_EXTRACT(kind, text) { return executeFormula('R7_EXTRACT', [kind, text], contextMeta(this)); }
+        async function R7_CLASSIFY(text, labels) { return executeFormula('R7_CLASSIFY', [text, labels], contextMeta(this)); }
+        async function R7_SUMMARIZE(text, mode) { return executeFormula('R7_SUMMARIZE', [text, mode], contextMeta(this)); }
+
+        try { Api.RemoveCustomFunction('R7_ASK'); } catch (e1) {}
+        try { Api.RemoveCustomFunction('R7_TRANSLATE'); } catch (e2) {}
+        try { Api.RemoveCustomFunction('R7_EXTRACT'); } catch (e3) {}
+        try { Api.RemoveCustomFunction('R7_CLASSIFY'); } catch (e4) {}
+        try { Api.RemoveCustomFunction('R7_SUMMARIZE'); } catch (e5) {}
+
+        Api.AddCustomFunctionLibrary(String(SETTINGS.libraryId || 'R7AI_V1'), function () {
+            Api.AddCustomFunction(R7_ASK);
+            Api.AddCustomFunction(R7_TRANSLATE);
+            Api.AddCustomFunction(R7_EXTRACT);
+            Api.AddCustomFunction(R7_CLASSIFY);
+            Api.AddCustomFunction(R7_SUMMARIZE);
+        });
+    }
+
+    function buildLibraryCode(config) {
+        return LIBRARY_MARKER + '\n(' + libraryRuntimeFactory.toString() + ')(' + JSON.stringify(config) + ');';
+    }
+
+    async function probeSetCustomFunctions() {
+        try {
+            var currentRaw = await executeMethod('GetCustomFunctions', [], 2200);
+            var current = normalizeCustomFunctionsResult(currentRaw);
+            await executeMethod('SetCustomFunctions', [JSON.stringify(current.entries)], 2200);
+            return true;
+        } catch (error) {
+            return false;
+        }
+    }
+
+    async function recalculateAllFormulas() {
+        try {
+            await executeMethod('RecalculateAllFormulas', [], 3500);
+        } catch (error) {
+            // no-op
+        }
+    }
+
+    async function detectCapabilities() {
+        state.editorType = (window.Asc && window.Asc.plugin && window.Asc.plugin.info && window.Asc.plugin.info.editorType) ? window.Asc.plugin.info.editorType : '';
+        state.hasCallCommand = !!(window.Asc && window.Asc.plugin && typeof window.Asc.plugin.callCommand === 'function');
+        try {
+            state.version = String(await executeMethod('GetVersion', [], 2200) || '0.0.0');
+        } catch (error) {
+            state.version = '0.0.0';
+        }
+        var parsed = parseVersion(state.version);
+        state.supportsAsync = versionAtLeast(parsed, 9, 0, 0);
+        state.supportsAddress = versionAtLeast(parsed, 9, 0, 4);
+        state.supportsSetCustomFunctions = await probeSetCustomFunctions();
+
+        if (state.editorType !== 'cell') state.mode = 'disabled';
+        else if (state.supportsAsync && state.supportsSetCustomFunctions) state.mode = 'native_async';
+        else if (state.supportsAsync && state.hasCallCommand) state.mode = 'macro_register_fallback';
+        else state.mode = 'bulk_only_fallback';
+    }
+
+    async function registerWithSetCustomFunctions(config) {
+        var libraryCode = buildLibraryCode(config);
+        await executeMethod('SetCustomFunctions', [JSON.stringify([libraryCode])], 5000);
+        var verifyRaw = await executeMethod('GetCustomFunctions', [], 2600);
+        var verify = normalizeCustomFunctionsResult(verifyRaw);
+        var verifyText = JSON.stringify(verify.entries || []);
+        if (verifyText.indexOf('R7_ASK') === -1) {
+            throw new Error('native SetCustomFunctions applied, but R7_ASK is not visible in GetCustomFunctions');
+        }
+        await recalculateAllFormulas();
+        state.registrationSource = 'SetCustomFunctions';
+        state.registrationOk = true;
+    }
+
+    async function registerWithCallCommand(config) {
+        var result = await callCommand(function () {
+            try {
+                var SETTINGS = Asc.scope.r7CellConfig || {};
+                var STATUS = {
+                    INVALID_ARGS: '#R7.INVALID_ARGS',
+                    RATE_LIMIT: '#R7.RATE_LIMIT',
+                    TIMEOUT: '#R7.TIMEOUT',
+                    FAILED: '#R7.FAILED'
+                };
+                var EXTRACT_KINDS = { email: true, phone: true, company: true, name: true, date: true, amount: true, url: true, inn: true, iban: true };
+                var SUMMARY_MODES = { short: true, medium: true, long: true };
+                var CFG = {
+                    R7_ASK: { maxTokens: 180, maxChars: 4000 },
+                    R7_TRANSLATE: { maxTokens: 180, maxChars: 3000 },
+                    R7_EXTRACT: { maxTokens: 120, maxChars: 3000 },
+                    R7_CLASSIFY: { maxTokens: 90, maxChars: 2500 },
+                    R7_SUMMARIZE: { maxTokens: 220, maxChars: 6000 }
+                };
+
+                function normalizeText(value) {
+                    if (value === null || value === undefined) return '';
+                    if (Array.isArray(value)) {
+                        return value.map(function (row) {
+                            if (Array.isArray(row)) return row.map(normalizeText).join('\t');
+                            return normalizeText(row);
+                        }).join('\n').replace(/\r\n/g, '\n').replace(/\r/g, '\n').trim();
+                    }
+                    return String(value).replace(/\r\n/g, '\n').replace(/\r/g, '\n').replace(/[ \t]+/g, ' ').replace(/\n{3,}/g, '\n\n').trim();
+                }
+                function normalizeEnum(value) {
+                    return normalizeText(value).toLowerCase();
+                }
+                function normalizeLabels(value) {
+                    var labels = normalizeText(value).split(',').map(function (x) { return normalizeText(x).toLowerCase(); }).filter(Boolean);
+                    var seen = {};
+                    var uniq = [];
+                    for (var i = 0; i < labels.length; i += 1) {
+                        if (seen[labels[i]]) continue;
+                        seen[labels[i]] = true;
+                        uniq.push(labels[i]);
+                    }
+                    return uniq;
+                }
+                function simpleHash(input) {
+                    var text = String(input || '');
+                    var hash = 2166136261;
+                    for (var i = 0; i < text.length; i += 1) {
+                        hash ^= text.charCodeAt(i);
+                        hash = Math.imul(hash, 16777619);
+                    }
+                    return (hash >>> 0).toString(16);
+                }
+                function redactSensitive(value) {
+                    var text = String(value || '');
+                    text = text.replace(/[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/gi, '[email]');
+                    text = text.replace(/\+?\d[\d\s\-()]{6,}\d/g, '[phone]');
+                    text = text.replace(/\b\d{12,19}\b/g, '[number]');
+                    return text;
+                }
+                function createRuntime() {
+                    return {
+                        libraryId: String(SETTINGS.libraryId || 'R7AI_V1'),
+                        model: String(SETTINGS.model || 'openrouter/auto'),
+                        apiKey: String(SETTINGS.apiKey || ''),
+                        locale: String(SETTINGS.locale || 'en-US'),
+                        promptTemplateVersion: String(SETTINGS.promptTemplateVersion || 'v1'),
+                        cacheEpoch: Number(SETTINGS.cacheEpoch || 1),
+                        cache: {},
+                        inflight: {},
+                        trace: [],
+                        bypassCells: {},
+                        queue: [],
+                        activeCount: 0
+                    };
+                }
+                var globalRef = (typeof globalThis !== 'undefined') ? globalThis : this;
+                var runtime = globalRef.__R7_CELL_AI_RUNTIME__;
+                if (!runtime || runtime.cacheEpoch !== Number(SETTINGS.cacheEpoch || 1) || runtime.model !== SETTINGS.model || runtime.apiKey !== SETTINGS.apiKey) {
+                    runtime = createRuntime();
+                    globalRef.__R7_CELL_AI_RUNTIME__ = runtime;
+                }
+                runtime.clearAllCache = function () {
+                    runtime.cache = {};
+                    runtime.inflight = {};
+                    runtime.bypassCells = {};
+                };
+                runtime.clearTrace = function () {
+                    runtime.trace = [];
+                };
+                runtime.getTraceSnapshot = function () {
+                    return runtime.trace.slice(-120);
+                };
+                runtime.markBypassCells = function (addresses, ttlMs) {
+                    var ttl = Number(ttlMs || 30000);
+                    var now = Date.now();
+                    var list = Array.isArray(addresses) ? addresses : [];
+                    for (var i = 0; i < list.length; i += 1) {
+                        var key = String(list[i] || '').toUpperCase().replace(/\$/g, '');
+                        if (!key) continue;
+                        runtime.bypassCells[key] = now + ttl;
+                    }
+                };
+                function pushTrace(entry) {
+                    runtime.trace.push(entry);
+                    if (runtime.trace.length > 300) runtime.trace = runtime.trace.slice(runtime.trace.length - 300);
+                }
+                function shouldBypassCache(meta) {
+                    var cell = String(meta && meta.cell ? meta.cell : '').toUpperCase().replace(/\$/g, '');
+                    if (!cell) return false;
+                    var expires = runtime.bypassCells[cell];
+                    if (!expires) return false;
+                    if (expires < Date.now()) {
+                        delete runtime.bypassCells[cell];
+                        return false;
+                    }
+                    delete runtime.bypassCells[cell];
+                    return true;
+                }
+                function withTimeout(promise, timeoutMs) {
+                    return new Promise(function (resolve, reject) {
+                        var done = false;
+                        var timer = setTimeout(function () {
+                            if (done) return;
+                            done = true;
+                            var timeoutError = new Error('timeout');
+                            timeoutError.code = 'TIMEOUT';
+                            reject(timeoutError);
+                        }, timeoutMs);
+                        promise.then(function (result) {
+                            if (done) return;
+                            done = true;
+                            clearTimeout(timer);
+                            resolve(result);
+                        }).catch(function (error) {
+                            if (done) return;
+                            done = true;
+                            clearTimeout(timer);
+                            reject(error);
+                        });
+                    });
+                }
+                function limitConcurrency(task) {
+                    return new Promise(function (resolve, reject) {
+                        function runTask() {
+                            runtime.activeCount += 1;
+                            Promise.resolve().then(task).then(resolve).catch(reject).finally(function () {
+                                runtime.activeCount -= 1;
+                                if (runtime.queue.length) {
+                                    var next = runtime.queue.shift();
+                                    next();
+                                }
+                            });
+                        }
+                        if (runtime.activeCount < 3) runTask();
+                        else runtime.queue.push(runTask);
+                    });
+                }
+                function buildPrompt(functionName, args) {
+                    if (functionName === 'R7_ASK') return 'Task: ' + args[0] + '\nInput: ' + args[1] + '\nReturn concise answer.';
+                    if (functionName === 'R7_TRANSLATE') return 'Translate text to ' + args[1] + '. Return translation only.\nText: ' + args[0];
+                    if (functionName === 'R7_EXTRACT') return 'Extract "' + args[0] + '" from text. Return only value or empty string.\nText: ' + args[1];
+                    if (functionName === 'R7_CLASSIFY') return 'Classify text into exactly one label from: ' + args[1].join(', ') + '. Return one label only.\nText: ' + args[0];
+                    if (functionName === 'R7_SUMMARIZE') return 'Summarize text in mode ' + args[1] + '. Keep concise and deterministic.\nText: ' + args[0];
+                    return 'Return concise answer.';
+                }
+                function normalizeArgs(functionName, rawArgs) {
+                    if (functionName === 'R7_ASK') {
+                        var prompt = normalizeText(rawArgs[0]);
+                        var value = normalizeText(rawArgs[1]);
+                        if (!prompt || !value) return { error: 'INVALID_ARGS' };
+                        return { args: [prompt, value] };
+                    }
+                    if (functionName === 'R7_TRANSLATE') {
+                        var text = normalizeText(rawArgs[0]);
+                        var target = normalizeText(rawArgs[1]).toUpperCase();
+                        if (!text || !target) return { error: 'INVALID_ARGS' };
+                        return { args: [text, target] };
+                    }
+                    if (functionName === 'R7_EXTRACT') {
+                        var kind = normalizeEnum(rawArgs[0]);
+                        var source = normalizeText(rawArgs[1]);
+                        if (!kind || !source || !EXTRACT_KINDS[kind]) return { error: 'INVALID_ARGS' };
+                        return { args: [kind, source] };
+                    }
+                    if (functionName === 'R7_CLASSIFY') {
+                        var clsText = normalizeText(rawArgs[0]);
+                        var labels = normalizeLabels(rawArgs[1]);
+                        if (!clsText || labels.length < 2) return { error: 'INVALID_ARGS' };
+                        return { args: [clsText, labels] };
+                    }
+                    if (functionName === 'R7_SUMMARIZE') {
+                        var sumText = normalizeText(rawArgs[0]);
+                        var mode = normalizeEnum(rawArgs[1]);
+                        if (!sumText || !mode || !SUMMARY_MODES[mode]) return { error: 'INVALID_ARGS' };
+                        return { args: [sumText, mode] };
+                    }
+                    return { error: 'INVALID_ARGS' };
+                }
+                function mapErrorToCode(error) {
+                    if (!error) return STATUS.FAILED;
+                    if (error.code === 'INVALID_ARGS') return STATUS.INVALID_ARGS;
+                    if (error.code === 'RATE_LIMIT') return STATUS.RATE_LIMIT;
+                    if (error.code === 'TIMEOUT') return STATUS.TIMEOUT;
+                    var status = Number(error.status || 0);
+                    if (status === 429) return STATUS.RATE_LIMIT;
+                    if (status === 408) return STATUS.TIMEOUT;
+                    return STATUS.FAILED;
+                }
+                function isTransient(error) {
+                    var status = Number(error && error.status ? error.status : 0);
+                    return status === 429 || status === 500 || status === 502 || status === 503 || status === 504;
+                }
+                function sanitizeResult(functionName, value, args) {
+                    var text = normalizeText(value || '');
+                    if (!text) return '';
+                    if (functionName === 'R7_CLASSIFY') {
+                        var first = normalizeEnum(text.split('\n')[0]);
+                        for (var i = 0; i < args[1].length; i += 1) {
+                            if (first === args[1][i]) return args[1][i];
+                        }
+                        return args[1][0];
+                    }
+                    if (functionName === 'R7_EXTRACT') return text.split('\n')[0].trim();
+                    return text;
+                }
+                async function requestOpenRouter(prompt, maxTokens) {
+                    if (!runtime.apiKey) {
+                        var keyError = new Error('Missing API key');
+                        keyError.code = 'FAILED';
+                        throw keyError;
+                    }
+                    var response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': 'Bearer ' + runtime.apiKey,
+                            'X-Title': '{r7c}.ChatLLM (Cell Functions)'
+                        },
+                        body: JSON.stringify({
+                            model: runtime.model || 'openrouter/auto',
+                            messages: [
+                                { role: 'system', content: 'You are deterministic spreadsheet AI operator. Return concise data output only.' },
+                                { role: 'user', content: prompt }
+                            ],
+                            temperature: 0,
+                            max_tokens: maxTokens,
+                            stream: false
+                        })
+                    });
+                    if (!response.ok) {
+                        var bodyText = await response.text();
+                        var requestError = new Error(bodyText || 'Request failed');
+                        requestError.status = response.status;
+                        if (response.status === 429) requestError.code = 'RATE_LIMIT';
+                        throw requestError;
+                    }
+                    var payload = await response.json();
+                    var choice = payload && payload.choices && payload.choices[0] ? payload.choices[0] : null;
+                    var content = choice && choice.message ? choice.message.content : '';
+                    if (Array.isArray(content)) {
+                        content = content.map(function (part) {
+                            if (typeof part === 'string') return part;
+                            return part && part.text ? part.text : '';
+                        }).join('');
+                    }
+                    return { text: normalizeText(content || ''), usage: payload && payload.usage ? payload.usage : null };
+                }
+                async function executeFormula(functionName, rawArgs, meta) {
+                    var startedAt = Date.now();
+                    var normalized = normalizeArgs(functionName, rawArgs || []);
+                    var cell = String(meta && meta.cell ? meta.cell : '');
+                    if (normalized.error) {
+                        pushTrace({ time: startedAt, cell: cell, fn: functionName, status: 'invalid_arguments', cacheHit: false, inputHash: '', model: runtime.model, latencyMs: Date.now() - startedAt, errorCode: 'INVALID_ARGS' });
+                        return STATUS.INVALID_ARGS;
+                    }
+                    var args = normalized.args;
+                    var rawArgJson = JSON.stringify(args);
+                    var fnCfg = CFG[functionName] || { maxTokens: 160, maxChars: 3000 };
+                    if (rawArgJson.length > fnCfg.maxChars) {
+                        pushTrace({ time: startedAt, cell: cell, fn: functionName, status: 'invalid_arguments', cacheHit: false, inputHash: simpleHash(rawArgJson), model: runtime.model, latencyMs: Date.now() - startedAt, errorCode: 'INPUT_CAP' });
+                        return STATUS.INVALID_ARGS;
+                    }
+                    var cacheKey = JSON.stringify({
+                        fn: functionName,
+                        args: args,
+                        model: runtime.model,
+                        locale: runtime.locale,
+                        promptTemplateVersion: runtime.promptTemplateVersion,
+                        cacheEpoch: runtime.cacheEpoch
+                    });
+                    var bypass = shouldBypassCache(meta);
+                    if (!bypass && Object.prototype.hasOwnProperty.call(runtime.cache, cacheKey)) {
+                        var cached = runtime.cache[cacheKey];
+                        pushTrace({ time: startedAt, cell: cell, fn: functionName, status: 'cached', cacheHit: true, inputHash: simpleHash(rawArgJson), model: runtime.model, latencyMs: Date.now() - startedAt, tokenUsage: cached && cached.usage ? cached.usage : null });
+                        return cached.value;
+                    }
+                    if (!bypass && runtime.inflight[cacheKey]) return runtime.inflight[cacheKey];
+                    var prompt = redactSensitive(buildPrompt(functionName, args));
+                    var inputHash = simpleHash(rawArgJson);
+                    var task = limitConcurrency(async function () {
+                        var attempt = 0;
+                        while (true) {
+                            try {
+                                var result = await withTimeout(requestOpenRouter(prompt, fnCfg.maxTokens), 15000);
+                                var value = sanitizeResult(functionName, result.text, args);
+                                if (!bypass) runtime.cache[cacheKey] = { value: value, usage: result.usage || null, ts: Date.now() };
+                                pushTrace({ time: startedAt, cell: cell, fn: functionName, status: 'ok', cacheHit: false, inputHash: inputHash, model: runtime.model, latencyMs: Date.now() - startedAt, tokenUsage: result.usage || null });
+                                return value;
+                            } catch (error) {
+                                if (error && error.code === 'TIMEOUT') {
+                                    pushTrace({ time: startedAt, cell: cell, fn: functionName, status: 'timeout', cacheHit: false, inputHash: inputHash, model: runtime.model, latencyMs: Date.now() - startedAt, errorCode: 'TIMEOUT' });
+                                    return STATUS.TIMEOUT;
+                                }
+                                if (attempt < 1 && isTransient(error)) {
+                                    attempt += 1;
+                                    continue;
+                                }
+                                var code = mapErrorToCode(error);
+                                pushTrace({ time: startedAt, cell: cell, fn: functionName, status: code === STATUS.RATE_LIMIT ? 'rate_limited' : 'failed', cacheHit: false, inputHash: inputHash, model: runtime.model, latencyMs: Date.now() - startedAt, errorCode: code });
+                                return code;
+                            }
+                        }
+                    });
+                    runtime.inflight[cacheKey] = task.finally(function () { delete runtime.inflight[cacheKey]; });
+                    return runtime.inflight[cacheKey];
+                }
+                function contextMeta(ctx) {
+                    var cellAddress = '';
+                    if (ctx && ctx.address) cellAddress = String(ctx.address);
+                    if (!cellAddress && ctx && ctx.args && Array.isArray(ctx.args) && ctx.args[0] && ctx.args[0].address) {
+                        cellAddress = String(ctx.args[0].address);
+                    }
+                    return { cell: cellAddress };
+                }
+                async function R7_ASK(prompt, value) { return executeFormula('R7_ASK', [prompt, value], contextMeta(this)); }
+                async function R7_TRANSLATE(text, targetLang) { return executeFormula('R7_TRANSLATE', [text, targetLang], contextMeta(this)); }
+                async function R7_EXTRACT(kind, text) { return executeFormula('R7_EXTRACT', [kind, text], contextMeta(this)); }
+                async function R7_CLASSIFY(text, labels) { return executeFormula('R7_CLASSIFY', [text, labels], contextMeta(this)); }
+                async function R7_SUMMARIZE(text, mode) { return executeFormula('R7_SUMMARIZE', [text, mode], contextMeta(this)); }
+                
+                try { Api.RemoveCustomFunction('R7_ASK'); } catch (e1) {}
+                try { Api.RemoveCustomFunction('R7_TRANSLATE'); } catch (e2) {}
+                try { Api.RemoveCustomFunction('R7_EXTRACT'); } catch (e3) {}
+                try { Api.RemoveCustomFunction('R7_CLASSIFY'); } catch (e4) {}
+                try { Api.RemoveCustomFunction('R7_SUMMARIZE'); } catch (e5) {}
+                
+                Api.AddCustomFunctionLibrary(String(SETTINGS.libraryId || 'R7AI_V1'), function () {
+                    Api.AddCustomFunction(R7_ASK);
+                    Api.AddCustomFunction(R7_TRANSLATE);
+                    Api.AddCustomFunction(R7_EXTRACT);
+                    Api.AddCustomFunction(R7_CLASSIFY);
+                    Api.AddCustomFunction(R7_SUMMARIZE);
+                });
+
+                Api.RecalculateAllFormulas();
+                return { ok: true };
+            } catch (error) {
+                return { ok: false, error: String(error && error.message ? error.message : error) };
+            }
+        }, { r7CellConfig: config }, true, 9000);
+
+        if (!result || !result.ok) {
+            throw new Error(result && result.error ? result.error : 'callCommand registration failed');
+        }
+        state.registrationSource = 'callCommand';
+        state.registrationOk = true;
+    }
+
+    function updateModePill() {
+        if (!ui.mode) return;
+        ui.mode.textContent = state.mode + ' | v' + state.version;
+        ui.mode.classList.toggle('is-error', state.mode === 'bulk_only_fallback' || state.mode === 'disabled');
+    }
+
+    function normalizeFormulaAlias(formula) {
+        var value = String(formula || '').trim();
+        if (!value) return '';
+        if (value.charAt(0) === '=') value = value.slice(1).trim();
+        value = value.replace(/^R7\./i, 'R7_');
+        value = value.replace(/^R7\.(ASK|TRANSLATE|EXTRACT|CLASSIFY|SUMMARIZE)\b/i, function (_, fn) { return 'R7_' + fn.toUpperCase(); });
+        if (!/^R7_(ASK|TRANSLATE|EXTRACT|CLASSIFY|SUMMARIZE)\b/i.test(value)) return '';
+        return '=' + value;
+    }
+
+    async function registerCellFunctions(force) {
+        if (state.registerInFlight) return;
+        if (state.mode === 'disabled' || state.mode === 'bulk_only_fallback') return;
+
+        var config = buildConfig();
+        if (!config.apiKey) {
+            state.registrationOk = false;
+            setStatus(tr('Для AI-функций в ячейках укажите OpenRouter API Key в настройках.'), true);
+            return;
+        }
+
+        var configHash = buildConfigHash(config);
+        if (!force && state.registrationOk && state.latestConfigHash === configHash) return;
+
+        state.registerInFlight = true;
+        setStatus(tr('Регистрация AI-функций...'), false);
+
+        try {
+            if (state.mode === 'native_async') {
+                try {
+                    await registerWithSetCustomFunctions(config);
+                } catch (nativeError) {
+                    if (!state.hasCallCommand) throw nativeError;
+                    state.mode = 'macro_register_fallback';
+                    try {
+                        await registerWithCallCommand(config);
+                    } catch (fallbackError) {
+                        throw new Error('native failed: ' + String(nativeError && nativeError.message ? nativeError.message : nativeError) + ' | fallback failed: ' + String(fallbackError && fallbackError.message ? fallbackError.message : fallbackError));
+                    }
+                }
+            } else {
+                await registerWithCallCommand(config);
+            }
+
+            state.latestConfigHash = configHash;
+            updateModePill();
+            setStatus(tr('AI-функции зарегистрированы: R7_ASK/R7_TRANSLATE/R7_EXTRACT/R7_CLASSIFY/R7_SUMMARIZE'), false);
+        } catch (error) {
+            state.registrationOk = false;
+            setStatus(tr('Не удалось зарегистрировать AI-функции: ') + String(error && error.message ? error.message : error), true);
+        } finally {
+            state.registerInFlight = false;
+        }
+    }
+
+    async function insertFormula(formula) {
+        var normalized = normalizeFormulaAlias(formula);
+        if (!normalized) {
+            setStatus(tr('Формула должна начинаться с R7_... или R7....'), true);
+            return;
+        }
+        try {
+            await callCommand(function () {
+                var ws = Api.GetActiveSheet();
+                var selection = ws ? ws.GetSelection() : null;
+                if (!selection) return { ok: false, error: 'No selection' };
+                selection.SetValue(Asc.scope.r7Formula);
+                Api.RecalculateAllFormulas();
+                return { ok: true };
+            }, { r7Formula: normalized }, true, 5000);
+            setStatus(tr('Формула вставлена: ') + normalized, false);
+        } catch (error) {
+            setStatus(tr('Ошибка вставки формулы: ') + String(error && error.message ? error.message : error), true);
+        }
+    }
+
+    async function refreshAll() {
+        await recalculateAllFormulas();
+        setStatus(tr('Refresh all выполнен.'), false);
+        pullTrace();
+    }
+
+    async function refreshSelected(markBypass) {
+        try {
+            var result = await callCommand(function () {
+                function colToName(col) {
+                    var n = Number(col || 1);
+                    var s = '';
+                    while (n > 0) {
+                        var m = (n - 1) % 26;
+                        s = String.fromCharCode(65 + m) + s;
+                        n = Math.floor((n - m) / 26);
+                    }
+                    return s;
+                }
+                function colToNumber(name) {
+                    var result = 0;
+                    var letters = String(name || '').toUpperCase();
+                    for (var i = 0; i < letters.length; i += 1) {
+                        var code = letters.charCodeAt(i);
+                        if (code < 65 || code > 90) continue;
+                        result = result * 26 + (code - 64);
+                    }
+                    return result;
+                }
+                function parseAddress(address) {
+                    var text = String(address || '').replace(/\$/g, '');
+                    var idx = text.lastIndexOf('!');
+                    if (idx !== -1) text = text.slice(idx + 1);
+                    var parts = text.split(':');
+                    if (parts.length === 1) parts.push(parts[0]);
+                    var left = parts[0].match(/^([A-Za-z]+)(\d+)$/);
+                    var right = parts[1].match(/^([A-Za-z]+)(\d+)$/);
+                    if (!left || !right) return null;
+                    var sc = colToNumber(left[1]);
+                    var ec = colToNumber(right[1]);
+                    var sr = Number(left[2]);
+                    var er = Number(right[2]);
+                    return {
+                        startCol: Math.min(sc, ec),
+                        endCol: Math.max(sc, ec),
+                        startRow: Math.min(sr, er),
+                        endRow: Math.max(sr, er)
+                    };
+                }
+
+                var ws = Api.GetActiveSheet();
+                var selection = ws ? ws.GetSelection() : null;
+                if (!selection) return { ok: false, error: 'No selection' };
+                var parsed = parseAddress(selection.GetAddress(true, true, 'xlA1', false));
+                if (!parsed) return { ok: false, error: 'Unsupported selection' };
+
+                var refreshed = 0;
+                var bypassCells = [];
+                for (var row = parsed.startRow; row <= parsed.endRow; row += 1) {
+                    for (var col = parsed.startCol; col <= parsed.endCol; col += 1) {
+                        var address = colToName(col) + row;
+                        var cell = ws.GetRange(address);
+                        if (!cell || typeof cell.GetFormula !== 'function') continue;
+                        var formula = cell.GetFormula();
+                        if (!formula) continue;
+                        var normalizedFormula = String(formula);
+                        if (normalizedFormula.charAt(0) !== '=') normalizedFormula = '=' + normalizedFormula;
+                        if (!/R7_(ASK|TRANSLATE|EXTRACT|CLASSIFY|SUMMARIZE)/i.test(normalizedFormula)) continue;
+                        cell.SetValue(normalizedFormula);
+                        refreshed += 1;
+                        if (bypassCells.length < 500) bypassCells.push(address);
+                    }
+                }
+
+                if (Asc.scope.markBypass) {
+                    var globalRef = (typeof globalThis !== 'undefined') ? globalThis : this;
+                    var runtime = globalRef.__R7_CELL_AI_RUNTIME__;
+                    if (runtime && typeof runtime.markBypassCells === 'function') {
+                        runtime.markBypassCells(bypassCells, 60000);
+                    }
+                }
+
+                Api.RecalculateAllFormulas();
+                return { ok: true, refreshed: refreshed };
+            }, { markBypass: !!markBypass }, true, 8000);
+
+            if (!result || !result.ok) {
+                throw new Error(result && result.error ? result.error : 'Unknown refresh selected error');
+            }
+            setStatus(tr('Refresh selected: обновлено формул: ') + String(result.refreshed || 0), false);
+            pullTrace();
+        } catch (error) {
+            setStatus(tr('Ошибка refresh selected: ') + String(error && error.message ? error.message : error), true);
+        }
+    }
+
+    async function clearAllCache() {
+        state.cacheEpoch += 1;
+        try {
+            await callCommand(function () {
+                var globalRef = (typeof globalThis !== 'undefined') ? globalThis : this;
+                var runtime = globalRef.__R7_CELL_AI_RUNTIME__;
+                if (runtime && typeof runtime.clearAllCache === 'function') runtime.clearAllCache();
+                if (runtime && typeof runtime.clearTrace === 'function') runtime.clearTrace();
+                return { ok: true };
+            }, null, false, 2500);
+        } catch (error) {
+            // ignore and continue by re-registering
+        }
+        await registerCellFunctions(true);
+        await refreshAll();
+        setStatus(tr('Кэш AI-функций очищен для всей книги.'), false);
+    }
+
+    async function clearSelectedCache() {
+        await refreshSelected(true);
+        setStatus(tr('Кэш выбранных AI-ячеек сброшен (bypass + refresh).'), false);
+    }
+
+    function renderFunctions() {
+        if (!ui.functionList) return;
+        var fragment = document.createDocumentFragment();
+        FUNCTION_DEFS.forEach(function (def) {
+            var item = document.createElement('div');
+            item.className = 'cell-ai-function-item';
+
+            var top = document.createElement('div');
+            top.className = 'cell-ai-function-top';
+
+            var title = document.createElement('div');
+            title.className = 'cell-ai-function-name';
+            title.textContent = def.signature;
+
+            var insertButton = document.createElement('button');
+            insertButton.type = 'button';
+            insertButton.className = 'sheet-action-btn';
+            insertButton.textContent = tr('Insert');
+            insertButton.addEventListener('click', function () {
+                insertFormula(def.example);
+            });
+
+            top.appendChild(title);
+            top.appendChild(insertButton);
+
+            var desc = document.createElement('div');
+            desc.className = 'cell-ai-function-desc';
+            desc.textContent = def.description;
+
+            var example = document.createElement('div');
+            example.className = 'cell-ai-function-example';
+            example.textContent = def.example + '    (' + def.alias + ')';
+
+            item.appendChild(top);
+            item.appendChild(desc);
+            item.appendChild(example);
+            fragment.appendChild(item);
+        });
+        ui.functionList.innerHTML = '';
+        ui.functionList.appendChild(fragment);
+    }
+
+    function renderTrace(target, records) {
+        if (!target) return;
+        if (!records || !records.length) {
+            target.innerHTML = '<div class="context-empty">' + tr('Trace пока пустой.') + '</div>';
+            return;
+        }
+        var fragment = document.createDocumentFragment();
+        records.slice(-25).reverse().forEach(function (record) {
+            var item = document.createElement('div');
+            item.className = 'cell-ai-trace-item';
+
+            var top = document.createElement('div');
+            top.className = 'cell-ai-trace-top';
+            top.textContent = (record.fn || 'unknown') + ' · ' + (record.status || 'n/a');
+
+            var meta = document.createElement('div');
+            meta.className = 'cell-ai-trace-meta';
+            var cell = record.cell ? ('cell=' + record.cell + ' · ') : '';
+            var cache = record.cacheHit ? 'cache=hit' : 'cache=miss';
+            var latency = record.latencyMs !== undefined ? (' · ' + record.latencyMs + 'ms') : '';
+            meta.textContent = cell + cache + latency;
+
+            item.appendChild(top);
+            item.appendChild(meta);
+            fragment.appendChild(item);
+        });
+        target.innerHTML = '';
+        target.appendChild(fragment);
+    }
+
+    async function pullTrace() {
+        if (state.mode === 'disabled' || state.mode === 'bulk_only_fallback') return;
+        try {
+            var trace = await callCommand(function () {
+                var globalRef = (typeof globalThis !== 'undefined') ? globalThis : this;
+                var runtime = globalRef.__R7_CELL_AI_RUNTIME__;
+                if (!runtime || typeof runtime.getTraceSnapshot !== 'function') return [];
+                return runtime.getTraceSnapshot();
+            }, null, false, 2500);
+
+            state.trace = Array.isArray(trace) ? trace : [];
+            renderTrace(ui.helperTrace, state.trace);
+            renderTrace(ui.contextTrace, state.trace);
+        } catch (error) {
+            // no-op
+        }
+    }
+
+    function openPanel() {
+        if (!ui.panel || state.editorType !== 'cell') return;
+        ui.panel.style.display = 'flex';
+        if (ui.button) ui.button.setAttribute('aria-expanded', 'true');
+        pullTrace();
+    }
+
+    function closePanel() {
+        if (!ui.panel) return;
+        ui.panel.style.display = 'none';
+        if (ui.button) ui.button.setAttribute('aria-expanded', 'false');
+    }
+
+    function togglePanel() {
+        if (!ui.panel) return;
+        if (ui.panel.style.display === 'none' || !ui.panel.style.display) openPanel();
+        else closePanel();
+    }
+
+    function applyTranslations() {
+        var pairs = [
+            ['cellAiPanelTitle', 'Cell AI Functions'],
+            ['cellAiMode', 'mode'],
+            ['cellAiHint', 'Используйте канонические формулы R7_* (helper принимает alias R7.*).'],
+            ['cellAiInsertLabel', 'Formula'],
+            ['cellAiInsert', 'Insert Formula'],
+            ['cellAiRefreshSelected', 'Refresh selected AI formulas'],
+            ['cellAiRefreshAll', 'Refresh all AI formulas'],
+            ['cellAiClearSelected', 'Clear selected AI cache'],
+            ['cellAiClearAll', 'Clear all AI cache'],
+            ['cellAiTraceTitle', 'Cell AI Trace'],
+            ['cellAiContextTraceTitle', 'Cell AI Trace']
+        ];
+        for (var i = 0; i < pairs.length; i += 1) {
+            var element = document.getElementById(pairs[i][0]);
+            if (!element) continue;
+            element.textContent = tr(pairs[i][1]);
+        }
+        var button = document.getElementById('cellai-button');
+        if (button) {
+            button.title = tr('Cell AI Functions');
+            button.setAttribute('aria-label', tr('Open cell AI helper'));
+        }
+    }
+
+    function bindUi() {
+        ui.button = document.getElementById('cellai-button');
+        ui.panel = document.getElementById('cellAiPanel');
+        ui.close = document.getElementById('cellAiClose');
+        ui.mode = document.getElementById('cellAiMode');
+        ui.status = document.getElementById('cellAiStatus');
+        ui.formulaInput = document.getElementById('cellAiFormulaInput');
+        ui.functionList = document.getElementById('cellAiFunctionList');
+        ui.insert = document.getElementById('cellAiInsert');
+        ui.refreshSelected = document.getElementById('cellAiRefreshSelected');
+        ui.refreshAll = document.getElementById('cellAiRefreshAll');
+        ui.clearSelected = document.getElementById('cellAiClearSelected');
+        ui.clearAll = document.getElementById('cellAiClearAll');
+        ui.helperTrace = document.getElementById('cellAiTraceList');
+        ui.contextTrace = document.getElementById('cellAiContextTraceList');
+
+        if (!ui.button || !ui.panel) return false;
+
+        ui.button.addEventListener('click', togglePanel);
+        if (ui.close) ui.close.addEventListener('click', closePanel);
+        if (ui.insert) {
+            ui.insert.addEventListener('click', function () {
+                insertFormula(ui.formulaInput ? ui.formulaInput.value : '');
+            });
+        }
+        if (ui.refreshSelected) ui.refreshSelected.addEventListener('click', function () { refreshSelected(false); });
+        if (ui.refreshAll) ui.refreshAll.addEventListener('click', refreshAll);
+        if (ui.clearSelected) ui.clearSelected.addEventListener('click', clearSelectedCache);
+        if (ui.clearAll) ui.clearAll.addEventListener('click', clearAllCache);
+
+        document.addEventListener('keydown', function (event) {
+            if (event.key === 'Escape' && ui.panel && ui.panel.style.display !== 'none') {
+                closePanel();
+            }
+        });
+
+        return true;
+    }
+
+    function startTracePolling() {
+        if (state.traceTimer) window.clearInterval(state.traceTimer);
+        state.traceTimer = window.setInterval(function () {
+            pullTrace();
+        }, TRACE_PULL_INTERVAL_MS);
+    }
+
+    async function bootstrap() {
+        if (state.initialized) return;
+        if (!bindUi()) return;
+        state.initialized = true;
+
+        applyTranslations();
+        renderFunctions();
+        await detectCapabilities();
+        updateModePill();
+
+        if (state.editorType !== 'cell') {
+            if (ui.button) ui.button.style.display = 'none';
+            setStatus(tr('AI-функции доступны только в Spreadsheet Editor.'), true);
+            return;
+        }
+
+        if (ui.formulaInput) ui.formulaInput.value = FUNCTION_DEFS[0].example;
+        if (state.mode === 'bulk_only_fallback') {
+            setStatus(tr('В текущей версии доступен fallback без формульного режима (bulk-only).'), true);
+            return;
+        }
+
+        await registerCellFunctions(false);
+        startTracePolling();
+        pullTrace();
+    }
+
+    function patchPluginHooks() {
+        var originalInit = window.Asc.plugin.init;
+        window.Asc.plugin.init = function () {
+            if (typeof originalInit === 'function') originalInit.apply(this, arguments);
+            window.setTimeout(function () { bootstrap(); }, 240);
+        };
+
+        var originalTranslate = window.Asc.plugin.onTranslate;
+        window.Asc.plugin.onTranslate = function () {
+            if (typeof originalTranslate === 'function') originalTranslate.apply(this, arguments);
+            applyTranslations();
+            renderFunctions();
+            updateModePill();
+        };
+    }
+
+    function bindSettingsWatcher() {
+        var saveButton = document.getElementById('inlineSaveSettings');
+        if (!saveButton) return;
+        saveButton.addEventListener('click', function () {
+            window.setTimeout(function () {
+                if (state.editorType === 'cell') registerCellFunctions(true);
+            }, 450);
+        });
+    }
+
+    patchPluginHooks();
+    document.addEventListener('DOMContentLoaded', function () {
+        bindSettingsWatcher();
+        window.setTimeout(function () {
+            bootstrap();
+        }, 320);
+    });
+})(window);

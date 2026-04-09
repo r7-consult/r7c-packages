@@ -1,1 +1,386 @@
-(function(_0x34baaa){'use strict';if(typeof module==='object'&&module['exports']){module['exports']=_0x34baaa(typeof globalThis!=='undefined'?globalThis:global);return;}_0x34baaa(typeof window!=='undefined'?window:this);}(function(_0x44fb6f){'use strict';var _0x95eb45=_0x44fb6f['R7Chat']=_0x44fb6f['R7Chat']||{};_0x95eb45['platform']=_0x95eb45['platform']||{},_0x95eb45['runtime']=_0x95eb45['runtime']||{},_0x95eb45['runtime']['host']=_0x95eb45['runtime']['host']||{'editorCommandQueue':Promise['resolve'](),'editorCommandCounter':0x0};var _0x1dafac={'ru':{'Add\x20attachment':'Добавить\x20вложение','Add\x20file':'Добавить\x20файл','Analyse\x20the\x20selected\x20text':'Проанализировать\x20выделенный\x20текст','Agent\x20mode:\x20OFF':'Режим\x20агента:\x20ВЫКЛ','Agent\x20mode:\x20ON':'Режим\x20агента:\x20ВКЛ','Attach':'Прикрепить','Attached':'Прикреплено','Attachment':'Вложение','Attachment\x20menu':'Меню\x20вложений','Automatic\x20data\x20context\x20is\x20currently\x20available\x20for\x20Word\x20and\x20Spreadsheet\x20editors.':'Автоматический\x20контекст\x20данных\x20сейчас\x20доступен\x20только\x20в\x20редакторах\x20Word\x20и\x20Spreadsheet.','Base\x20URL':'Base\x20URL','Base64\x20client\x20secret':'Base64\x20client\x20secret','Brave\x20API\x20Key':'Brave\x20API\x20Key','Brave\x20API\x20key\x20is\x20required\x20when\x20Brave\x20web\x20tools\x20are\x20enabled':'Нужен\x20Brave\x20API\x20key,\x20когда\x20включены\x20Brave\x20web\x20tools','Brave\x20crawling\x20uses\x20direct\x20URL\x20fetch\x20fallback.':'Для\x20Brave\x20crawling\x20используется\x20прямой\x20fallback\x20через\x20загрузку\x20URL.','Build\x20a\x20formula\x20for\x20this\x20table':'Построить\x20формулу\x20для\x20этой\x20таблицы','Cancel':'Отмена','Chat\x20deleted.':'Чат\x20удалён.','Chat\x20history':'История\x20чатов','Chat\x20renamed.':'Чат\x20переименован.','Chats':'Чаты','Check\x20that\x20image\x20model\x20is\x20set\x20correctly\x20in\x20Settings.':'Проверьте,\x20что\x20image\x20model\x20правильно\x20задана\x20в\x20настройках.','Choose\x20a\x20provider\x20first,\x20then\x20configure\x20only\x20its\x20credentials,\x20model\x20and\x20capabilities.':'Сначала\x20выберите\x20провайдера,\x20затем\x20настройте\x20только\x20его\x20credentials,\x20model\x20и\x20capabilities.','Choose\x20the\x20UI\x20language\x20and\x20the\x20default\x20response\x20language\x20for\x20the\x20assistant.':'Выберите\x20язык\x20интерфейса\x20и\x20язык\x20ответов\x20ассистента\x20по\x20умолчанию.','Choose\x20Image\x20Operator':'Выбрать\x20image\x20operator','Choose\x20operator':'Выбрать\x20оператор','Close\x20dialog':'Закрыть\x20диалог','Close\x20history':'Закрыть\x20историю','Cloud\x20folder\x20ID':'Cloud\x20folder\x20ID','Complete\x20the\x20selected\x20text':'Дополнить\x20выделенный\x20текст','Confirm':'Подтвердить','Copy\x20Main\x20API\x20Key':'Скопировать\x20основной\x20API\x20key','Copy\x20URL':'Скопировать\x20URL','Create\x20an\x20outline':'Создать\x20план','Create\x20new\x20chat':'Создать\x20новый\x20чат','Correct\x20spelling\x20and\x20grammar':'Исправить\x20орфографию\x20и\x20грамматику','Data\x20Context':'Контекст\x20данных','Delete':'Удалить','Delete\x20\x22{title}\x22\x20and\x20all\x20of\x20its\x20messages?\x20This\x20action\x20cannot\x20be\x20undone.':'Удалить\x20\x22{title}\x22\x20и\x20все\x20сообщения\x20этого\x20чата?\x20Это\x20действие\x20нельзя\x20отменить.','Delete\x20chat':'Удалить\x20чат','Detailed\x20log':'Подробный\x20лог','Done':'Готово','Draft\x20a\x20polished\x20response':'Подготовить\x20аккуратный\x20ответ','Draft\x20a\x20reply\x20in\x20the\x20same\x20tone':'Написать\x20ответ\x20в\x20том\x20же\x20тоне','Edit\x20chat':'Редактировать\x20чат','Empty\x20message':'Пустое\x20сообщение','Empty\x20response\x20from\x20provider':'Пустой\x20ответ\x20от\x20провайдера','Enable\x20Exa\x20or\x20Brave\x20to\x20allow\x20model\x20web\x20search\x20and\x20crawling\x20tools.':'Включите\x20Exa\x20или\x20Brave,\x20чтобы\x20разрешить\x20web\x20search\x20и\x20crawling\x20tools\x20модели.','English':'English','Enter\x20model':'Ввести\x20модель','Error:':'Ошибка:','Every\x20chat\x20request\x20automatically\x20includes\x20the\x20full\x20document\x20context\x20with\x20smart\x20truncation.':'Каждый\x20запрос\x20автоматически\x20включает\x20полный\x20контекст\x20документа\x20с\x20умным\x20усечением.','Execution\x20failed':'Выполнение\x20завершилось\x20с\x20ошибкой','Execution\x20Trace':'Трассировка\x20выполнения','Exa\x20API\x20Key':'Exa\x20API\x20Key','Exa\x20API\x20key\x20is\x20required\x20when\x20Exa\x20web\x20tools\x20are\x20enabled':'Нужен\x20Exa\x20API\x20key,\x20когда\x20включены\x20Exa\x20web\x20tools','Exa\x20search\x20and\x20crawl\x20use\x20the\x20Exa\x20API.':'Для\x20поиска\x20и\x20crawl\x20через\x20Exa\x20используется\x20Exa\x20API.','Explain\x20the\x20selected\x20cells':'Объяснить\x20выбранные\x20ячейки','Explain\x20the\x20selected\x20text':'Объяснить\x20выделенный\x20текст','Explain\x20this\x20topic\x20simply':'Объяснить\x20тему\x20простыми\x20словами','Expand\x20the\x20selected\x20text':'Расширить\x20выделенный\x20текст','Export\x20.docx':'Экспорт\x20.docx','Export\x20failed.':'Экспорт\x20не\x20удался.','Failed\x20to\x20add\x20image.':'Не\x20удалось\x20добавить\x20изображение.','Failed\x20to\x20paste\x20image.':'Не\x20удалось\x20вставить\x20изображение.','Folder\x20ID':'Folder\x20ID','Generate\x20draft':'Сгенерировать\x20черновик','Generating\x20image...':'Генерация\x20изображения...','Get\x20outline\x20of\x20a\x20topic':'Сделать\x20план\x20по\x20теме','GigaChat\x20supports\x20one\x20image\x20attachment\x20per\x20message\x20in\x20this\x20release.':'В\x20этой\x20версии\x20GigaChat\x20поддерживает\x20только\x20одно\x20изображение\x20на\x20сообщение.','Give\x20this\x20conversation\x20a\x20clearer\x20name.\x20The\x20new\x20title\x20stays\x20local\x20on\x20this\x20device.':'Дайте\x20этому\x20диалогу\x20более\x20понятное\x20имя.\x20Новое\x20название\x20сохранится\x20только\x20на\x20этом\x20устройстве.','Hi\x20there!\x20I\x20am\x20{r7c}.ChatLLM,\x20how\x20can\x20I\x20help\x20you\x20today?':'Привет!\x20Я\x20{r7c}.ChatLLM.\x20Чем\x20помочь?','Hide':'Скрыть','Image':'Изображение','Image\x20API\x20Key\x20(Optional)':'Image\x20API\x20Key\x20(необязательно)','Image\x20generated\x20successfully':'Изображение\x20успешно\x20создано','Image\x20generation\x20bridge\x20is\x20unavailable':'Мост\x20генерации\x20изображений\x20недоступен','Image\x20generation\x20failed':'Генерация\x20изображения\x20не\x20удалась','Image\x20generation\x20API\x20returned\x20an\x20error':'API\x20генерации\x20изображений\x20вернул\x20ошибку','Image\x20generation\x20stays\x20on\x20the\x20existing\x20separate\x20operator.':'Генерация\x20изображений\x20остаётся\x20на\x20отдельном\x20операторе.','Image\x20Generation':'Генерация\x20изображений','Image\x20model':'Image\x20model','Insert':'Вставить','insert\x20document':'вставить\x20документ','Interface\x20language':'Язык\x20интерфейса','Just\x20now':'Только\x20что','Language':'Язык','Leave\x20empty\x20to\x20use\x20the\x20active\x20provider\x20key':'Оставьте\x20пустым,\x20чтобы\x20использовать\x20ключ\x20активного\x20провайдера','Load\x20models':'Загрузить\x20модели','Loading\x20models...':'Загрузка\x20моделей...','Loading\x20preview...':'Загрузка\x20превью...','Loading\x20sheets...':'Загрузка\x20листов...','Message\x20copied\x20to\x20clipboard':'Сообщение\x20скопировано\x20в\x20буфер\x20обмена','Model':'Модель','Model\x20discovery\x20failed,\x20custom\x20model\x20input\x20stays\x20available.':'Не\x20удалось\x20получить\x20список\x20моделей,\x20но\x20поле\x20для\x20своей\x20модели\x20остаётся\x20доступным.','Model\x20is\x20required\x20for\x20the\x20active\x20provider':'Для\x20активного\x20провайдера\x20нужна\x20модель','Model\x20returned\x20no\x20image.\x20Ensure\x20an\x20image\x20generation\x20model\x20is\x20selected\x20in\x20settings.':'Модель\x20не\x20вернула\x20изображение.\x20Убедитесь,\x20что\x20в\x20настройках\x20выбрана\x20модель\x20для\x20генерации\x20изображений.','Models\x20loaded':'Модели\x20загружены','New\x20Chat':'Новый\x20чат','No\x20auto\x20context':'Нет\x20автоконтекста','No\x20chats\x20yet':'Чатов\x20пока\x20нет','No\x20models\x20returned,\x20you\x20can\x20still\x20type\x20a\x20custom\x20model.':'Модели\x20не\x20вернулись,\x20но\x20вы\x20всё\x20равно\x20можете\x20ввести\x20свою\x20модель\x20вручную.','No\x20recent\x20files\x20yet.':'Пока\x20нет\x20недавних\x20файлов.','No\x20steps\x20yet.':'Шагов\x20пока\x20нет.','No\x20supported\x20files\x20were\x20added.':'Не\x20было\x20добавлено\x20ни\x20одного\x20поддерживаемого\x20файла.','Nothing\x20found':'Ничего\x20не\x20найдено','Only\x20PNG,\x20JPEG,\x20WebP,\x20DOCX,\x20XLSX,\x20PPTX\x20and\x20PDF\x20files\x20are\x20supported.':'Поддерживаются\x20только\x20PNG,\x20JPEG,\x20WebP,\x20DOCX,\x20XLSX,\x20PPTX\x20и\x20PDF.','Open\x20data\x20context':'Открыть\x20контекст\x20данных','OpenRouter\x20API\x20Key':'OpenRouter\x20API\x20Key','Open\x20settings':'Открыть\x20настройки','Open\x20thread\x20actions':'Открыть\x20действия\x20чата','OpenRouter\x20is\x20the\x20only\x20provider\x20that\x20can\x20use\x20web\x20tools\x20in\x20this\x20release.':'В\x20этой\x20версии\x20только\x20OpenRouter\x20может\x20использовать\x20web\x20tools.','Operator':'Оператор','PNG,\x20JPG,\x20WEBP,\x20DOCX,\x20XLSX,\x20PPTX,\x20PDF':'PNG,\x20JPG,\x20WEBP,\x20DOCX,\x20XLSX,\x20PPTX,\x20PDF','Plugin\x20host\x20is\x20not\x20ready\x20yet.\x20Context\x20collection\x20and\x20macro\x20execution\x20are\x20disabled.':'Plugin\x20host\x20ещё\x20не\x20готов.\x20Сбор\x20контекста\x20и\x20выполнение\x20макросов\x20отключены.','Preview':'Предпросмотр','Quick\x20access\x20to\x20recent\x20documents':'Быстрый\x20доступ\x20к\x20недавним\x20документам','Quick\x20access\x20to\x20recent\x20files':'Быстрый\x20доступ\x20к\x20недавним\x20файлам','Recent\x20conversations\x20stay\x20local\x20on\x20this\x20device.':'Недавние\x20диалоги\x20хранятся\x20локально\x20на\x20этом\x20устройстве.','Recent\x20Files':'Недавние\x20файлы','Refresh\x20sheets':'Обновить\x20листы','Regenerate':'Повторить','Remove\x20attachment':'Удалить\x20вложение','Rename':'Переименовать','Rename\x20chat':'Переименовать\x20чат','Retry\x20step':'Повторить\x20шаг','rows':'строки','Russian':'Русский','Running...':'Выполняется...','Save':'Сохранить','Search\x20chats\x20by\x20title':'Искать\x20чаты\x20по\x20названию','Selected\x20operator':'Выбранный\x20оператор','Set\x20API\x20key':'Укажите\x20API\x20key','Set\x20OpenRouter\x20API\x20key':'Укажите\x20OpenRouter\x20API\x20key','Set\x20your\x20{provider}\x20credentials\x20first':'Сначала\x20укажите\x20credentials\x20для\x20{provider}','Send\x20Message':'Отправить\x20сообщение','Settings':'Настройки','Settings\x20saved':'Настройки\x20сохранены','Sheet\x20is\x20empty.':'Лист\x20пуст.','Sheet\x20navigation\x20is\x20available\x20in\x20spreadsheet\x20mode.':'Навигация\x20по\x20листам\x20доступна\x20в\x20режиме\x20spreadsheet.','Sheets:\x20active\x20sheet':'Листы:\x20активный\x20лист','Shorten\x20the\x20selected\x20text':'Сократить\x20выделенный\x20текст','Start\x20a\x20conversation\x20and\x20it\x20will\x20appear\x20here\x20automatically.':'Начните\x20диалог,\x20и\x20он\x20автоматически\x20появится\x20здесь.','Status':'Статус','Stop':'Стоп','Sorry,\x20please\x20select\x20text\x20in\x20a\x20cell\x20to\x20proceed\x20correct\x20selected\x20spelling\x20and\x20grammar.':'Пожалуйста,\x20сначала\x20выберите\x20текст\x20в\x20ячейке,\x20чтобы\x20исправить\x20орфографию\x20и\x20грамматику.','Sorry,\x20please\x20select\x20text\x20in\x20a\x20cell\x20to\x20proceed\x20explain\x20the\x20selected\x20text.':'Пожалуйста,\x20сначала\x20выберите\x20текст\x20в\x20ячейке,\x20чтобы\x20объяснить\x20выделенный\x20текст.','Sorry,\x20please\x20select\x20text\x20in\x20a\x20cell\x20to\x20proceed\x20summarize\x20the\x20selected\x20text.':'Пожалуйста,\x20сначала\x20выберите\x20текст\x20в\x20ячейке,\x20чтобы\x20суммировать\x20выделенный\x20текст.','Sorry,\x20please\x20select\x20text\x20in\x20a\x20cell\x20to\x20proceed\x20translate\x20selected\x20text.':'Пожалуйста,\x20сначала\x20выберите\x20текст\x20в\x20ячейке,\x20чтобы\x20перевести\x20выделенный\x20текст.','Summarize\x20the\x20active\x20sheet':'Суммировать\x20активный\x20лист','Summarize\x20the\x20selected\x20text':'Суммировать\x20выделенный\x20текст','Summarize\x20this\x20document':'Суммировать\x20этот\x20документ','Text':'Текст','The\x20selected\x20model\x20does\x20not\x20support\x20image\x20input.\x20Choose\x20a\x20vision-capable\x20model\x20and\x20try\x20again.':'Выбранная\x20модель\x20не\x20поддерживает\x20ввод\x20изображений.\x20Выберите\x20модель\x20с\x20поддержкой\x20vision\x20и\x20попробуйте\x20снова.','This\x20editor\x20does\x20not\x20expose\x20sheet/document\x20context\x20mode\x20here.':'Этот\x20редактор\x20не\x20предоставляет\x20здесь\x20режим\x20контекста\x20листа/документа.','This\x20file\x20is\x20already\x20attached.':'Этот\x20файл\x20уже\x20прикреплён.','This\x20ONLYOFFICE\x20runtime\x20has\x20browser\x20fetch\x20only.\x20Exa\x20or\x20Brave\x20may\x20fail\x20if\x20CORS\x20blocks\x20the\x20request.':'В\x20этом\x20ONLYOFFICE\x20runtime\x20доступен\x20только\x20browser\x20fetch.\x20Exa\x20или\x20Brave\x20могут\x20не\x20сработать,\x20если\x20запрос\x20заблокирует\x20CORS.','Thread\x20Actions':'Действия\x20чата','Thread\x20actions':'Действия\x20чата','Thread\x20exported\x20to\x20.docx.':'Чат\x20экспортирован\x20в\x20.docx.','Toggle\x20Theme':'Переключить\x20тему','Try\x20a\x20shorter\x20title\x20or\x20clear\x20the\x20search\x20field.':'Попробуйте\x20более\x20короткое\x20название\x20или\x20очистите\x20поле\x20поиска.','Type\x20your\x20message\x20here...':'Введите\x20сообщение...','Unable\x20to\x20enumerate\x20sheets.':'Не\x20удалось\x20получить\x20список\x20листов.','Unable\x20to\x20load\x20this\x20sheet.':'Не\x20удалось\x20загрузить\x20этот\x20лист.','Use\x20editor\x20language':'Использовать\x20язык\x20редактора','Used\x20when\x20Brave\x20web\x20tools\x20are\x20enabled':'Используется,\x20когда\x20включены\x20Brave\x20web\x20tools','Used\x20when\x20Exa\x20web\x20tools\x20are\x20enabled':'Используется,\x20когда\x20включены\x20Exa\x20web\x20tools','Vision':'Vision','Waiting\x20for\x20editor\x20host...':'Ожидание\x20editor\x20host...','Wait\x20for\x20the\x20current\x20response\x20to\x20finish\x20first.':'Дождитесь\x20завершения\x20текущего\x20ответа.','Web\x20tools':'Web\x20tools','Web\x20Tools':'Web\x20tools','Web\x20tools\x20are\x20available\x20only\x20for\x20OpenRouter\x20in\x20this\x20release.':'В\x20этой\x20версии\x20web\x20tools\x20доступны\x20только\x20для\x20OpenRouter.','Web\x20tools\x20are\x20currently\x20available\x20only\x20when\x20OpenRouter\x20is\x20the\x20active\x20provider.':'Сейчас\x20web\x20tools\x20доступны\x20только\x20когда\x20активным\x20провайдером\x20выбран\x20OpenRouter.','Web\x20Tools\x20Provider':'Провайдер\x20web\x20tools','Word:\x20full\x20document':'Word:\x20полный\x20документ','YandexGPT\x20is\x20wired\x20through\x20the\x20compatibility\x20API\x20and\x20is\x20text-only\x20in\x20this\x20release.':'YandexGPT\x20подключён\x20через\x20compatibility\x20API\x20и\x20в\x20этой\x20версии\x20работает\x20только\x20с\x20текстом.','1\x20attachment':'1\x20вложение','attachments':'вложений','cols':'столбцы','e.g.\x20GigaChat-Pro':'например,\x20GigaChat-Pro','e.g.\x20google/gemini-2.5-flash-image':'например,\x20google/gemini-2.5-flash-image','e.g.\x20yandexgpt/latest':'например,\x20yandexgpt/latest','images':'изображения','messages':'сообщений','recent\x20files':'недавних\x20файлов'}};function _0x3521ac(){return!!(_0x44fb6f['Asc']&&_0x44fb6f['Asc']['plugin']);}function _0x3987fd(){return!!(_0x44fb6f['Asc']&&_0x44fb6f['Asc']['plugin']&&_0x44fb6f['Asc']['plugin']['info']);}function _0x384cdc(){if(!_0x3987fd())return'';return String(_0x44fb6f['Asc']['plugin']['info']['editorType']||'');}function _0x376339(){if(!_0x44fb6f['Asc'])return'Asc\x20host\x20is\x20not\x20available.';if(!_0x44fb6f['Asc']['plugin'])return'Asc.plugin\x20is\x20not\x20available.';if(!_0x44fb6f['Asc']['plugin']['info'])return'Asc.plugin.info\x20is\x20not\x20available\x20yet.';return'';}function _0x2cac6d(){return _0x95eb45['features']&&_0x95eb45['features']['settings']?_0x95eb45['features']['settings']:null;}function _0x5ea161(){var _0x27e6ba=_0x2cac6d();if(!_0x27e6ba||typeof _0x27e6ba['loadSettings']!=='function')return'auto';try{var _0x32864f=_0x27e6ba['loadSettings'](),_0x36445d=String(_0x32864f&&_0x32864f['language']||'auto')['trim']()['toLowerCase']();return _0x36445d==='en'||_0x36445d==='ru'?_0x36445d:'auto';}catch(_0x36ff20){return'auto';}}function _0xda6899(){var _0x3c5462=_0x3987fd()?_0x44fb6f['Asc']['plugin']['info']:null,_0x1fb171=_0x3c5462&&_0x3c5462['lang']?String(_0x3c5462['lang']):String(_0x95eb45['runtime']&&_0x95eb45['runtime']['lang']||'en');return String(_0x1fb171||'en')['substring'](0x0,0x2)['toLowerCase']()||'en';}function _0x234618(){var _0xe37aa8=_0x5ea161();return _0xe37aa8==='en'||_0xe37aa8==='ru'?_0xe37aa8:_0xda6899();}function _0x14d64b(_0x2edd10){var _0x404155=String(_0x2edd10||''),_0xd4bef2=_0x5ea161(),_0x200119=_0x234618(),_0x1a9ba8=_0x1dafac[_0x200119]||null;if(_0x1a9ba8&&Object['prototype']['hasOwnProperty']['call'](_0x1a9ba8,_0x404155))return _0x1a9ba8[_0x404155];if(_0xd4bef2==='auto'&&_0x3521ac()&&typeof _0x44fb6f['Asc']['plugin']['tr']==='function')return _0x44fb6f['Asc']['plugin']['tr'](_0x404155);if(_0x200119!=='en'&&_0x3521ac()&&typeof _0x44fb6f['Asc']['plugin']['tr']==='function'&&_0xda6899()===_0x200119)return _0x44fb6f['Asc']['plugin']['tr'](_0x404155);return _0x404155;}function _0x46421a(_0x40ab41,_0x4b0d7a,_0x289ecd){var _0x51af1d=_0x95eb45['runtime']['host'],_0x505ec7=++_0x51af1d['editorCommandCounter'],_0x1a0132=function(){return new Promise(function(_0x112c97){var _0xed965e=![],_0x1b972e=0x0;try{if(!_0x3521ac()||typeof _0x44fb6f['Asc']['plugin']['callCommand']!=='function'){_0x112c97(null);return;}var _0x54f851=_0x289ecd&&typeof _0x289ecd==='object'?_0x289ecd:{},_0x4a43de=_0x54f851['recalculate']===![]?![]:!![],_0x178786=Number(_0x54f851['timeoutMs']||0x0);function _0x37a5d2(_0x237554){if(_0xed965e)return;_0xed965e=!![];if(_0x1b972e)try{_0x44fb6f['clearTimeout'](_0x1b972e);}catch(_0xfd96c6){}_0x112c97(_0x237554);}if(_0x4b0d7a&&_0x44fb6f['Asc']['scope'])try{Object['keys'](_0x4b0d7a)['forEach'](function(_0x258a58){_0x44fb6f['Asc']['scope'][_0x258a58]=_0x4b0d7a[_0x258a58];});}catch(_0x351201){console['error']('callEditorCommand:\x20Failed\x20to\x20set\x20Asc.scope\x20data',_0x351201);}_0x178786>0x0&&typeof _0x44fb6f['setTimeout']==='function'&&(_0x1b972e=_0x44fb6f['setTimeout'](function(){console['warn']('callEditorCommand:\x20Timeout\x20for\x20command\x20#'+_0x505ec7+'\x20after\x20'+_0x178786+'\x20ms'),_0x37a5d2(null);},_0x178786)),_0x44fb6f['Asc']['plugin']['callCommand'](_0x40ab41,![],_0x4a43de,function(_0x1730df){_0x1730df===undefined||_0x1730df===null?console['error']('callEditorCommand:\x20Asc.plugin.callCommand\x20returned\x20'+_0x1730df+'\x20for\x20command\x20#'+_0x505ec7,_0x40ab41):console['log']('callEditorCommand:\x20Success\x20for\x20command\x20#'+_0x505ec7),_0x37a5d2(_0x1730df);});}catch(_0x31921e){console['error']('callEditorCommand:\x20Caught\x20synchronous\x20error\x20#'+_0x505ec7,_0x31921e);if(_0x1b972e)try{_0x44fb6f['clearTimeout'](_0x1b972e);}catch(_0x4838a0){}_0x112c97(null);}});},_0x2bbe9f=_0x51af1d['editorCommandQueue']['then'](_0x1a0132,_0x1a0132);return _0x51af1d['editorCommandQueue']=_0x2bbe9f['then'](function(){return null;},function(){return null;}),_0x2bbe9f;}function _0x1282f5(_0x47e009,_0xdbab2b){return new Promise(function(_0x4dd51f){try{if(!_0x3521ac()||typeof _0x44fb6f['Asc']['plugin']['executeMethod']!=='function'){_0x4dd51f(null);return;}_0x44fb6f['Asc']['plugin']['executeMethod'](_0x47e009,_0xdbab2b||[],function(_0x1b8319){_0x4dd51f(_0x1b8319);});}catch(_0x41203a){console['error']('callEditorMethod\x20failed:\x20'+_0x47e009,_0x41203a),_0x4dd51f(null);}});}var _0x27c550={'isPluginHostReady':_0x3987fd,'getEditorTypeSafe':_0x384cdc,'getHostDiagnostics':_0x376339,'getLanguagePreference':_0x5ea161,'getUiLanguageCode':_0x234618,'translate':_0x14d64b,'callEditorCommand':_0x46421a,'callEditorMethod':_0x1282f5};return _0x95eb45['platform']['hostBridge']=_0x27c550,_0x27c550;}));
+(function (rootFactory) {
+    'use strict';
+
+    if (typeof module === 'object' && module.exports) {
+        module.exports = rootFactory(typeof globalThis !== 'undefined' ? globalThis : global);
+        return;
+    }
+
+    rootFactory(typeof window !== 'undefined' ? window : this);
+})(function (globalRoot) {
+    'use strict';
+
+    var root = globalRoot.R7Chat = globalRoot.R7Chat || {};
+    root.platform = root.platform || {};
+    root.runtime = root.runtime || {};
+    root.runtime.host = root.runtime.host || {
+        editorCommandQueue: Promise.resolve(),
+        editorCommandCounter: 0
+    };
+    var LOCAL_TRANSLATIONS = {
+        ru: {
+            'Add attachment': 'Добавить вложение',
+            'Add file': 'Добавить файл',
+            'Analyse the selected text': 'Проанализировать выделенный текст',
+            'Agent mode: OFF': 'Режим агента: ВЫКЛ',
+            'Agent mode: ON': 'Режим агента: ВКЛ',
+            'Attach': 'Прикрепить',
+            'Attached': 'Прикреплено',
+            'Attachment': 'Вложение',
+            'Attachment menu': 'Меню вложений',
+            'Automatic data context is currently available for Word and Spreadsheet editors.': 'Автоматический контекст данных сейчас доступен только в редакторах Word и Spreadsheet.',
+            'Base URL': 'Base URL',
+            'Base64 client secret': 'Base64 client secret',
+            'Brave API Key': 'Brave API Key',
+            'Brave API key is required when Brave web tools are enabled': 'Нужен Brave API key, когда включены Brave web tools',
+            'Brave crawling uses direct URL fetch fallback.': 'Для Brave crawling используется прямой fallback через загрузку URL.',
+            'Build a formula for this table': 'Построить формулу для этой таблицы',
+            'Cancel': 'Отмена',
+            'Chat deleted.': 'Чат удалён.',
+            'Chat history': 'История чатов',
+            'Chat renamed.': 'Чат переименован.',
+            'Chats': 'Чаты',
+            'Check that image model is set correctly in Settings.': 'Проверьте, что image model правильно задана в настройках.',
+            'Choose a provider first, then configure only its credentials, model and capabilities.': 'Сначала выберите провайдера, затем настройте только его credentials, model и capabilities.',
+            'Choose the UI language and the default response language for the assistant.': 'Выберите язык интерфейса и язык ответов ассистента по умолчанию.',
+            'Choose Image Operator': 'Выбрать image operator',
+            'Choose operator': 'Выбрать оператор',
+            'Close dialog': 'Закрыть диалог',
+            'Close history': 'Закрыть историю',
+            'Cloud folder ID': 'Cloud folder ID',
+            'Complete the selected text': 'Дополнить выделенный текст',
+            'Confirm': 'Подтвердить',
+            'Copy Main API Key': 'Скопировать основной API key',
+            'Copy URL': 'Скопировать URL',
+            'Create an outline': 'Создать план',
+            'Create new chat': 'Создать новый чат',
+            'Correct spelling and grammar': 'Исправить орфографию и грамматику',
+            'Data Context': 'Контекст данных',
+            'Desktop Tools': 'Desktop tools',
+            'Desktop tools are not exposed in this R7 runtime. Macro automation stays available.': 'В этом runtime R7 desktop tools не доступны. Макросная автоматизация остаётся доступной.',
+            'Desktop tools bridge is not available in the plugin runtime.': 'Bridge для desktop tools недоступен в runtime плагина.',
+            'Desktop tools catalog failed to parse. Check DevTools for runtime details.': 'Не удалось разобрать каталог desktop tools. Проверьте DevTools для деталей runtime.',
+            'Desktop tools catalog is unavailable in this runtime. Macro automation stays available.': 'Каталог desktop tools недоступен в этом runtime. Макросная автоматизация остаётся доступной.',
+            'Desktop tools catalog is readable ({count} tools), but callToolFunction is unavailable.': 'Каталог desktop tools доступен ({count} tools), но callToolFunction недоступен.',
+            'Desktop tools ready: {count} tools available for execution.': 'Desktop tools готовы: для выполнения доступно {count} tools.',
+            'Desktop tools runtime status is checked when the panel opens.': 'Статус desktop tools проверяется при открытии панели.',
+            'Delete': 'Удалить',
+            'Delete "{title}" and all of its messages? This action cannot be undone.': 'Удалить "{title}" и все сообщения этого чата? Это действие нельзя отменить.',
+            'Delete chat': 'Удалить чат',
+            'Detailed log': 'Подробный лог',
+            'Done': 'Готово',
+            'Draft a polished response': 'Подготовить аккуратный ответ',
+            'Draft a reply in the same tone': 'Написать ответ в том же тоне',
+            'Edit chat': 'Редактировать чат',
+            'Empty message': 'Пустое сообщение',
+            'Empty response from provider': 'Пустой ответ от провайдера',
+            'Enable Exa or Brave to allow model web search and crawling tools.': 'Включите Exa или Brave, чтобы разрешить web search и crawling tools модели.',
+            'English': 'English',
+            'Enter model': 'Ввести модель',
+            'Error:': 'Ошибка:',
+            'Every chat request automatically includes the full document context with smart truncation.': 'Каждый запрос автоматически включает полный контекст документа с умным усечением.',
+            'Execution failed': 'Выполнение завершилось с ошибкой',
+            'Execution Trace': 'Трассировка выполнения',
+            'Exa API Key': 'Exa API Key',
+            'Exa API key is required when Exa web tools are enabled': 'Нужен Exa API key, когда включены Exa web tools',
+            'Exa search and crawl use the Exa API.': 'Для поиска и crawl через Exa используется Exa API.',
+            'Explain the selected cells': 'Объяснить выбранные ячейки',
+            'Explain the selected text': 'Объяснить выделенный текст',
+            'Explain this topic simply': 'Объяснить тему простыми словами',
+            'Expand the selected text': 'Расширить выделенный текст',
+            'Export .docx': 'Экспорт .docx',
+            'Export failed.': 'Экспорт не удался.',
+            'Failed to add image.': 'Не удалось добавить изображение.',
+            'Failed to paste image.': 'Не удалось вставить изображение.',
+            'Folder ID': 'Folder ID',
+            'Generate draft': 'Сгенерировать черновик',
+            'Generating image...': 'Генерация изображения...',
+            'Get outline of a topic': 'Сделать план по теме',
+            'GigaChat supports one image attachment per message in this release.': 'В этой версии GigaChat поддерживает только одно изображение на сообщение.',
+            'Give this conversation a clearer name. The new title stays local on this device.': 'Дайте этому диалогу более понятное имя. Новое название сохранится только на этом устройстве.',
+            'Hi there! I am {r7c}.ChatLLM, how can I help you today?': 'Привет! Я {r7c}.ChatLLM. Чем помочь?',
+            'Hide': 'Скрыть',
+            'Image': 'Изображение',
+            'Image API Key (Optional)': 'Image API Key (необязательно)',
+            'Image generated successfully': 'Изображение успешно создано',
+            'Image generation bridge is unavailable': 'Мост генерации изображений недоступен',
+            'Image generation failed': 'Генерация изображения не удалась',
+            'Image generation API returned an error': 'API генерации изображений вернул ошибку',
+            'Image generation stays on the existing separate operator.': 'Генерация изображений остаётся на отдельном операторе.',
+            'Image Generation': 'Генерация изображений',
+            'Image model': 'Image model',
+            'Insert': 'Вставить',
+            'insert document': 'вставить документ',
+            'Interface language': 'Язык интерфейса',
+            'Just now': 'Только что',
+            'Language': 'Язык',
+            'Leave empty to use the active provider key': 'Оставьте пустым, чтобы использовать ключ активного провайдера',
+            'Load models': 'Загрузить модели',
+            'Loading models...': 'Загрузка моделей...',
+            'Loading preview...': 'Загрузка превью...',
+            'Loading sheets...': 'Загрузка листов...',
+            'Macro only': 'Только макросы',
+            'Message copied to clipboard': 'Сообщение скопировано в буфер обмена',
+            'Model': 'Модель',
+            'Model discovery failed, custom model input stays available.': 'Не удалось получить список моделей, но поле для своей модели остаётся доступным.',
+            'Model is required for the active provider': 'Для активного провайдера нужна модель',
+            'Model returned no image. Ensure an image generation model is selected in settings.': 'Модель не вернула изображение. Убедитесь, что в настройках выбрана модель для генерации изображений.',
+            'Models loaded': 'Модели загружены',
+            'New Chat': 'Новый чат',
+            'No auto context': 'Нет автоконтекста',
+            'No chats yet': 'Чатов пока нет',
+            'No models returned, you can still type a custom model.': 'Модели не вернулись, но вы всё равно можете ввести свою модель вручную.',
+            'No recent files yet.': 'Пока нет недавних файлов.',
+            'No steps yet.': 'Шагов пока нет.',
+            'No supported files were added.': 'Не было добавлено ни одного поддерживаемого файла.',
+            'Nothing found': 'Ничего не найдено',
+            'Only PNG, JPEG, WebP, DOCX, XLSX, PPTX and PDF files are supported.': 'Поддерживаются только PNG, JPEG, WebP, DOCX, XLSX, PPTX и PDF.',
+            'Open data context': 'Открыть контекст данных',
+            'OpenRouter API Key': 'OpenRouter API Key',
+            'Open settings': 'Открыть настройки',
+            'Open thread actions': 'Открыть действия чата',
+            'OpenRouter is the only provider that can use web tools in this release.': 'В этой версии только OpenRouter может использовать web tools.',
+            'Operator': 'Оператор',
+            'PNG, JPG, WEBP, DOCX, XLSX, PPTX, PDF': 'PNG, JPG, WEBP, DOCX, XLSX, PPTX, PDF',
+            'Plugin host is not ready yet. Context collection and macro execution are disabled.': 'Plugin host ещё не готов. Сбор контекста и выполнение макросов отключены.',
+            'Preview': 'Предпросмотр',
+            'Quick access to recent documents': 'Быстрый доступ к недавним документам',
+            'Quick access to recent files': 'Быстрый доступ к недавним файлам',
+            'Recent conversations stay local on this device.': 'Недавние диалоги хранятся локально на этом устройстве.',
+            'Recent Files': 'Недавние файлы',
+            'Refresh sheets': 'Обновить листы',
+            'Regenerate': 'Повторить',
+            'Remove attachment': 'Удалить вложение',
+            'Rename': 'Переименовать',
+            'Rename chat': 'Переименовать чат',
+            'Retry step': 'Повторить шаг',
+            'rows': 'строки',
+            'Russian': 'Русский',
+            'Running...': 'Выполняется...',
+            'Save': 'Сохранить',
+            'Search chats by title': 'Искать чаты по названию',
+            'Selected operator': 'Выбранный оператор',
+            'Set API key': 'Укажите API key',
+            'Set OpenRouter API key': 'Укажите OpenRouter API key',
+            'Set your {provider} credentials first': 'Сначала укажите credentials для {provider}',
+            'Send Message': 'Отправить сообщение',
+            'Settings': 'Настройки',
+            'Settings saved': 'Настройки сохранены',
+            'Show model thinking in trace': 'Показывать ход мыслей модели в trace',
+            'Shows a short reasoning summary from OpenRouter/OpenAI responses in the execution trace.': 'Показывает краткую сводку рассуждений модели из ответов OpenRouter/OpenAI в трассировке выполнения.',
+            'Sheet is empty.': 'Лист пуст.',
+            'Sheet navigation is available in spreadsheet mode.': 'Навигация по листам доступна в режиме spreadsheet.',
+            'Sheets: active sheet': 'Листы: активный лист',
+            'Shorten the selected text': 'Сократить выделенный текст',
+            'Start a conversation and it will appear here automatically.': 'Начните диалог, и он автоматически появится здесь.',
+            'Status': 'Статус',
+            'Stop': 'Стоп',
+            'Auto: native first, macro fallback': 'Auto: сначала native tools, потом macro fallback',
+            'Automation mode': 'Режим автоматизации',
+            'Sorry, please select text in a cell to proceed correct selected spelling and grammar.': 'Пожалуйста, сначала выберите текст в ячейке, чтобы исправить орфографию и грамматику.',
+            'Sorry, please select text in a cell to proceed explain the selected text.': 'Пожалуйста, сначала выберите текст в ячейке, чтобы объяснить выделенный текст.',
+            'Sorry, please select text in a cell to proceed summarize the selected text.': 'Пожалуйста, сначала выберите текст в ячейке, чтобы суммировать выделенный текст.',
+            'Sorry, please select text in a cell to proceed translate selected text.': 'Пожалуйста, сначала выберите текст в ячейке, чтобы перевести выделенный текст.',
+            'Summarize the active sheet': 'Суммировать активный лист',
+            'Summarize the selected text': 'Суммировать выделенный текст',
+            'Summarize this document': 'Суммировать этот документ',
+            'Text': 'Текст',
+            'The selected model does not support image input. Choose a vision-capable model and try again.': 'Выбранная модель не поддерживает ввод изображений. Выберите модель с поддержкой vision и попробуйте снова.',
+            'This editor does not expose sheet/document context mode here.': 'Этот редактор не предоставляет здесь режим контекста листа/документа.',
+            'This file is already attached.': 'Этот файл уже прикреплён.',
+            'This ONLYOFFICE runtime has browser fetch only. Exa or Brave may fail if CORS blocks the request.': 'В этом ONLYOFFICE runtime доступен только browser fetch. Exa или Brave могут не сработать, если запрос заблокирует CORS.',
+            'Thread Actions': 'Действия чата',
+            'Thread actions': 'Действия чата',
+            'Thread exported to .docx.': 'Чат экспортирован в .docx.',
+            'Toggle Theme': 'Переключить тему',
+            'Try a shorter title or clear the search field.': 'Попробуйте более короткое название или очистите поле поиска.',
+            'Type your message here...': 'Введите сообщение...',
+            'Unable to enumerate sheets.': 'Не удалось получить список листов.',
+            'Unable to load this sheet.': 'Не удалось загрузить этот лист.',
+            'Use editor language': 'Использовать язык редактора',
+            'Used when Brave web tools are enabled': 'Используется, когда включены Brave web tools',
+            'Used when Exa web tools are enabled': 'Используется, когда включены Exa web tools',
+            'Vision': 'Vision',
+            'Waiting for editor host...': 'Ожидание editor host...',
+            'Wait for the current response to finish first.': 'Дождитесь завершения текущего ответа.',
+            'Web tools': 'Web tools',
+            'Web Tools': 'Web tools',
+            'Web tools are available only for OpenRouter in this release.': 'В этой версии web tools доступны только для OpenRouter.',
+            'Web tools are currently available only when OpenRouter is the active provider.': 'Сейчас web tools доступны только когда активным провайдером выбран OpenRouter.',
+            'Web Tools Provider': 'Провайдер web tools',
+            'Word: full document': 'Word: полный документ',
+            'Prefer native tools': 'Предпочитать native tools',
+            'Use native desktop host tools when the runtime exposes them. Macro fallback stays available.': 'Используйте native desktop host tools, когда runtime их предоставляет. Macro fallback остаётся доступным.',
+            'YandexGPT is wired through the compatibility API and is text-only in this release.': 'YandexGPT подключён через compatibility API и в этой версии работает только с текстом.',
+            '1 attachment': '1 вложение',
+            'attachments': 'вложений',
+            'cols': 'столбцы',
+            'e.g. GigaChat-Pro': 'например, GigaChat-Pro',
+            'e.g. google/gemini-2.5-flash-image': 'например, google/gemini-2.5-flash-image',
+            'e.g. yandexgpt/latest': 'например, yandexgpt/latest',
+            'images': 'изображения',
+            'messages': 'сообщений',
+            'recent files': 'недавних файлов'
+        }
+    };
+
+    function hasAscHost() {
+        return !!(globalRoot.Asc && globalRoot.Asc.plugin);
+    }
+
+    function isPluginHostReady() {
+        return !!(globalRoot.Asc && globalRoot.Asc.plugin && globalRoot.Asc.plugin.info);
+    }
+
+    function getEditorTypeSafe() {
+        if (!isPluginHostReady()) return '';
+        return String(globalRoot.Asc.plugin.info.editorType || '');
+    }
+
+    function getHostDiagnostics() {
+        if (!globalRoot.Asc) return 'Asc host is not available.';
+        if (!globalRoot.Asc.plugin) return 'Asc.plugin is not available.';
+        if (!globalRoot.Asc.plugin.info) return 'Asc.plugin.info is not available yet.';
+        return '';
+    }
+
+    function getSettingsService() {
+        return root.features && root.features.settings ? root.features.settings : null;
+    }
+
+    function getLanguagePreference() {
+        var settingsService = getSettingsService();
+        if (!settingsService || typeof settingsService.loadSettings !== 'function') return 'auto';
+        try {
+            var settings = settingsService.loadSettings();
+            var preference = String(settings && settings.language || 'auto').trim().toLowerCase();
+            return preference === 'en' || preference === 'ru' ? preference : 'auto';
+        } catch (error) {
+            return 'auto';
+        }
+    }
+
+    function getHostLanguageCode() {
+        var info = isPluginHostReady() ? globalRoot.Asc.plugin.info : null;
+        var language = info && info.lang ? String(info.lang) : String(root.runtime && root.runtime.lang || 'en');
+        return String(language || 'en').substring(0, 2).toLowerCase() || 'en';
+    }
+
+    function getUiLanguageCode() {
+        var preference = getLanguagePreference();
+        return preference === 'en' || preference === 'ru' ? preference : getHostLanguageCode();
+    }
+
+    function translate(text) {
+        var key = String(text || '');
+        var languagePreference = getLanguagePreference();
+        var languageCode = getUiLanguageCode();
+        var dictionary = LOCAL_TRANSLATIONS[languageCode] || null;
+
+        if (dictionary && Object.prototype.hasOwnProperty.call(dictionary, key)) {
+            return dictionary[key];
+        }
+        if (languagePreference === 'auto' && hasAscHost() && typeof globalRoot.Asc.plugin.tr === 'function') {
+            return globalRoot.Asc.plugin.tr(key);
+        }
+        if (languageCode !== 'en' && hasAscHost() && typeof globalRoot.Asc.plugin.tr === 'function' && getHostLanguageCode() === languageCode) {
+            return globalRoot.Asc.plugin.tr(key);
+        }
+        return key;
+    }
+
+    function callEditorCommand(command, scopeData, options) {
+        var runtimeHost = root.runtime.host;
+        var commandId = ++runtimeHost.editorCommandCounter;
+        var run = function () {
+            return new Promise(function (resolve) {
+                var settled = false;
+                var timerId = 0;
+                try {
+                    if (!hasAscHost() || typeof globalRoot.Asc.plugin.callCommand !== 'function') {
+                        resolve(null);
+                        return;
+                    }
+
+                    var settings = options && typeof options === 'object' ? options : {};
+                    var recalculate = settings.recalculate === false ? false : true;
+                    var timeoutMs = Number(settings.timeoutMs || 0);
+                    function finalize(result) {
+                        if (settled) return;
+                        settled = true;
+                        if (timerId) {
+                            try { globalRoot.clearTimeout(timerId); } catch (clearError) {}
+                        }
+                        resolve(result);
+                    }
+                    if (scopeData && globalRoot.Asc.scope) {
+                        try {
+                            Object.keys(scopeData).forEach(function (key) {
+                                globalRoot.Asc.scope[key] = scopeData[key];
+                            });
+                        } catch (scopeError) {
+                            console.error('callEditorCommand: Failed to set Asc.scope data', scopeError);
+                        }
+                    }
+
+                    if (timeoutMs > 0 && typeof globalRoot.setTimeout === 'function') {
+                        timerId = globalRoot.setTimeout(function () {
+                            console.warn('callEditorCommand: Timeout for command #' + commandId + ' after ' + timeoutMs + ' ms');
+                            finalize(null);
+                        }, timeoutMs);
+                    }
+
+                    globalRoot.Asc.plugin.callCommand(command, false, recalculate, function (result) {
+                        if (result === undefined || result === null) {
+                            console.error('callEditorCommand: Asc.plugin.callCommand returned ' + result + ' for command #' + commandId, command);
+                        } else {
+                            console.log('callEditorCommand: Success for command #' + commandId);
+                        }
+                        finalize(result);
+                    });
+                } catch (error) {
+                    console.error('callEditorCommand: Caught synchronous error #' + commandId, error);
+                    if (timerId) {
+                        try { globalRoot.clearTimeout(timerId); } catch (clearError2) {}
+                    }
+                    resolve(null);
+                }
+            });
+        };
+
+        var queued = runtimeHost.editorCommandQueue.then(run, run);
+        runtimeHost.editorCommandQueue = queued.then(function () { return null; }, function () { return null; });
+        return queued;
+    }
+
+    function callEditorMethod(name, args) {
+        return new Promise(function (resolve) {
+            try {
+                if (!hasAscHost() || typeof globalRoot.Asc.plugin.executeMethod !== 'function') {
+                    resolve(null);
+                    return;
+                }
+                globalRoot.Asc.plugin.executeMethod(name, args || [], function (result) {
+                    resolve(result);
+                });
+            } catch (error) {
+                console.error('callEditorMethod failed: ' + name, error);
+                resolve(null);
+            }
+        });
+    }
+
+    var api = {
+        isPluginHostReady: isPluginHostReady,
+        getEditorTypeSafe: getEditorTypeSafe,
+        getHostDiagnostics: getHostDiagnostics,
+        getLanguagePreference: getLanguagePreference,
+        getUiLanguageCode: getUiLanguageCode,
+        translate: translate,
+        callEditorCommand: callEditorCommand,
+        callEditorMethod: callEditorMethod
+    };
+
+    root.platform.hostBridge = api;
+    return api;
+});

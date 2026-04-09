@@ -1,1 +1,161 @@
-function AssistantHint(_0x18f5c0,_0x1a46f3){CustomAnnotator['call'](this,_0x18f5c0,_0x1a46f3);}AssistantHint['prototype']=Object['create'](CustomAnnotator['prototype']),AssistantHint['prototype']['constructor']=AssistantHint,Object['assign'](AssistantHint['prototype'],{'_convertToRanges':function(_0x27fc8c,_0x3a0bd4,_0x5a169f){const _0x280545=this;let _0x237766=0x1;const _0x3c1cd0=[];for(const {origin:_0x2f9b23,reason:_0x5f097c,paragraph:_0x4a4938,occurrence:_0x13882c,confidence:_0x2856c9}of _0x5a169f){if(_0x2856c9<=0.7)continue;let _0x5c36f2=0x0,_0x2cb2f0=0x0;while(_0x2cb2f0<_0x3a0bd4['length']){const _0x328a1f=_0x280545['simpleGraphemeIndexOf'](_0x3a0bd4,_0x2f9b23,_0x2cb2f0);if(_0x328a1f===-0x1)break;_0x5c36f2++;if(_0x5c36f2===_0x13882c){_0x3c1cd0['push']({'start':_0x328a1f,'length':[..._0x2f9b23]['length'],'id':_0x237766}),_0x280545['paragraphs'][_0x27fc8c][_0x237766]={'original':_0x2f9b23,'reason':_0x5f097c},++_0x237766;break;}_0x2cb2f0=_0x328a1f+0x1;}}return _0x3c1cd0;},'_createPrompt':function(_0x2a98db){let _0x1e4964='You\x20are\x20a\x20multi-disciplinary\x20text\x20analysis\x20assistant.\x0a\x09\x09Your\x20task\x20is\x20to\x20find\x20text\x20fragments\x20that\x20match\x20the\x20user\x27s\x20criteria.\x0a\x09\x09\x0a\x09\x09MANDATORY\x20RULES:\x0a\x09\x09\x091.\x20Analyze\x20ONLY\x20the\x20provided\x20text.\x0a\x09\x09\x092.\x20Find\x20words,\x20phrases,\x20or\x20sentences\x20that\x20match\x20the\x20user\x27s\x20criteria.\x0a\x09\x09\x093.\x20For\x20EACH\x20match\x20you\x20find:\x0a\x09\x09\x09-\x20Provide\x20the\x20exact\x20quote.\x0a\x09\x09\x09-\x20Explain\x20WHY\x20it\x20matches\x20the\x20criteria.\x0a\x09\x09\x09-\x20Provide\x20position\x20information\x20(paragraph\x20number).\x0a\x09\x09\x094.\x20If\x20no\x20matches\x20are\x20found,\x20return\x20an\x20empty\x20array:\x20[].\x0a\x09\x09\x095.\x20Format\x20your\x20response\x20STRICTLY\x20in\x20JSON\x20format.\x0a\x09\x09\x096.\x20Support\x20multiple\x20languages\x20(English,\x20Russian,\x20etc.)\x0a\x0a\x09\x09Response\x20format\x20-\x20return\x20ONLY\x20this\x20JSON\x20array\x20with\x20no\x20additional\x20text:\x0a\x09\x09\x09[\x0a\x09\x09\x09{\x0a\x09\x09\x09\x09\x22origin\x22:\x20\x22exact\x20text\x20fragment\x20that\x20matches\x20the\x20query\x22,\x0a\x09\x09\x09\x09\x22reason\x22:\x20\x22detailed\x20explanation\x20why\x20it\x20matches\x20the\x20criteria\x22,\x0a\x09\x09\x09\x09\x22paragraph\x22:\x20paragraph_number,\x0a\x09\x09\x09\x09\x22occurrence\x22:\x201,\x0a\x09\x09\x09\x09\x22confidence\x22:\x200.95\x0a\x09\x09\x09}\x0a\x09\x09\x09]\x0a\x0a\x09\x09Guidelines\x20for\x20each\x20field:\x0a\x09\x09\x09-\x20\x22origin\x22:\x20EXACT\x20UNCHANGED\x20original\x20text\x20fragment.\x20Do\x20not\x20fix\x20anything\x20in\x20this\x20field.\x0a\x09\x09\x09-\x20\x22reason\x22:\x20Clear\x20explanation\x20of\x20why\x20this\x20fragment\x20matches\x20the\x20criteria;\x20IF\x20the\x20user\x27s\x20request\x20contains\x20words\x20like\x20\x22source\x22,\x20\x22reference\x22,\x20\x22link\x22,\x20\x22cite\x22,\x20\x22website\x22,\x20\x22URL\x22,\x20\x22Wikipedia\x22,\x20\x22proof\x22,\x20\x22evidence\x22,\x20\x22verify\x22\x20-\x20then\x20you\x20MUST\x20include\x20actual\x20working\x20links\x20in\x20your\x20explanations\x20in\x20html\x20format.\x0a\x09\x09\x09-\x20\x22paragraph\x22:\x20Paragraph\x20number\x20where\x20the\x20fragment\x20is\x20found\x20(0-based\x20index)\x0a\x09\x09\x09-\x20\x22occurrence\x22:\x20Which\x20occurrence\x20of\x20this\x20sentence\x20if\x20it\x20appears\x20multiple\x20times\x20(1\x20for\x20first,\x202\x20for\x20second,\x20etc.)\x0a\x09\x09\x09-\x20\x22confidence\x22:\x20Value\x20between\x200\x20and\x201\x20indicating\x20certainty\x20(1.0\x20=\x20completely\x20certain,\x200.5\x20=\x20uncertain)\x0a\x09\x09\x0a\x09\x09CRITICAL\x0a\x09\x09\x09-\x20Output\x20should\x20be\x20in\x20the\x20exact\x20this\x20format\x0a\x09\x09\x09-\x20No\x20any\x20comments\x20are\x20allowed\x0a\x0a\x09\x09CRITICAL\x20-\x20Output\x20Format:\x0a\x09\x09\x09-\x20Return\x20ONLY\x20the\x20raw\x20JSON\x20array,\x20nothing\x20else\x0a\x09\x09\x09-\x20DO\x20NOT\x20wrap\x20the\x20response\x20in\x20markdown\x20code\x20blocks\x20(no\x20```json\x20or\x20```)\x0a\x09\x09\x09-\x20DO\x20NOT\x20include\x20any\x20explanatory\x20text\x20before\x20or\x20after\x20the\x20JSON\x0a\x09\x09\x09-\x20DO\x20NOT\x20use\x20escaped\x20newlines\x20(\x5cn)\x20-\x20return\x20the\x20JSON\x20on\x20a\x20single\x20line\x20if\x20possible\x0a\x09\x09\x09-\x20The\x20response\x20should\x20start\x20with\x20[\x20and\x20end\x20with\x20]\x0a\x09\x09';return _0x1e4964+='\x0a\x0aUSER\x20REQUEST:\x0a```'+this['assistantData']['query']+'\x0a```\x0a\x0a',_0x1e4964+='TEXT\x20TO\x20ANALYZE:\x0a```\x0a'+_0x2a98db+'\x0a```\x0a\x0a',_0x1e4964+='Please\x20analyze\x20this\x20text\x20and\x20find\x20all\x20fragments\x20that\x20match\x20the\x20user\x27s\x20request.\x20Be\x20thorough\x20but\x20precise.',_0x1e4964;},'getInfoForPopup':function(_0x5126d0,_0x3ec35e){let _0x2a7171=this['getAnnotation'](_0x5126d0,_0x3ec35e),_0x6b67a8=_0x2a7171['reason'];try{_0x6b67a8=_0x6b67a8['replace'](/<a\s+(.*?)>/gi,'<a\x20$1\x20target=\x22_blank\x22>');}catch(_0x45e401){console['error'](_0x45e401);}return{'original':_0x2a7171['original'],'explanation':_0x6b67a8,'type':this['type']};},'onAccept':async function(_0x5e8e64,_0x490fa1){await CustomAnnotator['prototype']['onAccept']['call'](this),await Asc['Editor']['callMethod']('StartAction',['GroupActions']);let _0x7684a0=this['getAnnotationRangeObj'](_0x5e8e64,_0x490fa1);await Asc['Editor']['callMethod']('SelectAnnotationRange',[_0x7684a0]),await Asc['Editor']['callCommand'](function(){Api['GetDocument']()['RemoveSelection']();}),await Asc['Editor']['callMethod']('RemoveAnnotationRange',[_0x7684a0]),await Asc['Editor']['callMethod']('EndAction',['GroupActions']),await Asc['Editor']['callMethod']('FocusEditor');}});
+/// <reference path="./custom-annotator.js" />
+/// <reference path="./types.js" />
+
+/**
+ * @param {localStorageCustomAssistantItem} assistantData
+ * @constructor
+ * @extends CustomAnnotator
+ */
+function AssistantHint(annotationPopup, assistantData) {
+    CustomAnnotator.call(this, annotationPopup, assistantData);
+}
+AssistantHint.prototype = Object.create(CustomAnnotator.prototype);
+AssistantHint.prototype.constructor = AssistantHint;
+
+Object.assign(AssistantHint.prototype, {
+    /**
+     * @param {string} text
+     * @param {Array<HintAiResponse>} matches
+     */
+    _convertToRanges: function (paraId, text, matches) {
+        const _t = this;
+        let rangeId = 1;
+        const ranges = [];
+        for (const {
+            origin,
+            reason,
+            paragraph,
+            occurrence,
+            confidence,
+        } of matches) {
+            if (confidence <= 0.7) continue;
+
+            let count = 0;
+            let searchStart = 0;
+
+            while (searchStart < text.length) {
+                const index = _t.simpleGraphemeIndexOf(
+                    text,
+                    origin,
+                    searchStart,
+                );
+                if (index === -1) break;
+
+                count++;
+                if (count === occurrence) {
+                    ranges.push({
+                        start: index,
+                        length: [...origin].length,
+                        id: rangeId,
+                    });
+                    _t.paragraphs[paraId][rangeId] = {
+                        original: origin,
+                        reason: reason,
+                    };
+                    ++rangeId;
+                    break;
+                }
+                searchStart = index + 1;
+            }
+        }
+        return ranges;
+    },
+
+    /**
+     * @param {string} text
+     * @returns {string}
+     */
+    _createPrompt: function (text) {
+        let prompt = `You are a multi-disciplinary text analysis assistant.
+		Your task is to find text fragments that match the user's criteria.
+		
+		MANDATORY RULES:
+			1. Analyze ONLY the provided text.
+			2. Find words, phrases, or sentences that match the user's criteria.
+			3. For EACH match you find:
+			- Provide the exact quote.
+			- Explain WHY it matches the criteria.
+			- Provide position information (paragraph number).
+			4. If no matches are found, return an empty array: [].
+			5. Format your response STRICTLY in JSON format.
+			6. Support multiple languages (English, Russian, etc.)
+
+		Response format - return ONLY this JSON array with no additional text:
+			[
+			{
+				"origin": "exact text fragment that matches the query",
+				"reason": "detailed explanation why it matches the criteria",
+				"paragraph": paragraph_number,
+				"occurrence": 1,
+				"confidence": 0.95
+			}
+			]
+
+		Guidelines for each field:
+			- "origin": EXACT UNCHANGED original text fragment. Do not fix anything in this field.
+			- "reason": Clear explanation of why this fragment matches the criteria; IF the user's request contains words like "source", "reference", "link", "cite", "website", "URL", "Wikipedia", "proof", "evidence", "verify" - then you MUST include actual working links in your explanations in html format.
+			- "paragraph": Paragraph number where the fragment is found (0-based index)
+			- "occurrence": Which occurrence of this sentence if it appears multiple times (1 for first, 2 for second, etc.)
+			- "confidence": Value between 0 and 1 indicating certainty (1.0 = completely certain, 0.5 = uncertain)
+		
+		CRITICAL
+			- Output should be in the exact this format
+			- No any comments are allowed
+
+		CRITICAL - Output Format:
+			- Return ONLY the raw JSON array, nothing else
+			- DO NOT wrap the response in markdown code blocks (no \`\`\`json or \`\`\`)
+			- DO NOT include any explanatory text before or after the JSON
+			- DO NOT use escaped newlines (\\n) - return the JSON on a single line if possible
+			- The response should start with [ and end with ]
+		`;
+        prompt +=
+            "\n\nUSER REQUEST:\n```" + this.assistantData.query + "\n```\n\n";
+
+        prompt += "TEXT TO ANALYZE:\n```\n" + text + "\n```\n\n";
+
+        prompt += `Please analyze this text and find all fragments that match the user's request. Be thorough but precise.`;
+
+        return prompt;
+    },
+
+    /**
+     * @param {string} paraId
+     * @param {string} rangeId
+     * @return {HintInfoForPopup}
+     */
+    getInfoForPopup: function (paraId, rangeId) {
+        let _s = this.getAnnotation(paraId, rangeId);
+        let reason = _s["reason"];
+        try {
+            reason = reason.replace(/<a\s+(.*?)>/gi, '<a $1 target="_blank">');
+        } catch (e) {
+            console.error(e);
+        }
+        return {
+            original: _s["original"],
+            explanation: reason,
+            type: this.type,
+        };
+    },
+
+    /**
+     * @param {string} paraId
+     * @param {string} rangeId
+     */
+    onAccept: async function (paraId, rangeId) {
+        await CustomAnnotator.prototype.onAccept.call(this);
+        await Asc.Editor.callMethod("StartAction", ["GroupActions"]);
+
+        let range = this.getAnnotationRangeObj(paraId, rangeId);
+        await Asc.Editor.callMethod("SelectAnnotationRange", [range]);
+
+        await Asc.Editor.callCommand(function () {
+            Api.GetDocument().RemoveSelection();
+        });
+
+        await Asc.Editor.callMethod("RemoveAnnotationRange", [range]);
+        await Asc.Editor.callMethod("EndAction", ["GroupActions"]);
+        await Asc.Editor.callMethod("FocusEditor");
+    },
+});

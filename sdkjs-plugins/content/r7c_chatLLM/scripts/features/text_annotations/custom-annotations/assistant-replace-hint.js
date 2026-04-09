@@ -1,1 +1,191 @@
-function AssistantReplaceHint(_0x4134f2,_0x52951e){CustomAnnotator['call'](this,_0x4134f2,_0x52951e);}AssistantReplaceHint['prototype']=Object['create'](CustomAnnotator['prototype']),AssistantReplaceHint['prototype']['constructor']=AssistantReplaceHint,Object['assign'](AssistantReplaceHint['prototype'],{'_convertToRanges':function(_0x52ec1d,_0x2c61ca,_0x278f7f){const _0x4fcd99=this;let _0x436261=0x1;const _0x384dfd=[];for(const {origin:_0x244fbc,suggestion:_0x3ea950,difference:_0x30615e,reason:_0x38be79,paragraph:_0x2c8485,occurrence:_0x5a86b7,confidence:_0x22b3c8}of _0x278f7f){if(_0x244fbc===_0x3ea950||_0x22b3c8<=0.7)continue;let _0x4a5f48=0x0,_0x234c51=0x0;while(_0x234c51<_0x2c61ca['length']){const _0x32cf39=_0x4fcd99['simpleGraphemeIndexOf'](_0x2c61ca,_0x244fbc,_0x234c51);if(_0x32cf39===-0x1)break;_0x4a5f48++;if(_0x4a5f48===_0x5a86b7){_0x384dfd['push']({'start':_0x32cf39,'length':[..._0x244fbc]['length'],'id':_0x436261});_0x30615e['indexOf'](_0x244fbc+'\x20→\x20')===0x0&&(_0x30615e=_0x30615e['slice'](_0x244fbc['length']+0x3));_0x4fcd99['paragraphs'][_0x52ec1d][_0x436261]={'original':_0x244fbc,'suggestion':_0x3ea950,'difference':_0x30615e,'reason':_0x38be79},++_0x436261;break;}_0x234c51=_0x32cf39+0x1;}}return _0x384dfd;},'_createPrompt':function(_0x56121a){let _0x58d89e='You\x20are\x20a\x20multi-disciplinary\x20text\x20analysis\x20and\x20transformation\x20assistant.\x0a\x09\x20\x20Your\x20task\x20is\x20to\x20analyze\x20text\x20based\x20on\x20user\x27s\x20specific\x20criteria\x20and\x20provide\x20intelligent\x20corrections.\x0a\x09\x0a\x09\x20\x20MANDATORY\x20RULES:\x0a\x09\x091.\x20UNDERSTAND\x20the\x20user\x27s\x20intent\x20from\x20their\x20criteria.\x0a\x09\x092.\x20Find\x20words,\x20phrases,\x20or\x20sentences\x20that\x20match\x20the\x20user\x27s\x20criteria.\x0a\x09\x093.\x20For\x20EACH\x20match\x20you\x20find:\x0a\x09\x09\x20\x20-\x20Provide\x20the\x20exact\x20quote.\x0a\x09\x09\x20\x20-\x20SUGGEST\x20appropriate\x20replacements.\x0a\x09\x09\x20\x20-\x20Explain\x20WHY\x20it\x20matches\x20the\x20criteria.\x0a\x09\x09\x20\x20-\x20Provide\x20position\x20information\x20(paragraph\x20number).\x0a\x09\x094.\x20If\x20no\x20matches\x20are\x20found,\x20return\x20an\x20empty\x20array:\x20[].\x0a\x09\x095.\x20Format\x20your\x20response\x20STRICTLY\x20in\x20JSON\x20format.\x0a\x09\x096.\x20Support\x20multiple\x20languages\x20(English,\x20Russian,\x20etc.)\x0a\x0a\x09\x20\x20Response\x20format\x20-\x20return\x20ONLY\x20this\x20JSON\x20array\x20with\x20no\x20additional\x20text:\x0a\x09\x09[\x0a\x09\x09\x20\x20{\x0a\x09\x09\x09\x22origin\x22:\x20\x22exact\x20text\x20fragment\x20that\x20matches\x20the\x20query\x22,\x0a\x20\x20\x20\x20\x20\x20\x09\x09\x22suggestion\x22:\x20\x22suggested\x20replacement\x20(plain\x20text)\x22,\x0a\x09\x09\x09\x22reason\x22:\x20\x22detailed\x20explanation\x20why\x20it\x20matches\x20the\x20criteria\x22,\x0a\x20\x20\x20\x09\x09\x09\x22difference\x22:\x22visual\x20representation\x20showing\x20exact\x20changes\x20between\x20origin\x20and\x20suggestion\x22,\x0a\x09\x09\x09\x22paragraph\x22:\x20paragraph_number,\x0a\x09\x09\x09\x22occurrence\x22:\x201,\x0a\x09\x09\x09\x22confidence\x22:\x200.95\x0a\x09\x09\x20\x20}\x0a\x09\x09]\x0a\x0a\x09\x20\x20Guidelines\x20for\x20each\x20field:\x0a\x09\x09-\x20\x22origin\x22:\x20EXACT\x20UNCHANGED\x20original\x20text\x20fragment.\x20Do\x20not\x20fix\x20anything\x20in\x20this\x20field.\x0a\x09\x09-\x20\x22suggestion\x22:\x20Your\x20suggested\x20replacement\x20for\x20the\x20fragment.\x0a\x09\x09\x09*\x20Ensure\x20it\x20aligns\x20with\x20the\x20user\x27s\x20criteria.\x0a\x09\x09\x09*\x20Maintain\x20coherence\x20with\x20surrounding\x20text.\x0a\x09\x09-\x20\x22reason\x22:\x20Clear\x20explanation\x20of\x20why\x20this\x20fragment\x20matches\x20the\x20criteria;\x20IF\x20the\x20user\x27s\x20request\x20contains\x20words\x20like\x20\x22source\x22,\x20\x22reference\x22,\x20\x22link\x22,\x20\x22cite\x22,\x20\x22website\x22,\x20\x22URL\x22,\x20\x22Wikipedia\x22,\x20\x22proof\x22,\x20\x22evidence\x22,\x20\x22verify\x22\x20-\x20then\x20you\x20MUST\x20include\x20actual\x20working\x20links\x20in\x20your\x20explanations\x20in\x20html\x20format.\x0a\x09\x09-\x20\x22difference\x22:\x20\x20The\x20difference\x20between\x20origin\x20and\x20suggestion\x20in\x20html\x20format.\x0a\x09\x09-\x20\x22paragraph\x22:\x20Paragraph\x20number\x20where\x20the\x20fragment\x20is\x20found\x20(0-based\x20index)\x0a\x09\x09-\x20\x22occurrence\x22:\x20Which\x20occurrence\x20of\x20this\x20sentence\x20if\x20it\x20appears\x20multiple\x20times\x20(1\x20for\x20first,\x202\x20for\x20second,\x20etc.)\x0a\x09\x09-\x20\x22confidence\x22:\x20Value\x20between\x200\x20and\x201\x20indicating\x20certainty\x20(1.0\x20=\x20completely\x20certain,\x200.5\x20=\x20uncertain)\x0a\x09\x20\x20\x0a\x20\x20\x20\x20\x20\x20CRITICAL:\x20Rules\x20for\x20the\x20\x22difference\x22\x20field:\x0a\x20\x20\x20\x20\x20\x20\x20\x20-\x20Format:\x20\x22original\x20→\x20corrected\x22,\x20you\x20need\x20to\x20leave\x20only\x20\x22corrected\x22,\x20never\x20show\x20the\x20\x22original\x22\x0a\x20\x20\x20\x20\x20\x20\x20\x20-\x20\x22<strong>\x22\x20for\x20added\x20characters\x20-\x20use\x20for\x20the\x20corrected\x20version\x0a\x20\x20\x20\x20\x20\x20\x20\x20-\x20Show\x20exact\x20character-level\x20changes\x0a\x0a\x09\x20\x20CRITICAL:\x0a\x09\x09-\x20Output\x20should\x20be\x20in\x20the\x20exact\x20this\x20format\x0a\x09\x09-\x20No\x20any\x20comments\x20are\x20allowed\x0a\x0a\x09\x20\x20CRITICAL\x20-\x20Output\x20Format:\x0a\x09\x09-\x20Return\x20ONLY\x20the\x20raw\x20JSON\x20array,\x20nothing\x20else\x0a\x09\x09-\x20DO\x20NOT\x20wrap\x20the\x20response\x20in\x20markdown\x20code\x20blocks\x20(no\x20```json\x20or\x20```)\x0a\x09\x09-\x20DO\x20NOT\x20include\x20any\x20explanatory\x20text\x20before\x20or\x20after\x20the\x20JSON\x0a\x09\x09-\x20DO\x20NOT\x20use\x20escaped\x20newlines\x20(\x5cn)\x20-\x20return\x20the\x20JSON\x20on\x20a\x20single\x20line\x20if\x20possible\x0a\x09\x09-\x20The\x20response\x20should\x20start\x20with\x20[\x20and\x20end\x20with\x20]\x0a\x09\x20\x20';return _0x58d89e+='\x0a\x0aUSER\x20REQUEST:\x0a```'+this['assistantData']['query']+'\x0a```\x0a\x0a',_0x58d89e+='TEXT\x20TO\x20ANALYZE:\x0a```\x0a'+_0x56121a+'\x0a```\x0a\x0a',_0x58d89e+='Please\x20analyze\x20this\x20text\x20and\x20find\x20all\x20fragments\x20that\x20match\x20the\x20user\x27s\x20request.\x20Be\x20thorough\x20but\x20precise.',_0x58d89e;},'getInfoForPopup':function(_0x3c56ea,_0xbde788){let _0x419112=this['getAnnotation'](_0x3c56ea,_0xbde788),_0xbfb0fc=_0x419112['reason'];try{_0xbfb0fc=_0xbfb0fc['replace'](/<a\s+(.*?)>/gi,'<a\x20$1\x20target=\x22_blank\x22>');}catch(_0x22dd8d){console['error'](_0x22dd8d);}let _0x4a5d9c=_0x419112['difference'];return _0x4a5d9c['indexOf']('</strong>')===-0x1&&(_0x4a5d9c='<strong>'+_0x4a5d9c+'</strong>'),{'original':_0x419112['original'],'suggested':_0x4a5d9c,'explanation':_0xbfb0fc,'type':this['type']};},'onAccept':async function(_0x3708d0,_0x1fa595){await CustomAnnotator['prototype']['onAccept']['call'](this,_0x3708d0,_0x1fa595);let _0x3e1bff=this['getAnnotation'](_0x3708d0,_0x1fa595)['suggestion'];await Asc['Editor']['callMethod']('StartAction',['GroupActions']);let _0x16110c=this['getAnnotationRangeObj'](_0x3708d0,_0x1fa595);await Asc['Editor']['callMethod']('SelectAnnotationRange',[_0x16110c]),Asc['scope']['text']=_0x3e1bff,await Asc['Editor']['callCommand'](function(){Api['ReplaceTextSmart']([Asc['scope']['text']]),Api['GetDocument']()['RemoveSelection']();}),await Asc['Editor']['callMethod']('RemoveAnnotationRange',[_0x16110c]),await Asc['Editor']['callMethod']('EndAction',['GroupActions']),await Asc['Editor']['callMethod']('FocusEditor');}});
+/// <reference path="./custom-annotator.js" />
+/// <reference path="./types.js" />
+
+/**
+ * @param {localStorageCustomAssistantItem} assistantData
+ * @constructor
+ * @extends CustomAnnotator
+ */
+function AssistantReplaceHint(annotationPopup, assistantData) {
+    CustomAnnotator.call(this, annotationPopup, assistantData);
+}
+AssistantReplaceHint.prototype = Object.create(CustomAnnotator.prototype);
+AssistantReplaceHint.prototype.constructor = AssistantReplaceHint;
+
+Object.assign(AssistantReplaceHint.prototype, {
+    /**
+     * @param {string} text
+     * @param {ReplaceHintAiResponse[]} matches
+     */
+    _convertToRanges: function (paraId, text, matches) {
+        const _t = this;
+        let rangeId = 1;
+        const ranges = [];
+        for (const {
+            origin,
+            suggestion,
+            difference,
+            reason,
+            paragraph,
+            occurrence,
+            confidence,
+        } of matches) {
+            if (origin === suggestion || confidence <= 0.7) continue;
+
+            let count = 0;
+            let searchStart = 0;
+
+            while (searchStart < text.length) {
+                const index = _t.simpleGraphemeIndexOf(
+                    text,
+                    origin,
+                    searchStart,
+                );
+                if (index === -1) break;
+
+                count++;
+                if (count === occurrence) {
+                    ranges.push({
+                        start: index,
+                        length: [...origin].length,
+                        id: rangeId,
+                    });
+                    if (difference.indexOf(origin + " → ") === 0) {
+                        difference = difference.slice(
+                            origin.length + 3,
+                        );
+                    }
+                    _t.paragraphs[paraId][rangeId] = {
+                        original: origin,
+                        suggestion: suggestion,
+                        difference: difference,
+                        reason: reason,
+                    };
+                    ++rangeId;
+                    break;
+                }
+                searchStart = index + 1;
+            }
+        }
+        return ranges;
+    },
+
+    /**
+     * @param {string} text
+     * @returns {string}
+     */
+    _createPrompt: function (text) {
+        let prompt = `You are a multi-disciplinary text analysis and transformation assistant.
+	  Your task is to analyze text based on user's specific criteria and provide intelligent corrections.
+	
+	  MANDATORY RULES:
+		1. UNDERSTAND the user's intent from their criteria.
+		2. Find words, phrases, or sentences that match the user's criteria.
+		3. For EACH match you find:
+		  - Provide the exact quote.
+		  - SUGGEST appropriate replacements.
+		  - Explain WHY it matches the criteria.
+		  - Provide position information (paragraph number).
+		4. If no matches are found, return an empty array: [].
+		5. Format your response STRICTLY in JSON format.
+		6. Support multiple languages (English, Russian, etc.)
+
+	  Response format - return ONLY this JSON array with no additional text:
+		[
+		  {
+			"origin": "exact text fragment that matches the query",
+      		"suggestion": "suggested replacement (plain text)",
+			"reason": "detailed explanation why it matches the criteria",
+   			"difference":"visual representation showing exact changes between origin and suggestion",
+			"paragraph": paragraph_number,
+			"occurrence": 1,
+			"confidence": 0.95
+		  }
+		]
+
+	  Guidelines for each field:
+		- "origin": EXACT UNCHANGED original text fragment. Do not fix anything in this field.
+		- "suggestion": Your suggested replacement for the fragment.
+			* Ensure it aligns with the user's criteria.
+			* Maintain coherence with surrounding text.
+		- "reason": Clear explanation of why this fragment matches the criteria; IF the user's request contains words like "source", "reference", "link", "cite", "website", "URL", "Wikipedia", "proof", "evidence", "verify" - then you MUST include actual working links in your explanations in html format.
+		- "difference":  The difference between origin and suggestion in html format.
+		- "paragraph": Paragraph number where the fragment is found (0-based index)
+		- "occurrence": Which occurrence of this sentence if it appears multiple times (1 for first, 2 for second, etc.)
+		- "confidence": Value between 0 and 1 indicating certainty (1.0 = completely certain, 0.5 = uncertain)
+	  
+      CRITICAL: Rules for the "difference" field:
+        - Format: "original → corrected", you need to leave only "corrected", never show the "original"
+        - "<strong>" for added characters - use for the corrected version
+        - Show exact character-level changes
+
+	  CRITICAL:
+		- Output should be in the exact this format
+		- No any comments are allowed
+
+	  CRITICAL - Output Format:
+		- Return ONLY the raw JSON array, nothing else
+		- DO NOT wrap the response in markdown code blocks (no \`\`\`json or \`\`\`)
+		- DO NOT include any explanatory text before or after the JSON
+		- DO NOT use escaped newlines (\\n) - return the JSON on a single line if possible
+		- The response should start with [ and end with ]
+	  `;
+        prompt +=
+            "\n\nUSER REQUEST:\n```" + this.assistantData.query + "\n```\n\n";
+
+        prompt += "TEXT TO ANALYZE:\n```\n" + text + "\n```\n\n";
+
+        prompt += `Please analyze this text and find all fragments that match the user's request. Be thorough but precise.`;
+
+        return prompt;
+    },
+
+    /**
+     * @param {string} paraId
+     * @param {string} rangeId
+     * @returns {ReplaceHintInfoForPopup}
+     */
+    getInfoForPopup: function (paraId, rangeId) {
+        let _s = this.getAnnotation(paraId, rangeId);
+        let reason = _s["reason"];
+        try {
+            reason = reason.replace(/<a\s+(.*?)>/gi, '<a $1 target="_blank">');
+        } catch (e) {
+            console.error(e);
+        }
+        let suggested = _s["difference"];
+        if (suggested.indexOf('</strong>') === -1) {
+            suggested = `<strong>${suggested}</strong>`;
+        }
+        return {
+            original: _s["original"],
+            suggested: suggested,
+            explanation: reason,
+            type: this.type,
+        };
+    },
+
+    /**
+     * @param {string} paraId
+     * @param {string} rangeId
+     */
+    onAccept: async function (paraId, rangeId) {
+        await CustomAnnotator.prototype.onAccept.call(this, paraId, rangeId);
+        let text = this.getAnnotation(paraId, rangeId)["suggestion"];
+
+        await Asc.Editor.callMethod("StartAction", ["GroupActions"]);
+
+        let range = this.getAnnotationRangeObj(paraId, rangeId);
+        await Asc.Editor.callMethod("SelectAnnotationRange", [range]);
+
+        Asc.scope.text = text;
+        await Asc.Editor.callCommand(function () {
+            Api.ReplaceTextSmart([Asc.scope.text]);
+            Api.GetDocument().RemoveSelection();
+        });
+
+        await Asc.Editor.callMethod("RemoveAnnotationRange", [range]);
+        await Asc.Editor.callMethod("EndAction", ["GroupActions"]);
+        await Asc.Editor.callMethod("FocusEditor");
+    },
+});

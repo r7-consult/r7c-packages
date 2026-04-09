@@ -54,6 +54,10 @@
         return root.platform && root.platform.webTools ? root.platform.webTools : null;
     }
 
+    function getHostToolsClient() {
+        return root.platform && root.platform.hostTools ? root.platform.hostTools : null;
+    }
+
     function getImageBridge() {
         return root.platform && root.platform.image ? root.platform.image : null;
     }
@@ -84,6 +88,16 @@
 
     function getUi() {
         return root.ui || {};
+    }
+
+    function isAbortLikeError(error) {
+        var name = String(error && error.name || '');
+        var message = String(error && error.message || error || '');
+        return name === 'AbortError' || /abort|aborted|cancelled|canceled/i.test(message);
+    }
+
+    function isRuntimeClosing() {
+        return !!(root.runtime && root.runtime.lifecycle && root.runtime.lifecycle.isClosing === true);
     }
 
     function getErrorTools() {
@@ -166,16 +180,18 @@
             'Do NOT use ASCII art or text drawings unless the user explicitly requests "ASCII art" or "text-based drawing". ' +
             'Describe what you are generating and then output the command on a new line.';
 
+        var languagePolicy = 'Most users are from Russia/CIS. Default response language is Russian. If the user explicitly requests another language, switch to that language.';
+
         if (editorType === 'word') {
-            return 'You are a word document assistant. You can analyze and rewrite text. ' + skillDescription + ' Answer in ' + language + '.';
+            return 'You are an assistant running inside the {r7c}.ChatLLM plugin in the R7 Office word processor. Help the user with document work in the active R7 Office environment. You can analyze and rewrite text. If native host tools are available, prefer them for simple high-level editor operations before inventing custom macros. ' + skillDescription + ' ' + languagePolicy + ' UI language: ' + language + '.';
         }
         if (editorType === 'cell') {
-            return 'You are an R7 Office Spreadsheet assistant (ONLYOFFICE-compatible API alias). Use R7 terminology and methods first. For spreadsheet operations, use the macro-runner workflow. ' + skillDescription + ' Answer in ' + language + '.';
+            return 'You are an assistant running inside the {r7c}.ChatLLM plugin in the R7 Office spreadsheet editor. Help the user with spreadsheet work in the active R7 Office environment. Use R7 terminology and methods first. If native host tools are available, prefer them for simple high-level spreadsheet actions before inventing custom macros. For spreadsheet operations, use the macro-runner workflow when a native tool is not sufficient. When the user asks about what is on the sheet, current values, rows, columns, headers, formulas, or table contents, use the predefined spreadsheet read path such as read_active_sheet, read_sheet_range, or list_sheets instead of inventing a read macro. ' + skillDescription + ' ' + languagePolicy + ' UI language: ' + language + '.';
         }
         if (editorType === 'slide') {
-            return 'You are a good slide assistant, you have the ability to get the outline of a topic and more. ' + skillDescription + ' Answer in ' + language + '.';
+            return 'You are a good slide assistant, you have the ability to get the outline of a topic and more. ' + skillDescription + ' ' + languagePolicy + ' UI language: ' + language + '.';
         }
-        return 'You are a good assistant. ' + skillDescription + ' Answer in ' + language + '.';
+        return 'You are a good assistant. ' + skillDescription + ' ' + languagePolicy + ' UI language: ' + language + '.';
     }
 
     function startChat(request) {
@@ -325,6 +341,7 @@
     }
 
     function pushAssistantMessage(message, runContainer, pin) {
+        if (isRuntimeClosing()) return null;
         if (getUi().displayMessage) {
             return getUi().displayMessage(message, 'assistant', pin === true, runContainer);
         }
@@ -345,6 +362,7 @@
     }
 
     function finalizeAssistantResponse(responseText, runContainer, warningText) {
+        if (isRuntimeClosing()) return '';
         var response = normalizeResponseText(responseText || '');
         var warning = normalizeResponseText(warningText || '');
         var combined = warning ? (warning + (response ? '\n\n' + response : '')) : response;
@@ -358,11 +376,59 @@
 
     function buildChatConfig() {
         var runtimeSettings = loadRuntimeSettings();
+        var providerId = String(runtimeSettings.activeProvider || runtimeSettings.provider || 'openrouter').trim().toLowerCase() || 'openrouter';
+        var service = getSettingsService();
+        var providerConfig = service && typeof service.getProviderConfig === 'function'
+            ? service.getProviderConfig(runtimeSettings, providerId)
+            : {};
         return {
-            provider: runtimeSettings.activeProvider || runtimeSettings.provider || 'openrouter',
-            model: runtimeSettings.model || constants().defaultModel,
+            provider: providerId,
+            activeProvider: providerId,
+            model: providerConfig && providerConfig.model ? providerConfig.model : (runtimeSettings.model || constants().defaultModel),
+            reasoningEffort: providerConfig && providerConfig.reasoningEffort ? providerConfig.reasoningEffort : 'medium',
             temperature: 0.5
         };
+    }
+
+    function shouldShowModelReasoningInTrace(runtimeSettings) {
+        var settings = runtimeSettings && typeof runtimeSettings === 'object' ? runtimeSettings : loadRuntimeSettings();
+        return !(settings && settings.trace && settings.trace.showModelReasoning === false);
+    }
+
+    function resolveReasoningFromResponse(config, providers, responseResult, rawPayload) {
+        if (responseResult && responseResult.reasoning && responseResult.reasoning.available) {
+            return responseResult.reasoning;
+        }
+        if (!rawPayload || !providers || typeof providers.normalizeResponse !== 'function') return null;
+        try {
+            var normalized = providers.normalizeResponse(config && config.provider ? config.provider : 'openrouter', rawPayload, config || {});
+            return normalized && normalized.reasoning ? normalized.reasoning : null;
+        } catch (error) {
+            return null;
+        }
+    }
+
+    function addModelReasoningTrace(config, providers, responseResult, rawPayload, durationMs, runtimeSettings) {
+        if (!shouldShowModelReasoningInTrace(runtimeSettings)) return;
+        var agent = getAgentService();
+        if (!agent || typeof agent.addTraceRecord !== 'function') return;
+        var reasoning = resolveReasoningFromResponse(config, providers, responseResult, rawPayload);
+        var summary = reasoning && reasoning.summary ? String(reasoning.summary).replace(/\s+/g, ' ').trim() : '';
+        if (!reasoning || reasoning.available !== true || !summary) return;
+        if (summary.length > 320) summary = summary.slice(0, 317) + '...';
+        var effort = reasoning && reasoning.effort ? String(reasoning.effort).trim().toLowerCase() : '';
+        var tokens = reasoning && reasoning.tokens !== undefined ? Number(reasoning.tokens) : undefined;
+        agent.addTraceRecord({
+            step_id: 'chat_reasoning_' + Date.now(),
+            step_type: 'model_reasoning',
+            status: 'info',
+            reason: tr('Model thinking (summary): ') + summary,
+            reasoning_summary: summary,
+            reasoning_effort: effort,
+            reasoning_tokens: Number.isFinite(tokens) ? tokens : undefined,
+            provider: config && config.provider ? config.provider : 'openrouter',
+            duration_ms: Math.max(0, Number(durationMs || 0))
+        });
     }
 
     function getActiveConversationHistory() {
@@ -391,12 +457,14 @@
     function shouldUseWebToolLoop(options) {
         var settings = loadRuntimeSettings();
         var webTools = getWebToolsBridge();
+        var hostTools = getHostToolsClient();
         var toolLoop = getToolLoop();
+        var hasWebTools = !!(webTools && typeof webTools.isEnabled === 'function' && webTools.isEnabled(settings));
+        var hasHostTools = !!(hostTools && typeof hostTools.isEnabled === 'function' && hostTools.isEnabled(settings));
         return !!(options && options.allowTools === true &&
             String(settings.activeProvider || settings.provider || '').toLowerCase() === 'openrouter' &&
             toolLoop && typeof toolLoop.run === 'function' &&
-            webTools && typeof webTools.isEnabled === 'function' &&
-            webTools.isEnabled(settings));
+            (hasWebTools || hasHostTools));
     }
 
     function chatRequest(request, runContainer, options) {
@@ -405,7 +473,9 @@
             throw new Error('Provider registry is unavailable');
         }
         startChat(request);
+        var runtimeSettings = loadRuntimeSettings();
         var config = buildChatConfig();
+        var requestStartedAt = Date.now();
 
         chatState().abortController = new AbortController();
 
@@ -416,13 +486,17 @@
                 systemMessage: getSystemMessage(),
                 config: config,
                 signal: chatState().abortController.signal,
-                runtimeSettings: loadRuntimeSettings()
+                runtimeSettings: runtimeSettings
             }).then(function (result) {
+                addModelReasoningTrace(config, providers, null, result && result.raw ? result.raw : null, Date.now() - requestStartedAt, runtimeSettings);
                 var safeResponseText = finalizeAssistantResponse(result && result.response, runContainer, result && result.warning);
                 endChat();
                 return { response: safeResponseText };
             }).catch(function (error) {
                 endChat();
+                if (isAbortLikeError(error) || isRuntimeClosing()) {
+                    return { response: '' };
+                }
                 pushAssistantMessage(buildProviderErrorMessage(error), runContainer, true);
                 throw error;
             });
@@ -450,6 +524,7 @@
                         });
                 }
 
+                addModelReasoningTrace(config, providers, resultOrReader, null, Date.now() - requestStartedAt, runtimeSettings);
                 var safeResponseText = finalizeAssistantResponse(
                     resultOrReader && resultOrReader.data && resultOrReader.data[0] ? resultOrReader.data[0].content : '',
                     runContainer
@@ -459,6 +534,9 @@
             })
             .catch(function (error) {
                 endChat();
+                if (isAbortLikeError(error) || isRuntimeClosing()) {
+                    return { response: '' };
+                }
                 pushAssistantMessage(buildProviderErrorMessage(error), runContainer, true);
                 throw error;
             });
@@ -551,6 +629,40 @@
 
         chatState().lastRequest = null;
         if (!text.length && !attachments.length) return Promise.resolve(null);
+
+        if (agent && typeof agent.isAwaitingPlanApproval === 'function' && agent.isAwaitingPlanApproval()) {
+            if (attachments.length) {
+                if (ui && typeof ui.showThreadToast === 'function') {
+                    ui.showThreadToast(tr('Finish plan approval first. Use the next text message to edit the plan or approve it from the plan card.'), { kind: 'error', durationMs: 3200 });
+                }
+                return Promise.resolve({ sent: false, reason: 'plan_approval_pending' });
+            }
+            if (!text.length) {
+                return Promise.resolve({ sent: false, reason: 'empty_plan_revision' });
+            }
+            var pendingRunContainer = agent.getState && agent.getState().currentRunContainer
+                ? agent.getState().currentRunContainer
+                : (ui.createRunContainer ? ui.createRunContainer() : null);
+            var isApprovalMessage = typeof agent.isPlanApprovalMessage === 'function' && agent.isPlanApprovalMessage(text);
+            ui.displayMessage(text, 'user', false, pendingRunContainer);
+            if (ui.clearComposerAttachments) ui.clearComposerAttachments();
+            if (ui.clearPlanRevisionPrompt) ui.clearPlanRevisionPrompt();
+            if (threadStore && typeof threadStore.replaceDraft === 'function') {
+                var pendingThread = threadStore.getActiveThread ? threadStore.getActiveThread() : null;
+                if (pendingThread) {
+                    threadStore.replaceDraft(pendingThread.id, '');
+                }
+            }
+            if (isApprovalMessage && typeof agent.approvePendingPlan === 'function') {
+                return Promise.resolve(agent.approvePendingPlan()).then(function (result) {
+                    return { sent: true, response: result, reason: 'plan_approved' };
+                });
+            }
+            return Promise.resolve(agent.revisePendingPlan(text)).then(function (result) {
+                return { sent: true, response: result, reason: 'plan_revised' };
+            });
+        }
+
         if (imageAttachments.length && (!capabilities || capabilities.supportsVision !== true)) {
             if (ui && typeof ui.showThreadToast === 'function') {
                 ui.showThreadToast(tr('The selected model does not support image input. Choose a vision-capable model and try again.'), { kind: 'error', durationMs: 3200 });
@@ -571,8 +683,11 @@
         if (ui.clearComposerAttachments) ui.clearComposerAttachments();
         if (ui.renderThreadHeader) ui.renderThreadHeader();
         if (ui.renderThreadList) ui.renderThreadList();
-        if (!text.length && attachments.length && !imageAttachments.length) {
-            return Promise.resolve({ sent: true, reason: 'attachments_only' });
+        
+        // If message has no text but has attachments, provide a default intent for the agent/LLM
+        var effectiveText = text;
+        if (!effectiveText.trim() && attachments.length) {
+            effectiveText = 'Проанализируй прикрепленные файлы';
         }
 
         if (!checkApiKey(true)) {
@@ -581,19 +696,19 @@
         }
 
         if (agent && typeof agent.shouldUseMacroRunner === 'function' && agent.shouldUseMacroRunner() && !imageAttachments.length) {
-            return agent.run(text, runContainer).then(function (result) {
+            return agent.run(effectiveText, runContainer).then(function (result) {
                 return { sent: true, response: result };
             });
         }
 
-        if (text.toLowerCase().indexOf('/draw ') === 0) {
-            return generateImageFromText(text.substring(6).trim(), runContainer).then(function (result) {
+        if (effectiveText.toLowerCase().indexOf('/draw ') === 0) {
+            return generateImageFromText(effectiveText.substring(6).trim(), runContainer).then(function (result) {
                 return { sent: true, response: result };
             });
         }
 
         if (context && typeof context.prepareRequestWithContext === 'function') {
-            return context.prepareRequestWithContext(getActiveConversationHistory(), text)
+            return context.prepareRequestWithContext(getActiveConversationHistory(), effectiveText)
                 .then(function (request) { return chatRequest(request, runContainer, { allowTools: !imageAttachments.length }); })
                 .catch(function () { return chatRequest(context.cloneMessages(getActiveConversationHistory()), runContainer, { allowTools: !imageAttachments.length }); })
                 .then(function (result) {
@@ -601,7 +716,7 @@
                 });
         }
 
-        if (!text.length && attachments.length && imageAttachments.length) {
+        if (!effectiveText.trim() && attachments.length && imageAttachments.length) {
             return chatRequest(getActiveConversationHistory(), runContainer, { allowTools: false }).then(function (result) {
                 return { sent: true, response: result };
             });

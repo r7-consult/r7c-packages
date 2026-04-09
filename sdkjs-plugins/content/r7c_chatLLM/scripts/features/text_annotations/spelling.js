@@ -1,1 +1,265 @@
-function SpellChecker(_0x145f8d){TextAnnotator['call'](this,_0x145f8d),this['type']=0x0;}SpellChecker['prototype']=Object['create'](TextAnnotator['prototype']),SpellChecker['prototype']['constructor']=SpellChecker,SpellChecker['prototype']['annotateParagraph']=async function(_0x53b758,_0x420494,_0x377784){this['paragraphs'][_0x53b758]={};if(_0x377784['length']===0x0)return![];let _0x2b5bec='You\x20are\x20a\x20spellcheck\x20corrector.\x20I\x20will\x20provide\x20text\x20that\x20may\x20contain\x20spelling\x20errors\x20in\x20any\x20language.\x20Your\x20task\x20is\x20to\x20identify\x20ALL\x20spelling\x20mistakes\x20and\x20return\x20ONLY\x20the\x20corrections\x20in\x20the\x20following\x20JSON\x20format:\x0a\x0a[\x0a\x20\x20{\x22wrong\x22:\x20\x22misspelledWord\x22,\x20\x22correct\x22:\x20\x22correctWord\x22,\x20\x22occurrence\x22:\x201,\x20\x22confidence\x22:\x20\x22high\x22},\x0a\x20\x20...\x0a]\x0a\x0aRules:\x0a-\x20\x22wrong\x22:\x20the\x20exact\x20misspelled\x20word\x20as\x20it\x20appears\x20in\x20the\x20text\x0a-\x20\x22correct\x22:\x20the\x20correctly\x20spelled\x20replacement\x0a-\x20\x22occurrence\x22:\x20which\x20occurrence\x20of\x20this\x20word\x20if\x20it\x20appears\x20multiple\x20times\x20(1\x20for\x20first,\x202\x20for\x20second,\x20etc.)\x0a-\x20\x22confidence\x22:\x20how\x20certain\x20you\x20are\x20this\x20is\x20a\x20misspelling\x0a\x20\x20*\x20\x22high\x22\x20-\x20definitely\x20misspelled,\x20no\x20valid\x20alternative\x20meaning\x0a\x20\x20*\x20\x22medium\x22\x20-\x20likely\x20misspelled\x20in\x20this\x20context,\x20but\x20could\x20be\x20valid\x20elsewhere\x0a\x20\x20*\x20\x22low\x22\x20-\x20uncertain,\x20highly\x20context-dependent\x0a-\x20Return\x20an\x20empty\x20array\x20[]\x20if\x20there\x20are\x20no\x20errors\x0a-\x20Return\x20an\x20empty\x20array\x20[]\x20if\x20the\x20text\x20is\x20completely\x20unintelligible\x20or\x20a\x20complete\x20mess\x0a-\x20Support\x20multiple\x20languages\x20(English,\x20Russian,\x20etc.)\x0a\x0aCRITICAL\x0a-\x20Ouput\x20should\x20be\x20in\x20the\x20exact\x20this\x20format\x0a-\x20No\x20any\x20comments\x20are\x20allowed\x0a\x0aCRITICAL\x20-\x20Word\x20Boundaries\x20(MOST\x20IMPORTANT):\x0a-\x20ONLY\x20match\x20complete,\x20standalone\x20words\x20separated\x20by\x20spaces,\x20punctuation,\x20or\x20at\x20the\x20start/end\x20of\x20text\x0a-\x20DO\x20NOT\x20match\x20letters\x20or\x20substrings\x20that\x20are\x20PART\x20of\x20other\x20words\x0a-\x20A\x20word\x20is\x20bounded\x20by:\x20spaces,\x20punctuation\x20(.,!?;:),\x20quotes,\x20or\x20start/end\x20of\x20text\x0a-\x20Examples\x20of\x20what\x20NOT\x20to\x20match:\x0a\x20\x20*\x20\x22r\x22\x20in\x20\x22letter\x22\x20-\x20NO!\x20\x22r\x22\x20is\x20part\x20of\x20the\x20word\x20\x22letter\x22\x0a\x20\x20*\x20\x22r\x22\x20in\x20\x22great\x22\x20-\x20NO!\x20\x22r\x22\x20is\x20part\x20of\x20the\x20word\x20\x22great\x22\x0a\x20\x20*\x20\x22te\x22\x20in\x20\x22letter\x22\x20-\x20NO!\x20\x22te\x22\x20is\x20part\x20of\x20the\x20word\x20\x22letter\x22\x0a-\x20Examples\x20of\x20what\x20TO\x20match:\x0a\x20\x20*\x20\x22r\x22\x20in\x20\x22r\x20u\x20sure\x22\x20-\x20YES!\x20\x22r\x22\x20is\x20a\x20standalone\x20word\x0a\x20\x20*\x20\x22te\x22\x20in\x20\x22What\x20te\x20problem\x22\x20-\x20YES!\x20\x22te\x22\x20is\x20a\x20standalone\x20word\x0a\x0aCRITICAL\x20-\x20Handling\x20same\x20word\x20with\x20different\x20meanings:\x0aIf\x20the\x20same\x20word\x20appears\x20multiple\x20times\x20but\x20only\x20some\x20occurrences\x20are\x20misspelled:\x0a-\x20ONLY\x20include\x20the\x20misspelled\x20occurrences\x0a-\x20Use\x20the\x20\x22occurrence\x22\x20number\x20to\x20specify\x20which\x20instance\x0a\x0aExample\x20showing\x20word\x20boundaries:\x0aInput:\x20\x22The\x20letter\x20r.\x20r\x20u\x20sure\x20about\x20it?\x22\x0aExplanation:\x0a-\x20\x22letter\x22\x20-\x20correct\x20word,\x20don\x27t\x20touch\x20it\x0a-\x20\x22r.\x22\x20-\x20this\x20is\x20the\x20standalone\x20letter\x20r\x0a-\x20\x22r\x20u\x22\x20-\x20this\x20\x22r\x22\x20is\x20a\x20standalone\x20word\x20(misspelled,\x20should\x20be\x20\x22are\x22)\x0aOutput:\x20[\x0a\x20\x20{\x22wrong\x22:\x20\x22r\x22,\x20\x22correct\x22:\x20\x22are\x22,\x20\x22occurrence\x22:\x202,\x20\x22confidence\x22:\x20\x22medium\x22},\x0a\x20\x20{\x22wrong\x22:\x20\x22u\x22,\x20\x22correct\x22:\x20\x22you\x22,\x20\x22occurrence\x22:\x201,\x20\x22confidence\x22:\x20\x22medium\x22}\x0a]\x0aNote:\x20The\x20first\x20standalone\x20\x22r\x22\x20(after\x20\x22letter\x22)\x20is\x20correct.\x20The\x20second\x20standalone\x20\x22r\x22\x20(in\x20\x22r\x20u\x22)\x20is\x20misspelled.\x0a\x0aExample\x20with\x20substring\x20trap:\x0aInput:\x20\x22Great!\x20r\x20u\x20coming?\x22\x0aOutput:\x20[\x0a\x20\x20{\x22wrong\x22:\x20\x22r\x22,\x20\x22correct\x22:\x20\x22are\x22,\x20\x22occurrence\x22:\x201,\x20\x22confidence\x22:\x20\x22medium\x22},\x0a\x20\x20{\x22wrong\x22:\x20\x22u\x22,\x20\x22correct\x22:\x20\x22you\x22,\x20\x22occurrence\x22:\x201,\x20\x22confidence\x22:\x20\x22medium\x22}\x0a]\x0aNote:\x20The\x20\x22r\x22\x20in\x20\x22Great\x22\x20is\x20NOT\x20matched\x20because\x20it\x27s\x20part\x20of\x20the\x20word\x20\x22Great\x22,\x20not\x20a\x20standalone\x20word.\x0a\x0aCRITICAL\x20-\x20Completeness:\x0a-\x20Find\x20and\x20include\x20EVERY\x20misspelled\x20standalone\x20word\x20in\x20the\x20text\x0a-\x20If\x20the\x20same\x20misspelled\x20word\x20appears\x20multiple\x20times,\x20create\x20separate\x20entries\x0a-\x20Single-letter\x20standalone\x20words\x20can\x20be\x20misspellings\x20(e.g.,\x20standalone\x20\x22r\x22\x20→\x20\x22are\x22,\x20standalone\x20\x22u\x22\x20→\x20\x22you\x22)\x0a\x0aCRITICAL\x20-\x20What\x20NOT\x20to\x20include:\x0a-\x20DO\x20NOT\x20include\x20letters\x20or\x20substrings\x20within\x20other\x20words\x0a-\x20DO\x20NOT\x20include\x20entries\x20where\x20\x22wrong\x22\x20and\x20\x22correct\x22\x20are\x20identical\x0a-\x20ONLY\x20include\x20actual\x20spelling\x20mistakes\x20that\x20are\x20standalone\x20words\x0a\x0aCRITICAL\x20-\x20Output\x20Format:\x0a-\x20Return\x20ONLY\x20the\x20raw\x20JSON\x20array,\x20nothing\x20else\x0a-\x20DO\x20NOT\x20wrap\x20the\x20response\x20in\x20markdown\x20code\x20blocks\x20(no\x20```json\x20or\x20```)\x0a-\x20DO\x20NOT\x20include\x20any\x20explanatory\x20text\x20before\x20or\x20after\x20the\x20JSON\x0a-\x20DO\x20NOT\x20use\x20escaped\x20newlines\x20(\x5cn)\x20-\x20return\x20the\x20JSON\x20on\x20a\x20single\x20line\x20if\x20possible\x0a-\x20The\x20response\x20should\x20start\x20with\x20[\x20and\x20end\x20with\x20]\x0a\x0aCorrect\x20output\x20format:\x0a[{\x22wrong\x22:\x20\x22Hlo\x22,\x20\x22correct\x22:\x20\x22Hello\x22,\x20\x22occurrence\x22:\x201,\x20\x22confidence\x22:\x20\x22high\x22}]\x0a\x0aIncorrect\x20output\x20formats\x20(DO\x20NOT\x20USE):\x0a```json\x0a[{\x22wrong\x22:\x20\x22Hlo\x22,\x20\x22correct\x22:\x20\x22Hello\x22}]\x0a```\x0a\x0aExample\x20(no\x20errors):\x0aInput:\x20\x22The\x20quick\x20brown\x20fox\x20jumps\x20over\x20the\x20lazy\x20dog.\x22\x0aOutput:\x20[]\x0aText\x20to\x20check:';_0x2b5bec+=_0x377784;let _0x6da6e4=await this['chatRequest'](_0x2b5bec);if(!_0x6da6e4)return![];let _0x44f2b7=0x1,_0x42e3ae=[],_0x4ab6e7=this;function _0x455741(_0xa2c1b6,_0x16e97a){for(const {wrong:_0x4c6971,correct:_0x2f8de4,occurrence:_0x645e88}of _0x16e97a){if(_0x4c6971===_0x2f8de4)continue;let _0x4ee7f6=0x0,_0x33b4fc=0x0;while(_0x33b4fc<_0xa2c1b6['length']){const _0x51239c=_0x4ab6e7['simpleGraphemeIndexOf'](_0xa2c1b6,_0x4c6971,_0x33b4fc);if(_0x51239c===-0x1)break;const _0x16b94d=_0x51239c===0x0||_0x4ab6e7['_isWordBoundary'](_0xa2c1b6[_0x51239c-0x1]),_0x3311ce=_0x51239c+_0x4c6971['length']===_0xa2c1b6['length']||_0x4ab6e7['_isWordBoundary'](_0xa2c1b6[_0x51239c+_0x4c6971['length']]);if(_0x16b94d&&_0x3311ce){_0x4ee7f6++;if(_0x4ee7f6===_0x645e88){_0x42e3ae['push']({'start':_0x51239c,'length':[..._0x4c6971]['length'],'id':_0x44f2b7}),_0x4ab6e7['paragraphs'][_0x53b758][_0x44f2b7]={'suggested':_0x2f8de4,'original':_0x4c6971},++_0x44f2b7;break;}}_0x33b4fc=_0x51239c+0x1;}}}try{_0x455741(_0x377784,JSON['parse'](_0x6da6e4));let _0x5b8fd5={'type':'highlightText','paragraphId':_0x53b758,'name':'spelling','recalcId':_0x420494,'ranges':_0x42e3ae};await Asc['Editor']['callMethod']('AnnotateParagraph',[_0x5b8fd5]);}catch(_0xf9ce4f){}},SpellChecker['prototype']['getInfoForPopup']=function(_0x29d6f9,_0x4afaab){let _0x38d5e9=this['getAnnotation'](_0x29d6f9,_0x4afaab);return{'suggested':_0x38d5e9['suggested'],'original':_0x38d5e9['original']};},SpellChecker['prototype']['onAccept']=async function(_0x51a605,_0x13c61c){let _0x3970f0=this['getAnnotation'](_0x51a605,_0x13c61c);if(!_0x3970f0)return;let _0xb7118a=this['getAnnotationRangeObj'](_0x51a605,_0x13c61c);await Asc['Editor']['callMethod']('StartAction',['GroupActions']),await Asc['Editor']['callMethod']('SelectAnnotationRange',[_0xb7118a]),Asc['scope']['text']=_0x3970f0['suggested'],await Asc['Editor']['callCommand'](function(){Api['ReplaceTextSmart']([Asc['scope']['text']]),Api['GetDocument']()['RemoveSelection']();}),await Asc['Editor']['callMethod']('RemoveAnnotationRange',[_0xb7118a]),await Asc['Editor']['callMethod']('EndAction',['GroupActions']),await Asc['Editor']['callMethod']('FocusEditor');},SpellChecker['prototype']['getAnnotationRangeObj']=function(_0x43d152,_0x332b10){return{'paragraphId':_0x43d152,'rangeId':_0x332b10,'name':'spelling'};},SpellChecker['prototype']['_handleNewRangePositions']=async function(_0x792568,_0x3b850e,_0x13137c){if(!_0x792568||_0x792568['name']!=='spelling'||!this['paragraphs'][_0x3b850e])return;let _0x3e16a8=_0x792568['id'],_0x335112=this['getAnnotation'](_0x3b850e,_0x3e16a8);if(!_0x335112)return;let _0x11dc8c=_0x792568['start'],_0x282032=_0x792568['length'];const _0xef6758=_0x11dc8c===0x0||this['_isWordBoundary'](_0x13137c[_0x11dc8c-0x1]),_0x1c7431=_0x11dc8c+_0x282032===_0x13137c['length']||this['_isWordBoundary'](_0x13137c[_0x11dc8c+_0x282032]);if(!_0xef6758||!_0x1c7431||_0x335112['original']!==_0x13137c['substring'](_0x11dc8c,_0x11dc8c+_0x282032)){let _0x2a77de=this['getAnnotationRangeObj'](_0x3b850e,_0x3e16a8);Asc['Editor']['callMethod']('RemoveAnnotationRange',[_0x2a77de]);}},SpellChecker['prototype']['_isWordBoundary']=function(_0x3e9ce2){return/[\s.,!?;:'"()\[\]{}\-–—\/\\]/['test'](_0x3e9ce2);};
+/*
+ * (c) Copyright Ascensio System SIA 2010-2025
+ *
+ * This program is a free software product. You can redistribute it and/or
+ * modify it under the terms of the GNU Affero General Public License (AGPL)
+ * version 3 as published by the Free Software Foundation. In accordance with
+ * Section 7(a) of the GNU AGPL its Section 15 shall be amended to the effect
+ * that Ascensio System SIA expressly excludes the warranty of non-infringement
+ * of any third-party rights.
+ *
+ * This program is distributed WITHOUT ANY WARRANTY; without even the implied
+ * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR  PURPOSE. For
+ * details, see the GNU AGPL at: http://www.gnu.org/licenses/agpl-3.0.html
+ *
+ * You can contact Ascensio System SIA at 20A-6 Ernesta Birznieka-Upish
+ * street, Riga, Latvia, EU, LV-1050.
+ *
+ * The  interactive user interfaces in modified source and object code versions
+ * of the Program must display Appropriate Legal Notices, as required under
+ * Section 5 of the GNU AGPL version 3.
+ *
+ * Pursuant to Section 7(b) of the License you must retain the original Product
+ * logo when distributing the program. Pursuant to Section 7(e) we decline to
+ * grant you any rights under trademark law for use of our trademarks.
+ *
+ * All the Product's GUI elements, including illustrations and icon sets, as
+ * well as technical writing content are licensed under the terms of the
+ * Creative Commons Attribution-ShareAlike 4.0 International. See the License
+ * terms at http://creativecommons.org/licenses/by-sa/4.0/legalcode
+ *
+ */
+
+function SpellChecker(annotatorPopup)
+{
+	TextAnnotator.call(this, annotatorPopup);
+	this.type = 0;
+}
+SpellChecker.prototype = Object.create(TextAnnotator.prototype);
+SpellChecker.prototype.constructor = SpellChecker;
+
+SpellChecker.prototype.annotateParagraph = async function(paraId, recalcId, text)
+{
+	this.paragraphs[paraId] = {};
+	if (text.length === 0) {
+		return false;
+	}
+
+	let argPrompt = `You are a spellcheck corrector. I will provide text that may contain spelling errors in any language. Your task is to identify ALL spelling mistakes and return ONLY the corrections in the following JSON format:
+
+[
+  {"wrong": "misspelledWord", "correct": "correctWord", "occurrence": 1, "confidence": "high"},
+  ...
+]
+
+Rules:
+- "wrong": the exact misspelled word as it appears in the text
+- "correct": the correctly spelled replacement
+- "occurrence": which occurrence of this word if it appears multiple times (1 for first, 2 for second, etc.)
+- "confidence": how certain you are this is a misspelling
+  * "high" - definitely misspelled, no valid alternative meaning
+  * "medium" - likely misspelled in this context, but could be valid elsewhere
+  * "low" - uncertain, highly context-dependent
+- Return an empty array [] if there are no errors
+- Return an empty array [] if the text is completely unintelligible or a complete mess
+- Support multiple languages (English, Russian, etc.)
+
+CRITICAL
+- Ouput should be in the exact this format
+- No any comments are allowed
+
+CRITICAL - Word Boundaries (MOST IMPORTANT):
+- ONLY match complete, standalone words separated by spaces, punctuation, or at the start/end of text
+- DO NOT match letters or substrings that are PART of other words
+- A word is bounded by: spaces, punctuation (.,!?;:), quotes, or start/end of text
+- Examples of what NOT to match:
+  * "r" in "letter" - NO! "r" is part of the word "letter"
+  * "r" in "great" - NO! "r" is part of the word "great"
+  * "te" in "letter" - NO! "te" is part of the word "letter"
+- Examples of what TO match:
+  * "r" in "r u sure" - YES! "r" is a standalone word
+  * "te" in "What te problem" - YES! "te" is a standalone word
+
+CRITICAL - Handling same word with different meanings:
+If the same word appears multiple times but only some occurrences are misspelled:
+- ONLY include the misspelled occurrences
+- Use the "occurrence" number to specify which instance
+
+Example showing word boundaries:
+Input: "The letter r. r u sure about it?"
+Explanation:
+- "letter" - correct word, don't touch it
+- "r." - this is the standalone letter r
+- "r u" - this "r" is a standalone word (misspelled, should be "are")
+Output: [
+  {"wrong": "r", "correct": "are", "occurrence": 2, "confidence": "medium"},
+  {"wrong": "u", "correct": "you", "occurrence": 1, "confidence": "medium"}
+]
+Note: The first standalone "r" (after "letter") is correct. The second standalone "r" (in "r u") is misspelled.
+
+Example with substring trap:
+Input: "Great! r u coming?"
+Output: [
+  {"wrong": "r", "correct": "are", "occurrence": 1, "confidence": "medium"},
+  {"wrong": "u", "correct": "you", "occurrence": 1, "confidence": "medium"}
+]
+Note: The "r" in "Great" is NOT matched because it's part of the word "Great", not a standalone word.
+
+CRITICAL - Completeness:
+- Find and include EVERY misspelled standalone word in the text
+- If the same misspelled word appears multiple times, create separate entries
+- Single-letter standalone words can be misspellings (e.g., standalone "r" → "are", standalone "u" → "you")
+
+CRITICAL - What NOT to include:
+- DO NOT include letters or substrings within other words
+- DO NOT include entries where "wrong" and "correct" are identical
+- ONLY include actual spelling mistakes that are standalone words
+
+CRITICAL - Output Format:
+- Return ONLY the raw JSON array, nothing else
+- DO NOT wrap the response in markdown code blocks (no \`\`\`json or \`\`\`)
+- DO NOT include any explanatory text before or after the JSON
+- DO NOT use escaped newlines (\\n) - return the JSON on a single line if possible
+- The response should start with [ and end with ]
+
+Correct output format:
+[{"wrong": "Hlo", "correct": "Hello", "occurrence": 1, "confidence": "high"}]
+
+Incorrect output formats (DO NOT USE):
+\`\`\`json
+[{"wrong": "Hlo", "correct": "Hello"}]
+\`\`\`
+
+Example (no errors):
+Input: "The quick brown fox jumps over the lazy dog."
+Output: []
+Text to check:`;
+	argPrompt += text;
+
+	let response = await this.chatRequest(argPrompt);
+	if (!response)
+		return false;
+
+	let rangeId = 1;
+	let ranges = [];
+
+	let _t = this;
+	function convertToRanges(text, corrections) 
+	{
+		for (const { wrong, correct, occurrence } of corrections) 
+		{
+			if (wrong === correct)
+				continue;
+			
+			let count = 0;
+			let searchStart = 0;
+
+			while (searchStart < text.length)
+			{
+				const index = _t.simpleGraphemeIndexOf(text, wrong, searchStart);
+				if (index === -1) break;
+
+				const isStartBoundary = index === 0 || _t._isWordBoundary(text[index - 1]);
+				const isEndBoundary = index + wrong.length === text.length || _t._isWordBoundary(text[index + wrong.length]);
+
+				if (isStartBoundary && isEndBoundary)
+				{
+					count++;
+					if (count === occurrence)
+					{
+						ranges.push({
+							"start": index,
+							"length": [...wrong].length,
+							"id": rangeId
+						});
+						_t.paragraphs[paraId][rangeId] = {
+							"suggested" : correct,
+							"original" : wrong
+						};
+						++rangeId;
+						break;
+					}
+				}
+				searchStart = index + 1;
+			}
+		}
+	}
+	
+	try 
+	{
+		convertToRanges(text, JSON.parse(response));
+		let obj = {
+			"type": "highlightText",
+			"paragraphId": paraId,
+			"name" : "spelling",
+			"recalcId": recalcId,
+			"ranges": ranges
+		};
+		await Asc.Editor.callMethod("AnnotateParagraph", [obj]);
+	}
+	catch (e)
+	{ }
+}
+SpellChecker.prototype.getInfoForPopup = function(paraId, rangeId)
+{
+	let anot = this.getAnnotation(paraId, rangeId);
+	return {
+		suggested : anot["suggested"],
+		original : anot["original"]
+	};
+};
+SpellChecker.prototype.onAccept = async function(paraId, rangeId)
+{
+	let anot = this.getAnnotation(paraId, rangeId);
+	if (!anot)
+		return;
+	
+	let range = this.getAnnotationRangeObj(paraId, rangeId);
+	await Asc.Editor.callMethod("StartAction", ["GroupActions"]);
+	await Asc.Editor.callMethod("SelectAnnotationRange", [range]);
+	
+	Asc.scope.text = anot["suggested"];
+	await Asc.Editor.callCommand(function(){
+		Api.ReplaceTextSmart([Asc.scope.text]);
+		Api.GetDocument().RemoveSelection();
+	});	
+	
+	await Asc.Editor.callMethod("RemoveAnnotationRange", [range]);
+	await Asc.Editor.callMethod("EndAction", ["GroupActions"]);
+	await Asc.Editor.callMethod("FocusEditor");
+};
+SpellChecker.prototype.getAnnotationRangeObj = function(paraId, rangeId)
+{
+	return {
+		"paragraphId" : paraId,
+		"rangeId" : rangeId,
+		"name" : "spelling"
+	};
+};
+SpellChecker.prototype._handleNewRangePositions = async function(range, paraId, text)
+{
+	if (!range || range["name"] !== "spelling" || !this.paragraphs[paraId])
+		return;
+
+	let rangeId = range["id"];
+	let annot = this.getAnnotation(paraId, rangeId);
+	
+	if (!annot)
+		return;
+	
+	let start = range["start"];
+	let len = range["length"];
+	
+	const isStartBoundary = start === 0 || this._isWordBoundary(text[start - 1]);
+	const isEndBoundary = start + len === text.length || this._isWordBoundary(text[start + len]);
+	
+	if (!isStartBoundary || !isEndBoundary || annot["original"] !== text.substring(start, start + len))
+	{
+		let annotRange = this.getAnnotationRangeObj(paraId, rangeId);
+		Asc.Editor.callMethod("RemoveAnnotationRange", [annotRange]);
+	}
+};
+SpellChecker.prototype._isWordBoundary = function(char)
+{
+	return /[\s.,!?;:'"()\[\]{}\-–—\/\\]/.test(char);
+};

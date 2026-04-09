@@ -1,1 +1,5298 @@
-try{(function(){try{if(typeof window!=='undefined'&&window['__RightActivityBarInitialized']){window['debug']?.['warn']?.('RightActivityBar','Script\x20already\x20initialized,\x20skipping\x20duplicate\x20bootstrap');return;}typeof window!=='undefined'&&(window['__RightActivityBarInitialized']=!![]);}catch(_0x12a910){}const _0x263e19='2024-10-25T12:05Z';try{console['info']('[RightActivityBar]\x20bootstrap\x20start',{'version':_0x263e19});}catch(_0x3e9b2d){}const _0x3340b8='right_pane_open',_0x41a35b='right_pane_width',_0x5770a3='--right-pane-width',_0x481942=0x1c2,_0x20f42b='ai-connection',_0x3fa82a='ai-management',_0x571178='chat',_0x2f1be9='code-graph',_0x4599e5='debug-insights',_0x3cd6a0='ai-job-monitor',_0x5be410='openai',_0x87a01b='gpt-4o-mini',_0x24de32=![],_0x4b7d09=typeof window!=='undefined'?window['TestId']:null;let _0x5f3a29=null,_0x36abc7='connection';const _0x575cf5='right_pane_current',_0x279859=window['SettingsStore']||null,_0x54a061=window['__aiPromptModels']||(window['__aiPromptModels']=new Map()),_0x2a3901=window['__aiPromptTextCache']||(window['__aiPromptTextCache']=new Map());window['__aiPromptProvider']=window['__aiPromptProvider']||null;let _0xef4717=null,_0x377c9b=![],_0x1ce86b=![],_0x2642ef=null,_0x168a2a=![],_0x577818=null,_0x519afc=null,_0x5eca9e=![],_0x8c0556=null;function _0x252fe0(_0x70b04b){if(!_0x70b04b)return null;if(_0x70b04b==='ai'||_0x70b04b===_0x3fa82a)return _0x20f42b;if(_0x70b04b===_0x20f42b||_0x70b04b===_0x3fa82a||_0x70b04b===_0x571178||_0x70b04b===_0x2f1be9||_0x70b04b===_0x4599e5)return _0x70b04b;return null;}function _0x7cbb56(_0x4b7ab1={}){const _0x5de0cc=_0x4b7ab1['featureName']||'This\x20feature',_0x28ec4c=_0x4b7ab1['subtitle']||'Available\x20in\x20Pro\x20version';if(typeof document==='undefined')return;const _0x4f9fc1=document['getElementById']('ai-pro-feature-modal');if(_0x4f9fc1)_0x4f9fc1['remove']();const _0x41b43f=document['createElement']('div');_0x41b43f['id']='ai-pro-feature-modal',_0x41b43f['style']['cssText']=['position:fixed','inset:0','background:rgba(0,0,0,0.55)','display:flex','align-items:center','justify-content:center','z-index:10000']['join'](';');const _0x20ab7f=document['createElement']('div');_0x20ab7f['style']['cssText']=['width:min(520px,92vw)','background:var(--vscode-editor-background,#1e1e1e)','color:var(--vscode-foreground,#d4d4d4)','border:1px\x20solid\x20var(--vscode-widget-border,#3c3c3c)','border-radius:12px','box-shadow:0\x2016px\x2048px\x20rgba(0,0,0,0.45)','padding:18px\x2018px\x2014px']['join'](';'),_0x20ab7f['innerHTML']='\x0a\x20\x20\x20\x20\x20\x20<div\x20style=\x22display:flex;\x20align-items:flex-start;\x20gap:12px;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20style=\x22font-size:20px;\x20line-height:1;\x22>🔒</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20style=\x22flex:1;\x20min-width:0;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20style=\x22font-weight:700;\x20font-size:15px;\x20margin-bottom:4px;\x22>'+_0x5de0cc+'</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20style=\x22color:var(--vscode-descriptionForeground,#9da5b4);\x20font-size:13px;\x20line-height:1.45;\x22>'+_0x28ec4c+'</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20style=\x22margin-top:10px;\x20font-size:12px;\x20color:var(--vscode-descriptionForeground,#9da5b4);\x22>In\x20free\x20mode\x20AI\x20Sputnik\x20runs\x20with\x20OpenAI\x20and\x20fixed\x20model\x20preset\x20for\x20stable\x20macro\x20workflows.</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20<div\x20style=\x22display:flex;\x20justify-content:flex-end;\x20margin-top:14px;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<button\x20type=\x22button\x22\x20class=\x22settings-btn\x20settings-btn-primary\x22\x20id=\x22ai-pro-feature-modal-ok\x22>Got\x20it</button>\x0a\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20';const _0x216ec1=()=>{try{_0x41b43f['remove']();}catch(_0x3f0b15){}};_0x41b43f['addEventListener']('click',_0x105d55=>{if(_0x105d55['target']===_0x41b43f)_0x216ec1();}),_0x20ab7f['querySelector']('#ai-pro-feature-modal-ok')?.['addEventListener']('click',_0x216ec1),_0x41b43f['appendChild'](_0x20ab7f),document['body']['appendChild'](_0x41b43f);}function _0x512da1(_0x4ecb96={}){const _0xab23dc={'pluginState':window['pluginState'],..._0x4ecb96};try{if(window['ModuleContextFactory']&&typeof window['ModuleContextFactory']['create']==='function')return window['ModuleContextFactory']['create'](_0xab23dc);}catch(_0x165bfa){}return _0xab23dc;}function _0x34b184(){const _0x29a949=window['innerWidth']||document['documentElement']['clientWidth']||0x4b0,_0x4350ec=0xdc,_0x5c9633=Math['max'](_0x4350ec,Math['min'](0x2bc,_0x29a949-0x12c));return{'min':_0x4350ec,'max':_0x5c9633};}function _0x81b3d9(){try{console['info']('[RightActivityBar]\x20init\x20invoked',{'version':_0x263e19});}catch(_0x260931){}_0x27b127(),_0x262496('init:containers',{'hasBar':!!document['getElementById']('vscode-activity-bar-right'),'hasPane':!!document['getElementById']('vscode-right-pane')});try{let _0x292648=null;try{_0x292648=parseInt(localStorage['getItem'](_0x41a35b),0xa);}catch(_0x3e1428){_0x292648=null;}if(!Number['isFinite'](_0x292648)||_0x292648<0x78||_0x292648>0x4b0)_0x292648=_0x481942;const {min:_0x48cfc2,max:_0x4258f8}=_0x34b184();if(_0x292648<_0x48cfc2)_0x292648=_0x48cfc2;if(_0x292648>_0x4258f8)_0x292648=_0x4258f8;document['documentElement']['style']['setProperty'](_0x5770a3,_0x292648+'px');try{localStorage['setItem'](_0x41a35b,String(_0x292648));}catch(_0x3f55e7){}}catch(_0x2b83ee){}_0x3f8c7a();try{if(!window['__RightActivityBarListeners']){const _0x557776=_0x434315=>{try{_0x3f8c7a();}catch(_0x594ce1){}};window['addEventListener']('modules:changed',_0x557776),window['__RightActivityBarTeardown']=function(){try{window['removeEventListener']('modules:changed',_0x557776);}catch(_0x110728){}try{window['__aiConnectionsUpdatedListener']&&document['removeEventListener']('aiConnections:updated',window['__aiConnectionsUpdatedListener']);}catch(_0x4b2ca7){}try{window['__aiConnectionsUpdatedListener']=null;}catch(_0xd94470){}try{window['__aiConnectionsListenerBound']=![];}catch(_0x577952){}try{window['__aiAgentSelectedListener']&&document['removeEventListener']('ai:agent-selected',window['__aiAgentSelectedListener']);}catch(_0x8a2e1a){}try{window['__aiAgentSelectedListener']=null;}catch(_0x563d40){}try{window['__aiAgentSelectedListenerBound']=![];}catch(_0x401396){}try{window['__aiAgentStoreUnsubscribe']&&typeof window['__aiAgentStoreUnsubscribe']==='function'&&window['__aiAgentStoreUnsubscribe']();}catch(_0x2150e6){}try{window['__aiAgentStoreUnsubscribe']=null;}catch(_0x44ecfa){}try{_0x8c0556&&(window['removeEventListener']('debug-plugins-loaded',_0x8c0556),window['removeEventListener']('debug-plugins-integration-ready',_0x8c0556));}catch(_0x113bea){}try{window['__aiConnectionsSubscription']&&typeof window['__aiConnectionsSubscription']==='function'&&window['__aiConnectionsSubscription']();}catch(_0x380f94){}try{window['__aiConnectionsSubscription']=null;}catch(_0x3d698b){}_0x8c0556=null,window['__RightActivityBarListeners']=![];},window['__RightActivityBarListeners']=!![];}}catch(_0x365276){}let _0x5dcca4=null;try{_0x5dcca4=localStorage['getItem'](_0x575cf5)||null,_0x5f3a29=_0x252fe0(_0x5dcca4);}catch(_0x4b1c54){}let _0x17302f=null;try{_0x17302f=localStorage['getItem'](_0x3340b8);}catch(_0x49ba34){}const _0x300b9f=window['ModuleRegistry'],_0x10e151=!_0x300b9f||_0x300b9f['isEnabled']?.('ai')!==![],_0x41be03=![];_0x262496('init:storageState',{'storedPane':_0x5dcca4,'currentPane':_0x5f3a29,'storedOpen':_0x17302f,'registryEnabled':_0x10e151});if(_0x5dcca4&&_0x5dcca4!==_0x5f3a29)try{if(_0x5f3a29)localStorage['setItem'](_0x575cf5,_0x5f3a29);else localStorage['removeItem'](_0x575cf5);}catch(_0x57ea8f){}if(!_0x10e151&&(_0x5f3a29===_0x20f42b||_0x5f3a29===_0x3fa82a)){_0x5f3a29=_0x41be03?_0x2f1be9:null;try{if(_0x5f3a29)localStorage['setItem'](_0x575cf5,_0x5f3a29);else localStorage['removeItem'](_0x575cf5);}catch(_0x380404){}}if(!_0x41be03&&_0x5f3a29===_0x2f1be9){_0x5f3a29=_0x10e151?_0x20f42b:null;try{if(_0x5f3a29)localStorage['setItem'](_0x575cf5,_0x5f3a29);else localStorage['removeItem'](_0x575cf5);}catch(_0x508aa1){}}!_0x5f3a29&&(_0x5f3a29=_0x10e151?_0x20f42b:_0x41be03?_0x2f1be9:null);const _0x10d7fb=document['getElementById']('right-pane-content');if(_0x10d7fb)_0x10d7fb['innerHTML']='';_0x23158b(![]);try{localStorage['setItem'](_0x3340b8,'false');}catch(_0x2bd275){}_0x4eb278();}const _0x296945=_0x5ce5d8=>{if(_0x1ce86b||_0x377c9b){try{console['info']('[RightActivityBar]\x20init\x20skipped',{'version':_0x263e19,'reason':_0x5ce5d8});}catch(_0x33857f){}return;}_0x377c9b=!![];try{console['info']('[RightActivityBar]\x20init\x20trigger',{'version':_0x263e19,'reason':_0x5ce5d8}),_0x81b3d9(),_0x1ce86b=!![],console['info']('[RightActivityBar]\x20init\x20complete',{'version':_0x263e19,'reason':_0x5ce5d8});}catch(_0x598c29){try{console['error']('[RightActivityBar]\x20init\x20error',{'version':_0x263e19,'reason':_0x5ce5d8,'message':_0x598c29?.['message'],'stack':_0x598c29?.['stack']});}catch(_0x14db0c){}}finally{_0x377c9b=![];}};try{window['__RightActivityBar_runInit']=_0x296945;}catch(_0x53339b){}try{console['info']('[RightActivityBar]\x20constants\x20initialised',{'version':_0x263e19});}catch(_0x3ae668){}try{setTimeout(()=>{try{const _0x249970=typeof document!=='undefined'?document['readyState']:'no-document';console['info']('[RightActivityBar]\x20async\x20heartbeat\x20→\x20'+_0x249970,{'version':_0x263e19}),_0x249970==='loading'?console['info']('[RightActivityBar]\x20heartbeat\x20deferred\x20(document.loading)',{'version':_0x263e19}):window['__RightActivityBar_runInit']?.('heartbeat'),setTimeout(()=>{const _0xa683bc=typeof document!=='undefined'?document['readyState']:'no-document';console['info']('[RightActivityBar]\x20async\x20heartbeat\x20(late)\x20→\x20'+_0xa683bc,{'version':_0x263e19}),!_0x1ce86b&&_0xa683bc!=='loading'&&window['__RightActivityBar_runInit']?.('heartbeat-late');},0xc8);}catch(_0x1c5c2e){}},0x0);}catch(_0x13419b){try{console['error']('[RightActivityBar]\x20heartbeat\x20scheduling\x20failed',_0x13419b);}catch(_0x492ea1){}}function _0x262496(_0x37db94,_0x57edb2){try{window['LogService']?.['logInfo']('RightActivityBar',_0x37db94,_0x57edb2||undefined);}catch(_0x593d2c){}try{window['debug']?.['info']?.('RightActivityBar',_0x37db94,_0x57edb2||undefined);}catch(_0x4295c1){}}try{console['info']('[RightActivityBar]\x20post-logDebug\x20checkpoint',{'version':_0x263e19});}catch(_0x43fd3c){}function _0x27b127(){try{let _0xf6579e=document['getElementById']('vscode-activity-bar-right');!_0xf6579e?(_0xf6579e=document['createElement']('div'),_0xf6579e['id']='vscode-activity-bar-right',_0x4b7d09?.['setTestId']?.(_0xf6579e,'activity-right-bar'),document['body']['appendChild'](_0xf6579e),console['info']('[RightActivityBar]\x20bar\x20container\x20created')):(_0x4b7d09?.['setTestId']?.(_0xf6579e,'activity-right-bar'),console['info']('[RightActivityBar]\x20bar\x20container\x20reused'));let _0x4081d2=document['getElementById']('vscode-right-pane');!_0x4081d2?(_0x4081d2=document['createElement']('div'),_0x4081d2['id']='vscode-right-pane',_0x4081d2['className']='vscode-right-pane',_0x4b7d09?.['setTestId']?.(_0x4081d2,'activity-right-pane'),_0x4081d2['innerHTML']='\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22right-pane-title\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22title-text\x22>AI\x20Utilities</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22title-actions\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20class=\x22btn-action\x22\x20id=\x22right-pane-close\x22\x20title=\x22Close\x22\x20data-testid=\x22activity-right-pane-close-btn\x22>✕</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22right-pane-content\x22\x20id=\x22right-pane-content\x22\x20data-testid=\x22activity-right-pane-content\x22></div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22right-pane-resizer\x22\x20id=\x22right-pane-resizer\x22\x20title=\x22Resize\x22\x20data-testid=\x22activity-right-pane-resizer\x22></div>\x0a\x20\x20\x20\x20\x20\x20',document['body']['appendChild'](_0x4081d2),_0x4081d2['querySelector']('#right-pane-close')?.['addEventListener']('click',()=>_0x23158b(![])),console['info']('[RightActivityBar]\x20pane\x20container\x20created')):(_0x4b7d09?.['setTestId']?.(_0x4081d2,'activity-right-pane'),_0x4b7d09?.['setTestId']?.(_0x4081d2['querySelector']('#right-pane-content'),'activity-right-pane-content'),_0x4b7d09?.['setTestId']?.(_0x4081d2['querySelector']('#right-pane-resizer'),'activity-right-pane-resizer'),_0x4b7d09?.['setTestId']?.(_0x4081d2['querySelector']('#right-pane-close'),'activity-right-pane-close-btn'),console['info']('[RightActivityBar]\x20pane\x20container\x20reused'));}catch(_0x3a9a1a){try{console['error']('[RightActivityBar]\x20ensureContainers\x20failed',_0x3a9a1a);}catch(_0x12232e){}}}try{console['info']('[RightActivityBar]\x20post-ensureContainers\x20checkpoint',{'version':_0x263e19});}catch(_0x4f6d4a){}function _0x10b0e6(){const _0xd41e60=document['getElementById']('vscode-activity-bar-right');if(!_0xd41e60)return;const _0x5f0c87=_0xd41e60['querySelector']('[data-button=\x22'+_0x20f42b+'\x22]'),_0x9c7bac=_0xd41e60['querySelector']('[data-button=\x22'+_0x3fa82a+'\x22]'),_0x131b1d=_0x59ad36();if(_0x5f0c87){const _0x3ecb37=_0x131b1d&&_0x5f3a29===_0x20f42b;_0x5f0c87['classList']['toggle']('active',_0x3ecb37),_0x5f0c87['setAttribute']('aria-selected',_0x3ecb37?'true':'false');}if(_0x9c7bac){const _0x5483dd=_0x131b1d&&_0x5f3a29===_0x3fa82a;_0x9c7bac['classList']['toggle']('active',_0x5483dd),_0x9c7bac['setAttribute']('aria-selected',_0x5483dd?'true':'false'),_0x5483dd?_0x9c7bac['dataset']['activeTab']=_0x36abc7||'':delete _0x9c7bac['dataset']['activeTab'];}}function _0x3f8c7a(){const _0x4c1b2c=document['getElementById']('vscode-activity-bar-right');if(!_0x4c1b2c)return;const _0x1e9b07=window['ModuleRegistry'],_0x1bc2d8=!_0x1e9b07||_0x1e9b07['isEnabled']?.('ai')!==![],_0x43ca23=![];let _0x5b0116=![];if(!_0x1bc2d8&&(_0x5f3a29===_0x20f42b||_0x5f3a29===_0x3fa82a)){_0x5f3a29=_0x43ca23?_0x2f1be9:null,_0x5b0116=!![];try{if(_0x5f3a29)localStorage['setItem'](_0x575cf5,_0x5f3a29);else localStorage['removeItem'](_0x575cf5);}catch(_0x36c135){}}if(!_0x43ca23&&_0x5f3a29===_0x2f1be9){_0x5f3a29=_0x1bc2d8?_0x20f42b:null,_0x5b0116=!![];try{if(_0x5f3a29)localStorage['setItem'](_0x575cf5,_0x5f3a29);else localStorage['removeItem'](_0x575cf5);}catch(_0x5eb5be){}}if(!_0x5f3a29&&_0x1bc2d8){_0x5f3a29=_0x20f42b,_0x5b0116=!![];try{localStorage['setItem'](_0x575cf5,_0x5f3a29);}catch(_0x1f1543){}}if(!_0x5f3a29&&!_0x1bc2d8&&!_0x43ca23)try{localStorage['removeItem'](_0x575cf5);}catch(_0x555c79){}_0x4c1b2c['innerHTML']='';const _0xa0e834=document['createDocumentFragment']();_0x262496('renderBar:start',{'open':_0x59ad36(),'pane':_0x5f3a29,'tab':_0x36abc7,'aiEnabled':_0x1bc2d8,'codeGraphEnabled':_0x43ca23});const _0xb9a347=document['createElement']('button');_0xb9a347['className']='activity-bar-icon',_0xb9a347['dataset']['button']='toggle',_0x4b7d09?.['setTestId']?.(_0xb9a347,'activity-right-toggle-pane-btn'),_0xb9a347['title']='Toggle\x20AI\x20Utilities',_0xb9a347['setAttribute']('aria-label','Toggle\x20AI\x20Utilities'),_0xb9a347['innerHTML']='<svg\x20width=\x2224\x22\x20height=\x2224\x22\x20viewBox=\x220\x200\x2024\x2024\x22\x20xmlns=\x22http://www.w3.org/2000/svg\x22><circle\x20cx=\x2212\x22\x20cy=\x2212\x22\x20r=\x2210\x22\x20fill=\x22currentColor\x22/><path\x20d=\x22M16.3\x205.3a7.3\x207.3\x200\x200\x200-8.7.7\x206.8\x206.8\x200\x200\x200-1.9\x202.5l-.3.6-1.2-2.9C6.9\x203.1\x209.3\x202\x2012\x202c2.2\x200\x204.4.8\x206.1\x202.3l-1.8\x201Z\x22\x20fill=\x22#ffffff\x22/><path\x20d=\x22M7.7\x2018.7a7.3\x207.3\x200\x200\x200\x208.7-.7\x206.8\x206.8\x200\x200\x200\x201.9-2.5l.3-.6\x201.2\x202.9C17.1\x2020.9\x2014.7\x2022\x2012\x2022c-2.2\x200-4.4-.8-6.1-2.3l1.8-1Z\x22\x20fill=\x22#ffffff\x22/></svg>',_0xb9a347['addEventListener']('click',_0x1835bb),_0xa0e834['appendChild'](_0xb9a347);const _0x59b9b8=document['createElement']('button');_0x59b9b8['className']='activity-bar-icon',_0x59b9b8['dataset']['button']=_0x20f42b,_0x4b7d09?.['setTestId']?.(_0x59b9b8,'activity-right-pane-ai-connection-btn'),_0x59b9b8['title']='AI\x20Connection\x20Settings',_0x59b9b8['setAttribute']('aria-label','AI\x20Connection\x20Settings'),_0x59b9b8['innerHTML']='<svg\x20width=\x2224\x22\x20height=\x2224\x22\x20viewBox=\x220\x200\x2024\x2024\x22\x20fill=\x22currentColor\x22\x20xmlns=\x22http://www.w3.org/2000/svg\x22><path\x20d=\x22M9\x202h6v5h1a3\x203\x200\x200\x201\x203\x203v3a6\x206\x200\x200\x201-5\x205.74V22h-4v-3.26A6\x206\x200\x200\x201\x205\x2013V10a3\x203\x200\x200\x201\x203-3h1V2zm2\x200v3h2V2h-2z\x22/></svg>',_0x59b9b8['addEventListener']('click',_0x999f9),_0x59b9b8['disabled']=!_0x1bc2d8,_0x59b9b8['setAttribute']('aria-disabled',_0x1bc2d8?'false':'true'),_0xa0e834['appendChild'](_0x59b9b8);const _0x266c65=document['createElement']('button');_0x266c65['className']='activity-bar-icon',_0x266c65['dataset']['button']=_0x571178,_0x4b7d09?.['setTestId']?.(_0x266c65,'activity-right-pane-chat-btn'),_0x266c65['title']='AI\x20Chat',_0x266c65['setAttribute']('aria-label','AI\x20Chat'),_0x266c65['innerHTML']='<svg\x20width=\x2224\x22\x20height=\x2224\x22\x20viewBox=\x220\x200\x2024\x2024\x22\x20fill=\x22currentColor\x22\x20xmlns=\x22http://www.w3.org/2000/svg\x22><path\x20d=\x22M4\x204h16v12H6l-2\x202V4z\x22/></svg>',_0x266c65['addEventListener']('click',()=>{if(window['Trial']&&window['Trial']['isExpired']&&window['Trial']['isExpired']()){window['Trial']['showExpiredOverlay']();return;}_0x3a9c6b();}),_0x266c65['disabled']=!_0x1bc2d8,_0x266c65['setAttribute']('aria-disabled',_0x1bc2d8?'false':'true'),_0xa0e834['appendChild'](_0x266c65);let _0x9473c1=null,_0x2c4beb=null;_0x2c4beb=document['createElement']('button'),_0x2c4beb['className']='activity-bar-icon',_0x2c4beb['dataset']['button']=_0x4599e5,_0x4b7d09?.['setTestId']?.(_0x2c4beb,'activity-right-pane-debug-insights-btn'),_0x2c4beb['title']='Debug\x20Insights',_0x2c4beb['setAttribute']('aria-label','Debug\x20Insights'),_0x2c4beb['innerHTML']='<svg\x20width=\x2224\x22\x20height=\x2224\x22\x20viewBox=\x220\x200\x2024\x2024\x22\x20fill=\x22currentColor\x22\x20xmlns=\x22http://www.w3.org/2000/svg\x22><path\x20d=\x22M22\x2011V3h-7v3H9V3H2v8h7V8h2v10h4v3h7v-8h-7v3h-2V8h2v3h7zM7\x209H4V5h3v4zm10\x206h3v4h-3v-4zm0-10h3v4h-3V5z\x22/></svg>',_0x2c4beb['addEventListener']('click',_0x7d3af3),_0xa0e834['appendChild'](_0x2c4beb),_0x4c1b2c['appendChild'](_0xa0e834);const _0xbdb535=_0x59ad36();if(_0xbdb535)_0xb9a347['classList']['add']('active');_0x266c65['classList']['toggle']('active',_0xbdb535&&_0x5f3a29===_0x571178);if(_0x9473c1)_0x9473c1['classList']['toggle']('active',_0xbdb535&&_0x5f3a29===_0x2f1be9);if(_0x2c4beb)_0x2c4beb['classList']['toggle']('active',_0xbdb535&&_0x5f3a29===_0x4599e5);_0x10b0e6();if(_0x5b0116&&_0xbdb535){if(_0x5f3a29)_0x303342();else _0x23158b(![]);}try{const _0x5f1b86=!!window['debugPluginsIntegration']||!!window['ModuleRegistry']&&window['ModuleRegistry']['isEnabled']?.('debug-insights')!==![],_0x1ad542=_0x1bc2d8||_0x43ca23||_0x5f1b86,_0x242fc7=document['getElementById']('vscode-activity-bar-right'),_0x4ae00f=document['getElementById']('vscode-right-pane');_0x262496('renderBar:moduleState',{'enabled':_0x1ad542,'codeGraphEnabled':_0x43ca23,'debugEnabled':_0x5f1b86,'hasRegistry':!!window['ModuleRegistry'],'storedModules':window['ModuleRegistry']?.['getEnabledMap']?.()});_0x242fc7&&(_0x242fc7['classList']['toggle']('module-disabled',!_0x1ad542),_0x242fc7['setAttribute']('aria-disabled',_0x1ad542?'false':'true'));if(_0x4ae00f)_0x4ae00f['classList']['toggle']('is-disabled',!_0x1ad542);if(!_0x1ad542){document['body']['classList']['remove']('right-pane-open');try{localStorage['setItem']('right_pane_open','false');}catch(_0x123730){}}}catch(_0x5b68e6){}}function _0x59ad36(){try{return localStorage['getItem'](_0x3340b8)==='true';}catch(_0x20079e){return![];}}function _0x23158b(_0xcc40ec){const _0x4aeac0=!!_0xcc40ec,_0x533e3b=document['body']['classList']['contains']('right-pane-open');document['body']['classList']['toggle']('right-pane-open',_0x4aeac0);const _0x3c143f=document['getElementById']('vscode-right-pane');if(_0x3c143f){_0x3c143f['setAttribute']('aria-hidden',_0x4aeac0?'false':'true');try{_0x3c143f['setAttribute']('data-testid-state',_0x4aeac0?'open':'closed');}catch(_0x504995){}}try{localStorage['setItem'](_0x3340b8,String(_0x4aeac0));}catch(_0x891132){}const _0x28d301=document['getElementById']('vscode-activity-bar-right'),_0x3e8aee=_0x28d301?.['querySelector']('[data-button=\x22toggle\x22]');if(_0x3e8aee)_0x3e8aee['classList']['toggle']('active',_0x4aeac0);const _0x503820=_0x28d301?.['querySelector']('[data-button=\x22'+_0x571178+'\x22]');if(_0x503820)_0x503820['classList']['toggle']('active',_0x4aeac0&&_0x5f3a29===_0x571178);const _0x923e1c=_0x28d301?.['querySelector']('[data-button=\x22'+_0x2f1be9+'\x22]');if(_0x923e1c)_0x923e1c['classList']['toggle']('active',_0x4aeac0&&_0x5f3a29===_0x2f1be9);const _0x3683e3=_0x28d301?.['querySelector']('[data-button=\x22'+_0x4599e5+'\x22]');if(_0x3683e3)_0x3683e3['classList']['toggle']('active',_0x4aeac0&&_0x5f3a29===_0x4599e5);if(!_0x4aeac0&&_0xef4717&&typeof _0xef4717['dispose']==='function'){try{_0xef4717['dispose']();}catch(_0x1eea65){}_0xef4717=null;}try{const _0x27b8a8=document['getElementById']('editorWrapper');if(_0x27b8a8){if(_0x4aeac0){try{_0x4eb278();}catch(_0x47f34d){}const _0x1336e4='calc(48px\x20+\x20var(--right-pane-width,\x20450px))';if(_0x27b8a8['style']['right']!==_0x1336e4)_0x27b8a8['style']['right']=_0x1336e4;}else{const _0x140442=document['getElementById']('vscode-sidebar');let _0x127b15=![];try{if(!_0x140442)_0x127b15=!![];else _0x127b15=window['getComputedStyle'](_0x140442)['display']==='none';}catch(_0x48a99d){}const _0x25b3eb=_0x127b15?'0':'';if(_0x27b8a8['style']['right']!==_0x25b3eb)_0x27b8a8['style']['right']=_0x25b3eb;}}}catch(_0x4e978){}try{const _0x1c9cc0=window['monacoEditorManager']?.['getEditor']?.()||(window['editor']&&typeof window['editor']['getEditor']==='function'?window['editor']['getEditor']():window['editor']);_0x1c9cc0&&typeof _0x1c9cc0['layout']==='function'&&_0x4aeac0!==_0x533e3b&&setTimeout(()=>{try{_0x1c9cc0['layout']();}catch(_0x1b4b15){}},0x0);}catch(_0x10683f){}if(!_0x4aeac0){_0x43049e(),_0x308a33();try{_0x48281b();}catch(_0x15d6ed){}applyDebugInsightsMonacoTheme(![]);try{window['disableAllDebugPlugins']?.();}catch(_0x4c1fec){}try{window['__RightPaneResizerTeardown']?.();}catch(_0x8a2589){}try{setTimeout(()=>{const _0x24dc79=window['monacoEditorManager']?.['getEditor']?.()||window['editor']?.['getEditor']?.()||window['monacoEditor'];_0x24dc79?.['layout']?.();},0x0);}catch(_0x7494c5){}}_0x10b0e6();}function _0x303342(_0x21436d={}){if(!_0x59ad36()||!_0x5f3a29)return;const _0x3a34c0=document['getElementById']('right-pane-content'),_0x21f44d=()=>{try{return _0x3a34c0?.['dataset']?.['paneRenderKey']||null;}catch(_0x11b964){return null;}},_0x4c506e=_0x2163be=>{try{if(!_0x3a34c0)return;_0x3a34c0['dataset']['paneRenderKey']=_0x2163be||'';}catch(_0x159917){}};if(_0x5f3a29===_0x20f42b){try{_0x48281b();}catch(_0x2d2d59){}applyDebugInsightsMonacoTheme(![]);try{window['disableAllDebugPlugins']?.();}catch(_0x1709d5){}_0x36abc7='connection';try{localStorage['setItem']('right_pane_ai_tab','connection');}catch(_0x349b0c){}const _0xf48a21='ai-settings:connection:connection';if(_0x21f44d()===_0xf48a21&&_0x3a34c0?.['querySelector']?.('.right-ai-tabs'))return;_0x192976('connection',{'visibleTabs':['connection']}),_0x4c506e(_0xf48a21);return;}if(_0x5f3a29===_0x3fa82a){_0x5f3a29=_0x20f42b;try{localStorage['setItem'](_0x575cf5,_0x5f3a29);}catch(_0x2439f5){}_0x192976('connection',{'visibleTabs':['connection']}),_0x4c506e('ai-settings:connection:connection');return;}if(_0x5f3a29===_0x571178){try{_0x48281b();}catch(_0x443a38){}applyDebugInsightsMonacoTheme(![]);try{window['disableAllDebugPlugins']?.();}catch(_0x189b8d){}_0x5cdafd(),_0x4c506e(_0x571178);return;}if(_0x5f3a29===_0x3cd6a0){_0x5f3a29=_0x20f42b;try{localStorage['setItem'](_0x575cf5,_0x5f3a29);}catch(_0x400df5){}_0x303342();return;}if(_0x5f3a29===_0x2f1be9){try{_0x48281b();}catch(_0x42b9bd){}applyDebugInsightsMonacoTheme(![]);try{window['disableAllDebugPlugins']?.();}catch(_0x27dadb){}_0x892ea2(),_0x4c506e(_0x2f1be9);}if(_0x5f3a29===_0x4599e5){try{performance['mark']&&performance['mark']('debug:mount:start');}catch(_0x51a80f){}applyDebugInsightsMonacoTheme(!![]);try{window['DebugStore']?.['init']?.();}catch(_0x107ba4){}try{if(window['debugPluginsIntegration']&&typeof window['debugPluginsIntegration']['isInitialized']==='function'&&!window['debugPluginsIntegration']['isInitialized']()){const _0x3facec=window['debugPluginsIntegration']['initialize']?.();if(_0x3facec&&typeof _0x3facec['then']==='function')_0x3facec['then'](()=>{try{window['applyDebugInsightsSavedSettings']?.();}catch(_0x228ccd){}_0x57ccf8();})['catch'](()=>_0x57ccf8());else{try{window['applyDebugInsightsSavedSettings']?.();}catch(_0x2181f0){}_0x57ccf8();}}else{try{window['applyDebugInsightsSavedSettings']?.();}catch(_0x4ebd8a){}_0x57ccf8();}}catch(_0x2fba0e){_0x57ccf8();}try{performance['mark']&&performance['measure']&&(performance['mark']('debug:mount:end'),performance['measure']('debug:mount','debug:mount:start','debug:mount:end'));}catch(_0x7a5eaa){}return;}}function _0x1835bb(){const _0x1172cb=!_0x59ad36();_0x23158b(_0x1172cb);if(_0x1172cb){if(!_0x5f3a29){try{const _0x4f6d59=localStorage['getItem'](_0x575cf5)||null;_0x5f3a29=_0x252fe0(_0x4f6d59)||_0x20f42b;}catch(_0x46bdee){_0x5f3a29=_0x20f42b;}try{localStorage['setItem'](_0x575cf5,_0x5f3a29);}catch(_0x38bffa){}}_0x303342();}}window['toggleRightPane']=_0x1835bb;function _0x7d3af3(){try{performance['mark']&&performance['mark']('rightpane:open:start');}catch(_0x1888a8){}_0x5f3a29=_0x4599e5;try{localStorage['setItem'](_0x575cf5,_0x5f3a29);}catch(_0x1a6557){}_0x23158b(!![]),applyDebugInsightsMonacoTheme(!![]);try{window['DebugStore']?.['init']?.();}catch(_0x1cc906){}try{if(window['debugPluginsIntegration']&&typeof window['debugPluginsIntegration']['isInitialized']==='function'&&!window['debugPluginsIntegration']['isInitialized']()){const _0x422668=window['debugPluginsIntegration']['initialize']?.();if(_0x422668&&typeof _0x422668['then']==='function')_0x422668['then'](()=>{try{window['applyDebugInsightsSavedSettings']?.();}catch(_0x32e9dc){}_0x57ccf8();})['catch'](()=>_0x57ccf8());else{try{window['applyDebugInsightsSavedSettings']?.();}catch(_0x384add){}_0x57ccf8();}}else{try{window['applyDebugInsightsSavedSettings']?.();}catch(_0x155643){}_0x57ccf8();}}catch(_0x2fafbc){_0x57ccf8();}const _0x28ea5c=document['getElementById']('vscode-activity-bar-right')?.['querySelector']('[data-button=\x22'+_0x4599e5+'\x22]');if(_0x28ea5c)_0x28ea5c['classList']['add']('active');try{performance['mark']&&performance['measure']&&(performance['mark']('rightpane:open:end'),performance['measure']('rightpane:open','rightpane:open:start','rightpane:open:end'));}catch(_0x561f4f){}}function _0x3a9c6b(){try{performance['mark']&&performance['mark']('rightpane:open:start');}catch(_0x2c0bf0){}_0x5f3a29=_0x571178;try{localStorage['setItem'](_0x575cf5,_0x5f3a29);}catch(_0x5b073c){}_0x43049e(),_0x23158b(!![]),_0x5cdafd();const _0x213fb2=document['getElementById']('vscode-activity-bar-right')?.['querySelector']('[data-button=\x22'+_0x571178+'\x22]');if(_0x213fb2)_0x213fb2['classList']['add']('active');try{performance['mark']&&performance['measure']&&(performance['mark']('rightpane:open:end'),performance['measure']('rightpane:open','rightpane:open:start','rightpane:open:end'));}catch(_0x41dc0c){}}function _0x999f9(){try{performance['mark']&&performance['mark']('rightpane:open:start');}catch(_0x5d9541){}const _0x79af87=document['getElementById']('right-pane-content');if(_0x59ad36()&&_0x5f3a29===_0x20f42b&&_0x36abc7==='connection'&&_0x79af87?.['dataset']?.['paneRenderKey']==='ai-settings:connection:connection'){try{performance['mark']&&performance['measure']&&(performance['mark']('rightpane:open:end'),performance['measure']('rightpane:open','rightpane:open:start','rightpane:open:end'));}catch(_0x3b3fb0){}return;}_0x5f3a29=_0x20f42b,_0x36abc7='connection';try{localStorage['setItem'](_0x575cf5,_0x5f3a29),localStorage['setItem']('right_pane_ai_tab','connection');}catch(_0x51c3b1){}_0x43049e(),_0x23158b(!![]),_0x303342({'defaultTab':'connection'});try{performance['mark']&&performance['measure']&&(performance['mark']('rightpane:open:end'),performance['measure']('rightpane:open','rightpane:open:start','rightpane:open:end'));}catch(_0x56f1f2){}}function _0x3eb30d(){try{performance['mark']&&performance['mark']('rightpane:open:start');}catch(_0xb5e2b4){}_0x5f3a29=_0x2f1be9;try{localStorage['setItem'](_0x575cf5,_0x5f3a29);}catch(_0x4a7c97){}_0x23158b(!![]);try{_0x48281b();}catch(_0x2231cc){}_0x892ea2();const _0xca9e9c=document['getElementById']('vscode-activity-bar-right')?.['querySelector']('[data-button=\x22'+_0x2f1be9+'\x22]');if(_0xca9e9c)_0xca9e9c['classList']['add']('active');try{performance['mark']&&performance['measure']&&(performance['mark']('rightpane:open:end'),performance['measure']('rightpane:open','rightpane:open:start','rightpane:open:end'));}catch(_0x1da25c){}}function _0x48281b(){try{window['debugPluginsIntegration']?.['dispose']?.();}catch(_0x2c2a3a){}try{window['DebugStore']?.['dispose']?.();}catch(_0x3a599a){}try{const _0x40f69d=['debug-insights-styles','perf-di-css','cov-di-css','linter-di-css'];_0x40f69d['forEach'](_0x21ab90=>{const _0x3e56ea=document['getElementById'](_0x21ab90);if(_0x3e56ea)_0x3e56ea['remove']();});}catch(_0x18ced1){}}function _0x43049e(){if(_0x168a2a)try{const _0x241ec9=window['ModuleViews']?.['code-graph-pane'];_0x241ec9&&typeof _0x241ec9['unmount']==='function'&&_0x241ec9['unmount']();}catch(_0x5e1129){console['warn']('[RightActivityBar]\x20disposeCodeGraph\x20failed',_0x5e1129);}_0x2642ef&&(_0x2642ef['innerHTML']='',_0x2642ef=null),_0x168a2a=![],_0x577818=null;}function _0x308a33(){if(_0x5eca9e&&window['AIJobMonitor']&&typeof window['AIJobMonitor']['dispose']==='function')try{window['AIJobMonitor']['dispose']();}catch(_0x295eb7){}if(_0x519afc){try{_0x519afc['innerHTML']='';}catch(_0x26284e){}_0x519afc=null;}_0x5eca9e=![];}async function _0x892ea2(){const _0x5716e9=document['getElementById']('right-pane-content');if(!_0x5716e9)return;_0x43049e();const _0x2c7dd2=document['createElement']('div');_0x2c7dd2['className']='code-graph-right-host',_0x2c7dd2['style']['display']='flex',_0x2c7dd2['style']['flexDirection']='column',_0x2c7dd2['style']['height']='100%',_0x2c7dd2['style']['minHeight']='0',_0x2c7dd2['style']['width']='100%',_0x5716e9['innerHTML']='',_0x5716e9['appendChild'](_0x2c7dd2),_0x2642ef=_0x2c7dd2;try{const _0x2b9b79=window['ModuleRegistry'];_0x2b9b79&&typeof _0x2b9b79['ensureDescriptorLoaded']==='function'&&await _0x2b9b79['ensureDescriptorLoaded']('code-graph'),_0x2b9b79&&typeof _0x2b9b79['loadModule']==='function'&&await _0x2b9b79['loadModule']('code-graph');}catch(_0x404cb7){console['error']('[RightActivityBar]\x20Failed\x20to\x20load\x20Code\x20Graph\x20module',_0x404cb7),_0x2c7dd2['innerHTML']='<div\x20style=\x22padding:12px;\x20line-height:1.4;\x22>Unable\x20to\x20load\x20Code\x20Graph\x20module.</div>';return;}const _0x57f711=window['ModuleViews']?.['code-graph-pane'];if(!_0x57f711||typeof _0x57f711['mount']!=='function'){_0x2c7dd2['innerHTML']='<div\x20style=\x22padding:12px;\x20line-height:1.4;\x22>Code\x20Graph\x20view\x20is\x20unavailable.</div>';return;}try{_0x577818=_0x512da1(),_0x57f711['mount'](_0x2c7dd2,_0x577818),_0x168a2a=!![];}catch(_0x106e40){console['error']('[RightActivityBar]\x20Code\x20Graph\x20mount\x20failed',_0x106e40),_0x2c7dd2['innerHTML']='<div\x20style=\x22padding:12px;\x20line-height:1.4;\x22>Failed\x20to\x20render\x20Code\x20Graph\x20view.</div>';}}function _0x5dfbac(_0x2349c2){try{const _0x265976=document['getElementById']('vscode-right-pane'),_0x17cc50=_0x265976&&_0x265976['querySelector']('.right-pane-title\x20.title-text');if(_0x17cc50)_0x17cc50['textContent']=_0x2349c2||'AI\x20Utilities';}catch(_0x1a49fc){}}function _0x57ccf8(){const _0x49ede5=document['getElementById']('right-pane-content');if(!_0x49ede5)return;_0x49ede5['innerHTML']='';const _0x423fd6=document['createElement']('div');_0x423fd6['className']='debug-insights-right-host',_0x423fd6['style']['display']='block',_0x423fd6['style']['height']='100%',_0x423fd6['style']['overflow']='auto',_0x49ede5['appendChild'](_0x423fd6);try{const _0x483cbd=new URLSearchParams(window['location']?.['search']||'');if(_0x483cbd['get']('debug-plugins')==='false'){_0x423fd6['innerHTML']='<div\x20style=\x22padding:12px;\x20line-height:1.4;\x22>Debug\x20Insights\x20is\x20disabled\x20by\x20URL\x20parameter\x20<code>?debug-plugins=false</code>.</div>';return;}}catch(_0x43ebb3){}let _0x743417=null;try{const _0x16f6f0=window['ModuleRegistry'];_0x16f6f0&&typeof _0x16f6f0['ensureDescriptorLoaded']==='function'&&(_0x743417=_0x16f6f0['ensureDescriptorLoaded']('debug-insights')['then'](()=>typeof _0x16f6f0['loadModule']==='function'?_0x16f6f0['loadModule']('debug-insights'):!![])['catch'](_0x86b0ba=>console['warn']('[RightActivityBar]\x20debug-insights\x20descriptor\x20load\x20failed',_0x86b0ba)));}catch(_0x582376){}try{const _0x41fdc8=()=>{if(!window['debugPluginsIntegration']||typeof window['debugPluginsIntegration']['mountInsightsInto']!=='function')return![];try{return window['debugPluginsIntegration']['mountInsightsInto'](_0x423fd6),!![];}catch(_0x37477b){return console['error']('[RightActivityBar]\x20Debug\x20Insights\x20mount\x20failed',_0x37477b),![];}};if(_0x41fdc8()){try{_0x8c0556&&(window['removeEventListener']('debug-plugins-loaded',_0x8c0556),window['removeEventListener']('debug-plugins-integration-ready',_0x8c0556));}catch(_0x9d4ec4){}_0x8c0556=null;}else{_0x423fd6['innerHTML']='<div\x20style=\x22padding:12px;\x20line-height:1.4;\x22>Loading\x20Debug\x20Insights…</div>';const _0x3220bf=()=>{try{const _0x1a45d1=window['DebugPluginsLoader'];if(_0x1a45d1&&typeof _0x1a45d1['load']==='function'){const _0x2bd1d=_0x1a45d1['load']();_0x2bd1d&&typeof _0x2bd1d['catch']==='function'&&_0x2bd1d['catch'](_0x3a92af=>{console['error']('[RightActivityBar]\x20Debug\x20plugins\x20load\x20failed',_0x3a92af),_0x423fd6['innerHTML']='<div\x20style=\x22padding:12px;\x20line-height:1.4;\x22>Unable\x20to\x20load\x20Debug\x20Insights.</div>';});}}catch(_0x47120a){console['error']('[RightActivityBar]\x20Debug\x20plugins\x20load\x20failed',_0x47120a),_0x423fd6['innerHTML']='<div\x20style=\x22padding:12px;\x20line-height:1.4;\x22>Unable\x20to\x20load\x20Debug\x20Insights.</div>';}};_0x743417&&typeof _0x743417['then']==='function'?_0x743417['then'](_0x3220bf)['catch'](_0x3220bf):_0x3220bf();const _0x3d90b4=()=>{try{window['applyDebugInsightsSavedSettings']?.();}catch(_0x48e581){}_0x8c0556=null;if(_0x41fdc8())return;const _0x3d7541=window['DebugPluginsLoader']?.['getLoadError']?.()||window['__DEBUG_PLUGINS_LOAD_ERROR__']||null;_0x3d7541&&(_0x423fd6['innerHTML']='<div\x20style=\x22padding:12px;\x20line-height:1.4;\x22>Unable\x20to\x20load\x20Debug\x20Insights.</div>');};try{_0x8c0556&&(window['removeEventListener']('debug-plugins-loaded',_0x8c0556),window['removeEventListener']('debug-plugins-integration-ready',_0x8c0556));}catch(_0xd8312e){}_0x8c0556=_0x3d90b4;try{window['addEventListener']('debug-plugins-integration-ready',_0x3d90b4,{'once':!![]});}catch(_0x15e2ef){}}}catch(_0x5bfa07){console['error']('[RightActivityBar]\x20Debug\x20Insights\x20mount\x20failed',_0x5bfa07),_0x423fd6['innerHTML']='<div\x20style=\x22padding:12px;\x20line-height:1.4;\x22>Failed\x20to\x20render\x20Debug\x20Insights.</div>';}}const _0x1950fb=[{'value':'unknown','label':'Unknown','className':'status-unknown'},{'value':'ok','label':'Ready','className':'status-ok'},{'value':'warning','label':'Warning','className':'status-warning'},{'value':'error','label':'Error','className':'status-error'}],_0xd81eb5='onlyoffice_macros_ai_connection_secret_',_0x56420c='right_pane_ai_connection_split';function _0x3064db({elements:_0x1d6499,settingsStore:_0xe59fa1}){const {treeEl:_0x416e8d,inspectorEl:_0x3e0160,filterEl:_0x5098af,searchEl:_0xf2a61d,addButton:_0x294bc4,contentEl:_0x4db82d,splitterEl:_0x5b3ae8}=_0x1d6499||{};if(!_0x416e8d||!_0x3e0160||!_0xe59fa1)return function _0xc445d(){};const _0x4cf4bc=[{'id':_0x5be410,'label':'OpenAI','enabled':!![]}],_0x125496=window['AIProviderFactory']||null,_0x364a85=new Map(),_0x1268ed=new Map(),_0x120eeb=new Map(),_0x1b66d8=new Map(),_0x58d59a=[];let _0x93943b=[],_0x3415d6=null,_0x2204b4=![],_0x26f223='';function _0x21bdf6(_0x2311d9){if(!_0x2311d9||!_0x24de32)return _0x2311d9;return _0x2311d9['providerId']=_0x5be410,_0x2311d9['models']=[{'id':_0x87a01b}],_0x2311d9['primaryModelId']=_0x87a01b,_0x2311d9;}function _0xcb3b41(){try{const _0x26d41d=window['AIConfiguration']?.['getDefaultModel']?.(_0x5be410);if(typeof _0x26d41d==='string'&&_0x26d41d['trim']())return _0x26d41d['trim']();}catch(_0x53feb9){}return _0x87a01b;}const _0x4daac9={'connections':[],'filter':'all','search':'','selectedId':null,'editing':null,'suppressStore':![],'feedbackTone':'info','feedbackMessage':'','modelFocusIndex':null,'pendingModelFocusIndex':null,'connectionsSignature':'','filterOptionsSignature':'','splitRatio':0.2,'previousSplitRatio':0.2};function _0x571840(_0x33729e){const _0xfb0ad3=Number(_0x33729e);if(!Number['isFinite'](_0xfb0ad3))return 0.2;if(_0xfb0ad3<=0.02)return 0x0;if(_0xfb0ad3>=0.98)return 0x1;return Math['max'](0.08,Math['min'](0.92,_0xfb0ad3));}function _0x588039(_0x41e6ab,_0x5c2822={}){if(!_0x4db82d)return;const {persist:persist=!![]}=_0x5c2822,_0x211985=_0x571840(_0x41e6ab);_0x4daac9['splitRatio']=_0x211985;_0x211985>0x0&&_0x211985<0x1&&(_0x4daac9['previousSplitRatio']=_0x211985);_0x4db82d['style']['setProperty']('--ai-connection-tree-width',Math['round'](_0x211985*0x3e8)/0xa+'%'),_0x4db82d['classList']['toggle']('collapsed-tree',_0x211985===0x0),_0x4db82d['classList']['toggle']('collapsed-inspector',_0x211985===0x1);_0x5b3ae8&&(_0x5b3ae8['setAttribute']('aria-valuemin','0'),_0x5b3ae8['setAttribute']('aria-valuemax','100'),_0x5b3ae8['setAttribute']('aria-valuenow',String(Math['round'](_0x211985*0x64))));if(persist)try{localStorage['setItem'](_0x56420c,String(_0x211985));}catch(_0xf1b94f){}}function _0x2d2193(){if(!_0x4db82d||!_0x5b3ae8)return;let _0x16bd3e=![];const _0x104f77=_0xa17ac1=>{if(!_0x16bd3e)return;const _0x1e3497=_0x4db82d['getBoundingClientRect'](),_0x41b4e4=_0x1e3497['width']||0x1,_0x22f7c8=(_0xa17ac1['clientX']-_0x1e3497['left'])/_0x41b4e4;_0x588039(_0x22f7c8,{'persist':![]});},_0x2f891a=()=>{if(!_0x16bd3e)return;_0x16bd3e=![],_0x4db82d['classList']['remove']('is-resizing'),_0x588039(_0x4daac9['splitRatio'],{'persist':!![]});};_0x59fa9c(_0x5b3ae8,'mousedown',_0x3918a6=>{_0x3918a6['preventDefault'](),_0x16bd3e=!![],_0x4db82d['classList']['add']('is-resizing');}),_0x59fa9c(document,'mousemove',_0x104f77),_0x59fa9c(document,'mouseup',_0x2f891a),_0x59fa9c(_0x5b3ae8,'keydown',_0x14ddb2=>{if(_0x14ddb2['key']==='ArrowLeft')_0x14ddb2['preventDefault'](),_0x588039(_0x4daac9['splitRatio']-0.05);else{if(_0x14ddb2['key']==='ArrowRight')_0x14ddb2['preventDefault'](),_0x588039(_0x4daac9['splitRatio']+0.05);else{if(_0x14ddb2['key']==='Home')_0x14ddb2['preventDefault'](),_0x588039(0x0);else _0x14ddb2['key']==='End'&&(_0x14ddb2['preventDefault'](),_0x588039(0x1));}}}),_0x59fa9c(_0x5b3ae8,'dblclick',_0x3a1699=>{_0x3a1699['preventDefault']();if(_0x4daac9['splitRatio']===0x1){_0x588039(_0x4daac9['previousSplitRatio']||0.2);return;}_0x588039(0x1);});let _0x5d7fd2=0.2;try{const _0x2484d9=localStorage['getItem'](_0x56420c);if(_0x2484d9!==null)_0x5d7fd2=Number(_0x2484d9);}catch(_0x1dbd41){}_0x588039(_0x5d7fd2,{'persist':![]});}function _0x59fa9c(_0x1133f8,_0x5a9de8,_0x2075e7,_0x311ac7){if(!_0x1133f8||typeof _0x1133f8['addEventListener']!=='function')return;_0x1133f8['addEventListener'](_0x5a9de8,_0x2075e7,_0x311ac7||![]),_0x58d59a['push'](()=>{try{_0x1133f8['removeEventListener'](_0x5a9de8,_0x2075e7,_0x311ac7||![]);}catch(_0x23f43f){}});}function _0x34a2e2(){_0x93943b['forEach'](_0x5d6e70=>{try{_0x5d6e70();}catch(_0x3f9b36){}}),_0x93943b=[];}function _0x3d90ad(_0x163724,_0x4ce75b,_0x5010ec,_0x5d4dd){if(!_0x163724||typeof _0x163724['addEventListener']!=='function')return;_0x163724['addEventListener'](_0x4ce75b,_0x5010ec,_0x5d4dd||![]),_0x93943b['push'](()=>{try{_0x163724['removeEventListener'](_0x4ce75b,_0x5010ec,_0x5d4dd||![]);}catch(_0x4bd10b){}});}function _0x5dd84f(_0x46494b,_0x2e0b0e,_0x29ad7e=![]){if(!_0x46494b||!_0x2e0b0e)return;const _0x5220e1='picker-'+(_0x46494b['id']||_0x46494b['name']||_0x46494b['className']||'generic'),_0x67f63=document['getElementById'](_0x5220e1);if(_0x67f63){try{_0x67f63['__cleanup']?.();}catch(_0x388f26){}try{_0x67f63['remove']();}catch(_0x5f0572){}}const _0x14730b=_0x2e0b0e['getBoundingClientRect'](),_0x51cad6=_0x46494b['getBoundingClientRect'](),_0x8fecb0=document['createElement']('div');_0x8fecb0['id']=_0x5220e1,_0x8fecb0['className']='settings-dropdown';try{const _0x95acd8=_0x46494b?.['id']||_0x46494b?.['name']||'generic';window['TestId']?.['setTestId']?.(_0x8fecb0,'activity-right-picker-'+_0x95acd8);}catch(_0x955ef2){}_0x8fecb0['style']['position']='absolute',_0x8fecb0['style']['left']=Math['max'](0x0,_0x51cad6['left']-_0x14730b['left'])+'px',_0x8fecb0['style']['top']=Math['max'](0x0,_0x51cad6['bottom']-_0x14730b['top']+0x4)+'px',_0x8fecb0['style']['minWidth']=Math['max'](_0x51cad6['width'],0xc8)+'px',_0x8fecb0['style']['width']=Math['max'](_0x51cad6['width'],0xc8)+'px',_0x8fecb0['style']['maxWidth']=Math['max'](_0x51cad6['width'],0xc8)+'px',_0x8fecb0['style']['maxHeight']='240px',_0x8fecb0['style']['overflowY']='auto',_0x8fecb0['style']['overflowX']='hidden',_0x8fecb0['style']['background']='var(--color-bg-primary,\x20#1f1f1f)',_0x8fecb0['style']['color']='var(--color-text-primary,\x20#d4d4d4)',_0x8fecb0['style']['border']='1px\x20solid\x20var(--color-border-default,\x20#3c3c3c)',_0x8fecb0['style']['borderRadius']='6px',_0x8fecb0['style']['boxShadow']='0\x208px\x2024px\x20rgba(0,0,0,0.4)',_0x8fecb0['style']['zIndex']='3000',_0x8fecb0['style']['padding']='4px';const _0x42f22c=document['createElement']('div');_0x42f22c['setAttribute']('role','listbox');try{const _0x33bf9d=_0x46494b?.['id']||_0x46494b?.['name']||'generic';window['TestId']?.['setTestId']?.(_0x42f22c,'activity-right-picker-list-'+_0x33bf9d);}catch(_0x2b432e){}_0x42f22c['style']['display']='flex',_0x42f22c['style']['flexDirection']='column',_0x42f22c['style']['gap']='2px',_0x8fecb0['appendChild'](_0x42f22c);const _0x16edc3=_0x4ccd17=>{const _0x1f022d=document['createElement']('div');_0x1f022d['setAttribute']('role','option'),_0x1f022d['tabIndex']=0x0,_0x1f022d['textContent']=_0x4ccd17['textContent']||_0x4ccd17['value'],_0x1f022d['dataset']['value']=_0x4ccd17['value'];try{const _0x2c2133=_0x46494b?.['id']||_0x46494b?.['name']||'generic',_0x362989=window['TestId']?.['toKebab']?.(_0x4ccd17['value'])||'option';window['TestId']?.['setTestId']?.(_0x1f022d,'activity-right-picker-option-'+_0x2c2133+'-'+_0x362989);}catch(_0xbfab9d){}_0x1f022d['style']['padding']='6px\x2010px',_0x1f022d['style']['borderRadius']='4px',_0x1f022d['style']['cursor']='pointer',_0x1f022d['style']['outline']='none',_0x1f022d['style']['display']='block',_0x1f022d['style']['width']='100%',_0x1f022d['style']['minWidth']='0',_0x1f022d['style']['boxSizing']='border-box',_0x1f022d['style']['whiteSpace']='nowrap',_0x1f022d['style']['overflow']='hidden',_0x1f022d['style']['textOverflow']='ellipsis',_0x1f022d['title']=_0x4ccd17['textContent']||_0x4ccd17['value']||'';const _0xf54f8b=_0x46494b['value']===_0x4ccd17['value'];_0x1f022d['style']['background']=_0xf54f8b?'var(--vscode-list-focusBackground,#094771)':'transparent',_0x1f022d['style']['color']=_0xf54f8b?'var(--vscode-list-focusForeground,#ffffff)':'var(--vscode-foreground,#d4d4d4)',_0x1f022d['addEventListener']('mouseenter',()=>{_0x1f022d['style']['background']='var(--vscode-list-hoverBackground,\x20rgba(255,255,255,0.08))';}),_0x1f022d['addEventListener']('mouseleave',()=>{const _0x414bed=_0x46494b['value']===_0x4ccd17['value'];_0x1f022d['style']['background']=_0x414bed?'var(--vscode-list-focusBackground,#094771)':'transparent',_0x1f022d['style']['color']=_0x414bed?'var(--vscode-list-focusForeground,#ffffff)':'var(--vscode-foreground,#d4d4d4)';});const _0x458a2b=()=>{try{_0x46494b['value']=_0x4ccd17['value'],_0x46494b['dispatchEvent'](new Event('change',{'bubbles':!![]}));}catch(_0x599ee1){}try{_0x8fecb0['__cleanup']?.();}catch(_0x5cd0ed){}try{_0x8fecb0['remove']();}catch(_0xbec87d){}};return _0x1f022d['addEventListener']('click',_0x458a2b),_0x1f022d['addEventListener']('keydown',_0x3decf4=>{if(_0x3decf4['key']==='Enter')_0x458a2b();}),_0x1f022d;};Array['from'](_0x46494b['options']||[])['forEach'](_0x3c0bf9=>_0x42f22c['appendChild'](_0x16edc3(_0x3c0bf9))),_0x2e0b0e['appendChild'](_0x8fecb0);const _0x335bd2=_0xe15103=>{if(!_0x8fecb0['contains'](_0xe15103['target'])){try{_0x8fecb0['__cleanup']?.();}catch(_0x39d810){}try{_0x8fecb0['remove']();}catch(_0x52924e){}}},_0x48b162=_0x343f8c=>{if(_0x343f8c['key']==='Escape'){try{_0x8fecb0['__cleanup']?.();}catch(_0x205dd8){}try{_0x8fecb0['remove']();}catch(_0x4e2f16){}}};_0x8fecb0['__cleanup']=()=>{window['removeEventListener']('mousedown',_0x335bd2,!![]),window['removeEventListener']('keydown',_0x48b162,!![]);},window['addEventListener']('mousedown',_0x335bd2,!![]),window['addEventListener']('keydown',_0x48b162,!![]);if(_0x29ad7e){const _0x1fe04f=_0x42f22c['querySelector']('[role=\x22option\x22]');try{_0x1fe04f&&_0x1fe04f['focus']&&_0x1fe04f['focus']();}catch(_0x3931b1){}}}function _0x56c9ca(_0x3599a5,_0x544944){if(!_0x3599a5||!_0x544944)return;if(_0x3599a5['__customPickerBound'])return;_0x3599a5['__customPickerBound']=!![],_0x59fa9c(_0x3599a5,'mousedown',_0xcce311=>{_0xcce311['preventDefault'](),_0xcce311['stopPropagation'](),_0x5dd84f(_0x3599a5,_0x544944,![]);},!![]),_0x59fa9c(_0x3599a5,'keydown',_0x2589d2=>{(_0x2589d2['key']==='Enter'||_0x2589d2['key']==='\x20'||_0x2589d2['key']==='ArrowDown')&&(_0x2589d2['preventDefault'](),_0x2589d2['stopPropagation'](),_0x5dd84f(_0x3599a5,_0x544944,!![]));});}function _0x561b92(_0x4a64e7){return String(_0x4a64e7??'')['replace'](/[&<>]/g,_0xa55adc=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[_0xa55adc]));}function _0x8f19e6(_0x44455c){return _0x561b92(_0x44455c)['replace'](/"/g,'&quot;');}function _0x2af57c(_0x5a096b){return _0x5a096b!==null&&typeof _0x5a096b==='object'&&!Array['isArray'](_0x5a096b);}function _0xe9c81e(_0x502526){if(!_0x2af57c(_0x502526))return null;const _0x5e896a={..._0x502526};return _0x5e896a['models']=Array['isArray'](_0x502526['models'])?_0x502526['models']['map'](_0x215704=>_0x2af57c(_0x215704)?{..._0x215704}:{'id':String(_0x215704||'')}):[],_0x5e896a['tags']=Array['isArray'](_0x502526['tags'])?[..._0x502526['tags']]:[],_0x5e896a;}function _0x414918(_0x309e9f,_0x5cadb6){const _0x204a67=typeof _0x5cadb6==='string'?_0x5cadb6['trim']()['toLowerCase']():'';if(!_0x204a67)return{'isText':![],'isCoding':![]};const _0x248ad6=_0x1fc5ff(_0x309e9f);if(_0x248ad6==='openai'){const _0x38493e=['embedding','image','vision','audio','sora','tts','speech','voice','transcribe','moderation','search'];if(_0x38493e['some'](_0x4e1222=>_0x204a67['includes'](_0x4e1222)))return{'isText':![],'isCoding':![]};const _0x218e68=['code','codex','gpt-4o','gpt-4.1','gpt-4-','gpt-4','gpt-3.5','o1','o3'],_0x418385=_0x218e68['some'](_0x85095=>_0x204a67['includes'](_0x85095));return{'isText':!![],'isCoding':_0x418385};}return{'isText':!![],'isCoding':![]};}function _0x36e219(_0x23de1e,_0x3d3732){if(!Array['isArray'](_0x3d3732))return[];return _0x3d3732['map'](_0x29934a=>{let _0x586a70=null,_0x2cca40=null,_0x30af0a=undefined,_0x1a4725=undefined;if(typeof _0x29934a==='string')_0x586a70=_0x29934a,_0x2cca40=_0x29934a;else{if(_0x2af57c(_0x29934a)&&typeof _0x29934a['id']==='string'){_0x586a70=_0x29934a['id'],_0x2cca40=typeof _0x29934a['name']==='string'&&_0x29934a['name']['trim']()?_0x29934a['name']:_0x29934a['id'],_0x30af0a=_0x29934a['maxTokens']??_0x29934a['max_tokens']??undefined,_0x1a4725=_0x29934a['ownedBy']??_0x29934a['owned_by']??undefined;if(typeof _0x29934a['isText']==='boolean'||typeof _0x29934a['isCoding']==='boolean')return{'id':_0x586a70,'name':_0x2cca40,'maxTokens':_0x30af0a,'ownedBy':_0x1a4725,'isText':_0x29934a['isText']!==![],'isCoding':_0x29934a['isCoding']===!![]};}}if(!_0x586a70)return null;const _0x5cea49=_0x414918(_0x23de1e,_0x586a70);return{'id':_0x586a70,'name':_0x2cca40,'maxTokens':_0x30af0a,'ownedBy':_0x1a4725,'isText':_0x5cea49['isText'],'isCoding':_0x5cea49['isCoding']};})['filter'](Boolean);}function _0x3ac324(_0x52250e,{selectId:_0x24ccd3}={}){const _0x4103d6=Array['isArray'](_0x52250e)?_0x52250e['map'](_0x547e6b=>_0xe9c81e(_0x547e6b))['filter'](Boolean):[];if(_0xe59fa1&&typeof _0xe59fa1['update']==='function')try{_0x4daac9['suppressStore']=!![],_0xe59fa1['update']({'aiConnections':_0x4103d6}),setTimeout(()=>{_0x4daac9['suppressStore']=![];},0x0);}catch(_0xe1aac3){return _0x4daac9['suppressStore']=![],console['error']('[RightActivityBar]\x20Failed\x20to\x20persist\x20connections:',_0xe1aac3),![];}else console['warn']('[RightActivityBar]\x20SettingsStore\x20unavailable;\x20applying\x20changes\x20locally\x20only.');_0x4daac9['connections']=_0x4103d6;try{window['__aiConnectionsCache']=JSON['parse'](JSON['stringify'](_0x4daac9['connections']));}catch(_0x19f2fa){}_0x5a8d6d();if(typeof _0x24ccd3==='string'||_0x24ccd3===null)_0x4daac9['selectedId']=_0x24ccd3;else _0x4daac9['selectedId']&&!_0x4103d6['some'](_0x2e49dc=>_0x2e49dc['id']===_0x4daac9['selectedId'])&&(_0x4daac9['selectedId']=_0x4103d6[0x0]?.['id']||null);_0x4daac9['editing']=_0x4daac9['selectedId']?_0xe9c81e(_0x4103d6['find'](_0x90eccf=>_0x90eccf['id']===_0x4daac9['selectedId'])):null,_0x26371f(),_0x1bc4fb(),_0x187d5f();try{document['dispatchEvent'](new CustomEvent('aiConnections:updated',{'detail':{'connections':_0x4103d6}}));}catch(_0x45f863){}return!![];}function _0x14d69(_0xdd553d,_0x42dc73){const _0x466644=_0x1fc5ff(_0xdd553d);if(!_0x42dc73||!_0x42dc73['trim']()){if(_0x466644==='ollama')return{'ok':!![],'value':''};return{'ok':![],'message':'Add\x20an\x20API\x20key\x20before\x20testing\x20the\x20connection.'};}const _0x333544=_0x42dc73['trim']();if(_0x466644==='openai'&&!_0x333544['startsWith']('sk-'))return{'ok':![],'message':'OpenAI\x20keys\x20should\x20start\x20with\x20\x22sk-\x22.'};if(_0x466644==='github'){const _0x51e815=_0x333544['startsWith']('ghp_')||_0x333544['startsWith']('gho_')||_0x333544['startsWith']('ghu_')||_0x333544['startsWith']('ghs_')||_0x333544['startsWith']('github_pat_');if(!_0x51e815)return{'ok':![],'message':'GitHub\x20tokens\x20should\x20start\x20with\x20gh*\x20(e.g.\x20“ghp_”,\x20“github_pat_”).'};}if(_0x466644==='deepseek'||_0x466644==='litellm'||_0x466644==='minimax'||_0x466644==='qwen-code'||_0x466644==='zai'||_0x466644==='gemini'){if(!_0x333544)return{'ok':![],'message':'Add\x20an\x20API\x20key\x20before\x20testing\x20the\x20connection.'};}return{'ok':!![],'value':_0x333544};}function _0x4427cb(_0x37c4fa){const _0x3ed301=new Set(_0x4daac9['connections']['map'](_0xae2402=>(_0xae2402['name']||'')['toLowerCase']())),_0x23f77e=(_0x37c4fa||'Connection')['trim']()||'Connection';let _0x4873bd=_0x23f77e+'\x20Copy',_0x12cbc7=0x2;while(_0x3ed301['has'](_0x4873bd['toLowerCase']())){_0x4873bd=_0x23f77e+'\x20Copy\x20'+_0x12cbc7,_0x12cbc7+=0x1;}return _0x4873bd;}function _0x340926(_0xf1f629){if(!_0xf1f629)return;const _0x579f28=_0xf1f629['name']||'',_0x3e7f2=window['prompt']('Rename\x20connection',_0x579f28);if(!_0x3e7f2)return;const _0x28c829=_0x3e7f2['trim']();if(!_0x28c829||_0x28c829===_0x579f28)return;const _0x198bb5=_0x4daac9['connections']['map'](_0x25b396=>{const _0x662813=_0xe9c81e(_0x25b396);return _0x25b396['id']===_0xf1f629['id']&&(_0x662813['name']=_0x28c829,_0x662813['updatedAt']=Date['now']()),_0x662813;});if(!_0x3ac324(_0x198bb5,{'selectId':_0xf1f629['id']}))return;_0x4daac9['editing']&&_0x4daac9['editing']['id']===_0xf1f629['id']?_0x46d891('Connection\x20renamed.','success'):window['LogService']?.['logInfo']?.('AI\x20Connections','rename',{'id':_0xf1f629['id'],'name':_0x28c829});}function _0x30c008(_0x2671e9){if(!_0x2671e9)return;const _0x49a6be=_0xe9c81e(_0x2671e9),_0x25e844=Date['now']();_0x49a6be['id']='conn-'+Math['random']()['toString'](0x24)['slice'](0x2,0x9)+_0x25e844['toString'](0x24),_0x49a6be['name']=_0x4427cb(_0x2671e9['name']),_0x49a6be['createdAt']=_0x25e844,_0x49a6be['updatedAt']=_0x25e844,_0x49a6be['lastTestedAt']=null,_0x49a6be['status']='unknown';const _0x1cb79c=_0x4daac9['connections']['map'](_0x38dc7e=>_0xe9c81e(_0x38dc7e));_0x1cb79c['push'](_0x49a6be);if(!_0x3ac324(_0x1cb79c,{'selectId':_0x49a6be['id']}))return;const _0x4829a5=_0x14a234(_0x2671e9['id']);_0x4829a5&&(_0x32d7ae(_0x49a6be['id'],_0x49a6be['providerId'],_0x4829a5),_0x2927a8(_0x49a6be['providerId'],{'apiKey':_0x4829a5,'onComplete':()=>{_0x4daac9['selectedId']===_0x49a6be['id']&&(_0x1bc4fb(),_0x187d5f());}})),setTimeout(()=>_0x46d891('Connection\x20copied.','success'),0x0);}function _0x534b70(_0x6a1046){if(!_0x6a1046)return;const _0x442430=_0x14a234(_0x6a1046['id']),_0x44e4a3=_0x14d69(_0x6a1046['providerId'],_0x442430);if(!_0x44e4a3['ok']){_0x4daac9['editing']&&_0x4daac9['editing']['id']===_0x6a1046['id']?_0x46d891(_0x44e4a3['message'],'warning'):window['alert'](_0x44e4a3['message']);return;}const _0x12dea2=Date['now'](),_0x411e3e=_0x4daac9['connections']['map'](_0x3fb780=>{const _0x447293=_0xe9c81e(_0x3fb780);return _0x3fb780['id']===_0x6a1046['id']&&(_0x447293['status']='ok',_0x447293['lastTestedAt']=_0x12dea2,_0x447293['updatedAt']=_0x12dea2),_0x447293;});if(!_0x3ac324(_0x411e3e,{'selectId':_0x6a1046['id']}))return;_0x4daac9['editing']&&_0x4daac9['editing']['id']===_0x6a1046['id']?_0x46d891('Connection\x20passed\x20basic\x20validation.','success'):window['LogService']?.['logInfo']?.('AI\x20Connections','test',{'id':_0x6a1046['id'],'provider':_0x6a1046['providerId']});}function _0x25e577(_0x53cb2f){if(!_0x53cb2f)return;const _0x1a71d2=window['confirm']('Delete\x20connection\x20\x22'+(_0x53cb2f['name']||_0x53cb2f['id'])+'\x22?');if(!_0x1a71d2)return;const _0x33be4e=_0x4daac9['connections']['findIndex'](_0x332040=>_0x332040['id']===_0x53cb2f['id']),_0x109946=_0x4daac9['connections']['filter'](_0x44117a=>_0x44117a['id']!==_0x53cb2f['id'])['map'](_0x59169b=>_0xe9c81e(_0x59169b));let _0x218016=_0x4daac9['selectedId'];if(_0x218016===_0x53cb2f['id']){if(_0x109946['length']){const _0x2d6135=Math['max'](0x0,_0x33be4e-0x1);_0x218016=_0x109946[_0x2d6135]?.['id']||_0x109946[0x0]?.['id']||null;}else _0x218016=null;}_0x182d14(_0x53cb2f['id']);if(!_0x3ac324(_0x109946,{'selectId':_0x218016}))return;window['LogService']?.['logInfo']?.('AI\x20Connections','delete',{'id':_0x53cb2f['id']});}function _0x2f7eaf(_0x35c2f4){if(_0x364a85['has'](_0x35c2f4))return _0x364a85['get'](_0x35c2f4);if(!_0x35c2f4)return'Unknown';const _0x186519=_0x4cf4bc['find'](_0x120260=>_0x120260['id']===_0x35c2f4)||null,_0x3f94f6=_0x186519?.['label']||_0x35c2f4['replace'](/[-_]+/g,'\x20')['replace'](/\b\w/g,_0x20cab6=>_0x20cab6['toUpperCase']());return _0x364a85['set'](_0x35c2f4,_0x3f94f6),_0x3f94f6;}function _0x26c307(){if(!window['ENABLE_AGENT_CORE']||!window['AgentEngine']||typeof window['AgentEngine']['runSimpleAgentTask']!=='function'){window['debug']?.['warn']('RightActivityBar','Agent\x20core\x20smoke\x20test\x20not\x20available',{'ENABLE_AGENT_CORE':window['ENABLE_AGENT_CORE'],'hasAgentEngine':!!window['AgentEngine']});return;}try{const _0xbc27b9='Explain\x20in\x20one\x20sentence\x20what\x20this\x20OnlyOffice\x20macros\x20IDE\x20does\x20for\x20the\x20user.';window['AgentEngine']['runSimpleAgentTask']({'goal':_0xbc27b9})['then'](function(_0x38fd46){const _0x4c6a6b=_0x38fd46&&_0x38fd46['finalMessage']&&_0x38fd46['finalMessage']['content']?_0x38fd46['finalMessage']['content']:'[no\x20content]';window['debug']?.['info']('RightActivityBar','Agent\x20core\x20smoke\x20test\x20result',{'goal':_0xbc27b9,'msg':_0x4c6a6b});})['catch'](function(_0x51424b){window['debug']?.['error']('RightActivityBar','Agent\x20core\x20smoke\x20test\x20failed',_0x51424b);});}catch(_0x2f5c6f){window['debug']?.['error']('RightActivityBar','Agent\x20core\x20smoke\x20test\x20threw',_0x2f5c6f);}}function _0x1fc5ff(_0x1243a0){if(_0x125496?.['normalizeProviderId'])try{return _0x125496['normalizeProviderId'](_0x1243a0);}catch(_0x3182b8){}return typeof _0x1243a0==='string'&&_0x1243a0['trim']()?_0x1243a0['trim']()['toLowerCase']():'openai';}function _0x225ce6(_0x3a390c){const _0x2383d4=_0x1fc5ff(_0x3a390c);let _0x21014b=_0x1268ed['get'](_0x2383d4);if(_0x2383d4==='github'&&(!_0x21014b||!Array['isArray'](_0x21014b['models'])||_0x21014b['models']['length']===0x0))try{if(window['GitHubAIProvider']){const _0x37d48e=new window['GitHubAIProvider']();if(_0x37d48e&&typeof _0x37d48e['getAvailableModels']==='function'){const _0x5ea6bb=_0x37d48e['getAvailableModels']()||[],_0x276505=_0x36e219('github',_0x5ea6bb);_0x276505['length']&&(_0x21014b={'models':_0x276505,'source':'static','fetchedAt':Date['now']()},_0x1268ed['set'](_0x2383d4,_0x21014b));}}}catch(_0x5915e5){}return Array['isArray'](_0x21014b?.['models'])?_0x21014b['models']:[];}function _0x545645(_0x2e6e46,_0x388c9a,_0x7628e7='static',_0x5b62ac={}){const _0x1599b1=_0x1fc5ff(_0x2e6e46),_0x3d5349=_0x36e219(_0x2e6e46,_0x388c9a);return _0x1268ed['set'](_0x1599b1,{'models':_0x3d5349,'source':_0x7628e7,'fetchedAt':Date['now'](),..._0x5b62ac}),_0x1268ed['get'](_0x1599b1)['models'];}function _0x8d1928(_0x1cea7d){const _0x20a88d=_0x1fc5ff(_0x1cea7d),_0x2b68e8=_0x1268ed['get'](_0x20a88d);if(_0x2b68e8&&Array['isArray'](_0x2b68e8['models'])&&_0x2b68e8['models']['length'])return _0x2b68e8['models'];let _0x3bebb0=[];try{let _0x38b318=null;if(_0x125496?.['createProvider'])try{_0x38b318=_0x125496['createProvider'](_0x20a88d);}catch(_0x21b5e0){console['warn']('[RightActivityBar]\x20Failed\x20to\x20create\x20provider\x20for\x20model\x20catalog:',_0x21b5e0);}!_0x38b318&&(_0x20a88d==='openai'&&window['OpenAIProvider']&&(_0x38b318=new window['OpenAIProvider']()));if(_0x38b318?.['getAvailableModels']){const _0x5c790a=_0x38b318['getAvailableModels']();Array['isArray'](_0x5c790a)&&(_0x3bebb0=_0x5c790a);}}catch(_0x1abd9a){console['warn']('[RightActivityBar]\x20Failed\x20to\x20load\x20model\x20list\x20for\x20provider:',_0x1cea7d,_0x1abd9a);}return _0x545645(_0x1cea7d,_0x3bebb0,'static');}async function _0x2d1221(_0x528416){if(!_0x528416)return[];const _0x18f60a=[],_0x4fd513='https://api.openai.com/v1/models',_0x2b5fb2={'Authorization':'Bearer\x20'+_0x528416,'Content-Type':'application/json'};let _0x111c21=_0x4fd513;const _0x2a8293=new Set();while(_0x111c21&&!_0x2a8293['has'](_0x111c21)){_0x2a8293['add'](_0x111c21);const _0x55c697=await fetch(_0x111c21,{'method':'GET','headers':_0x2b5fb2});if(!_0x55c697['ok']){const _0x2e6699=await _0x55c697['text']()['catch'](()=>'');throw new Error('HTTP\x20'+_0x55c697['status']+'\x20fetching\x20models:\x20'+(_0x2e6699||_0x55c697['statusText']));}const _0xe6afd2=await _0x55c697['json'](),_0x312411=Array['isArray'](_0xe6afd2?.['data'])?_0xe6afd2['data']:[];_0x312411['forEach'](_0x1a2210=>{_0x1a2210&&typeof _0x1a2210['id']==='string'&&_0x18f60a['push']({'id':_0x1a2210['id'],'name':_0x1a2210['id'],'ownedBy':typeof _0x1a2210['owned_by']==='string'?_0x1a2210['owned_by']:undefined});});if(_0xe6afd2?.['has_more']&&_0xe6afd2?.['last_id'])_0x111c21=_0x4fd513+'?after='+encodeURIComponent(_0xe6afd2['last_id']);else{if(_0xe6afd2?.['next'])_0x111c21=_0xe6afd2['next']['startsWith']('http')?_0xe6afd2['next']:_0x4fd513+'?'+_0xe6afd2['next']['replace'](/^\?/,'');else break;}}return _0x18f60a;}function _0x2927a8(_0x16d603,_0x58d609={}){const _0x2c07ac=_0x1fc5ff(_0x16d603);if(_0x2c07ac!=='openai'&&_0x2c07ac!=='github'&&_0x2c07ac!=='gemini'&&_0x2c07ac!=='deepseek'&&_0x2c07ac!=='ollama'&&_0x2c07ac!=='litellm'&&_0x2c07ac!=='zai')return;const _0x40c3fa=typeof _0x58d609['apiKey']==='string'&&_0x58d609['apiKey']['trim']()?_0x58d609['apiKey']['trim']():'';if(_0x2c07ac!=='ollama'&&_0x2c07ac!=='zai'&&!_0x40c3fa)return;if(_0x2c07ac!=='zai'&&typeof fetch!=='function')return;const _0x35da40=_0x2c07ac==='ollama'?_0x2c07ac+':local':_0x2c07ac+':'+_0x40c3fa['slice'](0x0,0x10),_0x56d18a=_0x1268ed['get'](_0x2c07ac),_0x499450=_0x58d609['force']===!![];if(!_0x499450&&_0x56d18a){if(_0x56d18a['apiKeyFingerprint']===_0x35da40&&(_0x56d18a['source']==='remote'||_0x56d18a['source']==='error'))return;if(_0x56d18a['source']==='remote'&&Array['isArray'](_0x56d18a['models'])&&_0x56d18a['models']['length'])return;}if(_0x120eeb['has'](_0x35da40))return;_0x120eeb['set'](_0x35da40,!![]);let _0x42662f=null,_0x231b12=[_0x40c3fa];if(_0x2c07ac==='openai')_0x42662f=_0x2d1221;else{if(_0x2c07ac==='github')_0x42662f=window['GitHubApi']&&typeof window['GitHubApi']['fetchModelsCatalog']==='function'?window['GitHubApi']['fetchModelsCatalog']:null;else{if(_0x2c07ac==='gemini')_0x42662f=window['GeminiApi']&&typeof window['GeminiApi']['fetchModelsCatalog']==='function'?window['GeminiApi']['fetchModelsCatalog']:null;else{if(_0x2c07ac==='deepseek')_0x42662f=window['DeepSeekApi']&&typeof window['DeepSeekApi']['fetchModelsCatalog']==='function'?window['DeepSeekApi']['fetchModelsCatalog']:null;else{if(_0x2c07ac==='ollama')_0x42662f=window['OllamaApi']&&typeof window['OllamaApi']['fetchModelsCatalog']==='function'?window['OllamaApi']['fetchModelsCatalog']:null,_0x231b12=[];else{if(_0x2c07ac==='litellm'){_0x42662f=window['LiteLLMApi']&&typeof window['LiteLLMApi']['fetchModelsCatalog']==='function'?window['LiteLLMApi']['fetchModelsCatalog']:null;let _0x39a0d5=_0x58d609['baseUrl']||_0x58d609['baseURL']||'';try{(!_0x39a0d5||!_0x39a0d5['trim']())&&window['AIConfiguration']&&typeof window['AIConfiguration']['get']==='function'&&(_0x39a0d5=window['AIConfiguration']['get']('litellmBaseUrl'));}catch(_0x46e8e3){}_0x231b12=[_0x40c3fa,_0x39a0d5];}else{if(_0x2c07ac==='zai'){_0x42662f=window['ZAiApi']&&typeof window['ZAiApi']['getStaticModels']==='function'?window['ZAiApi']['getStaticModels']:null;let _0x170d46=_0x58d609['apiLine']||_0x58d609['zaiApiLine']||'';try{!_0x170d46&&window['AIConfiguration']&&typeof window['AIConfiguration']['get']==='function'&&(_0x170d46=window['AIConfiguration']['get']('zaiApiLine'));}catch(_0x4b5752){}_0x231b12=[_0x170d46];}}}}}}}if(!_0x42662f){_0x120eeb['delete'](_0x35da40);return;}Promise['resolve'](_0x42662f['apply'](null,_0x231b12))['then'](_0x3e4f3f=>{const _0x5b673d=Array['isArray'](_0x3e4f3f)&&_0x3e4f3f['length']?_0x3e4f3f:Array['isArray'](_0x56d18a?.['models'])?_0x56d18a['models']:[],_0x50db34=Array['isArray'](_0x3e4f3f)&&_0x3e4f3f['length']?'remote':_0x56d18a?.['source']||'static';_0x545645(_0x16d603,_0x5b673d,_0x50db34,{'apiKeyFingerprint':_0x35da40,'lastFetchError':undefined});})['catch'](_0x49bdb3=>{console['warn']('[RightActivityBar]\x20Failed\x20to\x20fetch\x20models\x20via\x20REST:',_0x49bdb3);const _0x313b34=_0x49bdb3?.['message']||String(_0x49bdb3);let _0x1e7224=_0x313b34;const _0x43313c=_0x313b34['toLowerCase']?_0x313b34['toLowerCase']():String(_0x313b34)['toLowerCase']();if(_0x43313c['includes']('401')||_0x43313c['includes']('403')||_0x43313c['includes']('unauthorized')||_0x43313c['includes']('invalid\x20api\x20key')){const _0x1f5c6a=_0x2f7eaf(_0x16d603);_0x1e7224='Invalid\x20or\x20missing\x20API\x20key\x20for\x20'+_0x1f5c6a+'.';}else(_0x43313c['includes']('failed\x20to\x20fetch')||_0x43313c['includes']('networkerror')||_0x43313c['includes']('connection\x20refused')||_0x43313c['includes']('ecconnrefused'))&&(_0x2c07ac==='ollama'?_0x1e7224='Ollama\x20server\x20not\x20reachable.\x20Ensure\x20it\x20is\x20running\x20on\x20http://127.0.0.1:11434.':_0x1e7224='Server\x20not\x20reachable\x20(is\x20it\x20running\x20and\x20accessible?).');_0x545645(_0x16d603,Array['isArray'](_0x56d18a?.['models'])?_0x56d18a['models']:[],'error',{'apiKeyFingerprint':_0x35da40,'lastFetchError':_0x1e7224});})['finally'](()=>{_0x120eeb['delete'](_0x35da40);if(typeof _0x58d609['onComplete']==='function')try{_0x58d609['onComplete']();}catch(_0x4de818){}});}function _0x14a234(_0x214ab5){if(!_0x214ab5)return'';try{return localStorage['getItem'](''+_0xd81eb5+_0x214ab5)||'';}catch(_0x24c2c2){return console['warn']('[RightActivityBar]\x20Failed\x20to\x20read\x20connection\x20secret:',_0x24c2c2),'';}}function _0x32d7ae(_0x1db49b,_0x30a46d,_0x2839a7){if(!_0x1db49b)return![];try{const _0x1bc372=''+_0xd81eb5+_0x1db49b;if(_0x2839a7&&_0x2839a7['trim']()){localStorage['setItem'](_0x1bc372,_0x2839a7['trim']());try{window['AIStorage']?.['setApiKey']?.(_0x30a46d,_0x2839a7['trim']());}catch(_0x56111a){}}else localStorage['removeItem'](_0x1bc372);return!![];}catch(_0x49ce62){return console['error']('[RightActivityBar]\x20Failed\x20to\x20persist\x20connection\x20secret:',_0x49ce62),![];}}function _0x182d14(_0x52cd57){if(!_0x52cd57)return;try{localStorage['removeItem'](''+_0xd81eb5+_0x52cd57);}catch(_0x59efba){console['warn']('[RightActivityBar]\x20Failed\x20to\x20remove\x20connection\x20secret:',_0x59efba);}}function _0x5a985a(_0x3c21d3){try{window['__aiConnectionsCache']=JSON['parse'](JSON['stringify'](Array['isArray'](_0x3c21d3)?_0x3c21d3:[]));}catch(_0x500ecd){}}function _0xbdb07e(){try{if(!Array['isArray'](_0x4daac9['connections'])||_0x4daac9['connections']['length']===0x0){const _0x456c57=Array['isArray'](window['__aiConnectionsCache'])?window['__aiConnectionsCache']:[];if(_0x456c57['length']){_0x4daac9['connections']=_0x456c57['map'](_0x561c47=>_0xe9c81e(_0x561c47));try{_0xe59fa1['update']({'aiConnections':_0x4daac9['connections']['map'](_0x249e6c=>_0xe9c81e(_0x249e6c))});}catch(_0x13d736){}}else{const _0x53f4d2=window['SettingsStore']?.['ensureAiConnections']?.();Array['isArray'](_0x53f4d2)&&_0x53f4d2['length']&&(_0x4daac9['connections']=_0x53f4d2['map'](_0x365043=>_0xe9c81e(_0x365043)),_0x5a985a(_0x4daac9['connections']));}}}catch(_0x3c3116){}}function _0x31d9be(_0x54c48a){let _0x5c6670=_0x54c48a;(!_0x5c6670||typeof _0x5c6670!=='object')&&(_0x5c6670=_0xe59fa1['getState']?.()||{});if((!_0x5c6670['aiConnections']||!Array['isArray'](_0x5c6670['aiConnections']))&&typeof _0xe59fa1['ensureAiConnections']==='function')try{const _0xb00690=_0xe59fa1['ensureAiConnections']();Array['isArray'](_0xb00690)&&(_0x5c6670={..._0x5c6670,'aiConnections':_0xb00690});}catch(_0xa02563){console['warn']('[RightActivityBar]\x20ensureAiConnections\x20failed\x20during\x20load:',_0xa02563);}const _0x1e9283=Array['isArray'](_0x5c6670['aiConnections'])?_0x5c6670['aiConnections']:[];_0x4daac9['connections']=_0x1e9283['map'](_0x2f3350=>_0xe9c81e(_0x2f3350))['filter'](Boolean)['map'](_0x360939=>_0x21bdf6(_0x360939));if(_0x4daac9['connections']['length'])_0x5a985a(_0x4daac9['connections']);_0xbdb07e(),_0x2cafed(),_0x4daac9['connectionsSignature']=_0x4bdee2(_0x4daac9['connections']);}function _0x4bdee2(_0x5bed7e){if(!Array['isArray'](_0x5bed7e)||!_0x5bed7e['length'])return'';return _0x5bed7e['map'](_0x3ff2b3=>{const _0x289c62=_0x3ff2b3?.['id']||'',_0x281146=_0x3ff2b3?.['updatedAt']||'',_0xc681f5=_0x3ff2b3?.['providerId']||'',_0x327741=_0x3ff2b3?.['status']||'',_0x4df6aa=_0x3ff2b3?.['name']||'',_0x4e37a5=_0x3ff2b3?.['primaryModelId']||'',_0x29e7dc=typeof _0x3ff2b3?.['comment']==='string'?_0x3ff2b3['comment']['length']:0x0;return[_0x289c62,_0x281146,_0xc681f5,_0x327741,_0x4e37a5,_0x4df6aa,_0x29e7dc]['join'](':');})['join']('|');}function _0x2cafed(){const _0x5be65c=new Set();_0x4daac9['connections']['forEach'](_0x3911fa=>{if(!_0x3911fa||!_0x3911fa['id'])return;_0x5be65c['add'](_0x3911fa['id']);const _0x494fef=[_0x3911fa['name'],_0x3911fa['providerId'],_0x3911fa['comment'],...Array['isArray'](_0x3911fa['tags'])?_0x3911fa['tags']:[],...Array['isArray'](_0x3911fa['models'])?_0x3911fa['models']['map'](_0x591925=>_0x591925['id']):[]]['join']('\x20')['toLowerCase']();_0x1b66d8['set'](_0x3911fa['id'],_0x494fef);}),Array['from'](_0x1b66d8['keys']())['forEach'](_0x2a7c08=>{if(!_0x5be65c['has'](_0x2a7c08))_0x1b66d8['delete'](_0x2a7c08);});}function _0x5a8d6d(){_0x2cafed(),_0x4daac9['connectionsSignature']=_0x4bdee2(_0x4daac9['connections']),_0x26f223='';}function _0x26371f(){if(!_0x5098af)return;const _0x231a26=new Set();_0x4cf4bc['forEach'](_0x20452a=>_0x231a26['add'](_0x20452a['id'])),_0x4daac9['connections']['forEach'](_0x9784dc=>_0x231a26['add'](_0x9784dc['providerId']));const _0x476366=Array['from'](_0x231a26)['sort']((_0x3e0b3d,_0x1fe473)=>_0x2f7eaf(_0x3e0b3d)['localeCompare'](_0x2f7eaf(_0x1fe473))),_0x39666d=_0x476366['join']('|'),_0x41641b=_0x4daac9['filter']||'all';if(_0x39666d!==_0x4daac9['filterOptionsSignature']){const _0x162257=['<option\x20value=\x22all\x22>All\x20Providers</option>']['concat'](_0x476366['map'](_0xd40a36=>'<option\x20value=\x22'+_0x8f19e6(_0xd40a36)+'\x22>'+_0x561b92(_0x2f7eaf(_0xd40a36))+'</option>'));_0x5098af['innerHTML']=_0x162257['join'](''),_0x4daac9['filterOptionsSignature']=_0x39666d;}_0x41641b!=='all'&&!_0x231a26['has'](_0x41641b)?(_0x4daac9['filter']='all',_0x5098af['value']='all'):_0x5098af['value']=_0x41641b;}function _0x3d3240(_0x4f9da5){const _0x38f1db=_0x4f9da5['status']||'unknown',_0x3b8a51=_0x1950fb['find'](_0x32bb06=>_0x32bb06['value']===_0x38f1db)||_0x1950fb[0x0];return'<span\x20class=\x22ai-connection-status-pill\x20'+_0x3b8a51['className']+'\x22>'+_0x561b92(_0x3b8a51['label'])+'</span>';}function _0x1688e9(_0x3287e2){if(!Array['isArray'](_0x3287e2['models'])||!_0x3287e2['models']['length'])return'No\x20model';const _0x3115b4=_0x3287e2['primaryModelId']?_0x3287e2['models']['find'](_0x5d421d=>_0x5d421d['id']===_0x3287e2['primaryModelId']):_0x3287e2['models'][0x0];return _0x3115b4?.['id']||_0x3287e2['models'][0x0]?.['id']||'No\x20model';}function _0x1bc4fb(){const _0x441ad5=_0x4daac9['search']['trim']()['toLowerCase'](),_0x31cf82=_0x4daac9['filter'],_0x20027a=_0x4daac9['connectionsSignature']+'::'+_0x31cf82+'::'+_0x441ad5+'::'+(_0x4daac9['selectedId']||'');if(_0x20027a===_0x26f223)return;const _0x42e7e3=new Map();_0x4daac9['connections']['forEach'](_0x344b7c=>{if(_0x31cf82!=='all'&&_0x344b7c['providerId']!==_0x31cf82)return;if(_0x441ad5){const _0x58b5c5=_0x1b66d8['get'](_0x344b7c['id'])||'';if(!_0x58b5c5['includes'](_0x441ad5))return;}const _0x4c731a=_0x42e7e3['get'](_0x344b7c['providerId'])||[];_0x4c731a['push'](_0x344b7c),_0x42e7e3['set'](_0x344b7c['providerId'],_0x4c731a);});if(!_0x42e7e3['size']){_0x416e8d['innerHTML']='<div\x20class=\x22connection-empty\x22>No\x20connections\x20found.\x20Create\x20one\x20to\x20get\x20started.</div>',_0x26f223=_0x20027a;return;}const _0x2daade=Array['from'](_0x42e7e3['keys']())['sort']((_0x393277,_0x24f6bf)=>_0x2f7eaf(_0x393277)['localeCompare'](_0x2f7eaf(_0x24f6bf)));let _0x176be5='';_0x2daade['forEach'](_0x397288=>{const _0x3a02ea=_0x2f7eaf(_0x397288),_0x36cdbe=_0x42e7e3['get'](_0x397288)||[];_0x36cdbe['sort']((_0x64b275,_0x29e3d4)=>_0x64b275['name']['localeCompare'](_0x29e3d4['name'])),_0x176be5+='<div\x20class=\x22connection-provider\x22\x20data-provider=\x22'+_0x8f19e6(_0x397288)+'\x22>',_0x176be5+='<div\x20class=\x22connection-provider-header\x22>'+_0x561b92(_0x3a02ea)+'<span\x20class=\x22badge\x22>'+_0x36cdbe['length']+'</span></div>',_0x176be5+='<div\x20class=\x22connection-provider-body\x22>',_0x36cdbe['forEach'](_0x36ca68=>{const _0x57fe86=_0x36ca68['id']===_0x4daac9['selectedId'],_0x1434bb=(_0x36ca68['comment']||'')['split']('\x0a')['map'](_0x515443=>_0x515443['trim']())['find'](Boolean)||'';_0x176be5+='<div\x20class=\x22connection-item'+(_0x57fe86?'\x20active':'')+'\x22\x20data-connection=\x22'+_0x8f19e6(_0x36ca68['id'])+'\x22\x20role=\x22button\x22\x20tabindex=\x220\x22>',_0x176be5+='<div\x20class=\x22connection-item-heading\x22>',_0x176be5+='<span\x20class=\x22connection-item-title\x22>'+_0x561b92(_0x36ca68['name'])+'</span>',_0x176be5+='<span\x20class=\x22connection-item-menu-trigger\x22\x20role=\x22button\x22\x20tabindex=\x220\x22\x20aria-label=\x22Connection\x20options\x22\x20aria-haspopup=\x22menu\x22\x20data-connection=\x22'+_0x8f19e6(_0x36ca68['id'])+'\x22\x20title=\x22More\x20actions\x22>&#8942;</span>',_0x176be5+='</div>',_0x176be5+='<div\x20class=\x22connection-item-meta\x22><span>'+_0x561b92(_0x1688e9(_0x36ca68))+'</span>'+_0x3d3240(_0x36ca68)+'</div>',_0x1434bb&&(_0x176be5+='<div\x20class=\x22connection-item-comment\x22>'+_0x561b92(_0x1434bb)+'</div>'),_0x176be5+='</div>';}),_0x176be5+='</div></div>';}),_0x416e8d['innerHTML']=_0x176be5,_0x26f223=_0x20027a;}function _0x5946aa(){if(_0x3415d6)return _0x3415d6;_0x3415d6=document['createElement']('div'),_0x3415d6['className']='ai-connection-context-menu\x20hidden',_0x3415d6['setAttribute']('role','menu'),_0x3415d6['addEventListener']('mousedown',_0x132937=>_0x132937['stopPropagation']()),_0x3415d6['addEventListener']('contextmenu',_0x2cc955=>_0x2cc955['preventDefault']()),document['body']['appendChild'](_0x3415d6),_0x58d59a['push'](()=>{try{_0x3415d6['remove']();}catch(_0x3afa57){}_0x3415d6=null;});const _0x21dcf8=_0x2e10eb=>{if(_0x2204b4){_0x2204b4=![];return;}if(_0x3415d6&&_0x3415d6['contains'](_0x2e10eb['target']))return;_0x346fa0();};return _0x59fa9c(document,'click',_0x21dcf8),_0x59fa9c(window,'blur',_0x346fa0),_0x59fa9c(window,'resize',_0x346fa0),_0x59fa9c(document,'scroll',_0x346fa0,!![]),_0x59fa9c(document,'keydown',_0x38d3b2=>{if(_0x38d3b2['key']==='Escape')_0x346fa0();}),_0x3415d6;}function _0x346fa0(){if(!_0x3415d6)return;_0x3415d6['classList']['add']('hidden'),_0x3415d6['innerHTML']='',_0x2204b4=![];}function _0x1dd8d0(_0x29d5dd,_0x574e31){if(!_0x574e31)return;_0x29d5dd&&(_0x29d5dd['preventDefault'](),_0x29d5dd['stopPropagation']());const _0x1822b2=_0x5946aa();_0x346fa0(),_0x2204b4=!![];_0x4daac9['selectedId']!==_0x574e31['id']&&(_0x4daac9['selectedId']=_0x574e31['id'],_0x4daac9['editing']=_0xe9c81e(_0x574e31),_0x1bc4fb(),_0x187d5f());const _0x1cf395=()=>{_0x2204b4=![],window['removeEventListener']('mouseup',_0x1cf395,!![]);};window['addEventListener']('mouseup',_0x1cf395,!![]);const _0x17a73e=[{'id':'rename','label':'Rename…','handler':()=>_0x340926(_0x574e31)},{'id':'copy','label':'Copy','handler':()=>_0x30c008(_0x574e31)},{'id':'test','label':'Test\x20Connection','handler':()=>_0x534b70(_0x574e31)},{'id':'delete','label':'Delete','className':'danger','handler':()=>_0x25e577(_0x574e31)}];_0x1822b2['innerHTML']=_0x17a73e['map'](_0x540af0=>'<button\x20type=\x22button\x22\x20class=\x22menu-item'+(_0x540af0['className']?'\x20'+_0x540af0['className']:'')+'\x22\x20data-action=\x22'+_0x540af0['id']+'\x22>'+_0x561b92(_0x540af0['label'])+'</button>')['join'](''),_0x17a73e['forEach'](_0x54051b=>{const _0x425e90=_0x1822b2['querySelector']('[data-action=\x22'+_0x54051b['id']+'\x22]');if(!_0x425e90)return;_0x425e90['addEventListener']('click',_0x55b17e=>{_0x55b17e['preventDefault'](),_0x55b17e['stopPropagation'](),_0x346fa0();try{_0x54051b['handler']();}catch(_0x5dff99){console['error']('[RightActivityBar]\x20Context\x20menu\x20action\x20failed:',_0x5dff99);}});});const {clientX:_0x7c1db4,clientY:_0x9d4771}=_0x29d5dd;_0x1822b2['style']['left']=_0x7c1db4+'px',_0x1822b2['style']['top']=_0x9d4771+'px',_0x1822b2['classList']['remove']('hidden'),requestAnimationFrame(()=>{const _0x3b1d52=_0x1822b2['getBoundingClientRect'](),_0x1b9f3b=0x8,_0x35642a=window['innerWidth']||document['documentElement']?.['clientWidth']||_0x3b1d52['right'],_0xd12ac6=window['innerHeight']||document['documentElement']?.['clientHeight']||_0x3b1d52['bottom'],_0x2220c2=Math['max'](_0x1b9f3b,_0x35642a-_0x3b1d52['width']-_0x1b9f3b),_0x47c218=Math['max'](_0x1b9f3b,_0xd12ac6-_0x3b1d52['height']-_0x1b9f3b);let _0x3f4bc4=Math['min'](Math['max'](_0x3b1d52['left'],_0x1b9f3b),_0x2220c2),_0x2a6b01=Math['min'](Math['max'](_0x3b1d52['top'],_0x1b9f3b),_0x47c218);_0x1822b2['style']['left']=_0x3f4bc4+'px',_0x1822b2['style']['top']=_0x2a6b01+'px';});}function _0x13d5b3(_0x30d464,_0xbc5b14){if(!_0x30d464||!_0xbc5b14)return;const _0xc51e=_0x30d464['getBoundingClientRect'](),_0x2dda46={'preventDefault':()=>{},'stopPropagation':()=>{},'clientX':_0xc51e['left']+_0xc51e['width']/0x2,'clientY':_0xc51e['bottom']+0x4,'target':_0x30d464};_0x1dd8d0(_0x2dda46,_0xbc5b14);}function _0x46d891(_0x3ade05,_0x19bd81='info'){_0x4daac9['feedbackMessage']=_0x3ade05||'',_0x4daac9['feedbackTone']=_0x19bd81;const _0x36cc9c=_0x3e0160['querySelector']('#ai-connection-feedback');if(!_0x36cc9c)return;_0x36cc9c['textContent']=_0x4daac9['feedbackMessage'];const _0x4380c0=_0x19bd81==='error'?'var(--vscode-errorForeground,#f48771)':_0x19bd81==='success'?'var(--vscode-testing-iconPassed,#89d185)':_0x19bd81==='warning'?'var(--vscode-testing-iconQueued,#c8c874)':'var(--vscode-descriptionForeground,#8a8a8a)';_0x36cc9c['style']['color']=_0x4380c0;}function _0x49b600(_0x390e0f){if(!_0x390e0f)return'—';try{return new Date(_0x390e0f)['toLocaleString']();}catch(_0x1e7842){return String(_0x390e0f);}}function _0x3e56d1(_0x5414c2){const _0x380f4c=_0xcb3b41(),_0x808f3e=typeof _0x5414c2['primaryModelId']==='string'&&_0x5414c2['primaryModelId']['trim']()['length']?_0x5414c2['primaryModelId']['trim']():_0x380f4c;return _0x5414c2['primaryModelId']=_0x808f3e,_0x5414c2['models']=[{'id':_0x808f3e}],'\x0a\x20\x20\x20\x20\x20\x20\x20\x20<label\x20class=\x22ai-connection-model-label\x22\x20for=\x22ai-connection-model-input\x22>Model\x20ID</label>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22ai-connection-model-row\x20ai-connection-model-row-input\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<input\x20id=\x22ai-connection-model-input\x22\x20class=\x22vscode-input\x22\x20type=\x22text\x22\x20value=\x22'+_0x8f19e6(_0x808f3e)+'\x22\x20placeholder=\x22'+_0x8f19e6(_0x380f4c)+'\x22\x20spellcheck=\x22false\x22\x20autocomplete=\x22off\x22\x20autocapitalize=\x22off\x22\x20/>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20class=\x22settings-btn\x20settings-btn-secondary\x22\x20id=\x22ai-connection-model-reset\x22\x20type=\x22button\x22\x20title=\x22Reset\x20to\x20default\x20model\x22>Reset</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20';}function _0x23b305(_0x2077ba,_0x20173c,_0x4aba3=![],_0x4ceb26=null){const _0x2698d8=_0x3e0160['querySelector']('#ai-connection-model-suggestions');if(!_0x2698d8)return;const _0x432404=Array['isArray'](_0x20173c)?_0x20173c:[],_0x598cca=_0x4aba3?'<div\x20class=\x22ai-connection-model-suggestions-empty\x22>Loading\x20models…</div>':'',_0x40c7ea=_0x4ceb26&&_0x4ceb26['lastFetchError']?'<div\x20class=\x22ai-connection-model-suggestions-empty\x22\x20style=\x22color:\x20var(--vscode-errorForeground,#f48771);\x22>'+_0x561b92(_0x4ceb26['lastFetchError'])+'</div>':'';if(!_0x432404['length']){const _0x2a35ce=_0xcb3b41();_0x2698d8['innerHTML']=''+_0x598cca+_0x40c7ea+'<div\x20class=\x22ai-connection-model-suggestions-empty\x22>Type\x20any\x20supported\x20OpenAI\x20model\x20id\x20(e.g.\x20gpt-4o,\x20gpt-4.1,\x20o4-mini).\x20Leave\x20the\x20field\x20empty\x20to\x20revert\x20to\x20'+_0x561b92(_0x2a35ce)+'.</div>';return;}const _0x5c556d=_0x432404['slice'](0x0,0x1e)['map'](_0x386fa6=>{const _0x5928f4=typeof _0x386fa6?.['id']==='string'?_0x386fa6['id']['trim']():'';if(!_0x5928f4)return'';return'<button\x20type=\x22button\x22\x20class=\x22settings-btn\x20settings-btn-secondary\x20ai-model-suggestion\x22\x20data-model-id=\x22'+_0x8f19e6(_0x5928f4)+'\x22>'+_0x561b92(_0x5928f4)+'</button>';})['filter'](Boolean)['join'](''),_0x5a7268=_0x432404['length']>0x1e?'<div\x20class=\x22ai-connection-model-suggestions-empty\x22>Showing\x20first\x2030\x20of\x20'+_0x432404['length']+'\x20models.</div>':'';_0x2698d8['innerHTML']=''+_0x598cca+_0x40c7ea+'<div\x20class=\x22ai-connection-model-suggestions-list\x22>'+_0x5c556d+'</div>'+_0x5a7268;}function _0x187d5f(){_0x34a2e2();if(!_0x4daac9['editing']){_0x3e0160['innerHTML']='\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22ai-connection-empty\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p>Select\x20a\x20connection\x20in\x20the\x20list\x20or\x20use\x20“New\x20Connection”\x20to\x20create\x20one.</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20',_0x46d891('');return;}const _0x66f1f1=_0x4daac9['editing'],_0x4e05f0=_0x14a234(_0x66f1f1['id']),_0xaf7138=_0x2af57c(_0x66f1f1['metadata'])?_0x66f1f1['metadata']:{},_0xc006b4=_0x2af57c(_0xaf7138['requestConfig'])?_0xaf7138['requestConfig']:{},_0x3ba2be=typeof _0xc006b4['temperature']==='number'&&Number['isFinite'](_0xc006b4['temperature'])?_0xc006b4['temperature']:0.7,_0x299a85=typeof _0xc006b4['maxTokens']==='number'&&Number['isFinite'](_0xc006b4['maxTokens'])&&_0xc006b4['maxTokens']>0x0?_0xc006b4['maxTokens']:0x1000;_0x21bdf6(_0x66f1f1);const _0x41e4f1='<option\x20value=\x22'+_0x5be410+'\x22\x20selected>OpenAI</option>';_0x3e0160['innerHTML']='\x0a\x20\x20\x20\x20\x20\x20\x20\x20<section>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22ai-connection-field\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<label\x20for=\x22ai-connection-name-input\x22>Connection\x20Name</label>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<input\x20id=\x22ai-connection-name-input\x22\x20type=\x22text\x22\x20class=\x22vscode-input\x22\x20value=\x22'+_0x8f19e6(_0x66f1f1['name']||'')+'\x22\x20placeholder=\x22e.g.\x20Main\x20Production\x22\x20/>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22ai-connection-field\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<label\x20for=\x22ai-connection-provider-select\x22>Provider</label>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<select\x20id=\x22ai-connection-provider-select\x22\x20class=\x22vscode-select\x22\x20title=\x22Provider\x20switching\x20is\x20available\x20in\x20Pro\x20version\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20'+_0x41e4f1+'\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</select>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22ai-connection-field-note\x22>Provider\x20switching\x20is\x20available\x20in\x20Pro\x20version.</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22ai-connection-field\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<label>Status</label>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22ai-connection-status-static\x22>'+(_0x66f1f1['status']||'unknown')+'</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22ai-connection-field\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<label\x20for=\x22ai-connection-api-key\x22>API\x20Key</label>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22ai-connection-secret\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<input\x20id=\x22ai-connection-api-key\x22\x20type=\x22password\x22\x20class=\x22vscode-input\x22\x20value=\x22'+_0x8f19e6(_0x4e05f0)+'\x22\x20placeholder=\x22'+(_0x66f1f1['providerId']==='github'?'ghp_…\x20or\x20github_pat_…':'sk-...')+'\x22\x20autocomplete=\x22new-password\x22\x20/>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20class=\x22settings-btn\x20settings-btn-secondary\x22\x20id=\x22ai-connection-toggle-secret\x22\x20title=\x22Show/Hide\x20secret\x22>👁️</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20class=\x22settings-btn\x20settings-btn-secondary\x22\x20id=\x22ai-connection-save-secret\x22\x20title=\x22Save\x20secret\x22>💾</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22ai-connection-field\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<label>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<input\x20id=\x22ai-connection-advanced-logging\x22\x20type=\x22checkbox\x22'+(_0x66f1f1['metadata']&&_0x66f1f1['metadata']['advancedLogging']?'\x20checked':'')+'>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span>Advanced\x20logging\x20for\x20this\x20connection\x20(debug\x20API\x20requests)</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</label>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</section>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<section>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22section-title\x22>Models</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22ai-connection-models\x22\x20id=\x22ai-connection-models-list\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20'+_0x3e56d1(_0x66f1f1)+'\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22ai-connection-model-suggestions\x22\x20id=\x22ai-connection-model-suggestions\x22></div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</section>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<section>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22section-title\x22>Request\x20parameters</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22ai-connection-field\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<label\x20for=\x22ai-connection-temp\x22>Temperature</label>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<input\x20id=\x22ai-connection-temp\x22\x20type=\x22number\x22\x20min=\x220\x22\x20max=\x222\x22\x20step=\x220.1\x22\x20class=\x22vscode-input\x22\x20value=\x22'+_0x8f19e6(String(_0x3ba2be))+'\x22\x20/>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22ai-connection-field\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<label\x20for=\x22ai-connection-max-tokens\x22>Max\x20tokens</label>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<input\x20id=\x22ai-connection-max-tokens\x22\x20type=\x22number\x22\x20min=\x221\x22\x20class=\x22vscode-input\x22\x20value=\x22'+_0x8f19e6(String(_0x299a85))+'\x22\x20/>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</section>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<section>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22ai-connection-field\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<label\x20for=\x22ai-connection-comment-input\x22>Comments</label>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<textarea\x20id=\x22ai-connection-comment-input\x22\x20class=\x22vscode-textarea\x22\x20rows=\x225\x22\x20placeholder=\x22Purpose,\x20usage\x20notes,\x20limits…\x22>'+_0x561b92(_0x66f1f1['comment']||'')+'</textarea>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</section>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<section>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22ai-connection-meta\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div><strong>Provider:</strong>\x20'+_0x561b92(_0x2f7eaf(_0x66f1f1['providerId']))+'</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div><strong>Primary\x20model:</strong>\x20'+_0x561b92(_0x1688e9(_0x66f1f1))+'</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div><strong>Created:</strong>\x20'+_0x49b600(_0x66f1f1['createdAt'])+'</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div><strong>Updated:</strong>\x20'+_0x49b600(_0x66f1f1['updatedAt'])+'</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div><strong>Last\x20tested:</strong>\x20'+_0x49b600(_0x66f1f1['lastTestedAt'])+'</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22ai-connection-inspector-footer\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20id=\x22ai-connection-feedback\x22\x20class=\x22ai-connection-feedback\x22>'+_0x561b92(_0x4daac9['feedbackMessage'])+'</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22connection-actions\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20class=\x22settings-btn\x20settings-btn-secondary\x22\x20id=\x22ai-connection-test\x22>Test</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20class=\x22settings-btn\x20settings-btn-primary\x22\x20id=\x22ai-connection-save\x22>Save</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20class=\x22settings-btn\x20settings-btn-secondary\x22\x20id=\x22ai-connection-delete\x22>Delete</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</section>\x0a\x20\x20\x20\x20\x20\x20',_0x46d891(_0x4daac9['feedbackMessage'],_0x4daac9['feedbackTone']);let _0x3a7889=null;const _0x1977e9=()=>{if(typeof _0x3a7889!=='function')return;Array['from'](_0x3e0160['querySelectorAll']('.ai-model-suggestion'))['forEach'](_0xf8d941=>{_0x3d90ad(_0xf8d941,'click',_0x3c4518=>{_0x3c4518['preventDefault']();const _0x32e6d0=_0xf8d941['dataset']['modelId']||'';if(!_0x32e6d0)return;_0xb9333b&&(_0xb9333b['value']=_0x32e6d0),_0x3a7889(_0x32e6d0);});});},_0x1c0969=(_0x2ca848=![])=>{const _0x27c6c7=_0x1fc5ff(_0x66f1f1['providerId']);let _0x416ded=_0x225ce6(_0x66f1f1['providerId']);(!Array['isArray'](_0x416ded)||!_0x416ded['length'])&&(_0x416ded=_0x8d1928(_0x66f1f1['providerId']));const _0x52e965=_0x1268ed['get'](_0x27c6c7)||null;_0x23b305(_0x66f1f1,_0x416ded,_0x2ca848,_0x52e965),_0x1977e9();};_0x1c0969(![]);const _0x4a0028=_0x3e0160['querySelector']('#ai-connection-name-input');_0x3d90ad(_0x4a0028,'input',()=>{_0x66f1f1['name']=_0x4a0028['value'];});const _0x1a0df2=_0x3e0160['querySelector']('#ai-connection-provider-select');_0x3d90ad(_0x1a0df2,'mousedown',_0x449a5b=>{_0x449a5b['preventDefault'](),_0x7cbb56({'featureName':'Provider\x20switching','subtitle':'Switching\x20provider\x20is\x20available\x20in\x20Pro\x20version.'});}),_0x3d90ad(_0x1a0df2,'keydown',_0x104e6e=>{if(_0x104e6e['key']!=='Enter'&&_0x104e6e['key']!=='\x20'&&_0x104e6e['key']!=='ArrowDown')return;_0x104e6e['preventDefault'](),_0x7cbb56({'featureName':'Provider\x20switching','subtitle':'Switching\x20provider\x20is\x20available\x20in\x20Pro\x20version.'});}),_0x3d90ad(_0x1a0df2,'change',()=>{_0x66f1f1['providerId']=_0x5be410,_0x1a0df2['value']=_0x5be410;}),Array['from'](_0x3e0160['querySelectorAll']('.connection-model-select'))['forEach'](_0x11c2e5=>{_0x3d90ad(_0x11c2e5,'mousedown',_0x5ea881=>{_0x5ea881['preventDefault'](),_0x7cbb56({'featureName':'Model\x20selection','subtitle':'Model\x20customization\x20is\x20available\x20in\x20Pro\x20version.'});}),_0x3d90ad(_0x11c2e5,'keydown',_0x1771f6=>{if(_0x1771f6['key']!=='Enter'&&_0x1771f6['key']!=='\x20'&&_0x1771f6['key']!=='ArrowDown')return;_0x1771f6['preventDefault'](),_0x7cbb56({'featureName':'Model\x20selection','subtitle':'Model\x20customization\x20is\x20available\x20in\x20Pro\x20version.'});});});const _0x56f764=_0x3e0160['querySelector']('#ai-connection-comment-input');_0x3d90ad(_0x56f764,'input',()=>{_0x66f1f1['comment']=_0x56f764['value'];});const _0xb9333b=_0x3e0160['querySelector']('#ai-connection-model-input'),_0x330658=_0x3e0160['querySelector']('#ai-connection-model-reset');_0x3a7889=_0x1bcada=>{const _0x257755=(_0x1bcada||'')['trim'](),_0x2bdea2=_0x257755||_0x87a01b;_0x66f1f1['primaryModelId']=_0x2bdea2,_0x66f1f1['models']=[{'id':_0x2bdea2}],!_0x257755&&_0xb9333b&&_0xb9333b['value']!==_0x2bdea2&&(_0xb9333b['value']=_0x2bdea2),_0x1bc4fb();},_0x1977e9(),_0x3d90ad(_0xb9333b,'input',()=>{_0x3a7889(_0xb9333b['value']);}),_0x3d90ad(_0xb9333b,'blur',()=>{_0x3a7889(_0xb9333b['value']);}),_0x3d90ad(_0x330658,'click',_0x55fd82=>{_0x55fd82['preventDefault'](),_0xb9333b&&(_0xb9333b['value']=_0xcb3b41()),_0x3a7889(_0xcb3b41());});const _0x4c07c5=_0x3e0160['querySelector']('#ai-connection-toggle-secret'),_0x3495ca=_0x3e0160['querySelector']('#ai-connection-api-key');_0x3d90ad(_0x4c07c5,'click',_0x494524=>{_0x494524['preventDefault']();if(!_0x3495ca)return;_0x3495ca['type']=_0x3495ca['type']==='password'?'text':'password';});const _0x4588d4=_0x3e0160['querySelector']('#ai-connection-save-secret');_0x3d90ad(_0x4588d4,'click',_0xe1bf7a=>{_0xe1bf7a['preventDefault']();const _0x465822=_0x3495ca?.['value']||'',_0x269f9e=_0x32d7ae(_0x66f1f1['id'],_0x66f1f1['providerId'],_0x465822);_0x269f9e?(_0x46d891('Secret\x20saved\x20locally\x20for\x20this\x20connection.','success'),_0x1268ed['delete'](_0x1fc5ff(_0x66f1f1['providerId'])),_0x1c0969(!![]),_0x2927a8(_0x66f1f1['providerId'],{'apiKey':_0x465822,'onComplete':()=>{_0x4daac9['editing']&&_0x4daac9['editing']['id']===_0x66f1f1['id']&&(_0x1bc4fb(),_0x1c0969(![]));}})):_0x46d891('Failed\x20to\x20store\x20secret.','error');});const _0x26e8b2=typeof _0x4e05f0==='string'?_0x4e05f0['trim']():'';if(_0x26e8b2){const _0x3ece60=_0x1fc5ff(_0x66f1f1['providerId']),_0x411217=_0x1268ed['get'](_0x3ece60)||null,_0x2a859e=_0x411217?.['source']==='remote'&&Array['isArray'](_0x411217?.['models'])&&_0x411217['models']['length']>0x0;!_0x2a859e&&(_0x1c0969(!![]),_0x2927a8(_0x66f1f1['providerId'],{'apiKey':_0x26e8b2,'onComplete':()=>{_0x4daac9['editing']&&_0x4daac9['editing']['id']===_0x66f1f1['id']&&_0x1c0969(![]);}}));}const _0x221e76=_0x3e0160['querySelector']('#ai-connection-advanced-logging');_0x221e76&&_0x3d90ad(_0x221e76,'change',()=>{!_0x2af57c(_0x66f1f1['metadata'])&&(_0x66f1f1['metadata']={}),_0x66f1f1['metadata']['advancedLogging']=_0x221e76['checked']===!![];});const _0x330158=_0x3e0160['querySelector']('#ai-connection-temp');_0x330158&&_0x3d90ad(_0x330158,'change',()=>{if(!_0x2af57c(_0x66f1f1['metadata']))_0x66f1f1['metadata']={};if(!_0x2af57c(_0x66f1f1['metadata']['requestConfig']))_0x66f1f1['metadata']['requestConfig']={};const _0x509eb8=parseFloat(_0x330158['value']);Number['isFinite'](_0x509eb8)?_0x66f1f1['metadata']['requestConfig']['temperature']=_0x509eb8:delete _0x66f1f1['metadata']['requestConfig']['temperature'];});const _0xf7e76c=_0x3e0160['querySelector']('#ai-connection-max-tokens');_0xf7e76c&&_0x3d90ad(_0xf7e76c,'change',()=>{if(!_0x2af57c(_0x66f1f1['metadata']))_0x66f1f1['metadata']={};if(!_0x2af57c(_0x66f1f1['metadata']['requestConfig']))_0x66f1f1['metadata']['requestConfig']={};const _0x543209=parseInt(_0xf7e76c['value'],0xa);Number['isFinite'](_0x543209)&&_0x543209>0x0?_0x66f1f1['metadata']['requestConfig']['maxTokens']=_0x543209:delete _0x66f1f1['metadata']['requestConfig']['maxTokens'];});const _0x299902=_0x3e0160['querySelector']('#ai-connection-test');_0x3d90ad(_0x299902,'click',async _0x286e82=>{_0x286e82['preventDefault']();const _0x373717=_0x3495ca?.['value']?.['trim']();if(!_0x373717){_0x46d891('Add\x20an\x20API\x20key\x20before\x20testing\x20the\x20connection.','warning');return;}if(_0x66f1f1['providerId']==='openai'&&!_0x373717['startsWith']('sk-')){_0x46d891('OpenAI\x20keys\x20should\x20start\x20with\x20“sk-”.','error');return;}if(_0x66f1f1['providerId']==='github'){const _0x24dd53=_0x373717['startsWith']('ghp_')||_0x373717['startsWith']('gho_')||_0x373717['startsWith']('ghu_')||_0x373717['startsWith']('ghs_')||_0x373717['startsWith']('github_pat_');if(!_0x24dd53){_0x46d891('GitHub\x20tokens\x20should\x20start\x20with\x20gh*\x20(e.g.\x20“ghp_”,\x20“github_pat_”).','error');return;}}if(!_0x125496||typeof _0x125496['createProvider']!=='function'){_0x66f1f1['lastTestedAt']=Date['now'](),_0x66f1f1['status']='ok',_0x46d891('Connection\x20passed\x20basic\x20validation\x20(provider\x20unavailable\x20for\x20live\x20test).','warning'),_0x1bc4fb();return;}_0x46d891('Running\x20live\x20test\x20request…','info'),_0x299902['disabled']=!![];try{const _0x4f2a46=_0x1fc5ff(_0x66f1f1['providerId']),_0x533826=_0x125496['createProvider'](_0x4f2a46,{'advancedLogging':_0x2af57c(_0x66f1f1['metadata'])&&_0x66f1f1['metadata']['advancedLogging']===!![],'connectionId':_0x66f1f1['id']}),_0x2ff79d=[{'role':'user','content':'What\x20is\x20your\x20name\x20and\x20version?'}],_0x44d005={};_0x66f1f1['primaryModelId']&&(_0x44d005['model']=_0x66f1f1['primaryModelId']);const _0x505931=_0x2af57c(_0x66f1f1['metadata'])&&_0x2af57c(_0x66f1f1['metadata']['requestConfig'])?_0x66f1f1['metadata']['requestConfig']:null;_0x505931&&(typeof _0x505931['temperature']==='number'&&Number['isFinite'](_0x505931['temperature'])&&(_0x44d005['temperature']=_0x505931['temperature']),typeof _0x505931['maxTokens']==='number'&&Number['isFinite'](_0x505931['maxTokens'])&&_0x505931['maxTokens']>0x0&&(_0x44d005['max_tokens']=_0x505931['maxTokens']));const _0x5e6de5=await _0x533826['sendMessage'](_0x2ff79d,_0x44d005),_0xf7b5f3=typeof _0x5e6de5==='string'?_0x5e6de5['slice'](0x0,0xa0):'';_0x66f1f1['lastTestedAt']=Date['now'](),_0x66f1f1['status']='ok',_0x46d891(_0xf7b5f3?'Test\x20OK:\x20'+_0xf7b5f3:'Test\x20OK\x20(empty\x20response).','success');try{window['LogService']?.['logInfo']?.('AI\x20Connections','test-success',{'id':_0x66f1f1['id'],'provider':_0x66f1f1['providerId']});}catch(_0x2938b0){}}catch(_0x16be93){_0x66f1f1['lastTestedAt']=Date['now'](),_0x66f1f1['status']='error',_0x46d891('Test\x20failed:\x20'+(_0x16be93?.['message']||_0x16be93),'error');try{window['LogService']?.['logError']?.('AI\x20Connections','test-failed',{'id':_0x66f1f1['id'],'provider':_0x66f1f1['providerId'],'error':_0x16be93?.['message']||String(_0x16be93)});}catch(_0x3a5bb2){}}finally{_0x299902['disabled']=![];try{document['dispatchEvent'](new CustomEvent('aiConnections:updated',{'detail':{'connections':_0x4daac9['connections']}}));}catch(_0x5f3113){}try{typeof refreshConnectionsFromSettings==='function'&&refreshConnectionsFromSettings({'aiConnections':_0x4daac9['connections']});}catch(_0x3d6cf8){}_0x1bc4fb(),_0x187d5f();}});const _0x3e947d=_0x3e0160['querySelector']('#ai-connection-save');_0x3d90ad(_0x3e947d,'click',_0x2652e6=>{_0x2652e6['preventDefault'](),_0xcd7565();});const _0x753b09=_0x3e0160['querySelector']('#ai-connection-delete');_0x3d90ad(_0x753b09,'click',_0x566da8=>{_0x566da8['preventDefault'](),_0x1108b5();});if(typeof _0x4daac9['pendingModelFocusIndex']==='number'&&_0x4daac9['pendingModelFocusIndex']>=0x0){const _0x2422c6=modelsList?.['querySelector']('.ai-connection-model-row[data-index=\x22'+_0x4daac9['pendingModelFocusIndex']+'\x22]'),_0x4307f9=_0x2422c6?.['querySelector']('.connection-model-input');if(_0x4307f9){const _0x3caacb=_0x4307f9['value']?.['length']||0x0;try{_0x4307f9['focus'](),_0x4307f9['setSelectionRange'](_0x3caacb,_0x3caacb);}catch(_0x62117){}_0x4daac9['modelFocusIndex']=_0x4daac9['pendingModelFocusIndex'];}_0x4daac9['pendingModelFocusIndex']=null;}}function _0x327592(_0x4fa20e){if(!Array['isArray'](_0x4fa20e['models']))return[];const _0x6cc5f1=new Set(),_0x5e058d=[];return _0x4fa20e['models']['forEach'](_0x288e10=>{const _0x3b653=typeof _0x288e10?.['id']==='string'?_0x288e10['id']['trim']():'';if(!_0x3b653||_0x6cc5f1['has'](_0x3b653))return;_0x6cc5f1['add'](_0x3b653),_0x5e058d['push']({'id':_0x3b653,'note':typeof _0x288e10?.['note']==='string'?_0x288e10['note']:''});}),_0x5e058d;}function _0xcd7565(){if(!_0x4daac9['editing'])return;const _0x34f480=_0x4daac9['editing'],_0x1f11de=(_0x34f480['name']||'')['trim']();if(!_0x1f11de){_0x46d891('Connection\x20name\x20is\x20required.','error');return;}_0x34f480['name']=_0x1f11de,_0x34f480['providerId']=_0x5be410;const _0x4ca1b6=_0xcb3b41(),_0x322352=_0x327592(_0x34f480);_0x34f480['models']=_0x322352['length']?_0x322352:[{'id':_0x34f480['primaryModelId']||_0x4ca1b6}],_0x34f480['primaryModelId']=typeof _0x34f480['primaryModelId']==='string'&&_0x34f480['primaryModelId']['trim']()?_0x34f480['primaryModelId']['trim']():_0x34f480['models'][0x0]?.['id']||_0x4ca1b6,_0x34f480['status']=_0x34f480['status']||'unknown',_0x34f480['comment']=_0x34f480['comment']||'',_0x34f480['tags']=Array['isArray'](_0x34f480['tags'])?_0x34f480['tags']['filter'](_0x58e384=>typeof _0x58e384==='string'&&_0x58e384['trim']())['map'](_0x4587a4=>_0x4587a4['trim']()):[];_0x34f480['isNew']&&delete _0x34f480['isNew'];const _0x5c2d58=Date['now'](),_0x9b10d1={'id':_0x34f480['id']||'conn-'+Math['random']()['toString'](0x24)['slice'](0x2,0x9)+Date['now']()['toString'](0x24),'providerId':_0x34f480['providerId'],'name':_0x34f480['name'],'models':_0x34f480['models']['map'](_0x58651f=>({..._0x58651f})),'primaryModelId':_0x34f480['primaryModelId']||'','comment':_0x34f480['comment'],'tags':_0x34f480['tags'],'status':_0x34f480['status'],'createdAt':_0x34f480['createdAt']||_0x5c2d58,'updatedAt':_0x5c2d58,'lastTestedAt':_0x34f480['lastTestedAt']||null,'metadata':_0x2af57c(_0x34f480['metadata'])?{..._0x34f480['metadata']}:{}},_0x330479=_0x4daac9['connections']['slice'](),_0x250668=_0x330479['findIndex'](_0x4d1c6f=>_0x4d1c6f['id']===_0x9b10d1['id']);_0x250668>=0x0?(_0x9b10d1['createdAt']=_0x330479[_0x250668]['createdAt']||_0x9b10d1['createdAt'],_0x330479[_0x250668]=_0xe9c81e(_0x9b10d1)):_0x330479['push'](_0xe9c81e(_0x9b10d1));try{_0x4daac9['suppressStore']=!![],_0xe59fa1['update']({'aiConnections':_0x330479['map'](_0x10cd8e=>{const _0x37fc13=_0xe9c81e(_0x10cd8e);return _0x37fc13['metadata']=_0x2af57c(_0x37fc13['metadata'])?{..._0x37fc13['metadata']}:{},_0x37fc13;})});try{window['__aiConnectionsCache']=JSON['parse'](JSON['stringify'](_0x330479));}catch(_0x4267e3){}setTimeout(()=>{_0x4daac9['suppressStore']=![];},0x0);}catch(_0x51ec39){_0x4daac9['suppressStore']=![],console['error']('[RightActivityBar]\x20Failed\x20to\x20persist\x20AI\x20connections:',_0x51ec39),_0x46d891('Save\x20failed:\x20'+(_0x51ec39?.['message']||_0x51ec39),'error');return;}_0x4daac9['connections']=_0x330479,_0x5a8d6d(),_0x4daac9['selectedId']=_0x9b10d1['id'],_0x4daac9['editing']=_0xe9c81e(_0x9b10d1),_0x46d891('Connection\x20saved.','success'),_0x26371f(),_0x1bc4fb(),_0x187d5f();try{document['dispatchEvent'](new CustomEvent('aiConnections:updated',{'detail':{'connections':_0x4daac9['connections']}}));}catch(_0x3a1181){}try{typeof refreshConnectionsFromSettings==='function'&&refreshConnectionsFromSettings({'aiConnections':_0x4daac9['connections']});}catch(_0x47f8c0){}}function _0x1108b5(){if(!_0x4daac9['editing'])return;const _0x41c62a=_0x4daac9['editing'],_0x58eae9=_0x4daac9['connections']['some'](_0x5832ab=>_0x5832ab['id']===_0x41c62a['id']&&!_0x5832ab['isNew']),_0x4ed213=_0x58eae9?window['confirm']('Delete\x20connection\x20\x22'+_0x41c62a['name']+'\x22?'):!![];if(!_0x4ed213)return;let _0xc7f1e9=_0x4daac9['connections']['filter'](_0xa4dc92=>_0xa4dc92['id']!==_0x41c62a['id']);if(_0x58eae9)try{_0x4daac9['suppressStore']=!![],_0xe59fa1['update']({'aiConnections':_0xc7f1e9['map'](_0x29936f=>_0xe9c81e(_0x29936f))}),setTimeout(()=>{_0x4daac9['suppressStore']=![];},0x0);}catch(_0x5a3ffd){_0x4daac9['suppressStore']=![],console['error']('[RightActivityBar]\x20Failed\x20to\x20delete\x20connection:',_0x5a3ffd),_0x46d891('Delete\x20failed:\x20'+(_0x5a3ffd?.['message']||_0x5a3ffd),'error');return;}_0x182d14(_0x41c62a['id']),_0x4daac9['connections']=_0xc7f1e9,_0x5a8d6d(),_0x4daac9['selectedId']=_0xc7f1e9[0x0]?.['id']||null,_0x4daac9['editing']=_0x4daac9['selectedId']?_0xe9c81e(_0xc7f1e9[0x0]):null,_0x46d891('Connection\x20removed.','info'),_0x26371f(),_0x1bc4fb(),_0x187d5f();}function _0x5d9eb0(_0x277155){const _0x9bfbf=_0x5be410,_0x46eb1c=_0xcb3b41(),_0x2ee725=Date['now'](),_0x18d5e8={'id':'conn-'+Math['random']()['toString'](0x24)['slice'](0x2,0x9)+_0x2ee725['toString'](0x24),'providerId':_0x9bfbf,'name':'New\x20'+_0x2f7eaf(_0x9bfbf),'models':[{'id':_0x46eb1c}],'primaryModelId':_0x46eb1c,'comment':'','tags':[],'status':'unknown','createdAt':_0x2ee725,'updatedAt':_0x2ee725,'lastTestedAt':null,'metadata':{},'isNew':!![]};_0x4daac9['connections']=_0x4daac9['connections']['concat']([_0xe9c81e(_0x18d5e8)]),_0x5a8d6d(),_0x4daac9['editing']=_0x18d5e8,_0x4daac9['selectedId']=_0x18d5e8['id'],_0x26371f(),_0x1bc4fb(),_0x187d5f();}_0x59fa9c(_0x416e8d,'click',_0x25a0b2=>{const _0x4111ad=_0x25a0b2['target']['closest']('.connection-item-menu-trigger');if(_0x4111ad){_0x25a0b2['preventDefault'](),_0x25a0b2['stopPropagation']();const _0x42ec33=_0x4111ad['dataset']['connection'];if(!_0x42ec33)return;const _0x3a3fc2=_0x4daac9['connections']['find'](_0x11f8ad=>_0x11f8ad['id']===_0x42ec33);if(!_0x3a3fc2)return;_0x13d5b3(_0x4111ad,_0x3a3fc2);return;}const _0x57ba39=_0x25a0b2['target']['closest']('.connection-item');if(!_0x57ba39)return;const _0x197980=_0x57ba39['dataset']['connection'];if(!_0x197980)return;const _0x16f323=_0x4daac9['connections']['find'](_0x45eba7=>_0x45eba7['id']===_0x197980);if(!_0x16f323)return;_0x4daac9['selectedId']=_0x197980,_0x4daac9['editing']=_0xe9c81e(_0x16f323),_0x1bc4fb(),_0x187d5f();}),_0x59fa9c(_0x416e8d,'keydown',_0x205e2b=>{if(_0x205e2b['key']!=='Enter'&&_0x205e2b['key']!=='\x20')return;const _0x1b1545=_0x205e2b['target']['closest']('.connection-item-menu-trigger');if(_0x1b1545){_0x205e2b['preventDefault'](),_0x205e2b['stopPropagation']();const _0x3382d0=_0x1b1545['dataset']['connection'];if(!_0x3382d0)return;const _0x3ddef5=_0x4daac9['connections']['find'](_0x1198b9=>_0x1198b9['id']===_0x3382d0);if(!_0x3ddef5)return;_0x13d5b3(_0x1b1545,_0x3ddef5);return;}const _0x18106b=_0x205e2b['target']['closest']('.connection-item');if(!_0x18106b)return;const _0xc9657f=_0x18106b['dataset']['connection'];if(!_0xc9657f)return;const _0x2c375d=_0x4daac9['connections']['find'](_0x13065a=>_0x13065a['id']===_0xc9657f);if(!_0x2c375d)return;_0x205e2b['preventDefault'](),_0x205e2b['stopPropagation'](),_0x4daac9['selectedId']=_0xc9657f,_0x4daac9['editing']=_0xe9c81e(_0x2c375d),_0x1bc4fb(),_0x187d5f();}),_0x59fa9c(_0x416e8d,'contextmenu',_0x44455d=>{const _0x4c1b3a=_0x44455d['target']['closest']('.connection-item');if(!_0x4c1b3a)return;_0x44455d['preventDefault'](),_0x44455d['stopPropagation']();const _0x805aa3=_0x4c1b3a['dataset']['connection'];if(!_0x805aa3)return;const _0x5aa8f3=_0x4daac9['connections']['find'](_0x2fd009=>_0x2fd009['id']===_0x805aa3);if(!_0x5aa8f3)return;_0x1dd8d0(_0x44455d,_0x5aa8f3);});if(_0x5098af){_0x59fa9c(_0x5098af,'change',()=>{_0x4daac9['filter']=_0x5098af['value']||'all',_0x1bc4fb();});try{const _0x170d8c=_0x5098af['closest']?.('.ai-connection-pane')||document['getElementById']('right-pane-content');if(_0x170d8c)_0x56c9ca(_0x5098af,_0x170d8c);}catch(_0x5a2c33){}}_0xf2a61d&&_0x59fa9c(_0xf2a61d,'input',()=>{_0x4daac9['search']=_0xf2a61d['value']||'',_0x1bc4fb();});_0x294bc4&&_0x59fa9c(_0x294bc4,'click',_0x3ed6cf=>{_0x3ed6cf['preventDefault'](),_0x5d9eb0();});let _0xaae859=null;return typeof _0xe59fa1['subscribe']==='function'&&(_0xaae859=_0xe59fa1['subscribe'](_0x3d93c9=>{if(_0x4daac9['suppressStore'])return;_0x31d9be(_0x3d93c9),_0x26371f(),(!_0x4daac9['selectedId']||!_0x4daac9['connections']['some'](_0x2ca4e5=>_0x2ca4e5['id']===_0x4daac9['selectedId']))&&(_0x4daac9['selectedId']=_0x4daac9['connections'][0x0]?.['id']||null),_0x4daac9['editing']=_0x4daac9['selectedId']?_0xe9c81e(_0x4daac9['connections']['find'](_0x20c970=>_0x20c970['id']===_0x4daac9['selectedId'])):null,_0x1bc4fb(),_0x187d5f();}),_0xaae859&&_0x58d59a['push'](()=>{try{_0xaae859();}catch(_0x4b37ed){}})),_0x31d9be(),_0x2d2193(),_0x26371f(),_0x4daac9['connections']['length']&&!_0x4daac9['selectedId']&&(_0x4daac9['selectedId']=_0x4daac9['connections'][0x0]['id']),_0x4daac9['editing']=_0x4daac9['selectedId']?_0xe9c81e(_0x4daac9['connections']['find'](_0x54931a=>_0x54931a['id']===_0x4daac9['selectedId'])):null,_0x1bc4fb(),_0x187d5f(),function _0x123d69(){_0x34a2e2(),_0x58d59a['forEach'](_0x548d17=>{try{_0x548d17();}catch(_0x1ef63e){}});};}function _0x192976(_0x3692db,_0x5769ea={}){const _0x34359f=document['getElementById']('right-pane-content');if(!_0x34359f)return;_0x43049e();if(_0xef4717&&typeof _0xef4717['dispose']==='function'){try{_0xef4717['dispose']();}catch(_0x1504a2){}_0xef4717=null;}let _0x3f5acf='';if(window['__rightPromptEditor']&&typeof window['__rightPromptEditor']['getValue']==='function'){try{_0x3f5acf=window['__rightPromptEditor']['getValue']();}catch(_0x466daa){}try{window['__rightPromptEditor']['dispose']();}catch(_0x59ca55){}window['__rightPromptEditor']=null;}if(window['__rightPromptEditorDisposer']&&typeof window['__rightPromptEditorDisposer']['dispose']==='function')try{window['__rightPromptEditorDisposer']['dispose']();}catch(_0x295b89){}window['__rightPromptEditorDisposer']=null;if(window['__rightPromptTextArea']){try{if(!_0x3f5acf)_0x3f5acf=window['__rightPromptTextArea']['value']||'';}catch(_0x3fe48d){}if(window['__rightPromptTextAreaListener'])try{window['__rightPromptTextArea']['removeEventListener']('input',window['__rightPromptTextAreaListener']);}catch(_0x38bb0c){}window['__rightPromptTextArea']=null;}window['__rightPromptTextAreaListener']=null,_0x34359f['innerHTML']='\x0a\x20\x20\x20\x20\x20\x20<div\x20class=\x22right-ai-tabs\x22\x20style=\x22display:flex;\x20gap:6px;\x20padding:6px\x2010px;\x20border-bottom:1px\x20solid\x20var(--vscode-sideBar-border,#2e2e2e);\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<button\x20class=\x22settings-btn\x20settings-btn-secondary\x22\x20data-tab=\x22connection\x22\x20id=\x22ai-tab-connection-btn\x22>Connections</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<button\x20class=\x22settings-btn\x20settings-btn-secondary\x22\x20data-tab=\x22agents\x22\x20id=\x22ai-tab-agents-btn\x22>Agents</button>\x0a\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20<div\x20id=\x22ai-tab-connection\x22\x20class=\x22ai-tab\x22\x20style=\x22padding:0;\x20height:100%;\x20display:flex;\x20flex-direction:column;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22ai-connection-pane\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22ai-connection-toolbar\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<select\x20id=\x22ai-connection-provider-filter\x22\x20class=\x22vscode-select\x22\x20title=\x22Filter\x20by\x20provider\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<option\x20value=\x22all\x22>All\x20Providers</option>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</select>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22ai-connection-search\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<input\x20type=\x22search\x22\x20id=\x22ai-connection-search\x22\x20class=\x22vscode-input\x22\x20placeholder=\x22Search\x20connections…\x22\x20aria-label=\x22Search\x20connections\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20class=\x22settings-btn\x20settings-btn-primary\x22\x20id=\x22ai-connection-add\x22>+\x20New\x20Connection</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22ai-connection-content\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22ai-connection-tree\x22\x20id=\x22ai-connection-tree\x22\x20role=\x22tree\x22></div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22ai-connection-splitter\x22\x20id=\x22ai-connection-splitter\x22\x20role=\x22separator\x22\x20tabindex=\x220\x22\x20aria-orientation=\x22vertical\x22\x20aria-label=\x22Resize\x20connection\x20panels\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22ai-connection-splitter-grip\x22\x20aria-hidden=\x22true\x22></div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22ai-connection-inspector\x22\x20id=\x22ai-connection-inspector\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22ai-connection-empty\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p>Select\x20a\x20connection\x20on\x20the\x20left\x20or\x20create\x20a\x20new\x20one\x20to\x20get\x20started.</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20</div>\x0a\x0a\x20\x20\x20\x20\x20\x20<div\x20id=\x22ai-tab-agents\x22\x20class=\x22ai-tab\x20ai-agents-view\x22\x20style=\x22display:none;\x20height:100%;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22ai-agents-split\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22ai-agents-tree-pane\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20id=\x22ai-agent-tree-container\x22\x20class=\x22ai-agents-panel\x22></div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22ai-agent-detail\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20id=\x22ai-agent-empty-state\x22\x20class=\x22ai-agent-empty-state\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p>Select\x20an\x20agent\x20from\x20the\x20list\x20to\x20configure\x20settings\x20and\x20prompts.</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20id=\x22ai-agent-detail-body\x22\x20class=\x22ai-agent-detail-body\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22ai-agent-detail-tabs\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20class=\x22settings-btn\x20settings-btn-primary\x22\x20data-agent-pane-btn=\x22config\x22>Configuration</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20class=\x22settings-btn\x20settings-btn-secondary\x22\x20data-agent-pane-btn=\x22prompt\x22>Prompt</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20id=\x22ai-agent-config-panel\x22\x20class=\x22ai-agent-pane\x22\x20data-agent-pane=\x22config\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22right-pane-section\x20ai-agent-config-section\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22section-row\x20ai-agent-config-row\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22settings-label\x22\x20style=\x22min-width:\x20180px;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span>Agent\x20mode</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22ai-connection-status-static\x22>Assistant\x20(single\x20mode)</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<label\x20class=\x22settings-label\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span>Stored\x20Connection</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<select\x20id=\x22ai-agent-connection\x22\x20class=\x22vscode-select\x22></select>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</label>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22section-row\x20ai-agent-description-row\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<label\x20class=\x22settings-label\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span>Description</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<textarea\x20id=\x22ai-agent-description\x22\x20class=\x22vscode-textarea\x22\x20rows=\x223\x22\x20placeholder=\x22Short\x20summary\x20for\x20the\x20agent\x22></textarea>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</label>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22section-row\x20ai-agent-actions-row\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20class=\x22settings-btn\x20settings-btn-primary\x22\x20id=\x22ai-agent-config-save\x22>Save\x20Configuration</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20id=\x22ai-agent-prompt-panel\x22\x20class=\x22ai-agent-pane\x22\x20data-agent-pane=\x22prompt\x22\x20style=\x22display:none;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22right-pane-section\x20ai-agent-prompt-section\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22section-header\x22>System\x20Prompt\x20(XML\x20interpreted)</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22ai-agent-connection-hint\x22\x20id=\x22ai-agent-connection-hint\x22>Using\x20provider\x20<strong>OpenAI</strong></div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20id=\x22ai-right-prompt-editor\x22\x20class=\x22ai-agent-prompt-editor\x22></div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22section-row\x20ai-agent-prompt-footer\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20id=\x22ai-right-prompt-counter\x22>0\x20/\x2010,000\x20characters</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22btn-row\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20class=\x22settings-btn\x20settings-btn-secondary\x22\x20id=\x22ai-right-load-default\x22\x20disabled\x20title=\x22Available\x20in\x20Pro\x20version\x22>📋\x20Load\x20Default</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20class=\x22settings-btn\x20settings-btn-secondary\x22\x20id=\x22ai-right-clear\x22\x20disabled\x20title=\x22Available\x20in\x20Pro\x20version\x22>🗑️\x20Clear</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20class=\x22settings-btn\x20settings-btn-primary\x22\x20id=\x22ai-right-save-prompt\x22\x20disabled\x20title=\x22Available\x20in\x20Pro\x20version\x22>💾\x20Save</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20class=\x22settings-btn\x20settings-btn-secondary\x22\x20data-pro-lock=\x22prompt\x22>🔒\x20Prompt\x20editing\x20—\x20Pro</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20';const _0xfacc7c=['connection','agents'],_0x3eae23=Array['isArray'](_0x5769ea?.['visibleTabs'])?_0x5769ea['visibleTabs']:null,_0xdab65=_0x3eae23&&_0x3eae23['length']?_0x3eae23['filter'](_0x504346=>_0xfacc7c['includes'](_0x504346)):_0xfacc7c,_0x143522=_0xdab65['length']?_0xdab65:['connection'],_0x24cf0d=new Set(_0x143522);let _0x3a4236=_0x3692db&&_0x24cf0d['has'](_0x3692db)?_0x3692db:null;if(!_0x3a4236)try{const _0x3a6b46=localStorage['getItem']('right_pane_ai_tab');if(_0x3a6b46&&_0x24cf0d['has'](_0x3a6b46))_0x3a4236=_0x3a6b46;}catch(_0x4fc626){}if(!_0x3a4236)_0x3a4236=_0x143522[0x0]||'connection';_0x36abc7=_0x3a4236;const _0x10fbb4=_0x24cf0d['size']>0x1,_0x5edcb2=_0x34359f['querySelector']('.right-ai-tabs');_0x5edcb2&&(_0x5edcb2['style']['display']=_0x10fbb4?'flex':'none',_0x5edcb2['setAttribute']('aria-hidden',_0x10fbb4?'false':'true'));const _0x213fc9=document['getElementById']('ai-tab-connection-btn'),_0x1da4e8=document['getElementById']('ai-tab-prompt-btn'),_0x5d6a82=document['getElementById']('ai-tab-connection'),_0x303f62=document['getElementById']('ai-tab-prompt'),_0x395619=document['getElementById']('ai-tab-agents-btn'),_0x5855c3=document['getElementById']('ai-tab-agents');!_0x24cf0d['has']('connection')&&_0x213fc9?(_0x213fc9['style']['display']='none',_0x213fc9['setAttribute']('aria-hidden','true')):_0x213fc9?.['setAttribute']('aria-hidden','false');_0x1da4e8&&(_0x1da4e8['style']['display']='none',_0x1da4e8['setAttribute']('aria-hidden','true'));!_0x24cf0d['has']('agents')&&_0x395619?(_0x395619['style']['display']='none',_0x395619['setAttribute']('aria-hidden','true')):_0x395619?.['setAttribute']('aria-hidden','false');if(!_0x24cf0d['has']('connection')&&_0x5d6a82)_0x5d6a82['style']['display']='none';if(_0x303f62)_0x303f62['style']['display']='none';if(!_0x24cf0d['has']('agents')&&_0x5855c3)_0x5855c3['style']['display']='none';const _0x2cf84b=document['getElementById']('ai-agent-tree-container'),_0x8b93b3=Array['from'](_0x34359f['querySelectorAll']('input[name=\x22ai-agent-type\x22]')),_0x853765=document['getElementById']('ai-agent-connection');try{const _0xbe00ef=document['body']||document['getElementById']('right-pane-content')||_0x34359f;if(_0x853765&&_0xbe00ef)__attachCustomPicker(_0x853765,_0xbe00ef);}catch(_0x3a8317){}const _0x563eea=document['getElementById']('ai-agent-description'),_0x5a3a2b=document['getElementById']('ai-agent-config-save'),_0x226307=Array['from'](_0x34359f['querySelectorAll']('[data-agent-pane-btn]')),_0xa6cc66=Array['from'](_0x34359f['querySelectorAll']('.ai-agent-pane')),_0x26f434=document['getElementById']('ai-agent-connection-hint'),_0x3fbd56=document['getElementById']('ai-agent-detail-body'),_0x434dc9=document['getElementById']('ai-agent-empty-state'),_0x58c045=document['getElementById']('ai-right-prompt-counter'),_0x4476da=document['getElementById']('ai-right-load-default'),_0xd8faf2=document['getElementById']('ai-right-clear'),_0x584e13=document['getElementById']('ai-right-save-prompt'),_0x4759da=document['getElementById']('ai-agent-action-convert-vba'),_0xf7e1a1=document['getElementById']('ai-agent-action-refactor'),_0x121ffe=document['getElementById']('ai-agent-action-explain'),_0x48a934=document['getElementById']('ai-agent-action-review'),_0x380cb4=document['getElementById']('ai-agent-job-status'),_0xc087e8=document['getElementById']('ai-agent-job-output'),_0x461b0c=document['getElementById']('ai-agent-job-history-select'),_0x1f66b2=document['getElementById']('ai-agent-job-details-copy');let _0x175cbb=window['__rightPromptEditor']||null,_0x2eb2cc=null,_0x1421b5=null,_0xbff910=null,_0x3758ab=![];Array['from'](_0x34359f['querySelectorAll']('[data-pro-lock]'))['forEach'](_0x331bab=>{_0x331bab['addEventListener']('click',_0x1a128b=>{_0x1a128b['preventDefault']();const _0x16b876=_0x331bab['getAttribute']('data-pro-lock')||'feature',_0x4a7d4e={'provider':'Provider\x20switching','model':'Model\x20selection','prompt':'System\x20prompt\x20editing'};_0x7cbb56({'featureName':_0x4a7d4e[_0x16b876]||'This\x20feature','subtitle':'Available\x20in\x20Pro\x20version'});});});function _0x413cdf(_0x57afb8,_0xd45526=_0x1421b5){const _0xf7993e=(_0x57afb8||_0x2eb2cc||'openai')['toLowerCase'](),_0x1d1ef5=_0xd45526||_0x1421b5||'__global__';return _0x1d1ef5+'::'+_0xf7993e;}if(window['AIPromptService']?.['migrateLegacyPrompt'])try{window['AIPromptService']['migrateLegacyPrompt']();}catch(_0x984380){}const _0xc68149=_0x2379b1();_0x2eb2cc=_0x4de559(_0xc68149),window['__aiPromptProvider']=_0x2eb2cc;try{localStorage['setItem']('ai_prompt_provider',_0x2eb2cc);}catch(_0x42f502){}_0x3f5acf&&typeof _0x3f5acf==='string'&&_0x2a3901['set'](_0x413cdf(_0x2eb2cc),_0x3f5acf);const _0x48cfc9=_0x5acb75=>String(_0x5acb75??'')['replace'](/[&<>"']/g,_0x4c92d8=>({'&':'&amp;','<':'&lt;','>':'&gt;','\x22':'&quot;','\x27':'&#39;'}[_0x4c92d8]));let _0x5abd82=[];const _0x56333d=new Map();function _0x3951e4(){try{const _0x576516=window['SettingsStore']?.['getAiConnections']?.();_0x5abd82=Array['isArray'](_0x576516)?_0x576516:[];}catch(_0x17c87b){console['warn']('[RightActivityBar]\x20Failed\x20to\x20read\x20stored\x20connections:',_0x17c87b),_0x5abd82=[];}return _0x5abd82;}function _0x197913(_0x3e2d3f){if(!_0x3e2d3f)return null;if(!_0x5abd82['length'])_0x3951e4();return _0x5abd82['find'](_0x2aef8a=>_0x2aef8a&&_0x2aef8a['id']===_0x3e2d3f)||null;}function _0x53f408(_0xc254c2,_0x1ec5e8){if(!_0x853765)return;let _0x314117=Array['isArray'](_0x1ec5e8)?_0x1ec5e8['slice']():null;if((!_0x314117||!_0x314117['length'])&&window['SettingsStore']?.['ensureAiConnections'])try{_0x314117=window['SettingsStore']['ensureAiConnections']();}catch(_0x4d1130){console['warn']('[RightActivityBar]\x20ensureAiConnections\x20failed:',_0x4d1130);}!Array['isArray'](_0x314117)&&(_0x314117=_0x3951e4());_0x5abd82=Array['isArray'](_0x314117)?_0x314117['map'](_0x115d7f=>({..._0x115d7f})):[];const _0x3893dc='<option\x20value=\x22\x22>Select\x20connection…</option>',_0x386c3c=_0x5abd82['map'](_0x46cc02=>{const _0xb0bd95=_0x48cfc9(_0x46cc02['name']||_0x46cc02['id']);return'<option\x20value=\x22'+_0x48cfc9(_0x46cc02['id'])+'\x22>'+_0xb0bd95+'</option>';});_0x853765['innerHTML']=[_0x3893dc,..._0x386c3c]['join'](''),_0xc254c2&&_0x5abd82['some'](_0x4d8cb5=>_0x4d8cb5['id']===_0xc254c2)?_0x853765['value']=_0xc254c2:_0x853765['value']='',_0x5abd82['forEach'](_0x1a6b87=>{_0x56333d['set'](_0x1a6b87['id'],_0x5602b8(_0x1a6b87['providerId']||_0x2eb2cc));});}function _0x4f954d(_0x244d85){const _0x53b46e=_0x5602b8(_0x244d85);if(Array['isArray'](_0xc68149)){const _0x1b15cc=_0xc68149['find'](_0x52dbe9=>_0x5602b8(_0x52dbe9['id'])===_0x53b46e);if(_0x1b15cc&&_0x1b15cc['label'])return _0x1b15cc['label'];}return typeof _0x244d85==='string'&&_0x244d85['length']?_0x244d85['replace'](/[-_]+/g,'\x20')['replace'](/\b\w/g,_0x564ecc=>_0x564ecc['toUpperCase']()):'Unknown\x20provider';}function _0x17de15(_0x427c84,_0xc582de){if(!_0x26f434)return;const _0xd32f11=_0x48cfc9(_0x4f954d(_0xc582de)||'');if(_0x427c84){const _0x23d2a8=_0x48cfc9(_0x427c84['name']||_0x427c84['id']);_0x26f434['innerHTML']='Using\x20connection\x20<strong>'+_0x23d2a8+'</strong>\x20('+(_0xd32f11||'Unknown\x20provider')+')';}else _0x26f434['innerHTML']=_0xd32f11?'Using\x20provider\x20<strong>'+_0xd32f11+'</strong>':'No\x20connection\x20selected.';}let _0x107043=null;if(window['__aiConnectionsSubscription']&&typeof window['__aiConnectionsSubscription']==='function'){try{window['__aiConnectionsSubscription']();}catch(_0x61aa00){}window['__aiConnectionsSubscription']=null;}function _0x1b3ad2(_0x1a174b){if(!_0x853765)return;const _0xcc8392=Array['isArray'](_0x1a174b?.['aiConnections'])?_0x1a174b['aiConnections']:null;if(!Array['isArray'](_0xcc8392))return;const _0x31b6a3=_0xcc8392['length']!==_0x5abd82['length']||_0xcc8392['some']((_0x511486,_0x1668c1)=>{const _0x861f62=_0x5abd82[_0x1668c1];return!_0x861f62||_0x861f62['id']!==_0x511486['id']||_0x861f62['updatedAt']!==_0x511486['updatedAt'];});if(!_0x31b6a3)return;_0x3758ab=!![],_0x53f408(_0xbff910,_0xcc8392),_0x3758ab=![];const _0x342a9c=_0xbff910?_0x197913(_0xbff910):null;_0xbff910&&!_0x342a9c?(_0x2c40af('',{'persist':!![],'fallbackProviderId':_0x2eb2cc}),_0x282066()):_0x17de15(_0x342a9c,_0x2eb2cc);}if(window['SettingsStore']?.['subscribe'])try{_0x107043=window['SettingsStore']['subscribe'](_0x10f599=>{if(!_0x10f599||typeof _0x10f599!=='object')return;_0x1b3ad2(_0x10f599);}),window['__aiConnectionsSubscription']=_0x107043;}catch(_0x5b50b8){console['warn']('[RightActivityBar]\x20Failed\x20to\x20subscribe\x20to\x20SettingsStore\x20for\x20connections:',_0x5b50b8);}function _0x2c40af(_0x2302ed,_0xf96cc3={}){const {persist:persist=![],fallbackProviderId:fallbackProviderId=null}=_0xf96cc3,_0x46e6b1=_0x2302ed?_0x197913(_0x2302ed):null;if(_0x853765){if(_0x46e6b1&&_0x853765['value']!==_0x46e6b1['id'])_0x853765['value']=_0x46e6b1['id'];else _0x2302ed&&!_0x46e6b1&&(_0x853765['value']='');}const _0x1ddaee=_0x46e6b1?.['providerId']||_0x56333d['get'](_0x2302ed||'')||fallbackProviderId||_0x2eb2cc||'openai',_0x9e93c4=_0x5602b8(_0x1ddaee),_0x1d0f20=_0x9e93c4&&_0x9e93c4!==_0x2eb2cc;_0x1d0f20&&_0x4776a5();_0xbff910=_0x46e6b1?_0x46e6b1['id']:null,_0x2eb2cc=_0x9e93c4||_0x2eb2cc||'openai',window['__aiPromptProvider']=_0x2eb2cc;try{localStorage['setItem']('ai_prompt_provider',_0x2eb2cc);}catch(_0x1b3844){}_0x17de15(_0x46e6b1,_0x2eb2cc),_0x111a8b(_0x2eb2cc),_0xd2f597();if(persist&&_0x1421b5)try{window['AIAgentStore']?.['updateAgent']?.(_0x1421b5,{'defaultProviderId':_0x2eb2cc,'metadata':{'connectionId':_0xbff910||undefined}}),_0xbff910&&_0x56333d['set'](_0xbff910,_0x2eb2cc);}catch(_0xd3defa){console['error']('[RightActivityBar]\x20Failed\x20to\x20persist\x20connection\x20selection:',_0xd3defa);}}function _0x1c94d6(_0x549924,_0x45dd82=0xc8){let _0x44cd75=null;return function _0x341a98(..._0x1ce06a){if(_0x44cd75)clearTimeout(_0x44cd75);_0x44cd75=setTimeout(()=>_0x549924['apply'](this,_0x1ce06a),_0x45dd82);};}const _0x282066=_0x1c94d6(()=>{if(!_0x1421b5)return;const _0x48b9d3=_0x8b93b3['find'](_0x29f0e7=>_0x29f0e7['checked'])?.['value'],_0x44a36d=_0x48b9d3||'assistant',_0x49d9fd=_0x563eea?.['value']?_0x563eea['value']['trim']():'',_0x4d226c=_0x853765?.['value']||'',_0x34a8fc=_0x4d226c?_0x197913(_0x4d226c):null,_0x51e973={};_0x51e973['connectionId']=_0x4d226c||undefined;const _0x5a6b6f={'type':_0x44a36d,'description':_0x49d9fd,'metadata':_0x51e973,'defaultProviderId':_0x2eb2cc};_0x34a8fc?.['providerId']&&(_0x5a6b6f['defaultProviderId']=_0x34a8fc['providerId']);const _0x320058=window['AIAgentStore']?.['getSelectedAgent']?.();if(_0x320058?.['agent']){const _0x522b22=_0x320058['agent'],_0x57ce65=_0x522b22['description']||'',_0x172858=_0x522b22['type']||'assistant',_0x30ba99=_0x522b22['metadata']?.['connectionId']||null,_0x3dcbf3=_0x5602b8(_0x522b22['defaultProviderId']||'openai'),_0xb521de=_0x5602b8(_0x5a6b6f['defaultProviderId']||_0x3dcbf3);if(_0x172858===_0x44a36d&&_0x57ce65===_0x49d9fd&&_0x30ba99===_0x51e973['connectionId']&&_0x3dcbf3===_0xb521de)return;}try{window['AIAgentStore']?.['updateAgent']?.(_0x1421b5,_0x5a6b6f);if(_0x34a8fc&&_0x34a8fc['providerId']&&_0x34a8fc['primaryModelId'])try{window['AIAgentStore']?.['updateProviderState']?.(_0x1421b5,_0x34a8fc['providerId'],{'model':_0x34a8fc['primaryModelId']});}catch(_0x300571){console['error']('[RightActivityBar]\x20Failed\x20to\x20persist\x20agent\x20provider\x20model\x20state:',_0x300571);}}catch(_0x19ad76){console['error']('[RightActivityBar]\x20Failed\x20to\x20persist\x20agent\x20metadata:',_0x19ad76);}},0x12c),_0x188450=['config','prompt'];function _0x4fb14e(_0x1d246b){const _0x210806=_0x188450['includes'](_0x1d246b)?_0x1d246b:'config';_0xa6cc66['forEach'](_0x1fed39=>{const _0x114e74=_0x1fed39['dataset']['agentPane']===_0x210806;_0x1fed39['style']['display']=_0x114e74?'':'none',_0x1fed39['setAttribute']('aria-hidden',_0x114e74?'false':'true');}),_0x226307['forEach'](_0x5a91de=>{const _0x3c2407=_0x5a91de['dataset']['agentPaneBtn']===_0x210806;_0x5a91de['classList']['toggle']('settings-btn-primary',_0x3c2407),_0x5a91de['classList']['toggle']('settings-btn-secondary',!_0x3c2407),_0x5a91de['classList']['toggle']('is-active',_0x3c2407),_0x5a91de['setAttribute']('aria-pressed',_0x3c2407?'true':'false');});try{localStorage['setItem']('ai_agent_detail_pane',_0x210806);}catch(_0x2fa426){}_0x210806==='prompt'&&setTimeout(()=>{try{_0x175cbb?.['layout']?.();}catch(_0x1f84c4){}},0x0);}let _0x59324a='config';try{const _0x3470ee=localStorage['getItem']('ai_agent_detail_pane');_0x188450['includes'](_0x3470ee)&&(_0x59324a=_0x3470ee);}catch(_0x497f66){}_0x4fb14e(_0x59324a),_0x226307['forEach'](_0x1c6680=>{_0x1c6680['addEventListener']('click',()=>{_0x4fb14e(_0x1c6680['dataset']['agentPaneBtn']||'config');});});function _0x9b70a2(_0x5e217a,_0x1eeea9){const _0x1365f6=_0x5e217a||_0x2eb2cc,_0xf44e4c=_0x413cdf(_0x1365f6);if(!_0x1eeea9&&_0x2a3901['has'](_0xf44e4c)){const _0x540da3=_0x2a3901['get'](_0xf44e4c);return typeof _0x540da3==='string'?_0x540da3:'';}if(_0x1421b5)try{const _0x595bc1=window['AIAgentStore']?.['getSelectedAgent']?.(),_0x5366ab=_0x595bc1?.['agent'],_0xd198f2=_0x5366ab?.['providers']?.[_0x1365f6];if(_0xd198f2&&typeof _0xd198f2['prompt']==='string')return _0x2a3901['set'](_0xf44e4c,_0xd198f2['prompt']),_0xd198f2['prompt'];}catch(_0x4c2803){}let _0x33b6dc='';try{_0x33b6dc=window['AIPromptService']?.['loadPrompt']?.(_0x1365f6)||'';}catch(_0x4a97cc){}return _0x2a3901['set'](_0xf44e4c,_0x33b6dc||''),_0x33b6dc||'';}function _0x427e9e(_0x571fea,_0x407038){if(typeof monaco==='undefined'||!window['monaco']||!monaco['editor'])return null;const _0x358fa7=_0x571fea||_0x2eb2cc,_0x4471f8=_0x413cdf(_0x358fa7),_0xdc0fc5=_0x54a061['get'](_0x4471f8);if(_0xdc0fc5&&typeof _0xdc0fc5['isDisposed']==='function'&&_0xdc0fc5['isDisposed']())_0x54a061['delete'](_0x4471f8);else{if(_0xdc0fc5&&_0xdc0fc5['getValue'])return typeof _0x407038==='string'&&_0xdc0fc5['getValue']()!==_0x407038&&_0xdc0fc5['setValue'](_0x407038),_0xdc0fc5;}const _0xf1bb84=typeof _0x407038==='string'?_0x407038:_0x9b70a2(_0x358fa7,![]),_0x4e5b1e=monaco['editor']['createModel'](_0xf1bb84,'xml');return _0x54a061['set'](_0x4471f8,_0x4e5b1e),_0x4e5b1e;}function _0x111a8b(_0x1781b2){const _0x30a550=_0x1781b2||_0x2eb2cc;if(!_0x30a550)return;if(_0x175cbb&&typeof monaco!=='undefined'&&monaco['editor']){const _0x500789=_0x427e9e(_0x30a550);_0x500789&&_0x175cbb['getModel']()!==_0x500789&&_0x175cbb['setModel'](_0x500789);}else window['__rightPromptTextArea']&&(window['__rightPromptTextArea']['value']=_0x9b70a2(_0x30a550,![]));_0xd2f597();}_0x175cbb=_0x459cda(_0x2eb2cc),_0x1fec51(),_0x111a8b(_0x2eb2cc),_0xd2f597();function _0x101cf5(_0x323704){const _0x5c87cb=!!_0x323704;_0x3fbd56&&(_0x3fbd56['style']['display']=_0x5c87cb?'flex':'none');_0x434dc9&&(_0x434dc9['style']['display']=_0x5c87cb?'none':'flex');[_0x4476da,_0xd8faf2,_0x584e13]['forEach'](_0x1c369a=>{if(_0x1c369a)_0x1c369a['disabled']=!_0x5c87cb;});_0x24de32&&[_0x4476da,_0xd8faf2,_0x584e13]['forEach'](_0x5d84b5=>{if(_0x5d84b5)_0x5d84b5['disabled']=!![];});if(_0x175cbb&&typeof _0x175cbb['updateOptions']==='function')_0x175cbb['updateOptions']({'readOnly':_0x24de32?!![]:!_0x5c87cb});else window['__rightPromptTextArea']&&(window['__rightPromptTextArea']['disabled']=_0x24de32?!![]:!_0x5c87cb);_0x3758ab=!![];const _0x15b2f8=_0x5c87cb?_0x323704?.['metadata']?.['connectionId']||'':'';_0x53f408(_0x15b2f8),_0x8b93b3['forEach'](_0x19e846=>{_0x19e846['disabled']=!_0x5c87cb;if(_0x5c87cb){const _0x17afcc=(_0x323704?.['type']||'assistant')===_0x19e846['value'];_0x19e846['checked']=_0x17afcc,_0x19e846['setAttribute']('aria-checked',_0x17afcc?'true':'false');}else{const _0x48e754=_0x19e846['value']==='assistant';_0x19e846['checked']=_0x48e754,_0x19e846['setAttribute']('aria-checked',_0x48e754?'true':'false');}});_0x853765&&(_0x853765['disabled']=!_0x5c87cb,_0x15b2f8&&_0x5abd82['some'](_0x4d5e4f=>_0x4d5e4f['id']===_0x15b2f8)?_0x853765['value']=_0x15b2f8:_0x853765['value']='');_0x563eea&&(_0x563eea['disabled']=!_0x5c87cb,_0x563eea['value']=_0x5c87cb?_0x323704?.['description']||'':'');_0x3758ab=![];if(!_0x5c87cb){_0xbff910=null,_0x17de15(null,_0x2eb2cc),_0x4040d0(_0x9b70a2(_0x2eb2cc,![]));return;}const _0x3d7fa5=_0x5be410,_0x3086a3=_0x5be410;_0x2c40af(_0x15b2f8,{'persist':![],'fallbackProviderId':_0x3d7fa5});const _0x543de9=_0x5c87cb&&_0x3086a3!==_0x5602b8(_0x2eb2cc);(_0x15b2f8&&!_0xbff910||_0x543de9)&&_0x282066(),setTimeout(()=>{try{_0x175cbb?.['layout']?.();}catch(_0x52e8cd){}},0x0);}function _0x979309(){if(!window['AIAgentStore']||typeof window['AIAgentStore']['getSelectedAgent']!=='function')return null;try{return window['AIAgentStore']['getSelectedAgent']();}catch(_0x4e496c){return null;}}_0x101cf5(null);function _0x3eb48a(_0x359991){const _0x579398=_0x1421b5;if(!_0x359991){_0x1421b5=null,_0x101cf5(null);return;}_0x579398&&_0x579398!==_0x359991['agent']?.['id']&&_0x4776a5();_0x1421b5=_0x359991['agent']?.['id']||null;const _0x1a4e6b=_0x359991['agent']||null;_0x101cf5(_0x1a4e6b),_0x111a8b(_0x2eb2cc),_0xd2f597();}_0x853765?.['addEventListener']('change',_0x17f07d=>{_0x5d0dcd(_0x17f07d['target']['value']);}),_0x8b93b3['forEach'](_0x2a1baf=>{_0x2a1baf['addEventListener']('change',()=>{if(_0x3758ab)return;_0x8b93b3['forEach'](_0x28c3f0=>{_0x28c3f0['checked']?_0x28c3f0['setAttribute']('aria-checked','true'):_0x28c3f0['setAttribute']('aria-checked','false');}),_0x282066();});}),_0x563eea?.['addEventListener']('input',()=>{if(_0x3758ab)return;_0x282066();}),_0x5a3a2b?.['addEventListener']('click',()=>{_0x282066();if(window['LogService']&&typeof window['LogService']['logInfo']==='function')try{window['LogService']['logInfo']('ai-agents','agent-config-saved',{'agentId':_0x1421b5});}catch(_0x24ebd6){}});if(!window['__aiConnectionsListenerBound']){const _0x540597=_0x3c8b22=>{const _0x2af06d=_0x3c8b22?.['detail']?.['connections'];_0x3758ab=!![],_0x53f408(_0xbff910,Array['isArray'](_0x2af06d)?_0x2af06d:undefined),_0x3758ab=![],_0x17de15(_0xbff910?_0x197913(_0xbff910):null,_0x2eb2cc);};window['__aiConnectionsUpdatedListener']=_0x540597,document['addEventListener']('aiConnections:updated',_0x540597),window['__aiConnectionsListenerBound']=!![];}function _0x2dbc14(_0x103561){const _0x558db0=_0x103561?.['detail'],_0x309a99=_0x558db0?.['agent']||_0x558db0?.['agent']?.['agent'];_0x3eb48a(_0x558db0||_0x309a99?{'agent':_0x309a99}:null);}const _0x5c0aae=window['AIAgentStore'];let _0x359b86=window['__aiAgentStoreUnsubscribe']||null;if(_0x359b86){try{_0x359b86();}catch(_0x47b2a5){}_0x359b86=null;}if(_0x5c0aae&&typeof _0x5c0aae['on']==='function')try{_0x359b86=_0x5c0aae['on'](_0x5c0aae['events']?.['AGENT_SELECTED']||'ai-agent:selected',_0x13e78e=>{const _0x5eec02=_0x13e78e?.['detail']||_0x13e78e;_0x3eb48a(_0x5eec02);});const _0x28d4c1=_0x5c0aae['getSelectedAgent']?.();_0x28d4c1&&_0x3eb48a(_0x28d4c1);}catch(_0x392cf5){console['error']('[RightActivityBar]\x20Failed\x20to\x20bind\x20agent\x20store\x20listener:',_0x392cf5);}window['__aiAgentStoreUnsubscribe']=_0x359b86;!window['__aiAgentSelectedListenerBound']&&(window['__aiAgentSelectedListener']=_0x2dbc14,document['addEventListener']('ai:agent-selected',_0x2dbc14),window['__aiAgentSelectedListenerBound']=!![]);function _0x3d1337(){try{const _0x253115=window['pluginState']?.['getState']?.();if(!_0x253115)return-0x1;if(_0x253115['currentMode']===0x1&&typeof _0x253115['userMacros']?.['current']==='number'&&_0x253115['userMacros']['current']>=0x0)return _0x253115['userMacros']['current'];return-0x1;}catch(_0x4e69db){return-0x1;}}function _0x1a229d(){try{const _0x5c3943=_0x3d1337();if(_0x5c3943<0x0)return null;const _0x3d4ac8=window['pluginState']['getMacros']?.()||[];return _0x3d4ac8[_0x5c3943]&&_0x3d4ac8[_0x5c3943]['name']?_0x3d4ac8[_0x5c3943]['name']:null;}catch(_0x48e2ab){return null;}}let _0x33d57b=null,_0x346915=null;const _0x2aa954=[];function _0xd6e690(_0x3efd10,_0x15fe0a){if(!_0x380cb4||!_0xc087e8||!_0x15fe0a)return;const _0x56e0c6=_0x15fe0a['status']||'unknown',_0x357fa0=_0x15fe0a['phase']||null,_0x2c7396=_0x15fe0a['result']&&_0x15fe0a['result']['pipeline']?_0x15fe0a['result']['pipeline']:_0x3efd10,_0x38e392=_0x357fa0?_0x56e0c6+':'+_0x357fa0:_0x56e0c6;_0x380cb4['textContent']='Status:\x20'+_0x38e392+'\x20('+_0x2c7396+')';let _0x4b1c8e='';const _0x23d70d=_0x15fe0a['result']||{};if(_0x3efd10==='refactor-macro'&&_0x23d70d['refactorSuggestion'])_0x4b1c8e=_0x23d70d['refactorSuggestion'];else{if(_0x3efd10==='explain-macro'&&_0x23d70d['explanation'])_0x4b1c8e=_0x23d70d['explanation'];else{if(_0x3efd10==='review-macro-quality'){const _0x42ee34=[];if(_0x23d70d['apiUsage']){const _0x1cf099=Array['isArray'](_0x23d70d['apiUsage']['calls'])?_0x23d70d['apiUsage']['calls']['length']:_0x23d70d['apiUsage']['callCount']||0x0;_0x42ee34['push']('API\x20usage\x20calls:\x20'+_0x1cf099);}if(_0x23d70d['performance']){const _0x909131=typeof _0x23d70d['performance']['score']==='number'?_0x23d70d['performance']['score']:null;if(_0x909131!==null)_0x42ee34['push']('Performance\x20score:\x20'+_0x909131);}if(_0x23d70d['linter']){const _0x1b4fbd=Array['isArray'](_0x23d70d['linter']['issues'])?_0x23d70d['linter']['issues']['length']:_0x23d70d['linter']['issueCount']||0x0;_0x42ee34['push']('Lint\x20issues:\x20'+_0x1b4fbd);}_0x4b1c8e=_0x42ee34['length']?_0x42ee34['join']('\x0a'):JSON['stringify'](_0x23d70d,null,0x2);}else _0x23d70d&&Object['keys'](_0x23d70d)['length']?_0x4b1c8e=JSON['stringify'](_0x23d70d,null,0x2):_0x4b1c8e='(no\x20result\x20payload)';}}_0xc087e8['textContent']=_0x4b1c8e;try{if(_0x461b0c&&_0x15fe0a['id']){const _0x46f8ab=_0x2aa954['findIndex'](_0x56cb93=>_0x56cb93&&_0x56cb93['id']===_0x15fe0a['id']),_0x48a591={'id':_0x15fe0a['id'],'type':_0x15fe0a['type'],'pipeline':_0x2c7396,'status':_0x15fe0a['status']||'unknown','phase':_0x15fe0a['phase']||null,'updatedAt':_0x15fe0a['updatedAt']||Date['now']()};_0x46f8ab>=0x0?_0x2aa954[_0x46f8ab]=_0x48a591:_0x2aa954['unshift'](_0x48a591);while(_0x2aa954['length']>0x8)_0x2aa954['pop']();const _0x728058=_0x461b0c['value'];_0x461b0c['innerHTML']='';if(!_0x2aa954['length']){const _0x369480=document['createElement']('option');_0x369480['value']='',_0x369480['textContent']='No\x20jobs\x20yet',_0x461b0c['appendChild'](_0x369480);}else _0x2aa954['forEach'](_0x131d89=>{const _0x297e73=document['createElement']('option');_0x297e73['value']=_0x131d89['id'];const _0x2f59ee=new Date(_0x131d89['updatedAt']||Date['now']())['toLocaleTimeString']();_0x297e73['textContent']=(_0x131d89['type']||'job')+'\x20–\x20'+_0x131d89['status']+(_0x131d89['phase']?':'+_0x131d89['phase']:'')+'\x20@\x20'+_0x2f59ee,_0x461b0c['appendChild'](_0x297e73);});const _0x4e46ce=_0x2aa954['some'](_0x3836b1=>_0x3836b1['id']===_0x728058);_0x461b0c['value']=_0x4e46ce?_0x728058:_0x15fe0a['id']||'';}}catch(_0x263129){}}function _0xcfbda5(_0x414d0a){if(!_0x346915||!window['AgentJobs']||typeof window['AgentJobs']['getJob']!=='function')return;try{const _0x4de2a7=window['AgentJobs']['getJob'](_0x346915);if(_0x4de2a7){_0xd6e690(_0x414d0a,_0x4de2a7);if(_0x4de2a7['status']==='completed'||_0x4de2a7['status']==='failed'){if(_0x4de2a7['status']==='failed'){const _0x25d8e1=_0x4de2a7['error']||'Agent\x20job\x20\x22'+_0x414d0a+'\x22\x20failed.';try{window['alert']('AI\x20job\x20failed:\x20'+_0x25d8e1);}catch(_0x5d1921){}}_0x33d57b=null;return;}}}catch(_0x23863b){}_0x33d57b=setTimeout(()=>_0xcfbda5(_0x414d0a),0x1f4);}function _0x46134a(_0x3a9595){if(!window['AgentJobs']||typeof window['AgentJobs']['startJob']!=='function'){window['debug']?.['warn']('RightActivityBar','AgentJobs\x20not\x20available\x20for\x20macro\x20action',{'type':_0x3a9595});try{window['alert']('AI\x20agent\x20jobs\x20are\x20not\x20available.\x20Please\x20reload\x20the\x20plugin\x20or\x20enable\x20developer\x20mode.');}catch(_0x423821){}return;}const _0x53de81=_0x1a229d();if(!_0x53de81){window['alert']('Select\x20a\x20macro\x20in\x20the\x20tree\x20before\x20running\x20this\x20action.');return;}try{const _0x2b2f4b=window['AgentJobs']['startJob'](_0x3a9595,{'macroName':_0x53de81});window['debug']?.['info']('RightActivityBar','Agent\x20job\x20started',{'type':_0x3a9595,'jobId':_0x2b2f4b,'macroName':_0x53de81}),_0x346915=_0x2b2f4b,_0x380cb4&&(_0x380cb4['textContent']='Status:\x20running\x20('+_0x3a9595+')'),_0xc087e8&&(_0xc087e8['textContent']=''),_0x33d57b&&(clearTimeout(_0x33d57b),_0x33d57b=null),_0xcfbda5(_0x3a9595);}catch(_0x37eb47){window['debug']?.['error']('RightActivityBar','Failed\x20to\x20start\x20agent\x20job',{'type':_0x3a9595,'error':_0x37eb47?.['message']||String(_0x37eb47)});try{window['alert']('Failed\x20to\x20start\x20AI\x20job:\x20'+(_0x37eb47?.['message']||String(_0x37eb47)));}catch(_0x4eba4d){}}}function _0x5a5aef(){try{const _0x412075=window['pluginState']?.['getState']?.();if(!_0x412075){window['alert']('Plugin\x20state\x20is\x20not\x20available.\x20Please\x20reload\x20the\x20plugin.');return;}try{window['debug']?.['info']?.('RightActivityBar','runAgenticVbaConversionForCurrentMacro\x20invoked',{'currentMode':_0x412075['currentMode'],'importedCurrent':_0x412075['importedMacros']?.['current'],'userMacroCurrent':_0x412075['userMacros']?.['current']}),console['log']('[RightActivityBar]\x20runAgenticVbaConversionForCurrentMacro',{'currentMode':_0x412075['currentMode'],'importedCurrent':_0x412075['importedMacros']?.['current'],'userMacroCurrent':_0x412075['userMacros']?.['current']});}catch(_0x52bc37){}if(_0x412075['currentMode']===0x2){const _0x263a4a=typeof _0x412075['importedMacros']?.['current']==='number'?_0x412075['importedMacros']['current']:-0x1;if(_0x263a4a<0x0){window['alert']('Select\x20a\x20VBA\x20module\x20in\x20the\x20External\x20VBA\x20tree\x20before\x20converting.');return;}if(typeof window['translateVBAToJS']==='function'){window['translateVBAToJS'](_0x263a4a);return;}window['alert']('VBA\x20translation\x20function\x20is\x20not\x20available\x20for\x20external\x20modules.');return;}if(!window['macroManager']){window['alert']('VBA\x20conversion\x20is\x20not\x20available\x20in\x20this\x20build.');return;}const _0x261e94=_0x3d1337();if(_0x261e94<0x0){window['alert']('Select\x20a\x20macro\x20in\x20the\x20Macros\x20tree\x20before\x20converting.');return;}const _0x5e2563=window['macroManager']['convertVBAMacro'];if(typeof _0x5e2563!=='function'){window['alert']('VBA\x20conversion\x20method\x20is\x20not\x20available.');return;}_0x5e2563['call'](window['macroManager'],_0x261e94);}catch(_0x907126){window['debug']?.['error']('RightActivityBar','Failed\x20to\x20start\x20agentic\x20VBA\x20conversion',{'error':_0x907126?.['message']||String(_0x907126)}),window['alert']('Failed\x20to\x20start\x20VBA\x20conversion.\x20Check\x20the\x20console\x20for\x20details.');}}_0x4759da&&_0x4759da['addEventListener']('click',()=>{try{window['debug']?.['info']?.('RightActivityBar','Convert\x20VBA\x20to\x20JS\x20macro\x20button\x20clicked',{'tab':_0x36abc7});}catch(_0x4b4cba){}_0x5a5aef();});_0xf7e1a1?.['addEventListener']('click',()=>_0x46134a('refactor-macro')),_0x121ffe?.['addEventListener']('click',()=>_0x46134a('explain-macro')),_0x48a934?.['addEventListener']('click',()=>_0x46134a('review-macro-quality'));const _0x4b8890=document['getElementById']('ai-agent-action-search');_0x4b8890&&_0x4b8890['addEventListener']('click',()=>{try{const _0x3ace26=window['prompt']('Search\x20macros\x20(text\x20query\x20for\x20agentic\x20search):','');if(!_0x3ace26||!_0x3ace26['trim']())return;if(!window['AgentJobs']||typeof window['AgentJobs']['startJob']!=='function'){window['alert']('Agent\x20job\x20manager\x20is\x20not\x20available\x20in\x20this\x20build.');return;}window['debug']?.['info']?.('RightActivityBar','macro-search\x20agent\x20job\x20requested',{'queryLength':_0x3ace26['length']});const _0x85b91f=window['AgentJobs']['startJob']('macro-search',{'query':_0x3ace26['trim'](),'options':{'limit':0x32}});_0x346915=_0x85b91f,_0xcfbda5('macro-search');}catch(_0x8ad1ab){window['debug']?.['error']('RightActivityBar','Failed\x20to\x20start\x20macro-search\x20agent\x20job',{'error':_0x8ad1ab?.['message']||String(_0x8ad1ab)});}});const _0x39f68e=!!(_0x4759da||_0xf7e1a1||_0x121ffe||_0x48a934||_0x4b8890);if(!_0x39f68e&&_0x34359f){const _0x28cbb6=_0x34359f['querySelector']('.ai-agent-actions-section');_0x28cbb6&&_0x28cbb6['addEventListener']('click',_0x2eed00=>{const _0x391404=_0x2eed00['target'];if(!_0x391404||_0x391404['tagName']!=='BUTTON')return;const _0xd42437=(_0x391404['textContent']||'')['toLowerCase']();if(_0xd42437['includes']('convert')&&_0xd42437['includes']('vba')){_0x5a5aef();return;}if(_0xd42437['includes']('refactor')){_0x46134a('refactor-macro');return;}if(_0xd42437['includes']('explain')){_0x46134a('explain-macro');return;}if(_0xd42437['includes']('review')||_0xd42437['includes']('quality')){_0x46134a('review-macro-quality');return;}if(_0xd42437['includes']('search'))try{const _0x5ee744=window['prompt']('Search\x20macros\x20(text\x20query\x20for\x20agentic\x20search):','');if(!_0x5ee744||!_0x5ee744['trim']())return;if(!window['AgentJobs']||typeof window['AgentJobs']['startJob']!=='function'){window['alert']('Agent\x20job\x20manager\x20is\x20not\x20available\x20in\x20this\x20build.');return;}window['debug']?.['info']?.('RightActivityBar','macro-search\x20agent\x20job\x20requested\x20(delegated)',{'queryLength':_0x5ee744['length']});const _0x1cc084=window['AgentJobs']['startJob']('macro-search',{'query':_0x5ee744['trim'](),'options':{'limit':0x32}});_0x346915=_0x1cc084,_0xcfbda5('macro-search');}catch(_0x20cf44){window['debug']?.['error']('RightActivityBar','Failed\x20to\x20start\x20macro-search\x20agent\x20job\x20(delegated)',{'error':_0x20cf44?.['message']||String(_0x20cf44)});}});}_0x461b0c?.['addEventListener']('change',()=>{const _0x51c32c=_0x461b0c['value'];if(!_0x51c32c)return;try{const _0x4a5f90=window['AgentJobs']&&typeof window['AgentJobs']['getJob']==='function'?window['AgentJobs']['getJob'](_0x51c32c):null;if(!_0x4a5f90)return;const _0x491177=_0x4a5f90['type']||'job';_0x346915=_0x4a5f90['id'],_0xd6e690(_0x491177,_0x4a5f90);}catch(_0x48225b){}}),_0x1f66b2?.['addEventListener']('click',()=>{if(!_0x346915||!window['AgentJobs']||typeof window['AgentJobs']['getJob']!=='function'){window['alert']('No\x20agent\x20job\x20selected\x20to\x20copy.');return;}try{const _0x5d0ecc=window['AgentJobs']['getJob'](_0x346915);if(!_0x5d0ecc){window['alert']('Selected\x20job\x20is\x20no\x20longer\x20available.');return;}const _0x3f7a96={'id':_0x5d0ecc['id'],'type':_0x5d0ecc['type'],'status':_0x5d0ecc['status'],'phase':_0x5d0ecc['phase'],'pipeline':_0x5d0ecc['result']&&_0x5d0ecc['result']['pipeline'],'error':_0x5d0ecc['error']||null,'result':_0x5d0ecc['result']||null,'logs':_0x5d0ecc['logs']||[]},_0x30844a=JSON['stringify'](_0x3f7a96,null,0x2);navigator['clipboard']&&navigator['clipboard']['writeText']?navigator['clipboard']['writeText'](_0x30844a)['then'](()=>{window['alert']('Agent\x20job\x20details\x20copied\x20to\x20clipboard.');},()=>{window['alert']('Failed\x20to\x20copy\x20job\x20details.\x20You\x20can\x20copy\x20from\x20the\x20console\x20instead.');}):window['alert'](_0x30844a);}catch(_0x3d93da){window['debug']?.['error']('RightActivityBar','Failed\x20to\x20copy\x20job\x20details',{'error':_0x3d93da?.['message']||String(_0x3d93da)}),window['alert']('Failed\x20to\x20copy\x20job\x20details.\x20Check\x20the\x20console\x20for\x20details.');}}),_0x4476da?.['addEventListener']('click',()=>{let _0x1b4669='';try{_0x1b4669=window['AIPromptService']?.['getDefaultPrompt']?.(_0x2eb2cc)||'';}catch(_0x55fe56){}if(!_0x1b4669)try{_0x1b4669=window['AIInstructionManager']?.['getRawTemplate']?.('vba-conversion')||'';}catch(_0x7e4978){}_0x4040d0(_0x1b4669),_0xd2f597(),_0x4776a5();}),_0xd8faf2?.['addEventListener']('click',()=>{_0x4040d0(''),_0xd2f597();try{window['AIPromptService']?.['resetPrompt']?window['AIPromptService']['resetPrompt'](_0x2eb2cc):_0x4e7009();}catch(_0x41ba0b){_0x4e7009(),window['LogService']?.['logWarning']?.('AI\x20Prompt','Prompt\x20reset\x20failed',{'providerId':_0x2eb2cc,'message':_0x41ba0b?.['message']});}_0x4776a5();}),_0x584e13?.['addEventListener']('click',()=>{const _0x361d85=(_0x521873()||'')['trim']();try{window['AIPromptService']?.['savePrompt']?window['AIPromptService']['savePrompt'](_0x2eb2cc,_0x361d85):_0x5afb78(_0x361d85),window['LogService']?.['logInfo']?.('AI\x20Prompt','Prompt\x20saved',{'providerId':_0x2eb2cc,'length':_0x361d85['length']});}catch(_0x1049c2){_0x5afb78(_0x361d85),window['LogService']?.['logWarning']?.('AI\x20Prompt','Prompt\x20save\x20failed',{'providerId':_0x2eb2cc,'message':_0x1049c2?.['message']});}_0xd2f597(),_0x4776a5();});function _0x5afb78(_0x178abb){let _0x1c15aa=![];try{window['settingsManager']?.['setTranslationPrompt']?.(_0x178abb),_0x1c15aa=!![];}catch(_0x14c6aa){}if(!_0x1c15aa&&_0x279859?.['update'])try{_0x279859['update']({'translationPrompt':_0x178abb||undefined}),_0x1c15aa=!![];}catch(_0x48757c){}if(!_0x1c15aa)try{const _0x23402a=localStorage['getItem']('macros_plugin_settings'),_0x3728b2=_0x23402a?JSON['parse'](_0x23402a):{};if(_0x178abb)_0x3728b2['translationPrompt']=_0x178abb;else delete _0x3728b2['translationPrompt'];localStorage['setItem']('macros_plugin_settings',JSON['stringify'](_0x3728b2));}catch(_0x2dfb1c){}}function _0x4e7009(){let _0x12b07b=![];try{window['settingsManager']?.['resetTranslationPrompt']?.(),_0x12b07b=!![];}catch(_0x360015){}if(!_0x12b07b&&_0x279859?.['update'])try{_0x279859['update']({'translationPrompt':undefined}),_0x12b07b=!![];}catch(_0x1f1a95){}if(!_0x12b07b)try{const _0x20ee62=localStorage['getItem']('macros_plugin_settings'),_0x3c3c6f=_0x20ee62?JSON['parse'](_0x20ee62):{};delete _0x3c3c6f['translationPrompt'],localStorage['setItem']('macros_plugin_settings',JSON['stringify'](_0x3c3c6f));}catch(_0xc58737){}}function _0x2379b1(){if(_0x24de32)return[{'id':_0x5be410,'label':'OpenAI','enabled':!![]}];if(window['AIPromptService']?.['getProviderCatalog'])try{const _0x41c6d4=window['AIPromptService']['getProviderCatalog']();if(Array['isArray'](_0x41c6d4)&&_0x41c6d4['length'])return _0x41c6d4;}catch(_0x4eef38){}return[{'id':'openai','label':'OpenAI','enabled':!![]},{'id':'github','label':'GitHub\x20Models','enabled':!![]},{'id':'gemini','label':'Google\x20Gemini','enabled':!![]}];}function _0x4de559(_0x1616a6){const _0x1aba61=Array['isArray'](_0x1616a6)&&_0x1616a6['length']?_0x1616a6['map'](_0x5567f4=>_0x5567f4['id']):['openai'],_0x1d726a=[];if(window['__aiPromptProvider'])_0x1d726a['push'](window['__aiPromptProvider']);try{const _0x7e42ad=localStorage['getItem']('ai_prompt_provider');if(_0x7e42ad)_0x1d726a['push'](_0x7e42ad);}catch(_0x34b5b1){}if(window['AIPromptService']?.['getDefaultProviderId'])try{_0x1d726a['push'](window['AIPromptService']['getDefaultProviderId']());}catch(_0x4d1190){}_0x1d726a['push']('openai');for(let _0x4552c7=0x0;_0x4552c7<_0x1d726a['length'];_0x4552c7+=0x1){const _0x85ffb2=_0x5602b8(_0x1d726a[_0x4552c7]);if(_0x1aba61['includes'](_0x85ffb2))return _0x85ffb2;}return _0x1aba61[0x0];}function _0x5d0dcd(_0x2e693b){if(_0x3758ab)return;_0x3951e4(),_0x2c40af(_0x2e693b||'',{'persist':!![]}),_0x282066();try{document['dispatchEvent'](new CustomEvent('rightPane:providerChanged',{'detail':{'providerId':_0x2eb2cc,'connectionId':_0xbff910}}));}catch(_0x22b7d5){}if(window['LogService']&&typeof window['LogService']['logInfo']==='function')try{window['LogService']['logInfo']('ai-agents','connection-switched',{'connectionId':_0xbff910,'providerId':_0x2eb2cc,'agentId':_0x1421b5});}catch(_0x3deee9){}}function _0x5602b8(_0x1c8e8c){if(window['AIPromptService']?.['normalizeProviderId'])try{return window['AIPromptService']['normalizeProviderId'](_0x1c8e8c);}catch(_0x13b2ef){}return typeof _0x1c8e8c==='string'&&_0x1c8e8c['trim']()?_0x1c8e8c['trim']()['toLowerCase']():'openai';}function _0x459cda(_0x7e274d){const _0x30cd26=document['getElementById']('ai-right-prompt-editor');if(!_0x30cd26)return null;if(_0x175cbb&&_0x175cbb['getDomNode']()){const _0x57ae53=_0x175cbb['getDomNode']();if(_0x57ae53&&_0x57ae53['parentNode']!==_0x30cd26)try{_0x30cd26['appendChild'](_0x57ae53);}catch(_0x162dea){}return _0x486df7(),setTimeout(()=>{try{_0x175cbb['layout']();}catch(_0x5857bb){}},0x0),_0x175cbb;}if(typeof monaco==='undefined'||!window['monaco']||!monaco['editor']){const _0xab3279=document['createElement']('textarea');return _0xab3279['style']['cssText']='width:100%;height:100%;background:var(--vscode-input-background,#1e1e1e);color:var(--vscode-input-foreground,#d4d4d4);border:0;',_0x30cd26['appendChild'](_0xab3279),window['__rightPromptTextArea']=_0xab3279,window['__rightPromptEditor']=null,_0x175cbb=null,null;}return _0x175cbb=monaco['editor']['create'](_0x30cd26,{'value':'','language':'plaintext','minimap':{'enabled':![]},'wordWrap':'on','automaticLayout':!![],'theme':document['body']['classList']['contains']('theme-type-dark')?'vs-dark':'vs'}),window['__rightPromptEditor']=_0x175cbb,_0x486df7(),_0x175cbb;}function _0x486df7(){if(!_0x175cbb)return;try{_0x394c1c()['then'](()=>{try{monaco['editor']['setModelLanguage'](_0x175cbb['getModel'](),'xml');}catch(_0x3c3d29){}});}catch(_0x5438a9){}}function _0x394c1c(){return new Promise(_0x536d1f=>{try{if(typeof monaco!=='undefined'&&window['monaco']&&monaco['languages']){const _0x2fd9cc=monaco['languages']['getLanguages']?.()['some'](_0x2f517e=>_0x2f517e['id']==='xml');if(_0x2fd9cc)return _0x536d1f(!![]);try{return monaco['languages']['register']({'id':'xml'}),monaco['languages']['setMonarchTokensProvider']('xml',{'tokenizer':{'root':[[/\<\!--[\s\S]*?--\>/,'comment'],[/\<\!\[CDATA\[[\s\S]*?\]\]\>/,'string'],[/\<\/?[A-Za-z_][\w\-\.]*\b/,'tag'],[/\s+[A-Za-z_:][-A-Za-z0-9_:.]*\s*=\s*"[^"]*"/,'attribute'],[/\s+[A-Za-z_:][-A-Za-z0-9_:.]*\s*=\s*'[^']*'/,'attribute'],[/\s+[A-Za-z_:][-A-Za-z0-9_:.]*/,'attribute.name'],[/\/?\>/,'tag']]}}),monaco['languages']['setLanguageConfiguration']('xml',{'brackets':[['<','>']],'autoClosingPairs':[{'open':'<','close':'>'},{'open':'\x22','close':'\x22'},{'open':'\x27','close':'\x27'}]}),_0x536d1f(!![]);}catch(_0x37bb4d){}}}catch(_0x2a85c4){}_0x536d1f(![]);});}function _0x1fec51(){if(window['__rightPromptEditorDisposer']&&typeof window['__rightPromptEditorDisposer']['dispose']==='function')try{window['__rightPromptEditorDisposer']['dispose']();}catch(_0x305195){}_0x175cbb&&typeof _0x175cbb['onDidChangeModelContent']==='function'?window['__rightPromptEditorDisposer']=_0x175cbb['onDidChangeModelContent'](()=>_0xd2f597()):window['__rightPromptEditorDisposer']=null;window['__rightPromptTextArea']&&window['__rightPromptTextAreaListener']&&(window['__rightPromptTextArea']['removeEventListener']('input',window['__rightPromptTextAreaListener']),window['__rightPromptTextAreaListener']=null);if(!_0x175cbb&&window['__rightPromptTextArea']){const _0x33c1df=()=>_0xd2f597();window['__rightPromptTextArea']['addEventListener']('input',_0x33c1df),window['__rightPromptTextAreaListener']=_0x33c1df;}}function _0x4040d0(_0x5bcd2d){const _0x2ccd1f=typeof _0x5bcd2d==='string'?_0x5bcd2d:'';if(_0x175cbb&&typeof monaco!=='undefined'&&monaco['editor']){const _0x481f9c=_0x427e9e(_0x2eb2cc,_0x2ccd1f);_0x481f9c&&_0x175cbb['getModel']()!==_0x481f9c&&_0x175cbb['setModel'](_0x481f9c),_0x481f9c&&_0x481f9c['getValue']&&_0x481f9c['getValue']()!==_0x2ccd1f&&_0x481f9c['setValue'](_0x2ccd1f);}else window['__rightPromptTextArea']&&(window['__rightPromptTextArea']['value']=_0x2ccd1f);_0x2a3901['set'](_0x413cdf(_0x2eb2cc),_0x2ccd1f),_0xd2f597();}function _0x521873(){if(_0x175cbb&&_0x175cbb['getValue'])return _0x175cbb['getValue']();if(window['__rightPromptTextArea'])return window['__rightPromptTextArea']['value'];return'';}function _0xd2f597(){if(!_0x58c045)return;const _0x53e519=_0x521873()||'';_0x58c045['textContent']=_0x53e519['length']+'\x20/\x2010,000\x20characters',_0x2eb2cc&&_0x2a3901['set'](_0x413cdf(_0x2eb2cc),_0x53e519);}function _0x4776a5(){if(!_0x2eb2cc)return;const _0x44b6d8=_0x521873()||'';_0x2a3901['set'](_0x413cdf(_0x2eb2cc),_0x44b6d8);if(_0x1421b5)try{window['AIAgentStore']?.['updateProviderState']?.(_0x1421b5,_0x2eb2cc,{'prompt':_0x44b6d8});}catch(_0x472325){console['error']('[RightActivityBar]\x20Failed\x20to\x20persist\x20provider\x20state:',_0x472325);}if(_0x175cbb&&_0x175cbb['getModel']&&_0x175cbb['getModel']()){const _0x244c25=_0x413cdf(_0x2eb2cc),_0x47960d=_0x175cbb['getModel']();if(_0x47960d&&typeof _0x47960d['isDisposed']==='function'&&_0x47960d['isDisposed']())_0x54a061['delete'](_0x244c25);else _0x47960d&&_0x54a061['set'](_0x244c25,_0x47960d);}}async function _0x366afd(){if(!_0x2cf84b)return;if(_0xef4717)return;const _0x1fe4ef=window['AgentTreeView'];if(!_0x1fe4ef||typeof _0x1fe4ef['createAgentTreeView']!=='function'){_0x2cf84b['innerHTML']='<div\x20class=\x22tree-empty-message\x22>AI\x20Agents\x20view\x20unavailable.</div>';return;}_0x2cf84b['innerHTML']='<div\x20class=\x22tree-empty-message\x22>Loading\x20agents…</div>';try{typeof _0x1fe4ef['waitForStore']==='function'&&await _0x1fe4ef['waitForStore'](),_0xef4717=_0x1fe4ef['createAgentTreeView'](_0x2cf84b);}catch(_0x5196c8){console['error']('[RightActivityBar]\x20Failed\x20to\x20initialize\x20agent\x20tree:',_0x5196c8),_0x2cf84b['innerHTML']='<div\x20class=\x22tree-empty-message\x22>Failed\x20to\x20load\x20agents.</div>';}}function _0x1dab76(_0x33a359){if(!_0x24cf0d['has'](_0x33a359)){const _0x3a8779=_0x143522[0x0]||'connection';if(!_0x24cf0d['has'](_0x3a8779)||_0x33a359===_0x3a8779)return;return _0x1dab76(_0x3a8779);}if(_0x33a359==='connection'){_0x4776a5();if(_0x5d6a82)_0x5d6a82['style']['display']='';if(_0x303f62)_0x303f62['style']['display']='none';if(_0x5855c3)_0x5855c3['style']['display']='none';if(_0xef4717&&typeof _0xef4717['dispose']==='function'){try{_0xef4717['dispose']();}catch(_0x135485){}_0xef4717=null;}}else{if(_0x33a359==='agents'){_0x4776a5();if(_0x5d6a82)_0x5d6a82['style']['display']='none';if(_0x303f62)_0x303f62['style']['display']='none';if(_0x5855c3)_0x5855c3['style']['display']='';const _0x40ed26=_0x366afd();_0x40ed26&&typeof _0x40ed26['catch']==='function'&&_0x40ed26['catch'](()=>{});_0x175cbb=_0x459cda(_0x2eb2cc),_0x1fec51(),_0x111a8b(_0x2eb2cc);const _0x47a390=_0x5c0aae?.['getSelectedAgent']?.();_0x47a390?_0x3eb48a(_0x47a390):_0x101cf5(null),setTimeout(()=>{try{_0x175cbb?.['layout']?.();}catch(_0x385f0a){}},0x0);}else return;}_0x36abc7=_0x33a359,_0x213fc9?.['classList']['toggle']('settings-btn-primary',_0x33a359==='connection'),_0x395619?.['classList']['toggle']('settings-btn-primary',_0x33a359==='agents'),_0x10b0e6();try{localStorage['setItem']('right_pane_ai_tab',_0x33a359);}catch(_0x49a4e4){}}_0x1dab76(_0x3a4236);_0x24cf0d['has']('connection')&&_0x213fc9?.['addEventListener']('click',()=>_0x1dab76('connection'));_0x24cf0d['has']('agents')&&_0x395619?.['addEventListener']('click',()=>_0x1dab76('agents'));try{if(typeof window['__aiConnectionManagerCleanup']==='function'){try{window['__aiConnectionManagerCleanup']();}catch(_0x49395b){}window['__aiConnectionManagerCleanup']=null;}const _0x160026=_0x3064db({'elements':{'treeEl':document['getElementById']('ai-connection-tree'),'inspectorEl':document['getElementById']('ai-connection-inspector'),'filterEl':document['getElementById']('ai-connection-provider-filter'),'searchEl':document['getElementById']('ai-connection-search'),'addButton':document['getElementById']('ai-connection-add'),'contentEl':document['querySelector']('.ai-connection-content'),'splitterEl':document['getElementById']('ai-connection-splitter')},'settingsStore':_0x279859});window['__aiConnectionManagerCleanup']=_0x160026;}catch(_0x47d56c){console['warn']('[AI\x20Pane]\x20Failed\x20to\x20initialize\x20connection\x20manager:',_0x47d56c);}}async function _0x5f0706(){const _0x3500a2=document['getElementById']('right-pane-content');if(!_0x3500a2)return;_0x43049e();const _0x461376=window['AIProviderFactory']||null,_0x37489f='r7c_ai_chat',_0x4c5f8a='chat_state',_0x30622e='main',_0x5c03df=0x1,_0x3a2387=_0x5d93bd=>_0x5d93bd!==null&&typeof _0x5d93bd==='object'&&!Array['isArray'](_0x5d93bd);function _0xcb376d(){return{'connectionId':null,'sessionByConnection':{}};}function _0x5dec0f(){return'chat-'+Math['random']()['toString'](0x24)['slice'](0x2,0x8)+Date['now']()['toString'](0x24);}function _0x525c93(_0x523293){if(!Array['isArray'](_0x523293))return[];return _0x523293['map'](_0x5e4a48=>{if(!_0x3a2387(_0x5e4a48))return null;const _0x1c780a=typeof _0x5e4a48['role']==='string'?_0x5e4a48['role']:'assistant';if(!['user','assistant','system']['includes'](_0x1c780a))return null;const _0x5544e9=typeof _0x5e4a48['content']==='string'?_0x5e4a48['content']:String(_0x5e4a48['content']||'');return{'role':_0x1c780a,'content':_0x5544e9};})['filter'](Boolean);}function _0x593485(_0x28d3f3){if(!_0x3a2387(_0x28d3f3))return{};const _0x3b69f0={};return Object['entries'](_0x28d3f3)['forEach'](([_0x2281c6,_0xeb67c5])=>{if(!_0x3a2387(_0xeb67c5))return;const _0x376cb1=Array['isArray'](_0xeb67c5['sessions'])?_0xeb67c5['sessions']:[],_0x1f452f=_0x376cb1['map'](_0x5662b9=>{if(!_0x3a2387(_0x5662b9))return null;const _0x186e9a=typeof _0x5662b9['id']==='string'&&_0x5662b9['id']['trim']()?_0x5662b9['id']['trim']():_0x5dec0f(),_0x928b25=typeof _0x5662b9['title']==='string'&&_0x5662b9['title']['trim']()?_0x5662b9['title']:'New\x20chat',_0x5b900b=Number['isFinite'](_0x5662b9['createdAt'])?_0x5662b9['createdAt']:Date['now'](),_0x23773f=Number['isFinite'](_0x5662b9['updatedAt'])?_0x5662b9['updatedAt']:_0x5b900b,_0x3491b6=_0x525c93(_0x5662b9['messages']);return{'id':_0x186e9a,'title':_0x928b25,'createdAt':_0x5b900b,'updatedAt':_0x23773f,'messages':_0x3491b6};})['filter'](Boolean);_0x3b69f0[String(_0x2281c6)]={'sessions':_0x1f452f};}),_0x3b69f0;}function _0x3bd0a0(_0x43a262){const _0x2f4952=_0xcb376d();if(!_0x3a2387(_0x43a262))return _0x2f4952;return typeof _0x43a262['connectionId']==='string'&&_0x43a262['connectionId']['trim']()&&(_0x2f4952['connectionId']=_0x43a262['connectionId']),_0x3a2387(_0x43a262['sessionByConnection'])&&Object['entries'](_0x43a262['sessionByConnection'])['forEach'](([_0x5a0525,_0x5ddd58])=>{typeof _0x5ddd58==='string'&&_0x5ddd58['trim']()&&(_0x2f4952['sessionByConnection'][String(_0x5a0525)]=_0x5ddd58);}),_0x2f4952;}function _0x49917d(){return typeof window!=='undefined'&&typeof window['indexedDB']!=='undefined';}function _0x5b1a85(){return new Promise((_0x4cf603,_0x47bdb1)=>{if(!_0x49917d()){_0x47bdb1(new Error('IndexedDB\x20is\x20not\x20supported'));return;}let _0x1cacd7;try{_0x1cacd7=window['indexedDB']['open'](_0x37489f,_0x5c03df);}catch(_0x13aabd){_0x47bdb1(_0x13aabd);return;}_0x1cacd7['onerror']=()=>_0x47bdb1(_0x1cacd7['error']||new Error('Failed\x20to\x20open\x20IndexedDB')),_0x1cacd7['onupgradeneeded']=()=>{const _0x103f1f=_0x1cacd7['result'];!_0x103f1f['objectStoreNames']['contains'](_0x4c5f8a)&&_0x103f1f['createObjectStore'](_0x4c5f8a);},_0x1cacd7['onsuccess']=()=>_0x4cf603(_0x1cacd7['result']);});}async function _0x37b6cf(){if(!_0x49917d())return null;let _0x29f589=null;try{_0x29f589=await _0x5b1a85();const _0x458fcb=await new Promise((_0x2ec3f0,_0x2ab8b5)=>{const _0x26baf0=_0x29f589['transaction'](_0x4c5f8a,'readonly'),_0x11accb=_0x26baf0['objectStore'](_0x4c5f8a),_0x103070=_0x11accb['get'](_0x30622e);_0x103070['onerror']=()=>_0x2ab8b5(_0x103070['error']||new Error('Failed\x20to\x20load\x20chat\x20state')),_0x103070['onsuccess']=()=>_0x2ec3f0(_0x103070['result']||null);});if(!_0x3a2387(_0x458fcb))return null;return{'conversationStore':_0x593485(_0x458fcb['conversationStore']),'chatSelectionState':_0x3bd0a0(_0x458fcb['chatSelectionState'])};}catch(_0x1669b8){return null;}finally{try{_0x29f589?.['close']?.();}catch(_0x7dd616){}}}async function _0x186a0c(_0x137d4f,_0x134e14){if(!_0x49917d())return;let _0x43c80c=null;try{_0x43c80c=await _0x5b1a85();const _0x22c871={'version':_0x5c03df,'updatedAt':Date['now'](),'conversationStore':_0x593485(_0x137d4f),'chatSelectionState':_0x3bd0a0(_0x134e14)};await new Promise((_0x1b6c8e,_0x5120c6)=>{const _0x58b684=_0x43c80c['transaction'](_0x4c5f8a,'readwrite');_0x58b684['oncomplete']=()=>_0x1b6c8e(),_0x58b684['onerror']=()=>_0x5120c6(_0x58b684['error']||new Error('Failed\x20to\x20persist\x20chat\x20state')),_0x58b684['objectStore'](_0x4c5f8a)['put'](_0x22c871,_0x30622e);});}catch(_0x7f2d70){}finally{try{_0x43c80c?.['close']?.();}catch(_0x27c7d8){}}}const _0x5a198c=_0x593485(window['__aiChatConversationsByConnection']||{}),_0x40affb=_0x3bd0a0(window['__aiChatSelectionState']||_0xcb376d()),_0x4f4b82=await _0x37b6cf(),_0xc07dbb=!!(_0x4f4b82&&_0x3a2387(_0x4f4b82['conversationStore'])&&Object['keys'](_0x4f4b82['conversationStore'])['length']),_0x2d530c=_0xc07dbb?_0x4f4b82['conversationStore']:_0x5a198c,_0x183727=_0xc07dbb?_0x4f4b82['chatSelectionState']:_0x40affb;window['__aiChatConversationsByConnection']=_0x2d530c,window['__aiChatSelectionState']=_0x183727;let _0x4354ea=null;const _0x1351e4=(_0x5582a1=0xb4)=>{try{if(_0x4354ea)clearTimeout(_0x4354ea);}catch(_0x270a2e){}_0x4354ea=setTimeout(()=>{_0x4354ea=null,_0x186a0c(_0x2d530c,_0x183727);},Math['max'](0x0,_0x5582a1));};function _0x486612(){try{const _0x553495=window['SettingsStore']?.['ensureAiConnections']?.();if(Array['isArray'](_0x553495))return _0x553495;}catch(_0x489a01){}try{const _0x16cfa5=window['SettingsStore']?.['getAiConnections']?.();if(Array['isArray'](_0x16cfa5))return _0x16cfa5;}catch(_0x5517db){}return[];}function _0x3a63c0(_0x4a64e0,_0x4376dd){if(!_0x4376dd)return null;return(_0x4a64e0||[])['find'](_0x4c8d61=>_0x4c8d61&&_0x4c8d61['id']===_0x4376dd)||null;}let _0x226f22=_0x486612(),_0x279fd8=_0x3a63c0(_0x226f22,_0x183727['connectionId'])?_0x183727['connectionId']:_0x226f22[0x0]?.['id']||null;_0x183727['connectionId']=_0x279fd8;let _0x5785c5=null;function _0x28d027(_0x4cc1d8){const _0xca336f=_0x4cc1d8||'__no_connection__';return!_0x2d530c[_0xca336f]&&(_0x2d530c[_0xca336f]={'sessions':[]}),_0x2d530c[_0xca336f];}function _0x119b01(_0x21add5,_0x333c2d='New\x20chat'){const _0x516fc8=_0x28d027(_0x21add5),_0xeda344=_0x5dec0f(),_0x3d6163=Date['now'](),_0x3a6b0e={'id':_0xeda344,'title':_0x333c2d,'createdAt':_0x3d6163,'updatedAt':_0x3d6163,'messages':[]};return _0x516fc8['sessions']['unshift'](_0x3a6b0e),_0x1351e4(),_0x3a6b0e;}function _0x21ef34(_0xffd9fc,_0x13cb9f){const _0x1ed5cd=_0x28d027(_0xffd9fc);let _0x4eec5b=_0x1ed5cd['sessions']['find'](_0x170b67=>_0x170b67['id']===_0x13cb9f)||null;return!_0x4eec5b&&(_0x1ed5cd['sessions']['length']?_0x4eec5b=_0x1ed5cd['sessions'][0x0]:_0x4eec5b=_0x119b01(_0xffd9fc)),_0x4eec5b;}function _0xf72b9a(_0x4dd6bb){const _0x4f9f72=_0x4dd6bb||'__no_connection__';return _0x183727['sessionByConnection'][_0x4f9f72]||null;}function _0x56e5a4(_0x3d769a,_0x96d834){const _0x30afad=_0x3d769a||'__no_connection__';_0x183727['sessionByConnection'][_0x30afad]=_0x96d834,_0x1351e4();}function _0x4b90d9(_0x5e77f8){if(!_0x5e77f8)return'';try{return localStorage['getItem'](''+_0xd81eb5+_0x5e77f8)||'';}catch(_0x46476d){return'';}}let _0x4f2d8d=_0xf72b9a(_0x279fd8),_0x5824bb=_0x21ef34(_0x279fd8,_0x4f2d8d);_0x4f2d8d=_0x5824bb['id'],_0x56e5a4(_0x279fd8,_0x4f2d8d),_0x3500a2['innerHTML']='\x0a\x20\x20\x20\x20\x20\x20<div\x20class=\x22chat-pane\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22chat-header\x22\x20style=\x22display:flex;justify-content:space-between;align-items:center;gap:8px;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20style=\x22display:flex;flex-direction:column;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22title-text\x22\x20style=\x22font-weight:600;\x22>Chat</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22subtitle\x22\x20id=\x22chat-provider-label\x22></span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22chat-controls\x22\x20style=\x22display:flex;gap:6px;align-items:center;min-width:0;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<select\x20id=\x22chat-connection-select\x22\x20class=\x22vscode-select\x22\x20style=\x22width:180px;max-width:180px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;\x22></select>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<select\x20id=\x22chat-session-select\x22\x20class=\x22vscode-select\x22\x20style=\x22width:180px;max-width:180px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;\x22></select>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20id=\x22chat-new\x22\x20class=\x22settings-btn\x20settings-btn-secondary\x22\x20title=\x22New\x20chat\x22>＋\x20New</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20id=\x22chat-export\x22\x20class=\x22settings-btn\x20settings-btn-secondary\x22\x20title=\x22Export\x20conversation\x22>🗒\x20Export</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20id=\x22chat-messages\x22\x20class=\x22chat-messages\x22></div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22chat-composer\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22chat-input-shell\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<textarea\x20id=\x22chat-input\x22\x20class=\x22vscode-textarea\x20chat-input\x22\x20placeholder=\x22Type\x20a\x20message...\x22></textarea>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22chat-actions-inside\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20id=\x22chat-send\x22\x20class=\x22settings-btn\x20settings-btn-primary\x20chat-action-btn\x22\x20title=\x22Send\x22\x20aria-label=\x22Send\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<svg\x20viewBox=\x220\x200\x2024\x2024\x22\x20width=\x2216\x22\x20height=\x2216\x22\x20fill=\x22currentColor\x22\x20aria-hidden=\x22true\x22><path\x20d=\x22M3.4\x2020.6\x2022\x2012\x203.4\x203.4l.1\x206.2\x2011.4\x202.4-11.4\x202.4-.1\x206.2Z\x22/></svg>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20id=\x22chat-stop\x22\x20class=\x22settings-btn\x20settings-btn-secondary\x20chat-action-btn\x20hidden\x22\x20title=\x22Stop\x22\x20aria-label=\x22Stop\x22\x20disabled>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<svg\x20viewBox=\x220\x200\x2024\x2024\x22\x20width=\x2214\x22\x20height=\x2214\x22\x20fill=\x22currentColor\x22\x20aria-hidden=\x22true\x22><rect\x20x=\x226\x22\x20y=\x226\x22\x20width=\x2212\x22\x20height=\x2212\x22\x20rx=\x222\x22/></svg>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20</div>';const _0x33cb79=document['getElementById']('chat-messages'),_0x4d5297=document['getElementById']('chat-input'),_0x59adea=document['getElementById']('chat-send'),_0x283779=document['getElementById']('chat-stop'),_0x3043cd=document['getElementById']('chat-export'),_0x3c4eb8=document['getElementById']('chat-new'),_0x3fea4=document['getElementById']('chat-provider-label'),_0xf116f2=document['getElementById']('chat-connection-select'),_0x1b163a=document['getElementById']('chat-session-select');try{if(_0xf116f2){const _0xe6b0c3=_0x3500a2['querySelector']('.chat-header')||_0x3500a2;__attachCustomPicker(_0xf116f2,_0xe6b0c3);}}catch(_0xc97744){}try{if(_0x1b163a){const _0x40e88c=_0x3500a2['querySelector']('.chat-header')||_0x3500a2;__attachCustomPicker(_0x1b163a,_0x40e88c);}}catch(_0x221a3d){}function _0x3ee587(_0x47bf68){return String(_0x47bf68)['replace'](/[&<>]/g,_0x28e309=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[_0x28e309]));}function _0x1a9eb4(_0xdff21,_0x294e9e=0x16){const _0x57a487=typeof _0xdff21==='string'?_0xdff21:String(_0xdff21||'');if(_0x57a487['length']<=_0x294e9e)return _0x57a487;return _0x57a487['slice'](0x0,Math['max'](0x1,_0x294e9e-0x1))+'…';}function _0x38400b(){const _0x3c4ff2=window['AIPromptService'],_0x3af90e=_0x5be410;let _0x15d290='';try{_0x15d290=window['AIInstructionManager']?.['getRawTemplate']?.('vba-conversion')||'';}catch(_0x271cd1){}if(!_0x15d290)try{_0x15d290=_0x3c4ff2?.['getDefaultPrompt']?.(_0x3af90e)||'';}catch(_0x233000){}const _0x23c175=_0x461376?.['getProviderLabel']?_0x461376['getProviderLabel'](_0x3af90e):_0x3af90e['replace'](/[-_]+/g,'\x20')['replace'](/\b\w/g,_0x3d95c3=>_0x3d95c3['toUpperCase']());return{'providerId':_0x3af90e,'providerLabel':_0x23c175,'model':window['AIConfiguration']?.['getDefaultModel']?.(_0x3af90e)||'','prompt':_0x15d290,'connectionId':null,'connectionName':'No\x20connection\x20selected'};}function _0x44b8c2(_0x541e06){if(!_0x541e06)return _0x38400b();const _0x1762d6=_0x541e06['providerId']||_0x5be410,_0xdb3dcb=_0x461376?.['getProviderLabel']?_0x461376['getProviderLabel'](_0x1762d6):_0x1762d6;let _0x447c6a='';try{_0x447c6a=window['AIPromptService']?.['loadPrompt']?.(_0x1762d6)||'';}catch(_0x213d68){}if(!_0x447c6a)try{_0x447c6a=window['AIInstructionManager']?.['getRawTemplate']?.('vba-conversion')||'';}catch(_0x12f52d){}const _0x24b44b={'providerId':_0x1762d6,'providerLabel':_0xdb3dcb,'model':_0x541e06['primaryModelId']||window['AIConfiguration']?.['getDefaultModel']?.(_0x1762d6)||'','prompt':_0x447c6a,'connectionId':_0x541e06['id'],'connectionName':_0x541e06['name']||_0x541e06['id'],'advancedLogging':![]},_0x19ca72=_0x541e06['metadata']&&typeof _0x541e06['metadata']==='object'&&!Array['isArray'](_0x541e06['metadata'])?_0x541e06['metadata']:{};_0x24b44b['advancedLogging']=_0x19ca72['advancedLogging']===!![];const _0x1b1b15=_0x19ca72['requestConfig']&&typeof _0x19ca72['requestConfig']==='object'&&!Array['isArray'](_0x19ca72['requestConfig'])?_0x19ca72['requestConfig']:null;return _0x1b1b15&&(_0x24b44b['requestOptions']={},typeof _0x1b1b15['temperature']==='number'&&Number['isFinite'](_0x1b1b15['temperature'])&&(_0x24b44b['requestOptions']['temperature']=_0x1b1b15['temperature']),typeof _0x1b1b15['maxTokens']==='number'&&Number['isFinite'](_0x1b1b15['maxTokens'])&&_0x1b1b15['maxTokens']>0x0&&(_0x24b44b['requestOptions']['max_tokens']=_0x1b1b15['maxTokens'])),_0x24b44b;}function _0x720375(){_0x33cb79['innerHTML']=(_0x5824bb['messages']||[])['map'](_0x3d1263=>{const _0x576004=_0x3d1263['role']==='user'?'User':_0x3d1263['role']==='assistant'?'Assistant':'System',_0x4c1ded=_0x3d1263['role']==='user'?'chat-msg\x20user':_0x3d1263['role']==='assistant'?'chat-msg\x20assistant':'chat-msg';return'<div\x20class=\x22'+_0x4c1ded+'\x22><div\x20class=\x22role\x22>'+_0x576004+'</div><div>'+_0x3ee587(_0x3d1263['content']||'')+'</div></div>';})['join'](''),_0x33cb79['scrollTop']=_0x33cb79['scrollHeight'];}function _0x7af0c8(){if(!_0xf116f2)return;_0x226f22=_0x486612();const _0x32c3c1=_0x226f22['map'](_0x52ecc4=>{const _0x4bb0f0=_0x52ecc4['name']||_0x52ecc4['id'];return'<option\x20value=\x22'+_0x3ee587(_0x52ecc4['id'])+'\x22\x20title=\x22'+_0x3ee587(_0x4bb0f0)+'\x22>'+_0x3ee587(_0x1a9eb4(_0x4bb0f0))+'</option>';});_0xf116f2['innerHTML']=_0x32c3c1['join'](''),!_0x3a63c0(_0x226f22,_0x279fd8)&&(_0x279fd8=_0x226f22[0x0]?.['id']||null),_0x183727['connectionId']=_0x279fd8,_0xf116f2['value']=_0x279fd8||'';}function _0x241ccd(){if(!_0x1b163a)return;const _0x271551=_0x28d027(_0x279fd8),_0x459239=(_0x271551['sessions']||[])['map'](_0x567b71=>{const _0x199746=_0x567b71['title']||'New\x20chat';return'<option\x20value=\x22'+_0x3ee587(_0x567b71['id'])+'\x22\x20title=\x22'+_0x3ee587(_0x199746)+'\x22>'+_0x3ee587(_0x1a9eb4(_0x199746))+'</option>';});_0x1b163a['innerHTML']=_0x459239['join'](''),!(_0x271551['sessions']||[])['some'](_0x97ddcc=>_0x97ddcc['id']===_0x4f2d8d)&&(_0x4f2d8d=_0x271551['sessions'][0x0]?.['id']||null),_0x4f2d8d&&(_0x1b163a['value']=_0x4f2d8d);}function _0x4f6647(_0x42aaf7,_0x2834dc){_0x279fd8=_0x42aaf7||null,_0x183727['connectionId']=_0x279fd8,_0x5824bb=_0x21ef34(_0x279fd8,_0x2834dc||_0xf72b9a(_0x279fd8)),_0x4f2d8d=_0x5824bb['id'],_0x56e5a4(_0x279fd8,_0x4f2d8d),_0x1351e4(),_0x5785c5=_0x44b8c2(_0x3a63c0(_0x226f22,_0x279fd8)),_0x7af0c8(),_0x241ccd();if(_0x3fea4){if(_0x5785c5['connectionId']){const _0x33a40c=_0x5785c5['model']?'\x20•\x20'+_0x5785c5['model']:'';_0x3fea4['textContent']=''+_0x5785c5['providerLabel']+_0x33a40c;}else _0x3fea4['textContent']='Select\x20connection\x20in\x20AI\x20Connection\x20Settings';}_0x720375();}_0xf116f2?.['addEventListener']('change',_0x17204c=>{const _0x3d65b1=_0x17204c['target']['value']||null;_0x4f6647(_0x3d65b1,_0xf72b9a(_0x3d65b1));}),_0x1b163a?.['addEventListener']('change',_0x42b5f9=>{const _0x3df91b=_0x42b5f9['target']['value']||null;_0x4f6647(_0x279fd8,_0x3df91b);}),_0x3c4eb8?.['addEventListener']('click',()=>{const _0x3dd085=_0x119b01(_0x279fd8);_0x4f6647(_0x279fd8,_0x3dd085['id']);}),_0x4f6647(_0x279fd8,_0x4f2d8d);function _0x3820ca(){const _0x2d3aa1=_0x5785c5||_0x44b8c2(_0x3a63c0(_0x226f22,_0x279fd8)),_0x1ac47f=_0x5824bb?.['title']||'Chat',_0x206ebc=new Date()['toISOString'](),_0x3048a7=['#\x20AI\x20Chat\x20Transcript','Chat:\x20'+_0x1ac47f,'Connection:\x20'+(_0x2d3aa1['connectionName']||'n/a'),'Provider:\x20'+_0x2d3aa1['providerLabel'],'Model:\x20'+(_0x2d3aa1['model']||'default'),'Timestamp:\x20'+_0x206ebc,''],_0x24d1ec=(_0x5824bb['messages']||[])['map'](_0xd09a65=>'##\x20'+_0xd09a65['role']['toUpperCase']()+'\x0a'+(_0xd09a65['content']||'')+'\x0a');return _0x3048a7['concat'](_0x24d1ec)['join']('\x0a');}_0x3043cd?.['addEventListener']('click',()=>{if(!_0x5824bb['messages']||!_0x5824bb['messages']['length']){window['LogService']?.['logWarning']?.('AI\x20Chat','Export\x20skipped\x20(no\x20messages)',{'connectionId':_0x279fd8,'sessionId':_0x4f2d8d});return;}const _0xcc3bb1=_0x3820ca(),_0x3df60c=new Blob([_0xcc3bb1],{'type':'text/markdown;charset=utf-8'}),_0x29a8d3=URL['createObjectURL'](_0x3df60c),_0x5ea38e=document['createElement']('a'),_0x222699=(_0x5824bb?.['title']||'chat')['replace'](/\s+/g,'-')['toLowerCase']();_0x5ea38e['href']=_0x29a8d3,_0x5ea38e['download']='ai-chat-'+_0x222699+'-'+Date['now']()+'.md',document['body']['appendChild'](_0x5ea38e),_0x5ea38e['click'](),document['body']['removeChild'](_0x5ea38e),URL['revokeObjectURL'](_0x29a8d3),window['LogService']?.['logInfo']?.('AI\x20Chat','export',{'connectionId':_0x279fd8,'sessionId':_0x4f2d8d,'messages':_0x5824bb['messages']['length']});});function _0x126b01(_0x94fc68){_0x59adea['disabled']=!!_0x94fc68,_0x283779['disabled']=!_0x94fc68,_0x59adea['classList']['toggle']('hidden',!!_0x94fc68),_0x283779['classList']['toggle']('hidden',!_0x94fc68);}async function _0x118ab2(){if(window['Trial']&&!window['Trial']['enforce']('aiChatSend'))return;const _0x4efb28=(_0x4d5297['value']||'')['trim']();if(!_0x4efb28)return;_0x4d5297['value']='',_0x5824bb['messages']['push']({'role':'user','content':_0x4efb28}),_0x5824bb['messages']['push']({'role':'assistant','content':''}),_0x720375(),_0x1351e4();const _0x55663f=_0x5785c5||_0x44b8c2(_0x3a63c0(_0x226f22,_0x279fd8)),_0x44847d=_0x279fd8||null,_0x4e58b5=_0x55663f['prompt']||'',_0x5410bf=(_0x55663f['connectionId']?_0x4b90d9(_0x55663f['connectionId']):'')||window['AIStorage']?.['getApiKey']?.(_0x55663f['providerId']||_0x5be410);if(!_0x5410bf){const _0x1c4427=_0x5824bb['messages'][_0x5824bb['messages']['length']-0x1];_0x1c4427['content']='[Error]\x20API\x20key\x20is\x20not\x20configured.\x20Open\x20AI\x20Connection\x20Settings\x20and\x20save\x20your\x20key\x20first.',_0x720375(),_0x126b01(![]);return;}if(!_0x461376||typeof _0x461376['createProvider']!=='function'){const _0x28c312=_0x5824bb['messages'][_0x5824bb['messages']['length']-0x1];_0x28c312['content']=(_0x28c312['content']||'')+'\x0a[Error]\x20AI\x20provider\x20factory\x20unavailable.',_0x720375(),window['LogService']?.['logError']?.('AI\x20Chat','provider-factory-missing',{'connectionId':_0x44847d});return;}const _0x37a1e8=[];if(_0x4e58b5)_0x37a1e8['push']({'role':'system','content':_0x4e58b5});const _0x3939ae=_0x5824bb['messages']['slice'](0x0,_0x5824bb['messages']['length']-0x1);_0x3939ae['forEach'](_0x261462=>_0x37a1e8['push']({'role':_0x261462['role'],'content':_0x261462['content']})),window['LogService']?.['logInfo']?.('AI\x20Chat','send',{'connectionId':_0x44847d,'sessionId':_0x4f2d8d,'providerId':_0x55663f['providerId'],'messageLength':_0x4efb28['length']}),_0x126b01(!![]);let _0x4af5ef=null;try{_0x4af5ef=_0x461376['createProvider'](_0x55663f['providerId'],{'advancedLogging':_0x55663f['advancedLogging']===!![],'connectionId':_0x55663f['connectionId']||null});}catch(_0x4a6007){console['error']('[RightActivityBar]\x20Failed\x20to\x20create\x20AI\x20provider:',_0x4a6007);}let _0x3b6768=![];_0x283779['onclick']=()=>{_0x3b6768=!![];};const _0x1bdf6a=_0x25554d=>{if(_0x3b6768)return;const _0x5c10ad=_0x5824bb['messages'][_0x5824bb['messages']['length']-0x1];_0x5c10ad['content']+=_0x25554d||'',_0x720375(),_0x1351e4(0x12c);};try{let _0x423e15='';if(_0x4af5ef&&typeof _0x4af5ef['sendMessageStream']==='function'){const _0x24091b=_0x55663f['model']?{'model':_0x55663f['model']}:{};_0x55663f['requestOptions']&&typeof _0x55663f['requestOptions']==='object'&&Object['assign'](_0x24091b,_0x55663f['requestOptions']),_0x423e15=await _0x4af5ef['sendMessageStream'](_0x37a1e8,_0x24091b,_0x1bdf6a);}else{if(_0x4af5ef&&typeof _0x4af5ef['sendMessage']==='function'){const _0x57bd5e=_0x55663f['model']?{'model':_0x55663f['model']}:{};_0x55663f['requestOptions']&&typeof _0x55663f['requestOptions']==='object'&&Object['assign'](_0x57bd5e,_0x55663f['requestOptions']),_0x423e15=await _0x4af5ef['sendMessage'](_0x37a1e8,_0x57bd5e);}else throw new Error('AI\x20provider\x20unavailable');}if(!_0x3b6768){const _0x3cd812=_0x5824bb['messages'][_0x5824bb['messages']['length']-0x1];_0x3cd812['content']=_0x423e15||_0x3cd812['content'],_0x720375(),_0x1351e4(),window['LogService']?.['logInfo']?.('AI\x20Chat','response',{'connectionId':_0x44847d,'sessionId':_0x4f2d8d,'providerId':_0x55663f['providerId'],'length':(_0x423e15||'')['length']});}}catch(_0x37da43){const _0xf23db3=_0x5824bb['messages'][_0x5824bb['messages']['length']-0x1],_0x67cd11=_0x37da43?.['message']||String(_0x37da43);let _0x218cf4=_0x67cd11;const _0x3cba2d=typeof _0x67cd11==='string'?_0x67cd11['toLowerCase']():String(_0x67cd11)['toLowerCase']();if((_0x3cba2d['includes']('permission\x20denied')||_0x3cba2d['includes']('does\x20not\x20have\x20access\x20to\x20model'))&&_0x55663f?.['connectionId']){const _0x45d9a1=_0x55663f['model']||'selected\x20model';_0x218cf4=_0x67cd11+'\x0aTip:\x20model\x20\x22'+_0x45d9a1+'\x22\x20is\x20not\x20available\x20for\x20your\x20project.\x20Open\x20AI\x20Connection\x20Settings,\x20pick\x20one\x20of\x20available\x20models\x20from\x20suggestions,\x20save\x20connection,\x20then\x20retry.';}_0xf23db3['content']=(_0xf23db3['content']||'')+'\x0a[Error]\x20'+_0x218cf4,_0x720375(),_0x1351e4(),window['LogService']?.['logError']?.('AI\x20Chat','error',{'connectionId':_0x44847d,'sessionId':_0x4f2d8d,'providerId':_0x55663f['providerId'],'message':_0x67cd11});}finally{_0x5824bb['updatedAt']=Date['now']();if((_0x5824bb['title']||'New\x20chat')==='New\x20chat'){const _0x5c13b9=(_0x5824bb['messages']||[])['find'](_0x450236=>_0x450236['role']==='user'&&typeof _0x450236['content']==='string'&&_0x450236['content']['trim']());_0x5c13b9&&(_0x5824bb['title']=_0x5c13b9['content']['trim']()['slice'](0x0,0x30),_0x241ccd());}_0x1351e4(),_0x126b01(![]),_0x283779['onclick']=null;}}_0x59adea['addEventListener']('click',_0x118ab2),_0x4d5297['addEventListener']('keydown',_0x40ac8a=>{(_0x40ac8a['ctrlKey']||_0x40ac8a['metaKey'])&&_0x40ac8a['key']==='Enter'&&(_0x40ac8a['preventDefault'](),_0x118ab2());}),_0x720375();}function _0x5cdafd(){try{const _0x47902b=_0x5f0706();return _0x47902b&&typeof _0x47902b['catch']==='function'&&_0x47902b['catch'](_0x7df77=>{console['error']('[RightActivityBar]\x20renderChat\x20failed',_0x7df77);}),_0x47902b;}catch(_0xa4e1f6){return console['error']('[RightActivityBar]\x20renderChat\x20failed',_0xa4e1f6),null;}}function _0x4eb278(){const _0x42cc71=document['getElementById']('right-pane-resizer');if(!_0x42cc71)return;try{window['__RightPaneResizerTeardown']?.();}catch(_0x2b3292){}let _0x2f56da=![];function _0x17c924(_0x36a983){if(!_0x2f56da)return;const _0xa353e4=window['innerWidth']||document['documentElement']['clientWidth'],_0x7cd823=0x30;let _0x2165af=Math['round'](_0xa353e4-_0x7cd823-_0x36a983['clientX']);const {min:_0x3b318d,max:_0x55f112}=_0x34b184();if(_0x2165af<_0x3b318d)_0x2165af=_0x3b318d;if(_0x2165af>_0x55f112)_0x2165af=_0x55f112;document['documentElement']['style']['setProperty'](_0x5770a3,_0x2165af+'px');try{localStorage['setItem'](_0x41a35b,String(_0x2165af));}catch(_0x1a0ea0){}try{if(window['__rightPromptEditor'])window['__rightPromptEditor']['layout']();}catch(_0xe9d5c5){}}function _0x46cdd1(){_0x2f56da&&(_0x2f56da=![],document['body']['classList']['remove']('resizing-right-pane'));}const _0x4eeb20=_0x4693a5=>{_0x4693a5['preventDefault'](),_0x2f56da=!![],document['body']['classList']['add']('resizing-right-pane');},_0x15b85d=()=>{const {min:_0x1671ca,max:_0x3450fc}=_0x34b184(),_0x2a46b4=Math['max'](_0x1671ca,Math['min'](_0x3450fc,_0x481942));document['documentElement']['style']['setProperty'](_0x5770a3,_0x2a46b4+'px');try{localStorage['setItem'](_0x41a35b,String(_0x2a46b4));}catch(_0x10a73b){}};_0x42cc71['addEventListener']('mousedown',_0x4eeb20),document['addEventListener']('mousemove',_0x17c924),document['addEventListener']('mouseup',_0x46cdd1),_0x42cc71['addEventListener']('dblclick',_0x15b85d),window['__RightPaneResizerTeardown']=function(){try{_0x42cc71['removeEventListener']('mousedown',_0x4eeb20);}catch(_0x3498b4){}try{document['removeEventListener']('mousemove',_0x17c924);}catch(_0x5df6b7){}try{document['removeEventListener']('mouseup',_0x46cdd1);}catch(_0x1396c5){}try{_0x42cc71['removeEventListener']('dblclick',_0x15b85d);}catch(_0x10dcf7){}window['__RightPaneResizerListeners']=![];},window['__RightPaneResizerListeners']=!![];}try{console['info']('[RightActivityBar]\x20pre-ready\x20marker',{'version':_0x263e19});}catch(_0x4e56d2){}try{console['info']('[RightActivityBar]\x20pre-readyState\x20checkpoint',{'version':_0x263e19});}catch(_0x121b8c){}try{console['info']('[RightActivityBar]\x20readyState',document['readyState']);}catch(_0x1982c9){try{console['error']('[RightActivityBar]\x20readyState\x20check\x20failed',_0x1982c9);}catch(_0x4abae3){}}if(document['readyState']==='loading')document['addEventListener']('DOMContentLoaded',()=>{try{console['info']('[RightActivityBar]\x20DOMContentLoaded\x20fired',{'version':_0x263e19}),window['__RightActivityBar_runInit']?.('dom-content-loaded');}catch(_0x56cd42){try{console['error']('[RightActivityBar]\x20init\x20failed\x20(DOMContentLoaded)',_0x56cd42);}catch(_0x2db485){}}},{'once':!![]});else try{console['info']('[RightActivityBar]\x20init\x20immediate'),window['__RightActivityBar_runInit']?.('ready-state');}catch(_0x43d75a){try{console['error']('[RightActivityBar]\x20init\x20failed\x20(immediate)',_0x43d75a);}catch(_0x31acbf){}}try{console['info']('[RightActivityBar]\x20bootstrap\x20end',{'version':_0x263e19});}catch(_0xc6e568){}try{setTimeout(()=>{window['__RightActivityBar_runInit']?.('safety-timeout');},0x1f4);}catch(_0x4bfce2){}}());}catch(_0x5880f3){try{console['error']('[RightActivityBar]\x20bootstrap\x20failed',_0x5880f3);}catch(_0x27d9ea){}}function applyDebugInsightsMonacoTheme(_0x50e3dc){try{if(typeof monaco==='undefined'||!monaco['editor'])return;const _0x25cb35=document['body']['classList']['contains']('theme-type-dark'),_0xa4a5c2=_0x25cb35?'vs-dark':'vs';if(!_0x50e3dc){const _0x30f5cd=window['__prevMonacoTheme']||_0xa4a5c2;monaco['editor']['setTheme'](_0x30f5cd);return;}const _0x51959e=getComputedStyle(document['documentElement']),_0xaf7901=_0x51959e['getPropertyValue']('--vscode-editor-background')['trim']()||(_0x25cb35?'#1e1e1e':'#ffffff'),_0x5aa803=_0x51959e['getPropertyValue']('--vscode-editor-foreground')['trim']()||(_0x25cb35?'#d4d4d4':'#333333'),_0x5217e4=_0x51959e['getPropertyValue']('--accent-color')['trim']()||'#4b9cff',_0x577698=_0x51959e['getPropertyValue']('--selection-bg')['trim']()||(_0x25cb35?'#264f78':'#bcdcff'),_0xeeae13=_0x51959e['getPropertyValue']('--line-highlight-bg')['trim']()||(_0x25cb35?'rgba(255,255,255,0.06)':'rgba(0,0,0,0.06)'),_0x3bc480=_0x51959e['getPropertyValue']('--border-color')['trim']()||(_0x25cb35?'#3c3c3c':'#e0e0e0');if(!window['__prevMonacoTheme'])window['__prevMonacoTheme']=_0xa4a5c2;monaco['editor']['defineTheme']('debug-insights',{'base':_0x25cb35?'vs-dark':'vs','inherit':!![],'rules':[{'token':'identifier','foreground':_0x5aa803['replace']('#','')},{'token':'type.identifier','foreground':_0x5217e4['replace']('#',''),'fontStyle':'bold'},{'token':'keyword','foreground':_0x5217e4['replace']('#','')}],'colors':{'editor.background':_0xaf7901,'editor.foreground':_0x5aa803,'editorLineNumber.foreground':_0x3bc480,'editorCursor.foreground':_0x5217e4,'editor.selectionBackground':_0x577698,'editor.lineHighlightBackground':_0xeeae13,'editorIndentGuide.activeBackground':_0x3bc480,'editorBracketMatch.border':_0x5217e4}}),monaco['editor']['setTheme']('debug-insights');}catch(_0xd5caeb){}}
+try {
+(function () {
+  // Prevent duplicate bootstrap if this script is injected more than once
+  try {
+    if (typeof window !== 'undefined' && window.__RightActivityBarInitialized) {
+      window.debug?.warn?.('RightActivityBar', 'Script already initialized, skipping duplicate bootstrap')
+      return
+    }
+    if (typeof window !== 'undefined') {
+      window.__RightActivityBarInitialized = true
+    }
+  } catch (_) {}
+  /**
+   * ADR References:
+   * - ADR-018-right-activity-bar
+   * - ADR-032-plugin-ai-chat-and-settings
+   * - ADR-057-github-models-api-integration
+   * - ADR-069-ai-job-manager-architecture
+   * - ADR-070-ai-job-monitor-right-pane-tool
+   */
+  const SCRIPT_VERSION = '2024-10-25T12:05Z';
+  try {
+    console.info('[RightActivityBar] bootstrap start', { version: SCRIPT_VERSION });
+  } catch (_) {}
+  const STORAGE_KEY = 'right_pane_open';
+  const WIDTH_KEY = 'right_pane_width';
+  const PANE_WIDTH_VAR = '--right-pane-width';
+  const DEFAULT_WIDTH = 450;
+  const PANE_AI_CONNECTION = 'ai-connection';
+  const PANE_AI_MANAGEMENT = 'ai-management';
+  const PANE_CHAT = 'chat';
+  const PANE_CODE_GRAPH = 'code-graph';
+  const PANE_DEBUG = 'debug-insights';
+  const PANE_AI_JOBS = 'ai-job-monitor';
+  const AI_FREE_PROVIDER_ID = 'openai';
+  const AI_FREE_LOCKED_MODEL_ID = 'gpt-4o-mini';
+  const AI_FREE_RESTRICTIONS_ENABLED = false;
+  const TestId = typeof window !== 'undefined' ? window.TestId : null;
+  let currentPane = null; // e.g., 'ai-connection'
+  let currentAgentsTab = 'connection';
+  const CURRENT_KEY = 'right_pane_current';
+  const SETTINGS_STORE = window.SettingsStore || null;
+  // NOTE: AIPromptService is resolved lazily via window.AIPromptService to avoid script-order issues
+  const PROVIDER_MODEL_CACHE = window.__aiPromptModels || (window.__aiPromptModels = new Map());
+  const PROVIDER_TEXT_CACHE = window.__aiPromptTextCache || (window.__aiPromptTextCache = new Map());
+  window.__aiPromptProvider = window.__aiPromptProvider || null;
+  let agentTreeInstance = null;
+  let initInProgress = false;
+  let initCompleted = false;
+  let codeGraphHost = null;
+  let codeGraphViewMounted = false;
+  let codeGraphContext = null;
+  let aiJobMonitorHost = null;
+  let aiJobMonitorMounted = false;
+  let pendingDebugPluginsLoadedListener = null
+
+  function normalizePaneKey(value) {
+    if (!value) return null;
+    if (value === 'ai' || value === PANE_AI_MANAGEMENT) return PANE_AI_CONNECTION;
+    if (value === PANE_AI_CONNECTION || value === PANE_AI_MANAGEMENT || value === PANE_CHAT || value === PANE_CODE_GRAPH || value === PANE_DEBUG) {
+      return value;
+    }
+    return null;
+  }
+
+  function showProFeatureNotice(options = {}) {
+    const featureName = options.featureName || 'This feature';
+    const subtitle = options.subtitle || 'Available in Pro version';
+    if (typeof document === 'undefined') return;
+
+    const existing = document.getElementById('ai-pro-feature-modal');
+    if (existing) existing.remove();
+
+    const overlay = document.createElement('div');
+    overlay.id = 'ai-pro-feature-modal';
+    overlay.style.cssText = [
+      'position:fixed',
+      'inset:0',
+      'background:rgba(0,0,0,0.55)',
+      'display:flex',
+      'align-items:center',
+      'justify-content:center',
+      'z-index:10000'
+    ].join(';');
+
+    const card = document.createElement('div');
+    card.style.cssText = [
+      'width:min(520px,92vw)',
+      'background:var(--vscode-editor-background,#1e1e1e)',
+      'color:var(--vscode-foreground,#d4d4d4)',
+      'border:1px solid var(--vscode-widget-border,#3c3c3c)',
+      'border-radius:12px',
+      'box-shadow:0 16px 48px rgba(0,0,0,0.45)',
+      'padding:18px 18px 14px'
+    ].join(';');
+
+    card.innerHTML = `
+      <div style="display:flex; align-items:flex-start; gap:12px;">
+        <div style="font-size:20px; line-height:1;">🔒</div>
+        <div style="flex:1; min-width:0;">
+          <div style="font-weight:700; font-size:15px; margin-bottom:4px;">${featureName}</div>
+          <div style="color:var(--vscode-descriptionForeground,#9da5b4); font-size:13px; line-height:1.45;">${subtitle}</div>
+          <div style="margin-top:10px; font-size:12px; color:var(--vscode-descriptionForeground,#9da5b4);">In free mode AI Sputnik runs with OpenAI and fixed model preset for stable macro workflows.</div>
+        </div>
+      </div>
+      <div style="display:flex; justify-content:flex-end; margin-top:14px;">
+        <button type="button" class="settings-btn settings-btn-primary" id="ai-pro-feature-modal-ok">Got it</button>
+      </div>
+    `;
+
+    const close = () => {
+      try { overlay.remove(); } catch (_) {}
+    };
+    overlay.addEventListener('click', (event) => {
+      if (event.target === overlay) close();
+    });
+    card.querySelector('#ai-pro-feature-modal-ok')?.addEventListener('click', close);
+    overlay.appendChild(card);
+    document.body.appendChild(overlay);
+  }
+
+  function buildModuleContext(overrides = {}) {
+    const base = { pluginState: window.pluginState, ...overrides };
+    try {
+      if (window.ModuleContextFactory && typeof window.ModuleContextFactory.create === 'function') {
+        return window.ModuleContextFactory.create(base);
+      }
+    } catch (_) {}
+    return base;
+  }
+
+  function getRightPaneWidthBounds() {
+    const viewport = window.innerWidth || document.documentElement.clientWidth || 1200
+    const min = 220
+    const max = Math.max(min, Math.min(700, viewport - 300))
+    return { min, max }
+  }
+
+  function __isPrimarySelectActivationEvent(event) {
+    if (!event) return true
+    if (event.button !== undefined && event.button > 0) return false
+    if (event.which !== undefined && event.which > 1) return false
+    return true
+  }
+
+  function __closeSelectPicker(pickerEl) {
+    if (!pickerEl) return
+    try { pickerEl.__cleanup?.() } catch (_) {}
+    try { pickerEl.remove() } catch (_) {}
+  }
+
+  // Desktop runtimes do not always deliver a native mousedown sequence reliably.
+  // Bind a small activation shim so the custom picker still opens from click/pointer.
+  function __bindStableSelectActivation(target, onActivate, options = {}) {
+    if (!target || typeof target.addEventListener !== 'function' || typeof onActivate !== 'function') return
+    const bindingKey = options.bindingKey || '__stableSelectActivationBound'
+    if (target[bindingKey]) return
+    target[bindingKey] = true
+
+    let lastPressEventAt = 0
+    let lastActivationAt = 0
+
+    const handleActivate = (event, reason) => {
+      const isKeyboard = reason === 'keydown'
+      const now = Date.now()
+
+      if (!isKeyboard && !__isPrimarySelectActivationEvent(event)) {
+        return
+      }
+
+      if (reason === 'pointerdown' || reason === 'mousedown') {
+        if ((now - lastPressEventAt) < 80) return
+        lastPressEventAt = now
+      } else if (reason === 'click' || reason === 'pointerup') {
+        if ((now - lastPressEventAt) < 250) return
+      }
+
+      if ((now - lastActivationAt) < 80) return
+      lastActivationAt = now
+
+      if (event) {
+        event.preventDefault()
+        event.stopPropagation()
+      }
+
+      onActivate({
+        byKeyboard: isKeyboard,
+        event,
+        reason
+      })
+    }
+
+    target.addEventListener('pointerdown', (event) => handleActivate(event, 'pointerdown'), true)
+    target.addEventListener('mousedown', (event) => handleActivate(event, 'mousedown'), true)
+    target.addEventListener('pointerup', (event) => handleActivate(event, 'pointerup'), true)
+    target.addEventListener('click', (event) => handleActivate(event, 'click'), true)
+    target.addEventListener('keydown', (event) => {
+      const key = event.key || event.which
+      if (key !== 'Enter' && key !== ' ' && key !== 'Spacebar' && key !== 'ArrowDown' && key !== 'ArrowUp' && key !== 13 && key !== 32 && key !== 38 && key !== 40) {
+        return
+      }
+      handleActivate(event, 'keydown')
+    })
+  }
+
+  // ADR-023: Custom dropdown overlay helpers (for reliable selects inside panels)
+  function __openSelectPicker(selectEl, hostEl, byKeyboard = false) {
+    if (!selectEl || !hostEl) return
+    const id = `picker-${selectEl.id || selectEl.name || selectEl.className || 'generic'}`
+    const existing = document.getElementById(id)
+    if (existing) {
+      __closeSelectPicker(existing)
+    }
+    const hostRect = hostEl.getBoundingClientRect()
+    const rect = selectEl.getBoundingClientRect()
+    const picker = document.createElement('div')
+    picker.id = id
+    picker.className = 'settings-dropdown'
+    try {
+      const owner = selectEl?.id || selectEl?.name || 'generic'
+      window.TestId?.setTestId?.(picker, `activity-right-picker-${owner}`)
+    } catch (_) {}
+    picker.style.position = 'absolute'
+    picker.style.left = `${Math.max(0, rect.left - hostRect.left)}px`
+    picker.style.top = `${Math.max(0, rect.bottom - hostRect.top + 4)}px`
+    picker.style.minWidth = `${Math.max(rect.width, 200)}px`
+    picker.style.width = `${Math.max(rect.width, 200)}px`
+    picker.style.maxWidth = `${Math.max(rect.width, 200)}px`
+    picker.style.maxHeight = '240px'
+    picker.style.overflowY = 'auto'
+    picker.style.overflowX = 'hidden'
+    picker.style.background = 'var(--color-bg-primary, #1f1f1f)'
+    picker.style.color = 'var(--color-text-primary, #d4d4d4)'
+    picker.style.border = '1px solid var(--color-border-default, #3c3c3c)'
+    picker.style.borderRadius = '6px'
+    picker.style.boxShadow = '0 8px 24px rgba(0,0,0,0.4)'
+    picker.style.zIndex = '3000'
+    picker.style.padding = '4px'
+    const list = document.createElement('div')
+    list.setAttribute('role', 'listbox')
+    try {
+      const owner = selectEl?.id || selectEl?.name || 'generic'
+      window.TestId?.setTestId?.(list, `activity-right-picker-list-${owner}`)
+    } catch (_) {}
+    list.style.display = 'flex'
+    list.style.flexDirection = 'column'
+    list.style.gap = '2px'
+    picker.appendChild(list)
+
+    const buildItem = (opt) => {
+      const item = document.createElement('div')
+      item.setAttribute('role', 'option')
+      item.tabIndex = 0
+      item.textContent = opt.textContent || opt.value
+      item.dataset.value = opt.value
+      try {
+        const owner = selectEl?.id || selectEl?.name || 'generic'
+        const value = window.TestId?.toKebab?.(opt.value) || 'option'
+        window.TestId?.setTestId?.(item, `activity-right-picker-option-${owner}-${value}`)
+      } catch (_) {}
+      item.style.padding = '6px 10px'
+      item.style.borderRadius = '4px'
+      item.style.cursor = 'pointer'
+      item.style.outline = 'none'
+      item.style.display = 'block'
+      item.style.width = '100%'
+      item.style.minWidth = '0'
+      item.style.boxSizing = 'border-box'
+      item.style.whiteSpace = 'nowrap'
+      item.style.overflow = 'hidden'
+      item.style.textOverflow = 'ellipsis'
+      item.title = opt.textContent || opt.value || ''
+      const isActive = selectEl.value === opt.value
+      item.style.background = isActive ? 'var(--vscode-list-focusBackground,#094771)' : 'transparent'
+      item.style.color = isActive ? 'var(--vscode-list-focusForeground,#ffffff)' : 'var(--vscode-foreground,#d4d4d4)'
+      item.addEventListener('mouseenter', () => { item.style.background = 'var(--vscode-list-hoverBackground, rgba(255,255,255,0.08))' })
+      item.addEventListener('mouseleave', () => {
+        const active = (selectEl.value === opt.value)
+        item.style.background = active ? 'var(--vscode-list-focusBackground,#094771)' : 'transparent'
+        item.style.color = active ? 'var(--vscode-list-focusForeground,#ffffff)' : 'var(--vscode-foreground,#d4d4d4)'
+      })
+      const commit = () => {
+        try {
+          selectEl.value = opt.value
+          selectEl.dispatchEvent(new Event('change', { bubbles: true }))
+        } catch (_) {}
+        __closeSelectPicker(picker)
+      }
+      item.addEventListener('click', commit)
+      item.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault()
+          commit()
+        }
+      })
+      return item
+    }
+
+    Array.from(selectEl.options || []).forEach((opt) => list.appendChild(buildItem(opt)))
+    hostEl.appendChild(picker)
+
+    const onOutside = (event) => {
+      if (picker.contains(event.target) || event.target === selectEl) return
+      __closeSelectPicker(picker)
+    }
+    const onKey = (event) => {
+      if (event.key !== 'Escape') return
+      event.preventDefault()
+      __closeSelectPicker(picker)
+      try { selectEl.focus?.() } catch (_) {}
+    }
+
+    picker.__cleanup = () => {
+      window.removeEventListener('pointerdown', onOutside, true)
+      window.removeEventListener('mousedown', onOutside, true)
+      window.removeEventListener('click', onOutside, true)
+      window.removeEventListener('keydown', onKey, true)
+    }
+
+    window.addEventListener('pointerdown', onOutside, true)
+    window.addEventListener('mousedown', onOutside, true)
+    window.addEventListener('click', onOutside, true)
+    window.addEventListener('keydown', onKey, true)
+
+    if (byKeyboard) {
+      const active = list.querySelector('[role="option"]')
+      try { active && active.focus && active.focus() } catch (_) {}
+    }
+  }
+
+  function __attachCustomPicker(selectEl, hostEl) {
+    if (!selectEl || !hostEl) return
+    __bindStableSelectActivation(selectEl, ({ byKeyboard }) => {
+      __openSelectPicker(selectEl, hostEl, byKeyboard)
+    }, { bindingKey: '__customPickerBound' })
+  }
+
+  function performInit() {
+    try { console.info('[RightActivityBar] init invoked', { version: SCRIPT_VERSION }); } catch (_) {}
+    ensureContainers();
+    logDebug('init:containers', {
+      hasBar: !!document.getElementById('vscode-activity-bar-right'),
+      hasPane: !!document.getElementById('vscode-right-pane')
+    });
+    // Ensure width variable exists
+    try {
+      let saved = null; try { saved = parseInt(localStorage.getItem(WIDTH_KEY), 10); } catch(_){ saved = null; }
+      if (!Number.isFinite(saved) || saved < 120 || saved > 1200) saved = DEFAULT_WIDTH;
+      const { min, max } = getRightPaneWidthBounds()
+      if (saved < min) saved = min
+      if (saved > max) saved = max
+      document.documentElement.style.setProperty(PANE_WIDTH_VAR, saved + 'px');
+      try { localStorage.setItem(WIDTH_KEY, String(saved)); } catch (_) {}
+    } catch (_) {}
+    renderBar();
+    // Register global listeners once, with teardown handle
+	    try {
+	      if (!window.__RightActivityBarListeners) {
+	        const onModulesChanged = (e) => { try { renderBar() } catch (_) {} }
+	        window.addEventListener('modules:changed', onModulesChanged)
+	        window.__RightActivityBarTeardown = function () {
+	          try { window.removeEventListener('modules:changed', onModulesChanged) } catch (_) {}
+	          try {
+	            if (window.__aiConnectionsUpdatedListener) {
+	              document.removeEventListener('aiConnections:updated', window.__aiConnectionsUpdatedListener)
+	            }
+	          } catch (_) {}
+	          try { window.__aiConnectionsUpdatedListener = null } catch (_) {}
+	          try { window.__aiConnectionsListenerBound = false } catch (_) {}
+	          try {
+	            if (window.__aiAgentSelectedListener) {
+	              document.removeEventListener('ai:agent-selected', window.__aiAgentSelectedListener)
+	            }
+	          } catch (_) {}
+	          try { window.__aiAgentSelectedListener = null } catch (_) {}
+	          try { window.__aiAgentSelectedListenerBound = false } catch (_) {}
+	          try {
+	            if (window.__aiAgentStoreUnsubscribe && typeof window.__aiAgentStoreUnsubscribe === 'function') {
+	              window.__aiAgentStoreUnsubscribe()
+	            }
+	          } catch (_) {}
+	          try { window.__aiAgentStoreUnsubscribe = null } catch (_) {}
+	          try {
+	            if (pendingDebugPluginsLoadedListener) {
+	              window.removeEventListener('debug-plugins-loaded', pendingDebugPluginsLoadedListener)
+	              window.removeEventListener('debug-plugins-integration-ready', pendingDebugPluginsLoadedListener)
+	            }
+          } catch (_) {}
+          try {
+            if (window.__aiConnectionsSubscription && typeof window.__aiConnectionsSubscription === 'function') {
+              window.__aiConnectionsSubscription()
+            }
+          } catch (_) {}
+          try { window.__aiConnectionsSubscription = null } catch (_) {}
+          pendingDebugPluginsLoadedListener = null
+          window.__RightActivityBarListeners = false
+        }
+        window.__RightActivityBarListeners = true
+      }
+    } catch(_) {}
+    // Restore pane state (default: open on first load)
+    let storedPane = null;
+    try {
+      storedPane = localStorage.getItem(CURRENT_KEY) || null;
+      currentPane = normalizePaneKey(storedPane);
+    } catch(_) {}
+    let storedOpen = null;
+    try { storedOpen = localStorage.getItem(STORAGE_KEY); } catch(_) {}
+    const registry = window.ModuleRegistry;
+    const aiEnabled = !registry || registry.isEnabled?.('ai') !== false;
+    // UI request: hide Code Graph button from right activity bar
+    const codeGraphEnabled = false;
+    logDebug('init:storageState', {
+      storedPane,
+      currentPane,
+      storedOpen,
+      registryEnabled: aiEnabled
+    });
+    if (storedPane && storedPane !== currentPane) {
+      try {
+        if (currentPane) localStorage.setItem(CURRENT_KEY, currentPane);
+        else localStorage.removeItem(CURRENT_KEY);
+      } catch (_) {}
+    }
+    if (!aiEnabled && (currentPane === PANE_AI_CONNECTION || currentPane === PANE_AI_MANAGEMENT)) {
+      currentPane = codeGraphEnabled ? PANE_CODE_GRAPH : null;
+      try {
+        if (currentPane) localStorage.setItem(CURRENT_KEY, currentPane);
+        else localStorage.removeItem(CURRENT_KEY);
+      } catch(_) {}
+    }
+    if (!codeGraphEnabled && currentPane === PANE_CODE_GRAPH) {
+      currentPane = aiEnabled ? PANE_AI_CONNECTION : null;
+      try {
+        if (currentPane) localStorage.setItem(CURRENT_KEY, currentPane);
+        else localStorage.removeItem(CURRENT_KEY);
+      } catch(_) {}
+    }
+    if (!currentPane) {
+      currentPane = aiEnabled ? PANE_AI_CONNECTION : (codeGraphEnabled ? PANE_CODE_GRAPH : null);
+    }
+    const content = document.getElementById('right-pane-content');
+    if (content) content.innerHTML = '';
+    setOpen(false);
+    try { localStorage.setItem(STORAGE_KEY, 'false'); } catch (_) {}
+    initResizer();
+  }
+
+  const runInit = (reason) => {
+    if (initCompleted || initInProgress) {
+      try { console.info('[RightActivityBar] init skipped', { version: SCRIPT_VERSION, reason }); } catch (_) {}
+      return;
+    }
+    initInProgress = true;
+    try {
+      console.info('[RightActivityBar] init trigger', { version: SCRIPT_VERSION, reason });
+      performInit();
+      initCompleted = true;
+      console.info('[RightActivityBar] init complete', { version: SCRIPT_VERSION, reason });
+    } catch (error) {
+      try { console.error('[RightActivityBar] init error', { version: SCRIPT_VERSION, reason, message: error?.message, stack: error?.stack }); } catch (_) {}
+    } finally {
+      initInProgress = false;
+    }
+  };
+  try {
+    window.__RightActivityBar_runInit = runInit;
+  } catch (_) {}
+
+  try {
+    console.info('[RightActivityBar] constants initialised', { version: SCRIPT_VERSION });
+  } catch (_) {}
+  try {
+    setTimeout(() => {
+      try {
+        const state = typeof document !== 'undefined' ? document.readyState : 'no-document';
+        console.info(`[RightActivityBar] async heartbeat → ${state}`, { version: SCRIPT_VERSION });
+        if (state === 'loading') {
+          console.info('[RightActivityBar] heartbeat deferred (document.loading)', { version: SCRIPT_VERSION });
+        } else {
+          window.__RightActivityBar_runInit?.('heartbeat');
+        }
+        setTimeout(() => {
+          const state2 = typeof document !== 'undefined' ? document.readyState : 'no-document';
+          console.info(`[RightActivityBar] async heartbeat (late) → ${state2}`, { version: SCRIPT_VERSION });
+          if (!initCompleted && state2 !== 'loading') {
+            window.__RightActivityBar_runInit?.('heartbeat-late');
+          }
+        }, 200);
+      } catch (_) {}
+    }, 0);
+  } catch (error) {
+    try { console.error('[RightActivityBar] heartbeat scheduling failed', error); } catch (_) {}
+  }
+
+  function logDebug(event, payload) {
+    try {
+      window.LogService?.logInfo('RightActivityBar', event, payload || undefined);
+    } catch (_) {}
+    try {
+      window.debug?.info?.('RightActivityBar', event, payload || undefined);
+    } catch (_) {}
+  }
+  try {
+    console.info('[RightActivityBar] post-logDebug checkpoint', { version: SCRIPT_VERSION });
+  } catch (_) {}
+
+  function ensureContainers() {
+    try {
+      let bar = document.getElementById('vscode-activity-bar-right');
+      if (!bar) {
+        bar = document.createElement('div');
+        bar.id = 'vscode-activity-bar-right';
+        TestId?.setTestId?.(bar, 'activity-right-bar');
+        document.body.appendChild(bar);
+        console.info('[RightActivityBar] bar container created');
+      } else {
+        TestId?.setTestId?.(bar, 'activity-right-bar');
+        console.info('[RightActivityBar] bar container reused');
+      }
+      let pane = document.getElementById('vscode-right-pane');
+      if (!pane) {
+        pane = document.createElement('div');
+        pane.id = 'vscode-right-pane';
+        pane.className = 'vscode-right-pane';
+        TestId?.setTestId?.(pane, 'activity-right-pane');
+        pane.innerHTML = `
+        <div class="right-pane-title">
+          <span class="title-text">AI Utilities</span>
+          <div class="title-actions">
+            <button class="btn-action" id="right-pane-close" title="Close" data-testid="activity-right-pane-close-btn">✕</button>
+          </div>
+        </div>
+        <div class="right-pane-content" id="right-pane-content" data-testid="activity-right-pane-content"></div>
+        <div class="right-pane-resizer" id="right-pane-resizer" title="Resize" data-testid="activity-right-pane-resizer"></div>
+      `;
+        document.body.appendChild(pane);
+        pane.querySelector('#right-pane-close')?.addEventListener('click', () => setOpen(false));
+        console.info('[RightActivityBar] pane container created');
+      } else {
+        TestId?.setTestId?.(pane, 'activity-right-pane');
+        TestId?.setTestId?.(pane.querySelector('#right-pane-content'), 'activity-right-pane-content');
+        TestId?.setTestId?.(pane.querySelector('#right-pane-resizer'), 'activity-right-pane-resizer');
+        TestId?.setTestId?.(pane.querySelector('#right-pane-close'), 'activity-right-pane-close-btn');
+        console.info('[RightActivityBar] pane container reused');
+      }
+    } catch (error) {
+      try { console.error('[RightActivityBar] ensureContainers failed', error); } catch (_) {}
+    }
+  }
+  try {
+    console.info('[RightActivityBar] post-ensureContainers checkpoint', { version: SCRIPT_VERSION });
+  } catch (_) {}
+
+  function updateAgentsButtonHighlight() {
+    const bar = document.getElementById('vscode-activity-bar-right');
+    if (!bar) return;
+    const btnConnection = bar.querySelector(`[data-button="${PANE_AI_CONNECTION}"]`);
+    const btnManagement = bar.querySelector(`[data-button="${PANE_AI_MANAGEMENT}"]`);
+    const open = isOpen();
+    if (btnConnection) {
+      const activeConnection = open && currentPane === PANE_AI_CONNECTION;
+      btnConnection.classList.toggle('active', activeConnection);
+      btnConnection.setAttribute('aria-selected', activeConnection ? 'true' : 'false');
+    }
+    if (btnManagement) {
+      const activeManagement = open && currentPane === PANE_AI_MANAGEMENT;
+      btnManagement.classList.toggle('active', activeManagement);
+      btnManagement.setAttribute('aria-selected', activeManagement ? 'true' : 'false');
+      if (activeManagement) {
+        btnManagement.dataset.activeTab = currentAgentsTab || '';
+      } else {
+        delete btnManagement.dataset.activeTab;
+      }
+    }
+  }
+
+  function renderBar() {
+    const bar = document.getElementById('vscode-activity-bar-right');
+    if (!bar) return;
+    const registry = window.ModuleRegistry;
+    const aiEnabled = !registry || registry.isEnabled?.('ai') !== false;
+    // UI request: hide Code Graph button from right activity bar
+    const codeGraphEnabled = false;
+    let paneChanged = false;
+    if (!aiEnabled && (currentPane === PANE_AI_CONNECTION || currentPane === PANE_AI_MANAGEMENT)) {
+      currentPane = codeGraphEnabled ? PANE_CODE_GRAPH : null;
+      paneChanged = true;
+      try {
+        if (currentPane) localStorage.setItem(CURRENT_KEY, currentPane);
+        else localStorage.removeItem(CURRENT_KEY);
+      } catch (_) {}
+    }
+    if (!codeGraphEnabled && currentPane === PANE_CODE_GRAPH) {
+      currentPane = aiEnabled ? PANE_AI_CONNECTION : null;
+      paneChanged = true;
+      try {
+        if (currentPane) localStorage.setItem(CURRENT_KEY, currentPane);
+        else localStorage.removeItem(CURRENT_KEY);
+      } catch (_) {}
+    }
+    if (!currentPane && aiEnabled) {
+      currentPane = PANE_AI_CONNECTION;
+      paneChanged = true;
+      try { localStorage.setItem(CURRENT_KEY, currentPane); } catch (_) {}
+    }
+    if (!currentPane && !aiEnabled && !codeGraphEnabled) {
+      try { localStorage.removeItem(CURRENT_KEY); } catch (_) {}
+    }
+    bar.innerHTML = '';
+    const frag = document.createDocumentFragment();
+    // 1) Toggle pane button
+    logDebug('renderBar:start', {
+      open: isOpen(),
+      pane: currentPane,
+      tab: currentAgentsTab,
+      aiEnabled,
+      codeGraphEnabled
+    });
+    const btnToggle = document.createElement('button');
+    btnToggle.className = 'activity-bar-icon';
+    btnToggle.dataset.button = 'toggle';
+    TestId?.setTestId?.(btnToggle, 'activity-right-toggle-pane-btn');
+    btnToggle.title = 'Toggle AI Utilities';
+    btnToggle.setAttribute('aria-label', 'Toggle AI Utilities');
+    btnToggle.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10" fill="currentColor"/><path d="M16.3 5.3a7.3 7.3 0 0 0-8.7.7 6.8 6.8 0 0 0-1.9 2.5l-.3.6-1.2-2.9C6.9 3.1 9.3 2 12 2c2.2 0 4.4.8 6.1 2.3l-1.8 1Z" fill="#ffffff"/><path d="M7.7 18.7a7.3 7.3 0 0 0 8.7-.7 6.8 6.8 0 0 0 1.9-2.5l.3-.6 1.2 2.9C17.1 20.9 14.7 22 12 22c-2.2 0-4.4-.8-6.1-2.3l1.8-1Z" fill="#ffffff"/></svg>';
+    btnToggle.addEventListener('click', toggleRightPane);
+    frag.appendChild(btnToggle);
+
+    // 2) AI Connection button
+    const btnConnection = document.createElement('button');
+    btnConnection.className = 'activity-bar-icon';
+    btnConnection.dataset.button = PANE_AI_CONNECTION;
+    TestId?.setTestId?.(btnConnection, 'activity-right-pane-ai-connection-btn');
+    btnConnection.title = 'AI Connection Settings';
+    btnConnection.setAttribute('aria-label', 'AI Connection Settings');
+    btnConnection.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M9 2h6v5h1a3 3 0 0 1 3 3v3a6 6 0 0 1-5 5.74V22h-4v-3.26A6 6 0 0 1 5 13V10a3 3 0 0 1 3-3h1V2zm2 0v3h2V2h-2z"/></svg>';
+    btnConnection.addEventListener('click', openAIConnectionPane);
+    btnConnection.disabled = !aiEnabled;
+    btnConnection.setAttribute('aria-disabled', aiEnabled ? 'false' : 'true');
+    frag.appendChild(btnConnection);
+
+    // 4) Chat button
+    const btnChat = document.createElement('button');
+    btnChat.className = 'activity-bar-icon';
+    btnChat.dataset.button = PANE_CHAT;
+    TestId?.setTestId?.(btnChat, 'activity-right-pane-chat-btn');
+    btnChat.title = 'AI Chat';
+    btnChat.setAttribute('aria-label', 'AI Chat');
+    btnChat.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M4 4h16v12H6l-2 2V4z"/></svg>';
+    btnChat.addEventListener('click', () => {
+      if (window.Trial && window.Trial.isExpired && window.Trial.isExpired()) {
+        window.Trial.showExpiredOverlay();
+        return;
+      }
+      openChatPane();
+    });
+    btnChat.disabled = !aiEnabled;
+    btnChat.setAttribute('aria-disabled', aiEnabled ? 'false' : 'true');
+    frag.appendChild(btnChat);
+
+    let btnCodeGraph = null;
+    let btnDebug = null;
+
+    // Debug Insights button (always render; click will mount when available)
+    btnDebug = document.createElement('button');
+    btnDebug.className = 'activity-bar-icon';
+    btnDebug.dataset.button = PANE_DEBUG;
+    TestId?.setTestId?.(btnDebug, 'activity-right-pane-debug-insights-btn');
+    btnDebug.title = 'Debug Insights';
+    btnDebug.setAttribute('aria-label', 'Debug Insights');
+    // Use graph icon to reflect embedded Code Graph report
+    btnDebug.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M22 11V3h-7v3H9V3H2v8h7V8h2v10h4v3h7v-8h-7v3h-2V8h2v3h7zM7 9H4V5h3v4zm10 6h3v4h-3v-4zm0-10h3v4h-3V5z"/></svg>';
+    btnDebug.addEventListener('click', openDebugPane);
+    frag.appendChild(btnDebug);
+    // Single DOM append to minimize layout thrash
+    bar.appendChild(frag);
+
+    const open = isOpen();
+    if (open) btnToggle.classList.add('active');
+    btnChat.classList.toggle('active', open && currentPane === PANE_CHAT);
+    if (btnCodeGraph) btnCodeGraph.classList.toggle('active', open && currentPane === PANE_CODE_GRAPH);
+    if (btnDebug) btnDebug.classList.toggle('active', open && currentPane === PANE_DEBUG);
+    updateAgentsButtonHighlight();
+    if (paneChanged && open) {
+      if (currentPane) renderActivePane();
+      else setOpen(false);
+    }
+    // Apply ModuleRegistry visibility (AI/CodeGraph/Debug can be disabled)
+    try {
+      const debugEnabled = !!window.debugPluginsIntegration || (!!window.ModuleRegistry && window.ModuleRegistry.isEnabled?.('debug-insights') !== false);
+      const enabled = aiEnabled || codeGraphEnabled || debugEnabled;
+      const barEl = document.getElementById('vscode-activity-bar-right');
+      const paneEl = document.getElementById('vscode-right-pane');
+      logDebug('renderBar:moduleState', {
+        enabled,
+        codeGraphEnabled,
+        debugEnabled,
+        hasRegistry: !!window.ModuleRegistry,
+        storedModules: window.ModuleRegistry?.getEnabledMap?.()
+      });
+      if (barEl) {
+        barEl.classList.toggle('module-disabled', !enabled);
+        barEl.setAttribute('aria-disabled', enabled ? 'false' : 'true');
+      }
+      if (paneEl) paneEl.classList.toggle('is-disabled', !enabled);
+      if (!enabled) {
+        document.body.classList.remove('right-pane-open');
+        try { localStorage.setItem('right_pane_open','false'); } catch(_) {}
+      }
+    } catch(_) {}
+  }
+
+  function isOpen() {
+    try { return localStorage.getItem(STORAGE_KEY) === 'true'; } catch (_) { return false; }
+  }
+
+  function setOpen(open) {
+    const nextOpen = !!open
+    const wasOpen = document.body.classList.contains('right-pane-open')
+    document.body.classList.toggle('right-pane-open', nextOpen)
+    const pane = document.getElementById('vscode-right-pane');
+    if (pane) {
+      pane.setAttribute('aria-hidden', nextOpen ? 'false' : 'true');
+      try { pane.setAttribute('data-testid-state', nextOpen ? 'open' : 'closed') } catch (_) {}
+    }
+    try { localStorage.setItem(STORAGE_KEY, String(nextOpen)); } catch (_) {}
+    const bar = document.getElementById('vscode-activity-bar-right');
+    const btnToggle = bar?.querySelector('[data-button="toggle"]');
+    if (btnToggle) btnToggle.classList.toggle('active', nextOpen);
+    const btnChat = bar?.querySelector(`[data-button="${PANE_CHAT}"]`);
+    if (btnChat) btnChat.classList.toggle('active', nextOpen && currentPane === PANE_CHAT);
+    const btnCodeGraph = bar?.querySelector(`[data-button="${PANE_CODE_GRAPH}"]`);
+    if (btnCodeGraph) btnCodeGraph.classList.toggle('active', nextOpen && currentPane === PANE_CODE_GRAPH);
+    const btnDebug = bar?.querySelector(`[data-button="${PANE_DEBUG}"]`);
+    if (btnDebug) btnDebug.classList.toggle('active', nextOpen && currentPane === PANE_DEBUG);
+    if (!nextOpen && agentTreeInstance && typeof agentTreeInstance.dispose === 'function') {
+      try { agentTreeInstance.dispose(); } catch (_) {}
+      agentTreeInstance = null;
+    }
+
+    // Align editor wrapper with right pane state (must override inline styles from tree toggle)
+    try {
+      const wrapper = document.getElementById('editorWrapper')
+      if (wrapper) {
+        if (nextOpen) {
+          try { initResizer() } catch (_) {}
+          const desired = 'calc(48px + var(--right-pane-width, 450px))'
+          if (wrapper.style.right !== desired) wrapper.style.right = desired
+        } else {
+          const sideBar = document.getElementById('vscode-sidebar')
+          let sidebarHidden = false
+          try {
+            if (!sideBar) sidebarHidden = true
+            else sidebarHidden = window.getComputedStyle(sideBar).display === 'none'
+          } catch (_) {}
+          const desired = sidebarHidden ? '0' : ''
+          if (wrapper.style.right !== desired) wrapper.style.right = desired
+        }
+      }
+    } catch (_) {}
+
+    // Trigger Monaco layout only when right pane visibility changes
+    try {
+      const editor = window.monacoEditorManager?.getEditor?.() ||
+        (window.editor && typeof window.editor.getEditor === 'function'
+          ? window.editor.getEditor()
+          : window.editor);
+      if (editor && typeof editor.layout === 'function' && nextOpen !== wasOpen) {
+        setTimeout(() => {
+          try { editor.layout(); } catch (_) {}
+        }, 0);
+      }
+    } catch (_) {}
+
+    if (!nextOpen) {
+      disposeCodeGraph();
+      disposeAIJobMonitor();
+      // Aggressive Debug Insights cleanup on pane close
+      try { cleanupDebugInsightsAggressive() } catch (_) {}
+      // Revert Monaco theme when right pane closes
+      applyDebugInsightsMonacoTheme(false);
+      try { window.disableAllDebugPlugins?.() } catch (_) {}
+      // Remove resizer listeners to avoid global mousemove/mouseup retention
+      try { window.__RightPaneResizerTeardown?.() } catch (_) {}
+      // Nudge Monaco to refresh layout (clears any lingering visuals)
+      try { setTimeout(() => { const ed = window.monacoEditorManager?.getEditor?.() || window.editor?.getEditor?.() || window.monacoEditor; ed?.layout?.(); }, 0) } catch (_) {}
+    }
+    updateAgentsButtonHighlight();
+  }
+
+  function renderActivePane(options = {}) {
+    if (!isOpen() || !currentPane) return;
+    const container = document.getElementById('right-pane-content')
+    const getRenderKey = () => {
+      try { return container?.dataset?.paneRenderKey || null } catch (_) { return null }
+    }
+    const setRenderKey = (key) => {
+      try {
+        if (!container) return
+        container.dataset.paneRenderKey = key || ''
+      } catch (_) {}
+    }
+    if (currentPane === PANE_AI_CONNECTION) {
+      // Leaving Debug Insights → cleanup
+      try { cleanupDebugInsightsAggressive() } catch (_) {}
+      applyDebugInsightsMonacoTheme(false);
+      try { window.disableAllDebugPlugins?.() } catch (_) {}
+      currentAgentsTab = 'connection';
+      try { localStorage.setItem('right_pane_ai_tab', 'connection'); } catch (_) {}
+      const expectedKey = 'ai-settings:connection:connection'
+      if (getRenderKey() === expectedKey && container?.querySelector?.('.right-ai-tabs')) {
+        return
+      }
+      renderAISettings('connection', { visibleTabs: ['connection'] });
+      setRenderKey(expectedKey)
+      return;
+    }
+    if (currentPane === PANE_AI_MANAGEMENT) {
+      currentPane = PANE_AI_CONNECTION
+      try { localStorage.setItem(CURRENT_KEY, currentPane); } catch (_) {}
+      renderAISettings('connection', { visibleTabs: ['connection'] })
+      setRenderKey('ai-settings:connection:connection')
+      return;
+    }
+    if (currentPane === PANE_CHAT) {
+      try { cleanupDebugInsightsAggressive() } catch (_) {}
+      applyDebugInsightsMonacoTheme(false);
+      try { window.disableAllDebugPlugins?.() } catch (_) {}
+      safeRenderChat();
+      setRenderKey(PANE_CHAT)
+      return;
+    }
+    if (currentPane === PANE_AI_JOBS) {
+      currentPane = PANE_AI_CONNECTION;
+      try { localStorage.setItem(CURRENT_KEY, currentPane); } catch (_) {}
+      renderActivePane();
+      return;
+    }
+    if (currentPane === PANE_CODE_GRAPH) {
+      try { cleanupDebugInsightsAggressive() } catch (_) {}
+      applyDebugInsightsMonacoTheme(false);
+      try { window.disableAllDebugPlugins?.() } catch (_) {}
+      renderCodeGraphPane();
+      setRenderKey(PANE_CODE_GRAPH)
+    }
+    if (currentPane === PANE_DEBUG) {
+      try { performance.mark && performance.mark('debug:mount:start') } catch (_) {}
+      applyDebugInsightsMonacoTheme(true);
+      // Ensure DebugStore subscribed and integration initialized after aggressive cleanup
+      try { window.DebugStore?.init?.() } catch (_) {}
+      try {
+        if (window.debugPluginsIntegration && typeof window.debugPluginsIntegration.isInitialized === 'function' && !window.debugPluginsIntegration.isInitialized()) {
+          const p = window.debugPluginsIntegration.initialize?.();
+          if (p && typeof p.then === 'function') {
+            p.then(() => { try { window.applyDebugInsightsSavedSettings?.() } catch (_) {} renderDebugPane(); }).catch(() => renderDebugPane());
+          } else {
+            try { window.applyDebugInsightsSavedSettings?.() } catch (_) {}
+            renderDebugPane();
+          }
+        } else {
+          try { window.applyDebugInsightsSavedSettings?.() } catch (_) {}
+          renderDebugPane();
+        }
+      } catch (_) { renderDebugPane(); }
+      try {
+        if (performance.mark && performance.measure) {
+          performance.mark('debug:mount:end')
+          performance.measure('debug:mount', 'debug:mount:start', 'debug:mount:end')
+        }
+      } catch (_) {}
+      return;
+    }
+  }
+
+  function toggleRightPane() {
+    const willOpen = !isOpen();
+    setOpen(willOpen);
+    if (willOpen) {
+      if (!currentPane) {
+        try {
+          const stored = localStorage.getItem(CURRENT_KEY) || null;
+          currentPane = normalizePaneKey(stored) || PANE_AI_CONNECTION;
+        } catch (_) {
+          currentPane = PANE_AI_CONNECTION;
+        }
+        try { localStorage.setItem(CURRENT_KEY, currentPane); } catch (_) {}
+      }
+      renderActivePane();
+    }
+  }
+
+  // Expose global for inline buttons
+  window.toggleRightPane = toggleRightPane;
+
+  function openDebugPane() {
+    try { performance.mark && performance.mark('rightpane:open:start') } catch (_) {}
+    currentPane = PANE_DEBUG;
+    try { localStorage.setItem(CURRENT_KEY, currentPane); } catch(_) {}
+    setOpen(true);
+    applyDebugInsightsMonacoTheme(true);
+    // Ensure store and integration are ready after aggressive cleanup
+    try { window.DebugStore?.init?.() } catch (_) {}
+    try {
+      if (window.debugPluginsIntegration && typeof window.debugPluginsIntegration.isInitialized === 'function' && !window.debugPluginsIntegration.isInitialized()) {
+        const p = window.debugPluginsIntegration.initialize?.();
+        if (p && typeof p.then === 'function') {
+          p.then(() => { try { window.applyDebugInsightsSavedSettings?.() } catch (_) {} renderDebugPane(); })
+           .catch(() => renderDebugPane());
+        } else {
+          try { window.applyDebugInsightsSavedSettings?.() } catch (_) {}
+          renderDebugPane();
+        }
+      } else {
+        try { window.applyDebugInsightsSavedSettings?.() } catch (_) {}
+        renderDebugPane();
+      }
+    } catch (_) { renderDebugPane(); }
+    const btn = document.getElementById('vscode-activity-bar-right')?.querySelector(`[data-button="${PANE_DEBUG}"]`);
+    if (btn) btn.classList.add('active');
+    try {
+      if (performance.mark && performance.measure) {
+        performance.mark('rightpane:open:end')
+        performance.measure('rightpane:open', 'rightpane:open:start', 'rightpane:open:end')
+      }
+    } catch (_) {}
+  }
+
+  function openChatPane() {
+    try { performance.mark && performance.mark('rightpane:open:start') } catch (_) {}
+    currentPane = PANE_CHAT;
+    try { localStorage.setItem(CURRENT_KEY, currentPane); } catch(_) {}
+    disposeCodeGraph();
+    setOpen(true);
+    safeRenderChat();
+    const btnChat = document.getElementById('vscode-activity-bar-right')?.querySelector(`[data-button="${PANE_CHAT}"]`);
+    if (btnChat) btnChat.classList.add('active');
+    try {
+      if (performance.mark && performance.measure) {
+        performance.mark('rightpane:open:end')
+        performance.measure('rightpane:open', 'rightpane:open:start', 'rightpane:open:end')
+      }
+    } catch (_) {}
+  }
+
+  function openAIConnectionPane() {
+    try { performance.mark && performance.mark('rightpane:open:start') } catch (_) {}
+    const container = document.getElementById('right-pane-content')
+    if (isOpen() && currentPane === PANE_AI_CONNECTION && currentAgentsTab === 'connection' && container?.dataset?.paneRenderKey === 'ai-settings:connection:connection') {
+      try {
+        if (performance.mark && performance.measure) {
+          performance.mark('rightpane:open:end')
+          performance.measure('rightpane:open', 'rightpane:open:start', 'rightpane:open:end')
+        }
+      } catch (_) {}
+      return
+    }
+    currentPane = PANE_AI_CONNECTION;
+    currentAgentsTab = 'connection';
+    try {
+      localStorage.setItem(CURRENT_KEY, currentPane);
+      localStorage.setItem('right_pane_ai_tab', 'connection');
+    } catch (_) {}
+    disposeCodeGraph();
+    setOpen(true);
+    renderActivePane({ defaultTab: 'connection' });
+    try {
+      if (performance.mark && performance.measure) {
+        performance.mark('rightpane:open:end')
+        performance.measure('rightpane:open', 'rightpane:open:start', 'rightpane:open:end')
+      }
+    } catch (_) {}
+  }
+
+  function openCodeGraphPane() {
+    try { performance.mark && performance.mark('rightpane:open:start') } catch (_) {}
+    currentPane = PANE_CODE_GRAPH;
+    try { localStorage.setItem(CURRENT_KEY, currentPane); } catch(_) {}
+    setOpen(true);
+    // Leaving Debug Insights if previously mounted
+    try { cleanupDebugInsightsAggressive() } catch (_) {}
+    renderCodeGraphPane();
+    const btnCodeGraph = document.getElementById('vscode-activity-bar-right')?.querySelector(`[data-button="${PANE_CODE_GRAPH}"]`);
+    if (btnCodeGraph) btnCodeGraph.classList.add('active');
+    try {
+      if (performance.mark && performance.measure) {
+        performance.mark('rightpane:open:end')
+        performance.measure('rightpane:open', 'rightpane:open:start', 'rightpane:open:end')
+      }
+    } catch (_) {}
+  }
+
+  function cleanupDebugInsightsAggressive () {
+    try { window.debugPluginsIntegration?.dispose?.() } catch (_) {}
+    try { window.DebugStore?.dispose?.() } catch (_) {}
+    try {
+      const ids = ['debug-insights-styles','perf-di-css','cov-di-css','linter-di-css']
+      ids.forEach((id) => { const el = document.getElementById(id); if (el) el.remove(); })
+    } catch (_) {}
+  }
+
+  function disposeCodeGraph() {
+    if (codeGraphViewMounted) {
+      try {
+        const view = window.ModuleViews?.['code-graph-pane'];
+        if (view && typeof view.unmount === 'function') {
+          view.unmount();
+        }
+      } catch (error) {
+        console.warn('[RightActivityBar] disposeCodeGraph failed', error);
+      }
+    }
+    if (codeGraphHost) {
+      codeGraphHost.innerHTML = '';
+      codeGraphHost = null;
+    }
+    codeGraphViewMounted = false;
+    codeGraphContext = null;
+  }
+
+  function disposeAIJobMonitor () {
+    if (aiJobMonitorMounted && window.AIJobMonitor && typeof window.AIJobMonitor.dispose === 'function') {
+      try { window.AIJobMonitor.dispose(); } catch (_) {}
+    }
+    if (aiJobMonitorHost) {
+      try { aiJobMonitorHost.innerHTML = ''; } catch (_) {}
+      aiJobMonitorHost = null;
+    }
+    aiJobMonitorMounted = false;
+  }
+
+  async function renderCodeGraphPane() {
+    const container = document.getElementById('right-pane-content');
+    if (!container) return;
+
+    disposeCodeGraph();
+
+    const host = document.createElement('div');
+    host.className = 'code-graph-right-host';
+    host.style.display = 'flex';
+    host.style.flexDirection = 'column';
+    host.style.height = '100%';
+    host.style.minHeight = '0';
+    host.style.width = '100%';
+    container.innerHTML = '';
+    container.appendChild(host);
+    codeGraphHost = host;
+
+    try {
+      const registry = window.ModuleRegistry;
+      if (registry && typeof registry.ensureDescriptorLoaded === 'function') {
+        await registry.ensureDescriptorLoaded('code-graph');
+      }
+      if (registry && typeof registry.loadModule === 'function') {
+        await registry.loadModule('code-graph');
+      }
+    } catch (error) {
+      console.error('[RightActivityBar] Failed to load Code Graph module', error);
+      host.innerHTML = '<div style="padding:12px; line-height:1.4;">Unable to load Code Graph module.</div>';
+      return;
+    }
+
+    const view = window.ModuleViews?.['code-graph-pane'];
+    if (!view || typeof view.mount !== 'function') {
+      host.innerHTML = '<div style="padding:12px; line-height:1.4;">Code Graph view is unavailable.</div>';
+      return;
+    }
+
+    try {
+      codeGraphContext = buildModuleContext();
+      view.mount(host, codeGraphContext);
+      codeGraphViewMounted = true;
+    } catch (error) {
+      console.error('[RightActivityBar] Code Graph mount failed', error);
+      host.innerHTML = '<div style="padding:12px; line-height:1.4;">Failed to render Code Graph view.</div>';
+    }
+  }
+
+  function setRightPaneTitle (text) {
+    try {
+      const pane = document.getElementById('vscode-right-pane')
+      const title = pane && pane.querySelector('.right-pane-title .title-text')
+      if (title) title.textContent = text || 'AI Utilities'
+    } catch (_) {}
+  }
+
+  function renderDebugPane() {
+    const container = document.getElementById('right-pane-content');
+    if (!container) return;
+    container.innerHTML = '';
+    const host = document.createElement('div');
+    host.className = 'debug-insights-right-host';
+    host.style.display = 'block';
+    host.style.height = '100%';
+    host.style.overflow = 'auto';
+    container.appendChild(host);
+
+    // Respect explicit "do not load debug plugins" sessions (safe-mode)
+    try {
+      const urlParams = new URLSearchParams(window.location?.search || '')
+      if (urlParams.get('debug-plugins') === 'false') {
+        host.innerHTML = '<div style="padding:12px; line-height:1.4;">Debug Insights is disabled by URL parameter <code>?debug-plugins=false</code>.</div>'
+        return
+      }
+    } catch (_) {}
+
+    // Ensure the Debug Insights descriptor (and thus loader) is present
+    let loaderReady = null
+    try {
+      const registry = window.ModuleRegistry;
+      if (registry && typeof registry.ensureDescriptorLoaded === 'function') {
+        loaderReady = registry.ensureDescriptorLoaded('debug-insights')
+          .then(() => (typeof registry.loadModule === 'function' ? registry.loadModule('debug-insights') : true))
+          .catch((e) => console.warn('[RightActivityBar] debug-insights descriptor load failed', e))
+      }
+    } catch (_) {}
+
+    try {
+      // Reuse the existing integration to mount insights tabs UI
+      const attemptMount = () => {
+        if (!window.debugPluginsIntegration || typeof window.debugPluginsIntegration.mountInsightsInto !== 'function') return false
+        try {
+          window.debugPluginsIntegration.mountInsightsInto(host)
+          return true
+        } catch (e) {
+          console.error('[RightActivityBar] Debug Insights mount failed', e)
+          return false
+        }
+      }
+
+      if (attemptMount()) {
+        try {
+          if (pendingDebugPluginsLoadedListener) {
+            window.removeEventListener('debug-plugins-loaded', pendingDebugPluginsLoadedListener)
+            window.removeEventListener('debug-plugins-integration-ready', pendingDebugPluginsLoadedListener)
+          }
+        } catch (_) {}
+        pendingDebugPluginsLoadedListener = null
+      } else {
+        // Late init path: wait for integration init, then retry mount
+        host.innerHTML = '<div style="padding:12px; line-height:1.4;">Loading Debug Insights…</div>'
+
+        // Trigger loader explicitly so we can surface failures in the UI (loader is idempotent)
+        const startLoad = () => {
+          try {
+            const loader = window.DebugPluginsLoader
+            if (loader && typeof loader.load === 'function') {
+              const p = loader.load()
+              if (p && typeof p.catch === 'function') {
+                p.catch((e) => {
+                  console.error('[RightActivityBar] Debug plugins load failed', e)
+                  host.innerHTML = '<div style="padding:12px; line-height:1.4;">Unable to load Debug Insights.</div>'
+                })
+              }
+            }
+          } catch (e) {
+            console.error('[RightActivityBar] Debug plugins load failed', e)
+            host.innerHTML = '<div style="padding:12px; line-height:1.4;">Unable to load Debug Insights.</div>'
+          }
+        }
+
+        if (loaderReady && typeof loaderReady.then === 'function') {
+          loaderReady.then(startLoad).catch(startLoad)
+        } else {
+          startLoad()
+        }
+
+        const retry = () => {
+          try { window.applyDebugInsightsSavedSettings?.() } catch (_) {}
+          pendingDebugPluginsLoadedListener = null
+          if (attemptMount()) return
+
+          const loadError = window.DebugPluginsLoader?.getLoadError?.() || window.__DEBUG_PLUGINS_LOAD_ERROR__ || null
+          if (loadError) {
+            host.innerHTML = '<div style="padding:12px; line-height:1.4;">Unable to load Debug Insights.</div>'
+          }
+        };
+        try {
+          if (pendingDebugPluginsLoadedListener) {
+            window.removeEventListener('debug-plugins-loaded', pendingDebugPluginsLoadedListener)
+            window.removeEventListener('debug-plugins-integration-ready', pendingDebugPluginsLoadedListener)
+          }
+        } catch (_) {}
+        pendingDebugPluginsLoadedListener = retry
+        try { window.addEventListener('debug-plugins-integration-ready', retry, { once: true }); } catch (_) {}
+      }
+    } catch (error) {
+      console.error('[RightActivityBar] Debug Insights mount failed', error);
+      host.innerHTML = '<div style="padding:12px; line-height:1.4;">Failed to render Debug Insights.</div>';
+    }
+  }
+
+
+
+  const CONNECTION_STATUS_OPTIONS = [
+    { value: 'unknown', label: 'Unknown', className: 'status-unknown' },
+    { value: 'ok', label: 'Ready', className: 'status-ok' },
+    { value: 'warning', label: 'Warning', className: 'status-warning' },
+    { value: 'error', label: 'Error', className: 'status-error' }
+  ];
+
+  const CONNECTION_SECRET_PREFIX = 'onlyoffice_macros_ai_connection_secret_';
+  const AI_CONNECTION_SPLIT_KEY = 'right_pane_ai_connection_split';
+
+  function mountConnectionManager({ elements, settingsStore }) {
+    const { treeEl, inspectorEl, filterEl, searchEl, addButton, contentEl, splitterEl } = elements || {};
+    if (!treeEl || !inspectorEl || !settingsStore) {
+      return function noop() {};
+    }
+
+    const providerOptions = [{ id: AI_FREE_PROVIDER_ID, label: 'OpenAI', enabled: true }];
+    const providerFactory = window.AIProviderFactory || null;
+    const providerLabelCache = new Map();
+    const providerModelsCache = new Map();
+    const providerModelRequests = new Map();
+    const connectionSearchCache = new Map();
+    const disposers = [];
+    let inspectorDisposers = [];
+    let contextMenuEl = null;
+    let suppressNextContextMenuDismiss = false;
+    let lastTreeKey = '';
+
+    function enforceFreeTierConnection(connection) {
+      if (!connection || !AI_FREE_RESTRICTIONS_ENABLED) return connection;
+      connection.providerId = AI_FREE_PROVIDER_ID;
+      connection.models = [{ id: AI_FREE_LOCKED_MODEL_ID }];
+      connection.primaryModelId = AI_FREE_LOCKED_MODEL_ID;
+      return connection;
+    }
+
+    function getDefaultConnectionModel() {
+      try {
+        const fromConfig = window.AIConfiguration?.getDefaultModel?.(AI_FREE_PROVIDER_ID);
+        if (typeof fromConfig === 'string' && fromConfig.trim()) {
+          return fromConfig.trim();
+        }
+      } catch (_) {}
+      return AI_FREE_LOCKED_MODEL_ID;
+    }
+
+    const state = {
+      connections: [],
+      filter: 'all',
+      search: '',
+      selectedId: null,
+      editing: null,
+      suppressStore: false,
+      feedbackTone: 'info',
+      feedbackMessage: '',
+      modelFocusIndex: null,
+      pendingModelFocusIndex: null,
+      connectionsSignature: '',
+      filterOptionsSignature: '',
+      splitRatio: 0.2,
+      previousSplitRatio: 0.2
+    };
+
+    function clampSplitRatio(value) {
+      const numeric = Number(value);
+      if (!Number.isFinite(numeric)) return 0.2;
+      if (numeric <= 0.02) return 0;
+      if (numeric >= 0.98) return 1;
+      return Math.max(0.08, Math.min(0.92, numeric));
+    }
+
+    function applyConnectionSplit(nextRatio, options = {}) {
+      if (!contentEl) return;
+      const { persist = true } = options;
+      const ratio = clampSplitRatio(nextRatio);
+      state.splitRatio = ratio;
+      if (ratio > 0 && ratio < 1) {
+        state.previousSplitRatio = ratio;
+      }
+      contentEl.style.setProperty('--ai-connection-tree-width', `${Math.round(ratio * 1000) / 10}%`);
+      contentEl.classList.toggle('collapsed-tree', ratio === 0);
+      contentEl.classList.toggle('collapsed-inspector', ratio === 1);
+      if (splitterEl) {
+        splitterEl.setAttribute('aria-valuemin', '0');
+        splitterEl.setAttribute('aria-valuemax', '100');
+        splitterEl.setAttribute('aria-valuenow', String(Math.round(ratio * 100)));
+      }
+      if (persist) {
+        try { localStorage.setItem(AI_CONNECTION_SPLIT_KEY, String(ratio)); } catch (_) {}
+      }
+    }
+
+    function initConnectionSplitControls() {
+      if (!contentEl || !splitterEl) return;
+      let dragging = false;
+
+      const handleDragMove = (event) => {
+        if (!dragging) return;
+        const rect = contentEl.getBoundingClientRect();
+        const width = rect.width || 1;
+        const offset = (event.clientX - rect.left) / width;
+        applyConnectionSplit(offset, { persist: false });
+      };
+
+      const handleDragEnd = () => {
+        if (!dragging) return;
+        dragging = false;
+        contentEl.classList.remove('is-resizing');
+        applyConnectionSplit(state.splitRatio, { persist: true });
+      };
+
+      addListener(splitterEl, 'mousedown', (event) => {
+        event.preventDefault();
+        dragging = true;
+        contentEl.classList.add('is-resizing');
+      });
+      addListener(document, 'mousemove', handleDragMove);
+      addListener(document, 'mouseup', handleDragEnd);
+
+      addListener(splitterEl, 'keydown', (event) => {
+        if (event.key === 'ArrowLeft') {
+          event.preventDefault();
+          applyConnectionSplit(state.splitRatio - 0.05);
+        } else if (event.key === 'ArrowRight') {
+          event.preventDefault();
+          applyConnectionSplit(state.splitRatio + 0.05);
+        } else if (event.key === 'Home') {
+          event.preventDefault();
+          applyConnectionSplit(0);
+        } else if (event.key === 'End') {
+          event.preventDefault();
+          applyConnectionSplit(1);
+        }
+      });
+
+      addListener(splitterEl, 'dblclick', (event) => {
+        event.preventDefault();
+        if (state.splitRatio === 1) {
+          applyConnectionSplit(state.previousSplitRatio || 0.2);
+          return;
+        }
+        applyConnectionSplit(1);
+      });
+
+      let storedRatio = 0.2;
+      try {
+        const raw = localStorage.getItem(AI_CONNECTION_SPLIT_KEY);
+        if (raw !== null) storedRatio = Number(raw);
+      } catch (_) {}
+      applyConnectionSplit(storedRatio, { persist: false });
+    }
+
+    function addListener(target, type, handler, options) {
+      if (!target || typeof target.addEventListener !== 'function') return;
+      target.addEventListener(type, handler, options || false);
+      disposers.push(() => {
+        try { target.removeEventListener(type, handler, options || false); } catch (_) {}
+      });
+    }
+
+    function clearInspectorListeners() {
+      inspectorDisposers.forEach((fn) => {
+        try { fn(); } catch (_) {}
+      });
+      inspectorDisposers = [];
+    }
+
+    function addInspectorListener(target, type, handler, options) {
+      if (!target || typeof target.addEventListener !== 'function') return;
+      target.addEventListener(type, handler, options || false);
+      inspectorDisposers.push(() => {
+        try { target.removeEventListener(type, handler, options || false); } catch (_) {}
+      });
+    }
+
+    function escapeHtml(value) {
+      return String(value ?? '').replace(/[&<>]/g, (char) => ({
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;'
+      }[char]));
+    }
+
+    function escapeAttr(value) {
+      return escapeHtml(value).replace(/"/g, '&quot;');
+    }
+
+    function isPlainObject(value) {
+      return value !== null && typeof value === 'object' && !Array.isArray(value);
+    }
+
+    function cloneConnection(connection) {
+      if (!isPlainObject(connection)) return null;
+      const base = { ...connection };
+      base.models = Array.isArray(connection.models)
+        ? connection.models.map((model) => isPlainObject(model) ? { ...model } : { id: String(model || '') })
+        : [];
+      base.tags = Array.isArray(connection.tags) ? [...connection.tags] : [];
+      return base;
+    }
+
+    function classifyModel(providerId, modelId) {
+      const id = typeof modelId === 'string' ? modelId.trim().toLowerCase() : '';
+      if (!id) return { isText: false, isCoding: false };
+      const provider = normalizeProviderId(providerId);
+      if (provider === 'openai') {
+        const nonTextTokens = ['embedding', 'image', 'vision', 'audio', 'sora', 'tts', 'speech', 'voice', 'transcribe', 'moderation', 'search'];
+        if (nonTextTokens.some((token) => id.includes(token))) {
+          return { isText: false, isCoding: false };
+        }
+        const codingTokens = ['code', 'codex', 'gpt-4o', 'gpt-4.1', 'gpt-4-', 'gpt-4', 'gpt-3.5', 'o1', 'o3'];
+        const isCoding = codingTokens.some((token) => id.includes(token));
+        return { isText: true, isCoding };
+      }
+      return { isText: true, isCoding: false };
+    }
+
+    function normalizeModelList(providerId, list) {
+      if (!Array.isArray(list)) return [];
+      return list.map((item) => {
+        let id = null;
+        let name = null;
+        let maxTokens = undefined;
+        let ownedBy = undefined;
+        if (typeof item === 'string') {
+          id = item;
+          name = item;
+        } else if (isPlainObject(item) && typeof item.id === 'string') {
+          id = item.id;
+          name = typeof item.name === 'string' && item.name.trim() ? item.name : item.id;
+          maxTokens = item.maxTokens ?? item.max_tokens ?? undefined;
+          ownedBy = item.ownedBy ?? item.owned_by ?? undefined;
+          if (typeof item.isText === 'boolean' || typeof item.isCoding === 'boolean') {
+            return {
+              id,
+              name,
+              maxTokens,
+              ownedBy,
+              isText: item.isText !== false,
+              isCoding: item.isCoding === true
+            };
+          }
+        }
+        if (!id) return null;
+        const tags = classifyModel(providerId, id);
+        return {
+          id,
+          name,
+          maxTokens,
+          ownedBy,
+          isText: tags.isText,
+          isCoding: tags.isCoding
+        };
+      }).filter(Boolean);
+    }
+
+    function persistConnections(nextConnections, { selectId } = {}) {
+      const sanitized = Array.isArray(nextConnections)
+        ? nextConnections.map((connection) => cloneConnection(connection)).filter(Boolean)
+        : [];
+      if (settingsStore && typeof settingsStore.update === 'function') {
+        try {
+          state.suppressStore = true;
+          settingsStore.update({ aiConnections: sanitized });
+          setTimeout(() => {
+            state.suppressStore = false;
+          }, 0);
+        } catch (error) {
+          state.suppressStore = false;
+          console.error('[RightActivityBar] Failed to persist connections:', error);
+          return false;
+        }
+      } else {
+        console.warn('[RightActivityBar] SettingsStore unavailable; applying changes locally only.');
+      }
+      state.connections = sanitized;
+      // Cache snapshot to survive incidental remounts/reloads
+      try { window.__aiConnectionsCache = JSON.parse(JSON.stringify(state.connections)) } catch (_) {}
+      syncConnectionCaches();
+      if (typeof selectId === 'string' || selectId === null) {
+        state.selectedId = selectId;
+      } else if (state.selectedId && !sanitized.some((connection) => connection.id === state.selectedId)) {
+        state.selectedId = sanitized[0]?.id || null;
+      }
+      state.editing = state.selectedId
+        ? cloneConnection(sanitized.find((connection) => connection.id === state.selectedId))
+        : null;
+      populateFilterOptions();
+      renderTree();
+      renderInspector();
+      try {
+        document.dispatchEvent(new CustomEvent('aiConnections:updated', { detail: { connections: sanitized } }));
+      } catch (_) {}
+      return true;
+    }
+
+    function validateConnectionSecret(providerId, secret) {
+      const normalized = normalizeProviderId(providerId);
+      if (!secret || !secret.trim()) {
+        if (normalized === 'ollama') {
+          // Ollama typically does not require an API key
+          return { ok: true, value: '' };
+        }
+        return { ok: false, message: 'Add an API key before testing the connection.' };
+      }
+      const value = secret.trim();
+      if (normalized === 'openai' && !value.startsWith('sk-')) {
+        return { ok: false, message: 'OpenAI keys should start with "sk-".' };
+      }
+      if (normalized === 'github') {
+        const hasKnownPrefix = value.startsWith('ghp_') ||
+          value.startsWith('gho_') ||
+          value.startsWith('ghu_') ||
+          value.startsWith('ghs_') ||
+          value.startsWith('github_pat_');
+        if (!hasKnownPrefix) {
+          return { ok: false, message: 'GitHub tokens should start with gh* (e.g. “ghp_”, “github_pat_”).' };
+        }
+      }
+      if (normalized === 'deepseek' ||
+        normalized === 'litellm' ||
+        normalized === 'minimax' ||
+        normalized === 'qwen-code' ||
+        normalized === 'zai' ||
+        normalized === 'gemini') {
+        // For these providers we only require a non-empty key; format
+        // validation is delegated to the server response.
+        if (!value) {
+          return { ok: false, message: 'Add an API key before testing the connection.' };
+        }
+      }
+      return { ok: true, value };
+    }
+
+    function ensureCopyName(baseName) {
+      const existing = new Set(state.connections.map((connection) => (connection.name || '').toLowerCase()));
+      const base = (baseName || 'Connection').trim() || 'Connection';
+      let candidate = `${base} Copy`;
+      let counter = 2;
+      while (existing.has(candidate.toLowerCase())) {
+        candidate = `${base} Copy ${counter}`;
+        counter += 1;
+      }
+      return candidate;
+    }
+
+    function promptRename(connection) {
+      if (!connection) return;
+      const currentName = connection.name || '';
+      const input = window.prompt('Rename connection', currentName);
+      if (!input) return;
+      const trimmed = input.trim();
+      if (!trimmed || trimmed === currentName) return;
+      const next = state.connections.map((entry) => {
+        const clone = cloneConnection(entry);
+        if (entry.id === connection.id) {
+          clone.name = trimmed;
+          clone.updatedAt = Date.now();
+        }
+        return clone;
+      });
+      if (!persistConnections(next, { selectId: connection.id })) return;
+      if (state.editing && state.editing.id === connection.id) {
+        setFeedback('Connection renamed.', 'success');
+      } else {
+        window.LogService?.logInfo?.('AI Connections', 'rename', { id: connection.id, name: trimmed });
+      }
+    }
+
+    function duplicateConnection(connection) {
+      if (!connection) return;
+      const duplicate = cloneConnection(connection);
+      const now = Date.now();
+      duplicate.id = `conn-${Math.random().toString(36).slice(2, 9)}${now.toString(36)}`;
+      duplicate.name = ensureCopyName(connection.name);
+      duplicate.createdAt = now;
+      duplicate.updatedAt = now;
+      duplicate.lastTestedAt = null;
+      duplicate.status = 'unknown';
+      const next = state.connections.map((entry) => cloneConnection(entry));
+      next.push(duplicate);
+      if (!persistConnections(next, { selectId: duplicate.id })) return;
+      const sourceSecret = loadSecret(connection.id);
+      if (sourceSecret) {
+        saveSecret(duplicate.id, duplicate.providerId, sourceSecret);
+        scheduleProviderModelFetch(duplicate.providerId, {
+          apiKey: sourceSecret,
+          onComplete: () => {
+            if (state.selectedId === duplicate.id) {
+              renderTree();
+              renderInspector();
+            }
+          }
+        });
+      }
+      setTimeout(() => setFeedback('Connection copied.', 'success'), 0);
+    }
+
+    function testConnectionFromMenu(connection) {
+      if (!connection) return;
+      const secret = loadSecret(connection.id);
+      const validation = validateConnectionSecret(connection.providerId, secret);
+      if (!validation.ok) {
+        if (state.editing && state.editing.id === connection.id) {
+          setFeedback(validation.message, 'warning');
+        } else {
+          window.alert(validation.message);
+        }
+        return;
+      }
+      const now = Date.now();
+      const next = state.connections.map((entry) => {
+        const clone = cloneConnection(entry);
+        if (entry.id === connection.id) {
+          clone.status = 'ok';
+          clone.lastTestedAt = now;
+          clone.updatedAt = now;
+        }
+        return clone;
+      });
+      if (!persistConnections(next, { selectId: connection.id })) return;
+      if (state.editing && state.editing.id === connection.id) {
+        setFeedback('Connection passed basic validation.', 'success');
+      } else {
+        window.LogService?.logInfo?.('AI Connections', 'test', { id: connection.id, provider: connection.providerId });
+      }
+    }
+
+    function deleteConnectionFromMenu(connection) {
+      if (!connection) return;
+      const confirmed = window.confirm(`Delete connection "${connection.name || connection.id}"?`);
+      if (!confirmed) return;
+      const index = state.connections.findIndex((entry) => entry.id === connection.id);
+      const next = state.connections
+        .filter((entry) => entry.id !== connection.id)
+        .map((entry) => cloneConnection(entry));
+      let nextSelection = state.selectedId;
+      if (nextSelection === connection.id) {
+        if (next.length) {
+          const fallbackIndex = Math.max(0, index - 1);
+          nextSelection = next[fallbackIndex]?.id || next[0]?.id || null;
+        } else {
+          nextSelection = null;
+        }
+      }
+      removeSecret(connection.id);
+      if (!persistConnections(next, { selectId: nextSelection })) return;
+      window.LogService?.logInfo?.('AI Connections', 'delete', { id: connection.id });
+    }
+
+    function getProviderLabel(providerId) {
+      if (providerLabelCache.has(providerId)) return providerLabelCache.get(providerId);
+      if (!providerId) return 'Unknown';
+      const catalogMatch = providerOptions.find((item) => item.id === providerId) || null;
+      const label = catalogMatch?.label
+        || providerId.replace(/[-_]+/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase());
+      providerLabelCache.set(providerId, label);
+      return label;
+    }
+
+    /**
+     * Debug-only helper to test the shared agent core inside AI Sputnik.
+     * Uses AgentEngine.runSimpleAgentTask with a fixed goal.
+     */
+    function runAgentCoreSmokeTest () {
+      if (!window.ENABLE_AGENT_CORE || !window.AgentEngine || typeof window.AgentEngine.runSimpleAgentTask !== 'function') {
+        window.debug?.warn('RightActivityBar', 'Agent core smoke test not available', {
+          ENABLE_AGENT_CORE: window.ENABLE_AGENT_CORE,
+          hasAgentEngine: !!window.AgentEngine
+        });
+        return;
+      }
+      try {
+        const goal = 'Explain in one sentence what this OnlyOffice macros IDE does for the user.'
+        window.AgentEngine.runSimpleAgentTask({ goal }).then(function (result) {
+          const msg = result && result.finalMessage && result.finalMessage.content
+            ? result.finalMessage.content
+            : '[no content]';
+          window.debug?.info('RightActivityBar', 'Agent core smoke test result', { goal, msg });
+        }).catch(function (error) {
+          window.debug?.error('RightActivityBar', 'Agent core smoke test failed', error);
+        });
+      } catch (e) {
+        window.debug?.error('RightActivityBar', 'Agent core smoke test threw', e);
+      }
+    }
+
+    function normalizeProviderId(providerId) {
+      if (providerFactory?.normalizeProviderId) {
+        try { return providerFactory.normalizeProviderId(providerId); } catch (_) {}
+      }
+      return typeof providerId === 'string' && providerId.trim()
+        ? providerId.trim().toLowerCase()
+        : 'openai';
+    }
+
+    function getCachedProviderModels(providerId) {
+      const normalized = normalizeProviderId(providerId);
+      let entry = providerModelsCache.get(normalized);
+
+      // Ensure GitHub Models always exposes at least the predefined
+      // fallback catalog, even if a remote fetch has not yet run or
+      // failed. This uses the provider's own static catalog so the
+      // list stays in sync with ADR-057.
+      if (normalized === 'github' &&
+        (!entry || !Array.isArray(entry.models) || entry.models.length === 0)) {
+        try {
+          if (window.GitHubAIProvider) {
+            const provider = new window.GitHubAIProvider();
+            if (provider && typeof provider.getAvailableModels === 'function') {
+              const models = provider.getAvailableModels() || [];
+              const normalizedList = normalizeModelList('github', models);
+              if (normalizedList.length) {
+                entry = {
+                  models: normalizedList,
+                  source: 'static',
+                  fetchedAt: Date.now()
+                };
+                providerModelsCache.set(normalized, entry);
+              }
+            }
+          }
+        } catch (_) {}
+      }
+
+      return Array.isArray(entry?.models) ? entry.models : [];
+    }
+
+    function setCachedProviderModels(providerId, models, source = 'static', metadata = {}) {
+      const normalized = normalizeProviderId(providerId);
+      const normalizedList = normalizeModelList(providerId, models);
+      providerModelsCache.set(normalized, {
+        models: normalizedList,
+        source,
+        fetchedAt: Date.now(),
+        ...metadata
+      });
+      return providerModelsCache.get(normalized).models;
+    }
+
+    function loadProviderModels(providerId) {
+      const normalized = normalizeProviderId(providerId);
+      const cached = providerModelsCache.get(normalized);
+      if (cached && Array.isArray(cached.models) && cached.models.length) {
+        return cached.models;
+      }
+      let models = [];
+      try {
+        let instance = null;
+        if (providerFactory?.createProvider) {
+          try {
+            instance = providerFactory.createProvider(normalized);
+          } catch (error) {
+            console.warn('[RightActivityBar] Failed to create provider for model catalog:', error);
+          }
+        }
+        if (!instance) {
+          if (normalized === 'openai' && window.OpenAIProvider) {
+            instance = new window.OpenAIProvider();
+          }
+        }
+        if (instance?.getAvailableModels) {
+          const available = instance.getAvailableModels();
+          if (Array.isArray(available)) {
+            models = available;
+          }
+        }
+      } catch (error) {
+        console.warn('[RightActivityBar] Failed to load model list for provider:', providerId, error);
+      }
+      return setCachedProviderModels(providerId, models, 'static');
+    }
+
+    async function fetchOpenAIModels(apiKey) {
+      if (!apiKey) return [];
+      const results = [];
+      const base = 'https://api.openai.com/v1/models';
+      const headers = {
+        Authorization: `Bearer ${apiKey}`,
+        'Content-Type': 'application/json'
+      };
+      let url = base;
+      const visited = new Set();
+      while (url && !visited.has(url)) {
+        visited.add(url);
+        const response = await fetch(url, { method: 'GET', headers });
+        if (!response.ok) {
+          const text = await response.text().catch(() => '');
+          throw new Error(`HTTP ${response.status} fetching models: ${text || response.statusText}`);
+        }
+        const payload = await response.json();
+        const data = Array.isArray(payload?.data) ? payload.data : [];
+        data.forEach((item) => {
+          if (item && typeof item.id === 'string') {
+            results.push({
+              id: item.id,
+              name: item.id,
+              ownedBy: typeof item.owned_by === 'string' ? item.owned_by : undefined
+            });
+          }
+        });
+        if (payload?.has_more && payload?.last_id) {
+          url = `${base}?after=${encodeURIComponent(payload.last_id)}`;
+        } else if (payload?.next) {
+          url = payload.next.startsWith('http')
+            ? payload.next
+            : `${base}?${payload.next.replace(/^\?/, '')}`;
+        } else {
+          break;
+        }
+      }
+      return results;
+    }
+
+    function scheduleProviderModelFetch(providerId, options = {}) {
+      const normalized = normalizeProviderId(providerId);
+      if (normalized !== 'openai' &&
+        normalized !== 'github' &&
+        normalized !== 'gemini' &&
+        normalized !== 'deepseek' &&
+        normalized !== 'ollama' &&
+        normalized !== 'litellm' &&
+        normalized !== 'zai') return;
+      const apiKey = typeof options.apiKey === 'string' && options.apiKey.trim() ? options.apiKey.trim() : '';
+      if (normalized !== 'ollama' && normalized !== 'zai' && !apiKey) return;
+      if (normalized !== 'zai' && typeof fetch !== 'function') return;
+      const requestKey = normalized === 'ollama'
+        ? `${normalized}:local`
+        : `${normalized}:${apiKey.slice(0, 16)}`;
+      const cacheEntry = providerModelsCache.get(normalized);
+      const force = options.force === true;
+      if (!force && cacheEntry) {
+        if (cacheEntry.apiKeyFingerprint === requestKey && (cacheEntry.source === 'remote' || cacheEntry.source === 'error')) {
+          return;
+        }
+        if (cacheEntry.source === 'remote' && Array.isArray(cacheEntry.models) && cacheEntry.models.length) {
+          return;
+        }
+      }
+      if (providerModelRequests.has(requestKey)) return;
+      providerModelRequests.set(requestKey, true);
+
+      let fetchFn = null;
+      let fetchArgs = [apiKey];
+      if (normalized === 'openai') {
+        fetchFn = fetchOpenAIModels;
+      } else if (normalized === 'github') {
+        fetchFn = window.GitHubApi && typeof window.GitHubApi.fetchModelsCatalog === 'function'
+          ? window.GitHubApi.fetchModelsCatalog
+          : null;
+      } else if (normalized === 'gemini') {
+        fetchFn = window.GeminiApi && typeof window.GeminiApi.fetchModelsCatalog === 'function'
+          ? window.GeminiApi.fetchModelsCatalog
+          : null;
+      } else if (normalized === 'deepseek') {
+        fetchFn = window.DeepSeekApi && typeof window.DeepSeekApi.fetchModelsCatalog === 'function'
+          ? window.DeepSeekApi.fetchModelsCatalog
+          : null;
+      } else if (normalized === 'ollama') {
+        fetchFn = window.OllamaApi && typeof window.OllamaApi.fetchModelsCatalog === 'function'
+          ? window.OllamaApi.fetchModelsCatalog
+          : null;
+        fetchArgs = [];
+      } else if (normalized === 'litellm') {
+        fetchFn = window.LiteLLMApi && typeof window.LiteLLMApi.fetchModelsCatalog === 'function'
+          ? window.LiteLLMApi.fetchModelsCatalog
+          : null;
+        let baseUrl = options.baseUrl || options.baseURL || '';
+        try {
+          if ((!baseUrl || !baseUrl.trim()) &&
+            window.AIConfiguration &&
+            typeof window.AIConfiguration.get === 'function') {
+            baseUrl = window.AIConfiguration.get('litellmBaseUrl');
+          }
+        } catch (_) {}
+        fetchArgs = [apiKey, baseUrl];
+      } else if (normalized === 'zai') {
+        fetchFn = window.ZAiApi && typeof window.ZAiApi.getStaticModels === 'function'
+          ? window.ZAiApi.getStaticModels
+          : null;
+        let apiLine = options.apiLine || options.zaiApiLine || '';
+        try {
+          if (!apiLine && window.AIConfiguration && typeof window.AIConfiguration.get === 'function') {
+            apiLine = window.AIConfiguration.get('zaiApiLine');
+          }
+        } catch (_) {}
+        fetchArgs = [apiLine];
+      }
+
+      if (!fetchFn) {
+        providerModelRequests.delete(requestKey);
+        return;
+      }
+
+      Promise.resolve(fetchFn.apply(null, fetchArgs))
+        .then((models) => {
+          const merged = Array.isArray(models) && models.length
+            ? models
+            : (Array.isArray(cacheEntry?.models) ? cacheEntry.models : []);
+          const source = Array.isArray(models) && models.length
+            ? 'remote'
+            : (cacheEntry?.source || 'static');
+          setCachedProviderModels(providerId, merged, source, {
+            apiKeyFingerprint: requestKey,
+            lastFetchError: undefined
+          });
+        })
+        .catch((error) => {
+          console.warn('[RightActivityBar] Failed to fetch models via REST:', error);
+          const raw = error?.message || String(error);
+          let friendly = raw;
+          const lower = raw.toLowerCase ? raw.toLowerCase() : String(raw).toLowerCase();
+          if (lower.includes('401') || lower.includes('403') || lower.includes('unauthorized') || lower.includes('invalid api key')) {
+            const label = getProviderLabel(providerId);
+            friendly = `Invalid or missing API key for ${label}.`;
+          } else if (lower.includes('failed to fetch') ||
+            lower.includes('networkerror') ||
+            lower.includes('connection refused') ||
+            lower.includes('ecconnrefused')) {
+            if (normalized === 'ollama') {
+              friendly = 'Ollama server not reachable. Ensure it is running on http://127.0.0.1:11434.';
+            } else {
+              friendly = 'Server not reachable (is it running and accessible?).';
+            }
+          }
+          setCachedProviderModels(providerId, Array.isArray(cacheEntry?.models) ? cacheEntry.models : [], 'error', {
+            apiKeyFingerprint: requestKey,
+            lastFetchError: friendly
+          });
+        })
+        .finally(() => {
+          providerModelRequests.delete(requestKey);
+          if (typeof options.onComplete === 'function') {
+            try { options.onComplete(); } catch (_) {}
+          }
+        });
+    }
+
+    function loadSecret(connectionId) {
+      if (!connectionId) return '';
+      try {
+        return localStorage.getItem(`${CONNECTION_SECRET_PREFIX}${connectionId}`) || '';
+      } catch (error) {
+        console.warn('[RightActivityBar] Failed to read connection secret:', error);
+        return '';
+      }
+    }
+
+    function saveSecret(connectionId, providerId, value) {
+      if (!connectionId) return false;
+      try {
+        const key = `${CONNECTION_SECRET_PREFIX}${connectionId}`;
+        if (value && value.trim()) {
+          localStorage.setItem(key, value.trim());
+          try { window.AIStorage?.setApiKey?.(providerId, value.trim()); } catch (_) {}
+        } else {
+          localStorage.removeItem(key);
+        }
+        return true;
+      } catch (error) {
+        console.error('[RightActivityBar] Failed to persist connection secret:', error);
+        return false;
+      }
+    }
+
+    function removeSecret(connectionId) {
+      if (!connectionId) return;
+      try {
+        localStorage.removeItem(`${CONNECTION_SECRET_PREFIX}${connectionId}`);
+      } catch (error) {
+        console.warn('[RightActivityBar] Failed to remove connection secret:', error);
+      }
+    }
+
+    function cacheConnectionsSnapshot(list) {
+      try { window.__aiConnectionsCache = JSON.parse(JSON.stringify(Array.isArray(list) ? list : [])) } catch (_) {}
+    }
+
+    function rehydrateIfEmpty() {
+      try {
+        if (!Array.isArray(state.connections) || state.connections.length === 0) {
+          const cached = Array.isArray(window.__aiConnectionsCache) ? window.__aiConnectionsCache : [];
+          if (cached.length) {
+            state.connections = cached.map((c) => cloneConnection(c));
+            // Write back to SettingsStore to keep sources in sync
+            try { settingsStore.update({ aiConnections: state.connections.map((c) => cloneConnection(c)) }) } catch (_) {}
+          } else {
+            // Fallback: try direct SettingsStore getter helpers
+            const ensured = window.SettingsStore?.ensureAiConnections?.();
+            if (Array.isArray(ensured) && ensured.length) {
+              state.connections = ensured.map((c) => cloneConnection(c));
+              cacheConnectionsSnapshot(state.connections);
+            }
+          }
+        }
+      } catch (_) {}
+    }
+
+    function loadConnections(snapshot) {
+      let settings = snapshot;
+      if (!settings || typeof settings !== 'object') {
+        settings = settingsStore.getState?.() || {};
+      }
+      if ((!settings.aiConnections || !Array.isArray(settings.aiConnections))
+        && typeof settingsStore.ensureAiConnections === 'function') {
+        try {
+          const ensured = settingsStore.ensureAiConnections();
+          if (Array.isArray(ensured)) {
+            settings = { ...settings, aiConnections: ensured };
+          }
+        } catch (error) {
+          console.warn('[RightActivityBar] ensureAiConnections failed during load:', error);
+        }
+      }
+      const list = Array.isArray(settings.aiConnections) ? settings.aiConnections : [];
+      state.connections = list
+        .map((entry) => cloneConnection(entry))
+        .filter(Boolean)
+        .map((entry) => enforceFreeTierConnection(entry));
+      if (state.connections.length) cacheConnectionsSnapshot(state.connections);
+      rehydrateIfEmpty();
+      rebuildConnectionSearchCache();
+      state.connectionsSignature = buildConnectionsSignature(state.connections);
+    }
+
+    function buildConnectionsSignature(list) {
+      if (!Array.isArray(list) || !list.length) return '';
+      return list.map((connection) => {
+        const id = connection?.id || '';
+        const updatedAt = connection?.updatedAt || '';
+        const providerId = connection?.providerId || '';
+        const status = connection?.status || '';
+        const name = connection?.name || '';
+        const primaryModelId = connection?.primaryModelId || '';
+        const commentLen = typeof connection?.comment === 'string' ? connection.comment.length : 0;
+        return [id, updatedAt, providerId, status, primaryModelId, name, commentLen].join(':');
+      }).join('|');
+    }
+
+    function rebuildConnectionSearchCache() {
+      const seen = new Set();
+      state.connections.forEach((connection) => {
+        if (!connection || !connection.id) return;
+        seen.add(connection.id);
+        const haystack = [
+          connection.name,
+          connection.providerId,
+          connection.comment,
+          ...(Array.isArray(connection.tags) ? connection.tags : []),
+          ...(Array.isArray(connection.models) ? connection.models.map((model) => model.id) : [])
+        ].join(' ').toLowerCase();
+        connectionSearchCache.set(connection.id, haystack);
+      });
+      Array.from(connectionSearchCache.keys()).forEach((key) => {
+        if (!seen.has(key)) connectionSearchCache.delete(key);
+      });
+    }
+
+    function syncConnectionCaches() {
+      rebuildConnectionSearchCache();
+      state.connectionsSignature = buildConnectionsSignature(state.connections);
+      lastTreeKey = '';
+    }
+
+    function populateFilterOptions() {
+      if (!filterEl) return;
+      const providerIds = new Set();
+      providerOptions.forEach((provider) => providerIds.add(provider.id));
+      state.connections.forEach((connection) => providerIds.add(connection.providerId));
+      const sorted = Array.from(providerIds).sort((a, b) => getProviderLabel(a).localeCompare(getProviderLabel(b)));
+      const signature = sorted.join('|');
+      const current = state.filter || 'all';
+      if (signature !== state.filterOptionsSignature) {
+        const options = ['<option value="all">All Providers</option>']
+          .concat(sorted.map((id) => `<option value="${escapeAttr(id)}">${escapeHtml(getProviderLabel(id))}</option>`));
+        filterEl.innerHTML = options.join('');
+        state.filterOptionsSignature = signature;
+      }
+      if (current !== 'all' && !providerIds.has(current)) {
+        state.filter = 'all';
+        filterEl.value = 'all';
+      } else {
+        filterEl.value = current;
+      }
+    }
+
+    function renderStatusToken(connection) {
+      const status = connection.status || 'unknown';
+      const option = CONNECTION_STATUS_OPTIONS.find((item) => item.value === status) || CONNECTION_STATUS_OPTIONS[0];
+      return `<span class="ai-connection-status-pill ${option.className}">${escapeHtml(option.label)}</span>`;
+    }
+
+    function formatPrimaryModel(connection) {
+      if (!Array.isArray(connection.models) || !connection.models.length) return 'No model';
+      const primary = connection.primaryModelId
+        ? connection.models.find((model) => model.id === connection.primaryModelId)
+        : connection.models[0];
+      return primary?.id || connection.models[0]?.id || 'No model';
+    }
+
+    function renderTree() {
+      const searchTerm = state.search.trim().toLowerCase();
+      const providerFilter = state.filter;
+      const treeKey = `${state.connectionsSignature}::${providerFilter}::${searchTerm}::${state.selectedId || ''}`;
+      if (treeKey === lastTreeKey) return;
+      const grouped = new Map();
+      state.connections.forEach((connection) => {
+        if (providerFilter !== 'all' && connection.providerId !== providerFilter) {
+          return;
+        }
+        if (searchTerm) {
+          const haystack = connectionSearchCache.get(connection.id) || '';
+          if (!haystack.includes(searchTerm)) {
+            return;
+          }
+        }
+        const bucket = grouped.get(connection.providerId) || [];
+        bucket.push(connection);
+        grouped.set(connection.providerId, bucket);
+      });
+
+      if (!grouped.size) {
+        treeEl.innerHTML = '<div class="connection-empty">No connections found. Create one to get started.</div>';
+        lastTreeKey = treeKey;
+        return;
+      }
+
+      const providerIds = Array.from(grouped.keys()).sort((a, b) => getProviderLabel(a).localeCompare(getProviderLabel(b)));
+      let html = '';
+      providerIds.forEach((providerId) => {
+        const label = getProviderLabel(providerId);
+        const connections = grouped.get(providerId) || [];
+        connections.sort((a, b) => a.name.localeCompare(b.name));
+        html += `<div class="connection-provider" data-provider="${escapeAttr(providerId)}">`;
+        html += `<div class="connection-provider-header">${escapeHtml(label)}<span class="badge">${connections.length}</span></div>`;
+        html += '<div class="connection-provider-body">';
+        connections.forEach((connection) => {
+          const isActive = connection.id === state.selectedId;
+          const commentSnippet = (connection.comment || '').split('\n').map((line) => line.trim()).find(Boolean) || '';
+          html += `<div class="connection-item${isActive ? ' active' : ''}" data-connection="${escapeAttr(connection.id)}" role="button" tabindex="0">`;
+          html += '<div class="connection-item-heading">';
+          html += `<span class="connection-item-title">${escapeHtml(connection.name)}</span>`;
+          html += `<span class="connection-item-menu-trigger" role="button" tabindex="0" aria-label="Connection options" aria-haspopup="menu" data-connection="${escapeAttr(connection.id)}" title="More actions">&#8942;</span>`;
+          html += '</div>';
+          html += `<div class="connection-item-meta"><span>${escapeHtml(formatPrimaryModel(connection))}</span>${renderStatusToken(connection)}</div>`;
+          if (commentSnippet) {
+            html += `<div class="connection-item-comment">${escapeHtml(commentSnippet)}</div>`;
+          }
+          html += '</div>';
+        });
+        html += '</div></div>';
+      });
+      treeEl.innerHTML = html;
+      lastTreeKey = treeKey;
+    }
+
+    function ensureContextMenu() {
+      if (contextMenuEl) return contextMenuEl;
+      contextMenuEl = document.createElement('div');
+      contextMenuEl.className = 'ai-connection-context-menu hidden';
+      contextMenuEl.setAttribute('role', 'menu');
+      contextMenuEl.addEventListener('mousedown', (event) => event.stopPropagation());
+      contextMenuEl.addEventListener('contextmenu', (event) => event.preventDefault());
+      document.body.appendChild(contextMenuEl);
+      disposers.push(() => {
+        try { contextMenuEl.remove(); } catch (_) {}
+        contextMenuEl = null;
+      });
+      const handleDocumentClick = (event) => {
+        if (suppressNextContextMenuDismiss) {
+          suppressNextContextMenuDismiss = false;
+          return;
+        }
+        if (contextMenuEl && contextMenuEl.contains(event.target)) {
+          return;
+        }
+        hideContextMenu();
+      };
+      addListener(document, 'click', handleDocumentClick);
+      addListener(window, 'blur', hideContextMenu);
+      addListener(window, 'resize', hideContextMenu);
+      addListener(document, 'scroll', hideContextMenu, true);
+      addListener(document, 'keydown', (event) => {
+        if (event.key === 'Escape') hideContextMenu();
+      });
+      return contextMenuEl;
+    }
+
+    function hideContextMenu() {
+      if (!contextMenuEl) return;
+      contextMenuEl.classList.add('hidden');
+      contextMenuEl.innerHTML = '';
+      suppressNextContextMenuDismiss = false;
+    }
+
+    function openContextMenu(event, connection) {
+      if (!connection) return;
+      if (event) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
+      const menu = ensureContextMenu();
+      hideContextMenu();
+      suppressNextContextMenuDismiss = true;
+      if (state.selectedId !== connection.id) {
+        state.selectedId = connection.id;
+        state.editing = cloneConnection(connection);
+        renderTree();
+        renderInspector();
+      }
+      const releaseHandler = () => {
+        suppressNextContextMenuDismiss = false;
+        window.removeEventListener('mouseup', releaseHandler, true);
+      };
+      window.addEventListener('mouseup', releaseHandler, true);
+      const items = [
+        {
+          id: 'rename',
+          label: 'Rename…',
+          handler: () => promptRename(connection)
+        },
+        {
+          id: 'copy',
+          label: 'Copy',
+          handler: () => duplicateConnection(connection)
+        },
+        {
+          id: 'test',
+          label: 'Test Connection',
+          handler: () => testConnectionFromMenu(connection)
+        },
+        {
+          id: 'delete',
+          label: 'Delete',
+          className: 'danger',
+          handler: () => deleteConnectionFromMenu(connection)
+        }
+      ];
+      menu.innerHTML = items.map((item) => `<button type="button" class="menu-item${item.className ? ` ${item.className}` : ''}" data-action="${item.id}">${escapeHtml(item.label)}</button>`).join('');
+      items.forEach((item) => {
+        const button = menu.querySelector(`[data-action="${item.id}"]`);
+        if (!button) return;
+        button.addEventListener('click', (event) => {
+          event.preventDefault();
+          event.stopPropagation();
+          hideContextMenu();
+          try { item.handler(); } catch (error) { console.error('[RightActivityBar] Context menu action failed:', error); }
+        });
+      });
+      const { clientX, clientY } = event;
+      menu.style.left = `${clientX}px`;
+      menu.style.top = `${clientY}px`;
+      menu.classList.remove('hidden');
+      requestAnimationFrame(() => {
+        const rect = menu.getBoundingClientRect();
+        const margin = 8;
+        const viewportWidth = window.innerWidth || document.documentElement?.clientWidth || rect.right;
+        const viewportHeight = window.innerHeight || document.documentElement?.clientHeight || rect.bottom;
+        const maxLeft = Math.max(margin, viewportWidth - rect.width - margin);
+        const maxTop = Math.max(margin, viewportHeight - rect.height - margin);
+        let left = Math.min(Math.max(rect.left, margin), maxLeft);
+        let top = Math.min(Math.max(rect.top, margin), maxTop);
+        menu.style.left = `${left}px`;
+        menu.style.top = `${top}px`;
+      });
+    }
+
+    function openContextMenuFromTrigger(trigger, connection) {
+      if (!trigger || !connection) return;
+      const rect = trigger.getBoundingClientRect();
+      const syntheticEvent = {
+        preventDefault: () => {},
+        stopPropagation: () => {},
+        clientX: rect.left + rect.width / 2,
+        clientY: rect.bottom + 4,
+        target: trigger
+      };
+      openContextMenu(syntheticEvent, connection);
+    }
+
+    function setFeedback(message, tone = 'info') {
+      state.feedbackMessage = message || '';
+      state.feedbackTone = tone;
+      const feedbackEl = inspectorEl.querySelector('#ai-connection-feedback');
+      if (!feedbackEl) return;
+      feedbackEl.textContent = state.feedbackMessage;
+      const color = tone === 'error'
+        ? 'var(--vscode-errorForeground,#f48771)'
+        : tone === 'success'
+          ? 'var(--vscode-testing-iconPassed,#89d185)'
+          : tone === 'warning'
+            ? 'var(--vscode-testing-iconQueued,#c8c874)'
+            : 'var(--vscode-descriptionForeground,#8a8a8a)';
+      feedbackEl.style.color = color;
+    }
+
+    function formatTimestamp(timestamp) {
+      if (!timestamp) return '—';
+      try {
+        return new Date(timestamp).toLocaleString();
+      } catch (_) {
+        return String(timestamp);
+      }
+    }
+
+    function renderModelRows(connection) {
+      const fallbackModel = getDefaultConnectionModel();
+      const currentModel = typeof connection.primaryModelId === 'string' && connection.primaryModelId.trim().length
+        ? connection.primaryModelId.trim()
+        : fallbackModel;
+      connection.primaryModelId = currentModel;
+      connection.models = [{ id: currentModel }];
+      return `
+        <label class="ai-connection-model-label" for="ai-connection-model-input">Model ID</label>
+        <div class="ai-connection-model-row ai-connection-model-row-input">
+          <input id="ai-connection-model-input" class="vscode-input" type="text" value="${escapeAttr(currentModel)}" placeholder="${escapeAttr(fallbackModel)}" spellcheck="false" autocomplete="off" autocapitalize="off" />
+          <button class="settings-btn settings-btn-secondary" id="ai-connection-model-reset" type="button" title="Reset to default model">Reset</button>
+        </div>
+      `;
+    }
+
+    function renderModelSuggestions(connection, catalog, isLoading = false, cacheEntry = null) {
+      const suggestionsEl = inspectorEl.querySelector('#ai-connection-model-suggestions');
+      if (!suggestionsEl) return;
+
+      const list = Array.isArray(catalog) ? catalog : [];
+      const loadingHtml = isLoading
+        ? '<div class="ai-connection-model-suggestions-empty">Loading models…</div>'
+        : '';
+      const errorHtml = cacheEntry && cacheEntry.lastFetchError
+        ? `<div class="ai-connection-model-suggestions-empty" style="color: var(--vscode-errorForeground,#f48771);">${escapeHtml(cacheEntry.lastFetchError)}</div>`
+        : '';
+
+      if (!list.length) {
+        const fallbackModel = getDefaultConnectionModel();
+        suggestionsEl.innerHTML = `${loadingHtml}${errorHtml}<div class="ai-connection-model-suggestions-empty">Type any supported OpenAI model id (e.g. gpt-4o, gpt-4.1, o4-mini). Leave the field empty to revert to ${escapeHtml(fallbackModel)}.</div>`;
+        return;
+      }
+
+      const rows = list
+        .slice(0, 30)
+        .map((model) => {
+          const id = typeof model?.id === 'string' ? model.id.trim() : '';
+          if (!id) return '';
+          return `<button type="button" class="settings-btn settings-btn-secondary ai-model-suggestion" data-model-id="${escapeAttr(id)}">${escapeHtml(id)}</button>`;
+        })
+        .filter(Boolean)
+        .join('');
+
+      const truncatedHint = list.length > 30
+        ? `<div class="ai-connection-model-suggestions-empty">Showing first 30 of ${list.length} models.</div>`
+        : '';
+
+      suggestionsEl.innerHTML = `${loadingHtml}${errorHtml}<div class="ai-connection-model-suggestions-list">${rows}</div>${truncatedHint}`;
+    }
+
+    function renderInspector() {
+      clearInspectorListeners();
+      if (!state.editing) {
+        inspectorEl.innerHTML = `
+          <div class="ai-connection-empty">
+            <p>Select a connection in the list or use “New Connection” to create one.</p>
+          </div>
+        `;
+        setFeedback('');
+        return;
+      }
+      const connection = state.editing;
+      const secret = loadSecret(connection.id);
+      const meta = isPlainObject(connection.metadata) ? connection.metadata : {};
+      const reqConfig = isPlainObject(meta.requestConfig) ? meta.requestConfig : {};
+      const initialTemp = typeof reqConfig.temperature === 'number' && Number.isFinite(reqConfig.temperature)
+        ? reqConfig.temperature
+        : 0.7;
+      const initialMaxTokens = typeof reqConfig.maxTokens === 'number' && Number.isFinite(reqConfig.maxTokens) && reqConfig.maxTokens > 0
+        ? reqConfig.maxTokens
+        : 4096;
+      enforceFreeTierConnection(connection);
+      const providerOptionsHtml = `<option value="${AI_FREE_PROVIDER_ID}" selected>OpenAI</option>`;
+      inspectorEl.innerHTML = `
+        <section>
+          <div class="ai-connection-field">
+            <label for="ai-connection-name-input">Connection Name</label>
+            <input id="ai-connection-name-input" type="text" class="vscode-input" value="${escapeAttr(connection.name || '')}" placeholder="e.g. Main Production" />
+          </div>
+          <div class="ai-connection-field">
+            <label for="ai-connection-provider-select">Provider</label>
+            <select id="ai-connection-provider-select" class="vscode-select" title="Provider switching is available in Pro version">
+              ${providerOptionsHtml}
+            </select>
+            <div class="ai-connection-field-note">Provider switching is available in Pro version.</div>
+          </div>
+          <div class="ai-connection-field">
+            <label>Status</label>
+            <div class="ai-connection-status-static">${connection.status || 'unknown'}</div>
+          </div>
+          <div class="ai-connection-field">
+            <label for="ai-connection-api-key">API Key</label>
+            <div class="ai-connection-secret">
+              <input id="ai-connection-api-key" type="password" class="vscode-input" value="${escapeAttr(secret)}" placeholder="${connection.providerId === 'github' ? 'ghp_… or github_pat_…' : 'sk-...'}" autocomplete="new-password" />
+              <button class="settings-btn settings-btn-secondary" id="ai-connection-toggle-secret" title="Show/Hide secret">👁️</button>
+              <button class="settings-btn settings-btn-secondary" id="ai-connection-save-secret" title="Save secret">💾</button>
+            </div>
+          </div>
+          <div class="ai-connection-field">
+            <label>
+              <input id="ai-connection-advanced-logging" type="checkbox"${connection.metadata && connection.metadata.advancedLogging ? ' checked' : ''}>
+              <span>Advanced logging for this connection (debug API requests)</span>
+            </label>
+          </div>
+        </section>
+        <section>
+          <div class="section-title">Models</div>
+          <div class="ai-connection-models" id="ai-connection-models-list">
+            ${renderModelRows(connection)}
+          </div>
+          <div class="ai-connection-model-suggestions" id="ai-connection-model-suggestions"></div>
+        </section>
+        <section>
+          <div class="section-title">Request parameters</div>
+          <div class="ai-connection-field">
+            <label for="ai-connection-temp">Temperature</label>
+            <input id="ai-connection-temp" type="number" min="0" max="2" step="0.1" class="vscode-input" value="${escapeAttr(String(initialTemp))}" />
+          </div>
+          <div class="ai-connection-field">
+            <label for="ai-connection-max-tokens">Max tokens</label>
+            <input id="ai-connection-max-tokens" type="number" min="1" class="vscode-input" value="${escapeAttr(String(initialMaxTokens))}" />
+          </div>
+        </section>
+        <section>
+          <div class="ai-connection-field">
+            <label for="ai-connection-comment-input">Comments</label>
+            <textarea id="ai-connection-comment-input" class="vscode-textarea" rows="5" placeholder="Purpose, usage notes, limits…">${escapeHtml(connection.comment || '')}</textarea>
+          </div>
+        </section>
+        <section>
+          <div class="ai-connection-meta">
+            <div><strong>Provider:</strong> ${escapeHtml(getProviderLabel(connection.providerId))}</div>
+            <div><strong>Primary model:</strong> ${escapeHtml(formatPrimaryModel(connection))}</div>
+            <div><strong>Created:</strong> ${formatTimestamp(connection.createdAt)}</div>
+            <div><strong>Updated:</strong> ${formatTimestamp(connection.updatedAt)}</div>
+            <div><strong>Last tested:</strong> ${formatTimestamp(connection.lastTestedAt)}</div>
+          </div>
+          <div class="ai-connection-inspector-footer">
+            <div id="ai-connection-feedback" class="ai-connection-feedback">${escapeHtml(state.feedbackMessage)}</div>
+            <div class="connection-actions">
+              <button class="settings-btn settings-btn-secondary" id="ai-connection-test">Test</button>
+              <button class="settings-btn settings-btn-primary" id="ai-connection-save">Save</button>
+              <button class="settings-btn settings-btn-secondary" id="ai-connection-delete">Delete</button>
+            </div>
+          </div>
+        </section>
+      `;
+      setFeedback(state.feedbackMessage, state.feedbackTone);
+      let applyModelValue = null;
+      const bindModelSuggestionButtons = () => {
+        if (typeof applyModelValue !== 'function') return;
+        Array.from(inspectorEl.querySelectorAll('.ai-model-suggestion')).forEach((button) => {
+          addInspectorListener(button, 'click', (event) => {
+            event.preventDefault();
+            const nextModel = button.dataset.modelId || '';
+            if (!nextModel) return;
+            if (modelInput) {
+              modelInput.value = nextModel;
+            }
+            applyModelValue(nextModel);
+          });
+        });
+      };
+      const updateModelSuggestions = (isLoading = false) => {
+        const normalizedProviderId = normalizeProviderId(connection.providerId);
+        let cachedList = getCachedProviderModels(connection.providerId);
+        if (!Array.isArray(cachedList) || !cachedList.length) {
+          cachedList = loadProviderModels(connection.providerId);
+        }
+        const cacheEntry = providerModelsCache.get(normalizedProviderId) || null;
+        renderModelSuggestions(connection, cachedList, isLoading, cacheEntry);
+        bindModelSuggestionButtons();
+      };
+      updateModelSuggestions(false);
+
+      const nameInput = inspectorEl.querySelector('#ai-connection-name-input');
+      addInspectorListener(nameInput, 'input', () => {
+        connection.name = nameInput.value;
+      });
+
+      const providerSelect = inspectorEl.querySelector('#ai-connection-provider-select');
+      __bindStableSelectActivation(providerSelect, () => {
+        showProFeatureNotice({ featureName: 'Provider switching', subtitle: 'Switching provider is available in Pro version.' });
+      }, { bindingKey: '__providerSelectNoticeBound' });
+      addInspectorListener(providerSelect, 'change', () => {
+        connection.providerId = AI_FREE_PROVIDER_ID;
+        providerSelect.value = AI_FREE_PROVIDER_ID;
+      });
+
+      Array.from(inspectorEl.querySelectorAll('.connection-model-select')).forEach((selectNode) => {
+        __bindStableSelectActivation(selectNode, () => {
+          showProFeatureNotice({ featureName: 'Model selection', subtitle: 'Model customization is available in Pro version.' });
+        }, { bindingKey: '__modelSelectNoticeBound' });
+      });
+
+      // Status now reflects the most recent test result and is not manually editable.
+
+      const commentInput = inspectorEl.querySelector('#ai-connection-comment-input');
+      addInspectorListener(commentInput, 'input', () => {
+        connection.comment = commentInput.value;
+      });
+
+      const modelInput = inspectorEl.querySelector('#ai-connection-model-input');
+      const resetModelBtn = inspectorEl.querySelector('#ai-connection-model-reset');
+      applyModelValue = (rawValue) => {
+        const trimmed = (rawValue || '').trim();
+        const effective = trimmed || AI_FREE_LOCKED_MODEL_ID;
+        connection.primaryModelId = effective;
+        connection.models = [{ id: effective }];
+        if (!trimmed && modelInput && modelInput.value !== effective) {
+          modelInput.value = effective;
+        }
+        renderTree();
+      };
+      bindModelSuggestionButtons();
+      addInspectorListener(modelInput, 'input', () => {
+        applyModelValue(modelInput.value);
+      });
+      addInspectorListener(modelInput, 'blur', () => {
+        applyModelValue(modelInput.value);
+      });
+      addInspectorListener(resetModelBtn, 'click', (event) => {
+        event.preventDefault();
+        if (modelInput) {
+          modelInput.value = getDefaultConnectionModel();
+        }
+        applyModelValue(getDefaultConnectionModel());
+      });
+
+      const toggleSecretBtn = inspectorEl.querySelector('#ai-connection-toggle-secret');
+      const secretInput = inspectorEl.querySelector('#ai-connection-api-key');
+      addInspectorListener(toggleSecretBtn, 'click', (event) => {
+        event.preventDefault();
+        if (!secretInput) return;
+        secretInput.type = secretInput.type === 'password' ? 'text' : 'password';
+      });
+
+      const saveSecretBtn = inspectorEl.querySelector('#ai-connection-save-secret');
+      addInspectorListener(saveSecretBtn, 'click', (event) => {
+        event.preventDefault();
+        const value = secretInput?.value || '';
+        const ok = saveSecret(connection.id, connection.providerId, value);
+        if (ok) {
+          setFeedback('Secret saved locally for this connection.', 'success');
+          providerModelsCache.delete(normalizeProviderId(connection.providerId));
+          updateModelSuggestions(true);
+          scheduleProviderModelFetch(connection.providerId, {
+            apiKey: value,
+            onComplete: () => {
+              if (state.editing && state.editing.id === connection.id) {
+                renderTree();
+                updateModelSuggestions(false);
+              }
+            }
+          });
+        } else {
+          setFeedback('Failed to store secret.', 'error');
+        }
+      });
+
+      const currentSecret = typeof secret === 'string' ? secret.trim() : '';
+      if (currentSecret) {
+        const normalizedProviderId = normalizeProviderId(connection.providerId);
+        const cacheEntry = providerModelsCache.get(normalizedProviderId) || null;
+        const hasRemoteModels = cacheEntry?.source === 'remote' && Array.isArray(cacheEntry?.models) && cacheEntry.models.length > 0;
+        if (!hasRemoteModels) {
+          updateModelSuggestions(true);
+          scheduleProviderModelFetch(connection.providerId, {
+            apiKey: currentSecret,
+            onComplete: () => {
+              if (state.editing && state.editing.id === connection.id) {
+                updateModelSuggestions(false);
+              }
+            }
+          });
+        }
+      }
+
+      const advancedLoggingEl = inspectorEl.querySelector('#ai-connection-advanced-logging');
+      if (advancedLoggingEl) {
+        addInspectorListener(advancedLoggingEl, 'change', () => {
+          if (!isPlainObject(connection.metadata)) {
+            connection.metadata = {};
+          }
+          connection.metadata.advancedLogging = advancedLoggingEl.checked === true;
+        });
+      }
+
+      const tempInput = inspectorEl.querySelector('#ai-connection-temp');
+      if (tempInput) {
+        addInspectorListener(tempInput, 'change', () => {
+          if (!isPlainObject(connection.metadata)) connection.metadata = {};
+          if (!isPlainObject(connection.metadata.requestConfig)) connection.metadata.requestConfig = {};
+          const value = parseFloat(tempInput.value);
+          if (Number.isFinite(value)) {
+            connection.metadata.requestConfig.temperature = value;
+          } else {
+            delete connection.metadata.requestConfig.temperature;
+          }
+        });
+      }
+
+      const maxTokensInput = inspectorEl.querySelector('#ai-connection-max-tokens');
+      if (maxTokensInput) {
+        addInspectorListener(maxTokensInput, 'change', () => {
+          if (!isPlainObject(connection.metadata)) connection.metadata = {};
+          if (!isPlainObject(connection.metadata.requestConfig)) connection.metadata.requestConfig = {};
+          const value = parseInt(maxTokensInput.value, 10);
+          if (Number.isFinite(value) && value > 0) {
+            connection.metadata.requestConfig.maxTokens = value;
+          } else {
+            delete connection.metadata.requestConfig.maxTokens;
+          }
+        });
+      }
+
+      const testBtn = inspectorEl.querySelector('#ai-connection-test');
+      addInspectorListener(testBtn, 'click', async (event) => {
+        event.preventDefault();
+        const key = secretInput?.value?.trim();
+        if (!key) {
+          setFeedback('Add an API key before testing the connection.', 'warning');
+          return;
+        }
+        if (connection.providerId === 'openai' && !key.startsWith('sk-')) {
+          setFeedback('OpenAI keys should start with “sk-”.', 'error');
+          return;
+        }
+        if (connection.providerId === 'github') {
+          const hasKnownPrefix = key.startsWith('ghp_') ||
+            key.startsWith('gho_') ||
+            key.startsWith('ghu_') ||
+            key.startsWith('ghs_') ||
+            key.startsWith('github_pat_');
+          if (!hasKnownPrefix) {
+            setFeedback('GitHub tokens should start with gh* (e.g. “ghp_”, “github_pat_”).', 'error');
+            return;
+          }
+        }
+        if (!providerFactory || typeof providerFactory.createProvider !== 'function') {
+          connection.lastTestedAt = Date.now();
+          connection.status = 'ok';
+          setFeedback('Connection passed basic validation (provider unavailable for live test).', 'warning');
+          renderTree();
+          return;
+        }
+        setFeedback('Running live test request…', 'info');
+        testBtn.disabled = true;
+        try {
+          const normalized = normalizeProviderId(connection.providerId);
+          const provider = providerFactory.createProvider(normalized, {
+            advancedLogging: isPlainObject(connection.metadata) && connection.metadata.advancedLogging === true,
+            connectionId: connection.id
+          });
+          const messages = [
+            { role: 'user', content: 'What is your name and version?' }
+          ];
+          const requestOptions = {};
+          if (connection.primaryModelId) {
+            requestOptions.model = connection.primaryModelId;
+          }
+          const metaCfg = isPlainObject(connection.metadata) && isPlainObject(connection.metadata.requestConfig)
+            ? connection.metadata.requestConfig
+            : null;
+          if (metaCfg) {
+            if (typeof metaCfg.temperature === 'number' && Number.isFinite(metaCfg.temperature)) {
+              requestOptions.temperature = metaCfg.temperature;
+            }
+            if (typeof metaCfg.maxTokens === 'number' && Number.isFinite(metaCfg.maxTokens) && metaCfg.maxTokens > 0) {
+              requestOptions.max_tokens = metaCfg.maxTokens;
+            }
+          }
+          const answer = await provider.sendMessage(messages, requestOptions);
+          const snippet = typeof answer === 'string' ? answer.slice(0, 160) : '';
+          connection.lastTestedAt = Date.now();
+          connection.status = 'ok';
+          setFeedback(snippet ? `Test OK: ${snippet}` : 'Test OK (empty response).', 'success');
+          try {
+            window.LogService?.logInfo?.('AI Connections', 'test-success', {
+              id: connection.id,
+              provider: connection.providerId
+            });
+          } catch (_) {}
+        } catch (error) {
+          connection.lastTestedAt = Date.now();
+          connection.status = 'error';
+          setFeedback(`Test failed: ${error?.message || error}`, 'error');
+          try {
+            window.LogService?.logError?.('AI Connections', 'test-failed', {
+              id: connection.id,
+              provider: connection.providerId,
+              error: error?.message || String(error)
+            });
+          } catch (_) {}
+        } finally {
+          testBtn.disabled = false;
+          try {
+            document.dispatchEvent(new CustomEvent('aiConnections:updated', { detail: { connections: state.connections } }));
+          } catch (_) {}
+          try {
+            if (typeof refreshConnectionsFromSettings === 'function') {
+              refreshConnectionsFromSettings({ aiConnections: state.connections });
+            }
+          } catch (_) {}
+          renderTree();
+          renderInspector();
+        }
+      });
+
+      const saveBtn = inspectorEl.querySelector('#ai-connection-save');
+      addInspectorListener(saveBtn, 'click', (event) => {
+        event.preventDefault();
+        saveCurrentConnection();
+      });
+
+      const deleteBtn = inspectorEl.querySelector('#ai-connection-delete');
+      addInspectorListener(deleteBtn, 'click', (event) => {
+        event.preventDefault();
+        deleteCurrentConnection();
+      });
+
+      if (typeof state.pendingModelFocusIndex === 'number' && state.pendingModelFocusIndex >= 0) {
+        const targetRow = modelsList?.querySelector(`.ai-connection-model-row[data-index="${state.pendingModelFocusIndex}"]`);
+        const targetInput = targetRow?.querySelector('.connection-model-input');
+        if (targetInput) {
+          const length = targetInput.value?.length || 0;
+          try {
+            targetInput.focus();
+            targetInput.setSelectionRange(length, length);
+          } catch (_) {}
+          state.modelFocusIndex = state.pendingModelFocusIndex;
+        }
+        state.pendingModelFocusIndex = null;
+      }
+    }
+
+    function sanitiseModels(connection) {
+      if (!Array.isArray(connection.models)) {
+        return [];
+      }
+      const seen = new Set();
+      const models = [];
+      connection.models.forEach((model) => {
+        const id = typeof model?.id === 'string' ? model.id.trim() : '';
+        if (!id || seen.has(id)) return;
+        seen.add(id);
+        models.push({ id, note: typeof model?.note === 'string' ? model.note : '' });
+      });
+      return models;
+    }
+
+    function saveCurrentConnection() {
+      if (!state.editing) return;
+      const draft = state.editing;
+      const name = (draft.name || '').trim();
+      if (!name) {
+        setFeedback('Connection name is required.', 'error');
+        return;
+      }
+      draft.name = name;
+      draft.providerId = AI_FREE_PROVIDER_ID;
+      const fallbackModel = getDefaultConnectionModel();
+      const models = sanitiseModels(draft);
+      draft.models = models.length ? models : [{ id: (draft.primaryModelId || fallbackModel) }];
+      draft.primaryModelId = (typeof draft.primaryModelId === 'string' && draft.primaryModelId.trim())
+        ? draft.primaryModelId.trim()
+        : (draft.models[0]?.id || fallbackModel);
+      draft.status = draft.status || 'unknown';
+      draft.comment = draft.comment || '';
+      draft.tags = Array.isArray(draft.tags)
+        ? draft.tags.filter((tag) => typeof tag === 'string' && tag.trim()).map((tag) => tag.trim())
+        : [];
+      if (draft.isNew) {
+        delete draft.isNew;
+      }
+
+      const now = Date.now();
+      const payload = {
+        id: draft.id || `conn-${Math.random().toString(36).slice(2, 9)}${Date.now().toString(36)}`,
+        providerId: draft.providerId,
+        name: draft.name,
+        models: draft.models.map((model) => ({ ...model })),
+        primaryModelId: draft.primaryModelId || '',
+        comment: draft.comment,
+        tags: draft.tags,
+        status: draft.status,
+        createdAt: draft.createdAt || now,
+        updatedAt: now,
+        lastTestedAt: draft.lastTestedAt || null,
+        metadata: isPlainObject(draft.metadata) ? { ...draft.metadata } : {}
+      };
+
+      const next = state.connections.slice();
+      const existingIndex = next.findIndex((connection) => connection.id === payload.id);
+      if (existingIndex >= 0) {
+        payload.createdAt = next[existingIndex].createdAt || payload.createdAt;
+        next[existingIndex] = cloneConnection(payload);
+      } else {
+        next.push(cloneConnection(payload));
+      }
+
+      try {
+        state.suppressStore = true;
+        settingsStore.update({ aiConnections: next.map((connection) => {
+          const copy = cloneConnection(connection);
+          copy.metadata = isPlainObject(copy.metadata) ? { ...copy.metadata } : {};
+          return copy;
+        }) });
+        // Update in-memory cache immediately to survive intermediate remounts
+        try { window.__aiConnectionsCache = JSON.parse(JSON.stringify(next)) } catch (_) {}
+        setTimeout(() => { state.suppressStore = false; }, 0);
+      } catch (error) {
+        state.suppressStore = false;
+        console.error('[RightActivityBar] Failed to persist AI connections:', error);
+        setFeedback(`Save failed: ${error?.message || error}`, 'error');
+        return;
+      }
+
+      state.connections = next;
+      syncConnectionCaches();
+      state.selectedId = payload.id;
+      state.editing = cloneConnection(payload);
+      setFeedback('Connection saved.', 'success');
+      populateFilterOptions();
+      renderTree();
+      renderInspector();
+      try {
+        document.dispatchEvent(new CustomEvent('aiConnections:updated', { detail: { connections: state.connections } }));
+      } catch (_) {}
+      try {
+        if (typeof refreshConnectionsFromSettings === 'function') {
+          refreshConnectionsFromSettings({ aiConnections: state.connections });
+        }
+      } catch (_) {}
+    }
+
+    function deleteCurrentConnection() {
+      if (!state.editing) return;
+      const target = state.editing;
+      const persisted = state.connections.some((connection) => connection.id === target.id && !connection.isNew);
+      const proceed = persisted ? window.confirm(`Delete connection "${target.name}"?`) : true;
+      if (!proceed) return;
+
+      let next = state.connections.filter((connection) => connection.id !== target.id);
+      if (persisted) {
+        try {
+          state.suppressStore = true;
+          settingsStore.update({ aiConnections: next.map((connection) => cloneConnection(connection)) });
+          setTimeout(() => { state.suppressStore = false; }, 0);
+        } catch (error) {
+          state.suppressStore = false;
+          console.error('[RightActivityBar] Failed to delete connection:', error);
+          setFeedback(`Delete failed: ${error?.message || error}`, 'error');
+          return;
+        }
+      }
+      removeSecret(target.id);
+      state.connections = next;
+      syncConnectionCaches();
+      state.selectedId = next[0]?.id || null;
+      state.editing = state.selectedId ? cloneConnection(next[0]) : null;
+      setFeedback('Connection removed.', 'info');
+      populateFilterOptions();
+      renderTree();
+      renderInspector();
+    }
+
+    function startCreateConnection(defaultProvider) {
+      const providerId = AI_FREE_PROVIDER_ID;
+      const defaultModel = getDefaultConnectionModel();
+      const now = Date.now();
+      const draft = {
+        id: `conn-${Math.random().toString(36).slice(2, 9)}${now.toString(36)}`,
+        providerId,
+        name: `New ${getProviderLabel(providerId)}`,
+        models: [{ id: defaultModel }],
+        primaryModelId: defaultModel,
+        comment: '',
+        tags: [],
+        status: 'unknown',
+        createdAt: now,
+        updatedAt: now,
+        lastTestedAt: null,
+        metadata: {},
+        isNew: true
+      };
+      state.connections = state.connections.concat([cloneConnection(draft)]);
+      syncConnectionCaches();
+      state.editing = draft;
+      state.selectedId = draft.id;
+      populateFilterOptions();
+      renderTree();
+      renderInspector();
+    }
+
+    addListener(treeEl, 'click', (event) => {
+      const trigger = event.target.closest('.connection-item-menu-trigger');
+      if (trigger) {
+        event.preventDefault();
+        event.stopPropagation();
+        const id = trigger.dataset.connection;
+        if (!id) return;
+        const connection = state.connections.find((entry) => entry.id === id);
+        if (!connection) return;
+        openContextMenuFromTrigger(trigger, connection);
+        return;
+      }
+      const target = event.target.closest('.connection-item');
+      if (!target) return;
+      const id = target.dataset.connection;
+      if (!id) return;
+      const connection = state.connections.find((entry) => entry.id === id);
+      if (!connection) return;
+      state.selectedId = id;
+      state.editing = cloneConnection(connection);
+      renderTree();
+      renderInspector();
+    });
+
+    addListener(treeEl, 'keydown', (event) => {
+      if (event.key !== 'Enter' && event.key !== ' ') return;
+      const trigger = event.target.closest('.connection-item-menu-trigger');
+      if (trigger) {
+        event.preventDefault();
+        event.stopPropagation();
+        const id = trigger.dataset.connection;
+        if (!id) return;
+        const connection = state.connections.find((entry) => entry.id === id);
+        if (!connection) return;
+        openContextMenuFromTrigger(trigger, connection);
+        return;
+      }
+      const target = event.target.closest('.connection-item');
+      if (!target) return;
+      const id = target.dataset.connection;
+      if (!id) return;
+      const connection = state.connections.find((entry) => entry.id === id);
+      if (!connection) return;
+      event.preventDefault();
+      event.stopPropagation();
+      state.selectedId = id;
+      state.editing = cloneConnection(connection);
+      renderTree();
+      renderInspector();
+    });
+
+    addListener(treeEl, 'contextmenu', (event) => {
+      const item = event.target.closest('.connection-item');
+      if (!item) return;
+      event.preventDefault();
+      event.stopPropagation();
+      const id = item.dataset.connection;
+      if (!id) return;
+      const connection = state.connections.find((entry) => entry.id === id);
+      if (!connection) return;
+      openContextMenu(event, connection);
+    });
+
+    if (filterEl) {
+      addListener(filterEl, 'change', () => {
+        state.filter = filterEl.value || 'all';
+        renderTree();
+      });
+      try {
+        const host = filterEl.closest?.('.ai-connection-pane') || document.getElementById('right-pane-content')
+        if (host) __attachCustomPicker(filterEl, host)
+      } catch (_) {}
+    }
+
+    if (searchEl) {
+      addListener(searchEl, 'input', () => {
+        state.search = searchEl.value || '';
+        renderTree();
+      });
+    }
+
+    if (addButton) {
+      addListener(addButton, 'click', (event) => {
+        event.preventDefault();
+        startCreateConnection();
+      });
+    }
+
+    let unsubscribe = null;
+    if (typeof settingsStore.subscribe === 'function') {
+      unsubscribe = settingsStore.subscribe((snapshot) => {
+        if (state.suppressStore) return;
+        loadConnections(snapshot);
+        populateFilterOptions();
+        if (!state.selectedId || !state.connections.some((connection) => connection.id === state.selectedId)) {
+          state.selectedId = state.connections[0]?.id || null;
+        }
+        state.editing = state.selectedId
+          ? cloneConnection(state.connections.find((connection) => connection.id === state.selectedId))
+          : null;
+        renderTree();
+        renderInspector();
+      });
+      if (unsubscribe) {
+        disposers.push(() => {
+          try { unsubscribe(); } catch (_) {}
+        });
+      }
+    }
+
+    loadConnections();
+    initConnectionSplitControls();
+    populateFilterOptions();
+    if (state.connections.length && !state.selectedId) {
+      state.selectedId = state.connections[0].id;
+    }
+    state.editing = state.selectedId
+      ? cloneConnection(state.connections.find((connection) => connection.id === state.selectedId))
+      : null;
+    renderTree();
+    renderInspector();
+
+    return function cleanup() {
+      clearInspectorListeners();
+      disposers.forEach((dispose) => {
+        try { dispose(); } catch (_) {}
+      });
+    };
+  }
+
+  function renderAISettings(defaultTab, options = {}) {
+    const container = document.getElementById('right-pane-content');
+    if (!container) return;
+    disposeCodeGraph();
+
+    if (agentTreeInstance && typeof agentTreeInstance.dispose === 'function') {
+      try { agentTreeInstance.dispose(); } catch (_) {}
+      agentTreeInstance = null;
+    }
+
+    let preservedPromptDraft = '';
+    if (window.__rightPromptEditor && typeof window.__rightPromptEditor.getValue === 'function') {
+      try { preservedPromptDraft = window.__rightPromptEditor.getValue(); } catch (_) {}
+      try { window.__rightPromptEditor.dispose(); } catch (_) {}
+      window.__rightPromptEditor = null;
+    }
+    if (window.__rightPromptEditorDisposer && typeof window.__rightPromptEditorDisposer.dispose === 'function') {
+      try { window.__rightPromptEditorDisposer.dispose(); } catch (_) {}
+    }
+    window.__rightPromptEditorDisposer = null;
+    if (window.__rightPromptTextArea) {
+      try { if (!preservedPromptDraft) preservedPromptDraft = window.__rightPromptTextArea.value || ''; } catch (_) {}
+      if (window.__rightPromptTextAreaListener) {
+        try { window.__rightPromptTextArea.removeEventListener('input', window.__rightPromptTextAreaListener); } catch (_) {}
+      }
+      window.__rightPromptTextArea = null;
+    }
+    window.__rightPromptTextAreaListener = null;
+
+    container.innerHTML = `
+      <div class="right-ai-tabs" style="display:flex; gap:6px; padding:6px 10px; border-bottom:1px solid var(--vscode-sideBar-border,#2e2e2e);">
+        <button class="settings-btn settings-btn-secondary" data-tab="connection" id="ai-tab-connection-btn">Connections</button>
+        <button class="settings-btn settings-btn-secondary" data-tab="agents" id="ai-tab-agents-btn">Agents</button>
+      </div>
+      <div id="ai-tab-connection" class="ai-tab" style="padding:0; height:100%; display:flex; flex-direction:column;">
+        <div class="ai-connection-pane">
+          <div class="ai-connection-toolbar">
+            <select id="ai-connection-provider-filter" class="vscode-select" title="Filter by provider">
+              <option value="all">All Providers</option>
+            </select>
+            <div class="ai-connection-search">
+              <input type="search" id="ai-connection-search" class="vscode-input" placeholder="Search connections…" aria-label="Search connections">
+            </div>
+            <button class="settings-btn settings-btn-primary" id="ai-connection-add">+ New Connection</button>
+          </div>
+          <div class="ai-connection-content">
+            <div class="ai-connection-tree" id="ai-connection-tree" role="tree"></div>
+            <div class="ai-connection-splitter" id="ai-connection-splitter" role="separator" tabindex="0" aria-orientation="vertical" aria-label="Resize connection panels">
+              <div class="ai-connection-splitter-grip" aria-hidden="true"></div>
+            </div>
+            <div class="ai-connection-inspector" id="ai-connection-inspector">
+              <div class="ai-connection-empty">
+                <p>Select a connection on the left or create a new one to get started.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="ai-tab-agents" class="ai-tab ai-agents-view" style="display:none; height:100%;">
+        <div class="ai-agents-split">
+          <div class="ai-agents-tree-pane">
+            <div id="ai-agent-tree-container" class="ai-agents-panel"></div>
+          </div>
+          <div class="ai-agent-detail">
+            <div id="ai-agent-empty-state" class="ai-agent-empty-state">
+              <p>Select an agent from the list to configure settings and prompts.</p>
+            </div>
+            <div id="ai-agent-detail-body" class="ai-agent-detail-body">
+              <div class="ai-agent-detail-tabs">
+                <button class="settings-btn settings-btn-primary" data-agent-pane-btn="config">Configuration</button>
+                <button class="settings-btn settings-btn-secondary" data-agent-pane-btn="prompt">Prompt</button>
+              </div>
+              <div id="ai-agent-config-panel" class="ai-agent-pane" data-agent-pane="config">
+                <div class="right-pane-section ai-agent-config-section">
+                  <div class="section-row ai-agent-config-row">
+                    <div class="settings-label" style="min-width: 180px;">
+                      <span>Agent mode</span>
+                      <div class="ai-connection-status-static">Assistant (single mode)</div>
+                    </div>
+                    <label class="settings-label">
+                      <span>Stored Connection</span>
+                      <select id="ai-agent-connection" class="vscode-select"></select>
+                    </label>
+                  </div>
+                  <div class="section-row ai-agent-description-row">
+                    <label class="settings-label">
+                      <span>Description</span>
+                      <textarea id="ai-agent-description" class="vscode-textarea" rows="3" placeholder="Short summary for the agent"></textarea>
+                    </label>
+                  </div>
+                  <div class="section-row ai-agent-actions-row">
+                    <button class="settings-btn settings-btn-primary" id="ai-agent-config-save">Save Configuration</button>
+                  </div>
+                </div>
+              </div>
+              <div id="ai-agent-prompt-panel" class="ai-agent-pane" data-agent-pane="prompt" style="display:none;">
+                <div class="right-pane-section ai-agent-prompt-section">
+                  <div class="section-header">System Prompt (XML interpreted)</div>
+                <div class="ai-agent-connection-hint" id="ai-agent-connection-hint">Using provider <strong>OpenAI</strong></div>
+                  <div id="ai-right-prompt-editor" class="ai-agent-prompt-editor"></div>
+                  <div class="section-row ai-agent-prompt-footer">
+                    <span id="ai-right-prompt-counter">0 / 10,000 characters</span>
+                    <div class="btn-row">
+                      <button class="settings-btn settings-btn-secondary" id="ai-right-load-default" disabled title="Available in Pro version">📋 Load Default</button>
+                      <button class="settings-btn settings-btn-secondary" id="ai-right-clear" disabled title="Available in Pro version">🗑️ Clear</button>
+                      <button class="settings-btn settings-btn-primary" id="ai-right-save-prompt" disabled title="Available in Pro version">💾 Save</button>
+                      <button class="settings-btn settings-btn-secondary" data-pro-lock="prompt">🔒 Prompt editing — Pro</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+    const allowedTabs = ['connection', 'agents'];
+    const requestedVisible = Array.isArray(options?.visibleTabs) ? options.visibleTabs : null;
+    const normalizedVisible = requestedVisible && requestedVisible.length
+      ? requestedVisible.filter(tab => allowedTabs.includes(tab))
+      : allowedTabs;
+    const visibleTabs = normalizedVisible.length ? normalizedVisible : ['connection'];
+    const visibleSet = new Set(visibleTabs);
+    let initialTab = defaultTab && visibleSet.has(defaultTab) ? defaultTab : null;
+    if (!initialTab) {
+      try {
+        const storedTab = localStorage.getItem('right_pane_ai_tab');
+        if (storedTab && visibleSet.has(storedTab)) initialTab = storedTab;
+      } catch (_) {}
+    }
+    if (!initialTab) initialTab = visibleTabs[0] || 'connection';
+    currentAgentsTab = initialTab;
+    const multiTab = visibleSet.size > 1;
+    const tabStrip = container.querySelector('.right-ai-tabs');
+    if (tabStrip) {
+      tabStrip.style.display = multiTab ? 'flex' : 'none';
+      tabStrip.setAttribute('aria-hidden', multiTab ? 'false' : 'true');
+    }
+    // Tabs
+    const btnConn = document.getElementById('ai-tab-connection-btn');
+    const btnPrompt = document.getElementById('ai-tab-prompt-btn');
+    const tabConn = document.getElementById('ai-tab-connection');
+    const tabPrompt = document.getElementById('ai-tab-prompt');
+    const btnAgents = document.getElementById('ai-tab-agents-btn');
+    const tabAgents = document.getElementById('ai-tab-agents');
+    if (!visibleSet.has('connection') && btnConn) {
+      btnConn.style.display = 'none';
+      btnConn.setAttribute('aria-hidden', 'true');
+    } else {
+      btnConn?.setAttribute('aria-hidden', 'false');
+    }
+    if (btnPrompt) {
+      btnPrompt.style.display = 'none';
+      btnPrompt.setAttribute('aria-hidden', 'true');
+    }
+    if (!visibleSet.has('agents') && btnAgents) {
+      btnAgents.style.display = 'none';
+      btnAgents.setAttribute('aria-hidden', 'true');
+    } else {
+      btnAgents?.setAttribute('aria-hidden', 'false');
+    }
+    if (!visibleSet.has('connection') && tabConn) tabConn.style.display = 'none';
+    if (tabPrompt) tabPrompt.style.display = 'none';
+    if (!visibleSet.has('agents') && tabAgents) tabAgents.style.display = 'none';
+    const agentTreeContainer = document.getElementById('ai-agent-tree-container');
+    const agentTypeGroup = Array.from(container.querySelectorAll('input[name="ai-agent-type"]'));
+    const agentConnectionSelect = document.getElementById('ai-agent-connection');
+    try {
+      const host = document.body || document.getElementById('right-pane-content') || container;
+      if (agentConnectionSelect && host) __attachCustomPicker(agentConnectionSelect, host)
+    } catch (_) {}
+    const agentDescriptionInput = document.getElementById('ai-agent-description');
+    const agentConfigSaveBtn = document.getElementById('ai-agent-config-save');
+    const agentPaneButtons = Array.from(container.querySelectorAll('[data-agent-pane-btn]'));
+    const agentPanes = Array.from(container.querySelectorAll('.ai-agent-pane'));
+    const agentConnectionHint = document.getElementById('ai-agent-connection-hint');
+    const agentDetailBody = document.getElementById('ai-agent-detail-body');
+    const agentEmptyState = document.getElementById('ai-agent-empty-state');
+    const counter = document.getElementById('ai-right-prompt-counter');
+    const loadDefaultBtn = document.getElementById('ai-right-load-default');
+    const clearBtn = document.getElementById('ai-right-clear');
+    const saveBtn = document.getElementById('ai-right-save-prompt');
+    const btnConvertVba = document.getElementById('ai-agent-action-convert-vba');
+    const btnRefactorMacro = document.getElementById('ai-agent-action-refactor');
+    const btnExplainMacro = document.getElementById('ai-agent-action-explain');
+    const btnReviewMacro = document.getElementById('ai-agent-action-review');
+    const jobStatusEl = document.getElementById('ai-agent-job-status');
+    const jobOutputEl = document.getElementById('ai-agent-job-output');
+    const jobHistorySelect = document.getElementById('ai-agent-job-history-select');
+    const jobDetailsCopyBtn = document.getElementById('ai-agent-job-details-copy');
+    try {
+      const host = document.getElementById('right-pane-content') || container;
+      if (jobHistorySelect && host) __attachCustomPicker(jobHistorySelect, host)
+    } catch (_) {}
+    let promptEditor = window.__rightPromptEditor || null;
+    let currentProviderId = null;
+    let currentAgentId = null;
+    let currentConnectionId = null;
+    let suppressAgentFormEvents = false;
+
+    Array.from(container.querySelectorAll('[data-pro-lock]')).forEach((btn) => {
+      btn.addEventListener('click', (event) => {
+        event.preventDefault();
+        const type = btn.getAttribute('data-pro-lock') || 'feature';
+        const labels = {
+          provider: 'Provider switching',
+          model: 'Model selection',
+          prompt: 'System prompt editing'
+        };
+        showProFeatureNotice({
+          featureName: labels[type] || 'This feature',
+          subtitle: 'Available in Pro version'
+        });
+      });
+    });
+
+    function cacheKey(providerId, agentId = currentAgentId) {
+      const provider = (providerId || currentProviderId || 'openai').toLowerCase();
+      const agent = agentId || currentAgentId || '__global__';
+      return `${agent}::${provider}`;
+    }
+
+    if (window.AIPromptService?.migrateLegacyPrompt) {
+      try { window.AIPromptService.migrateLegacyPrompt(); } catch (_) {}
+    }
+
+    const providerCatalog = getProviderCatalog();
+    currentProviderId = resolveInitialProvider(providerCatalog);
+    window.__aiPromptProvider = currentProviderId;
+    try { localStorage.setItem('ai_prompt_provider', currentProviderId); } catch (_) {}
+
+    if (preservedPromptDraft && typeof preservedPromptDraft === 'string') {
+      PROVIDER_TEXT_CACHE.set(cacheKey(currentProviderId), preservedPromptDraft);
+    }
+
+    const escapeHtml = (value) => String(value ?? '').replace(/[&<>"']/g, (char) => ({
+      '&': '&amp;',
+      '<': '&lt;',
+      '>': '&gt;',
+      '"': '&quot;',
+      "'": '&#39;'
+    }[char]));
+
+    let connectionCatalog = [];
+    const cachedProviders = new Map();
+
+    function getConnectionCatalog() {
+      try {
+        const list = window.SettingsStore?.getAiConnections?.();
+        connectionCatalog = Array.isArray(list) ? list : [];
+      } catch (error) {
+        console.warn('[RightActivityBar] Failed to read stored connections:', error);
+        connectionCatalog = [];
+      }
+      return connectionCatalog;
+    }
+
+    function findConnection(connectionId) {
+      if (!connectionId) return null;
+      if (!connectionCatalog.length) getConnectionCatalog();
+      return connectionCatalog.find((entry) => entry && entry.id === connectionId) || null;
+    }
+
+    function populateAgentConnections(activeConnectionId, sourceList) {
+      if (!agentConnectionSelect) return;
+      let list = Array.isArray(sourceList) ? sourceList.slice() : null;
+      if ((!list || !list.length) && window.SettingsStore?.ensureAiConnections) {
+        try {
+          list = window.SettingsStore.ensureAiConnections();
+        } catch (error) {
+          console.warn('[RightActivityBar] ensureAiConnections failed:', error);
+        }
+      }
+      if (!Array.isArray(list)) {
+        list = getConnectionCatalog();
+      }
+      connectionCatalog = Array.isArray(list) ? list.map((entry) => ({ ...entry })) : [];
+      const placeholder = '<option value="">Select connection…</option>';
+      const options = connectionCatalog.map((connection) => {
+        const name = escapeHtml(connection.name || connection.id);
+        return `<option value="${escapeHtml(connection.id)}">${name}</option>`;
+      });
+      agentConnectionSelect.innerHTML = [placeholder, ...options].join('');
+      if (activeConnectionId && connectionCatalog.some((connection) => connection.id === activeConnectionId)) {
+        agentConnectionSelect.value = activeConnectionId;
+      } else {
+        agentConnectionSelect.value = '';
+      }
+      connectionCatalog.forEach((connection) => {
+        cachedProviders.set(connection.id, normalizeProvider(connection.providerId || currentProviderId));
+      });
+    }
+
+    function resolvePromptProviderLabel(providerId) {
+      const normalized = normalizeProvider(providerId);
+      if (Array.isArray(providerCatalog)) {
+        const match = providerCatalog.find((entry) => normalizeProvider(entry.id) === normalized);
+        if (match && match.label) return match.label;
+      }
+      return typeof providerId === 'string' && providerId.length
+        ? providerId.replace(/[-_]+/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase())
+        : 'Unknown provider';
+    }
+
+    function updateConnectionHint(connection, providerId) {
+      if (!agentConnectionHint) return;
+      const providerLabel = escapeHtml(resolvePromptProviderLabel(providerId) || '');
+      if (connection) {
+        const name = escapeHtml(connection.name || connection.id);
+        agentConnectionHint.innerHTML = `Using connection <strong>${name}</strong> (${providerLabel || 'Unknown provider'})`;
+      } else {
+        agentConnectionHint.innerHTML = providerLabel
+          ? `Using provider <strong>${providerLabel}</strong>`
+          : 'No connection selected.';
+      }
+    }
+
+    let connectionsSubscription = null;
+    if (window.__aiConnectionsSubscription && typeof window.__aiConnectionsSubscription === 'function') {
+      try { window.__aiConnectionsSubscription(); } catch (_) {}
+      window.__aiConnectionsSubscription = null;
+    }
+    function refreshConnectionsFromSettings (settings) {
+      if (!agentConnectionSelect) return;
+      const list = Array.isArray(settings?.aiConnections) ? settings.aiConnections : null;
+      if (!Array.isArray(list)) return;
+      const hasChanged = list.length !== connectionCatalog.length
+        || list.some((connection, index) => {
+          const existing = connectionCatalog[index];
+          return !existing || existing.id !== connection.id || existing.updatedAt !== connection.updatedAt;
+        });
+      if (!hasChanged) return;
+      suppressAgentFormEvents = true;
+      populateAgentConnections(currentConnectionId, list);
+      suppressAgentFormEvents = false;
+      const activeConnection = currentConnectionId ? findConnection(currentConnectionId) : null;
+      if (currentConnectionId && !activeConnection) {
+        applyConnectionSelection('', { persist: true, fallbackProviderId: currentProviderId });
+        persistAgentConfiguration();
+      } else {
+        updateConnectionHint(activeConnection, currentProviderId);
+      }
+    }
+
+    if (window.SettingsStore?.subscribe) {
+      try {
+        connectionsSubscription = window.SettingsStore.subscribe((settings) => {
+          if (!settings || typeof settings !== 'object') return;
+          refreshConnectionsFromSettings(settings);
+        });
+        window.__aiConnectionsSubscription = connectionsSubscription;
+      } catch (error) {
+        console.warn('[RightActivityBar] Failed to subscribe to SettingsStore for connections:', error);
+      }
+    }
+
+    function applyConnectionSelection(connectionId, options = {}) {
+      const { persist = false, fallbackProviderId = null } = options;
+      const connection = connectionId ? findConnection(connectionId) : null;
+      if (agentConnectionSelect) {
+        if (connection && agentConnectionSelect.value !== connection.id) {
+          agentConnectionSelect.value = connection.id;
+        } else if (connectionId && !connection) {
+          agentConnectionSelect.value = '';
+        }
+      }
+      const providerCandidate = connection?.providerId
+        || cachedProviders.get(connectionId || '')
+        || fallbackProviderId
+        || currentProviderId
+        || 'openai';
+      const normalizedProvider = normalizeProvider(providerCandidate);
+      const providerChanged = normalizedProvider && normalizedProvider !== currentProviderId;
+      if (providerChanged) {
+        persistCurrentProviderState();
+      }
+      currentConnectionId = connection ? connection.id : null;
+      currentProviderId = normalizedProvider || currentProviderId || 'openai';
+      window.__aiPromptProvider = currentProviderId;
+      try { localStorage.setItem('ai_prompt_provider', currentProviderId); } catch (_) {}
+      updateConnectionHint(connection, currentProviderId);
+      loadProviderPrompt(currentProviderId);
+      updateCount();
+      if (persist && currentAgentId) {
+        try {
+          window.AIAgentStore?.updateAgent?.(currentAgentId, {
+            defaultProviderId: currentProviderId,
+            metadata: {
+              connectionId: currentConnectionId || undefined
+            }
+          });
+          if (currentConnectionId) {
+            cachedProviders.set(currentConnectionId, currentProviderId);
+          }
+        } catch (error) {
+          console.error('[RightActivityBar] Failed to persist connection selection:', error);
+        }
+      }
+    }
+
+    function debounce(fn, wait = 200) {
+      let timer = null;
+      return function debounced(...args) {
+        if (timer) clearTimeout(timer);
+        timer = setTimeout(() => fn.apply(this, args), wait);
+      };
+    }
+
+    const persistAgentConfiguration = debounce(() => {
+      if (!currentAgentId) return;
+      const activeType = agentTypeGroup.find((input) => input.checked)?.value;
+      const type = activeType || 'assistant';
+      const description = agentDescriptionInput?.value ? agentDescriptionInput.value.trim() : '';
+      const connectionId = agentConnectionSelect?.value || '';
+      const connection = connectionId ? findConnection(connectionId) : null;
+      const metadataPatch = {};
+      metadataPatch.connectionId = connectionId || undefined;
+      const patch = {
+        type,
+        description,
+        metadata: metadataPatch,
+        defaultProviderId: currentProviderId
+      };
+      if (connection?.providerId) {
+        patch.defaultProviderId = connection.providerId;
+      }
+      const snapshot = window.AIAgentStore?.getSelectedAgent?.();
+      if (snapshot?.agent) {
+        const existing = snapshot.agent;
+        const existingDescription = existing.description || '';
+        const existingType = existing.type || 'assistant';
+        const existingConnectionId = existing.metadata?.connectionId || null;
+        const existingProvider = normalizeProvider(existing.defaultProviderId || 'openai');
+        const nextProvider = normalizeProvider(patch.defaultProviderId || existingProvider);
+        if (existingType === type
+          && existingDescription === description
+          && existingConnectionId === metadataPatch.connectionId
+          && existingProvider === nextProvider) {
+          return;
+        }
+      }
+	      try {
+	        window.AIAgentStore?.updateAgent?.(currentAgentId, patch);
+	        // Also persist provider-specific model from the selected connection so
+	        // chat uses the same model as AI Sputnik connection settings.
+	        if (connection && connection.providerId && connection.primaryModelId) {
+	          try {
+	            window.AIAgentStore?.updateProviderState?.(currentAgentId, connection.providerId, {
+	              model: connection.primaryModelId
+	            });
+	          } catch (e) {
+	            console.error('[RightActivityBar] Failed to persist agent provider model state:', e);
+	          }
+	        }
+	      } catch (error) {
+	        console.error('[RightActivityBar] Failed to persist agent metadata:', error);
+	      }
+    }, 300);
+
+    const availableAgentPanes = ['config', 'prompt'];
+    function setAgentPane(pane) {
+      const targetPane = availableAgentPanes.includes(pane) ? pane : 'config';
+      agentPanes.forEach((node) => {
+        const isActive = node.dataset.agentPane === targetPane;
+        node.style.display = isActive ? '' : 'none';
+        node.setAttribute('aria-hidden', isActive ? 'false' : 'true');
+      });
+      agentPaneButtons.forEach((button) => {
+        const isActive = button.dataset.agentPaneBtn === targetPane;
+        button.classList.toggle('settings-btn-primary', isActive);
+        button.classList.toggle('settings-btn-secondary', !isActive);
+        button.classList.toggle('is-active', isActive);
+        button.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+      });
+      try { localStorage.setItem('ai_agent_detail_pane', targetPane); } catch (_) {}
+      if (targetPane === 'prompt') {
+        setTimeout(() => {
+          try { promptEditor?.layout?.(); } catch (_) {}
+        }, 0);
+      }
+    }
+
+    let initialAgentPane = 'config';
+    try {
+      const storedPane = localStorage.getItem('ai_agent_detail_pane');
+      if (availableAgentPanes.includes(storedPane)) {
+        initialAgentPane = storedPane;
+      }
+    } catch (_) {}
+    setAgentPane(initialAgentPane);
+    agentPaneButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        setAgentPane(button.dataset.agentPaneBtn || 'config');
+      });
+    });
+
+    function fetchPromptText(providerId, force) {
+      const id = providerId || currentProviderId;
+      const key = cacheKey(id);
+      if (!force && PROVIDER_TEXT_CACHE.has(key)) {
+        const cached = PROVIDER_TEXT_CACHE.get(key);
+        return typeof cached === 'string' ? cached : '';
+      }
+      if (currentAgentId) {
+        try {
+          const snapshot = window.AIAgentStore?.getSelectedAgent?.();
+          const agent = snapshot?.agent;
+          const providerState = agent?.providers?.[id];
+          if (providerState && typeof providerState.prompt === 'string') {
+            PROVIDER_TEXT_CACHE.set(key, providerState.prompt);
+            return providerState.prompt;
+          }
+        } catch (_) {}
+      }
+      let value = '';
+      try { value = window.AIPromptService?.loadPrompt?.(id) || ''; } catch (_) {}
+      PROVIDER_TEXT_CACHE.set(key, value || '');
+      return value || '';
+    }
+
+    function ensureModelForProvider(providerId, text) {
+      if (typeof monaco === 'undefined' || !window.monaco || !monaco.editor) return null;
+      const id = providerId || currentProviderId;
+      const key = cacheKey(id);
+      const existing = PROVIDER_MODEL_CACHE.get(key);
+      if (existing && typeof existing.isDisposed === 'function' && existing.isDisposed()) {
+        PROVIDER_MODEL_CACHE.delete(key);
+      } else if (existing && existing.getValue) {
+        if (typeof text === 'string' && existing.getValue() !== text) {
+          existing.setValue(text);
+        }
+        return existing;
+      }
+      const initial = typeof text === 'string' ? text : fetchPromptText(id, false);
+      const model = monaco.editor.createModel(initial, 'xml');
+      PROVIDER_MODEL_CACHE.set(key, model);
+      return model;
+    }
+
+    function loadProviderPrompt(providerId) {
+      const id = providerId || currentProviderId;
+      if (!id) return;
+      if (promptEditor && typeof monaco !== 'undefined' && monaco.editor) {
+        const model = ensureModelForProvider(id);
+        if (model && promptEditor.getModel() !== model) {
+          promptEditor.setModel(model);
+        }
+      } else if (window.__rightPromptTextArea) {
+        window.__rightPromptTextArea.value = fetchPromptText(id, false);
+      }
+      updateCount();
+    }
+
+    promptEditor = ensurePromptEditor(currentProviderId);
+    attachEditorListeners();
+    loadProviderPrompt(currentProviderId);
+    updateCount();
+
+    function setAgentMetadataFields(agent) {
+      const hasAgent = !!agent;
+      if (agentDetailBody) {
+        agentDetailBody.style.display = hasAgent ? 'flex' : 'none';
+      }
+      if (agentEmptyState) {
+        agentEmptyState.style.display = hasAgent ? 'none' : 'flex';
+      }
+      [loadDefaultBtn, clearBtn, saveBtn].forEach((btn) => {
+        if (btn) btn.disabled = !hasAgent;
+      });
+      if (AI_FREE_RESTRICTIONS_ENABLED) {
+        [loadDefaultBtn, clearBtn, saveBtn].forEach((btn) => {
+          if (btn) btn.disabled = true;
+        });
+      }
+      if (promptEditor && typeof promptEditor.updateOptions === 'function') {
+        promptEditor.updateOptions({ readOnly: AI_FREE_RESTRICTIONS_ENABLED ? true : !hasAgent });
+      } else if (window.__rightPromptTextArea) {
+        window.__rightPromptTextArea.disabled = AI_FREE_RESTRICTIONS_ENABLED ? true : !hasAgent;
+      }
+
+      suppressAgentFormEvents = true;
+      const connectionId = hasAgent ? (agent?.metadata?.connectionId || '') : '';
+      populateAgentConnections(connectionId);
+      agentTypeGroup.forEach((input) => {
+        input.disabled = !hasAgent;
+        if (hasAgent) {
+          const isMatch = (agent?.type || 'assistant') === input.value;
+          input.checked = isMatch;
+          input.setAttribute('aria-checked', isMatch ? 'true' : 'false');
+        } else {
+          const isDefault = input.value === 'assistant';
+          input.checked = isDefault;
+          input.setAttribute('aria-checked', isDefault ? 'true' : 'false');
+        }
+      });
+      if (agentConnectionSelect) {
+        agentConnectionSelect.disabled = !hasAgent;
+        if (connectionId && connectionCatalog.some((connection) => connection.id === connectionId)) {
+          agentConnectionSelect.value = connectionId;
+        } else {
+          agentConnectionSelect.value = '';
+        }
+      }
+      if (agentDescriptionInput) {
+        agentDescriptionInput.disabled = !hasAgent;
+        agentDescriptionInput.value = hasAgent ? (agent?.description || '') : '';
+      }
+      suppressAgentFormEvents = false;
+
+      if (!hasAgent) {
+        currentConnectionId = null;
+        updateConnectionHint(null, currentProviderId);
+        setEditorValue(fetchPromptText(currentProviderId, false));
+        return;
+      }
+
+      const fallbackProviderId = AI_FREE_PROVIDER_ID;
+      const normalizedDefaultProvider = AI_FREE_PROVIDER_ID;
+      applyConnectionSelection(connectionId, { persist: false, fallbackProviderId });
+      const providerMismatch = hasAgent && normalizedDefaultProvider !== normalizeProvider(currentProviderId);
+      if ((connectionId && !currentConnectionId) || providerMismatch) {
+        persistAgentConfiguration();
+      }
+      setTimeout(() => {
+        try { promptEditor?.layout?.(); } catch (_) {}
+      }, 0);
+    }
+
+    function getSelectedAgent() {
+      if (!window.AIAgentStore || typeof window.AIAgentStore.getSelectedAgent !== 'function') return null;
+      try { return window.AIAgentStore.getSelectedAgent(); } catch (_) { return null; }
+    }
+
+    setAgentMetadataFields(null);
+
+    function applyAgentSnapshot(snapshot) {
+      const previousAgentId = currentAgentId;
+      if (!snapshot) {
+        currentAgentId = null;
+        setAgentMetadataFields(null);
+        return;
+      }
+      if (previousAgentId && previousAgentId !== snapshot.agent?.id) {
+        persistCurrentProviderState();
+      }
+      currentAgentId = snapshot.agent?.id || null;
+      const agent = snapshot.agent || null;
+      setAgentMetadataFields(agent);
+      loadProviderPrompt(currentProviderId);
+      updateCount();
+    }
+
+    agentConnectionSelect?.addEventListener('change', (event) => {
+      handleConnectionChange(event.target.value);
+    });
+    agentTypeGroup.forEach((input) => {
+      input.addEventListener('change', () => {
+        if (suppressAgentFormEvents) return;
+        agentTypeGroup.forEach((radio) => {
+          if (radio.checked) {
+            radio.setAttribute('aria-checked', 'true');
+          } else {
+            radio.setAttribute('aria-checked', 'false');
+          }
+        });
+        persistAgentConfiguration();
+      });
+    });
+    agentDescriptionInput?.addEventListener('input', () => {
+      if (suppressAgentFormEvents) return;
+      persistAgentConfiguration();
+    });
+
+    agentConfigSaveBtn?.addEventListener('click', () => {
+      persistAgentConfiguration();
+      if (window.LogService && typeof window.LogService.logInfo === 'function') {
+        try {
+          window.LogService.logInfo('ai-agents', 'agent-config-saved', { agentId: currentAgentId });
+        } catch (_) {}
+      }
+    });
+
+	    if (!window.__aiConnectionsListenerBound) {
+	      const handleConnectionsUpdated = (event) => {
+	        const list = event?.detail?.connections;
+	        suppressAgentFormEvents = true;
+	        populateAgentConnections(currentConnectionId, Array.isArray(list) ? list : undefined);
+	        suppressAgentFormEvents = false;
+	        updateConnectionHint(currentConnectionId ? findConnection(currentConnectionId) : null, currentProviderId);
+	      }
+	      window.__aiConnectionsUpdatedListener = handleConnectionsUpdated
+	      document.addEventListener('aiConnections:updated', handleConnectionsUpdated)
+	      window.__aiConnectionsListenerBound = true;
+	    }
+
+    function handleAgentSelected(event) {
+      const detail = event?.detail;
+      const agent = detail?.agent || detail?.agent?.agent;
+      applyAgentSnapshot(detail || agent ? { agent } : null);
+    }
+
+    const agentStore = window.AIAgentStore;
+    let agentStoreUnsubscribe = window.__aiAgentStoreUnsubscribe || null;
+    if (agentStoreUnsubscribe) {
+      try { agentStoreUnsubscribe(); } catch (_) {}
+      agentStoreUnsubscribe = null;
+    }
+    if (agentStore && typeof agentStore.on === 'function') {
+      try {
+        agentStoreUnsubscribe = agentStore.on(agentStore.events?.AGENT_SELECTED || 'ai-agent:selected', (evt) => {
+          const detail = evt?.detail || evt;
+          applyAgentSnapshot(detail);
+        });
+        const snapshot = agentStore.getSelectedAgent?.();
+        if (snapshot) {
+          applyAgentSnapshot(snapshot);
+        }
+      } catch (error) {
+        console.error('[RightActivityBar] Failed to bind agent store listener:', error);
+      }
+    }
+    window.__aiAgentStoreUnsubscribe = agentStoreUnsubscribe;
+
+	    if (!window.__aiAgentSelectedListenerBound) {
+	      window.__aiAgentSelectedListener = handleAgentSelected
+	      document.addEventListener('ai:agent-selected', handleAgentSelected);
+	      window.__aiAgentSelectedListenerBound = true;
+	    }
+
+    function getCurrentMacroIndex () {
+      try {
+        const state = window.pluginState?.getState?.()
+        if (!state) return -1
+        if (state.currentMode === 1 && typeof state.userMacros?.current === 'number' && state.userMacros.current >= 0) {
+          return state.userMacros.current
+        }
+        return -1
+      } catch (_) {
+        return -1
+      }
+    }
+
+    function getCurrentMacroName () {
+      try {
+        const idx = getCurrentMacroIndex()
+        if (idx < 0) return null
+        const macros = window.pluginState.getMacros?.() || []
+        return macros[idx] && macros[idx].name ? macros[idx].name : null
+      } catch (_) {
+        return null
+      }
+    }
+
+    let macroJobPollTimer = null;
+    let macroJobId = null;
+    const macroJobHistory = [];
+
+    function updateMacroJobView (type, job) {
+      if (!jobStatusEl || !jobOutputEl || !job) return
+      const status = job.status || 'unknown'
+      const phase = job.phase || null
+      const pipeline = job.result && job.result.pipeline ? job.result.pipeline : type
+      const phaseLabel = phase ? `${status}:${phase}` : status
+      jobStatusEl.textContent = `Status: ${phaseLabel} (${pipeline})`
+      let output = ''
+      const result = job.result || {}
+      if (type === 'refactor-macro' && result.refactorSuggestion) {
+        output = result.refactorSuggestion
+      } else if (type === 'explain-macro' && result.explanation) {
+        output = result.explanation
+      } else if (type === 'review-macro-quality') {
+        const parts = []
+        if (result.apiUsage) {
+          const calls = Array.isArray(result.apiUsage.calls) ? result.apiUsage.calls.length : (result.apiUsage.callCount || 0)
+          parts.push(`API usage calls: ${calls}`)
+        }
+        if (result.performance) {
+          const score = typeof result.performance.score === 'number' ? result.performance.score : null
+          if (score !== null) parts.push(`Performance score: ${score}`)
+        }
+        if (result.linter) {
+          const issues = Array.isArray(result.linter.issues) ? result.linter.issues.length : (result.linter.issueCount || 0)
+          parts.push(`Lint issues: ${issues}`)
+        }
+        output = parts.length ? parts.join('\n') : JSON.stringify(result, null, 2)
+      } else if (result && Object.keys(result).length) {
+        output = JSON.stringify(result, null, 2)
+      } else {
+        output = '(no result payload)'
+      }
+      jobOutputEl.textContent = output
+      try {
+        if (jobHistorySelect && job.id) {
+          const existingIndex = macroJobHistory.findIndex((entry) => entry && entry.id === job.id)
+          const snapshot = {
+            id: job.id,
+            type: job.type,
+            pipeline,
+            status: job.status || 'unknown',
+            phase: job.phase || null,
+            updatedAt: job.updatedAt || Date.now()
+          }
+          if (existingIndex >= 0) {
+            macroJobHistory[existingIndex] = snapshot
+          } else {
+            macroJobHistory.unshift(snapshot)
+          }
+          while (macroJobHistory.length > 8) macroJobHistory.pop()
+          const selectedId = jobHistorySelect.value
+          jobHistorySelect.innerHTML = ''
+          if (!macroJobHistory.length) {
+            const opt = document.createElement('option')
+            opt.value = ''
+            opt.textContent = 'No jobs yet'
+            jobHistorySelect.appendChild(opt)
+          } else {
+            macroJobHistory.forEach((entry) => {
+              const opt = document.createElement('option')
+              opt.value = entry.id
+              const ts = new Date(entry.updatedAt || Date.now()).toLocaleTimeString()
+              opt.textContent = `${entry.type || 'job'} – ${entry.status}${entry.phase ? ':' + entry.phase : ''} @ ${ts}`
+              jobHistorySelect.appendChild(opt)
+            })
+          }
+          const hasMatching = macroJobHistory.some((entry) => entry.id === selectedId)
+          jobHistorySelect.value = hasMatching ? selectedId : (job.id || '')
+        }
+      } catch (_) {}
+    }
+
+    function pollMacroJob (type) {
+      if (!macroJobId || !window.AgentJobs || typeof window.AgentJobs.getJob !== 'function') return
+      try {
+        const job = window.AgentJobs.getJob(macroJobId)
+        if (job) {
+          updateMacroJobView(type, job)
+          if (job.status === 'completed' || job.status === 'failed') {
+            if (job.status === 'failed') {
+              const msg = job.error || `Agent job "${type}" failed.`
+              try {
+                window.alert(`AI job failed: ${msg}`)
+              } catch (_) {}
+            }
+            macroJobPollTimer = null
+            return
+          }
+        }
+      } catch (_) {}
+      macroJobPollTimer = setTimeout(() => pollMacroJob(type), 500)
+    }
+
+    function runMacroJob (type) {
+      if (!window.AgentJobs || typeof window.AgentJobs.startJob !== 'function') {
+        window.debug?.warn('RightActivityBar', 'AgentJobs not available for macro action', { type })
+        try {
+          window.alert('AI agent jobs are not available. Please reload the plugin or enable developer mode.')
+        } catch (_) {}
+        return
+      }
+      const macroName = getCurrentMacroName()
+      if (!macroName) {
+        window.alert('Select a macro in the tree before running this action.')
+        return
+      }
+      try {
+        const jobId = window.AgentJobs.startJob(type, { macroName })
+        window.debug?.info('RightActivityBar', 'Agent job started', { type, jobId, macroName })
+        macroJobId = jobId
+        if (jobStatusEl) {
+          jobStatusEl.textContent = `Status: running (${type})`
+        }
+        if (jobOutputEl) {
+          jobOutputEl.textContent = ''
+        }
+        if (macroJobPollTimer) {
+          clearTimeout(macroJobPollTimer)
+          macroJobPollTimer = null
+        }
+        pollMacroJob(type)
+      } catch (error) {
+        window.debug?.error('RightActivityBar', 'Failed to start agent job', { type, error: error?.message || String(error) })
+        try {
+          window.alert(`Failed to start AI job: ${error?.message || String(error)}`)
+        } catch (_) {}
+      }
+    }
+
+    function runAgenticVbaConversionForCurrentMacro () {
+      try {
+        const state = window.pluginState?.getState?.()
+        if (!state) {
+          window.alert('Plugin state is not available. Please reload the plugin.')
+          return
+        }
+        try {
+          window.debug?.info?.('RightActivityBar', 'runAgenticVbaConversionForCurrentMacro invoked', {
+            currentMode: state.currentMode,
+            importedCurrent: state.importedMacros?.current,
+            userMacroCurrent: state.userMacros?.current
+          })
+          console.log('[RightActivityBar] runAgenticVbaConversionForCurrentMacro', {
+            currentMode: state.currentMode,
+            importedCurrent: state.importedMacros?.current,
+            userMacroCurrent: state.userMacros?.current
+          })
+        } catch (_) {}
+
+        // External VBA modules (currentMode === 2) use the existing translateVBAToJS pipeline
+        if (state.currentMode === 2) {
+          const currentExternalIndex = typeof state.importedMacros?.current === 'number'
+            ? state.importedMacros.current
+            : -1
+          if (currentExternalIndex < 0) {
+            window.alert('Select a VBA module in the External VBA tree before converting.')
+            return
+          }
+          if (typeof window.translateVBAToJS === 'function') {
+            window.translateVBAToJS(currentExternalIndex)
+            return
+          }
+          window.alert('VBA translation function is not available for external modules.')
+          return
+        }
+
+        // Document macros (currentMode === 1) use MacroManager.convertVBAMacro (agentic path when enabled)
+        if (!window.macroManager) {
+          window.alert('VBA conversion is not available in this build.')
+          return
+        }
+        const idx = getCurrentMacroIndex()
+        if (idx < 0) {
+          window.alert('Select a macro in the Macros tree before converting.')
+          return
+        }
+        const fn = window.macroManager.convertVBAMacro
+        if (typeof fn !== 'function') {
+          window.alert('VBA conversion method is not available.')
+          return
+        }
+        fn.call(window.macroManager, idx)
+      } catch (error) {
+        window.debug?.error('RightActivityBar', 'Failed to start agentic VBA conversion', { error: error?.message || String(error) })
+        window.alert('Failed to start VBA conversion. Check the console for details.')
+      }
+    }
+
+    if (btnConvertVba) {
+      btnConvertVba.addEventListener('click', () => {
+        try {
+          window.debug?.info?.('RightActivityBar', 'Convert VBA to JS macro button clicked', { tab: currentAgentsTab });
+        } catch (_) {}
+        runAgenticVbaConversionForCurrentMacro();
+      });
+    }
+    btnRefactorMacro?.addEventListener('click', () => runMacroJob('refactor-macro'));
+    btnExplainMacro?.addEventListener('click', () => runMacroJob('explain-macro'));
+    btnReviewMacro?.addEventListener('click', () => runMacroJob('review-macro-quality'));
+    const btnSearchMacros = document.getElementById('ai-agent-action-search');
+    if (btnSearchMacros) {
+      btnSearchMacros.addEventListener('click', () => {
+        try {
+          const query = window.prompt('Search macros (text query for agentic search):', '');
+          if (!query || !query.trim()) {
+            return;
+          }
+          if (!window.AgentJobs || typeof window.AgentJobs.startJob !== 'function') {
+            window.alert('Agent job manager is not available in this build.');
+            return;
+          }
+          window.debug?.info?.('RightActivityBar', 'macro-search agent job requested', { queryLength: query.length });
+          const jobId = window.AgentJobs.startJob('macro-search', {
+            query: query.trim(),
+            options: { limit: 50 }
+          });
+          macroJobId = jobId;
+          pollMacroJob('macro-search');
+        } catch (error) {
+          window.debug?.error('RightActivityBar', 'Failed to start macro-search agent job', { error: error?.message || String(error) });
+        }
+      });
+    }
+
+    // Fallback: if the expected action buttons are present visually but do not
+    // have the canonical IDs (or the IDs were changed by a different build),
+    // use event delegation on the Agentic Macros section and infer actions
+    // from the button labels. This keeps the dev UX working even when markup
+    // diverges slightly.
+    const hasDirectAgentButtons = !!(btnConvertVba || btnRefactorMacro || btnExplainMacro || btnReviewMacro || btnSearchMacros);
+    if (!hasDirectAgentButtons && container) {
+      const actionsSection = container.querySelector('.ai-agent-actions-section');
+      if (actionsSection) {
+        actionsSection.addEventListener('click', (event) => {
+          const target = event.target;
+          if (!target || target.tagName !== 'BUTTON') return;
+          const label = (target.textContent || '').toLowerCase();
+          if (label.includes('convert') && label.includes('vba')) {
+            runAgenticVbaConversionForCurrentMacro();
+            return;
+          }
+          if (label.includes('refactor')) {
+            runMacroJob('refactor-macro');
+            return;
+          }
+          if (label.includes('explain')) {
+            runMacroJob('explain-macro');
+            return;
+          }
+          if (label.includes('review') || label.includes('quality')) {
+            runMacroJob('review-macro-quality');
+            return;
+          }
+          if (label.includes('search')) {
+            try {
+              const query = window.prompt('Search macros (text query for agentic search):', '');
+              if (!query || !query.trim()) {
+                return;
+              }
+              if (!window.AgentJobs || typeof window.AgentJobs.startJob !== 'function') {
+                window.alert('Agent job manager is not available in this build.');
+                return;
+              }
+              window.debug?.info?.('RightActivityBar', 'macro-search agent job requested (delegated)', { queryLength: query.length });
+              const jobId = window.AgentJobs.startJob('macro-search', {
+                query: query.trim(),
+                options: { limit: 50 }
+              });
+              macroJobId = jobId;
+              pollMacroJob('macro-search');
+            } catch (error) {
+              window.debug?.error('RightActivityBar', 'Failed to start macro-search agent job (delegated)', { error: error?.message || String(error) });
+            }
+          }
+        });
+      }
+    }
+
+    jobHistorySelect?.addEventListener('change', () => {
+      const id = jobHistorySelect.value
+      if (!id) return
+      try {
+        const job = window.AgentJobs && typeof window.AgentJobs.getJob === 'function'
+          ? window.AgentJobs.getJob(id)
+          : null
+        if (!job) return
+        // Reuse current type to render; when selected from history, type may not match current buttons but pipeline will.
+        const inferredType = job.type || 'job'
+        macroJobId = job.id
+        updateMacroJobView(inferredType, job)
+      } catch (_) {}
+    })
+
+    jobDetailsCopyBtn?.addEventListener('click', () => {
+      if (!macroJobId || !window.AgentJobs || typeof window.AgentJobs.getJob !== 'function') {
+        window.alert('No agent job selected to copy.')
+        return
+      }
+      try {
+        const job = window.AgentJobs.getJob(macroJobId)
+        if (!job) {
+          window.alert('Selected job is no longer available.')
+          return
+        }
+        const payload = {
+          id: job.id,
+          type: job.type,
+          status: job.status,
+          phase: job.phase,
+          pipeline: job.result && job.result.pipeline,
+          error: job.error || null,
+          result: job.result || null,
+          logs: job.logs || []
+        }
+        const text = JSON.stringify(payload, null, 2)
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(
+            () => { window.alert('Agent job details copied to clipboard.') },
+            () => { window.alert('Failed to copy job details. You can copy from the console instead.') }
+          )
+        } else {
+          // Fallback: show in prompt so user can copy manually
+          // eslint-disable-next-line no-alert
+          window.alert(text)
+        }
+      } catch (error) {
+        window.debug?.error('RightActivityBar', 'Failed to copy job details', { error: error?.message || String(error) })
+        window.alert('Failed to copy job details. Check the console for details.')
+      }
+    })
+
+    loadDefaultBtn?.addEventListener('click', () => {
+      let value = '';
+      try { value = window.AIPromptService?.getDefaultPrompt?.(currentProviderId) || ''; } catch (_) {}
+      if (!value) {
+        try { value = window.AIInstructionManager?.getRawTemplate?.('vba-conversion') || ''; } catch (_) {}
+      }
+      setEditorValue(value);
+      updateCount();
+      persistCurrentProviderState();
+    });
+
+    clearBtn?.addEventListener('click', () => {
+      setEditorValue('');
+      updateCount();
+      try {
+        if (window.AIPromptService?.resetPrompt) {
+          window.AIPromptService.resetPrompt(currentProviderId);
+        } else {
+          legacyReset();
+        }
+      } catch (error) {
+        legacyReset();
+        window.LogService?.logWarning?.('AI Prompt', 'Prompt reset failed', { providerId: currentProviderId, message: error?.message });
+      }
+      persistCurrentProviderState();
+    });
+
+    saveBtn?.addEventListener('click', () => {
+      const text = (getEditorValue() || '').trim();
+      try {
+        if (window.AIPromptService?.savePrompt) {
+          window.AIPromptService.savePrompt(currentProviderId, text);
+        } else {
+          legacySave(text);
+        }
+        window.LogService?.logInfo?.('AI Prompt', 'Prompt saved', { providerId: currentProviderId, length: text.length });
+      } catch (error) {
+        legacySave(text);
+        window.LogService?.logWarning?.('AI Prompt', 'Prompt save failed', { providerId: currentProviderId, message: error?.message });
+      }
+      updateCount();
+      persistCurrentProviderState();
+    });
+
+    function legacySave(text) {
+      let ok = false;
+      try { window.settingsManager?.setTranslationPrompt?.(text); ok = true; } catch (_) {}
+      if (!ok && SETTINGS_STORE?.update) {
+        try { SETTINGS_STORE.update({ translationPrompt: text || undefined }); ok = true; } catch (_) {}
+      }
+      if (!ok) {
+        try {
+          const raw = localStorage.getItem('macros_plugin_settings');
+          const obj = raw ? JSON.parse(raw) : {};
+          if (text) obj.translationPrompt = text;
+          else delete obj.translationPrompt;
+          localStorage.setItem('macros_plugin_settings', JSON.stringify(obj));
+        } catch (_) {}
+      }
+    }
+
+    function legacyReset() {
+      let cleared = false;
+      try { window.settingsManager?.resetTranslationPrompt?.(); cleared = true; } catch (_) {}
+      if (!cleared && SETTINGS_STORE?.update) {
+        try { SETTINGS_STORE.update({ translationPrompt: undefined }); cleared = true; } catch (_) {}
+      }
+      if (!cleared) {
+        try {
+          const raw = localStorage.getItem('macros_plugin_settings');
+          const obj = raw ? JSON.parse(raw) : {};
+          delete obj.translationPrompt;
+          localStorage.setItem('macros_plugin_settings', JSON.stringify(obj));
+        } catch (_) {}
+      }
+    }
+
+    function getProviderCatalog() {
+      if (AI_FREE_RESTRICTIONS_ENABLED) {
+        return [{ id: AI_FREE_PROVIDER_ID, label: 'OpenAI', enabled: true }];
+      }
+      if (window.AIPromptService?.getProviderCatalog) {
+        try {
+          const catalog = window.AIPromptService.getProviderCatalog();
+          if (Array.isArray(catalog) && catalog.length) {
+            return catalog;
+          }
+        } catch (_) {}
+      }
+      return [
+        { id: 'openai', label: 'OpenAI', enabled: true },
+        { id: 'github', label: 'GitHub Models', enabled: true },
+        { id: 'gemini', label: 'Google Gemini', enabled: true }
+      ];
+    }
+
+    function resolveInitialProvider(catalog) {
+      const available = Array.isArray(catalog) && catalog.length ? catalog.map((item) => item.id) : ['openai'];
+      const candidates = [];
+      if (window.__aiPromptProvider) candidates.push(window.__aiPromptProvider);
+      try {
+        const stored = localStorage.getItem('ai_prompt_provider');
+        if (stored) candidates.push(stored);
+      } catch (_) {}
+      if (window.AIPromptService?.getDefaultProviderId) {
+        try { candidates.push(window.AIPromptService.getDefaultProviderId()); } catch (_) {}
+      }
+      candidates.push('openai');
+      for (let i = 0; i < candidates.length; i += 1) {
+        const normalized = normalizeProvider(candidates[i]);
+        if (available.includes(normalized)) return normalized;
+      }
+      return available[0];
+    }
+
+    function handleConnectionChange(connectionId) {
+      if (suppressAgentFormEvents) return;
+      getConnectionCatalog();
+      applyConnectionSelection(connectionId || '', { persist: true });
+      persistAgentConfiguration();
+      try {
+        document.dispatchEvent(new CustomEvent('rightPane:providerChanged', { detail: { providerId: currentProviderId, connectionId: currentConnectionId } }));
+      } catch (_) {}
+      if (window.LogService && typeof window.LogService.logInfo === 'function') {
+        try {
+          window.LogService.logInfo('ai-agents', 'connection-switched', {
+            connectionId: currentConnectionId,
+            providerId: currentProviderId,
+            agentId: currentAgentId
+          });
+        } catch (_) {}
+      }
+    }
+
+    function normalizeProvider(value) {
+      if (window.AIPromptService?.normalizeProviderId) {
+        try { return window.AIPromptService.normalizeProviderId(value); } catch (_) {}
+      }
+      return (typeof value === 'string' && value.trim()) ? value.trim().toLowerCase() : 'openai';
+    }
+
+    function ensurePromptEditor(providerId) {
+      const node = document.getElementById('ai-right-prompt-editor');
+      if (!node) return null;
+      if (promptEditor && promptEditor.getDomNode()) {
+        const domNode = promptEditor.getDomNode();
+        if (domNode && domNode.parentNode !== node) {
+          try { node.appendChild(domNode); } catch (_) {}
+        }
+        ensureXmlLanguage();
+        setTimeout(() => {
+          try { promptEditor.layout(); } catch (_) {}
+        }, 0);
+        return promptEditor;
+      }
+      if (typeof monaco === 'undefined' || !window.monaco || !monaco.editor) {
+        const ta = document.createElement('textarea');
+        ta.style.cssText = 'width:100%;height:100%;background:var(--vscode-input-background,#1e1e1e);color:var(--vscode-input-foreground,#d4d4d4);border:0;';
+        node.appendChild(ta);
+        window.__rightPromptTextArea = ta;
+        window.__rightPromptEditor = null;
+        promptEditor = null;
+        return null;
+      }
+      promptEditor = monaco.editor.create(node, {
+        value: '',
+        language: 'plaintext',
+        minimap: { enabled: false },
+        wordWrap: 'on',
+        automaticLayout: true,
+        theme: (document.body.classList.contains('theme-type-dark') ? 'vs-dark' : 'vs')
+      });
+      window.__rightPromptEditor = promptEditor;
+      ensureXmlLanguage();
+      return promptEditor;
+    }
+
+    function ensureXmlLanguage() {
+      if (!promptEditor) return;
+      try {
+        tryLoadXML().then(() => {
+          try { monaco.editor.setModelLanguage(promptEditor.getModel(), 'xml'); } catch (_) {}
+        });
+      } catch (_) {}
+    }
+
+    function tryLoadXML() {
+      return new Promise((resolve) => {
+        try {
+          if (typeof monaco !== 'undefined' && window.monaco && monaco.languages) {
+            const exists = monaco.languages.getLanguages?.().some((l) => l.id === 'xml');
+            if (exists) return resolve(true);
+            try {
+              monaco.languages.register({ id: 'xml' });
+              monaco.languages.setMonarchTokensProvider('xml', {
+                tokenizer: {
+                  root: [
+                    [/\<\!--[\s\S]*?--\>/, 'comment'],
+                    [/\<\!\[CDATA\[[\s\S]*?\]\]\>/, 'string'],
+                    [/\<\/?[A-Za-z_][\w\-\.]*\b/, 'tag'],
+                    [/\s+[A-Za-z_:][-A-Za-z0-9_:.]*\s*=\s*"[^"]*"/, 'attribute'],
+                    [/\s+[A-Za-z_:][-A-Za-z0-9_:.]*\s*=\s*'[^']*'/, 'attribute'],
+                    [/\s+[A-Za-z_:][-A-Za-z0-9_:.]*/, 'attribute.name'],
+                    [/\/?\>/, 'tag']
+                  ]
+                }
+              });
+              monaco.languages.setLanguageConfiguration('xml', {
+                brackets: [['<', '>']],
+                autoClosingPairs: [{ open: '<', close: '>' }, { open: '"', close: '"' }, { open: "'", close: "'" }]
+              });
+              return resolve(true);
+            } catch (_) {}
+          }
+        } catch (_) {}
+        resolve(false);
+      });
+    }
+
+    function attachEditorListeners() {
+      if (window.__rightPromptEditorDisposer && typeof window.__rightPromptEditorDisposer.dispose === 'function') {
+        try { window.__rightPromptEditorDisposer.dispose(); } catch (_) {}
+      }
+      if (promptEditor && typeof promptEditor.onDidChangeModelContent === 'function') {
+        window.__rightPromptEditorDisposer = promptEditor.onDidChangeModelContent(() => updateCount());
+      } else {
+        window.__rightPromptEditorDisposer = null;
+      }
+      if (window.__rightPromptTextArea && window.__rightPromptTextAreaListener) {
+        window.__rightPromptTextArea.removeEventListener('input', window.__rightPromptTextAreaListener);
+        window.__rightPromptTextAreaListener = null;
+      }
+      if (!promptEditor && window.__rightPromptTextArea) {
+        const handler = () => updateCount();
+        window.__rightPromptTextArea.addEventListener('input', handler);
+        window.__rightPromptTextAreaListener = handler;
+      }
+    }
+
+    function setEditorValue(text) {
+      const value = typeof text === 'string' ? text : '';
+      if (promptEditor && typeof monaco !== 'undefined' && monaco.editor) {
+        const model = ensureModelForProvider(currentProviderId, value);
+        if (model && promptEditor.getModel() !== model) {
+          promptEditor.setModel(model);
+        }
+        if (model && model.getValue && model.getValue() !== value) {
+          model.setValue(value);
+        }
+      } else if (window.__rightPromptTextArea) {
+        window.__rightPromptTextArea.value = value;
+      }
+      PROVIDER_TEXT_CACHE.set(cacheKey(currentProviderId), value);
+      updateCount();
+    }
+
+    function getEditorValue() {
+      if (promptEditor && promptEditor.getValue) return promptEditor.getValue();
+      if (window.__rightPromptTextArea) return window.__rightPromptTextArea.value;
+      return '';
+    }
+
+    function updateCount() {
+      if (!counter) return;
+      const value = getEditorValue() || '';
+      counter.textContent = `${value.length} / 10,000 characters`;
+      if (currentProviderId) {
+      PROVIDER_TEXT_CACHE.set(cacheKey(currentProviderId), value);
+      }
+    }
+
+    function persistCurrentProviderState() {
+      if (!currentProviderId) return;
+      const value = getEditorValue() || '';
+      PROVIDER_TEXT_CACHE.set(cacheKey(currentProviderId), value);
+      if (currentAgentId) {
+        try {
+          window.AIAgentStore?.updateProviderState?.(currentAgentId, currentProviderId, {
+            prompt: value
+          });
+        } catch (error) {
+          console.error('[RightActivityBar] Failed to persist provider state:', error);
+        }
+      }
+      if (promptEditor && promptEditor.getModel && promptEditor.getModel()) {
+        const key = cacheKey(currentProviderId);
+        const model = promptEditor.getModel();
+        if (model && typeof model.isDisposed === 'function' && model.isDisposed()) {
+          PROVIDER_MODEL_CACHE.delete(key);
+        } else if (model) {
+          PROVIDER_MODEL_CACHE.set(key, model);
+        }
+      }
+    }
+
+    async function ensureAgentTreeMounted() {
+      if (!agentTreeContainer) return;
+      if (agentTreeInstance) return;
+      const api = window.AgentTreeView;
+      if (!api || typeof api.createAgentTreeView !== 'function') {
+        agentTreeContainer.innerHTML = '<div class="tree-empty-message">AI Agents view unavailable.</div>';
+        return;
+      }
+      agentTreeContainer.innerHTML = '<div class="tree-empty-message">Loading agents…</div>';
+      try {
+        if (typeof api.waitForStore === 'function') {
+          await api.waitForStore();
+        }
+        agentTreeInstance = api.createAgentTreeView(agentTreeContainer);
+      } catch (error) {
+        console.error('[RightActivityBar] Failed to initialize agent tree:', error);
+        agentTreeContainer.innerHTML = '<div class="tree-empty-message">Failed to load agents.</div>';
+      }
+    }
+
+    function activate(tab) {
+      if (!visibleSet.has(tab)) {
+        const fallback = visibleTabs[0] || 'connection';
+        if (!visibleSet.has(fallback) || tab === fallback) return;
+        return activate(fallback);
+      }
+      if (tab === 'connection') {
+        persistCurrentProviderState();
+        if (tabConn) tabConn.style.display = '';
+        if (tabPrompt) tabPrompt.style.display = 'none';
+        if (tabAgents) tabAgents.style.display = 'none';
+        if (agentTreeInstance && typeof agentTreeInstance.dispose === 'function') {
+          try { agentTreeInstance.dispose(); } catch (_) {}
+          agentTreeInstance = null;
+        }
+      } else if (tab === 'agents') {
+        persistCurrentProviderState();
+        if (tabConn) tabConn.style.display = 'none';
+        if (tabPrompt) tabPrompt.style.display = 'none';
+        if (tabAgents) tabAgents.style.display = '';
+        const mountPromise = ensureAgentTreeMounted();
+        if (mountPromise && typeof mountPromise.catch === 'function') {
+          mountPromise.catch(() => {});
+        }
+        promptEditor = ensurePromptEditor(currentProviderId);
+        attachEditorListeners();
+        loadProviderPrompt(currentProviderId);
+        const snapshot = agentStore?.getSelectedAgent?.();
+        if (snapshot) {
+          applyAgentSnapshot(snapshot);
+        } else {
+          setAgentMetadataFields(null);
+        }
+        setTimeout(() => { try { promptEditor?.layout?.(); } catch (_) {} }, 0);
+      } else {
+        return;
+      }
+      currentAgentsTab = tab;
+      btnConn?.classList.toggle('settings-btn-primary', tab === 'connection');
+      btnAgents?.classList.toggle('settings-btn-primary', tab === 'agents');
+      updateAgentsButtonHighlight();
+      try { localStorage.setItem('right_pane_ai_tab', tab); } catch (_) {}
+    }
+
+    activate(initialTab);
+    if (visibleSet.has('connection')) {
+      btnConn?.addEventListener('click', () => activate('connection'));
+    }
+    if (visibleSet.has('agents')) {
+      btnAgents?.addEventListener('click', () => activate('agents'));
+    }
+
+    // Bind + populate (Connection)
+    try {
+      if (typeof window.__aiConnectionManagerCleanup === 'function') {
+        try { window.__aiConnectionManagerCleanup(); } catch (_) {}
+        window.__aiConnectionManagerCleanup = null;
+      }
+      const cleanup = mountConnectionManager({
+        elements: {
+          treeEl: document.getElementById('ai-connection-tree'),
+          inspectorEl: document.getElementById('ai-connection-inspector'),
+          filterEl: document.getElementById('ai-connection-provider-filter'),
+          searchEl: document.getElementById('ai-connection-search'),
+          addButton: document.getElementById('ai-connection-add'),
+          contentEl: document.querySelector('.ai-connection-content'),
+          splitterEl: document.getElementById('ai-connection-splitter')
+        },
+        settingsStore: SETTINGS_STORE
+      });
+      window.__aiConnectionManagerCleanup = cleanup;
+    } catch (e) {
+      console.warn('[AI Pane] Failed to initialize connection manager:', e);
+    }
+  }
+
+async function renderChat() {
+    const container = document.getElementById('right-pane-content');
+    if (!container) return;
+    disposeCodeGraph();
+
+    const providerFactory = window.AIProviderFactory || null;
+    const CHAT_IDB_DB_NAME = 'r7c_ai_chat';
+    const CHAT_IDB_STORE_NAME = 'chat_state';
+    const CHAT_IDB_STATE_KEY = 'main';
+    const CHAT_IDB_VERSION = 1;
+
+    const isObject = (value) => value !== null && typeof value === 'object' && !Array.isArray(value);
+
+    function createEmptySelectionState() {
+      return {
+        connectionId: null,
+        sessionByConnection: {}
+      };
+    }
+
+    function createSessionId() {
+      return `chat-${Math.random().toString(36).slice(2, 8)}${Date.now().toString(36)}`;
+    }
+
+    function sanitizeMessages(messages) {
+      if (!Array.isArray(messages)) return [];
+      return messages.map((entry) => {
+        if (!isObject(entry)) return null;
+        const role = typeof entry.role === 'string' ? entry.role : 'assistant';
+        if (!['user', 'assistant', 'system'].includes(role)) return null;
+        const content = typeof entry.content === 'string' ? entry.content : String(entry.content || '');
+        return { role, content };
+      }).filter(Boolean);
+    }
+
+    function sanitizeConversationStore(raw) {
+      if (!isObject(raw)) return {};
+      const out = {};
+      Object.entries(raw).forEach(([key, bucket]) => {
+        if (!isObject(bucket)) return;
+        const sessions = Array.isArray(bucket.sessions) ? bucket.sessions : [];
+        const normalizedSessions = sessions.map((session) => {
+          if (!isObject(session)) return null;
+          const id = typeof session.id === 'string' && session.id.trim() ? session.id.trim() : createSessionId();
+          const title = typeof session.title === 'string' && session.title.trim() ? session.title : 'New chat';
+          const createdAt = Number.isFinite(session.createdAt) ? session.createdAt : Date.now();
+          const updatedAt = Number.isFinite(session.updatedAt) ? session.updatedAt : createdAt;
+          const messages = sanitizeMessages(session.messages);
+          return { id, title, createdAt, updatedAt, messages };
+        }).filter(Boolean);
+        out[String(key)] = { sessions: normalizedSessions };
+      });
+      return out;
+    }
+
+    function sanitizeSelectionState(raw) {
+      const safe = createEmptySelectionState();
+      if (!isObject(raw)) return safe;
+      if (typeof raw.connectionId === 'string' && raw.connectionId.trim()) {
+        safe.connectionId = raw.connectionId;
+      }
+      if (isObject(raw.sessionByConnection)) {
+        Object.entries(raw.sessionByConnection).forEach(([key, value]) => {
+          if (typeof value === 'string' && value.trim()) {
+            safe.sessionByConnection[String(key)] = value;
+          }
+        });
+      }
+      return safe;
+    }
+
+    function supportsIndexedDb() {
+      return typeof window !== 'undefined' && typeof window.indexedDB !== 'undefined';
+    }
+
+    function openChatDb() {
+      return new Promise((resolve, reject) => {
+        if (!supportsIndexedDb()) {
+          reject(new Error('IndexedDB is not supported'));
+          return;
+        }
+        let request;
+        try {
+          request = window.indexedDB.open(CHAT_IDB_DB_NAME, CHAT_IDB_VERSION);
+        } catch (error) {
+          reject(error);
+          return;
+        }
+        request.onerror = () => reject(request.error || new Error('Failed to open IndexedDB'));
+        request.onupgradeneeded = () => {
+          const db = request.result;
+          if (!db.objectStoreNames.contains(CHAT_IDB_STORE_NAME)) {
+            db.createObjectStore(CHAT_IDB_STORE_NAME);
+          }
+        };
+        request.onsuccess = () => resolve(request.result);
+      });
+    }
+
+    async function loadChatStateFromIndexedDb() {
+      if (!supportsIndexedDb()) return null;
+      let db = null;
+      try {
+        db = await openChatDb();
+        const payload = await new Promise((resolve, reject) => {
+          const tx = db.transaction(CHAT_IDB_STORE_NAME, 'readonly');
+          const store = tx.objectStore(CHAT_IDB_STORE_NAME);
+          const request = store.get(CHAT_IDB_STATE_KEY);
+          request.onerror = () => reject(request.error || new Error('Failed to load chat state'));
+          request.onsuccess = () => resolve(request.result || null);
+        });
+        if (!isObject(payload)) return null;
+        return {
+          conversationStore: sanitizeConversationStore(payload.conversationStore),
+          chatSelectionState: sanitizeSelectionState(payload.chatSelectionState)
+        };
+      } catch (_) {
+        return null;
+      } finally {
+        try { db?.close?.(); } catch (_) {}
+      }
+    }
+
+    async function persistChatStateToIndexedDb(conversationStoreRef, chatSelectionStateRef) {
+      if (!supportsIndexedDb()) return;
+      let db = null;
+      try {
+        db = await openChatDb();
+        const payload = {
+          version: CHAT_IDB_VERSION,
+          updatedAt: Date.now(),
+          conversationStore: sanitizeConversationStore(conversationStoreRef),
+          chatSelectionState: sanitizeSelectionState(chatSelectionStateRef)
+        };
+        await new Promise((resolve, reject) => {
+          const tx = db.transaction(CHAT_IDB_STORE_NAME, 'readwrite');
+          tx.oncomplete = () => resolve();
+          tx.onerror = () => reject(tx.error || new Error('Failed to persist chat state'));
+          tx.objectStore(CHAT_IDB_STORE_NAME).put(payload, CHAT_IDB_STATE_KEY);
+        });
+      } catch (_) {
+      } finally {
+        try { db?.close?.(); } catch (_) {}
+      }
+    }
+
+    const inMemoryConversationStore = sanitizeConversationStore(window.__aiChatConversationsByConnection || {});
+    const inMemorySelectionState = sanitizeSelectionState(window.__aiChatSelectionState || createEmptySelectionState());
+    const persistedChatState = await loadChatStateFromIndexedDb();
+
+    const hasPersistedData = !!(persistedChatState
+      && isObject(persistedChatState.conversationStore)
+      && Object.keys(persistedChatState.conversationStore).length);
+
+    const conversationStore = hasPersistedData
+      ? persistedChatState.conversationStore
+      : inMemoryConversationStore;
+    const chatSelectionState = hasPersistedData
+      ? persistedChatState.chatSelectionState
+      : inMemorySelectionState;
+
+    window.__aiChatConversationsByConnection = conversationStore;
+    window.__aiChatSelectionState = chatSelectionState;
+
+    let persistTimer = null;
+    const scheduleChatStatePersist = (delay = 180) => {
+      try {
+        if (persistTimer) clearTimeout(persistTimer);
+      } catch (_) {}
+      persistTimer = setTimeout(() => {
+        persistTimer = null;
+        persistChatStateToIndexedDb(conversationStore, chatSelectionState);
+      }, Math.max(0, delay));
+    };
+
+    function listConnections() {
+      try {
+        const ensured = window.SettingsStore?.ensureAiConnections?.();
+        if (Array.isArray(ensured)) return ensured;
+      } catch (_) {}
+      try {
+        const list = window.SettingsStore?.getAiConnections?.();
+        if (Array.isArray(list)) return list;
+      } catch (_) {}
+      return [];
+    }
+
+    function findConnectionById(connections, connectionId) {
+      if (!connectionId) return null;
+      return (connections || []).find((entry) => entry && entry.id === connectionId) || null;
+    }
+
+    let connectionCatalog = listConnections();
+    let selectedConnectionId = findConnectionById(connectionCatalog, chatSelectionState.connectionId)
+      ? chatSelectionState.connectionId
+      : (connectionCatalog[0]?.id || null);
+    chatSelectionState.connectionId = selectedConnectionId;
+    let currentChatContext = null;
+
+    function getConversationBucket(connectionId) {
+      const key = connectionId || '__no_connection__';
+      if (!conversationStore[key]) {
+        conversationStore[key] = {
+          sessions: []
+        };
+      }
+      return conversationStore[key];
+    }
+
+    function createSession(connectionId, title = 'New chat') {
+      const bucket = getConversationBucket(connectionId);
+      const id = createSessionId();
+      const now = Date.now();
+      const session = {
+        id,
+        title,
+        createdAt: now,
+        updatedAt: now,
+        messages: []
+      };
+      bucket.sessions.unshift(session);
+      scheduleChatStatePersist();
+      return session;
+    }
+
+    function ensureConversation(connectionId, sessionId) {
+      const bucket = getConversationBucket(connectionId);
+      let session = bucket.sessions.find((item) => item.id === sessionId) || null;
+      if (!session) {
+        if (bucket.sessions.length) {
+          session = bucket.sessions[0];
+        } else {
+          session = createSession(connectionId);
+        }
+      }
+      return session;
+    }
+
+    function getSelectedSessionId(connectionId) {
+      const key = connectionId || '__no_connection__';
+      return chatSelectionState.sessionByConnection[key] || null;
+    }
+
+    function setSelectedSessionId(connectionId, sessionId) {
+      const key = connectionId || '__no_connection__';
+      chatSelectionState.sessionByConnection[key] = sessionId;
+      scheduleChatStatePersist();
+    }
+
+    function loadConnectionSecret(connectionId) {
+      if (!connectionId) return '';
+      try {
+        return localStorage.getItem(`${CONNECTION_SECRET_PREFIX}${connectionId}`) || '';
+      } catch (_) {
+        return '';
+      }
+    }
+
+    let selectedSessionId = getSelectedSessionId(selectedConnectionId);
+    let chatState = ensureConversation(selectedConnectionId, selectedSessionId);
+    selectedSessionId = chatState.id;
+    setSelectedSessionId(selectedConnectionId, selectedSessionId);
+
+    container.innerHTML = `
+      <div class="chat-pane">
+        <div class="chat-header" style="display:flex;justify-content:space-between;align-items:center;gap:8px;">
+          <div style="display:flex;flex-direction:column;">
+            <span class="title-text" style="font-weight:600;">Chat</span>
+            <span class="subtitle" id="chat-provider-label"></span>
+          </div>
+          <div class="chat-controls" style="display:flex;gap:6px;align-items:center;min-width:0;">
+            <select id="chat-connection-select" class="vscode-select" style="width:180px;max-width:180px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"></select>
+            <select id="chat-session-select" class="vscode-select" style="width:180px;max-width:180px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"></select>
+            <button id="chat-new" class="settings-btn settings-btn-secondary" title="New chat">＋ New</button>
+            <button id="chat-export" class="settings-btn settings-btn-secondary" title="Export conversation">🗒 Export</button>
+          </div>
+        </div>
+        <div id="chat-messages" class="chat-messages"></div>
+        <div class="chat-composer">
+          <div class="chat-input-shell">
+            <textarea id="chat-input" class="vscode-textarea chat-input" placeholder="Type a message..."></textarea>
+            <div class="chat-actions-inside">
+              <button id="chat-send" class="settings-btn settings-btn-primary chat-action-btn" title="Send" aria-label="Send">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M3.4 20.6 22 12 3.4 3.4l.1 6.2 11.4 2.4-11.4 2.4-.1 6.2Z"/></svg>
+              </button>
+              <button id="chat-stop" class="settings-btn settings-btn-secondary chat-action-btn hidden" title="Stop" aria-label="Stop" disabled>
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="2"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>`;
+
+    const messagesEl = document.getElementById('chat-messages');
+    const inputEl = document.getElementById('chat-input');
+    const sendBtn = document.getElementById('chat-send');
+    const stopBtn = document.getElementById('chat-stop');
+    const exportBtn = document.getElementById('chat-export');
+    const newChatBtn = document.getElementById('chat-new');
+    const providerLabelEl = document.getElementById('chat-provider-label');
+    const connectionSelect = document.getElementById('chat-connection-select');
+    const sessionSelect = document.getElementById('chat-session-select');
+    try { if (connectionSelect) { const host = container.querySelector('.chat-header') || container; __attachCustomPicker(connectionSelect, host) } } catch (_) {}
+    try { if (sessionSelect) { const host = container.querySelector('.chat-header') || container; __attachCustomPicker(sessionSelect, host) } } catch (_) {}
+
+    function escapeHtml(str) {
+      return String(str).replace(/[&<>]/g, (s) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[s]));
+    }
+
+    function truncateSelectLabel(value, maxChars = 22) {
+      const text = typeof value === 'string' ? value : String(value || '');
+      if (text.length <= maxChars) return text;
+      return `${text.slice(0, Math.max(1, maxChars - 1))}…`;
+    }
+
+    function fallbackChatContext() {
+      const promptService = window.AIPromptService;
+      const defaultId = AI_FREE_PROVIDER_ID;
+      let prompt = '';
+      try {
+        prompt = window.AIInstructionManager?.getRawTemplate?.('vba-conversion') || '';
+      } catch (_) {}
+      if (!prompt) {
+        try { prompt = promptService?.getDefaultPrompt?.(defaultId) || ''; } catch (_) {}
+      }
+      const label = providerFactory?.getProviderLabel
+        ? providerFactory.getProviderLabel(defaultId)
+        : defaultId.replace(/[-_]+/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase());
+      return {
+        providerId: defaultId,
+        providerLabel: label,
+        model: window.AIConfiguration?.getDefaultModel?.(defaultId) || '',
+        prompt,
+        connectionId: null,
+        connectionName: 'No connection selected'
+      };
+    }
+
+    function resolveChatContext(connection) {
+      if (!connection) {
+        return fallbackChatContext();
+      }
+      const providerId = connection.providerId || AI_FREE_PROVIDER_ID;
+      const providerLabel = providerFactory?.getProviderLabel
+        ? providerFactory.getProviderLabel(providerId)
+        : providerId;
+      let prompt = '';
+      try {
+        prompt = window.AIPromptService?.loadPrompt?.(providerId) || '';
+      } catch (_) {}
+      if (!prompt) {
+        try {
+          prompt = window.AIInstructionManager?.getRawTemplate?.('vba-conversion') || '';
+        } catch (_) {}
+      }
+
+      const base = {
+        providerId,
+        providerLabel,
+        model: connection.primaryModelId || window.AIConfiguration?.getDefaultModel?.(providerId) || '',
+        prompt,
+        connectionId: connection.id,
+        connectionName: connection.name || connection.id,
+        advancedLogging: false
+      };
+
+      const meta = (connection.metadata && typeof connection.metadata === 'object' && !Array.isArray(connection.metadata))
+        ? connection.metadata
+        : {};
+      base.advancedLogging = meta.advancedLogging === true;
+      const cfg = meta.requestConfig && typeof meta.requestConfig === 'object' && !Array.isArray(meta.requestConfig)
+        ? meta.requestConfig
+        : null;
+      if (cfg) {
+        base.requestOptions = {};
+        if (typeof cfg.temperature === 'number' && Number.isFinite(cfg.temperature)) {
+          base.requestOptions.temperature = cfg.temperature;
+        }
+        if (typeof cfg.maxTokens === 'number' && Number.isFinite(cfg.maxTokens) && cfg.maxTokens > 0) {
+          base.requestOptions.max_tokens = cfg.maxTokens;
+        }
+      }
+      return base;
+    }
+
+    function renderMessages() {
+      messagesEl.innerHTML = (chatState.messages || []).map((m) => {
+        const roleName = m.role === 'user' ? 'User' : (m.role === 'assistant' ? 'Assistant' : 'System');
+        const cls = m.role === 'user' ? 'chat-msg user' : (m.role === 'assistant' ? 'chat-msg assistant' : 'chat-msg');
+        return `<div class="${cls}"><div class="role">${roleName}</div><div>${escapeHtml(m.content || '')}</div></div>`;
+      }).join('');
+      messagesEl.scrollTop = messagesEl.scrollHeight;
+    }
+
+    function refreshConnectionSelect() {
+      if (!connectionSelect) return;
+      connectionCatalog = listConnections();
+      const options = connectionCatalog.map((connection) => {
+        const fullLabel = connection.name || connection.id;
+        return `<option value="${escapeHtml(connection.id)}" title="${escapeHtml(fullLabel)}">${escapeHtml(truncateSelectLabel(fullLabel))}</option>`;
+      });
+      connectionSelect.innerHTML = options.join('');
+      if (!findConnectionById(connectionCatalog, selectedConnectionId)) {
+        selectedConnectionId = connectionCatalog[0]?.id || null;
+      }
+      chatSelectionState.connectionId = selectedConnectionId;
+      connectionSelect.value = selectedConnectionId || '';
+    }
+
+    function refreshSessionSelect() {
+      if (!sessionSelect) return;
+      const bucket = getConversationBucket(selectedConnectionId);
+      const options = (bucket.sessions || []).map((session) => {
+        const title = session.title || 'New chat';
+        return `<option value="${escapeHtml(session.id)}" title="${escapeHtml(title)}">${escapeHtml(truncateSelectLabel(title))}</option>`;
+      });
+      sessionSelect.innerHTML = options.join('');
+      if (!(bucket.sessions || []).some((session) => session.id === selectedSessionId)) {
+        selectedSessionId = bucket.sessions[0]?.id || null;
+      }
+      if (selectedSessionId) {
+        sessionSelect.value = selectedSessionId;
+      }
+    }
+
+    function applyChatSelection(connectionId, sessionId) {
+      selectedConnectionId = connectionId || null;
+      chatSelectionState.connectionId = selectedConnectionId;
+      chatState = ensureConversation(selectedConnectionId, sessionId || getSelectedSessionId(selectedConnectionId));
+      selectedSessionId = chatState.id;
+      setSelectedSessionId(selectedConnectionId, selectedSessionId);
+      scheduleChatStatePersist();
+      currentChatContext = resolveChatContext(findConnectionById(connectionCatalog, selectedConnectionId));
+      refreshConnectionSelect();
+      refreshSessionSelect();
+      if (providerLabelEl) {
+        if (currentChatContext.connectionId) {
+          const modelText = currentChatContext.model ? ` • ${currentChatContext.model}` : '';
+          providerLabelEl.textContent = `${currentChatContext.providerLabel}${modelText}`;
+        } else {
+          providerLabelEl.textContent = 'Select connection in AI Connection Settings';
+        }
+      }
+      renderMessages();
+    }
+
+    connectionSelect?.addEventListener('change', (event) => {
+      const nextConnectionId = event.target.value || null;
+      applyChatSelection(nextConnectionId, getSelectedSessionId(nextConnectionId));
+    });
+
+    sessionSelect?.addEventListener('change', (event) => {
+      const nextSessionId = event.target.value || null;
+      applyChatSelection(selectedConnectionId, nextSessionId);
+    });
+
+    newChatBtn?.addEventListener('click', () => {
+      const next = createSession(selectedConnectionId);
+      applyChatSelection(selectedConnectionId, next.id);
+    });
+
+    applyChatSelection(selectedConnectionId, selectedSessionId);
+
+    function buildConversationTranscript() {
+      const context = currentChatContext || resolveChatContext(findConnectionById(connectionCatalog, selectedConnectionId));
+      const chatName = chatState?.title || 'Chat';
+      const timestamp = new Date().toISOString();
+      const header = [
+        '# AI Chat Transcript',
+        `Chat: ${chatName}`,
+        `Connection: ${context.connectionName || 'n/a'}`,
+        `Provider: ${context.providerLabel}`,
+        `Model: ${context.model || 'default'}`,
+        `Timestamp: ${timestamp}`,
+        ''
+      ];
+      const body = (chatState.messages || []).map((entry) => `## ${entry.role.toUpperCase()}\n${entry.content || ''}\n`);
+      return header.concat(body).join('\n');
+    }
+
+    exportBtn?.addEventListener('click', () => {
+      if (!chatState.messages || !chatState.messages.length) {
+        window.LogService?.logWarning?.('AI Chat', 'Export skipped (no messages)', { connectionId: selectedConnectionId, sessionId: selectedSessionId });
+        return;
+      }
+      const transcript = buildConversationTranscript();
+      const blob = new Blob([transcript], { type: 'text/markdown;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      const chatName = (chatState?.title || 'chat').replace(/\s+/g, '-').toLowerCase();
+      link.href = url;
+      link.download = `ai-chat-${chatName}-${Date.now()}.md`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+      window.LogService?.logInfo?.('AI Chat', 'export', { connectionId: selectedConnectionId, sessionId: selectedSessionId, messages: chatState.messages.length });
+    });
+
+    function setChatBusy(isBusy) {
+      sendBtn.disabled = !!isBusy;
+      stopBtn.disabled = !isBusy;
+      sendBtn.classList.toggle('hidden', !!isBusy);
+      stopBtn.classList.toggle('hidden', !isBusy);
+    }
+
+    async function send() {
+      if (window.Trial && !window.Trial.enforce('aiChatSend')) { return; }
+      const text = (inputEl.value || '').trim();
+      if (!text) return;
+      inputEl.value = '';
+      chatState.messages.push({ role: 'user', content: text });
+      chatState.messages.push({ role: 'assistant', content: '' });
+      renderMessages();
+      scheduleChatStatePersist();
+
+      const context = currentChatContext || resolveChatContext(findConnectionById(connectionCatalog, selectedConnectionId));
+      const connectionIdForLog = selectedConnectionId || null;
+      const systemPrompt = context.prompt || '';
+
+      const providerApiKey = (context.connectionId ? loadConnectionSecret(context.connectionId) : '')
+        || window.AIStorage?.getApiKey?.(context.providerId || AI_FREE_PROVIDER_ID);
+      if (!providerApiKey) {
+        const last = chatState.messages[chatState.messages.length - 1];
+        last.content = '[Error] API key is not configured. Open AI Connection Settings and save your key first.';
+        renderMessages();
+        setChatBusy(false);
+        return;
+      }
+
+      if (!providerFactory || typeof providerFactory.createProvider !== 'function') {
+        const last = chatState.messages[chatState.messages.length - 1];
+        last.content = `${last.content || ''}\n[Error] AI provider factory unavailable.`;
+        renderMessages();
+        window.LogService?.logError?.('AI Chat', 'provider-factory-missing', { connectionId: connectionIdForLog });
+        return;
+      }
+
+      const conversation = [];
+      if (systemPrompt) conversation.push({ role: 'system', content: systemPrompt });
+      const pending = chatState.messages.slice(0, chatState.messages.length - 1);
+      pending.forEach((entry) => conversation.push({ role: entry.role, content: entry.content }));
+
+      window.LogService?.logInfo?.('AI Chat', 'send', {
+        connectionId: connectionIdForLog,
+        sessionId: selectedSessionId,
+        providerId: context.providerId,
+        messageLength: text.length
+      });
+
+      setChatBusy(true);
+      let provider = null;
+      try {
+        provider = providerFactory.createProvider(context.providerId, {
+          advancedLogging: context.advancedLogging === true,
+          connectionId: context.connectionId || null
+        });
+      } catch (error) {
+        console.error('[RightActivityBar] Failed to create AI provider:', error);
+      }
+
+      let aborted = false;
+      stopBtn.onclick = () => { aborted = true; };
+      const onDelta = (delta) => {
+        if (aborted) return;
+        const last = chatState.messages[chatState.messages.length - 1];
+        last.content += delta || '';
+        renderMessages();
+        scheduleChatStatePersist(300);
+      };
+
+      try {
+        let finalText = '';
+        if (provider && typeof provider.sendMessageStream === 'function') {
+          const streamOptions = context.model ? { model: context.model } : {};
+          if (context.requestOptions && typeof context.requestOptions === 'object') {
+            Object.assign(streamOptions, context.requestOptions);
+          }
+          finalText = await provider.sendMessageStream(conversation, streamOptions, onDelta);
+        } else if (provider && typeof provider.sendMessage === 'function') {
+          const requestOptions = context.model ? { model: context.model } : {};
+          if (context.requestOptions && typeof context.requestOptions === 'object') {
+            Object.assign(requestOptions, context.requestOptions);
+          }
+          finalText = await provider.sendMessage(conversation, requestOptions);
+        } else {
+          throw new Error('AI provider unavailable');
+        }
+        if (!aborted) {
+          const last = chatState.messages[chatState.messages.length - 1];
+          last.content = finalText || last.content;
+          renderMessages();
+          scheduleChatStatePersist();
+          window.LogService?.logInfo?.('AI Chat', 'response', {
+            connectionId: connectionIdForLog,
+            sessionId: selectedSessionId,
+            providerId: context.providerId,
+            length: (finalText || '').length
+          });
+        }
+      } catch (error) {
+        const last = chatState.messages[chatState.messages.length - 1];
+        const rawError = error?.message || String(error);
+        let friendlyError = rawError;
+        const lower = typeof rawError === 'string' ? rawError.toLowerCase() : String(rawError).toLowerCase();
+        if ((lower.includes('permission denied') || lower.includes('does not have access to model')) && context?.connectionId) {
+          const requestedModel = context.model || 'selected model';
+          friendlyError = `${rawError}\nTip: model "${requestedModel}" is not available for your project. Open AI Connection Settings, pick one of available models from suggestions, save connection, then retry.`;
+        }
+        last.content = `${last.content || ''}\n[Error] ${friendlyError}`;
+        renderMessages();
+        scheduleChatStatePersist();
+        window.LogService?.logError?.('AI Chat', 'error', {
+          connectionId: connectionIdForLog,
+          sessionId: selectedSessionId,
+          providerId: context.providerId,
+          message: rawError
+        });
+      } finally {
+        chatState.updatedAt = Date.now();
+        if ((chatState.title || 'New chat') === 'New chat') {
+          const firstUser = (chatState.messages || []).find((entry) => entry.role === 'user' && typeof entry.content === 'string' && entry.content.trim());
+          if (firstUser) {
+            chatState.title = firstUser.content.trim().slice(0, 48);
+            refreshSessionSelect();
+          }
+        }
+        scheduleChatStatePersist();
+        setChatBusy(false);
+        stopBtn.onclick = null;
+      }
+    }
+
+    sendBtn.addEventListener('click', send);
+    inputEl.addEventListener('keydown', (event) => {
+      if ((event.ctrlKey || event.metaKey) && event.key === 'Enter') {
+        event.preventDefault();
+        send();
+      }
+    });
+
+    renderMessages();
+  }
+
+  function safeRenderChat() {
+    try {
+      const result = renderChat();
+      if (result && typeof result.catch === 'function') {
+        result.catch((error) => {
+          console.error('[RightActivityBar] renderChat failed', error);
+        });
+      }
+      return result;
+    } catch (error) {
+      console.error('[RightActivityBar] renderChat failed', error);
+      return null;
+    }
+  }
+
+  function initResizer() {
+    const resizer = document.getElementById('right-pane-resizer');
+    if (!resizer) return;
+    try { window.__RightPaneResizerTeardown?.() } catch (_) {}
+    let dragging = false;
+    function onMouseMove(e) {
+      if (!dragging) return;
+      // compute new width: right pane anchored to right with 48px bar
+      const viewport = window.innerWidth || document.documentElement.clientWidth;
+      const barWidth = 48; // right activity bar
+      let width = Math.round((viewport - barWidth) - e.clientX);
+      const { min, max } = getRightPaneWidthBounds();
+      if (width < min) width = min;
+      if (width > max) width = max;
+      document.documentElement.style.setProperty(PANE_WIDTH_VAR, width + 'px');
+      try { localStorage.setItem(WIDTH_KEY, String(width)); } catch(_) {}
+      try { if (window.__rightPromptEditor) window.__rightPromptEditor.layout(); } catch(_) {}
+    }
+    function onMouseUp() { if (dragging) { dragging = false; document.body.classList.remove('resizing-right-pane'); } }
+    const onMouseDown = (e) => {
+      e.preventDefault(); dragging = true; document.body.classList.add('resizing-right-pane');
+    }
+    const onDoubleClick = () => {
+      const { min, max } = getRightPaneWidthBounds()
+      const width = Math.max(min, Math.min(max, DEFAULT_WIDTH))
+      document.documentElement.style.setProperty(PANE_WIDTH_VAR, width + 'px');
+      try { localStorage.setItem(WIDTH_KEY, String(width)); } catch(_) {}
+    }
+
+    resizer.addEventListener('mousedown', onMouseDown);
+    document.addEventListener('mousemove', onMouseMove);
+    document.addEventListener('mouseup', onMouseUp);
+    resizer.addEventListener('dblclick', onDoubleClick);
+
+    window.__RightPaneResizerTeardown = function () {
+      try { resizer.removeEventListener('mousedown', onMouseDown) } catch (_) {}
+      try { document.removeEventListener('mousemove', onMouseMove) } catch (_) {}
+      try { document.removeEventListener('mouseup', onMouseUp) } catch (_) {}
+      try { resizer.removeEventListener('dblclick', onDoubleClick) } catch (_) {}
+      window.__RightPaneResizerListeners = false
+    }
+    window.__RightPaneResizerListeners = true
+  }
+
+  try {
+    console.info('[RightActivityBar] pre-ready marker', { version: SCRIPT_VERSION });
+  } catch (_) {}
+
+  try {
+    console.info('[RightActivityBar] pre-readyState checkpoint', { version: SCRIPT_VERSION });
+  } catch (_) {}
+
+	  try {
+	    console.info('[RightActivityBar] readyState', document.readyState);
+	  } catch (error) {
+	    try { console.error('[RightActivityBar] readyState check failed', error); } catch (_) {}
+	  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+      try {
+        console.info('[RightActivityBar] DOMContentLoaded fired', { version: SCRIPT_VERSION });
+        window.__RightActivityBar_runInit?.('dom-content-loaded');
+      } catch (error) {
+        try { console.error('[RightActivityBar] init failed (DOMContentLoaded)', error); } catch (_) {}
+      }
+    }, { once: true });
+  } else {
+    try {
+      console.info('[RightActivityBar] init immediate');
+      window.__RightActivityBar_runInit?.('ready-state');
+    } catch (error) {
+      try { console.error('[RightActivityBar] init failed (immediate)', error); } catch (_) {}
+    }
+  }
+  try {
+    console.info('[RightActivityBar] bootstrap end', { version: SCRIPT_VERSION });
+  } catch (_) {}
+  try {
+    setTimeout(() => {
+      window.__RightActivityBar_runInit?.('safety-timeout');
+    }, 500);
+  } catch (_) {}
+})();
+} catch (error) {
+  try {
+    console.error('[RightActivityBar] bootstrap failed', error);
+  } catch (_) {}
+}
+  // Monaco editor theme toggle for Debug Insights
+  function applyDebugInsightsMonacoTheme(enable) {
+    try {
+      if (typeof monaco === 'undefined' || !monaco.editor) return;
+      // Determine current default theme to restore later
+      const isDark = document.body.classList.contains('theme-type-dark');
+      const defaultTheme = isDark ? 'vs-dark' : 'vs';
+      if (!enable) {
+        // Restore original theme if we previously switched
+        const prev = window.__prevMonacoTheme || defaultTheme;
+        monaco.editor.setTheme(prev);
+        return;
+      }
+      // Compute colors from CSS variables (fallbacks included)
+      const cs = getComputedStyle(document.documentElement);
+      const bg = cs.getPropertyValue('--vscode-editor-background').trim() || (isDark ? '#1e1e1e' : '#ffffff');
+      const fg = cs.getPropertyValue('--vscode-editor-foreground').trim() || (isDark ? '#d4d4d4' : '#333333');
+      const accent = cs.getPropertyValue('--accent-color').trim() || '#4b9cff';
+      const sel = cs.getPropertyValue('--selection-bg').trim() || (isDark ? '#264f78' : '#bcdcff');
+      const lineHl = cs.getPropertyValue('--line-highlight-bg').trim() || (isDark ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.06)');
+      const gutter = cs.getPropertyValue('--border-color').trim() || (isDark ? '#3c3c3c' : '#e0e0e0');
+      // Remember previous theme once when switching on
+      if (!window.__prevMonacoTheme) window.__prevMonacoTheme = defaultTheme;
+      monaco.editor.defineTheme('debug-insights', {
+        base: isDark ? 'vs-dark' : 'vs',
+        inherit: true,
+        rules: [
+          { token: 'identifier', foreground: fg.replace('#','') },
+          { token: 'type.identifier', foreground: accent.replace('#',''), fontStyle: 'bold' },
+          { token: 'keyword', foreground: accent.replace('#','') }
+        ],
+        colors: {
+          'editor.background': bg,
+          'editor.foreground': fg,
+          'editorLineNumber.foreground': gutter,
+          'editorCursor.foreground': accent,
+          'editor.selectionBackground': sel,
+          'editor.lineHighlightBackground': lineHl,
+          'editorIndentGuide.activeBackground': gutter,
+          'editorBracketMatch.border': accent
+        }
+      });
+      monaco.editor.setTheme('debug-insights');
+    } catch (_) {}
+  }

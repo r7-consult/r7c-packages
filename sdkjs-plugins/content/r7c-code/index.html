@@ -371,7 +371,6 @@
 				<span class="toolbar-icon">🐞</span>
 				<span class="toolbar-label">Debug</span>
 			</button>
-
 			<button
 				id="toolbar-copy-btn"
 				data-testid="toolbar-copy-btn"
@@ -781,7 +780,7 @@
   <script src="modules/macros_ide/scripts/managers/sdk-integration-manager.js"></script><!-- TASK-083: SliderDataSDK bridge -->
   <script src="modules/macros_ide/scripts/managers/macro-selection-bridge.js"></script><!-- TASK-135: Selection context bridge -->
   <script src="modules/macros_ide/scripts/ui/activity-bar.js"></script><!-- TASK 1.2 -->
-  <script src="modules/macros_ide/scripts/ui/right-activity-bar.js?v=2.3.8-20241024i"></script><!-- Right Activity Bar (MUST load before main.js) -->
+  <script src="modules/macros_ide/scripts/ui/right-activity-bar.js?v=2.3.9-20260408a"></script><!-- Right Activity Bar (MUST load before main.js) -->
   <script src="modules/macros_ide/scripts/ui/ai-job-monitor.js"></script><!-- TASK-139: AI Job Monitor right-pane tool -->
   <!-- TASK-116: VSCode sidebar with feature flag fix -->
   <script src="modules/macros_ide/scripts/managers/explorer-layout-controller.js"></script><!-- Explorer layout orchestration -->
@@ -816,6 +815,12 @@
 	<script src="modules/macros_ide/ai/providers/openai.js"></script>
 	<script src="modules/macros_ide/ai/providers/github.js"></script>
 	<script src="modules/macros_ide/ai/providers/gemini.js"></script>
+	<script src="modules/macros_ide/ai/providers/deepseek.js"></script>
+	<script src="modules/macros_ide/ai/providers/litellm.js"></script>
+	<script src="modules/macros_ide/ai/providers/minimax.js"></script>
+	<script src="modules/macros_ide/ai/providers/ollama.js"></script>
+	<script src="modules/macros_ide/ai/providers/qwen-code.js"></script>
+	<script src="modules/macros_ide/ai/providers/zai.js"></script>
 
 	<!-- TASK-058: Request/Response Logging Infrastructure -->
 	<script src="modules/macros_ide/ai/utils/security-filter.js"></script>

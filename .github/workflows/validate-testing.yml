@@ -1,0 +1,148 @@
+name: Validate Testing Integrity and Pack
+
+on:
+  workflow_dispatch:
+    inputs:
+      base_ref:
+        description: Optional base ref for changed-only packing. Defaults to the previous commit on testing.
+        required: false
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: validate-testing-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  guard:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Require testing branch
+        run: |
+          if [ "${GITHUB_REF_NAME}" != "testing" ]; then
+            echo "This workflow may only run on the testing branch."
+            exit 1
+          fi
+
+  validate:
+    needs: guard
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Resolve comparison refs
+        shell: bash
+        run: |
+          if [[ -n "${{ inputs.base_ref }}" ]]; then
+            base_ref="${{ inputs.base_ref }}"
+          elif git rev-parse HEAD^ >/dev/null 2>&1; then
+            base_ref="$(git rev-parse HEAD^)"
+          else
+            base_ref="$(git rev-parse HEAD)"
+          fi
+
+          echo "BASE_REF=$base_ref" >> "$GITHUB_ENV"
+          echo "HEAD_REF=${GITHUB_SHA}" >> "$GITHUB_ENV"
+          echo "Using BASE_REF=$base_ref"
+          echo "Using HEAD_REF=${GITHUB_SHA}"
+
+      - name: Syntax check packer
+        run: python -m py_compile packer/pack.py
+
+      - name: Pack changed plugins in disposable workspace
+        run: python packer/pack.py --old-mode --write-integrity --changed-only --base-ref "${{ env.BASE_REF }}" --head-ref "${{ env.HEAD_REF }}"
+
+      - name: Verify integrity manifest against built packages
+        run: python packer/pack.py --old-mode --verify-integrity
+
+      - name: Validate manifest shape and commercial exclusions
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          manifest_path = Path("store/integrity.json")
+          manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+          packages = manifest.get("packages")
+
+          if not isinstance(packages, dict):
+              raise SystemExit("integrity.json packages must be an object")
+
+          forbidden = {"slider-query", "slider-diagram"}
+          present_forbidden = sorted(name for name in forbidden if name in packages)
+          if present_forbidden:
+              raise SystemExit(f"commercial packages leaked into integrity manifest: {present_forbidden}")
+
+          missing_fields = {}
+          for name, entry in packages.items():
+              missing = [field for field in ("guid", "version", "file", "size", "sha256") if not entry.get(field)]
+              if missing:
+                  missing_fields[name] = missing
+
+          if missing_fields:
+              raise SystemExit(f"manifest entries with missing fields: {missing_fields}")
+
+          print(f"Validated {len(packages)} manifest entries")
+          PY
+
+      - name: Collect validation report
+        shell: bash
+        run: |
+          git status --short > validation-git-status.txt
+          git diff --name-only > validation-diff.txt
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          manifest = json.loads(Path("store/integrity.json").read_text(encoding="utf-8"))
+          packages = manifest.get("packages", {})
+
+          changed_files = [
+              line.strip()
+              for line in Path("validation-diff.txt").read_text(encoding="utf-8").splitlines()
+              if line.strip()
+          ]
+
+          report = {
+              "ref": {
+                  "branch": "testing",
+              },
+              "integrity": {
+                  "algorithm": manifest.get("algorithm"),
+                  "generatedAt": manifest.get("generatedAt"),
+                  "packageCount": len(packages),
+                  "commercialExcluded": {
+                      "slider-query": "slider-query" not in packages,
+                      "slider-diagram": "slider-diagram" not in packages,
+                  },
+              },
+              "changedFiles": changed_files,
+          }
+
+          Path("validation-report.json").write_text(
+              json.dumps(report, ensure_ascii=False, indent=2),
+              encoding="utf-8",
+          )
+          PY
+
+      - name: Upload validation artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: validate-testing-${{ github.run_id }}
+          path: |
+            store/integrity.json
+            validation-report.json
+            validation-diff.txt
+            validation-git-status.txt

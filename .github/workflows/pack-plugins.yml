@@ -12,6 +12,7 @@ jobs:
       uses: actions/checkout@v4
       with:
         ref: ${{ github.event.build.commit }}
+        fetch-depth: 0
 
     - name: Get latest tag
       id: get_tag
@@ -47,8 +48,7 @@ jobs:
         python-version: '3.x'
     
     - name: Pack plugins
-      run: |
-        python packer/pack.py
+      run: python packer/pack.py --old-mode --write-integrity --changed-only --base-ref "${{ steps.get_tag.outputs.tag }}" --head-ref "${{ github.event.build.commit }}"
 
     - name: Upload GitHub Release
       uses: softprops/action-gh-release@v2
@@ -56,4 +56,4 @@ jobs:
         tag_name: ${{ steps.bump_tag.outputs.new_tag }}
         name: Release ${{ steps.bump_tag.outputs.new_tag }}
         body: Auto‑generated release for commit `${{ github.event.build.commit }}`
-        files: artifacts/*.plugin
+        files: sdkjs-plugins/content/*/deploy/*.plugin

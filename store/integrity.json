@@ -1,0 +1,412 @@
+{
+  "generatedAt": "2026-04-13T19:08:04.323330Z",
+  "algorithm": "sha256",
+  "packages": {
+    "ai": {
+      "guid": "asc.{9DC93CDB-B576-4F0C-B55E-FCC9C48DD007}",
+      "version": "3.2.1",
+      "file": "sdkjs-plugins/content/ai/deploy/ai.plugin",
+      "size": 2195828,
+      "sha256": "3d69a4601d2e8e979bb167975a86ce62c243819fc051c3a535fc5605cb7ac4db"
+    },
+    "apertium": {
+      "guid": "asc.{9b224050-2354-4c1b-822b-03a97f61c79d}",
+      "version": "1.0.3",
+      "file": "sdkjs-plugins/content/apertium/deploy/apertium.plugin",
+      "size": 1298838,
+      "sha256": "ae283cccdeec2b098a686bb780282e1c5785d527bfd3656349d865e13eb5b4b8"
+    },
+    "autocomplete": {
+      "guid": "asc.{A103601F-FDA0-418A-BC37-A514031894C0}",
+      "version": "1.1.0",
+      "file": "sdkjs-plugins/content/autocomplete/deploy/autocomplete.plugin",
+      "size": 2512233,
+      "sha256": "1ec530963c6fdb9ec06780c5c3e9d5a354b52526d4d082555a0a2c6538484db9"
+    },
+    "bergamot": {
+      "guid": "asc.{e3c4f4a2-8b7d-4f6e-9a1c-5d2b8f0c7e3a}",
+      "version": "1.0.0",
+      "file": "sdkjs-plugins/content/bergamot/deploy/bergamot.plugin",
+      "size": 2575029,
+      "sha256": "b74ffce1cc5f72265b338cc68ac191dc73e5307fbd0e81e527d34172389f5e7d"
+    },
+    "cell-converter": {
+      "guid": "asc.{C3B3D5A4-42DE-4168-9565-ABCD1E48A004}",
+      "version": "1.0.0",
+      "file": "sdkjs-plugins/content/cell-converter/deploy/cell-converter.plugin",
+      "size": 523035,
+      "sha256": "8f5a9db9403a237b38402e67bcea0d37dff64f2a0a7b62666a166d9744a1e453"
+    },
+    "cell-formatter": {
+      "guid": "asc.{C3B3D5A2-42DE-4168-9565-ABCD1E48A002}",
+      "version": "1.0.0",
+      "file": "sdkjs-plugins/content/cell-formatter/deploy/cell-formatter.plugin",
+      "size": 520013,
+      "sha256": "6b1c7cd6074c12de717fb629a878a912c668ef16044542ebfc4b67a51a02118f"
+    },
+    "cell-statistics": {
+      "guid": "asc.{C3B3D5A1-42DE-4168-9565-ABCD1E48A001}",
+      "version": "1.0.0",
+      "file": "sdkjs-plugins/content/cell-statistics/deploy/cell-statistics.plugin",
+      "size": 184015,
+      "sha256": "fd30bc88f95ecf6911a7360795aabbf4a997941e3a3996135356941b062d802c"
+    },
+    "chess": {
+      "guid": "asc.{FFE1F462-1EA2-4391-990D-4CC84940B754}",
+      "version": "1.0.1",
+      "file": "sdkjs-plugins/content/chess/deploy/chess.plugin",
+      "size": 319348,
+      "sha256": "5697c3ea2ba41579a765487dff9e7148983b93be42b9e7b64f7761c83a71ed37"
+    },
+    "cvbuilder": {
+      "guid": "asc.{9a2db794-d933-416d-91be-0b6ee35318b0}",
+      "version": "0.1.0",
+      "file": "sdkjs-plugins/content/cvbuilder/deploy/cvbuilder.plugin",
+      "size": 25481397,
+      "sha256": "46b1e597eb5c3879221e36d5bd1cc5faf98ecc17de151741a18d0633e4e5a130"
+    },
+    "data-generator": {
+      "guid": "asc.{C3B3D5A3-42DE-4168-9565-ABCD1E48A003}",
+      "version": "1.0.0",
+      "file": "sdkjs-plugins/content/data-generator/deploy/data-generator.plugin",
+      "size": 253471,
+      "sha256": "0292e4a46ac6f5e1d0475417a94f7a1cfdfea8bc354356714d321a6067d7dfd8"
+    },
+    "data_processing": {
+      "guid": "asc.{4edfb952-c923-4b5c-9fc3-1bca228c4b24}",
+      "version": "0.1.2",
+      "file": "sdkjs-plugins/content/data_processing/deploy/data_processing.plugin",
+      "size": 6220926,
+      "sha256": "bd2c71eea16905230886f0318adcd03f08b33e196bf56bf7f64a48977f4d4d3e"
+    },
+    "datepicker": {
+      "guid": "asc.{409e5493-56ae-45e1-8423-c73c84a06c50}",
+      "version": "1.0.0",
+      "file": "sdkjs-plugins/content/datepicker/deploy/datepicker.plugin",
+      "size": 379373,
+      "sha256": "e243c37572b2f0e3fd053fc14022cdba30cb71ad134bad97f29f53002ea2a2cb"
+    },
+    "deepl": {
+      "guid": "asc.{b78a062b-e349-4634-8a44-99825600d299}",
+      "version": "1.0.5",
+      "file": "sdkjs-plugins/content/deepl/deploy/deepl.plugin",
+      "size": 209632,
+      "sha256": "5fd9a0d7da893bb4dc310dddcddecf7579e6be7ea5e8b6f4f71554172b138f95"
+    },
+    "doc2md": {
+      "guid": "asc.{5aff455d-96c4-4bd8-9658-16e5bc143738}",
+      "version": "1.0.3",
+      "file": "sdkjs-plugins/content/doc2md/deploy/doc2md.plugin",
+      "size": 445061,
+      "sha256": "6525982df258b73d1aa31ec291e1abe2dff9c10c1daa9b35a9230995fa72d0fb"
+    },
+    "drawio": {
+      "guid": "asc.{DB38923B-A8C0-4DE9-8AEE-A61BB5C901A5}",
+      "version": "1.0.5",
+      "file": "sdkjs-plugins/content/drawio/deploy/drawio.plugin",
+      "size": 50900314,
+      "sha256": "7bab1e7a6f703ff55383fd0d1b09771083f448ae6856823f66f73bfae82e8e55"
+    },
+    "easybib": {
+      "guid": "asc.{c9d216a5-4f1a-49f2-9ff0-67c510a73523}",
+      "version": "1.0.2",
+      "file": "sdkjs-plugins/content/easybib/deploy/easybib.plugin",
+      "size": 174901,
+      "sha256": "6c6d631fe72e816de61d3c651d91f2574d56eeef804b85ab0c4b51e2e581add9"
+    },
+    "game_wizard": {
+      "guid": "asc.{D3F58C96-9F8A-4C8E-8D70-8D4A1BAE4C11}",
+      "version": "0.2.1",
+      "file": "sdkjs-plugins/content/game_wizard/deploy/game_wizard.plugin",
+      "size": 1741273,
+      "sha256": "d525623f7f1772fdafbb51098d163aca76726f47e6211cd601756b9c6a904b7a"
+    },
+    "glavred": {
+      "guid": "asc.{B631E142-E40B-4B4C-90B9-2D00222A286E}",
+      "version": "1.0.1",
+      "file": "sdkjs-plugins/content/glavred/deploy/glavred.plugin",
+      "size": 1032549,
+      "sha256": "96d30d61a86cf88bc2e8e77f3af321b622f165f30d9e47374a908ff90ab5f401"
+    },
+    "grammalecte": {
+      "guid": "asc.{6ef67492-a111-4ca5-bd4f-bf02645afc61}",
+      "version": "1.0.3",
+      "file": "sdkjs-plugins/content/grammalecte/deploy/grammalecte.plugin",
+      "size": 4841423,
+      "sha256": "baae7eef4aa34f1a0913d9fb183ea63ab1d31aff25a46ca026d2abf24c0aa3eb"
+    },
+    "hello-world": {
+      "guid": "asc.{F4A9A9D0-0A7B-4D37-9BB8-2F8EF20E6801}",
+      "version": "1.0.1",
+      "file": "sdkjs-plugins/content/hello-world/deploy/hello-world.plugin",
+      "size": 195043,
+      "sha256": "e1e97db595e0ab205f5fca3fb71e5aaf8ceae517add3d39e56fa407a81b2c9ca"
+    },
+    "highlightcode": {
+      "guid": "asc.{BE5CBF95-C0AD-4842-B157-AC40FEDD9841}",
+      "version": "1.0.3",
+      "file": "sdkjs-plugins/content/highlightcode/deploy/highlightcode.plugin",
+      "size": 2599868,
+      "sha256": "a54864ef648cf1595a75798094cfc76acdd9a3c730b1b27ab3ff6a8c789b0e88"
+    },
+    "html": {
+      "guid": "asc.{E581C417-3C80-4BC2-B42D-502850FDC1E7}",
+      "version": "1.0.3",
+      "file": "sdkjs-plugins/content/html/deploy/html.plugin",
+      "size": 768898,
+      "sha256": "74621754fec774fdec042039ad1c353b5f28d124011ccb407596ed9b1ef95ac0"
+    },
+    "icons": {
+      "guid": "asc.{1B6B4FBC-BFFA-4B01-A901-94996D88D1DC}",
+      "version": "1.0.0",
+      "file": "sdkjs-plugins/content/icons/deploy/icons.plugin",
+      "size": 1188467,
+      "sha256": "62fd315049ea223611742b41237e98c6b8c70fffb210ca60640a232847189e98"
+    },
+    "idphoto": {
+      "guid": "asc.{7877CD2F-A977-4ED8-8CB7-32008278DDFC}",
+      "version": "",
+      "file": "sdkjs-plugins/content/idphoto/deploy/idphoto.plugin",
+      "size": 40602117,
+      "sha256": "33a15701025feefa0ddc7fc8068dd0a620d69bb89aada1b2f332aca095dfba2c"
+    },
+    "insertQR": {
+      "guid": "asc.{E5DD8D78-92F4-43B4-825B-E963D5CE8AC9}",
+      "version": "1.0.1",
+      "file": "sdkjs-plugins/content/insertQR/deploy/insertQR.plugin",
+      "size": 1355285,
+      "sha256": "18598ce6025e0b06f5902a7c81decf00cb0ba26f02700ab714f201904f97817e"
+    },
+    "jitsi": {
+      "guid": "asc.{7645D461-84BC-4FB0-A42C-98118C14A1CD}",
+      "version": "1.0.3",
+      "file": "sdkjs-plugins/content/jitsi/deploy/jitsi.plugin",
+      "size": 565352,
+      "sha256": "f6e69f543f05297ab38fc6ab3722b0ed8914c3e1d0598a243ca4147f816ebb22"
+    },
+    "languagetool": {
+      "guid": "asc.{7CDB02C9-A0BF-4B56-9A1A-71C860B8498F}",
+      "version": "1.0.5",
+      "file": "sdkjs-plugins/content/languagetool/deploy/languagetool.plugin",
+      "size": 1220021,
+      "sha256": "b00e8a6e59712c89c9e06b2cced0053e80227f446248674fe90bd847e812aaac"
+    },
+    "lizardtypst": {
+      "guid": "asc.{F8B5E3A1-9C7D-4E2F-A1B3-5D8E9F0A1C2D}",
+      "version": "1.0.0",
+      "file": "sdkjs-plugins/content/lizardtypst/deploy/lizardtypst.plugin",
+      "size": 10294034,
+      "sha256": "c36c66cfadcbdf3febc0d128e2c99dc321e932344c187847bfd076e29fe527bd"
+    },
+    "mathpix": {
+      "guid": "asc.{BFC5D9C6-89DE-4F28-9A3B-ABD8D2E48711}",
+      "version": "1.0.0",
+      "file": "sdkjs-plugins/content/mathpix/deploy/mathpix.plugin",
+      "size": 219520,
+      "sha256": "d2537ea4b7f6da7b0135cf5efd616b3a91493d6fcd8130be1a505314237f90d8"
+    },
+    "mendeley": {
+      "guid": "asc.{BE5CBF95-C0AD-4842-B157-AC40FEDD9441}",
+      "version": "1.0.3",
+      "file": "sdkjs-plugins/content/mendeley/deploy/mendeley.plugin",
+      "size": 616954,
+      "sha256": "ff57bd46f230c06787f2471d96f1633c84fc3ebbc5c29db01e9bba4285388336"
+    },
+    "news": {
+      "guid": "asc.{0616AE85-5DBE-4B6B-A0A9-455C4F1503AD}",
+      "version": "1.0.0",
+      "file": "sdkjs-plugins/content/news/deploy/news.plugin",
+      "size": 295927,
+      "sha256": "cb5e157990d3e4aab2249f90d6c9f87a70f10bdeaea34200637554df0a3be73e"
+    },
+    "ocr": {
+      "guid": "asc.{440EBF13-9B19-4BD8-8621-05200E58140B}",
+      "version": "2.1.0",
+      "file": "sdkjs-plugins/content/ocr/deploy/ocr.plugin",
+      "size": 913397,
+      "sha256": "b278924f6706a421e8396f7e024379bac93ae0303034cd0f063d59f993c3bb04"
+    },
+    "odata": {
+      "guid": "asc.{6B290456-D38E-4E00-9387-C3105CCF9BDC}",
+      "version": "1.0.0",
+      "file": "sdkjs-plugins/content/odata/deploy/odata.plugin",
+      "size": 935278,
+      "sha256": "183f684c54bfbfb00f6506a25b72567cb3f81622cad3c3a604859a7ea82191c5"
+    },
+    "onlydraw": {
+      "guid": "asc.{Y1234ABCD-5678-EFGH-IJKL-MNOPQRSTUVWX}",
+      "version": "2.1.0",
+      "file": "sdkjs-plugins/content/onlydraw/deploy/onlydraw.plugin",
+      "size": 13775344,
+      "sha256": "1a830e025e50831d835e752d8df1f3dda547ab9fc94429af049b8d95fabe68d3"
+    },
+    "photoeditor": {
+      "guid": "asc.{07FD8DFA-DFE0-4089-AL24-0730933CC80A}",
+      "version": "1.0.2",
+      "file": "sdkjs-plugins/content/photoeditor/deploy/photoeditor.plugin",
+      "size": 1543751,
+      "sha256": "4617021c0c516d382d4980f9dea471396da2a28b910f694e849e551ca8b6f104"
+    },
+    "pixabay": {
+      "guid": "asc.{1f6b80f3-8b3c-41c7-96a1-4b4386a6bd4c}",
+      "version": "1.0.2",
+      "file": "sdkjs-plugins/content/pixabay/deploy/pixabay.plugin",
+      "size": 1449496,
+      "sha256": "50d009bb3a77699c0f46b3670bbe075d23beb0ded6394225498550d54865a1f7"
+    },
+    "pomodoro": {
+      "guid": "asc.{FFE1F463-1EA3-4392-990E-4CC84940B755}",
+      "version": "1.0",
+      "file": "sdkjs-plugins/content/pomodoro/deploy/pomodoro.plugin",
+      "size": 4244293,
+      "sha256": "14779740007915a87a2213e01d74295d8a69a90ef2604ac6d0c7193f1bbbb096"
+    },
+    "r7c-code": {
+      "guid": "asc.{12537f7a-8ab7-49a6-85a9-070c0de07000}",
+      "version": "2.3.9",
+      "file": "sdkjs-plugins/content/r7c-code/deploy/r7c-code.plugin",
+      "size": 12798847,
+      "sha256": "cc150552901f9f5cb68444d117b315cbf591c9f445d0684b2c93fd592c900c11"
+    },
+    "r7c-macro_recorder": {
+      "guid": "asc.{12b9e2f8-6d68-4e9e-8b8f-bf23f34cc401}",
+      "version": "0.1.0",
+      "file": "sdkjs-plugins/content/r7c-macro_recorder/deploy/r7c-macro_recorder.plugin",
+      "size": 2524836,
+      "sha256": "0812b1bcf6a9c86c752a72d5d409d4ab0239ae6c4e5872cdf4ad1908483f0422"
+    },
+    "r7c_chatLLM": {
+      "guid": "asc.{8455F88E-A130-4EE3-8465-FC2B2A810360}",
+      "version": "2.1.0",
+      "file": "sdkjs-plugins/content/r7c_chatLLM/deploy/r7c_chatLLM.plugin",
+      "size": 1750903,
+      "sha256": "cae8a29f7cca75e15bb368381341fbe4a5c0959c7fe39215eae2110ec54e3767"
+    },
+    "r7c_doc": {
+      "guid": "asc.{08A1B2C3-D4E5-46F7-88A9-C0A1A2B3C4D5}",
+      "version": "1.0.4",
+      "file": "sdkjs-plugins/content/r7c_doc/deploy/r7c_doc.plugin",
+      "size": 14109048,
+      "sha256": "9d40b5f35951c7c3dc3f1859d8fe0c2b3c168bb848ddfc01fec38e902161f8d3"
+    },
+    "rainbow": {
+      "guid": "asc.{0743b63f-cb32-438c-b46b-81ce182ff4f7}",
+      "version": "1.0.2",
+      "file": "sdkjs-plugins/content/rainbow/deploy/rainbow.plugin",
+      "size": 284066,
+      "sha256": "0d4498994cce16d3f2d46827b5345a3f1aff1598fc07109b489d96ccd69ba0c7"
+    },
+    "speech": {
+      "guid": "asc.{D71C2EF0-F15B-47C7-80E9-86D671F9C595}",
+      "version": "2.0.2",
+      "file": "sdkjs-plugins/content/speech/deploy/speech.plugin",
+      "size": 1290525,
+      "sha256": "514950eba9e7b24cad14a2f8525bf5eeec14201cf1e33d39ef755b5ae20739bb"
+    },
+    "speechrecognition": {
+      "guid": "asc.{F30BDD79-23A0-4B05-8DE3-2AB77D03A1B4}",
+      "version": "1.0.3",
+      "file": "sdkjs-plugins/content/speechrecognition/deploy/speechrecognition.plugin",
+      "size": 372452,
+      "sha256": "c538d11ae3f18992813518a9ea8fc8503c448c80bab2d8d437ac06a4a0c33f04"
+    },
+    "telegram": {
+      "guid": "asc.{E5773A43-F9B3-4E81-81D9-CE0A132470E7}",
+      "version": "1.0.2",
+      "file": "sdkjs-plugins/content/telegram/deploy/telegram.plugin",
+      "size": 373835,
+      "sha256": "831fc975179a0b9b8c261688124ab383ef65ff6dff06b5bd1a4857dc1a7f0707"
+    },
+    "termef": {
+      "guid": "asc.{4571a69c-7ae5-4f2c-98fd-97614ba7bf3d}",
+      "version": "1.0.1",
+      "file": "sdkjs-plugins/content/termef/deploy/termef.plugin",
+      "size": 122471,
+      "sha256": "0a778faa1f35acbf82c882146fc5a877b02b30fd27577d613f9fb5ad27cc355b"
+    },
+    "textcleaner": {
+      "guid": "asc.{D8653A43-2F43-4CBB-9A9D-C6D3D0EE7B23}",
+      "version": "1.0.0",
+      "file": "sdkjs-plugins/content/textcleaner/deploy/textcleaner.plugin",
+      "size": 456420,
+      "sha256": "975811373b2c891bda09feaed275572ec29a2908205870bda213059d5ce7a8e9"
+    },
+    "texthighlighter": {
+      "guid": "asc.{07FD8DFA-DFE0-4089-AL24-0730933CC804}",
+      "version": "1.0.0",
+      "file": "sdkjs-plugins/content/texthighlighter/deploy/texthighlighter.plugin",
+      "size": 385985,
+      "sha256": "3217a5dc64c963961e9fa442ff43ed0e530590a7f31409a9bb3b5e9846171a95"
+    },
+    "thesaurus": {
+      "guid": "asc.{BE5CBF95-C0AD-4842-B157-AC40FEDD9840}",
+      "version": "1.0.3",
+      "file": "sdkjs-plugins/content/thesaurus/deploy/thesaurus.plugin",
+      "size": 190981,
+      "sha256": "5a46ce02b84283f5424f034bc1031ca00d61f03565522af19752a5c8b28caf98"
+    },
+    "translator": {
+      "guid": "asc.{7327FC95-16DA-41D9-9AF2-0E7F449F6800}",
+      "version": "1.0.8",
+      "file": "sdkjs-plugins/content/translator/deploy/translator.plugin",
+      "size": 591596,
+      "sha256": "f4274962fccf7584736d56eceaa4ba5c53b89c0a4d962cffdb6950d1f905d02f"
+    },
+    "typograf": {
+      "guid": "asc.{55159EC6-C91A-4DDB-8E1E-558454666461}",
+      "version": "1.0.2",
+      "file": "sdkjs-plugins/content/typograf/deploy/typograf.plugin",
+      "size": 455372,
+      "sha256": "61a9654d6ab9d5680cc46487d120eb13e39e7a8e51ae73498dd42567bf44ee2e"
+    },
+    "videoembedder": {
+      "guid": "asc.{FDSTF532-69ES-436C-RMDI-XSY4DF1R96ES}",
+      "version": "1.0.0",
+      "file": "sdkjs-plugins/content/videoembedder/deploy/videoembedder.plugin",
+      "size": 2791639,
+      "sha256": "c2725b5459394e5c924ee78c32774bec9e31b2df570923abe5d4e0e8a7debeea"
+    },
+    "wordpress": {
+      "guid": "asc.{0847b6a4-b007-11e7-abc4-cec278b6b50a}",
+      "version": "1.0.2",
+      "file": "sdkjs-plugins/content/wordpress/deploy/wordpress.plugin",
+      "size": 189455,
+      "sha256": "23c11fd19ac56139dd21fae4c53268b5ffdecc9d9fee0f13d2d9894449258d5f"
+    },
+    "wordscounter": {
+      "guid": "asc.{584EEEE8-DBF5-45C3-A4CA-F52177C82754}",
+      "version": "1.0.1",
+      "file": "sdkjs-plugins/content/wordscounter/deploy/wordscounter.plugin",
+      "size": 257600,
+      "sha256": "a9448fbef4e398c4d5114da4ab10b020afb6e47d978d98f3d3b7db4ee2f697b1"
+    },
+    "youtube": {
+      "guid": "asc.{38E022EA-AD92-45FC-B22B-49DF39746DB4}",
+      "version": "1.0.4",
+      "file": "sdkjs-plugins/content/youtube/deploy/youtube.plugin",
+      "size": 562654,
+      "sha256": "8e10107394339072fd521bd9fa425a80b2929145cb8d4a1fb85cd3d77689cc82"
+    },
+    "zhipu": {
+      "guid": "asc.{4b5efd7f-7c8d-1ef4-feab-bfbf2e1d86ac}",
+      "version": "2.0.1",
+      "file": "sdkjs-plugins/content/zhipu/deploy/zhipu.plugin",
+      "size": 3197692,
+      "sha256": "0c8320bf514adf9e64139cf65196ac0ecc86bb8d366201a9eca371be274fcc98"
+    },
+    "zoom": {
+      "guid": "asc.{3f15a9bc-51d3-4b59-b32f-75cfe2f07f54}",
+      "version": "1.0.1",
+      "file": "sdkjs-plugins/content/zoom/deploy/zoom.plugin",
+      "size": 631789,
+      "sha256": "0098297189c8d5a6ecbf003a339788f8864769eeb20fbe922825b5fec04c3550"
+    },
+    "zotero": {
+      "guid": "asc.{BFC5D5C6-89DE-4168-9565-ABD8D1E48711}",
+      "version": "1.0.7",
+      "file": "sdkjs-plugins/content/zotero/deploy/zotero.plugin",
+      "size": 2034388,
+      "sha256": "09a957674db81de9d44ff1740db1de8503a7ace8736f6e0b35edda077d118c1d"
+    }
+  }
+}

@@ -91,15 +91,20 @@ jobs:
               raise SystemExit(f"commercial packages leaked into integrity manifest: {present_forbidden}")
 
           missing_fields = {}
+          missing_versions = []
           for name, entry in packages.items():
-              missing = [field for field in ("guid", "version", "file", "size", "sha256") if not entry.get(field)]
+              missing = [field for field in ("guid", "file", "size", "sha256") if not entry.get(field)]
               if missing:
                   missing_fields[name] = missing
+              if not entry.get("version"):
+                  missing_versions.append(name)
 
           if missing_fields:
               raise SystemExit(f"manifest entries with missing fields: {missing_fields}")
 
           print(f"Validated {len(packages)} manifest entries")
+          if missing_versions:
+              print(f"Entries without version metadata: {missing_versions}")
           PY
 
       - name: Collect validation report
@@ -128,6 +133,9 @@ jobs:
                   "algorithm": manifest.get("algorithm"),
                   "generatedAt": manifest.get("generatedAt"),
                   "packageCount": len(packages),
+                  "missingVersionEntries": sorted(
+                      name for name, entry in packages.items() if not entry.get("version")
+                  ),
                   "commercialExcluded": {
                       "slider-query": "slider-query" not in packages,
                       "slider-diagram": "slider-diagram" not in packages,

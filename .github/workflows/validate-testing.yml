@@ -1,6 +1,11 @@
 name: Validate Testing Integrity and Pack
 
 on:
+  push:
+    branches:
+      - testing
+    paths:
+      - .github/workflows/validate-testing.yml
   workflow_dispatch:
     inputs:
       base_ref:

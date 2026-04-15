@@ -36,6 +36,13 @@
 					"external": true,
 					"landingUrl": "https://data.slider-ai.ru/"
 				},
+				"screenshots": [
+					"resources/store/screenshots/screen_1.png",
+					"resources/store/screenshots/screen_2.png",
+					"resources/store/screenshots/screen_3.png",
+					"resources/store/screenshots/screen_4.png",
+					"resources/store/screenshots/screen_5.png"
+				],
 				"background": {
 					"light": "#f3f6fb",
 					"dark": "#2a2f3a"
